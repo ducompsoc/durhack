@@ -1,0 +1,54 @@
+.cta-foot {
+	background-color: $primary-dark;
+	font-size: 20px;
+	font-weight: 300;
+	padding: 64px 0px;
+
+	.button {
+		display: inline-block;
+		border: solid 2px #fff;
+		border-radius: 6px;
+		font-weight: bold;
+		color: #fff;
+		text-decoration: none;
+		padding: 24px 64px;
+		transition: .5s ease;
+
+		&:hover {
+			background-color: #fff;
+			color: $primary-dark;
+		}
+	}
+
+	@media screen and (max-width: $breakpoint-small) {
+		text-align: center;
+
+		.text {
+			margin-bottom: 16px;
+		}
+	}
+}
+
+footer {
+	padding: 32px 0px;
+
+	a {
+		border-bottom: dashed 1px #fff;
+		color: #ccc;
+		text-decoration: none;
+	}
+
+	.legal {
+		font-size: 14px;
+		padding-right: 32px;
+
+		.bigger {
+			font-size: 18px;
+		}
+	}
+
+	.photo img {
+		width: 128px;
+		height: auto;
+	}
+}

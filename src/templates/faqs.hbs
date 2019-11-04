@@ -1,0 +1,16 @@
+{{#each questions}}
+	<div class="question closed">
+		<div class="title container">
+			<span class="x"></span>
+			{{@key}}
+		</div>
+
+		<div class="answer">
+			<div class="container">
+				{{#each this}}
+					<p>{{{this}}}</p>
+				{{/each}}
+			</div>
+		</div>
+	</div>
+{{/each}}

@@ -1,0 +1,24 @@
+[[redirects]]
+	from = "/codeofconduct"
+	to = "/assets/dh18_code_of_conduct.pdf"
+	status = 302
+
+[[redirects]]
+	from = "/sponsorshipdeck"
+	to = "https://drive.google.com/file/d/1-XTLcm9eFmUsyVWDA9PQOrBvniFXPFmr/view"
+	status = 302
+
+[[redirects]]
+	from = "/visaletter"
+	to = "https://ducompsoc.typeform.com/to/Xr4WLQ"
+	status = 302
+
+[[redirects]]
+	from = "/register"
+	to = "https://ducompsoc.typeform.com/to/Zc4X5W"
+	status = 302
+
+[[redirects]]
+	from = "/volunteer"
+	to = "https://ducompsoc.typeform.com/to/eGEoHr"
+	status = 302

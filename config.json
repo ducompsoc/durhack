@@ -1,0 +1,183 @@
+{
+  "faqs": {
+    "What is DurHack 2019?": [
+      "November 2019 marks the fourth iteration of DurHack, Durham University Computing Society&#39;s flagship annual hackathon. 150 students from Durham and around the country will come together in teams of up to five for a weekend-long invention marathon to create, innovate, learn and collaborate. We&#39;ll also provide loads of freebies, prizes, workshops and entertainment!"
+    ],
+    "Can I attend?": [
+      "Anybody who is over 18 and a current registered student, or who has graduated after 23rd November 2018, can attend. Your degree subject doesn&#39;t matter, all you need is a passion for learning!",
+      "DurHack is completely free to attend, and could not run without the generosity of our sponsors. We provide the space, WiFi, meals, snacks, and free swag."
+    ],
+    "When will tickets be released?": [
+      "Tickets are available now! You can \n\n<a href=\"https://ducompsoc.typeform.com/to/Zc4X5W\">register</a>\n\n to attend."
+    ],
+    "Do I need to be able to code to attend DurHack?": [
+      "The most important thing when attending a hackathon is your enthusiasm for technology. DurHack is passionate about being very welcoming and beginner-friendly, and you&#39;ll learn loads at the event!",
+      "If you want to learn to code but don&#39;t know where to start, you should definitely \n\n<a href=\"https://medium.com/on-coding/you-can-already-code-you-just-dont-know-it-yet-862044601a5a\">read this blogpost</a>\n\n.",
+      "We&#39;ll also be running several lead-up workshops with \n\n<a href=\"https://compsoc.tech/\">CompSoc</a>\n\n to prepare people for DurHack."
+    ],
+    "Should I attend DurHack?": [
+      "If you&#39;ve thought at all about attending DurHack, yes! DurHack is welcoming to people of all abilities, all that&#39;s important is a willingness to get stuck in with your team. DurHack is designed to have an inclusive and encouraging environment, so don&#39;t be afraid to ask anyone for help at the event!"
+    ],
+    "What can I eat?": [
+      "We&#39;ll provide you with meals, snacks and drinks throughout the weekend, leaving you to concentrate on your projects. If you have special dietary requirements, please let us know when you register."
+    ],
+    "What should I bring?": [
+      "All attendees will need to show valid student ID (other photo ID is acceptable for graduates) at registration. You&#39;ll also need a laptop and a charger, and you might want to bring a sleeping bag and toiletries."
+    ],
+    "Can I get a visa invitation letter?": [
+      "Yes! While we can&#39;t provide specific information about the visa application process for the UK, drop us an email at \n\n<a href=\"mailto:hello@durhack.com\">hello@durhack.com</a>\n\n and we can produce a visa invitation letter for you."
+    ],
+    "What if I don't have a team?": [
+      "Don&#39;t worry! Part of the fun of a hackathon is meeting new people. We&#39;ll have a team-building event before hacking begins for those who want to meet and form new teams."
+    ],
+    "Can I take a break overnight?": [
+      "You&#39;ll have 24 hours to create your project. It&#39;s important to take regular breaks, and that&#39;s why we&#39;ll be providing a relaxation room for attendees to have a rest if they want. Part of the fun of the hackathon is coding through the night!"
+    ],
+    "What can I build and who owns the IP?": [
+      "Web apps, mobile apps, hardware, anything! Projects will be judged based on their creativity, technical accomplishments, polish and usefulness by our judges.",
+      "<strong>The IP of your work remains with you, the attendees.</strong>"
+    ],
+    "Do you have a code of conduct?": [
+      "Everybody at DurHack 2019 will be expected to abide by the \n\n<a href=\"https://static.mlh.io/docs/mlh-code-of-conduct.pdf\">MLH Code of Conduct</a>\n\n.",
+      "TL;DR: be respectful to each other."
+    ],
+    "Do you offer travel reimbursements?": [
+      "Yes! We know that hackers like you might be travelling from afar. We&#39;d love to see you at DurHack this year and welcome you to our community. We&#39;re pleased to be able to offer up to \n\n<strong>£50/person</strong>\n\n in travel reimbursements! Just keep hold of your receipts and you can claim reimbursement at DurHack."
+    ],
+    "What if I have other questions?": [
+      "If you&#39;re still not sure about something, drop us a line at \n\n<a href=\"mailto:hello@durhack.com\">hello@durhack.com</a>\n\n and we&#39;ll be very happy to help!"
+    ]
+  },
+  "sponsors": {
+    "platinum": [
+      {
+        "image": "dcc.svg",
+        "link": "https://durham.gov.uk/"
+      },
+      {
+        "image": "atom-bank.png",
+        "link": "https://www.atombank.co.uk/careers"
+      }
+    ],
+    "silver": [
+      {
+        "image": "starleaf.svg",
+        "link": "https://www.starleaf.com/about-us/careers"
+      }
+    ],
+    "partners": [
+      {
+        "image": "compsoc_coloured.png",
+        "link": "https://www.compsoc.tech/"
+      },
+      {
+        "image": "mlh.png",
+        "link": "https://mlh.io/"
+      },
+      {
+        "image": "keyboard-company.svg",
+        "link": "https://www.keyboardco.com/"
+      },
+      {
+        "image": "digital-ocean.svg",
+        "link": "https://digitalocean.com/"
+      },
+      {
+        "image": "sticker-mule.svg",
+        "link": "http://hackp.ac/mlh-stickermule-hackathons"
+      },
+      {
+        "image": "cloudsploit.svg",
+        "link": "https://cloudsploit.com/"
+      },
+      {
+        "image": "du.svg",
+        "link": "https://www.dur.ac.uk/computer.science/"
+      },
+      {
+        "image": "dsu.png",
+        "link": "https://www.durhamsu.com/"
+      }
+    ]
+  },
+  "team": [
+    {
+      "name": "Robbie",
+      "role": "Lead Organiser",
+      "email": "robbie.jw@durhack.com",
+      "image": "robbie.jpg"
+    },
+    {
+      "name": "Alex",
+      "role": "Secretary & Catering Manager",
+      "email": "alex.k@durhack.com",
+      "image": "alex.jpg"
+    },
+    {
+      "name": "Christos",
+      "role": "Head of Logistics",
+      "email": "christos.cm@durhack.com",
+      "image": "christos.jpg"
+    },
+    {
+      "name": "Karl",
+      "role": "Postgraduate Adviser",
+      "email": "karl.s@durhack.com",
+      "image": "karl.jpg"
+    },
+    {
+      "name": "Lewis",
+      "role": "Treasurer",
+      "email": "lewis.s@durhack.com",
+      "image": "lewis.jpg"
+    },
+    {
+      "name": "Mahek",
+      "role": "Head of Hacker Experience",
+      "email": "mahek.v@durhack.com",
+      "image": "mahek.png"
+    },
+    {
+      "name": "Zeynep",
+      "role": "Publicity Officer",
+      "email": "zeynep.e@durhack.com",
+      "image": "zeynep.jpg"
+    },
+    {
+      "name": "Laszlo",
+      "role": "Design Officer",
+      "email": "laszlo.k@durhack.com",
+      "image": "laszlo.jpg"
+    },
+    {
+      "name": "Kanika Mehta",
+      "role": "Sponsorship Officer",
+      "email": "kanika.m@durhack.com",
+      "image": "kanika.jpg"
+    },
+    {
+      "name": "Peter Hessey",
+      "role": "Sponsorship Officer",
+      "email": "peter.h@durhack.com",
+      "image": "peter.jpg"
+    },
+    {
+      "name": "Ollie Hines",
+      "role": "Sponsorship Officer",
+      "email": "oliver.h@durhack.com",
+      "image": "ollie.jpg"
+    },
+    {
+      "name": "Amy Hudspith",
+      "role": "Logistics Assistant",
+      "email": "amy.h@durhack.com",
+      "image": "amy.jpg"
+    },
+    {
+      "name": "Jamie Sim",
+      "role": "Tech Officer",
+      "email": "jamie.s@durhack.com",
+      "image": "jamie.jpg"
+    }
+  ]
+}

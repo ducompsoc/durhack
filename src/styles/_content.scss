@@ -1,0 +1,270 @@
+.section {
+	overflow: hidden;
+	padding: 96px 0px;
+
+	h2 {
+		font-size: 48px;
+		font-weight: 300;
+		margin-top: 0px;
+	}
+
+	&.sponsors {
+		background-color: #eee;
+		color: #000;
+
+		h3 {
+			text-transform: uppercase;
+		}
+
+		a {
+			color: #000;
+			border-bottom: dashed 1px #000;
+			text-decoration: none;
+			transition: .3s ease;
+			opacity: 0.9;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+
+		.sponsor {
+			box-sizing: border-box;
+			padding: 0px 9px 9px 0px;
+
+			> a {
+				width: 100%;
+				height: 100%;
+				background-color: #fff;
+				border-bottom: solid 1px #ccc;
+				border-radius: 6px;
+				padding: 16px;
+				box-sizing: border-box;
+			}
+
+			img {
+				max-width: 100%;
+				max-height: 100%;
+			}
+		}
+
+		.platinum .sponsor {
+			width: 33%;
+			height: 152px;
+		}
+
+		.gold .sponsor {
+			width: 25%;
+			height: 128px;
+		}
+
+		.silver .sponsor {
+			width: 20%;
+			height: 96px;
+		}
+
+		.partners .sponsor {
+			width: 16%;
+			height: 96px;
+		}
+
+		@media screen and (max-width: $breakpoint-small) {
+			.sponsor {
+				width: 100% !important;
+			}
+		}
+	}
+
+	&.inspiration {
+		background-image: url('/assets/photos/7334.jpg');
+		background-size: cover;
+		background-attachment: fixed;
+		padding: 0px;
+
+		> div {
+			background-color: rgba($primary-dark, 0.85);
+			font-size: 24px;
+			font-weight: 300;
+			text-align: center;
+			padding: 96px 0px;
+
+			a {
+				border-bottom: dashed 1px #fff;
+				color: #fff;
+				text-decoration: none;
+			}
+		}
+	}
+
+	&.team {
+		position: relative;
+		font-weight: 300;
+		text-align: center;
+
+		> .bg {
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			left: -84px;
+			bottom: 0px;
+			background-image: url('/assets/team-circles.png');
+			background-position: center center;
+			z-index: -1;
+		}
+
+		> .inner {
+			> p {
+				font-size: 22px;
+
+				> a {
+					color: #fff;
+					text-decoration: none;
+
+					&:hover {
+						border-bottom: dashed 1px #fff;
+					}
+				}
+			}
+		}
+
+		.team-grid {
+			margin: 64px 0px;
+
+			a {
+				display: inline-block;
+				border: solid 2px #fff;
+				border-radius: 100%;
+				line-height: 0px;
+				padding: 2px;
+				margin: 6px 0px;
+				transition: .5s ease;
+
+				img {
+					width: 78px;
+					height: 78px;
+					border-radius: 100%;
+				}
+
+				&:hover {
+					transform: scale(1.05);
+				}
+			}
+		}
+
+		@media screen and (max-width: $breakpoint-small) {
+			.team-grid .column {
+				flex-direction: row;
+
+				> a {
+					margin: 0px 9px;
+				}
+			}
+
+			> .bg {
+				display: none;
+			}
+		}
+	}
+
+	&.faqs {
+		background-image: url('/assets/photos/6615.jpg');
+		background-position: calc(100vw - 1200px) 0px;
+		background-size: auto 1400px;
+		padding: 0px;
+
+		> div {
+			background-image: linear-gradient(90deg, #222 calc(100% - 900px), transparent 100%);
+			overflow: hidden;
+			padding: 96px 0px;
+		}
+
+		@media screen and (max-width: $breakpoint-medium) {
+			background-position: top center;
+
+			> div {
+				background-color: rgba(#222, 0.8);
+			}
+		}
+
+		.question {
+			margin: 24px 0px;
+
+			.title {
+				opacity: 0.8;
+				cursor: pointer;
+				transition: .3s ease;
+			}
+
+			&:hover .title {
+				opacity: 1;
+			}
+
+			.x {
+				display: inline-block;
+				width: 16px;
+				height: 8px;
+				box-sizing: border-box;
+				transition: .5s ease;
+				margin: 0px 7px 0px 0px;
+
+				&:before, &:after {
+					display: inline-block;
+					position: absolute;
+					content: '';
+					width: 16px;
+					height: 4px;
+					background-color: $primary-normal;
+					transition: .5s ease;
+				}
+
+				&:before {
+					transform: rotate(45deg);
+				}
+
+				&:after {
+					transform: rotate(-45deg);
+				}
+			}
+
+			&.closed {
+				.x {
+					padding-left: 6px;
+
+					&:before, &:after {
+						width: 4px;
+						margin: 0px;
+					}
+				}
+
+				.answer {
+					display: none;
+				}
+			}
+
+			.answer {
+				position: relative;
+				background-color: $primary-normal;
+				padding: 48px 0px;
+				margin-top: 32px;
+
+				> .container {
+					&:before {
+						position: absolute;
+						top: -16px;
+						content: '';
+						border-left: solid 16px transparent;
+						border-right: solid 16px transparent;
+						border-bottom: solid 16px $primary-normal;
+						margin-left: -8px;
+					}
+
+					a {
+						color: #eee;
+						text-decoration: none;
+						border-bottom: dashed 1px #eee;
+					}
+				}
+			}
+		}
+	}
+}

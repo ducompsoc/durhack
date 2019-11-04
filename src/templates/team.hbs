@@ -1,0 +1,9 @@
+{{#each teamColumns}}
+	<div class="column center">
+		{{#each this}}
+			<a href="mailto:{{email}}" class="tooltip" data-tippy-content="<div><strong>{{name}}</strong></div><div>{{role}}</div><div>{{email}}</div>">
+				<img src="/assets/team/{{image}}" />
+			</a>
+		{{/each}}
+	</div>
+{{/each}}

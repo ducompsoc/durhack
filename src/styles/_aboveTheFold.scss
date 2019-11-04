@@ -1,0 +1,85 @@
+.above-the-fold {
+	height: calc(100vh - 72px);
+	min-height: 680px;
+
+	.bg {
+		height: 100%;
+		background-image: url('/assets/bg-pattern.png');
+		animation-name: slide-a;
+		animation-duration: 14s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+
+		&.b {
+			animation-duration: 16s;
+			background-position: 100px 78px;
+		}
+
+		&.c {
+			animation-duration: 18s;
+			background-position: 100px 156px;
+		}
+	}
+
+	@keyframes slide-a {
+		0% {
+			background-position-x: 0px;
+		}
+
+		100% {
+			background-position-x: 260px;
+		}
+	}
+
+	.container {
+		height: 100%;
+		box-sizing: border-box;
+		font-size: 18px;
+		text-align: center;
+		padding: 32px;
+
+		.logo {
+			max-height: 100%;
+			overflow: hidden;
+		}
+
+		.date {
+			color: $secondary-a;
+		}
+
+		.location {
+			color: $secondary-b;
+		}
+
+		.date, .location {
+			font-family: Deciso, 'Open Sans', 'Helvetica Neue', sans-serif;
+			font-size: 24px;
+		}
+
+		@media screen and (max-width: $breakpoint-medium) {
+			.date, .location {
+				font-size: 18px;
+			}
+		}
+
+		@media screen and (max-width: $breakpoint-small) {
+			padding: 16px 2px;
+		}
+
+		.button {
+			display: inline-block;
+			background-color: #fff;
+			font-weight: bold;
+			border-radius: 6px;
+			text-decoration: none;
+			color: #353535;
+			padding: 16px 48px;
+			margin: 9px 0px;
+			transition: box-shadow .5s ease;
+
+			&:hover {
+				box-shadow: 0px 0px 16px rgba($primary-normal, 0.8);
+			}
+		}
+	}
+}
