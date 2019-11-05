@@ -18,10 +18,5 @@
 	to = "https://ducompsoc.typeform.com/to/Zc4X5W"
 	status = 302
 
-[[redirects]]
-	from = "/volunteer"
-	to = "https://ducompsoc.typeform.com/to/eGEoHr"
-	status = 302
-
 [dev]
 	publish = "dist/"
