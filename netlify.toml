@@ -22,3 +22,6 @@
 	from = "/volunteer"
 	to = "https://ducompsoc.typeform.com/to/eGEoHr"
 	status = 302
+
+[dev]
+	publish = "dist/"
