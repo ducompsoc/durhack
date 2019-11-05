@@ -24,9 +24,6 @@
     "What should I bring?": [
       "All attendees will need to show valid student ID (other photo ID is acceptable for graduates) at registration. You&#39;ll also need a laptop and a charger, and you might want to bring a sleeping bag and toiletries."
     ],
-    "Can I get a visa invitation letter?": [
-      "Yes! While we can&#39;t provide specific information about the visa application process for the UK, drop us an email at \n\n<a href=\"mailto:hello@durhack.com\">hello@durhack.com</a>\n\n and we can produce a visa invitation letter for you."
-    ],
     "What if I don't have a team?": [
       "Don&#39;t worry! Part of the fun of a hackathon is meeting new people. We&#39;ll have a team-building event before hacking begins for those who want to meet and form new teams."
     ],
@@ -57,6 +54,12 @@
       {
         "image": "atom-bank.png",
         "link": "https://www.atombank.co.uk/careers"
+      }
+    ],
+    "gold": [
+      {
+        "image": "waterstons.svg",
+        "link": "https://www.waterstons.com/careers"
       }
     ],
     "silver": [
