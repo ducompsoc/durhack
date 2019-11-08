@@ -186,5 +186,135 @@
       "email": "jamie.s@durhack.com",
       "image": "jamie.jpg"
     }
+  ],
+  "schedule": [
+    {
+      "events": [
+        {
+          "start": "09:30",
+          "end": "11:00",
+          "title": "Registration opens",
+          "icon": "edit"
+        },
+        {
+          "start": "11:15",
+          "end": "11:45",
+          "title": "Opening keynote",
+          "icon": "microphone"
+        },
+        {
+          "start": "11:45",
+          "end": "12:00",
+          "title": "Team-forming activity",
+          "icon": "lightbulb"
+        },
+        {
+          "start": "12:00",
+          "title": "Hacking begins!",
+          "icon": "code"
+        },
+        {
+          "start": "13:15",
+          "end": "14:30",
+          "title": "Lunch",
+          "icon": "food"
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "start": "14:30",
+          "end": "15:15",
+          "title": "Workshop (TBC)",
+          "icon": "flask"
+        },
+        {
+          "start": "15:30",
+          "end": "16:15",
+          "title": "Workshop (TBC)",
+          "icon": "flask"
+        },
+        {
+          "start": "16:30",
+          "end": "17:15",
+          "title": "Workshop (TBC)",
+          "icon": "flask"
+        },
+        {
+          "start": "18:00",
+          "end": "19:15",
+          "title": "Supper",
+          "icon": "food"
+        },
+        {
+          "start": "19:30",
+          "end": "20:30",
+          "title": "Cup-stacking",
+          "icon": "jigsaw"
+        },
+        {
+          "start": "20:45",
+          "end": "21:45",
+          "title": "Battleships with Hack Western",
+          "icon": "jigsaw"
+        },
+        {
+          "start": "22:00",
+          "title": "Relaxation room opens",
+          "icon": "moon"
+        }
+      ]
+    },
+    {
+      "day": "DAY TWO",
+      "events": [
+        {
+          "start": "00:00",
+          "title": "Midnight pizza",
+          "icon": "pizza"
+        },
+        {
+          "start": "06:30",
+          "end": "08:30",
+          "title": "Breakfast",
+          "icon": "food"
+        },
+        {
+          "start": "11:00",
+          "title": "Project submission deadline (Devpost)",
+          "icon": "calendar"
+        },
+        {
+          "start": "12:00",
+          "title": "Hacking finishes!",
+          "icon": "code"
+        },
+        {
+          "start": "12:00",
+          "end": "13:00",
+          "title": "Lunch",
+          "icon": "food"
+        },
+        {
+          "start": "13:00",
+          "end": "14:15",
+          "title": "Science fair",
+          "icon": "flask"
+        },
+        {
+          "start": "14:30",
+          "end": "15:45",
+          "title": "Finalist presentations",
+          "icon": "microphone"
+        },
+        {
+          "start": "15:45",
+          "end": "16:30",
+          "title": "Closing talks and prize-giving",
+          "icon": "trophy"
+        }
+      ]
+    }
   ]
 }

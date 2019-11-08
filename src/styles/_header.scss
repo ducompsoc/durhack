@@ -1,3 +1,5 @@
+@import './variables';
+
 .header-wrap {
 	height: 76px;
 
@@ -45,6 +47,10 @@
 					font-size: 14px;
 					padding: 24px 8px;
 				}
+
+				.social {
+					display: none;
+				}
 			}
 		}
 
@@ -74,4 +80,8 @@
 	width: 10%;
 	max-width: 100px;
 	min-width: 60px;
+
+	@media screen and (max-width: $breakpoint-small) {
+		right: 3%;
+	}
 }
