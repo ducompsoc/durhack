@@ -58,6 +58,10 @@
     ],
     "gold": [
       {
+        "image": "goldman-sachs.png",
+        "link": "https://www.goldmansachs.com/careers/students/"
+      },
+      {
         "image": "waterstons.svg",
         "link": "https://www.waterstons.com/careers"
       }
