@@ -1,3 +1,5 @@
+@import './variables';
+
 .section {
 	overflow: hidden;
 	padding: 96px 0px;
@@ -263,6 +265,120 @@
 						text-decoration: none;
 						border-bottom: dashed 1px #eee;
 					}
+				}
+			}
+		}
+	}
+
+	&.schedule {
+		.timeline {
+			position: relative;
+
+			@media screen and (min-width: $breakpoint-small) {
+				&:before, .event .line:before, .event .line:after {
+					content: '';
+					height: 2px;
+					background-color: $secondary-b;
+				}
+
+				&:before {
+					position: absolute;
+					top: 99px;
+					right: 100%;
+					left: -100vh;
+				}
+
+				.group {
+					&:nth-child(even) .set {
+						flex-direction: row-reverse;
+					}
+
+					.set {
+						.event {
+							width: 320px;
+						}
+					}
+
+					.bracket {
+						position: absolute;
+						display: flex !important;
+						width: 12px;
+						height: 204px;
+						border-style: solid;
+						border-color: $secondary-b;
+						margin-top: -107px;
+
+						.day {
+							width: 164px;
+							font-weight: bold;
+							text-align: center;
+							color: $secondary-b;
+							transform: rotate(-90deg);
+							margin-left: -48px;
+						}
+					}
+
+					&:nth-child(even) .bracket {
+						right: -12px;
+						border-width: 2px 2px 2px 0px;
+						border-radius: 0px 3px 3px 0px;
+					}
+
+					&:nth-child(odd) .bracket {
+						left: -12px;
+						border-width: 2px 0px 2px 2px;
+						border-radius: 3px 0px 0px 3px;
+					}
+
+					&:last-child .event:last-child .line:after {
+						background-color: transparent;
+					}
+				}
+			}
+
+			.group {
+				.set .event {
+					text-align: center;
+					padding: 32px 0px;
+
+					.time {
+						display: inline-block;
+						background-color: $secondary-b;
+						border-radius: 4px;
+						line-height: 18px;
+						font-size: 14px;
+						font-weight: bold;
+						color: #222;
+						padding: 6px 9px;
+						margin-bottom: 4px;
+					}
+
+					.line {
+						line-height: 20px;
+
+						&:before, &:after {
+							width: 100%;
+						}
+
+						.icon {
+							margin: 16px;
+
+							img {
+								width: auto;
+								height: 32px;
+								filter: invert(1);
+							}
+						}
+					}
+
+					.title {
+						height: 40px;
+						padding: 0px 6px;
+					}
+				}
+
+				.bracket {
+					display: none;
 				}
 			}
 		}
