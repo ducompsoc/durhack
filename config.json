@@ -218,17 +218,17 @@
           "end": "14:30",
           "title": "Lunch",
           "icon": "food"
-        }
-      ]
-    },
-    {
-      "events": [
+        },
         {
           "start": "14:30",
           "end": "15:15",
           "title": "Workshop (TBC)",
           "icon": "flask"
-        },
+        }
+      ]
+    },
+    {
+      "events": [
         {
           "start": "15:30",
           "end": "16:15",
