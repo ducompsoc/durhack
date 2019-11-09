@@ -193,7 +193,7 @@
         {
           "start": "09:30",
           "end": "11:00",
-          "title": "Registration opens",
+          "title": "Registration",
           "icon": "edit"
         },
         {
@@ -218,17 +218,17 @@
           "end": "14:30",
           "title": "Lunch",
           "icon": "food"
-        }
-      ]
-    },
-    {
-      "events": [
+        },
         {
           "start": "14:30",
           "end": "15:15",
           "title": "Workshop (TBC)",
           "icon": "flask"
-        },
+        }
+      ]
+    },
+    {
+      "events": [
         {
           "start": "15:30",
           "end": "16:15",
@@ -238,6 +238,12 @@
         {
           "start": "16:30",
           "end": "17:15",
+          "title": "Capture the Flag",
+          "icon": "flask"
+        },
+        {
+          "start": "17:30",
+          "end": "18:15",
           "title": "Workshop (TBC)",
           "icon": "flask"
         },
