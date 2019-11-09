@@ -238,6 +238,12 @@
         {
           "start": "16:30",
           "end": "17:15",
+          "title": "Capture the Flag",
+          "icon": "flask"
+        },
+        {
+          "start": "17:30",
+          "end": "18:15",
           "title": "Workshop (TBC)",
           "icon": "flask"
         },
