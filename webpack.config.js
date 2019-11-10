@@ -39,6 +39,10 @@ module.exports = {
 			filename: 'volunteer.html',
 		}),
 		new HtmlWebpackPlugin({
+			template: './src/register.html',
+			filename: 'register.html'
+		}),
+		new HtmlWebpackPlugin({
 			template: './src/404.html',
 			filename: '404.html',
 			chunks: '404',

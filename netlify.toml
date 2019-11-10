@@ -13,10 +13,5 @@
 	to = "https://ducompsoc.typeform.com/to/Xr4WLQ"
 	status = 302
 
-[[redirects]]
-	from = "/register"
-	to = "https://ducompsoc.typeform.com/to/Zc4X5W"
-	status = 302
-
 [dev]
 	publish = "dist/"
