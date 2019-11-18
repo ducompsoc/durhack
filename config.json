@@ -301,12 +301,12 @@
         },
         {
           "start": "13:00",
-          "end": "14:15",
+          "end": "14:45",
           "title": "Science fair",
           "icon": "flask"
         },
         {
-          "start": "14:30",
+          "start": "15:00",
           "end": "15:45",
           "title": "Finalist presentations",
           "icon": "microphone"
