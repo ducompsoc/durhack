@@ -13,5 +13,11 @@
 	to = "https://ducompsoc.typeform.com/to/Xr4WLQ"
 	status = 302
 
+[[redirects]]
+	from = "/fathippo"
+	to = "https://deliveroo.co.uk/menu/durham/durham/fat-hippo-durham?postcode=DH13LE"
+	status = 301
+
+
 [dev]
 	publish = "dist/"
