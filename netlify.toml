@@ -14,9 +14,9 @@
 	status = 302
 
 [[redirects]]
-	from = "/fathippo"
-	to = "https://deliveroo.co.uk/menu/durham/durham/fat-hippo-durham?postcode=DH13LE"
-	status = 301
+	from = "/slack"
+	to = "https://join.slack.com/t/durhack2019/shared_invite/enQtODI1NjIxODY3MDcyLWIwODFkYmU4ZmMxYzFhZGM3NzU5ZWFhZmYzYTcwM2E0YjIyYjhhNDFiYjNkZWJkYzg5YTE5ZDQwMTUxYWNhN2U"
+	status = 302
 
 
 [dev]
