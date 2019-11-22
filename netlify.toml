@@ -18,6 +18,15 @@
 	to = "https://join.slack.com/t/durhack2019/shared_invite/enQtODI1NjIxODY3MDcyLWIwODFkYmU4ZmMxYzFhZGM3NzU5ZWFhZmYzYTcwM2E0YjIyYjhhNDFiYjNkZWJkYzg5YTE5ZDQwMTUxYWNhN2U"
 	status = 302
 
+[[redirects]]
+	from = "/travel"
+	to = "https://ducompsoc.typeform.com/to/Rjz1Js"
+	status = 302
+
+[[redirects]]
+	from = "/devpost"
+	to = "https://durhack2019.devpost.com"
+	status = 302
 
 [dev]
 	publish = "dist/"
