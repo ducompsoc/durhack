@@ -223,7 +223,7 @@
         {
           "start": "14:30",
           "end": "15:15",
-          "title": "Workshop (TBC)",
+          "title": "Workshop - Atom Bank",
           "icon": "flask"
         }
       ]
@@ -233,7 +233,7 @@
         {
           "start": "15:30",
           "end": "16:15",
-          "title": "Workshop (TBC)",
+          "title": "Workshop - Durham County Council",
           "icon": "flask"
         },
         {
@@ -245,7 +245,7 @@
         {
           "start": "17:30",
           "end": "18:15",
-          "title": "Workshop (TBC)",
+          "title": "Workshop - Web Dev Demo",
           "icon": "flask"
         },
         {
