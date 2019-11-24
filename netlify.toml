@@ -28,5 +28,10 @@
 	to = "https://durhack2019.devpost.com"
 	status = 302
 
+[[redirects]]
+	from = "/tables"
+	to = "https://durhack2019.devpost.com/tables"
+	status = 302
+
 [dev]
 	publish = "dist/"
