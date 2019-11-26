@@ -32,6 +32,11 @@
 	from = "/tables"
 	to = "https://durhack2019.devpost.com/tables"
 	status = 302
+	
+[[redirects]]
+	from = "/staff_fedback"
+	to = "https://ducompsoc.typeform.com/to/HGEsYJ"
+	status = 302
 
 [dev]
 	publish = "dist/"
