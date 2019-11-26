@@ -34,7 +34,7 @@
 	status = 302
 	
 [[redirects]]
-	from = "/staff_fedback"
+	from = "/staff_feedback"
 	to = "https://ducompsoc.typeform.com/to/HGEsYJ"
 	status = 302
 
