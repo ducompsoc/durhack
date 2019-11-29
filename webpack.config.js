@@ -47,6 +47,10 @@ module.exports = {
 			filename: '404.html',
 			chunks: '404',
 		}),
+		new HtmlWebpackPlugin({
+			template: './src/nextgen.html',
+			filename: 'nextgen.html'
+		}),
 		new CopyWebpackPlugin([
 			{
 				from: 'assets',
