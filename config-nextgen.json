@@ -10,7 +10,7 @@
     "Do I need to be able to code to attend DurHack:NextGen?": [
       "The most important thing when attending a hackathon is your enthusiasm for technology. DurHack:NextGen is passionate about being very welcoming and beginner-friendly, and you&#39;ll learn loads at the event!",
       "If you want to learn to code but don&#39;t know where to start, you should definitely \n\n<a href=\"https://medium.com/on-coding/you-can-already-code-you-just-dont-know-it-yet-862044601a5a \">read this blogpost</a>\n\n."
-      
+
     ],
     "Should I attend DurHack:NextGen?": [
       "If you&#39;ve thought at all about attending DurHack:NextGen, yes! DurHack:NextGen is welcoming to people of all abilities, all that&#39;s important is a willingness to get stuck in with your team. DurHack:NextGen is designed to have an inclusive and encouraging environment, so don&#39;t be afraid to ask anyone for help at the event!"
@@ -44,13 +44,13 @@
   },
   "sponsors": {
     "platinum": [
-      
+
     ],
     "gold": [
-      
+
     ],
     "silver": [
-      
+
     ],
     "partners": [
       {
@@ -68,7 +68,7 @@
     ]
   },
   "team": [
-    
+
   ],
   "schedule": [
     {
@@ -110,7 +110,7 @@
         {
           "start": "08:30",
           "title": "Day Two Starts!",
-          "icon": "code"
+          "icon": "code-open"
         },
         {
           "start": "15:30",
