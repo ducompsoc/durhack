@@ -3,11 +3,16 @@
  */
 import tippy from 'tippy.js';
 
-import config from '../config.json';
-
 import './styles/index.scss';
 import 'tippy.js/dist/tippy.css';
 
+let config;
+if (window.location.pathname.includes('nextgen')) {
+	config = require('../config-nextgen.json');
+} else {
+	config = require('../config.json');
+}
+	
 /**
  * Find all the navigation buttons and measure them.
  */
