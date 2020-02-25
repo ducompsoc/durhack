@@ -1,5 +1,8 @@
 {
   "faqs": {
+	"What is a Hackathon?": [
+	"A hackathon isn’t about doing anything illegal or malicious, but instead refers to ‘hacking together’ a piece of software etc. - MLH have a great FAQ here: https://mlh.io/parent-hackathon-guide" 
+	],
     "What is DurHack:NextGen?": [
       "April 2020 marks our first Under 18 hackathon. 100 students from Durham and around the North East will come together in teams of up to five for a weekend-long invention marathon to create, innovate, learn and collaborate. We&#39;ll also provide laptops, loads of freebies, prizes, workshops and entertainment!"
     ],
@@ -19,7 +22,7 @@
       "We&#39;ll provide you with meals, snacks and drinks throughout the weekend, leaving you to concentrate on your projects. If you have special dietary requirements, please let us know when you register."
     ],
     "What should I bring?": [
-      "All attendees will need to show a parental permission slip at registration."
+      "All attendees will need to show a parent/guardian permission slip at registration."
     ],
     "What if I don't have a team?": [
       "Don&#39;t worry! Part of the fun of a hackathon is meeting new people. We&#39;ll have a team-forming event before hacking begins for those who want to meet and form new teams."
@@ -27,19 +30,19 @@
     "Is this event overnight?": [
       "DurHack:NextGen will not be running overnight, instead we will be running from 0900-1700 each day, but you are more than welcome to keep working on your project at home."
     ],
-    "What can I build and who owns the IP?": [
+    "What can I build and who owns the Intellectual Property?": [
       "Web apps, mobile apps, hardware, anything! Projects will be judged based on their creativity, technical accomplishments, polish and usefulness by our judges.",
-      "<strong>The IP of your work remains with you, the attendees.</strong>"
+      "<strong>The Intellectual Property of your work remains with you, the attendees.</strong>"
     ],
     "Do you have a code of conduct?": [
-      "Everybody at DurHack:NextGen will be expected to abide by the \n\n<a href=\"https://static.mlh.io/docs/mlh-code-of-conduct.pdf\">MLH Code of Conduct</a>\n\n.",
+      "Everybody at DurHack:NextGen will be expected to abide by the \n\n<a href=\"https://static.mlh.io/docs/mlh-code-of-conduct.pdf \">MLH Code of Conduct</a>\n\n.",
       "TL;DR: be respectful to each other."
     ],
     "Do you offer travel reimbursements?": [
       "We hope to offer travel reimbursements, but are unable to commit to it at this point in time."
     ],
     "What if I have other questions?": [
-      "If you&#39;re still not sure about something, drop us a line at \n\n<a href=\"mailto:hello@DurHack.com\">hello@DurHack.com</a>\n\n and we&#39;ll be very happy to help!"
+      "If you&#39;re still not sure about something, drop us a line at \n\n<a href=\"mailto:hello@DurHack.com \">hello@DurHack.com</a>\n\n and we&#39;ll be very happy to help!"
     ]
   },
   "sponsors": {
@@ -103,7 +106,6 @@
         }
       ]
     },
-
     {
       "day": "DAY TWO",
       "events": [
