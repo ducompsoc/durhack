@@ -48,5 +48,10 @@
 	to = "/assets/consent_form.pdf"
 	status = 302
 
+[[redirects]]
+	from ="/register"
+	to = "https://durham.onlinesurveys.ac.uk/durhacknextgen-signup"
+	status = 302
+	
 [dev]
 	publish = "dist/"
