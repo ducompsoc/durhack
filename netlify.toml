@@ -42,6 +42,11 @@
 	from = "/jointheteam"
 	to = "https://ducompsoc.typeform.com/to/bzznhr"
 	status = 302
+	
+[[redirects]]
+	from ="/consentform"
+	to = "/assets/consent_form.pdf"
+	status = 302
 
 [dev]
 	publish = "dist/"
