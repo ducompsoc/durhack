@@ -1,13 +1,16 @@
 {
   "faqs": {
 	"What is a Hackathon?": [
-	"A hackathon isn’t about doing anything illegal or malicious, but instead refers to ‘hacking together’ a piece of software etc. - MLH have a great FAQ here: https://mlh.io/parent-hackathon-guide"
+	  "A hackathon isn’t about doing anything illegal or malicious, but instead refers to ‘hacking together’ a piece of software etc. - MLH have a great FAQ here: https://mlh.io/parent-hackathon-guide" 
+	],
+	"I’m concerned about the responsibility of the staff": [
+	  "All our staff hold an enhanced DBS check with safeguarding and first aid trained staff available at all times."
 	],
     "What is DurHack:NextGen?": [
       "April 2020 marks our first Under 18 hackathon. 100 students from Durham and around the North East will come together in teams of up to five for a weekend-long invention marathon in order to create, innovate, learn, and collaborate. We&#39;ll also provide laptops, loads of freebies, prizes, workshops, and entertainment!"
     ],
     "Can I attend?": [
-      "Anybody who is between 13 and 17 during the event can attend (so born between 20/04/2002 - 18/04/2007. You don't need to have studied Computer Science before; all you need is a passion for learning!",
+      "Anybody who is between 13 and 17 during the event can attend (so born between 20/04/2002 - 18/04/2007). You don't need to have studied Computer Science before; all you need is a passion for learning!",
       "DurHack:NextGen is completely free to attend, and could not run without the generosity of our sponsors. We provide the space, WiFi, meals, snacks, and free swag."
     ],
     "Do I need to be able to code to attend DurHack:NextGen?": [
