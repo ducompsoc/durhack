@@ -59,9 +59,13 @@
 
     ],
     "partners": [
-      {
-        "image": "compsoc_coloured.png",
+	  {
+	    "image": "compsoc_coloured.png",
         "link": "https://www.compsoc.tech/"
+	  },
+      {
+        "image": "hfsa_colour.png",
+        "link": "https://hackathonsforschools.com/"
       },
       {
         "image": "du.svg",
