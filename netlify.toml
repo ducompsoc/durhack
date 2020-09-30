@@ -52,6 +52,11 @@
 	from ="/register"
 	to = "https://durham.onlinesurveys.ac.uk/durhacknextgen-signup"
 	status = 302
-	
+
+[[redirects]]
+	from = "/preregister"
+	to = "https://ducompsoc.typeform.com/to/p4DNz0PP"
+	status = 302
+
 [dev]
 	publish = "dist/"
