@@ -4,12 +4,31 @@
 	background-color: $primary-dark;
 	font-size: 20px;
 	font-weight: 300;
-	padding: 64px 0px;
+	text-align: center;
+	padding: 64px 0px 90px 0px;
+
+	&:after {
+		content: '';
+		border-style: solid;
+		border-width: 0px 0px 90px 100vw;
+		border-color: transparent transparent #222 transparent;
+	}
+
+	a {
+		color: #fff;
+		border-bottom: dashed 1px #fff;
+		text-decoration: none;
+	}
+
+	> .container {
+		padding: 64px 0px 96px 0px;
+	}
 
 	.button {
 		display: inline-block;
 		border: solid 2px #fff;
 		border-radius: 6px;
+		font-size: 32px;
 		font-weight: bold;
 		color: #fff;
 		text-decoration: none;
