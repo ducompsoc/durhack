@@ -110,14 +110,8 @@
   },
   "team": [
     {
-      "name": "Robbie",
-      "role": "Lead Organiser",
-      "email": "robbie.jw@durhack.com",
-      "image": "robbie.jpg"
-    },
-    {
       "name": "Alex",
-      "role": "Secretary & Catering Manager",
+      "role": "Lead Organiser",
       "email": "alex.k@durhack.com",
       "image": "alex.jpg"
     },
@@ -129,21 +123,21 @@
     },
     {
       "name": "Karl",
-      "role": "Postgraduate Adviser",
+      "role": "Head of Sponsorship",
       "email": "karl.s@durhack.com",
       "image": "karl.jpg"
     },
     {
-      "name": "Lewis",
-      "role": "Treasurer",
-      "email": "lewis.s@durhack.com",
-      "image": "lewis.jpg"
+      "name": "Jamie",
+      "role": "Head of Hacker Experience",
+      "email": "jamie.s@durhack.com",
+      "image": "jamie.jpg"
     },
     {
-      "name": "Mahek",
-      "role": "Head of Hacker Experience",
-      "email": "mahek.v@durhack.com",
-      "image": "mahek.png"
+      "name": "Devansh",
+      "role": "Finance Assistant",
+      "email": "devansh.s@durhack.com",
+      "image": "devansh.png"
     },
     {
       "name": "Zeynep",
@@ -155,91 +149,61 @@
       "name": "Laszlo",
       "role": "Design Officer",
       "email": "laszlo.k@durhack.com",
-      "image": "laszlo.jpg"
+      "image": "laszlo.png"
     },
     {
-      "name": "Kanika Mehta",
-      "role": "Sponsorship Officer",
-      "email": "kanika.m@durhack.com",
-      "image": "kanika.jpg"
+      "name": "Ethan",
+      "role": "Web Officer",
+      "email": "ethan.w@durhack.com",
+      "image": "ethan.jpg"
+    },
+    {
+      "name": "Heidi",
+      "role": "Publicity Officer",
+      "email": "heidi.j@durhack.com",
+      "image": "heidi.jpg"
     },
     {
       "name": "Peter Hessey",
-      "role": "Sponsorship Officer",
+      "role": "Deputy Head of Logistics",
       "email": "peter.h@durhack.com",
       "image": "peter.jpg"
     },
     {
-      "name": "Ollie Hines",
-      "role": "Sponsorship Officer",
-      "email": "oliver.h@durhack.com",
-      "image": "ollie.jpg"
+      "name": "Kah Gene Leong",
+      "role": "Logistics Assistant",
+      "email": "kah-gene.l@durhack.com",
+      "image": "kah.png"
+    },
+    {
+      "name": "Sam Robbins",
+      "role": "Tech Officer",
+      "email": "sam.r@durhack.com",
+      "image": "sam.jpg"
     },
     {
       "name": "Amy Hudspith",
-      "role": "Logistics Assistant",
+      "role": "Diversity Officer",
       "email": "amy.h@durhack.com",
       "image": "amy.jpg"
     },
     {
-      "name": "Jamie Sim",
-      "role": "Tech Officer",
-      "email": "jamie.s@durhack.com",
-      "image": "jamie.jpg"
+      "name": "Matt Chapman",
+      "role": "Sponsorship Officer",
+      "email": "matt.c@durhack.com",
+      "image": "matt.jpg"
     },
     {
-      "name": "Robbie",
-      "role": "Lead Organiser",
-      "email": "robbie.jw@durhack.com",
-      "image": "robbie.jpg"
+      "name": "Omar Mazhar",
+      "role": "Sponsorship Officer",
+      "email": "omar.m@durhack.com",
+      "image": "omar.jpg"
     },
     {
-      "name": "Robbie",
-      "role": "Lead Organiser",
-      "email": "robbie.jw@durhack.com",
-      "image": "robbie.jpg"
-    },
-    {
-      "name": "Robbie",
-      "role": "Lead Organiser",
-      "email": "robbie.jw@durhack.com",
-      "image": "robbie.jpg"
-    },
-    {
-      "name": "Robbie",
-      "role": "Lead Organiser",
-      "email": "robbie.jw@durhack.com",
-      "image": "robbie.jpg"
-    },
-    {
-      "name": "Robbie",
-      "role": "Lead Organiser",
-      "email": "robbie.jw@durhack.com",
-      "image": "robbie.jpg"
-    },
-    {
-      "name": "Robbie",
-      "role": "Lead Organiser",
-      "email": "robbie.jw@durhack.com",
-      "image": "robbie.jpg"
-    },
-    {
-      "name": "Robbie",
-      "role": "Lead Organiser",
-      "email": "robbie.jw@durhack.com",
-      "image": "robbie.jpg"
-    },
-    {
-      "name": "Robbie",
-      "role": "Lead Organiser",
-      "email": "robbie.jw@durhack.com",
-      "image": "robbie.jpg"
-    },
-    {
-      "name": "Robbie",
-      "role": "Lead Organiser",
-      "email": "robbie.jw@durhack.com",
-      "image": "robbie.jpg"
+      "name": "DurHack Dino",
+      "role": "DurHack Dino",
+      "email": "",
+      "image": "dino.png"
     }
   ],
   "schedule": [

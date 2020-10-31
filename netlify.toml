@@ -32,17 +32,17 @@
 	from = "/tables"
 	to = "https://durhack2019.devpost.com/tables"
 	status = 302
-	
+
 [[redirects]]
 	from = "/staff_feedback"
 	to = "https://ducompsoc.typeform.com/to/HGEsYJ"
-	status = 302	
+	status = 302
 
 [[redirects]]
 	from = "/jointheteam"
 	to = "https://ducompsoc.typeform.com/to/bzznhr"
 	status = 302
-	
+
 [[redirects]]
 	from ="/consentform"
 	to = "/assets/consent_form.pdf"
@@ -50,12 +50,17 @@
 
 [[redirects]]
 	from ="/register"
-	to = "https://durham.onlinesurveys.ac.uk/durhacknextgen-signup"
+	to = "https://ducompsoc.typeform.com/to/jGn1nbyC"
+	status = 302
+
+[[redirects]]
+	from = "/tickets"
+	to = "https://ducompsoc.typeform.com/to/jGn1nbyC"
 	status = 302
 
 [[redirects]]
 	from = "/preregister"
-	to = "https://ducompsoc.typeform.com/to/p4DNz0PP"
+	to = "/"
 	status = 302
 
 [dev]
