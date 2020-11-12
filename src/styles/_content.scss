@@ -2,7 +2,7 @@
 
 .section {
 	overflow: hidden;
-	padding: 96px 0px;
+	padding: 90px 0px;
 
 	h2 {
 		font-size: 48px;
@@ -11,8 +11,14 @@
 	}
 
 	&.sponsors {
-		background-color: #eee;
-		color: #000;
+		background-color: #333;
+
+		&:after {
+			content: '';
+			border-style: solid;
+			border-width: 0px 0px 90px 100vw;
+			border-color: transparent transparent #222 transparent;
+		}
 
 		h3 {
 			text-transform: uppercase;
@@ -50,9 +56,15 @@
 			}
 		}
 
-		.platinum .sponsor {
+		.platinum .sponsor, .presenting .sponsor {
 			width: 33%;
-			height: 152px;
+			height: 162px;
+			// edited for AWS, switch out for
+			// height: 152px;
+
+			> a {
+				padding: 32px 16px; // edited for AWS, remove me
+			}
 		}
 
 		.gold .sponsor {
@@ -60,15 +72,16 @@
 			height: 128px;
 		}
 
-		.silver .sponsor {
+		//.silver .sponsor {
+		.partners .sponsor {
 			width: 20%;
 			height: 96px;
 		}
 
-		.partners .sponsor {
+		/*.partners .sponsor {
 			width: 16%;
 			height: 96px;
-		}
+		}*/
 
 		@media screen and (max-width: $breakpoint-small) {
 			.sponsor {
@@ -102,6 +115,14 @@
 		position: relative;
 		font-weight: 300;
 		text-align: center;
+		padding: 90px 0px 0px 0px;
+
+		&:before {
+			content: '';
+			border-style: solid;
+			border-width: 90px 100vw 0px 0px;
+			border-color: $primary-dark transparent transparent transparent;
+		}
 
 		> .bg {
 			position: absolute;
@@ -110,7 +131,7 @@
 			left: -84px;
 			bottom: 0px;
 			background-image: url('/assets/team-circles.png');
-			background-position: center center;
+			background-position: center 28px;
 			z-index: -1;
 		}
 
@@ -271,6 +292,13 @@
 	}
 
 	&.schedule {
+		&:after {
+			content: '';
+			border-style: solid;
+			border-width: 0px 0px 90px 100vw;
+			border-color: transparent transparent $primary-dark transparent;
+		}
+
 		.timeline {
 			position: relative;
 
@@ -283,7 +311,7 @@
 
 				&:before {
 					position: absolute;
-					top: 99px;
+					top: 100px;
 					right: 100%;
 					left: -100vh;
 				}
@@ -303,7 +331,7 @@
 						position: absolute;
 						display: flex !important;
 						width: 12px;
-						height: 204px;
+						height: 205px;
 						border-style: solid;
 						border-color: $secondary-b;
 						margin-top: -107px;

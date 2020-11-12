@@ -43,72 +43,92 @@
     ]
   },
   "sponsors": {
-    "platinum": [
+    "presenting partner": [
       {
-        "image": "dcc.svg",
-        "link": "https://durham.gov.uk/"
-      },
-      {
-        "image": "atom-bank.png",
-        "link": "https://www.atombank.co.uk/careers"
+        "image": "aws.png",
+        "link": "https://aws.amazon.com/"
       }
     ],
     "gold": [
       {
-        "image": "goldman-sachs.png",
-        "link": "https://www.goldmansachs.com/careers/students/"
-      },
-      {
-        "image": "waterstons.svg",
-        "link": "https://www.waterstons.com/careers"
-      },
-      {
-        "image": "capital-one.svg",
-        "link": "https://jobs.capitalone.co.uk/earlycareers"
-      }
-    ],
-    "silver": [
-      {
-        "image": "starleaf.svg",
-        "link": "https://www.starleaf.com/about-us/careers"
+        "image": "du.svg",
+        "link": "https://www.dur.ac.uk/computer.science/"
       }
     ],
     "partners": [
       {
-        "image": "compsoc_coloured.png",
-        "link": "https://www.compsoc.tech/"
-      },
-      {
-        "image": "mlh.png",
-        "link": "https://mlh.io/"
-      },
-      {
-        "image": "keyboard-company.svg",
-        "link": "https://www.keyboardco.com/"
-      },
-      {
-        "image": "digital-ocean.svg",
-        "link": "https://digitalocean.com/"
-      },
-      {
-        "image": "sticker-mule.svg",
-        "link": "http://hackp.ac/mlh-stickermule-hackathons"
-      },
-      {
-        "image": "cloudsploit.svg",
-        "link": "https://cloudsploit.com/"
-      },
-      {
-        "image": "du.svg",
-        "link": "https://www.dur.ac.uk/computer.science/"
-      },
-      {
         "image": "dsu.png",
         "link": "https://www.durhamsu.com/"
+      },
+      {
+        "image": "github.png",
+        "link": "https://github.com/"
+      },
+      {
+        "image": "dsc.png",
+        "link": "https://dsc.community.dev/durham-university/"
+      },
+      {
+        "image": "compsoc-new.png",
+        "link": "https://www.compsoc.tech/"
       }
     ]
   },
   "team": [
+    {
+      "name": "Zeynep",
+      "role": "Publicity Officer",
+      "email": "zeynep.e@durhack.com",
+      "image": "zeynep.jpg"
+    },
+    {
+      "name": "Laszlo",
+      "role": "Design Officer",
+      "email": "laszlo.k@durhack.com",
+      "image": "laszlo.png"
+    },
+    {
+      "name": "Hugo",
+      "role": "Design Assistant",
+      "email": "hugo.c@durhack.com",
+      "image": "placeholder.png"
+    },
+    {
+      "name": "Ethan",
+      "role": "Web Officer",
+      "email": "ethan.w@durhack.com",
+      "image": "ethan.jpg"
+    },
+    {
+      "name": "Heidi",
+      "role": "Press Officer",
+      "email": "heidi.j@durhack.com",
+      "image": "heidi.jpg"
+    },
+    {
+      "name": "Amy",
+      "role": "Diversity Officer",
+      "email": "amy.h@durhack.com",
+      "image": "amy.jpg"
+    },
+    {
+      "name": "Irenitemi",
+      "role": "Outreach Officer",
+      "email": "irenitemi.a@durhack.com",
+      "image": "irenitemi.jpg"
+    },
+    {
+      "name": "Betty",
+      "role": "Head of Finance",
+      "email": "betty.s@durhack.com",
+      "image": "placeholder.png"
+    },
+    {
+      "name": "Jamie",
+      "role": "Head of Hacker Experience",
+      "email": "jamie.s@durhack.com",
+      "image": "jamie.jpg"
+    },
     {
       "name": "Alex",
       "role": "Lead Organiser",
@@ -128,10 +148,28 @@
       "image": "karl.jpg"
     },
     {
-      "name": "Jamie",
-      "role": "Head of Hacker Experience",
-      "email": "jamie.s@durhack.com",
-      "image": "jamie.jpg"
+      "name": "Peter",
+      "role": "Deputy Head of Logistics",
+      "email": "peter.h@durhack.com",
+      "image": "peter.jpg"
+    },
+    {
+      "name": "Kah",
+      "role": "Logistics Assistant",
+      "email": "kah-gene.l@durhack.com",
+      "image": "kah.png"
+    },
+    {
+      "name": "Sam",
+      "role": "Tech Officer",
+      "email": "sam.r@durhack.com",
+      "image": "sam.jpg"
+    },
+    {
+      "name": "Kevin",
+      "role": "Catering Officer",
+      "email": "kevin.x@durhack.com",
+      "image": "kevin.jpg"
     },
     {
       "name": "Devansh",
@@ -140,154 +178,108 @@
       "image": "devansh.png"
     },
     {
-      "name": "Zeynep",
-      "role": "Publicity Officer",
-      "email": "zeynep.e@durhack.com",
-      "image": "zeynep.jpg"
+      "name": "Henry",
+      "role": "Sponsorship Officer",
+      "email": "henry.w@durhack.com",
+      "image": "henry.jpg"
     },
     {
-      "name": "Laszlo",
-      "role": "Design Officer",
-      "email": "laszlo.k@durhack.com",
-      "image": "laszlo.png"
-    },
-    {
-      "name": "Ethan",
-      "role": "Web Officer",
-      "email": "ethan.w@durhack.com",
-      "image": "ethan.jpg"
-    },
-    {
-      "name": "Heidi",
-      "role": "Publicity Officer",
-      "email": "heidi.j@durhack.com",
-      "image": "heidi.jpg"
-    },
-    {
-      "name": "Peter Hessey",
-      "role": "Deputy Head of Logistics",
-      "email": "peter.h@durhack.com",
-      "image": "peter.jpg"
-    },
-    {
-      "name": "Kah Gene Leong",
-      "role": "Logistics Assistant",
-      "email": "kah-gene.l@durhack.com",
-      "image": "kah.png"
-    },
-    {
-      "name": "Sam Robbins",
-      "role": "Tech Officer",
-      "email": "sam.r@durhack.com",
-      "image": "sam.jpg"
-    },
-    {
-      "name": "Amy Hudspith",
-      "role": "Diversity Officer",
-      "email": "amy.h@durhack.com",
-      "image": "amy.jpg"
-    },
-    {
-      "name": "Matt Chapman",
+      "name": "Matt",
       "role": "Sponsorship Officer",
       "email": "matt.c@durhack.com",
       "image": "matt.jpg"
     },
     {
-      "name": "Omar Mazhar",
+      "name": "Omar",
       "role": "Sponsorship Officer",
       "email": "omar.m@durhack.com",
       "image": "omar.jpg"
-    },
-    {
-      "name": "DurHack Dino",
-      "role": "DurHack Dino",
-      "email": "",
-      "image": "dino.png"
     }
   ],
   "schedule": [
     {
       "events": [
         {
-          "start": "09:30",
-          "end": "11:00",
           "title": "Registration",
-          "icon": "edit"
+          "icon": "edit",
+          "start": "9:00",
+          "end": "12:00"
         },
         {
-          "start": "11:15",
-          "end": "11:45",
-          "title": "Opening keynote",
-          "icon": "microphone"
+          "title": "Speed Teaming",
+          "icon": "lightbulb",
+          "start": "10:00",
+          "end": "10:50"
         },
         {
-          "start": "11:45",
-          "end": "12:00",
-          "title": "Team-forming activity",
-          "icon": "lightbulb"
+          "title": "Opening Talks",
+          "icon": "microphone",
+          "start": "11:00",
+          "end": "11:30"
         },
         {
+          "title": "Hacking begins",
+          "icon": "code",
           "start": "12:00",
-          "title": "Hacking begins!",
-          "icon": "code"
+          "end": ""
         },
         {
-          "start": "13:15",
-          "end": "14:30",
-          "title": "Lunch",
-          "icon": "food"
+          "title": "Workshop 1",
+          "icon": "flask",
+          "start": "12:30",
+          "end": "13:15"
         },
         {
-          "start": "14:30",
-          "end": "15:15",
-          "title": "Workshop - Atom Bank",
-          "icon": "flask"
+          "title": "Workshop 2",
+          "icon": "flask",
+          "start": "13:30",
+          "end": "14:15"
         }
       ]
     },
     {
       "events": [
         {
+          "title": "Workshop 3",
+          "icon": "flask",
+          "start": "14:30",
+          "end": "15:15"
+        },
+        {
+          "title": "Workshop 4",
+          "icon": "flask",
           "start": "15:30",
-          "end": "16:15",
-          "title": "Workshop - Durham County Council",
-          "icon": "flask"
+          "end": "16:15"
         },
         {
+          "title": "Workshop 5",
+          "icon": "flask",
           "start": "16:30",
-          "end": "17:15",
-          "title": "MLH Hacker Challenge",
-          "icon": "flask"
+          "end": "17:15"
         },
         {
-          "start": "17:30",
-          "end": "18:15",
-          "title": "Workshop - Web Dev Demo",
-          "icon": "flask"
-        },
-        {
+          "title": "Chatting with Durham Groups Live",
+          "icon": "microphone",
           "start": "18:00",
-          "end": "19:15",
-          "title": "Supper",
-          "icon": "food"
+          "end": "19:00"
         },
         {
-          "start": "19:30",
-          "end": "20:30",
-          "title": "Cup-stacking",
-          "icon": "jigsaw"
+          "title": "Chatting Hackathons Panel Live",
+          "icon": "microphone",
+          "start": "20:00",
+          "end": "21:00"
         },
         {
-          "start": "20:45",
-          "end": "21:45",
-          "title": "Battleships with Hack Western",
-          "icon": "jigsaw"
-        },
-        {
+          "title": "Mini-Event",
+          "icon": "jigsaw",
           "start": "22:00",
-          "title": "Relaxation room opens",
-          "icon": "moon"
+          "end": "23:00"
+        },
+        {
+          "title": "Mini-Event",
+          "icon": "jigsaw",
+          "start": "23:30",
+          "end": "00:30"
         }
       ]
     },
@@ -295,49 +287,28 @@
       "day": "DAY TWO",
       "events": [
         {
-          "start": "00:00",
-          "title": "Midnight pizza",
-          "icon": "pizza"
-        },
-        {
-          "start": "06:30",
-          "end": "08:30",
-          "title": "Breakfast",
-          "icon": "food"
-        },
-        {
+          "title": "Devpost Submission Deadline",
+          "icon": "calendar",
           "start": "11:00",
-          "title": "Project submission deadline (Devpost)",
-          "icon": "calendar"
+          "end": ""
         },
         {
+          "title": "Hacking Ends",
+          "icon": "code",
           "start": "12:00",
-          "title": "Hacking finishes!",
-          "icon": "code"
+          "end": ""
         },
         {
-          "start": "12:00",
-          "end": "13:00",
-          "title": "Lunch",
-          "icon": "food"
-        },
-        {
+          "title": "Hacking Video Stream",
+          "icon": "flask",
           "start": "13:00",
-          "end": "14:45",
-          "title": "Science fair",
-          "icon": "flask"
+          "end": "15:30"
         },
         {
-          "start": "15:00",
-          "end": "15:45",
-          "title": "Finalist presentations",
-          "icon": "microphone"
-        },
-        {
-          "start": "15:45",
-          "end": "16:30",
-          "title": "Closing talks and prize-giving",
-          "icon": "trophy"
+          "title": "Closing Ceremony",
+          "icon": "microphone",
+          "start": "17:00",
+          "end": "18:00"
         }
       ]
     }
