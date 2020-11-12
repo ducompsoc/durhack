@@ -15,7 +15,7 @@
 
 [[redirects]]
 	from = "/slack"
-	to = "https://join.slack.com/t/durhack2019/shared_invite/enQtODI1NjIxODY3MDcyLWIwODFkYmU4ZmMxYzFhZGM3NzU5ZWFhZmYzYTcwM2E0YjIyYjhhNDFiYjNkZWJkYzg5YTE5ZDQwMTUxYWNhN2U"
+	to = "https://join.slack.com/t/durhack2020/shared_invite/zt-itglx4zo-lzZz73KSwGzk534oHVmNKw"
 	status = 302
 
 [[redirects]]
@@ -25,7 +25,7 @@
 
 [[redirects]]
 	from = "/devpost"
-	to = "https://durhack2019.devpost.com"
+	to = "https://durhack-2020.devpost.com"
 	status = 302
 
 [[redirects]]
