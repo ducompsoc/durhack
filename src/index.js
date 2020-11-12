@@ -75,7 +75,7 @@ document.querySelectorAll('header .nav > a.anchor').forEach(element => {
 let teamColumns = [];
 const limit = Math.floor(config.team.length / 3);
 for (let i = 0; i < limit; i++) {
-	teamColumns = [...teamColumns, [config.team[i * 3]], [config.team[(i * 3) + 1], config.team[(i * 3) + 2]]];
+	teamColumns = [...teamColumns, [config.team[i * 3], config.team[(i * 3) + 1]], [config.team[(i * 3) + 2]]];
 }
 teamColumns.push(config.team.filter((_, index) => index >= limit * 3));
 
@@ -83,8 +83,8 @@ teamColumns.push(config.team.filter((_, index) => index >= limit * 3));
  * Include partials.
  */
 //document.querySelector('.faqs .template').innerHTML = require('./templates/faqs.hbs')({ questions: config.faqs });
-//document.querySelector('.sponsors .template').innerHTML = require('./templates/sponsors.hbs')({ sponsors: config.sponsors });
-//document.querySelector('.schedule .template').innerHTML = require('./templates/schedule.hbs')({ schedule: config.schedule });
+document.querySelector('.sponsors .template').innerHTML = require('./templates/sponsors.hbs')({ sponsors: config.sponsors });
+document.querySelector('.schedule .template').innerHTML = require('./templates/schedule.hbs')({ schedule: config.schedule });
 
 if (document.querySelector('.team')) {
 	document.querySelector('.team .template').innerHTML = require('./templates/team.hbs')({ teamColumns });

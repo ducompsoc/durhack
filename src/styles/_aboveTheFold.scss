@@ -142,13 +142,18 @@
 			margin: 9px 0px;
 			transition: .5s ease;
 
-			&:hover {
+			&:not(.disabled):hover {
 				background-color: $secondary-a;
 				color: #222;
 			}
 
 			@media screen and (max-width: $breakpoint-medium) {
 				padding: 12px 32px;
+			}
+
+			&.disabled {
+				opacity: 0.5;
+				pointer-events: none;
 			}
 		}
 	}
