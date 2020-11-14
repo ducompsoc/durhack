@@ -78,5 +78,10 @@
 	to = "https://drive.google.com/file/d/1e5B8RYHX12pM1MvHOR8eVB6UaLnVpH03/view?usp=sharing"
 	status = 302
 
+[[redirects]]
+	from = "/live"
+	to = "https://live.durhack.com/"
+	status = 302
+
 [dev]
 	publish = "dist/"
