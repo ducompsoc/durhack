@@ -68,5 +68,10 @@
 	to = "https://drive.google.com/file/d/15yoLALjCbvCi0e_KDUK-Idz5EHzYCnam/view?usp=sharing"
 	status = 302
 
+[[redirects]]
+	from = "/zoombackgrounds"
+	to = "https://drive.google.com/drive/folders/19w-Smy4ZSAJs1iGWyvEJO2fP66FF482A?usp=sharing"
+	status = 302
+
 [dev]
 	publish = "dist/"
