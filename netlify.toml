@@ -40,7 +40,12 @@
 
 [[redirects]]
 	from = "/jointheteam"
-	to = "https://ducompsoc.typeform.com/to/bzznhr"
+	to = "https://ducompsoc.typeform.com/to/jgFR9EJp"
+	status = 302
+
+[[redirects]]
+	from = "/organise"
+	to = "https://ducompsoc.typeform.com/to/jgFR9EJp"
 	status = 302
 
 [[redirects]]
