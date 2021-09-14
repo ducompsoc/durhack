@@ -42,39 +42,14 @@
       "If you&#39;re still not sure about something, drop us a line at \n\n<a href=\"mailto:hello@durhack.com\">hello@durhack.com</a>\n\n and we&#39;ll be very happy to help!"
     ]
   },
-  "sponsors": {
-    "presenting partner": [
-      {
-        "image": "aws.png",
-        "link": "https://aws.amazon.com/"
-      }
-    ],
-    "gold": [
-      {
-        "image": "du.svg",
-        "link": "https://www.dur.ac.uk/computer.science/"
-      }
-    ],
-    "partners": [
-      {
-        "image": "dsu.png",
-        "link": "https://www.durhamsu.com/"
-      },
-      {
-        "image": "github.png",
-        "link": "https://github.com/"
-      },
-      {
-        "image": "dsc.png",
-        "link": "https://dsc.community.dev/durham-university/"
-      },
-      {
-        "image": "compsoc-new.png",
-        "link": "https://www.compsoc.tech/"
-      }
-    ]
-  },
+  "sponsors": {},
   "team": [
+    {
+      "name": "Ethan",
+      "role": "Head of Tech",
+      "email": "ethan.w@durhack.com",
+      "image": "ethan.jpg"
+    },
     {
       "name": "Zeynep",
       "role": "Publicity Officer",
@@ -82,106 +57,28 @@
       "image": "zeynep.jpg"
     },
     {
-      "name": "Laszlo",
-      "role": "Design Officer",
-      "email": "laszlo.k@durhack.com",
-      "image": "laszlo.png"
-    },
-    {
-      "name": "Hugo",
-      "role": "Design Assistant",
-      "email": "hugo.c@durhack.com",
-      "image": "placeholder.png"
-    },
-    {
-      "name": "Ethan",
-      "role": "Web Officer",
-      "email": "ethan.w@durhack.com",
-      "image": "ethan.jpg"
-    },
-    {
       "name": "Heidi",
-      "role": "Press Officer",
+      "role": "Head of Design",
       "email": "heidi.j@durhack.com",
       "image": "heidi.jpg"
     },
     {
-      "name": "Amy",
-      "role": "Diversity Officer",
-      "email": "amy.h@durhack.com",
-      "image": "amy.jpg"
-    },
-    {
-      "name": "Irenitemi",
-      "role": "Outreach Officer",
-      "email": "irenitemi.a@durhack.com",
-      "image": "irenitemi.jpg"
-    },
-    {
-      "name": "Betty",
-      "role": "Head of Finance",
-      "email": "betty.s@durhack.com",
-      "image": "placeholder.png"
-    },
-    {
-      "name": "Jamie",
-      "role": "Head of Hacker Experience",
-      "email": "jamie.s@durhack.com",
-      "image": "jamie.jpg"
-    },
-    {
-      "name": "Alex",
-      "role": "Lead Organiser",
-      "email": "alex.k@durhack.com",
-      "image": "alex.jpg"
-    },
-    {
-      "name": "Christos",
-      "role": "Head of Logistics",
-      "email": "christos.cm@durhack.com",
-      "image": "christos.jpg"
-    },
-    {
       "name": "Karl",
-      "role": "Head of Sponsorship",
+      "role": "Co-Lead Organiser",
       "email": "karl.s@durhack.com",
       "image": "karl.jpg"
     },
     {
-      "name": "Peter",
-      "role": "Deputy Head of Logistics",
-      "email": "peter.h@durhack.com",
-      "image": "peter.jpg"
+      "name": "Amy",
+      "role": "Co-Lead Organiser",
+      "email": "amy.h@durhack.com",
+      "image": "amy.jpg"
     },
     {
       "name": "Kah",
-      "role": "Logistics Assistant",
+      "role": "Head of Logistics",
       "email": "kah-gene.l@durhack.com",
       "image": "kah.png"
-    },
-    {
-      "name": "Sam",
-      "role": "Tech Officer",
-      "email": "sam.r@durhack.com",
-      "image": "sam.jpg"
-    },
-    {
-      "name": "Kevin",
-      "role": "Catering Officer",
-      "email": "kevin.x@durhack.com",
-      "image": "kevin.jpg"
-    },
-    {
-      "name": "Devansh",
-      "role": "Finance Assistant",
-      "email": "devansh.s@durhack.com",
-      "image": "devansh.png"
-    },
-    {
-      "name": "Henry",
-      "role": "Sponsorship Officer",
-      "email": "henry.w@durhack.com",
-      "image": "henry.jpg"
     },
     {
       "name": "Matt",

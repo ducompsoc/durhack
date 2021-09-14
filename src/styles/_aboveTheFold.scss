@@ -4,6 +4,10 @@
 	position: relative;
 	// height: calc(100vh - 72px);
 
+	.row {
+		flex-direction: row !important;
+	}
+
 	.bg-wrap {
 		position: absolute;
 		top: 0px;
@@ -14,7 +18,23 @@
 		overflow: hidden;
 		z-index: -1;
 
-		> div {
+		> video {
+			width: 100vw;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		> .video-front {
+			position: absolute;
+			width: 100vw;
+			height: 100%;
+			// background-color: rgba(34, 34, 34, 0.5);
+			// background-color: rgba(132, 47, 215, 0.5);
+			// background-image: radial-gradient(circle at center right, #111, transparent);
+			// background-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.8) 50%);
+		}
+
+		> .nodes {
 			position: relative;
 			width: 200vw;
 			height: 200%;
@@ -59,7 +79,7 @@
 	}
 
 	.foreground {
-		padding-bottom: 90px;
+		padding: 48px 0px 90px 0px;
 
 		&:after {
 			content: '';
@@ -70,26 +90,38 @@
 	}
 
 	.container {
-		min-height: calc(100vh - 112px);
+		min-height: calc(100vh - 112px - 48px);
 		box-sizing: border-box;
 		font-size: 18px;
 		padding: 32px;
 
 		> div.hero {
+			width: 45%;
 			padding-left: 48px;
 		}
 
+		.cutout {
+			> div {
+				background-color: rgba(34, 34, 34, 0.9);
+				clip-path: polygon(0% 5%, 100% 0%, 100% 95%, 0% 100%);
+				//backdrop-filter: blur(20px);
+				text-align: center;
+				padding: 48px 58px 72px 58px;
+				overflow: hidden;
+				margin: -1px 0px;
+			}
+		}
+
 		.logo {
-			min-width: 50%;
 			text-align: center;
 			filter: drop-shadow(0px 0px 9px rgba(0, 0, 0, 0.7));
 			overflow: hidden;
+			margin-bottom: 36px;
 
 			img {
-				max-width: 100%;
-				max-height: 100%;
+				width: 100%;
+				max-height: 256px;
 				object-fit: contain;
-				object-position: 50% 50%;
 			}
 		}
 
@@ -126,8 +158,23 @@
 			}
 		}
 
-		@media screen and (max-width: $breakpoint-small) {
+		@media screen and (max-width: $breakpoint-extra-small) {
 			padding: 16px 2px;
+
+			> div.hero {
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0px;
+
+				.cutout > div {
+					padding-left: 24px;
+					padding-right: 24px;
+
+					.logo img {
+						max-height: 170px;
+					}
+				}
+			}
 		}
 
 		.button {

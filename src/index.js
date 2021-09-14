@@ -37,14 +37,43 @@ const navHeight = 76;
 
 const header = document.querySelector('header');
 const aboveTheFold = document.getElementById('top');
+const video = document.querySelector('.bg-wrap video');
+const photoB = document.querySelector('.photo-b');
+const schedule = document.querySelector('.schedule');
+
+let photoBPlaying = false;
+
 document.addEventListener('scroll', () => {
 	if (window.scrollY > aboveTheFold.getBoundingClientRect().height) {
-		header.classList.add('float');
+		video.pause();
+		//header.classList.add('float');
 	} else {
-		header.classList.remove('float');
+		video.play();
+		//header.classList.remove('float');
 	}
 
-	const currentSection = [...document.querySelectorAll('.anchor[id]')].find(sect => sect.getBoundingClientRect().bottom > navHeight);
+	if (window.scrollY > photoB.getBoundingClientRect().top) {
+		if (!photoBPlaying) {
+			photoBPlaying = true;
+			const video = document.querySelector('.photo-b video');
+			video.currentTime = 0;
+			video.play();
+		}
+	} else {
+		photoBPlaying = false;
+	}
+
+	/* if (window.scrollY > schedule.getBoundingClientRect().top) {
+		document.querySelectorAll('.schedule .event .inner').forEach(event => {
+			event.classList.add('animated');
+		});
+	} */
+
+	document.querySelectorAll('.spotlight > div').forEach(el => {
+		el.style.backgroundPosition = `0px ${window.scrollY * 0.2}px`;
+	});
+
+	/* const currentSection = [...document.querySelectorAll('.anchor[id]')].find(sect => sect.getBoundingClientRect().bottom > navHeight);
 
 	const { top, height } = currentSection.getBoundingClientRect();
 	let totalWidth = Math.max(-top / (height - navHeight), 0) * navButtons.find(({ link }) => link === currentSection.id).width;
@@ -52,7 +81,7 @@ document.addEventListener('scroll', () => {
 		totalWidth += width;
 	});
 
-	document.querySelector('header .fill').style.width = `${totalWidth}px`;
+	document.querySelector('header .fill').style.width = `${totalWidth}px`; */
 });
 
 /**
@@ -84,7 +113,7 @@ teamColumns.push(config.team.filter((_, index) => index >= limit * 3));
  */
 //document.querySelector('.faqs .template').innerHTML = require('./templates/faqs.hbs')({ questions: config.faqs });
 document.querySelector('.sponsors .template').innerHTML = require('./templates/sponsors.hbs')({ sponsors: config.sponsors });
-document.querySelector('.schedule .template').innerHTML = require('./templates/schedule.hbs')({ schedule: config.schedule });
+//document.querySelector('.schedule .template').innerHTML = require('./templates/schedule.hbs')({ schedule: config.schedule });
 
 if (document.querySelector('.team')) {
 	document.querySelector('.team .template').innerHTML = require('./templates/team.hbs')({ teamColumns });
@@ -114,6 +143,18 @@ document.querySelectorAll('.faqs .question').forEach(element => {
 
 		event.stopPropagation();
 	});
+});
+
+/**
+ * Add delays to schedule animations.
+ */
+//document.querySelectorAll('.schedule .row').forEach(row => {
+//	row.querySelectorAll('.event .inner').forEach((event, idx) => {
+//		event.style.animationDelay = `${idx * 0.2}s`;
+//	});
+//});
+document.querySelectorAll('.schedule .event .inner').forEach((event, idx) => {
+	event.style.animationDelay = `${idx * 0.1}s`;
 });
 
 /**
