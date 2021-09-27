@@ -12,13 +12,7 @@
 
 	&.sponsors {
 		background-color: #333;
-
-		&:after {
-			content: '';
-			border-style: solid;
-			border-width: 0px 0px 90px 100vw;
-			border-color: transparent transparent $primary-dark transparent;
-		}
+		padding-bottom: 120px;
 
 		h3 {
 			text-transform: uppercase;
@@ -115,14 +109,14 @@
 		position: relative;
 		font-weight: 300;
 		text-align: center;
-		padding: 90px 0px 0px 0px;
+		padding: 120px 0px 0px 0px;
 
-		&:before {
+		/* &:before {
 			content: '';
 			border-style: solid;
 			border-width: 90px 100vw 0px 0px;
 			border-color: $primary-dark transparent transparent transparent;
-		}
+		} */
 
 		> .bg {
 			position: absolute;

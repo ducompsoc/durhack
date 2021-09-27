@@ -5,7 +5,10 @@
 	font-size: 20px;
 	font-weight: 300;
 	text-align: center;
-	padding: 64px 0px 90px 0px;
+	// padding: 64px 0px 90px 0px;
+	clip-path: polygon(0% 90px, 100% 0%, 100% calc(100% - 90px), 0% 100%);
+	padding: 0px;
+	margin: -90px 0px;
 
 	a {
 		color: #fff;
@@ -31,6 +34,82 @@
 		&:hover {
 			background-color: #fff;
 			color: $primary-dark;
+		}
+	}
+
+	/* &:before {
+		position: relative;
+		top: 90px;
+		content: '';
+		border-style: solid;
+		border-width: 90px 100vw 0px 0px;
+		border-color: #333 transparent transparent transparent;
+		z-index: 2;
+	} */
+
+	.cta-half {
+		position: relative;
+		display: block;
+		border: none;
+		width: 50%;
+		padding: 210px 0px;
+		overflow: hidden;
+
+		h2 {
+			margin-bottom: 0px;
+		}
+
+		p {
+			margin: 24px 0px 32px 0px;
+		}
+
+		.inner {
+			position: relative;
+			// max-width: calc(640px - 64px);
+			padding: 0px 64px;
+			z-index: 1;
+		}
+
+		&:first-child .inner {
+			float: right;
+		}
+
+		.background {
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			bottom: 0px;
+			left: 0px;
+			background-size: cover;
+			background-position: center;
+			opacity: 0.4;
+			transition: .5s ease;
+			filter: grayscale(1);
+		}
+
+		&.in-person .background {
+			background-image: url('/assets/photos/5227.jpg');
+		}
+
+		&.from-home .background {
+			background-image: url('/assets/photos/my-setup.jpg');
+		}
+
+		&:hover {
+			.button {
+				background-color: #fff;
+				color: $primary-dark;
+			}
+
+			.background {
+				top: -32px;
+				bottom: -32px;
+				filter: grayscale(0);
+			}
+		}
+
+		@media screen and (max-width: $breakpoint-small) {
+			width: 100%;
 		}
 	}
 

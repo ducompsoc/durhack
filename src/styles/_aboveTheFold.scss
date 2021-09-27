@@ -34,6 +34,16 @@
 			// background-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.8) 50%);
 		}
 
+		@media screen and (max-width: $breakpoint-small) {
+			background-image: url('/assets/videos/splash-poster.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+
+			> video {
+				display: none;
+			}
+		}
+
 		> .nodes {
 			position: relative;
 			width: 200vw;
