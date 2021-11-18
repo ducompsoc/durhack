@@ -45,22 +45,46 @@
   "sponsors": {},
   "team": [
     {
-      "name": "Ethan",
-      "role": "Head of Tech",
-      "email": "ethan.w@durhack.com",
-      "image": "ethan.jpg"
+      "name": "Mohammed",
+      "role": "Workshop Officer",
+      "email": "mohammed.a@durhack.com",
+      "image": "placeholder.png"
     },
     {
-      "name": "Zeynep",
-      "role": "Publicity Officer",
-      "email": "zeynep.e@durhack.com",
-      "image": "zeynep.jpg"
+      "name": "Tom N",
+      "role": "Logistics Assistant",
+      "email": "tom.n@durhack.com",
+      "image": "tomnudd.jpg"
     },
     {
-      "name": "Heidi",
-      "role": "Head of Design",
-      "email": "heidi.j@durhack.com",
-      "image": "heidi.jpg"
+      "name": "Tom M",
+      "role": "Catering Officer",
+      "email": "tom.m@durhack.com",
+      "image": "placeholder.png"
+    },
+    {
+      "name": "Kah",
+      "role": "Head of Logistics",
+      "email": "kah-gene.l@durhack.com",
+      "image": "kah.png"
+    },
+    {
+      "name": "Omar",
+      "role": "Co-Head of Sponsorship",
+      "email": "omar.m@durhack.com",
+      "image": "omar.jpg"
+    },
+    {
+      "name": "Alperen",
+      "role": "Sponsorship Officer",
+      "email": "alperen.k@durhack.com",
+      "image": "placeholder.png"
+    },
+    {
+      "name": "Matthew",
+      "role": "Co-Head of Sponsorship",
+      "email": "matthew.c@durhack.com",
+      "image": "matt.jpg"
     },
     {
       "name": "Karl",
@@ -75,22 +99,46 @@
       "image": "amy.jpg"
     },
     {
-      "name": "Kah",
-      "role": "Head of Logistics",
-      "email": "kah-gene.l@durhack.com",
-      "image": "kah.png"
+      "name": "Heidi",
+      "role": "Head of Media, Publicity, and Design",
+      "email": "heidi.j@durhack.com",
+      "image": "heidi.jpg"
     },
     {
-      "name": "Matthew",
-      "role": "Sponsorship Officer",
-      "email": "matthew.c@durhack.com",
-      "image": "matt.jpg"
+      "name": "Mingyue",
+      "role": "Media & Publicity Assistant",
+      "email": "mingyue.j@durhack.com",
+      "image": "placeholder.png"
     },
     {
-      "name": "Omar",
-      "role": "Sponsorship Officer",
-      "email": "omar.m@durhack.com",
-      "image": "omar.jpg"
+      "name": "Zeynep",
+      "role": "Media & Publicity Assistant",
+      "email": "zeynep.e@durhack.com",
+      "image": "zeynep.jpg"
+    },
+    {
+      "name": "Matus",
+      "role": "Finance Officer",
+      "email": "matus.l@durhack.com",
+      "image": "matus.jpg"
+    },
+    {
+      "name": "Ethan",
+      "role": "Head of Tech",
+      "email": "ethan.w@durhack.com",
+      "image": "ethan.jpg"
+    },
+    {
+      "name": "Abhinav",
+      "role": "Tech Officer",
+      "email": "abhinav.b@durhack.com",
+      "image": "placeholder.png"
+    },
+    {
+      "name": "DurHack Dino",
+      "role": "Mascot",
+      "email": "",
+      "image": "dino.png"
     }
   ],
   "schedule": [

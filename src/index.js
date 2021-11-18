@@ -104,7 +104,7 @@ document.querySelectorAll('header .nav > a.anchor').forEach(element => {
 let teamColumns = [];
 const limit = Math.floor(config.team.length / 3);
 for (let i = 0; i < limit; i++) {
-	teamColumns = [...teamColumns, [config.team[i * 3], config.team[(i * 3) + 1]], [config.team[(i * 3) + 2]]];
+	teamColumns = [...teamColumns, [config.team[i * 3]], [config.team[(i * 3) + 1], config.team[(i * 3) + 2]]];
 }
 teamColumns.push(config.team.filter((_, index) => index >= limit * 3));
 
