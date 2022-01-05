@@ -213,6 +213,23 @@
 				pointer-events: none;
 			}
 		}
+
+		h5 {
+			font-size: 14px;
+			text-transform: uppercase;
+			margin: 28px 0px 0px 0px;
+		}
+
+		.non-durham {
+			font-size: 14px;
+			margin-top: 16px;
+
+			a {
+				border-bottom: dashed 1px $secondary-a;
+				color: $secondary-a;
+				text-decoration: none;
+			}
+		}
 	}
 }
 
@@ -225,4 +242,16 @@
 	color: rgba(0, 0, 0, 0.8);
 	text-align: center;
 	padding: 16px;
+	z-index: 1;
+
+	a {
+		color: #000;
+		border-bottom: dashed 1px #000;
+		text-decoration: none;
+		opacity: 0.8;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
 }

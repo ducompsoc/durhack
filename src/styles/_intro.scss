@@ -1,15 +1,8 @@
 @import './variables';
 
 .section.intro {
-	padding: 96px 0px 90px 0px;
+	padding: 96px 0px 0px 0px;
 	margin: 0px;
-
-	&:after {
-		content: '';
-		border-style: solid;
-		border-width: 0px 0px 90px 100vw;
-		border-color: transparent transparent #333 transparent;
-	}
 
 	> div {
 
@@ -80,6 +73,12 @@
 				filter: invert(1);
 				margin: 6px 12px 6px 0px;
 			}
+		}
+
+		a {
+			border-bottom: dashed 1px $secondary-a;
+			color: $secondary-a;
+			text-decoration: none;
 		}
 	}
 

@@ -1,6 +1,7 @@
 @import './variables';
 
 .cta-foot {
+	position: relative;
 	background-color: $primary-dark;
 	font-size: 20px;
 	font-weight: 300;
@@ -8,7 +9,8 @@
 	// padding: 64px 0px 90px 0px;
 	clip-path: polygon(0% 90px, 100% 0%, 100% calc(100% - 90px), 0% 100%);
 	padding: 0px;
-	margin: -90px 0px;
+	margin: -90px 0px 0px 0px;
+	z-index: 1;
 
 	a {
 		color: #fff;
@@ -17,7 +19,7 @@
 	}
 
 	> .container {
-		padding: 64px 0px 96px 0px;
+		padding: 128px 0px 160px 0px;
 	}
 
 	.button {
@@ -51,7 +53,8 @@
 		position: relative;
 		display: block;
 		border: none;
-		width: 50%;
+		/* width: 50%; */
+		width: 100%;
 		padding: 210px 0px;
 		overflow: hidden;
 
@@ -66,13 +69,17 @@
 		.inner {
 			position: relative;
 			// max-width: calc(640px - 64px);
+			width: 100%;
+			max-width: 1440px;
+			box-sizing: border-box;
 			padding: 0px 64px;
+			margin: 0px auto;
 			z-index: 1;
 		}
 
-		&:first-child .inner {
+		/* &:first-child .inner {
 			float: right;
-		}
+		} */
 
 		.background {
 			position: absolute;
@@ -102,9 +109,8 @@
 			}
 
 			.background {
-				top: -32px;
-				bottom: -32px;
-				filter: grayscale(0);
+				left: -32px;
+				right: -32px;
 			}
 		}
 
