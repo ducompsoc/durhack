@@ -54,13 +54,18 @@
 	status = 302
 
 [[redirects]]
-	from = "/register"
+	from = "/register-du"
 	to = "https://ducompsoc.typeform.com/to/lrHtJxcx"
 	status = 302
 
 [[redirects]]
+	from = "/register-nondu"
+	to = "https://ducompsoc.typeform.com/to/KtmC0kLz"
+	status = 302
+
+[[redirects]]
 	from = "/tickets"
-	to = "https://ducompsoc.typeform.com/to/lrHtJxcx"
+	to = "/#tickets"
 	status = 302
 
 [[redirects]]

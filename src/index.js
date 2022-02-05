@@ -112,7 +112,7 @@ teamColumns.push(config.team.filter((_, index) => index >= limit * 3));
  * Include partials.
  */
 document.querySelector('.faqs .template').innerHTML = require('./templates/faqs.hbs')({ questions: config.faqs });
-document.querySelector('.sponsors .template').innerHTML = require('./templates/sponsors.hbs')({ sponsors: config.sponsors });
+//document.querySelector('.sponsors .template').innerHTML = require('./templates/sponsors.hbs')({ sponsors: config.sponsors });
 //document.querySelector('.schedule .template').innerHTML = require('./templates/schedule.hbs')({ schedule: config.schedule });
 
 if (document.querySelector('.team')) {
@@ -161,3 +161,36 @@ document.querySelectorAll('.schedule .event .inner').forEach((event, idx) => {
  * Enable tooltips.
  */
 tippy('.tooltip');
+
+function showMask() {
+	location.hash = '#tickets';
+	document.querySelector('.mask').classList.add('visible');
+}
+
+function hideMask() {
+	history.pushState({}, '', '/');
+	document.querySelector('.mask').classList.remove('visible');
+}
+
+if (location.hash.startsWith('#tickets')) {
+	showMask();
+}
+
+document.querySelector('.mask').addEventListener('click', () => {
+	hideMask();
+});
+
+document.querySelector('.mask > div > div').addEventListener('click', event => {
+	event.stopPropagation();
+});
+
+document.querySelector('.mask .close').addEventListener('click', event => {
+	event.preventDefault();
+	hideMask();
+});
+
+
+document.querySelectorAll('.register').forEach(button => button.addEventListener('click', event => {
+	event.preventDefault();
+	showMask();
+}));

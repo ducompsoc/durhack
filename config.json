@@ -42,7 +42,64 @@
       "If you&#39;re still not sure about something, drop us a line at \n\n<a href=\"mailto:hello@durhack.com\">hello@durhack.com</a>\n\n and we&#39;ll be very happy to help!"
     ]
   },
-  "sponsors": {},
+  "sponsors": {
+    "platinum": [
+      {
+        "link": "https://www.alteryx.com/",
+        "image": "alteryx.png"
+      }
+    ],
+    "gold": [
+      {
+        "link": "https://www.twilio.com/",
+        "image": "twilio.png"
+      },
+      {
+        "link": "https://www.palantir.com/uk/",
+        "image": "palantir.svg"
+      }
+    ],
+    "silver": [
+      {
+        "link": "https://www.pexip.com/",
+        "image": "pexip.png"
+      },
+      {
+        "link": "https://www.waterstons.com/",
+        "image": "waterstons.png"
+      },
+      {
+        "link": "https://www.tcs.com/",
+        "image": "tata.png"
+      },
+      {
+        "link": "https://www.durham.ac.uk/departments/academic/computer-science/",
+        "image": "du.svg"
+      }
+    ],
+    "partners": [
+      {
+        "image": "keyboard-company.svg",
+        "link": "https://www.keyboardco.com/"
+      },
+      {
+        "image": "luner.png",
+        "link": "https://luner.io/"
+      },
+      {
+        "image": "mlh.png",
+        "link": "https://mlh.io/"
+      },
+      {
+        "image": "compsoc-with-text.png",
+        "link": "https://www.compsoc.tech/"
+      },
+      {
+        "image": "dsu.png",
+        "link": "https://www.durhamsu.com/"
+      }
+    ]
+  },
   "team": [
     {
       "name": "Mohammed",
