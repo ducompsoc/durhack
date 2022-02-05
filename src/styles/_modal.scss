@@ -65,6 +65,10 @@
 				}
 
 				@media screen and (max-width: $breakpoint-small) {
+					> div {
+						padding: 0px 32px;
+					}
+
 					span {
 						display: inline;
 					}
@@ -90,6 +94,10 @@
 
 				@media screen and (max-width: $breakpoint-medium) {
 					padding: 12px 32px;
+				}
+
+				@media screen and (max-width: $breakpoint-small) {
+					margin-top: 6px;
 				}
 
 				&.disabled {

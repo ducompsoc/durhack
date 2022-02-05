@@ -165,11 +165,13 @@ tippy('.tooltip');
 function showMask() {
 	location.hash = '#tickets';
 	document.querySelector('.mask').classList.add('visible');
+	document.querySelector('body').style.overflowY = 'hidden';
 }
 
 function hideMask() {
 	history.pushState({}, '', '/');
 	document.querySelector('.mask').classList.remove('visible');
+	document.querySelector('body').style.overflowY = 'visible';
 }
 
 if (location.hash.startsWith('#tickets')) {
