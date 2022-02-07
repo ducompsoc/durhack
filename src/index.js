@@ -112,7 +112,7 @@ teamColumns.push(config.team.filter((_, index) => index >= limit * 3));
  * Include partials.
  */
 document.querySelector('.faqs .template').innerHTML = require('./templates/faqs.hbs')({ questions: config.faqs });
-//document.querySelector('.sponsors .template').innerHTML = require('./templates/sponsors.hbs')({ sponsors: config.sponsors });
+document.querySelector('.sponsors .template').innerHTML = require('./templates/sponsors.hbs')({ sponsors: config.sponsors });
 //document.querySelector('.schedule .template').innerHTML = require('./templates/schedule.hbs')({ schedule: config.schedule });
 
 if (document.querySelector('.team')) {
