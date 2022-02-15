@@ -216,20 +216,20 @@
         {
           "title": "Registration",
           "icon": "edit",
-          "start": "9:00",
-          "end": "12:00"
+          "start": "9:30",
+          "end": "11:00"
         },
         {
-          "title": "Speed Teaming",
-          "icon": "lightbulb",
-          "start": "10:00",
-          "end": "10:50"
-        },
-        {
-          "title": "Opening Talks",
+          "title": "Opening Keynote",
           "icon": "microphone",
-          "start": "11:00",
-          "end": "11:30"
+          "start": "11:15",
+          "end": "11:45"
+        },
+        {
+          "title": "Team-forming activity",
+          "icon": "lightbulb",
+          "start": "11:45",
+          "end": "12:00"
         },
         {
           "title": "Hacking begins",
@@ -238,62 +238,92 @@
           "end": ""
         },
         {
-          "title": "Workshop 1",
-          "icon": "flask",
-          "start": "12:30",
-          "end": "13:15"
+          "title": "DurHack 2019 Winners Panel",
+          "icon": "microphone",
+          "start": "12:15",
+          "end": "12:50"
         },
         {
-          "title": "Workshop 2",
+          "title": "Lunch",
+          "icon": "food",
+          "start": "12:20",
+          "end": "14:30"
+        },
+        {
+          "title": "Workshop",
           "icon": "flask",
-          "start": "13:30",
-          "end": "14:15"
+          "start": "14:30",
+          "end": "15:15"
+        },
+        {
+          "title": "Workshop",
+          "icon": "flask",
+          "start": "15:15",
+          "end": "16:00"
+        },
+        {
+          "title": "Alteryx Drop-in Workshop",
+          "icon": "flask",
+          "start": "15:30",
+          "end": "16:30"
         }
       ]
     },
     {
       "events": [
         {
-          "title": "Workshop 3",
+          "title": "Workshop",
           "icon": "flask",
-          "start": "14:30",
-          "end": "15:15"
+          "start": "16:00",
+          "end": "16:45"
         },
         {
-          "title": "Workshop 4",
-          "icon": "flask",
-          "start": "15:30",
-          "end": "16:15"
-        },
-        {
-          "title": "Workshop 5",
-          "icon": "flask",
+          "title": "Blackrock",
+          "icon": "jigsaw",
           "start": "16:30",
           "end": "17:15"
         },
         {
-          "title": "Chatting with Durham Groups Live",
-          "icon": "microphone",
+          "title": "Workshop",
+          "icon": "flask",
+          "start": "17:00",
+          "end": "17:45"
+        },
+        {
+          "title": "Dinner",
+          "icon": "food",
           "start": "18:00",
-          "end": "19:00"
+          "end": "19:10"
         },
         {
-          "title": "Chatting Hackathons Panel Live",
-          "icon": "microphone",
-          "start": "20:00",
-          "end": "21:00"
+          "title": "Workshop",
+          "icon": "flask",
+          "start": "19:20",
+          "end": "20:05"
         },
         {
-          "title": "Mini-Event",
+          "title": "Slideshow Karaoke",
           "icon": "jigsaw",
+          "start": "20:05",
+          "end": "20:50"
+        },
+        {
+          "title": "Cupstacking",
+          "icon": "jigsaw",
+          "start": "21:00",
+          "end": "21:45"
+        },
+        {
+          "title": "Relaxation room opens",
+          "icon": "moon",
           "start": "22:00",
-          "end": "23:00"
+          "end": ""
         },
         {
-          "title": "Mini-Event",
-          "icon": "jigsaw",
-          "start": "23:30",
-          "end": "00:30"
+          "title": "Games through the night",
+          "icon": "party",
+          "start": "22:30",
+          "end": "2:00"
         }
       ]
     },
@@ -301,7 +331,19 @@
       "day": "DAY TWO",
       "events": [
         {
-          "title": "Devpost Submission Deadline",
+          "title": "Midnight Pizza",
+          "icon": "pizza",
+          "start": "0:00",
+          "end": ""
+        },
+        {
+          "title": "Breakfast",
+          "icon": "food",
+          "start": "6:30",
+          "end": "8:30"
+        },
+        {
+          "title": "Project Submission Deadline",
           "icon": "calendar",
           "start": "11:00",
           "end": ""
@@ -313,16 +355,28 @@
           "end": ""
         },
         {
-          "title": "Hacking Video Stream",
-          "icon": "flask",
-          "start": "13:00",
-          "end": "15:30"
+          "title": "Lunch",
+          "icon": "food",
+          "start": "12:05",
+          "end": "13:05"
         },
         {
-          "title": "Closing Ceremony",
+          "title": "Science Fair",
+          "icon": "flask",
+          "start": "13:05",
+          "end": "14:45"
+        },
+        {
+          "title": "Finalist presentations",
+          "icon": "presentation",
+          "start": "15:00",
+          "end": "15:45"
+        },
+        {
+          "title": "Closing Talks",
           "icon": "microphone",
-          "start": "17:00",
-          "end": "18:00"
+          "start": "15:45",
+          "end": "16:30"
         }
       ]
     }
