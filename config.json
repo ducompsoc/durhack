@@ -61,6 +61,10 @@
       {
         "link": "https://www.palantir.com/uk/",
         "image": "palantir.svg"
+      },
+      {
+        "image": "dcc.svg",
+        "link": "https://durham.gov.uk/"
       }
     ],
     "silver": [
@@ -75,6 +79,10 @@
       {
         "link": "https://www.tcs.com/",
         "image": "tata.png"
+      },
+      {
+        "link": "https://overleaf.com/",
+        "image": "overleaf.png"
       },
       {
         "link": "https://www.durham.ac.uk/departments/academic/computer-science/",
