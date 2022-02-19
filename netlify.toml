@@ -104,6 +104,11 @@
 	status = 302
 
 [[redirects]]
+	from = "/discord"
+	to = "https://live.durhack.com/"
+	status = 302
+
+[[redirects]]
 	from = "/stash"
 	to = "https://ducompsoc.typeform.com/to/zWTBEURF"
 	status = 302
