@@ -55,27 +55,27 @@
 
 [[redirects]]
 	from = "/register-du"
-	to = "https://ducompsoc.typeform.com/to/lrHtJxcx"
+	to = "/register-interest"
 	status = 302
 
 [[redirects]]
 	from = "/register-nondu"
-	to = "https://ducompsoc.typeform.com/to/KtmC0kLz"
+	to = "/register-interest"
 	status = 302
 
 [[redirects]]
 	from = "/tickets"
-	to = "/#tickets"
+	to = "/register-interest"
 	status = 302
 
 [[redirects]]
 	from = "/register-interest"
-	to = "https://ducompsoc.typeform.com/to/FPPtBxHo"
+	to = "https://ducompsoc.typeform.com/to/uQlBwl3V"
 	status = 302
 
 [[redirects]]
 	from = "/preregister"
-	to = "https://durhack.com/register"
+	to = "/register-interest"
 	status = 302
 
 [[redirects]]
