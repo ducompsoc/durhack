@@ -192,7 +192,7 @@ document.querySelector('.mask .close').addEventListener('click', event => {
 });
 
 
-document.querySelectorAll('.register').forEach(button => button.addEventListener('click', event => {
-	event.preventDefault();
-	showMask();
-}));
+// document.querySelectorAll('.register').forEach(button => button.addEventListener('click', event => {
+// 	event.preventDefault();
+// 	showMask();
+// }));
