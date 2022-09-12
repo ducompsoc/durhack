@@ -17,7 +17,7 @@
 								</h1> -->
 
 								<div class="logo">
-									<img src="/assets/logo21.png" />
+									<img src="/assets/logo22.png" />
 								</div>
 
 								<p>
@@ -177,179 +177,25 @@
 			</div>
 		</div>
 
-        <div class="anchor" id="faqs">
-			<div class="section faqs">
-				<div>
-					<div class="container">
-						<h2>FAQs</h2>
-					</div>
+		<footer>
+			<div class="container row center">
+				<div class="legal flex">
+					<p class="bigger">
+						DurHack follows the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH Code of Conduct</a>.
+						Photos and videos taken prior to the COVID-19 pandemic.
+					</p>
 
-					<FAQs />
+					<p>
+						DurHack is an event hosted by Durham University Computing Society (<a href="https://compsoc.tech" target="_blank">compsoc.tech</a>), which is a student society affiliated with Durham Students' Union (<a href="https://durhamsu.com" target="_blank">durhamsu.com</a>). Durham Students' Union is registered in England as a company limited by guarantee (07689815) and a charity (1145400), with VAT number 119733690 and registered office Dunelm House, New Elvet, Durham DH1 3AN.
+					</p>
+				</div>
+
+				<div class="photo">
+					<img src="assets/logo-white-22.png" />
 				</div>
 			</div>
-
-			<!--<div class="section inspiration">
-				<div>
-					<p>Check out DurHack 2019's <a href="/devpost" target="_blank">submissions</a> and <a href="http://photos19.durhack.com/">photos</a>.</p>
-				</div>
-			</div>-->
-		</div>
-
-        <div class="section anchor sponsors" id="sponsors">
-            <div class="container">
-                <h2>Sponsors</h2>
-
-				<Sponsors />
-
-				<p>Thanks in advance to all our sponsors for making DurHack possible!</p>
-
-				<p>Interested in sponsoring DurHack? We'd love to work with you. Send us an email at <a href="mailto:sponsor@durhack.com">sponsor@durhack.com</a>.</p>
-            </div>
-		</div>
-
-		<div class="section anchor schedule" id="schedule">
-			<div class="container">
-				<h2>Schedule</h2>
-
-				<p>This schedule is provisional. Some parts might change significantly before the event.</p>
-
-				<Schedule />
-			</div>
-		</div>
-
-		<!--<div class="section anchor schedule" id="schedule">
-			<div class="container">
-				<h2>Schedule</h2>
-
-				<div class="template timeline"></div>
-			</div>
-		</div>-->
-
-        <div class="section cta-foot">
-            <!-- <div class="container center">
-                <p class="flex text">
-					<strong>We'll be sharing more about DurHack 2021 very soon.</strong>
-                </p>
-
-				<p>
-					In the meantime, check out <a href="https://compsoc.tech/" target="_blank">www.compsoc.tech</a> for more Durham CompSoc events.
-				</p>
-            </div> -->
-
-			<div class="row">
-				<a href="/tickets" class="register cta-half in-person">
-					<div class="background"></div>
-
-					<div class="inner">
-						<h2>Pre-Register for DurHack now</h2>
-
-						<p>Come and join us in the brand new Mathematics and Computer Science building at Durham University, in a COVID-safe environment. Registration is completely free, and is open to all students (from all Universities) and all recent graduates.</p>
-
-						<p> <b>Pre-registering does not automatically give you a place; we will email you when registration opens.</b> </p>
+		</footer>
 
 
-						<span class="button">Pre-Register now</span>
-					</div>
-				</a>
-
-				<!-- <a href="/preregister" class="cta-half from-home">
-					<div class="background"></div>
-
-					<div class="inner">
-						<h2>Hack from home</h2>
-
-						<p>You're more than welcome to participate remotely. You'll be able to communicate with us, our sponsors, and your teammates online, and we'll be livestreaming the whole event.</p>
-
-						<span class="button">Register interest</span>
-					</div>
-				</a> -->
-			</div>
-		</div>
-
-		<div class="section anchor team" id="team">
-			<div class="bg"></div>
-
-			<div class="inner">
-				<p>And here are your organisers for DurHack</p>
-				<div class="team-grid row center">
-					<TeamGrid />
-				</div>
-				<p><a href="mailto:hello@durhack.com">hello@durhack.com</a></p>
-			</div>
-
-			<footer>
-				<div class="container row center">
-					<div class="legal flex">
-						<p class="bigger">
-							DurHack follows the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH Code of Conduct</a>.
-							Photos and videos taken prior to the COVID-19 pandemic.
-						</p>
-
-						<p>
-							DurHack is an event hosted by Durham University Computing Society (<a href="https://compsoc.tech" target="_blank">compsoc.tech</a>), which is a student society affiliated with Durham Students' Union (<a href="https://durhamsu.com" target="_blank">durhamsu.com</a>). Durham Students' Union is registered in England as a company limited by guarantee (07689815) and a charity (1145400), with VAT number 119733690 and registered office Dunelm House, New Elvet, Durham DH1 3AN.
-						</p>
-					</div>
-
-					<div class="photo">
-						<img src="assets/logo-white-22.png" />
-					</div>
-				</div>
-			</footer>
-        </div>
-
-		<div class="mask">
-			<div>
-				<div>
-					<div class="head">
-						<a href="/" class="close">&times;</a>
-						<h2>Get your free ticket for DurHack!</h2>
-						<p>
-							This will only take a few minutes. First up, which describes you?
-						</p>
-					</div>
-
-					<div class="row thirds">
-						<div>
-							<div>
-								<span>I'm a <strong>current student</strong></span>
-								<span>at <strong>Durham University</strong>.</span>
-							</div>
-
-							<div class="status">
-								Sold out
-							</div>
-
-							<a href="https://ducompsoc.typeform.com/to/hb40ey28" class="button">Join waiting list</a>
-						</div>
-
-						<div>
-							<div>
-								<span>I'm a <strong>current student</strong></span>
-								<span>at <strong>another university</strong>.</span>
-							</div>
-
-							<div class="status">
-								Sold out
-							</div>
-
-							<a href="https://ducompsoc.typeform.com/to/hb40ey28" class="button">Join waiting list</a>
-						</div>
-
-						<div>
-							<div>
-								<span>I'm a <strong>recent graduate</strong></span>
-								<span>from the last 12 months.</span>
-							</div>
-
-							<div class="status">
-								Sold out
-							</div>
-
-							<a href="https://ducompsoc.typeform.com/to/hb40ey28" class="button">Join waiting list</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </template>
