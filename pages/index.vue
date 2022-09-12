@@ -13,7 +13,7 @@
 						<div class="cutout">
 							<div>
 								<!-- <h1>
-									Getting ready to <strong>break boundaries</strong>.
+									Getting ready to <strong>break boundaries</strong> and <weak>test git's config</weak>.
 								</h1> -->
 
 								<div class="logo">
