@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<div class="alert-banner">
-			DurHack 2022 has ended! Thank you to everyone who attended. If you need info on travel reimbursements, please <a href="/travel">click here</a>.
+		<div>
+			<!--Header menu goes here -->
 		</div>
 
         <div class="above-the-fold" id="top">
@@ -12,9 +12,6 @@
 					<div class="hero">
 						<div class="cutout">
 							<div>
-								<!-- <h1>
-									Getting ready to <strong>break boundaries</strong> and <weak>test git</weak>.
-								</h1> -->
 
 								<div class="logo">
 									<img src="/assets/logo22.png" />
@@ -36,23 +33,8 @@
 									19th &ndash; 20th November
 								</p>
 
-								<!--<h5>
-									Current Durham University students:
-								</h5>-->
-
 								<a href="/tickets" class="register button">Pre-Register now</a>
 
-								<!--<div class="non-durham">
-									<div>
-										Not at Durham University? Or are you a recent graduate?
-									</div>
-									<div>
-										We're not ready to open to you just yet, but we're working on it.
-									</div>
-									<div>
-										<a href="/register-interest">Let me know when registrations open further.</a>
-									</div>
-								</div>-->
 							</div>
 						</div>
 					</div>
