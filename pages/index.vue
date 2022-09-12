@@ -1,29 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-		<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
-		<link rel="manifest" href="/assets/favicon/site.webmanifest" />
-		<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#731a94" />
-		<link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
-		<meta name="msapplication-TileColor" content="#434144" />
-		<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
-		<meta name="theme-color" content="#434144" />
-
-		<meta name="google-site-verification" content="0mT7JIQImDNHA2kqMmkshPR-gtx9FiITnaWWPoDOWb8" />
-
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		<title>DurHack</title>
-
-		<meta property="og:title" content="DurHack" />
-		<meta property="og:description" content="The sixth-generation of Durham University Computing Society's annual flagship hackathon." />
-		<meta property="og:image" content="https://durhack.com/assets/splash22.png" />
-		<meta property="og:url" content="https://durhack.com" />
-		<meta name="twitter:card" content="summary_large_image" />
-    </head>
-
-    <body>
+<template>
+	<div>
 		<div class="alert-banner">
 			DurHack 2022 has ended! Thank you to everyone who attended. If you need info on travel reimbursements, please <a href="/travel">click here</a>.
 		</div>
@@ -51,7 +27,7 @@
 								<p>
 									Students of all experience levels will come together in teams of up to five, helping and learning from each other in order to create their own project.
 								</p>
-								
+
 								<p>
 									<b>Pre-registering does not automatically give you a place; we will email you when registration opens.</b>
 								</p>
@@ -208,7 +184,7 @@
 						<h2>FAQs</h2>
 					</div>
 
-					<div class="template"></div>
+					<FAQs />
 				</div>
 			</div>
 
@@ -223,7 +199,7 @@
             <div class="container">
                 <h2>Sponsors</h2>
 
-				<div class="template"></div>
+				<Sponsors />
 
 				<p>Thanks in advance to all our sponsors for making DurHack possible!</p>
 
@@ -237,7 +213,7 @@
 
 				<p>This schedule is provisional. Some parts might change significantly before the event.</p>
 
-				<div class="template timeline"></div>
+				<Schedule />
 			</div>
 		</div>
 
@@ -271,7 +247,7 @@
 
 						<p> <b>Pre-registering does not automatically give you a place; we will email you when registration opens.</b> </p>
 
-						
+
 						<span class="button">Pre-Register now</span>
 					</div>
 				</a>
@@ -295,7 +271,9 @@
 
 			<div class="inner">
 				<p>And here are your organisers for DurHack</p>
-				<div class="team-grid row center template"></div>
+				<div class="team-grid row center">
+					<TeamGrid />
+				</div>
 				<p><a href="mailto:hello@durhack.com">hello@durhack.com</a></p>
 			</div>
 
@@ -373,5 +351,5 @@
 				</div>
 			</div>
 		</div>
-    </body>
-</html>
+	</div>
+</template>
