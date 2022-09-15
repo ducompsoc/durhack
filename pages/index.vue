@@ -140,20 +140,30 @@
         </div>
 
         <div id="faqs">
-            <h1>FAQs go here!</h1>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et
-            dolore magna aliqua. Mauris pellentesque pulvinar pellentesque habitant. Urna neque
-            viverra justo nec
-            ultrices dui. In nisl nisi scelerisque eu. Volutpat lacus laoreet non curabitur gravida.
-            Tortor at auctor
-            urna nunc id. Viverra mauris in aliquam sem fringilla. Lacus luctus accumsan tortor
-            posuere ac ut consequat
-            semper viverra. Volutpat consequat mauris nunc congue nisi vitae. Feugiat sed lectus
-            vestibulum mattis
-            ullamcorper. Id leo in vitae turpis massa. Amet consectetur adipiscing elit duis.
-            Consequat ac felis donec
-            et odio. Nam at lectus urna duis convallis convallis tellus.
+            <aside>
+                <h1>FAQs</h1>
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et
+                    dolore magna aliqua. Mauris pellentesque pulvinar pellentesque habitant. Urna
+                    neque
+                    viverra justo nec
+                    ultrices dui. In nisl nisi scelerisque eu. Volutpat lacus laoreet non curabitur
+                    gravida.
+                    Tortor at auctor
+                    urna nunc id. Viverra mauris in aliquam sem fringilla. Lacus luctus accumsan
+                    tortor
+                    posuere ac ut consequat
+                    semper viverra. Volutpat consequat mauris nunc congue nisi vitae. Feugiat sed
+                    lectus
+                    vestibulum mattis
+                    ullamcorper. Id leo in vitae turpis massa. Amet consectetur adipiscing elit
+                    duis.
+                    Consequat ac felis donec
+                    et odio. Nam at lectus urna duis convallis convallis tellus.
+                </p>
+            </aside>
 
         </div>
 

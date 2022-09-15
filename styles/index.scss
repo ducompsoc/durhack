@@ -46,6 +46,24 @@ body {
     filter: invert(38%) sepia(62%) saturate(2350%) hue-rotate(327deg) brightness(94%) contrast(111%);
 }
 
+aside h1 {
+    position: absolute;
+    left: 1rem;
+
+    transform-origin: 0 0;
+    transform: rotate(-90deg);
+
+    color: $primary-normal;
+    text-transform: uppercase;
+    line-height: 1rem;
+}
+
+aside {
+    display: block;
+    position: relative;
+    padding-left: 3rem;
+}
+
 @import './404';
 @import './intro';
 @import './aboveTheFold';
