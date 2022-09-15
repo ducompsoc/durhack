@@ -5,6 +5,7 @@
 
     h1 {
         font-weight: normal;
+        text-align: center;
     }
 
     b {
@@ -21,7 +22,7 @@
 
     li {
         list-style-type: none;
-        padding: 0.75rem;
+        padding-bottom: 1.5rem;
 
         img {
             @extend .primary-normal-svg-filter;
@@ -35,5 +36,27 @@
         height: 15rem;
         mask-image: url('/assets/file_like_crop.svg');
         mask-repeat: no-repeat;
+    }
+
+    .flex-item {
+        flex: 50%;
+    }
+
+    .flex-container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    @media (min-width: $breakpoint-small) {
+        // Mobile first development 🥰
+        .flex-item {
+            padding: 2rem;
+        }
+
+        .flex-container {
+            flex-direction: row;
+            text-align: left;
+        }
     }
 }

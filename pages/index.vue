@@ -80,53 +80,60 @@
         <div id="intro" class="section intro">
             <h1>DurHack is all about <b>learning something new</b></h1>
 
-            <img alt="A top down view of 5 students around a table with their laptops"
-                 class="file-crop"
-                 src="assets/photos/top_down_laptop_table.jpg">
+            <div class="flex-container">
+                <div class="flex-item">
+                    <img alt="A top down view of 5 students around a table with their laptops"
+                         class="file-crop"
+                         src="assets/photos/top_down_laptop_table.jpg">
 
-            <p>
-                The premise: work together in your team to create something awesome <span
-                class="emphasis">in just 24 hours</span>.
-            </p>
+                    <p>
+                        The premise: work together in your team to create something awesome <span
+                        class="emphasis">in just 24 hours</span>.
+                    </p>
 
-            <ul>
-                <li>
-                    <img src="assets/icons/lightbulb.svg">
-                    Optional team-formation activity
-                </li>
-                <li>
-                    <img src="assets/icons/party.svg">
-                    Mini-events throughout the weekend
-                </li>
-                <li>
-                    <img src="assets/icons/swag.svg">
-                    Hackathon swag and food included
-                </li>
-            </ul>
+                    <ul>
+                        <li>
+                            <img src="assets/icons/lightbulb.svg">
+                            Optional team-formation activity
+                        </li>
+                        <li>
+                            <img src="assets/icons/party.svg">
+                            Mini-events throughout the weekend
+                        </li>
+                        <li>
+                            <img src="assets/icons/swag.svg">
+                            Hackathon swag and food included
+                        </li>
+                    </ul>
+                </div>
 
-            <img alt="A top down view of 5 students around a table with their laptops"
-                 class="file-crop"
-                 src="assets/photos/top_down_laptop_table.jpg">
+                <div class="flex-item">
+                    <img alt="A top down view of 5 students around a table with their laptops"
+                         class="file-crop"
+                         src="assets/photos/top_down_laptop_table.jpg">
 
-            <p>
-                DurHack welcomes students of <span class="emphasis">all experience levels</span>,
-                from all degrees and any university.
-            </p>
+                    <p>
+                        DurHack welcomes students of <span
+                        class="emphasis">all experience levels</span>,
+                        from all degrees and any university.
+                    </p>
 
-            <ul>
-                <li>
-                    <img src="assets/icons/mentor.svg">
-                    Mentors on-hand to help with your project
-                </li>
-                <li>
-                    <img src="assets/icons/flask.svg">
-                    Workshops to learn new skills
-                </li>
-                <li>
-                    <img src="assets/icons/prizes.svg">
-                    Sponsor-led challenges to shoot for
-                </li>
-            </ul>
+                    <ul>
+                        <li>
+                            <img src="assets/icons/mentor.svg">
+                            Mentors on-hand to help with your project
+                        </li>
+                        <li>
+                            <img src="assets/icons/flask.svg">
+                            Workshops to learn new skills
+                        </li>
+                        <li>
+                            <img src="assets/icons/prizes.svg">
+                            Sponsor-led challenges to shoot for
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
         </div>
 
