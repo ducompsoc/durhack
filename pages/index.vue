@@ -67,45 +67,95 @@
 			alt="Major League Hacking 2023 Hackathon Season" style="width:100%"></a>
 
 		<div class="midnav">
-			<ul>
-				<li><a href="#faqs">FAQs</a></li>
-				<li><a href="#sponsors">Sponsors</a></li>
-				<li><a href="#schedule">Schedule</a></li>
-				<li><a href="#team">Team</a></li>
+            <ul>
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#faqs">FAQs</a></li>
+                <li><a href="#sponsors">Sponsors</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#team">Team</a></li>
+            </ul>
+        </div>
 
-			</ul>
-		</div>
 
+        <div id="intro" class="section intro">
+            <h1>DurHack is all about <b>learning something new</b></h1>
 
-		<div id="intro">
-			<h1>Intro goes here!</h1>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-			dolore magna aliqua. Mauris pellentesque pulvinar pellentesque habitant. Urna neque viverra justo nec
-			ultrices dui. In nisl nisi scelerisque eu. Volutpat lacus laoreet non curabitur gravida. Tortor at auctor
-			urna nunc id. Viverra mauris in aliquam sem fringilla. Lacus luctus accumsan tortor posuere ac ut consequat
-			semper viverra. Volutpat consequat mauris nunc congue nisi vitae. Feugiat sed lectus vestibulum mattis
-			ullamcorper. Id leo in vitae turpis massa. Amet consectetur adipiscing elit duis. Consequat ac felis donec
-			et odio. Nam at lectus urna duis convallis convallis tellus.
+            <img alt="A top down view of 5 students around a table with their laptops"
+                 class="file-crop"
+                 src="assets/photos/top_down_laptop_table.jpg">
 
-		</div>
+            <p>
+                The premise: work together in your team to create something awesome <span
+                class="emphasis">in just 24 hours</span>.
+            </p>
 
-		<div id="faqs">
-			<h1>FAQs go here!</h1>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-			dolore magna aliqua. Mauris pellentesque pulvinar pellentesque habitant. Urna neque viverra justo nec
-			ultrices dui. In nisl nisi scelerisque eu. Volutpat lacus laoreet non curabitur gravida. Tortor at auctor
-			urna nunc id. Viverra mauris in aliquam sem fringilla. Lacus luctus accumsan tortor posuere ac ut consequat
-			semper viverra. Volutpat consequat mauris nunc congue nisi vitae. Feugiat sed lectus vestibulum mattis
-			ullamcorper. Id leo in vitae turpis massa. Amet consectetur adipiscing elit duis. Consequat ac felis donec
-			et odio. Nam at lectus urna duis convallis convallis tellus.
+            <ul>
+                <li>
+                    <img src="assets/icons/lightbulb.svg">
+                    Optional team-formation activity
+                </li>
+                <li>
+                    <img src="assets/icons/party.svg">
+                    Mini-events throughout the weekend
+                </li>
+                <li>
+                    <img src="assets/icons/swag.svg">
+                    Hackathon swag and food included
+                </li>
+            </ul>
 
-		</div>
+            <img alt="A top down view of 5 students around a table with their laptops"
+                 class="file-crop"
+                 src="assets/photos/top_down_laptop_table.jpg">
 
-		<div id="sponsors">
-			<h1>Sponsors go here!</h1>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-			dolore magna aliqua. Mauris pellentesque pulvinar pellentesque habitant. Urna neque viverra justo nec
-			ultrices dui. In nisl nisi scelerisque eu. Volutpat lacus laoreet non curabitur gravida. Tortor at auctor
+            <p>
+                DurHack welcomes students of <span class="emphasis">all experience levels</span>,
+                from all degrees and any university.
+            </p>
+
+            <ul>
+                <li>
+                    <img src="assets/icons/mentor.svg">
+                    Mentors on-hand to help with your project
+                </li>
+                <li>
+                    <img src="assets/icons/flask.svg">
+                    Workshops to learn new skills
+                </li>
+                <li>
+                    <img src="assets/icons/prizes.svg">
+                    Sponsor-led challenges to shoot for
+                </li>
+            </ul>
+
+        </div>
+
+        <div id="faqs">
+            <h1>FAQs go here!</h1>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et
+            dolore magna aliqua. Mauris pellentesque pulvinar pellentesque habitant. Urna neque
+            viverra justo nec
+            ultrices dui. In nisl nisi scelerisque eu. Volutpat lacus laoreet non curabitur gravida.
+            Tortor at auctor
+            urna nunc id. Viverra mauris in aliquam sem fringilla. Lacus luctus accumsan tortor
+            posuere ac ut consequat
+            semper viverra. Volutpat consequat mauris nunc congue nisi vitae. Feugiat sed lectus
+            vestibulum mattis
+            ullamcorper. Id leo in vitae turpis massa. Amet consectetur adipiscing elit duis.
+            Consequat ac felis donec
+            et odio. Nam at lectus urna duis convallis convallis tellus.
+
+        </div>
+
+        <div id="sponsors">
+            <h1>Sponsors go here!</h1>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et
+            dolore magna aliqua. Mauris pellentesque pulvinar pellentesque habitant. Urna neque
+            viverra justo nec
+            ultrices dui. In nisl nisi scelerisque eu. Volutpat lacus laoreet non curabitur gravida.
+            Tortor at auctor
 			urna nunc id. Viverra mauris in aliquam sem fringilla. Lacus luctus accumsan tortor posuere ac ut consequat
 			semper viverra. Volutpat consequat mauris nunc congue nisi vitae. Feugiat sed lectus vestibulum mattis
 			ullamcorper. Id leo in vitae turpis massa. Amet consectetur adipiscing elit duis. Consequat ac felis donec

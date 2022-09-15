@@ -1,104 +1,39 @@
 @import './variables';
 
 .section.intro {
-	padding: 96px 0px 0px 0px;
-	margin: 0px;
+    clear: left;
 
-	> div {
+    h1 {
+        font-weight: normal;
+    }
 
-		@media screen and (min-width: $breakpoint-small) {
-			padding: 96px 0px;
-		}
+    b {
+        @extend .emphasis;
+    }
 
-		> div {
-			padding: 0px 32px;
-		}
+    .emphasis {
+        color: $secondary-a;
+    }
 
-		.skewed-photo {
-			box-shadow: -12px 12px 0px $primary-dark;
-			width: 600px;
-			height: 400px;
-			transform: skewY(-3deg);
-			overflow: hidden;
-			margin-right: -12px;
+    ul {
+        padding-left: 0;
+    }
 
-			@media screen and (max-width: $breakpoint-small) {
-				width: 100%;
-				margin: 32px 0px;
-			}
+    li {
+        list-style-type: none;
+        padding: 0.75rem;
 
-			> div {
-				transform: skewY(3deg);
-				background-position: center;
-				background-size: cover;
-				width: 100%;
-				height: 120%;
-				margin-top: -5%;
+        img {
+            @extend .primary-normal-svg-filter;
+            height: 1.5rem;
+            vertical-align: middle;
+            padding-right: 0.5rem
+        }
+    }
 
-				&.photo-a {
-					background-image: url('/assets/photos/7334.jpg');
-				}
-
-				&.photo-b video {
-					width: 100%;
-					height: 100%;
-					object-fit: cover;
-				}
-			}
-		}
-
-		.offers {
-			margin: 0px -24px;
-
-			> div {
-				font-weight: bold;
-				text-align: center;
-				padding: 24px;
-
-				img {
-					width: auto;
-					height: 28px;
-					filter: invert(1);
-					margin-bottom: 9px;
-				}
-			}
-		}
-
-		.checklist {
-			.row {
-				flex-direction: row !important;
-			}
-
-			img {
-				filter: invert(1);
-				margin: 6px 12px 6px 0px;
-			}
-		}
-
-		a {
-			border-bottom: dashed 1px $secondary-a;
-			color: $secondary-a;
-			text-decoration: none;
-		}
-	}
-
-	//.spotlight {
-	//	position: absolute;
-	//	width: 50vw;
-	//	height: 600px;
-	//	mask-image: radial-gradient(closest-side, rgba(255, 255, 255, 0.2), transparent);
-	//	-webkit-mask-image: radial-gradient(closest-side, rgba(255, 255, 255, 0.2), transparent);
-	//	margin: -100px 0vw 0px -8vw;
-	//
-	//	> div {
-	//		width: 100%;
-	//		height: 100%;
-	//		background-color: #fff;
-	//		background-image: url('/assets/spotlight-pattern.png');
-	//	}
-	//
-	//	@media screen and (max-width: $breakpoint-extra-small) {
-	//		width: 100%;
-	//	}
-	//}
+    .file-crop {
+        height: 15rem;
+        mask-image: url('/assets/file_like_crop.svg');
+        mask-repeat: no-repeat;
+    }
 }
