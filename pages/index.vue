@@ -14,8 +14,10 @@
 							<div>
 
 								<div class="logo">
-									<img src="/assets/logo22.png"/>
-								</div>
+                                    <img
+                                        alt="DurHack 2022 Logo: A purple glowing cyberpunk triangle with a shield in the centre."
+                                        src="/assets/logo22.png">
+                                </div>
 
 								<p>
 									Pre-Register now for the seventh iteration of DurHack, Durham University Computing
@@ -93,15 +95,15 @@
 
                     <ul>
                         <li>
-                            <img src="assets/icons/lightbulb.svg">
+                            <img alt="A icon of a light bulb" src="assets/icons/lightbulb.svg">
                             Optional team-formation activity
                         </li>
                         <li>
-                            <img src="assets/icons/party.svg">
+                            <img alt="An icon of a person partying" src="assets/icons/party.svg">
                             Mini-events throughout the weekend
                         </li>
                         <li>
-                            <img src="assets/icons/swag.svg">
+                            <img alt="An icon of a shirt" src="assets/icons/swag.svg">
                             Hackathon swag and food included
                         </li>
                     </ul>
@@ -120,15 +122,15 @@
 
                     <ul>
                         <li>
-                            <img src="assets/icons/mentor.svg">
+                            <img alt="An icon of a person" src="assets/icons/mentor.svg">
                             Mentors on-hand to help with your project
                         </li>
                         <li>
-                            <img src="assets/icons/flask.svg">
+                            <img alt="An icon of a science flask" src="assets/icons/flask.svg">
                             Workshops to learn new skills
                         </li>
                         <li>
-                            <img src="assets/icons/prizes.svg">
+                            <img alt="An icon of a rosette prize" src="assets/icons/prizes.svg">
                             Sponsor-led challenges to shoot for
                         </li>
                     </ul>
@@ -225,7 +227,9 @@
 				</div>
 
 				<div class="photo">
-					<img src="assets/logo-white-22.png"/>
+                    <img
+                        alt="The text 2022 on its side and then DurHack written in a white outline font"
+                        src="assets/logo-white-22.png">
 				</div>
 			</div>
 		</footer>
