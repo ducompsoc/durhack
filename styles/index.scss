@@ -45,8 +45,11 @@
 
     img {
         border-radius: 50%;
-        width: 50vh;
+        width: 30vw;
+        border: 4vw solid #111111;
+        outline: 1vw solid $primary-dark;
     }
+
 
     text-align: center;
 
