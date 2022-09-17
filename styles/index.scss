@@ -62,11 +62,12 @@
 }
 
 body {
-	background-color: #111111;
-	font-family: 'Chakra Petch', 'Open Sans', 'Helvetica Neue', sans-serif;
-	color: #fff;
-	margin: 0px;
-	overflow-x: hidden;
+    background-color: #111111;
+    font-family: 'Chakra Petch', 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    color: #fff;
+    margin: 0px;
+    overflow-x: hidden;
 }
 
 .container, header .underline .middle {
@@ -88,9 +89,7 @@ body {
 }
 
 .primary-normal-svg-filter {
-    /* I don't like it either:
-    https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element/53336754#53336754 */
-    filter: invert(38%) sepia(62%) saturate(2350%) hue-rotate(327deg) brightness(94%) contrast(111%);
+    filter: $primary-normal-filter;
 }
 
 aside h1 {

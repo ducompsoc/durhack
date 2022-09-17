@@ -4,6 +4,10 @@ $breakpoint-extra-small: 920px;
 
 $primary-light: #dab8e9;
 $primary-normal: #FB3A53;
+/* Yeah I don't like it either:
+https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element/53336754#53336754 */
+$primary-normal-filter: invert(38%) sepia(62%) saturate(2350%) hue-rotate(327deg) brightness(94%) contrast(111%);
+
 $primary-dark: #141B2F;
 $secondary-a: #00FFF0;
 $secondary-b: #D7BFE7;
