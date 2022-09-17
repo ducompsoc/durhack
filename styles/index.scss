@@ -15,6 +15,52 @@
 	src: url('/assets/fonts/Deciso-LightItalic.otf');
 }
 
+#map {
+    .button {
+        display: inline-block;
+        border: solid 2px $secondary-a;
+        border-radius: 100px;
+        font-size: 24px;
+        font-weight: bold;
+        text-decoration: none;
+        color: $secondary-a;
+        padding: 16px 96px;
+        margin: 9px 0px;
+        transition: .5s ease;
+
+        &:not(.disabled):hover {
+            background-color: $secondary-a;
+            color: #222;
+        }
+
+        @media screen and (max-width: $breakpoint-medium) {
+            padding: 12px 32px;
+        }
+
+        &.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+
+    img {
+        border-radius: 50%;
+        width: 30vw;
+        border: 4vw solid #111111;
+        outline: 1vw solid $primary-dark;
+    }
+
+
+    text-align: center;
+
+    vertical-align: center;
+
+    p {
+        font-size: 20px;
+        padding-top: 18vh; //bodge but works
+    }
+}
+
 body {
 	background-color: #111111;
 	font-family: 'Chakra Petch', 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -30,6 +76,7 @@ body {
 
 .container {
     margin: 0px auto;
+
 }
 
 .tippy-tooltip {
@@ -63,6 +110,8 @@ aside {
     position: relative;
     padding-left: 3rem;
 }
+
+
 
 @import './404';
 @import './intro';

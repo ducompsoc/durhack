@@ -1,74 +1,80 @@
 <template>
-	<div>
-		<div>
-			<!--Header menu goes here -->
-		</div>
+    <div>
+        <div>
+            <!--Header menu goes here -->
+        </div>
 
-		<div class="above-the-fold" id="top">
-			<div class="foreground">
-				<div class="container content row center">
-					<div class="flex"></div>
+        <div class="above-the-fold" id="top">
+            <div class="foreground">
 
-					<div class="hero">
-						<div class="cutout">
-							<div>
+                <div class="container content row center">
 
-								<div class="logo">
+                    <div class="flex"></div>
+                    <div class="hero">
+                        <div class="cutout">
+                            <div>
+
+                                <div class="logo">
                                     <img
                                         alt="DurHack 2022 Logo: A purple glowing cyberpunk triangle with a shield in the centre."
                                         src="/assets/logo22.png">
                                 </div>
 
-								<p>
-									Pre-Register now for the seventh iteration of DurHack, Durham University Computing
-									Society’s annual flagship hackathon.
-								</p>
+                                <p>
+                                    Pre-Register now for the seventh iteration of DurHack, Durham University Computing
+                                    Society’s annual flagship hackathon.
+                                </p>
 
-								<p>
-									Students of all experience levels will come together in teams of up to five, helping
-									and learning from each other in order to create their own project.
-								</p>
+                                <p>
+                                    Students of all experience levels will come together in teams of up to five, helping
+                                    and learning from each other in order to create their own project.
+                                </p>
 
-								<p>
-									<b>Pre-registering does not automatically give you a place; we will email you when
-										registration opens.</b>
-								</p>
+                                <p>
+                                    <b>Pre-registering does not automatically give you a place; we will email you when
+                                        registration opens.</b>
+                                </p>
 
-								<p class="date">
-									19th &ndash; 20th November
-								</p>
+                                <p class="date">
+                                    19th &ndash; 20th November
+                                </p>
 
-								<a href="/tickets" class="register button">Pre-Register now</a>
+                                <a href="/tickets" class="register button">Pre-Register now</a>
 
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                            </div>
 
-			<div class="bg-wrap">
-				<div class="video-front"></div>
+                        </div>
 
-				<video autoplay muted playsinline loop poster="/assets/videos/splash-poster.jpg">
-					<source src="/assets/videos/splash.webm" type="video/webm"/>
-				</video>
+                    </div>
 
-				<!--<div class="nodes">
-					<div class="bg a"></div>
-					<div class="bg b"></div>
-					<div class="bg c"></div>
-				</div> -->
-			</div>
-		</div>
+                </div>
 
-		<a id="mlh-trust-badge"
-		   style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000"
-		   href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=black"
-		   target="_blank"><img
-			src="https://s3.amazonaws.com/logged-assets/trust-badge/2023/mlh-trust-badge-2023-black.svg"
-			alt="Major League Hacking 2023 Hackathon Season" style="width:100%"></a>
+            </div>
 
-		<div class="midnav">
+
+            <div class="bg-wrap">
+                <div class="video-front"></div>
+
+                <video autoplay muted playsinline loop poster="/assets/videos/splash-poster.jpg">
+                    <source src="/assets/videos/splash.webm" type="video/webm"/>
+                </video>
+
+                <!--<div class="nodes">
+                    <div class="bg a"></div>
+                    <div class="bg b"></div>
+                    <div class="bg c"></div>
+                </div> -->
+            </div>
+        </div>
+
+        <a id="mlh-trust-badge"
+           style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000"
+           href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=black"
+           target="_blank"><img
+            src="https://s3.amazonaws.com/logged-assets/trust-badge/2023/mlh-trust-badge-2023-black.svg"
+            alt="Major League Hacking 2023 Hackathon Season" style="width:100%"></a>
+
+        <div class="midnav">
             <ul>
                 <li><a href="#intro">Intro</a></li>
                 <li><a href="#faqs">FAQs</a></li>
@@ -176,75 +182,76 @@
             viverra justo nec
             ultrices dui. In nisl nisi scelerisque eu. Volutpat lacus laoreet non curabitur gravida.
             Tortor at auctor
-			urna nunc id. Viverra mauris in aliquam sem fringilla. Lacus luctus accumsan tortor posuere ac ut consequat
-			semper viverra. Volutpat consequat mauris nunc congue nisi vitae. Feugiat sed lectus vestibulum mattis
-			ullamcorper. Id leo in vitae turpis massa. Amet consectetur adipiscing elit duis. Consequat ac felis donec
-			et odio. Nam at lectus urna duis convallis convallis tellus.
+            urna nunc id. Viverra mauris in aliquam sem fringilla. Lacus luctus accumsan tortor posuere ac ut consequat
+            semper viverra. Volutpat consequat mauris nunc congue nisi vitae. Feugiat sed lectus vestibulum mattis
+            ullamcorper. Id leo in vitae turpis massa. Amet consectetur adipiscing elit duis. Consequat ac felis donec
+            et odio. Nam at lectus urna duis convallis convallis tellus.
 
-		</div>
+        </div>
 
-		<div id="schedule">
-			<br>
-			<img style="margin-left:8%" width="80%" src="assets/Schedule22.svg" alt="Schedule for Durhack"/>
-		</div>
+        <div id="schedule">
+            <br>
+            <img style="margin-left:8%" width="80%" src="assets/Schedule22.svg" alt="Schedule for Durhack"/>
+        </div>
 
-		<div id="team">
-			<h1>Team goes here!</h1>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-			dolore magna aliqua. Mauris pellentesque pulvinar pellentesque habitant. Urna neque viverra justo nec
-			ultrices dui. In nisl nisi scelerisque eu. Volutpat lacus laoreet non curabitur gravida. Tortor at auctor
-			urna nunc id. Viverra mauris in aliquam sem fringilla. Lacus luctus accumsan tortor posuere ac ut consequat
-			semper viverra. Volutpat consequat mauris nunc congue nisi vitae. Feugiat sed lectus vestibulum mattis
-			ullamcorper. Id leo in vitae turpis massa. Amet consectetur adipiscing elit duis. Consequat ac felis donec
-			et odio. Nam at lectus urna duis convallis convallis tellus.
+        <div id="team">
+            <h1>Team goes here!</h1>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Mauris pellentesque pulvinar pellentesque habitant. Urna neque viverra justo nec
+            ultrices dui. In nisl nisi scelerisque eu. Volutpat lacus laoreet non curabitur gravida. Tortor at auctor
+            urna nunc id. Viverra mauris in aliquam sem fringilla. Lacus luctus accumsan tortor posuere ac ut consequat
+            semper viverra. Volutpat consequat mauris nunc congue nisi vitae. Feugiat sed lectus vestibulum mattis
+            ullamcorper. Id leo in vitae turpis massa. Amet consectetur adipiscing elit duis. Consequat ac felis donec
+            et odio. Nam at lectus urna duis convallis convallis tellus.
 
-		</div>
+        </div>
 
-		<div class="section" id="map">
-			<div class="container row">
-				<div>
-					Join us in the Mathematics and Computer Science building at Durham University.
+        <div class="section" id="map">
+            <div class="container row">
 
-					MAKE A "GET YOUR FREE TICKET" BUTTON
-				</div>
-				<div>
+                <div class="">
 
-					<a href="https://goo.gl/maps/rmFLyMWWXC5c8im69">MCS building</a>
-				</div>
+                    <p class="">Join us in the Mathematics and Computer Science
+                        building at Durham University.</p>
+                    <a href="/tickets" class="register button">Pre-Register now</a>
+                </div>
+                <div>
+                    <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69">                    <img src="assets/mcsmap.png" alt="Map showing the location of the MCS building in Durham.">
+                    </a>
+                </div>
 
-			</div>
+            </div>
 
-		</div>
+        </div>
 
 
+        <footer>
+            <div class="container row center">
+                <div class="legal flex">
+                    <p class="bigger">
+                        DurHack follows the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH Code of
+                        Conduct</a>.
+                        Photos and videos taken at events in 2019 and 2022.
+                    </p>
 
-		<footer>
-			<div class="container row center">
-				<div class="legal flex">
-					<p class="bigger">
-						DurHack follows the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH Code of
-						Conduct</a>.
-						Photos and videos taken at events in 2019 and 2022.
-					</p>
+                    <p>
+                        DurHack is an event hosted by Durham University Computing Society (<a
+                        href="https://compsoc.tech" target="_blank">compsoc.tech</a>), which is a student society
+                        affiliated with Durham Students' Union (<a href="https://durhamsu.com" target="_blank">durhamsu.com</a>).
+                        Durham Students' Union is registered in England as a company limited by guarantee (07689815) and
+                        a charity (1145400), with VAT number 119733690 and registered office Dunelm House, New Elvet,
+                        Durham DH1 3AN.
+                    </p>
+                </div>
 
-					<p>
-						DurHack is an event hosted by Durham University Computing Society (<a
-						href="https://compsoc.tech" target="_blank">compsoc.tech</a>), which is a student society
-						affiliated with Durham Students' Union (<a href="https://durhamsu.com" target="_blank">durhamsu.com</a>).
-						Durham Students' Union is registered in England as a company limited by guarantee (07689815) and
-						a charity (1145400), with VAT number 119733690 and registered office Dunelm House, New Elvet,
-						Durham DH1 3AN.
-					</p>
-				</div>
-
-				<div class="photo">
+                <div class="photo">
                     <img
                         alt="The text 2022 on its side and then DurHack written in a white outline font"
                         src="assets/logo-white-22.png">
-				</div>
-			</div>
-		</footer>
+                </div>
+            </div>
+        </footer>
 
 
-	</div>
+    </div>
 </template>
