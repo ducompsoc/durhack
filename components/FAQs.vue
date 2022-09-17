@@ -1,18 +1,17 @@
 <template>
-	<div>
-		<div v-for="(answers, question) in faqs" class="question closed">
-			<div class="title container">
-				<span class="x"></span>
-				{{question}}
-			</div>
+    <ul class="questions dots">
+        <li v-for="(answers, question) in faqs" class="question closed">
+            <div class="title container">
+                {{ question }}
+            </div>
 
-			<div class="answer">
-				<div class="container">
-					<p v-for="answer in answers">{{answer}}</p>
-				</div>
-			</div>
-		</div>
-	</div>
+            <div class="answer">
+                <div class="container">
+                    <p v-for="answer in answers">{{ answer }}</p>
+                </div>
+            </div>
+        </li>
+    </ul>
 </template>
 
 <script>
