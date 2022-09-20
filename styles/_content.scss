@@ -15,7 +15,12 @@
                 rgba(0, 0, 0, 0.8),
                 rgba(0, 0, 0, 0.8)
         ), url('/assets/photos/group_around_desk_monitor.jpg');
-        background-size: 100% auto;
+        background-size: auto $breakpoint-medium;
+
+        @media (min-width: $breakpoint-medium) {
+            background-size: 100% auto;
+        }
+
         background-repeat: no-repeat;
 
         padding: 0;
@@ -24,19 +29,38 @@
             list-style-type: none;
         }
 
-        .title:before {
-            content: '';
-            display: inline-block;
-            height: 3rem;
-            width: 3rem;
-            margin-bottom: -1rem;
-            margin-right: 1rem;
-            background-image: url("assets/graphics/bullet.svg");
-            background-repeat: no-repeat;
+        .title {
+            cursor: pointer;
+
+            &:before {
+                content: '';
+                display: inline-block;
+                height: 3rem;
+                width: 3rem;
+                margin-bottom: -1rem;
+                margin-right: 1rem;
+                background-image: url("assets/graphics/bullet.svg");
+                background-repeat: no-repeat;
+            }
+
+            // todo: title wrapping inline with pseudo before element on small breakpoints
         }
 
         .answer {
             margin-left: 4rem;
+
+            animation: show .75s ease-in;
+        }
+
+        @keyframes show {
+            0% {
+                opacity: 0;
+                max-height: 0;
+            }
+            100% {
+                opacity: 1;
+                max-height: 1000px;
+            }
         }
 
         .closed {
