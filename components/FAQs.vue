@@ -7,7 +7,7 @@
 
             <div class="answer">
                 <div class="container">
-                    <p v-for="answer in answers">{{ answer }}</p>
+                    <p v-for="answer in answers" v-html="( answer )"></p>
                 </div>
             </div>
         </li>
