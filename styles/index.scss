@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
 @import './variables';
 
@@ -96,13 +97,8 @@ body {
     filter: $primary-normal-filter;
 }
 
-aside h1 {
-    position: absolute;
-    left: 1rem;
-
-    transform-origin: 0 0;
-    transform: rotate(-90deg);
-
+h1 {
+    font-family: 'Audiowide', cursive;
     color: $primary-normal;
     text-transform: uppercase;
     line-height: 1rem;
@@ -112,6 +108,15 @@ aside {
     display: block;
     position: relative;
     padding-left: 3rem;
+
+    > h1 {
+        position: absolute;
+
+        transform-origin: -1 -1;
+        transform: rotate(-90deg);
+
+        left: -1.2rem;
+    }
 }
 
 a {
