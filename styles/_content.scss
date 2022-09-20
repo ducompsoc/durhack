@@ -11,8 +11,10 @@
     }
 
     &.faqs {
-        background-image: linear-gradient(black, black), url('/assets/photos/group_around_desk_monitor.jpg');
-        background-blend-mode: saturation;
+        background-image: linear-gradient(
+                rgba(0, 0, 0, 0.8),
+                rgba(0, 0, 0, 0.8)
+        ), url('/assets/photos/group_around_desk_monitor.jpg');
         background-size: 100% auto;
         background-repeat: no-repeat;
 
