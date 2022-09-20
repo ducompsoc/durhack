@@ -15,12 +15,17 @@
 </template>
 
 <script>
-import { faqs } from '../config.json';
+import {faqs} from '../config.json';
+import {faqLogic} from "../faqs";
 
 export default {
-	data() {
-		return { faqs };
-	},
+    name: 'navigation',
+    data() {
+        return {faqs};
+    },
+    mounted() {
+        faqLogic();
+    }
 };
 </script>
 

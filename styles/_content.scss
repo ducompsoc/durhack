@@ -40,6 +40,12 @@
         .answer {
             margin-left: 4rem;
         }
+
+        .closed {
+            > .answer {
+                display: none;
+            }
+        }
     }
 
     &.sponsors {
