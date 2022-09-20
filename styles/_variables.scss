@@ -2,12 +2,13 @@ $breakpoint-medium: 1280px;
 $breakpoint-small: 1080px;
 $breakpoint-extra-small: 920px;
 
-$primary-light: #dab8e9;
-$primary-normal: #FB3A53;
+$primary-light: #E8C5FF;
+$primary-normal: #FF0040;
 /* Yeah I don't like it either:
 https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element/53336754#53336754 */
-$primary-normal-filter: invert(38%) sepia(62%) saturate(2350%) hue-rotate(327deg) brightness(94%) contrast(111%);
+$primary-normal-filter: invert(12%) sepia(76%) saturate(6526%) hue-rotate(339deg) brightness(106%) contrast(109%);
 
-$primary-dark: #141B2F;
+$primary-dark: #050E2D;
 $secondary-a: #00FFF0;
-$secondary-b: #D7BFE7;
+$secondary-b: #E3709C;
+$tertiary: #592275;

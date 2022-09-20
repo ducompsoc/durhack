@@ -48,7 +48,7 @@
         border-radius: 50%;
         width: 30vw;
         border: 4vw solid #111111;
-        outline: 1vw solid $primary-dark;
+        outline: 1vw solid $tertiary;
     }
 
 
@@ -68,7 +68,7 @@
 }
 
 body {
-    background-color: #111111;
+    background-color: $primary-dark;
     font-family: 'Chakra Petch', 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 20px;
     color: #fff;

@@ -86,7 +86,7 @@
 
 
         <div id="intro" class="section intro">
-            <h1>DurHack is all about <b>learning something new</b></h1>
+            <h2>DurHack is all about <b>learning something new</b></h2>
 
             <div class="flex-container">
                 <div class="flex-item">
