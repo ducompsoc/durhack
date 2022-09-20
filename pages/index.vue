@@ -93,6 +93,7 @@
                     <img alt="A top down view of 5 students around a table with their laptops"
                          class="file-crop"
                          src="assets/photos/top_down_laptop_table.jpg">
+                    <!-- todo: https://css-tricks.com/the-shapes-of-css/ triangle beneath image and line as border -->
 
                     <p>
                         The premise: work together in your team to create something awesome <span
@@ -151,7 +152,6 @@
                 <h1>FAQs</h1>
                 <FAQs/>
             </aside>
-
         </div>
 
         <div id="sponsors">

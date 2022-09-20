@@ -31,12 +31,14 @@
             display: inline-block;
             height: 3rem;
             width: 3rem;
+            margin-bottom: -1rem;
+            margin-right: 1rem;
             background-image: url("assets/graphics/bullet.svg");
             background-repeat: no-repeat;
         }
 
         .answer {
-            margin-left: 3rem;
+            margin-left: 4rem;
         }
     }
 
