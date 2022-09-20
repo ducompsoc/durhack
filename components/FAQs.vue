@@ -1,5 +1,5 @@
 <template>
-    <ul class="questions dots">
+    <ul class="questions">
         <li v-for="(answers, question) in faqs" class="question closed">
             <div class="title container">
                 {{ question }}

@@ -148,10 +148,12 @@
         </div>
 
         <div id="faqs" class="section faqs">
+            <div class="faq-cap top"></div>
             <aside class="inside">
                 <h1>FAQs</h1>
                 <FAQs/>
             </aside>
+            <div class="faq-cap bottom"></div>
         </div>
 
         <div id="sponsors">
