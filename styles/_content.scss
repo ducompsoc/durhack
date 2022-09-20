@@ -50,6 +50,10 @@
             margin-left: 4rem;
 
             animation: show .75s ease-in;
+
+            &.fade-out {
+                animation: hide .75s ease-out;
+            }
         }
 
         @keyframes show {
@@ -60,6 +64,17 @@
             100% {
                 opacity: 1;
                 max-height: 1000px;
+            }
+        }
+
+        @keyframes hide {
+            0% {
+                opacity: 1;
+                max-height: 1000px;
+            }
+            100% {
+                opacity: 0;
+                max-height: 0;
             }
         }
 

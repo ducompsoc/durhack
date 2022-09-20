@@ -5,7 +5,14 @@ export function faqLogic() {
     function closeQuestions() {
         const open = document.querySelector('.faqs .question:not(.closed)');
         if (open) {
-            open.classList.add('closed');
+            const answer = open.querySelector('.answer')
+            answer.onanimationend = (e) => {
+                answer.onanimationend = (e) => {
+                };
+                answer.classList.remove('fade-out');
+                open.classList.add('closed');
+            }
+            answer.classList.add('fade-out');
         }
     }
 
