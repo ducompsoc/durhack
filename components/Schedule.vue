@@ -22,7 +22,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
+        </div>
+        <br>
+        <p>This schedule is provisional. Some parts might change significantly before the event.</p>
 	</div>
 </template>
 

@@ -171,9 +171,16 @@
 
         </div>
 
-        <div id="schedule">
-            <br>
-            <img style="margin-left:8%" width="80%" src="assets/Schedule22.svg" alt="Schedule for Durhack"/>
+
+        <div class="section anchor schedule" id="schedule">
+            <div class="container">
+                <aside class="inside">
+                    <h1>Schedule</h1>
+                    <Schedule />
+
+                </aside>
+
+            </div>
         </div>
 
         <div class="section" id="map">
