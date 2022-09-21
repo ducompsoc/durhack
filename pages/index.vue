@@ -90,9 +90,11 @@
 
             <div class="flex-container">
                 <div class="flex-item">
-                    <img alt="A top down view of 5 students around a table with their laptops"
-                         class="file-crop"
-                         src="assets/photos/top_down_laptop_table.jpg">
+                    <img
+                        alt="A top down view of 5 students around a table with their laptops"
+                        class="file-crop"
+                        src="assets/photos/top_down_laptop_table.jpg">
+                    <div class="img-file-under-tic"></div>
                     <!-- todo: https://css-tricks.com/the-shapes-of-css/ triangle beneath image and line as border -->
 
                     <p>
@@ -121,6 +123,7 @@
                         alt="Four people in front of a whiteboard, writing and designing a progream."
                         class="file-crop"
                         src="assets/photos/whiteboard.jpeg">
+                    <div class="img-file-under-tic"></div>
 
                     <p>
                         DurHack welcomes students of <span

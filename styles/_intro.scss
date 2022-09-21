@@ -34,13 +34,26 @@
     }
 
     .file-crop {
-        height: 15rem;
-        mask-image: url('/assets/file_like_crop.svg');
+        width: 22.5rem;
+        mask-image: url('/assets/graphics/file_like_crop.svg');
         mask-repeat: no-repeat;
+    }
+
+    .img-file-under-tic {
+        margin: -4.5rem auto 0 auto;
+        width: 22.5rem;
+        height: 3rem;
+        background-image: url('/assets/graphics/file_tic.svg');
+        background-repeat: no-repeat;
+
+        @media (min-width: $breakpoint-small) {
+            margin-left: 0;
+        }
     }
 
     .flex-item {
         flex: 50%;
+        padding-bottom: 0;
     }
 
     .flex-container {
@@ -52,7 +65,7 @@
     @media (min-width: $breakpoint-small) {
         // Mobile first development 🥰
         .flex-item {
-            padding: 2rem;
+            padding: 2rem 2rem 0;
         }
 
         .flex-container {
