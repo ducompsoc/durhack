@@ -176,6 +176,28 @@
             <img style="margin-left:8%" width="80%" src="assets/Schedule22.svg" alt="Schedule for Durhack"/>
         </div>
 
+        <div class="section" id="map">
+            <div class="container row">
+
+                <div class="">
+
+                    <p class="">Join us in the Mathematics and Computer Science
+                        building at Durham University.</p>
+                    <a href="/tickets" class="register button">Pre-Register now</a>
+                </div>
+                <div id="hoop1">
+                    <div id="hoop2">
+                        <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69">
+                            <img src="assets/mcsmap.png" alt="Map showing the location of the MCS building in Durham.">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
         <div id="team">
             <h1>Team goes here!</h1>
             <br/>
@@ -189,24 +211,6 @@
             <br/>
             <br/>
             <br/>
-        </div>
-
-        <div class="section" id="map">
-            <div class="container row">
-
-                <div class="">
-
-                    <p class="">Join us in the Mathematics and Computer Science
-                        building at Durham University.</p>
-                    <a href="/tickets" class="register button">Pre-Register now</a>
-                </div>
-                <div>
-                    <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69">                    <img src="assets/mcsmap.png" alt="Map showing the location of the MCS building in Durham.">
-                    </a>
-                </div>
-
-            </div>
-
         </div>
 
 

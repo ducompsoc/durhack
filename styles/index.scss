@@ -17,6 +17,12 @@
 }
 
 #map {
+    .section {
+        position: relative;
+        width: 100%;
+        padding-bottom: 100%;
+    }
+
     .button {
         display: inline-block;
         border: solid 2px $secondary-a;
@@ -44,21 +50,44 @@
         }
     }
 
-    img {
-        border-radius: 50%;
-        width: 30vw;
-        border: 4vw solid #111111;
-        outline: 1vw solid $tertiary;
-    }
-
-
-    text-align: center;
-
-    vertical-align: center;
 
     p {
         font-size: 20px;
-        padding-top: 18vh; //bodge but works
+    }
+
+    $thick1: 10px;
+    $rad1: 50vw;
+    $thick2: 50px;
+    $rad2: 50%; // percentage of rad1
+
+
+    #hoop1 {
+        width: $rad1;
+        aspect-ratio: 1;
+        background: $primary-dark;
+        outline: $thick1 solid $tertiary;
+        margin: $thick1;
+        border-radius: 50%;
+    }
+
+    #hoop2 {
+        width: $rad2;
+        aspect-ratio: 1;
+        position: relative;
+        top: (100-$rad2)/2;
+        left:  (100-$rad2)/2;
+        background: $primary-dark;
+        outline: $thick2 solid $tertiary;
+        //margin: $thick2;
+        border-radius: 50%;
+    }
+
+    img {
+        position: relative;
+        top: 6%;
+        left: 6%;
+        border-radius: 50%;
+        width: 90%;
     }
 }
 
