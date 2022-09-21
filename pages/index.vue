@@ -177,21 +177,22 @@
         </div>
 
         <div class="section" id="map">
-            <div class="container row">
-
-                <div class="">
-
+            <div class="flex-container">
+                <div class="flex-item" id="mapbody">
                     <p class="">Join us in the Mathematics and Computer Science
                         building at Durham University.</p>
                     <a href="/tickets" class="register button">Pre-Register now</a>
                 </div>
-                <div id="hoop1">
-                    <div id="hoop2">
-                        <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69">
-                            <img src="assets/mcsmap.png" alt="Map showing the location of the MCS building in Durham.">
-                        </a>
+                <div class="flex-item">
+                    <div  id="hoop1">
+                        <div id="hoop2">
+                            <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69">
+                                <img src="assets/mcsmap.png" alt="Map showing the location of the MCS building in Durham.">
+                            </a>
+                        </div>
                     </div>
                 </div>
+
 
             </div>
 
