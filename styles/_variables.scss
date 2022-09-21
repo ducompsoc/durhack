@@ -1,6 +1,8 @@
 $breakpoint-medium: 1280px;
 $breakpoint-small: 1080px;
 $breakpoint-extra-small: 920px;
+// size at which "Mentors on-hand to help with your project" wraps to next line
+$lucas-extra-small: calc($breakpoint-extra-small + 62px);
 
 $primary-light: #E8C5FF;
 $primary-normal: #FF0040;

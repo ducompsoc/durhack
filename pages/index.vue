@@ -95,7 +95,6 @@
                         class="file-crop"
                         src="assets/photos/top_down_laptop_table.jpg">
                     <div class="img-file-under-tic"></div>
-                    <!-- todo: https://css-tricks.com/the-shapes-of-css/ triangle beneath image and line as border -->
 
                     <p>
                         The premise: work together in your team to create something awesome <span

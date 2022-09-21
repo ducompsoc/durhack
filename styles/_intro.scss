@@ -46,7 +46,7 @@
         background-image: url('/assets/graphics/file_tic.svg');
         background-repeat: no-repeat;
 
-        @media (min-width: $breakpoint-small) {
+        @media (min-width: $lucas-extra-small) {
             margin-left: 0;
         }
     }
@@ -62,7 +62,7 @@
         text-align: center;
     }
 
-    @media (min-width: $breakpoint-small) {
+    @media (min-width: $lucas-extra-small) {
         // Mobile first development 🥰
         .flex-item {
             padding: 2rem 2rem 0;
