@@ -51,21 +51,22 @@
     }
 
     $rad1: 50vw;
-    $thick1: $rad1/60;
+    $thick1: calc($rad1 / 60);
 
-    $thick2: $rad1/20;
+    $thick2: calc($rad1 / 20);
     $rad2: 70%; // percentage of rad1
 
 
     #mapbody {
-        padding: $rad1/2.5 5vw 0 5vw;
+        padding: calc($rad1 / 2.5) 5vw 0 5vw;
         width: 80%;
         text-align: center;
+
         p {
             position: relative;
             width: 80%;
-            left:10%;
-            right:10%;
+            left: 10%;
+            right: 10%;
         }
     }
 
@@ -82,8 +83,8 @@
         width: $rad2;
         aspect-ratio: 1;
         position: relative;
-        top: (100-$rad2)/2;
-        left: (100-$rad2)/2;
+        top: calc((100% - $rad2) / 2);
+        left: calc((100% - $rad2) / 2);
         background: $primary-dark;
         outline: $thick2 solid $tertiary;
         //margin: $thick2;
