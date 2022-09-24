@@ -74,28 +74,10 @@
     },
     "team": [
         {
-            "name": "Mohsin Ahmed",
-            "role": "Lead Organiser & Head of Sponsorship",
-            "email": "mohammed.a@durhack.com",
-            "image": "mohsin.jpg"
-        },
-        {
-            "name": "Allaida Siow",
-            "role": "Sponsorship Officer",
-            "email": "allaida.s@durhack.com",
-            "image": "allaida.jpg"
-        },
-        {
-            "name": "Faiza Jalil",
-            "role": "Sponsorship Officer",
-            "email": "faiza.j@durhack.com",
-            "image": "faiza.jpg"
-        },
-        {
-            "name": "Alperen Karadereli",
-            "role": "Head of Logistics",
-            "email": "alperen.k@durhack.com",
-            "image": "alperen.jpg"
+            "name": "DurHack Dino",
+            "role": "Mascot",
+            "email": "",
+            "image": "placeholder.png"
         },
         {
             "name": "Charles Thomas",
@@ -104,10 +86,22 @@
             "image": "charles.png"
         },
         {
-            "name": "Heidi Januszewski",
-            "role": "Head of Design & Marketing",
-            "email": "heidi.j@durhack.com",
-            "image": "heidi.jpg"
+            "name": "Logistics Officer",
+            "role": "Logistics Officer",
+            "email": "",
+            "image": "dino.png"
+        },
+        {
+            "name": "Alperen Karadereli",
+            "role": "Head of Logistics",
+            "email": "alperen.k@durhack.com",
+            "image": "alperen.jpg"
+        },
+        {
+            "name": "Finance Officer",
+            "role": "Finance Officer",
+            "email": "",
+            "image": "dino.png"
         },
         {
             "name": "Sum Yau Anavah Chiu",
@@ -116,28 +110,28 @@
             "image": "anavah.jpg"
         },
         {
-            "name": "Dave Kutner",
-            "role": "Head of Tech",
-            "email": "david.k@durhack.com",
-            "image": "dave.png"
+            "name": "Heidi Januszewski",
+            "role": "Head of Design & Marketing",
+            "email": "heidi.j@durhack.com",
+            "image": "heidi.jpg"
         },
         {
-            "name": "Luca Huelle",
-            "role": "Tech Officer",
-            "email": "luca.huelle@durhack.com",
-            "image": "luca.jpg"
+            "name": "Faiza Jalil",
+            "role": "Sponsorship Officer",
+            "email": "faiza.j@durhack.com",
+            "image": "faiza.jpg"
         },
         {
-            "name": "Aaron Cheung",
-            "role": "Tech Officer",
-            "email": "aaron.c@durhack.com",
-            "image": "aaron.jpg"
+            "name": "Allaida Siow",
+            "role": "Sponsorship Officer",
+            "email": "allaida.s@durhack.com",
+            "image": "allaida.jpg"
         },
         {
-            "name": "Kai Heale",
-            "role": "Tech Officer",
-            "email": "kai.h@durhack.com",
-            "image": "kai.jpg"
+            "name": "Mohsin Ahmed",
+            "role": "Lead Organiser & Head of Sponsorship",
+            "email": "mohammed.a@durhack.com",
+            "image": "mohsin.jpg"
         },
         {
             "name": "Karl Southern",
@@ -146,22 +140,34 @@
             "image": "karl.jpg"
         },
         {
-            "name": "Matthew Chapman",
-            "role": "Sponsorship Advisor",
-            "email": "matthew.c@durhack.com",
-            "image": "matthew.jpg"
-        },
-        {
             "name": "Ethan Waite",
             "role": "Tech Advisor",
             "email": "ethan.w@durhack.com",
             "image": "ethan.jpg"
         },
         {
-            "name": "DurHack Dino",
-            "role": "Mascot",
-            "email": "",
-            "image": "dino.png"
+            "name": "Matthew Chapman",
+            "role": "Sponsorship Advisor",
+            "email": "matthew.c@durhack.com",
+            "image": "matthew.jpg"
+        },
+        {
+            "name": "Dave Kutner",
+            "role": "Head of Tech",
+            "email": "david.k@durhack.com",
+            "image": "dave.png"
+        },
+        {
+            "name": "Aaron Cheung",
+            "role": "Tech Officer",
+            "email": "aaron.c@durhack.com",
+            "image": "aaron.jpg"
+        },
+        {
+            "name": "Luca Huelle",
+            "role": "Tech Officer",
+            "email": "luca.huelle@durhack.com",
+            "image": "luca.jpg"
         },
         {
             "name": "DurHack Dino",
@@ -170,22 +176,16 @@
             "image": "dino.png"
         },
         {
-            "name": "DurHack Dino",
-            "role": "Mascot",
-            "email": "",
-            "image": "dino.png"
+            "name": "Kai Heale",
+            "role": "Tech Officer",
+            "email": "kai.h@durhack.com",
+            "image": "kai.jpg"
         },
         {
             "name": "DurHack Dino",
             "role": "Mascot",
             "email": "",
-            "image": "dino.png"
-        },
-        {
-            "name": "DurHack Dino",
-            "role": "Mascot",
-            "email": "",
-            "image": "dino.png"
+            "image": "placeholder.png"
         }
     ],
     "schedule": [
