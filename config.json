@@ -43,75 +43,27 @@
         ]
     },
     "sponsors": {
-        "platinum": [
-            {
-                "link": "https://www.alteryx.com/",
-                "image": "alteryx.png"
-            },
-            {
-                "link": "https://www.atombank.co.uk/careers",
-                "image": "atom-bank.png"
-            }
-        ],
         "gold": [
             {
-                "link": "https://www.twilio.com/",
-                "image": "twilio.png"
-            },
-            {
-                "link": "https://www.palantir.com/uk/",
-                "image": "palantir.svg"
-            },
-            {
-                "image": "dcc.svg",
-                "link": "https://durham.gov.uk/"
-            }
-        ],
-        "silver": [
-            {
-                "link": "https://www.pexip.com/",
-                "image": "pexip.png"
+                "link": "https://www.netcraft.com/",
+                "image": "netcraft.png"
             },
             {
                 "link": "https://www.waterstons.com/",
                 "image": "waterstons.png"
-            },
-            {
-                "link": "https://www.tcs.com/",
-                "image": "tata.png"
-            },
-            {
-                "link": "https://overleaf.com/",
-                "image": "overleaf.png"
-            },
-            {
-                "link": "https://www.durham.ac.uk/departments/academic/computer-science/",
-                "image": "du.svg"
             }
         ],
         "partners": [
             {
-                "image": "keyboard-company.svg",
-                "link": "https://www.keyboardco.com/"
-            },
-            {
-                "image": "luner.png",
-                "link": "https://luner.io/"
-            },
-            {
                 "image": "mlh.png",
                 "link": "https://mlh.io/"
-            },
-            {
-                "image": "sticker-mule.png",
-                "link": "https://hackp.ac/mlh-stickermule-hackathons"
             },
             {
                 "image": "hackathonsuk.png",
                 "link": "https://hackathons.org.uk/"
             },
             {
-                "image": "compsoc-with-text.png",
+                "image": "compsoc.png",
                 "link": "https://www.compsoc.tech/"
             },
             {
@@ -204,6 +156,24 @@
             "role": "Tech Advisor",
             "email": "ethan.w@durhack.com",
             "image": "ethan.jpg"
+        },
+        {
+            "name": "DurHack Dino",
+            "role": "Mascot",
+            "email": "",
+            "image": "dino.png"
+        },
+        {
+            "name": "DurHack Dino",
+            "role": "Mascot",
+            "email": "",
+            "image": "dino.png"
+        },
+        {
+            "name": "DurHack Dino",
+            "role": "Mascot",
+            "email": "",
+            "image": "dino.png"
         },
         {
             "name": "DurHack Dino",

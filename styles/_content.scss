@@ -159,34 +159,34 @@
                 }
             }
 
-            .platinum .sponsor, .presenting .sponsor {
-                width: 33%;
-                height: 152px;
+            // .platinum .sponsor, .presenting .sponsor {
+            //     width: 33%;
+            //     height: 152px;
 
-                > a {
-                    padding: 32px 16px; // edited for AWS, remove me
-                }
-            }
+            //     > a {
+            //         padding: 32px 16px; // edited for AWS, remove me
+            //     }
+            // }
 
             .gold .sponsor {
-                width: 25%;
-			height: 128px;
+                width: 40%;
+			height: 150px;
 
-			> a {
-				padding: 16px 32px; // little hack to deal with palantir's svg
-			}
+			// > a {
+			// 	padding: 16px 32px; // little hack to deal with palantir's svg
+			// }
             }
 
-            .silver .sponsor {
-            //.partners .sponsor {
-                width: 20%;
+            // .silver .sponsor {
+            .partners .sponsor {
+                width: 25%;
                 height: 108px;
             }
 
-            .partners .sponsor {
-                width: 16%;
-                height: 96px;
-            }
+            // .partners .sponsor {
+            //     width: 16%;
+            //     height: 96px;
+            // }
 
             @media screen and (max-width: $breakpoint-small) {
                 .sponsor {
