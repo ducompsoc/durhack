@@ -170,12 +170,14 @@
 
 				<p>Interested in sponsoring DurHack? We'd love to work with you. Send us an email at <a href="mailto:sponsor@durhack.com">sponsor@durhack.com</a>.</p>
             </div> -->
-
-            <aside class="inside">
-                <h1>Sponsors</h1>
+            <div class="SponsorText">
+                <!-- <aside class="inside"> -->
+                    <h1>Sponsors</h1>
+                <!-- </aside> -->
+            </div>
+            <div class="Sponsors">
                 <Sponsors />
-            </aside>
-
+            </div>
         </div>
 
 

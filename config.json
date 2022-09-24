@@ -122,6 +122,18 @@
   },
   "team": [
     {
+        "name": "Mohammed",
+        "role": "Workshop Officer",
+        "email": "mohammed.a@durhack.com",
+        "image": "mohammed.jpg"
+      },
+      {
+        "name": "Mohammed",
+        "role": "Workshop Officer",
+        "email": "mohammed.a@durhack.com",
+        "image": "mohammed.jpg"
+      },
+    {
       "name": "Mohammed",
       "role": "Workshop Officer",
       "email": "mohammed.a@durhack.com",
