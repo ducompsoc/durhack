@@ -208,11 +208,6 @@
 
         </div>
 
-
-        <!-- <div id="team">
-            <h1>Team goes here!</h1>
-        </div> -->
-
         <div class="center">
             <h1>And here are your organisers for DurHack</h1>
         </div>
