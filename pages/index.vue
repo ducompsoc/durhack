@@ -90,7 +90,7 @@
             <div class="flex-container">
                 <div class="flex-item">
                     <img alt="A top down view of 5 students around a table with their laptops" class="file-crop"
-                        src="assets/photos/top_down_laptop_table.jpg">
+                        src="/assets/photos/top_down_laptop_table.jpg">
                     <div class="img-file-under-tic"></div>
 
                     <p>
@@ -100,15 +100,15 @@
 
                     <ul>
                         <li>
-                            <img alt="A icon of a light bulb" src="assets/icons/lightbulb.svg">
+                            <img alt="A icon of a light bulb" src="/assets/icons/lightbulb.svg">
                             Optional team-formation activity
                         </li>
                         <li>
-                            <img alt="An icon of a person partying" src="assets/icons/party.svg">
+                            <img alt="An icon of a person partying" src="/assets/icons/party.svg">
                             Mini-events throughout the weekend
                         </li>
                         <li>
-                            <img alt="An icon of a shirt" src="assets/icons/swag.svg">
+                            <img alt="An icon of a shirt" src="/assets/icons/swag.svg">
                             Hackathon swag and food included
                         </li>
                     </ul>
@@ -116,7 +116,7 @@
 
                 <div class="flex-item">
                     <img alt="Four people in front of a whiteboard, writing and designing a progream." class="file-crop"
-                        src="assets/photos/whiteboard.jpeg">
+                        src="/assets/photos/whiteboard.jpeg">
                     <div class="img-file-under-tic"></div>
 
                     <p>
@@ -126,15 +126,15 @@
 
                     <ul>
                         <li>
-                            <img alt="An icon of a person" src="assets/icons/mentor.svg">
+                            <img alt="An icon of a person" src="/assets/icons/mentor.svg">
                             Mentors on-hand to help with your project
                         </li>
                         <li>
-                            <img alt="An icon of a science flask" src="assets/icons/flask.svg">
+                            <img alt="An icon of a science flask" src="/assets/icons/flask.svg">
                             Workshops to learn new skills
                         </li>
                         <li>
-                            <img alt="An icon of a rosette prize" src="assets/icons/prizes.svg">
+                            <img alt="An icon of a rosette prize" src="/assets/icons/prizes.svg">
                             Sponsor-led challenges to shoot for
                         </li>
                     </ul>
@@ -196,7 +196,7 @@
                     <div id="hoop1">
                         <div id="hoop2">
                             <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69" target="_blank">
-                                <img src="assets/mcsmap.png"
+                                <img src="/assets/mcsmap.png"
                                     alt="Map showing the location of the MCS building in Durham.">
                             </a>
                         </div>
@@ -256,7 +256,7 @@
 
                 <div class="photo">
                     <img alt="The text 2022 on its side and then DurHack written in a white outline font"
-                        src="assets/logo-22-white.svg">
+                        src="/assets/logo-22-white.svg">
                 </div>
             </div>
         </footer>
