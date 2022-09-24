@@ -103,87 +103,97 @@
     }
 
     &.sponsors {
-        background-color: #333;
-        padding-bottom: 90px;
+        display: flex;
+        background-color: $primary-dark;
+        // padding-bottom: 90px;
 
-        &:after {
-            content: '';
-            border-style: solid;
-            border-width: 0px 0px 90px 100vw;
-            border-color: transparent transparent #222 transparent;
-		}
+        // &:after {
+        //     content: '';
+        //     border-style: solid;
+        //     border-width: 0px 0px 90px 100vw;
+        //     border-color: transparent transparent #222 transparent;
+		// }
+        .SponsorText{
+            height: 100vh;
+            width: 10vh;
+            z-index: 2;
+            h1 {
+                padding-top: 100%;
+                text-transform: uppercase;
+                transform: rotate(-90deg) translate(-112px, -38px);
+                font-size: 30px;
+            }
+        }
+        .Sponsors{
+            a {
+                color: $primary-normal;
+                border-bottom: dashed 1px $primary-normal;
+                text-decoration: none;
+                transition: .3s ease;
+                opacity: 0.9;
 
-		h3 {
-			text-transform: uppercase;
-		}
+                &:hover {
+                    opacity: 1;
+                }
+            }
 
-		a {
-			color: $primary-normal;
-			border-bottom: dashed 1px $primary-normal;
-			text-decoration: none;
-			transition: .3s ease;
-			opacity: 0.9;
 
-			&:hover {
-				opacity: 1;
-			}
-		}
+            .sponsor {
+                box-sizing: border-box;
+                padding: 0px 9px 9px 0px;
 
-		.sponsor {
-			box-sizing: border-box;
-			padding: 0px 9px 9px 0px;
+                > a {
+                    width: 100%;
+                    height: 100%;
+                    background-color: #fff;
+                    border-bottom: solid 1px #ccc;
+                    border-radius: 6px;
+                    padding: 16px;
+                    box-sizing: border-box;
+                }
 
-			> a {
-				width: 100%;
-				height: 100%;
-				background-color: #fff;
-				border-bottom: solid 1px #ccc;
-				border-radius: 6px;
-				padding: 16px;
-				box-sizing: border-box;
-			}
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
 
-			img {
-				width: 100%;
-				height: 100%;
-				object-fit: contain;
-			}
-		}
+            .platinum .sponsor, .presenting .sponsor {
+                width: 33%;
+                height: 152px;
 
-		.platinum .sponsor, .presenting .sponsor {
-			width: 33%;
-			height: 152px;
+                > a {
+                    padding: 32px 16px; // edited for AWS, remove me
+                }
+            }
 
-			> a {
-				padding: 32px 16px; // edited for AWS, remove me
-			}
-		}
-
-		.gold .sponsor {
-			width: 25%;
+            .gold .sponsor {
+                width: 25%;
 			height: 128px;
 
 			> a {
 				padding: 16px 32px; // little hack to deal with palantir's svg
 			}
-		}
+            }
 
-		.silver .sponsor {
-		//.partners .sponsor {
-			width: 20%;
-			height: 108px;
-		}
+            .silver .sponsor {
+            //.partners .sponsor {
+                width: 20%;
+                height: 108px;
+            }
 
-		.partners .sponsor {
-			width: 16%;
-			height: 96px;
-		}
+            .partners .sponsor {
+                width: 16%;
+                height: 96px;
+            }
 
-		@media screen and (max-width: $breakpoint-small) {
-			.sponsor {
-				width: 100% !important;
-			}
-		}
+            @media screen and (max-width: $breakpoint-small) {
+                .sponsor {
+                    width: 100% !important;
+                }
+            }
+        }
 	}
 
 	&.inspiration {
@@ -211,15 +221,15 @@
 		position: relative;
 		font-weight: 300;
 		text-align: center;
-		padding: 120px 0px 0px 0px;
-		margin-top: -90px;
+		padding: 0px 0px 60px 0px;
+		margin-top: 30px;
 
-		/* &:before {
-			content: '';
-			border-style: solid;
-			border-width: 90px 100vw 0px 0px;
-			border-color: $primary-dark transparent transparent transparent;
-		} */
+		// &:before {
+		// 	content: '';
+		// 	border-style: solid;
+		// 	border-width: 90px 100vw 0px 0px;
+		// 	border-color: $primary-dark transparent transparent transparent;
+		// }
 
 		> .bg {
 			position: absolute;
@@ -227,7 +237,7 @@
 			right: 0px;
 			left: -84px;
 			bottom: 0px;
-			background-image: url('/assets/team-circles.png');
+			background-image: url('assets/diamond_tile.svg');
 			background-position: center 28px;
 			z-index: -1;
 		}
@@ -245,26 +255,37 @@
 		}
 
 		.team-grid {
-			margin: 64px 0px;
+			margin: 64x;
+            margin-top: 64px;
+            border-bottom: 30px;
 			flex-wrap: wrap;
+            align-items: stretch;
 
 			a {
-				display: inline-block;
+				display: inline-grid;
 				border: solid 2px #fff;
-				border-radius: 100%;
+				// border-radius: 100%;
 				line-height: 0px;
-				padding: 2px;
-				margin: 6px 0px;
+                justify-content: center;
+                align-content: center;
+				padding: 30px;
+                transform: rotate(45deg);
+				margin: 30px 0px;
 				transition: .5s ease;
+                overflow: hidden;
+                width: 50px;
+                height: 50px;
 
 				img {
-					width: 78px;
-					height: 78px;
-					border-radius: 100%;
+					width: 160px;
+					height: 160px;
+
+					// border-radius: 100%;
+                    transform: rotate(-45deg);
 				}
 
 				&:hover {
-					transform: scale(1.05);
+					transform: scale(1.25) rotate(45deg);
 				}
 			}
 		}

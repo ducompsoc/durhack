@@ -158,19 +158,26 @@
             <div class="faq-cap bottom"></div>
         </div>
 
-        <div id="sponsors">
-            <h1>Sponsors go here!</h1>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et
-            dolore magna aliqua. Mauris pellentesque pulvinar pellentesque habitant. Urna neque
-            viverra justo nec
-            ultrices dui. In nisl nisi scelerisque eu. Volutpat lacus laoreet non curabitur gravida.
-            Tortor at auctor
-            urna nunc id. Viverra mauris in aliquam sem fringilla. Lacus luctus accumsan tortor posuere ac ut consequat
-            semper viverra. Volutpat consequat mauris nunc congue nisi vitae. Feugiat sed lectus vestibulum mattis
-            ullamcorper. Id leo in vitae turpis massa. Amet consectetur adipiscing elit duis. Consequat ac felis donec
-            et odio. Nam at lectus urna duis convallis convallis tellus.
+        <div class="section anchor sponsors" id="sponsors">
+            <!-- <div class="container">
+                <aside class="inside">
+                    <h1>Sponsors</h1>
+                </aside>
 
+				<div class="template"></div>
+
+				<p>Thanks in advance to all our sponsors for making DurHack possible!</p>
+
+				<p>Interested in sponsoring DurHack? We'd love to work with you. Send us an email at <a href="mailto:sponsor@durhack.com">sponsor@durhack.com</a>.</p>
+            </div> -->
+            <div class="SponsorText">
+                <!-- <aside class="inside"> -->
+                    <h1>Sponsors</h1>
+                <!-- </aside> -->
+            </div>
+            <div class="Sponsors">
+                <Sponsors />
+            </div>
         </div>
 
 
@@ -195,7 +202,7 @@
                 <div class="flex-item">
                     <div  id="hoop1">
                         <div id="hoop2">
-                            <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69">
+                            <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69" target="_blank">
                                 <img src="assets/mcsmap.png" alt="Map showing the location of the MCS building in Durham.">
                             </a>
                         </div>
@@ -208,20 +215,32 @@
         </div>
 
 
-        <div id="team">
+        <!-- <div id="team">
             <h1>Team goes here!</h1>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+        </div> -->
+
+        <div class="center">
+            <h1>And here are your organisers for DurHack</h1>
         </div>
+
+
+        <div class="section anchor team" id="team">
+			<div class="bg"></div>
+			<div class="inner">
+				<div class="team-grid row center template"><Team /></div>
+                <!-- <Team /> -->
+				<p><a href="mailto:hello@durhack.com">hello@durhack.com</a></p>
+			</div>
+        </div>
+
+        <!-- <div class="section anchor team" id="team">
+			<div class="bg"></div>
+
+			<div class="inner">
+				<p>And here are your organisers for DurHack</p>
+				<div class="team-grid row center template"></div>
+				<p><a href="mailto:hello@durhack.com">hello@durhack.com</a></p>
+			</div> -->
 
 
         <footer>
@@ -256,8 +275,11 @@
 </template>
 <script>
 import FAQs from "../components/FAQs";
+import Team from "../components/TeamGrid";
+import Sponsors from "../components/Sponsors";
 
 export default {
-    components: {FAQs}
+    components: {FAQs, Team, Sponsors},
+
 }
 </script>
