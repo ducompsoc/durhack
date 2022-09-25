@@ -2,6 +2,12 @@
 
 @import './variables';
 
+// Reset user-agent stylesheets https://stackoverflow.com/questions/29307357/get-rid-of-webkit-padding-start-40px
+*:not(p) {
+    margin: 0;
+    padding: 0;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -206,13 +212,8 @@ body {
     overflow-x: hidden;
 }
 
-.container, header .underline .middle {
-    width: 90%;
-    max-width: 1280px;
-}
-
 .container {
-    margin: 0px 0px 0px -2.3rem;
+    margin: 0 0 0 0;
 }
 
 .tippy-tooltip {

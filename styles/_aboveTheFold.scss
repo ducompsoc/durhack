@@ -1,18 +1,18 @@
 @import './variables';
 
 .above-the-fold {
-	position: relative;
-	 height: calc(100vh - $navstripe);
+    position: relative;
+    height: calc(100vh - $navstripe);
 
-	.row {
-		flex-direction: row !important;
-	}
+    .row {
+        flex-direction: row !important;
+    }
 
-	.bg-wrap {
-		position: absolute;
-		top: 0px;
-		right: 0px;
-		bottom: 0px;
+    .bg-wrap {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
 		left: 0px;
 		background-image: radial-gradient(ellipse at bottom right, #444 20%, #262626 70%);
 		overflow: hidden;
@@ -89,26 +89,33 @@
 	}
 
 	.container {
-		min-height: calc(100vh - 112px - 48px);
-		box-sizing: border-box;
-		font-size: 18px;
-		padding: 32px;
+        box-sizing: border-box;
+        font-size: 18px;
+        padding: 32px;
+        justify-content: center;
 
-		> div.hero {
-			width: 45%;
-			padding-left: 48px;
-		}
+        @media (min-width: $breakpoint-extra-small) {
+            justify-content: right;
+        }
+
+        > div.hero {
+            // todo: wide and short displays (e.g. landscape phone) have the hero cut into the intro section
+            max-width: 90%;
+
+            @media (min-width: $breakpoint-extra-small) {
+                max-width: 40%;
+            }
+        }
 
 		.cutout {
 			>div {
-			background-image: url('/assets/cutout.svg');
-			background-size: 100% 100%;
-			background-size: cover;
-			margin-top: 0px;
-			padding: 50px;
-			text-align: center;
-			overflow: hidden;
-			}
+                background-image: url('/assets/cutout.svg');
+                background-size: cover;
+                margin-top: 0px;
+                padding: 50px;
+                text-align: center;
+                overflow: hidden;
+            }
 		}
 
 		.logo {

@@ -6,16 +6,14 @@
 
         <div class="above-the-fold" id="top">
             <div class="foreground">
-
-                <div class="container content row center">
-
-                    <div class="flex"></div>
+                <div class="container content row">
                     <div class="hero">
                         <div class="cutout">
                             <div>
 
                                 <div class="logo">
-                                    <img alt="DurHack 2022 Logo: A purple glowing cyberpunk triangle with a shield in the centre."
+                                    <img
+                                        alt="DurHack 2022 Logo: A purple glowing cyberpunk triangle with a shield in the centre."
                                         src="/assets/logo22.png">
                                 </div>
 
