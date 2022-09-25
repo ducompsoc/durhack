@@ -134,20 +134,20 @@ footer {
 	text-align: left;
 	padding: 64px 0px 32px 0px;
 
-	a {
-		border-bottom: dashed 1px #fff;
-		color: #ccc;
-		text-decoration: none;
-	}
-
 	.legal {
-		font-size: 14px;
-		padding-right: 32px;
+        font-size: 14px;
+        padding-right: 32px;
 
-		.bigger {
-			font-size: 18px;
-		}
-	}
+
+        a {
+            border-bottom-color: white;
+            color: white;
+        }
+
+        .bigger {
+            font-size: 18px;
+        }
+    }
 
 	.photo img {
 		width: 100px;

@@ -127,19 +127,6 @@
         }
 
         .Sponsors {
-            a {
-                color: $primary-normal;
-                border-bottom: dashed 1px $primary-normal;
-                text-decoration: none;
-                transition: .3s ease;
-                opacity: 0.9;
-
-                &:hover {
-                    opacity: 1;
-                }
-            }
-
-
             .sponsor {
                 box-sizing: border-box;
                 padding: 0px 9px 9px 0px;
@@ -250,9 +237,8 @@
                 font-size: 22px;
 
                 >a {
-                    border-bottom: dashed 1px #fff;
-                    color: #fff;
-                    text-decoration: none;
+                    border-bottom-color: white;
+                    color: white;
                 }
             }
         }

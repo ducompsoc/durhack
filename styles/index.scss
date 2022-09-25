@@ -226,8 +226,14 @@ aside {
     }
 }
 
-a {
+a:not(.tooltip) {
     color: $primary-normal;
+    border-bottom: dashed 1px $primary-normal;
+    text-decoration: none;
+
+    &:hover {
+        border-bottom-style: solid;
+    }
 }
 
 
