@@ -80,14 +80,11 @@
 <!--            <div id="navdiag2"/>-->
         </div>
 
-        <div id="navstripe">
-        </div>
-
-        <div id="navouter">
-        </div>
-
-        <div id="navcorner">
-        </div>
+        <div id="navstripe"></div>
+        <div id="navouter"></div>
+        <div id="navleft"></div>
+        <div id="navright"></div>
+        <div id="navcorner"></div>
 
 
         <div id="intro" class="section intro">
@@ -95,9 +92,11 @@
 
             <div class="flex-container">
                 <div class="flex-item">
-                    <img alt="A top down view of 5 students around a table with their laptops" class="file-crop"
-                        src="/assets/photos/top_down_laptop_table.jpg">
-                    <div class="img-file-under-tic"></div>
+                    <div class="image">
+                        <img alt="A top down view of 5 students around a table with their laptops" class="file-crop"
+                            src="/assets/photos/top_down_laptop_table.jpg">
+                        <img src="/assets/graphics/file_tic.svg" class="img-file-under-tic" aria-hidden="true" />
+                    </div>
 
                     <p>
                         The premise: work together in your team to create something awesome <span class="emphasis">in
@@ -121,9 +120,11 @@
                 </div>
 
                 <div class="flex-item">
-                    <img alt="Four people in front of a whiteboard, writing and designing a progream." class="file-crop"
-                        src="/assets/photos/whiteboard.jpeg">
-                    <div class="img-file-under-tic"></div>
+                    <div class="image">
+                        <img alt="Four people in front of a whiteboard, writing and designing a progream." class="file-crop"
+                            src="/assets/photos/whiteboard.jpg">
+                        <img src="/assets/graphics/file_tic.svg" class="img-file-under-tic" aria-hidden="true" />
+                    </div>
 
                     <p>
                         DurHack welcomes students of <span class="emphasis">all experience levels</span>,

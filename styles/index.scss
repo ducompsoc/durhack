@@ -12,94 +12,10 @@ html {
     scroll-behavior: smooth;
 }
 
-@media only screen and (max-width: $breakpoint-extra-small) {
-    #navbar {
-        visibility: hidden
-    }
-    #navstripe {
-        visibility: hidden
-    }
-    #navouter {
-        visibility: hidden
-    }
-    #navcorner {
-        visibility: hidden
-    }
-}
-
-#navbar {
-    //overflow: hidden;
-    background-color: $primary-normal;
-
-    a {
-        float: left;
-        display: block;
-        color: #ffffff;
-        text-align: center;
-        padding: 14px;
-        text-decoration: none;
-        font-size: 24px;
-        transform: skewX(45deg);
-
-    }
-
-    //background-image: linear-gradient(to bottom right, $primary-normal, $tertiary);
-    position: sticky;
-    top: 0;
-    margin-top: calc(-1 * ($navheight - $navstripe));
-    padding-left: 100px; //calc($navheight/2);
-    margin-left: -50px;
-    z-index: 9;
-    width: $navwidth;
-    height: $navheight;
-    transform: skewX(-45deg);
-    overflow: hidden;
-
-}
-
-#navstripe {
-    content: '';
-    position: sticky;
-    background: $primary-normal; //
-    width: 100%;
-    height: $navstripe;
-    margin-left: 45px;
-    margin-top: calc(-1 * $navstripe);
-    top: 0; //5vh;
-    z-index: 8;
-}
-
-#navouter {
-    content: '';
-    position: sticky;
-    background: $primary-normal; //
-    width: calc($navwidth / 2 + 120px);
-    height: $navheight;
-    margin-left: calc($navwidth / 2);
-    margin-top: calc(-1 * $navheight);
-    top: calc(-1 * $navheight);
-    z-index: 8;
-    transform: skewX(45deg);
-}
-
-#navcorner {
-    content: '';
-    position: sticky;
-    background: $primary-dark;
-    width: 50px;
-    height: calc($navheight);
-    margin-left: -40px;
-    margin-top: calc(-1 * $navheight);
-    top: 0;
-    z-index: 9;
-    transform: skewX(45deg);
-}
-
 #map {
     .button {
         display: inline-block;
         border: solid 2px $secondary-a;
-        border-radius: 100px;
         font-size: 24px;
         font-weight: bold;
         text-decoration: none;
@@ -263,13 +179,12 @@ a:not(.tooltip) {
     }
 }
 
-<<<<<<< HEAD
 .team-padding {
     padding-top: 70px;
-=======
+}
+
 .text-center {
     text-align: center;
->>>>>>> 6960e21a6c5ba8c5e3c25e06949693e2c7341698
 }
 
 
@@ -280,4 +195,5 @@ a:not(.tooltip) {
 @import './flex';
 @import './footer';
 @import './header';
+@import './navbar';
 @import './modal';

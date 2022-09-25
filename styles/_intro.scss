@@ -33,21 +33,25 @@
         }
     }
 
-    .file-crop {
-        width: 22.5rem;
-        mask-image: url('/assets/graphics/file_like_crop.svg');
-        mask-repeat: no-repeat;
-    }
+    .image {
+        display: flex;
+        flex-direction: column;
 
-    .img-file-under-tic {
-        margin: -4.5rem auto 0 auto;
-        width: 22.5rem;
-        height: 3rem;
-        background-image: url('/assets/graphics/file_tic.svg');
-        background-repeat: no-repeat;
+        .file-crop {
+            width: 100%;
+            height: auto;
+            mask-image: url('/assets/graphics/file_like_crop.svg');
+            mask-repeat: no-repeat;
+        }
 
-        @media (min-width: $lucas-extra-small) {
-            margin-left: 0;
+        .img-file-under-tic {
+            width: 100%;
+            height: auto;
+            margin-top: -6.5%;
+
+            @media (min-width: $lucas-extra-small) {
+                margin-left: 0;
+            }
         }
     }
 

@@ -75,7 +75,7 @@
             "name": "Logistics Officer",
             "role": "Logistics Officer",
             "email": "",
-            "image": "dino.png"
+            "image": "placeholder.png"
         },
         {
             "name": "Alperen Karadereli",
@@ -87,7 +87,7 @@
             "name": "Finance Officer",
             "role": "Finance Officer",
             "email": "",
-            "image": "dino.png"
+            "image": "placeholder.png"
         },
         {
             "name": "Sum Yau Anavah Chiu",
@@ -156,16 +156,16 @@
             "image": "luca.jpg"
         },
         {
-            "name": "DurHack Dino",
-            "role": "Mascot",
-            "email": "",
-            "image": "dino.png"
-        },
-        {
             "name": "Kai Heale",
             "role": "Tech Officer",
             "email": "kai.h@durhack.com",
             "image": "kai.jpg"
+        },
+        {
+            "name": "DurHack Dino",
+            "role": "Mascot",
+            "email": "",
+            "image": "dino.png"
         }
     ],
     "schedule": [
