@@ -115,7 +115,6 @@
     &.sponsors {
         display: flex;
         background-color: $primary-dark;
-        font-size: 16px;
         // padding-bottom: 90px;
 
         // &:after {
@@ -127,7 +126,7 @@
 
         .sponsor-grid {
             h3 > img {
-                height: 2rem;
+                height: 2.5rem;
             }
 
             .sponsor {
@@ -213,7 +212,6 @@
         font-weight: 300;
         text-align: center;
         padding: 0px 0px 60px 0px;
-        margin-top: 30px;
 
         // &:before {
         // 	content: '';
@@ -255,9 +253,7 @@
         }
 
         .team-grid {
-            margin: 64x;
-            margin-top: 10px;
-            margin-bottom: 64px;
+            margin: 10px 64px 64px;
             border-bottom: 30px;
             flex-wrap: wrap;
             align-items: stretch;

@@ -98,6 +98,10 @@
             justify-content: right;
         }
 
+        @media (min-width: $breakpoint-medium) {
+            padding-right: 15%;
+        }
+
         > div.hero {
             // todo: wide and short displays (e.g. landscape phone) have the hero cut into the intro section
             max-width: 90%;
@@ -189,25 +193,25 @@
 			font-size: 24px;
 			font-weight: bold;
 			text-decoration: none;
-			color: $secondary-a;
-			padding: 16px 96px;
-			margin: 9px 0px;
-			transition: .5s ease;
+            color: $secondary-a;
+            padding: 16px 96px;
+            margin: 9px 0px;
+            transition: .5s ease;
 
-			&:not(.disabled):hover {
-				background-color: $secondary-a;
-				color: #222;
-			}
+            &:not(.disabled):hover {
+                background-color: $secondary-a;
+                color: #222;
+            }
 
-			@media screen and (max-width: $breakpoint-medium) {
-				padding: 12px 32px;
-			}
+            @media screen and (max-width: $breakpoint-medium + 100px) {
+                padding: .8rem 2rem;
+            }
 
-			&.disabled {
-				opacity: 0.5;
-				pointer-events: none;
-			}
-		}
+            &.disabled {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+        }
 
 		h5 {
 			font-size: 14px;
