@@ -199,6 +199,8 @@ body {
     background-color: $primary-dark;
     font-family: 'Chakra Petch', 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     color: #fff;
     margin: 0px;
     overflow-x: hidden;

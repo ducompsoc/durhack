@@ -13,41 +13,49 @@
     &.faqs {
         background-image: linear-gradient(rgba(0, 0, 0, 0.8),
                 rgba(0, 0, 0, 0.8)), url('/assets/photos/group_around_desk_monitor.jpg');
-        background-size: auto $breakpoint-medium;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
 
         @media (min-width: $breakpoint-medium) {
             background-size: 100% auto;
         }
 
-        background-repeat: no-repeat;
-
         padding: 0;
 
-        ul {
+        .questions {
             list-style-type: none;
+            margin: 0px 0px 16px 0px;
         }
 
         .title {
+            display: flex;
             cursor: pointer;
+            font-size: 20px;
+            margin-top: 16px;
+            margin-bottom: -1rem;
 
             &:before {
                 content: '';
-                display: inline-block;
                 height: 3rem;
-                width: 3rem;
-                margin-bottom: -1rem;
-                margin-right: 1rem;
+                width: 5rem;
                 background-image: url("/assets/graphics/bullet.svg");
+                background-size: auto 100%;
                 background-repeat: no-repeat;
+            }
+
+            span {
+                padding: 20px 0px 0px 0px;
             }
 
             // todo: title wrapping inline with pseudo before element on small breakpoints
         }
 
         .answer {
-            margin-left: 4rem;
-
+            margin-left: 5rem;
+            padding-top: 18px;
             animation: show .75s ease-in;
+            font-size: 16px;
 
             &.fade-out {
                 animation: hide .75s ease-out;
@@ -91,6 +99,7 @@
             background-repeat: repeat-y;
             background-size: 20px;
             background-position-x: 3.2rem;
+            margin: -9px 0px;
 
             &.top {
                 background-position-y: bottom;

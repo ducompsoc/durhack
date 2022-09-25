@@ -2,7 +2,7 @@
     <ul class="questions">
         <li v-for="(answers, question) in faqs" class="question closed">
             <div class="title container">
-                {{ question }}
+                <span>{{ question }}</span>
             </div>
 
             <div class="answer">
