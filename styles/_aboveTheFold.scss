@@ -2,7 +2,7 @@
 
 .above-the-fold {
 	position: relative;
-	// height: calc(100vh - 72px);
+	 height: calc(100vh - $navstripe);
 
 	.row {
 		flex-direction: row !important;

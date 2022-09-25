@@ -79,10 +79,16 @@
             <a href="#sponsors">Sponsors</a>
             <a href="#schedule">Schedule</a>
             <a href="#team">Team</a>
-            <div id="navdiag2"/>
+<!--            <div id="navdiag2"/>-->
         </div>
 
-        <div id="navdiag1">
+        <div id="navstripe">
+        </div>
+
+        <div id="navouter">
+        </div>
+
+        <div id="navcorner">
         </div>
 
 
