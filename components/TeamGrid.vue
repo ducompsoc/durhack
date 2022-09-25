@@ -27,5 +27,8 @@ export default {
 			return teamColumns;
 		},
 	},
+    mounted() {
+        tippy('.tooltip', { allowHTML: true });
+    },
 };
 </script>
