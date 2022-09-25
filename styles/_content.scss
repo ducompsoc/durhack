@@ -2,7 +2,7 @@
 
 .section {
     overflow: hidden;
-    padding: 90px 0px;
+    padding: 4rem 0px;
 
     h2 {
         font-size: 48px;
@@ -12,7 +12,7 @@
 
     &.faqs {
         background-image: linear-gradient(rgba(0, 0, 0, 0.8),
-                rgba(0, 0, 0, 0.8)), url('/assets/photos/group_around_desk_monitor.jpg');
+            rgba(0, 0, 0, 0.8)), url('/assets/photos/group_around_desk_monitor.jpg');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -25,7 +25,6 @@
 
         .questions {
             list-style-type: none;
-            padding-left: .5rem;
             margin: 0 0 1.2rem 0;
         }
 
@@ -123,25 +122,13 @@
         //     border-width: 0px 0px 90px 100vw;
         //     border-color: transparent transparent #222 transparent;
         // }
-        .SponsorText {
-            // height: 10px;
-            width: 70px;
-            z-index: 2;
 
-            h1 {
-                padding-top: 100%;
-                text-transform: uppercase;
-                transform: rotate(-90deg) translate(-112px, -38px);
-                font-size: 30px;
-            }
-        }
-
-        .Sponsors {
+        .sponsor-grid {
             .sponsor {
                 box-sizing: border-box;
                 padding: 0px 9px 9px 0px;
 
-                >a {
+                > a {
                     width: 100%;
                     height: 100%;
                     background-color: #fff;

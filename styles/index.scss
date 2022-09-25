@@ -242,10 +242,14 @@ aside {
     > h1 {
         position: absolute;
 
-        transform-origin: -1 -1;
-        transform: rotate(-90deg);
+        transform-origin: top left;
+        transform: rotate(-90deg) translate(-100%, 1.8rem);
 
         left: -1.2rem;
+    }
+
+    > div {
+        padding-left: .5rem;
     }
 }
 
@@ -257,6 +261,10 @@ a:not(.tooltip) {
     &:hover {
         border-bottom-style: solid;
     }
+}
+
+.text-center {
+    text-align: center;
 }
 
 

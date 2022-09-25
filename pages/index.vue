@@ -151,30 +151,30 @@
 
         <div id="faqs" class="section faqs">
             <div class="faq-cap top"></div>
-            <aside class="inside">
+            <aside>
                 <h1>FAQs</h1>
-                <FAQs />
+                <div>
+                    <FAQs/>
+                </div>
             </aside>
             <div class="faq-cap bottom"></div>
         </div>
 
         <div class="section anchor sponsors" id="sponsors">
-            <div class="SponsorText">
-                <!-- <aside class="inside"> -->
+            <aside>
                 <h1>Sponsors</h1>
-                <!-- </aside> -->
-            </div>
-            <div class="Sponsors">
-                <Sponsors />
+                <div class="sponsor-grid">
+                    <Sponsors/>
 
-                <!-- <div class="template"></div> -->
+                    <!-- <div class="template"></div> -->
 
-                <p>Thanks in advance to all our sponsors for making DurHack possible!</p>
+                    <p>Thanks in advance to all our sponsors for making DurHack possible!</p>
 
-                <p>Interested in sponsoring DurHack? We'd love to work with you. Send us an email at <a
-                        href="mailto:sponsor@durhack.com">sponsor@durhack.com</a>.</p>
-            </div>
-
+                    <p>Interested in sponsoring DurHack? We'd love to work with you. Send us an
+                        email at <a
+                            href="mailto:sponsor@durhack.com">sponsor@durhack.com</a>.</p>
+                </div>
+            </aside>
         </div>
 
 
@@ -184,7 +184,9 @@
             <div class="container">
                 <aside class="inside">
                     <h1>Schedule</h1>
-                    <Schedule />
+                    <div>
+                        <Schedule/>
+                    </div>
 
                 </aside>
 
@@ -214,7 +216,7 @@
 
         </div>
 
-        <div class="center">
+        <div class="text-center">
             <h1>Meet the team</h1>
         </div>
 
