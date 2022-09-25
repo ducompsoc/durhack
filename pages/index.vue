@@ -186,6 +186,8 @@
                     <h1>Schedule</h1>
                     <div>
                         <Schedule/>
+                        <p>This schedule is provisional. Some parts might change significantly
+                            before the event.</p>
                     </div>
 
                 </aside>
