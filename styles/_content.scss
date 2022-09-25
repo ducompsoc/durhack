@@ -435,13 +435,12 @@
 
                         .time {
                             display: inline-block;
-                            background-color: $primary-normal;
-                            border-radius: 4px;
+                            border: solid 2px $primary-normal;
                             line-height: 18px;
                             font-size: 14px;
                             font-weight: bold;
-                            color: $primary-dark;
-                            padding: 6px 9px;
+                            color: $primary-normal;
+                            padding: 4px 9px;
                             margin-bottom: 4px;
                         }
 

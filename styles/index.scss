@@ -1,20 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Chakra+Petch:wght@400;600;700&display=swap');
 
 @import './variables';
-
-@font-face {
-    font-family: 'Deciso';
-    font-weight: bold;
-    src: url('/assets/fonts/Deciso-Bold.otf');
-}
-
-@font-face {
-    font-family: 'Deciso';
-    font-weight: 300;
-    font-style: italic;
-    src: url('/assets/fonts/Deciso-LightItalic.otf');
-}
 
 html {
     scroll-behavior: smooth;
