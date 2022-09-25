@@ -16,6 +16,11 @@
     src: url('/assets/fonts/Deciso-LightItalic.otf');
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+
 #navbar {
     //overflow: hidden;
     background-color: $primary-normal;
@@ -56,18 +61,6 @@
     z-index: 4;
     transform: skewX(45deg);
 }
-//
-//#navdiag2 {
-//    content: '';
-//    position: sticky;
-//    background: #909;
-//    width: 100%;
-//    height: 30px;
-//    margin-left: 45px;
-//    margin-top: -30px;
-//    top: 0;//5vh;
-//    z-index: 4;
-//}
 
 #map {
     .button {
@@ -128,7 +121,7 @@
         aspect-ratio: 1;
         background: $primary-dark;
         outline: $thick1 solid $tertiary;
-        margin-right: 10vw; // $thick1;
+        margin-right: 10vw;// $thick1;
         border-radius: 50%;
     }
 
@@ -155,11 +148,6 @@
     }
 }
 
-
-#team {
-    background-image: url("assets/diamond_tile.svg");
-}
-
 body {
     background-color: $primary-dark;
     font-family: 'Chakra Petch', 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -175,7 +163,7 @@ body {
 }
 
 .container {
-    margin: 0px auto 0px -2.3rem;
+    margin: 0px 0px 0px -2.3rem;
 }
 
 .tippy-tooltip {
