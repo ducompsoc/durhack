@@ -59,10 +59,6 @@
                 "link": "https://mlh.io/"
             },
             {
-                "image": "hackathonsuk.png",
-                "link": "https://hackathons.org.uk/"
-            },
-            {
                 "image": "compsoc.png",
                 "link": "https://www.compsoc.tech/"
             },
@@ -73,12 +69,6 @@
         ]
     },
     "team": [
-        {
-            "name": "DurHack Dino",
-            "role": "Mascot",
-            "email": "",
-            "image": "placeholder.png"
-        },
         {
             "name": "Charles Thomas",
             "role": "Logistics Officer",
@@ -180,12 +170,6 @@
             "role": "Tech Officer",
             "email": "kai.h@durhack.com",
             "image": "kai.jpg"
-        },
-        {
-            "name": "DurHack Dino",
-            "role": "Mascot",
-            "email": "",
-            "image": "placeholder.png"
         }
     ],
     "schedule": [

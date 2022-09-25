@@ -20,7 +20,7 @@ export default {
 			let teamColumns = [];
 			const limit = Math.floor(team.length / 3);
 			for (let i = 0; i < limit; i++) {
-				teamColumns = [...teamColumns, [team[i * 3]], [team[(i * 3) + 1], team[(i * 3) + 2]]];
+				teamColumns = [...teamColumns, [team[i * 3], team[(i * 3) + 1]], [team[(i * 3) + 2]]];
 			}
 			teamColumns.push(team.filter((_, index) => index >= limit * 3));
 
