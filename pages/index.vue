@@ -217,7 +217,7 @@
         </div>
 
         <div class="center">
-            <h1>And here are your organisers for DurHack</h1>
+            <h1>Meet the team</h1>
         </div>
 
 
