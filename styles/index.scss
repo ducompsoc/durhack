@@ -20,9 +20,25 @@ html {
     scroll-behavior: smooth;
 }
 
+@media only screen and (max-width: $breakpoint-extra-small) {
+    #navbar {
+        visibility: hidden
+    }
+    #navstripe {
+        visibility: hidden
+    }
+    #navouter {
+        visibility: hidden
+    }
+    #navcorner {
+        visibility: hidden
+    }
+}
+
 #navbar {
     //overflow: hidden;
     background-color: $primary-normal;
+
     a {
         float: left;
         display: block;
@@ -34,16 +50,18 @@ html {
         transform: skewX(45deg);
 
     }
+
     //background-image: linear-gradient(to bottom right, $primary-normal, $tertiary);
     position: sticky;
     top: 0;
-    margin-top: calc(-1*($navheight - $navstripe));
+    margin-top: calc(-1 * ($navheight - $navstripe));
     padding-left: 100px; //calc($navheight/2);
     margin-left: -50px;
     z-index: 9;
     width: $navwidth;
     height: $navheight;
     transform: skewX(-45deg);
+    overflow: hidden;
 
 }
 
@@ -54,8 +72,8 @@ html {
     width: 100%;
     height: $navstripe;
     margin-left: 45px;
-    margin-top: calc(-1*$navstripe);
-    top: 0;//5vh;
+    margin-top: calc(-1 * $navstripe);
+    top: 0; //5vh;
     z-index: 8;
 }
 
@@ -63,11 +81,11 @@ html {
     content: '';
     position: sticky;
     background: $primary-normal; //
-    width: calc($navwidth - 5%);
+    width: calc($navwidth / 2 + 120px);
     height: $navheight;
-    margin-left: 15%;
+    margin-left: calc($navwidth / 2);
     margin-top: calc(-1 * $navheight);
-    top: calc(-1*$navheight);
+    top: calc(-1 * $navheight);
     z-index: 8;
     transform: skewX(45deg);
 }
@@ -79,7 +97,7 @@ html {
     width: 50px;
     height: calc($navheight);
     margin-left: -40px;
-    margin-top: calc(-1*$navheight);
+    margin-top: calc(-1 * $navheight);
     top: 0;
     z-index: 9;
     transform: skewX(45deg);
@@ -144,7 +162,7 @@ html {
         aspect-ratio: 1;
         background: $primary-dark;
         outline: $thick1 solid $tertiary;
-        margin-right: 10vw;// $thick1;
+        margin-right: 10vw; // $thick1;
         border-radius: 50%;
     }
 
