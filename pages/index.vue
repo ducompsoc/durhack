@@ -66,7 +66,7 @@
 
         <a id="mlh-trust-badge"
            style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000;border: none"
-           href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=black"
+           href="https://mlh.io/eu?utm_source=eu-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=black"
            target="_blank"><img
                 src="https://s3.amazonaws.com/logged-assets/trust-badge/2023/mlh-trust-badge-2023-black.svg"
                 alt="Major League Hacking 2023 Hackathon Season" style="width:100%"></a>
@@ -85,9 +85,9 @@
         <div id="navleft"></div>
         <div id="navright"></div>
         <div id="navcorner"></div>
+        <div id="navtrustbadge"></div>
 
-
-        <div id="intro" class="section intro">
+        <div id="intro" class="section intro container">
             <h2>DurHack is all about <b>learning something new</b></h2>
 
             <div class="flex-container">
@@ -196,10 +196,10 @@
             </div>
         </div>
 
-        <div class="section" id="map">
+        <div class="section cta-foot" id="map">
             <div class="flex-container">
                 <div class="flex-item" id="mapbody">
-                    <p class="">Join us in the Mathematics and Computer Science
+                    <p class="">Join us in the new Mathematics and Computer Science
                         building at Durham University.</p>
                     <a href="/tickets" class="register button">Pre-Register now</a>
                 </div>

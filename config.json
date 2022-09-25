@@ -196,12 +196,6 @@
                     "end": ""
                 },
                 {
-                    "title": "DurHack 2019 Winners Panel",
-                    "icon": "microphone",
-                    "start": "12:15",
-                    "end": "12:50"
-                },
-                {
                     "title": "Lunch",
                     "icon": "food",
                     "start": "12:20",
@@ -220,7 +214,7 @@
                     "end": "16:00"
                 },
                 {
-                    "title": "Alteryx Drop-in Workshop",
+                    "title": "Workshop",
                     "icon": "flask",
                     "start": "15:30",
                     "end": "16:30"

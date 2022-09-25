@@ -2,6 +2,11 @@
 
 .section.intro {
     clear: left;
+    padding: 128px 82px;
+
+    @media screen and (max-width: $breakpoint-medium) {
+        padding: 128px 32px;
+    }
 
     h2 {
         font-weight: normal;

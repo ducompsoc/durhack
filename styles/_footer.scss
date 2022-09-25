@@ -1,141 +1,129 @@
 @import './variables';
 
 .cta-foot {
-	position: relative;
-	background-color: $primary-dark;
-	font-size: 20px;
-	font-weight: 300;
-	text-align: center;
-	// padding: 64px 0px 90px 0px;
-	clip-path: polygon(0% 90px, 100% 0%, 100% calc(100% - 90px), 0% 100%);
-	padding: 0px;
-	margin: -90px 0px 0px 0px;
-	z-index: 1;
+    text-align: left;
+    padding: 0px calc(82px + 32px);
 
-	a {
-		color: #fff;
-		border-bottom: dashed 1px #fff;
-		text-decoration: none;
-	}
+    @media screen and (max-width: $breakpoint-medium) {
+        padding: 128px 32px;
+    }
 
-	> .container {
-		padding: 128px 0px 160px 0px;
-	}
+    p {
+        font-size: 32px;
+    }
 
-	.button {
-		display: inline-block;
-		border: solid 2px #fff;
-		border-radius: 6px;
-		font-size: 32px;
-		font-weight: bold;
-		color: #fff;
-		text-decoration: none;
-		padding: 24px 64px;
-		transition: .5s ease;
+    .button {
+        display: inline-block;
+        border: solid 2px $secondary-a;
+        font-size: 24px;
+        font-weight: bold;
+        text-decoration: none;
+        color: $secondary-a;
+        padding: 16px 96px;
+        margin: 9px 0px;
+        transition: .5s ease;
 
-		&:hover {
-			background-color: #fff;
-			color: $primary-dark;
-		}
-	}
+        &:not(.disabled):hover {
+            background-color: $secondary-a;
+            color: #222;
+        }
 
-	/* &:before {
-		position: relative;
-		top: 90px;
-		content: '';
-		border-style: solid;
-		border-width: 90px 100vw 0px 0px;
-		border-color: #333 transparent transparent transparent;
-		z-index: 2;
-	} */
+        @media screen and (max-width: $breakpoint-medium) {
+            padding: 12px 32px;
+        }
 
-	.cta-half {
-		position: relative;
-		display: block;
-		border: none;
-		/* width: 50%; */
-		width: 100%;
-		padding: 210px 0px;
-		overflow: hidden;
+        &.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
 
-		h2 {
-			margin-bottom: 0px;
-		}
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
 
-		p {
-			margin: 24px 0px 32px 0px;
-		}
+    .flex-item{
+        flex: 50%;
+    }
 
-		.inner {
-			position: relative;
-			// max-width: calc(640px - 64px);
-			width: 100%;
-			max-width: 1440px;
-			box-sizing: border-box;
-			padding: 0px 64px;
-			margin: 0px auto;
-			z-index: 1;
-		}
+    #mapbody {
+        position: relative;
+        width: 80%;
+        text-align: left;
+        align-self: center;
+    }
 
-		/* &:first-child .inner {
-			float: right;
-		} */
+    $rad1: 50vw;
+    $thick1: calc($rad1 / 60);
 
-		.background {
-			position: absolute;
-			top: 0px;
-			right: 0px;
-			bottom: 0px;
-			left: 0px;
-			background-size: cover;
-			background-position: center;
-			opacity: 0.4;
-			transition: .5s ease;
-			filter: grayscale(1);
-		}
+    $thick2: calc($rad1 / 20);
+    $rad2: 70%; // percentage of rad1
 
-		&.in-person .background {
-			background-image: url('/assets/photos/5227.jpg');
-		}
+    #hoop1 {
+        width: $rad1;
+        aspect-ratio: 1;
+        background: $primary-dark;
+        outline: $thick1 solid $tertiary;
+        border-radius: 50%;
+        margin: $thick1 -50vw $thick1 64px;
+    }
 
-		&.from-home .background {
-			background-image: url('/assets/photos/my-setup.jpg');
-		}
+    #hoop2 {
+        width: $rad2;
+        aspect-ratio: 1;
+        position: relative;
+        top: calc((100% - $rad2) / 2);
+        left: calc((100% - $rad2) / 2);
+        background: $primary-dark;
+        outline: $thick2 solid $tertiary;
+        //margin: $thick2;
+        border-radius: 50%;
+    }
 
-		&:hover {
-			.button {
-				background-color: #fff;
-				color: $primary-dark;
-			}
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
-			.background {
-				left: -32px;
-				right: -32px;
-			}
-		}
+        border-radius: 50%;
+        width: 90%;
+    }
 
-		@media screen and (max-width: $breakpoint-small) {
-			width: 100%;
-		}
-	}
+    @media screen and (max-width: $breakpoint-small) {
+        .flex-container {
+            display: block;
+        }
+        #hoop1 {
+            margin-top: 50px;
+            margin-left: 0%;
+        }
+        #mapbody {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
 
-	@media screen and (max-width: $breakpoint-small) {
-		text-align: center;
-
-		.text {
-			margin-bottom: 16px;
-		}
-	}
+    @media screen and (max-width: $breakpoint-extra-small) {
+        #hoop1 {
+            width: 100%;
+        }
+    }
 }
 
 footer {
 	// background-image: linear-gradient(180deg, rgba(34, 34, 34, 0) 0%, rgba(34, 34, 34, 1) 30%);
     background-color: rgba(34, 34, 34, 1);
 	text-align: left;
-	//padding: 64px 0px 32px 0px;
     position: relative;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding: 48px calc(82px + 32px);
+
+    @media screen and (max-width: $breakpoint-medium) {
+        padding: 48px 32px;
+    }
 
 	.legal {
         font-size: 14px;

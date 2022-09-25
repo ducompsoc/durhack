@@ -2,7 +2,11 @@
 
 .section {
     overflow: hidden;
-    padding: 4rem 0px;
+    padding: 4rem 64px;
+
+    @media screen and (max-width: $breakpoint-medium) {
+        padding: 4rem 16px;
+    }
 
     h2 {
         font-size: 48px;
@@ -21,7 +25,9 @@
             background-size: 100% auto;
         }
 
-        padding: 0;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-bottom: 64px;
 
         .questions {
             list-style-type: none;
@@ -212,6 +218,7 @@
         font-weight: 300;
         text-align: center;
         padding: 0px 0px 60px 0px;
+        margin-top: 32px;
 
         // &:before {
         // 	content: '';
@@ -253,7 +260,7 @@
         }
 
         .team-grid {
-            margin: 10px 64px 64px;
+            margin: 10px 0px 64px 0px;
             border-bottom: 30px;
             flex-wrap: wrap;
             align-items: stretch;
@@ -341,6 +348,9 @@
     }
 
     &.schedule {
+        h1 {
+            margin-top: 32px;
+        }
 
         //text-align: center;
         p {
@@ -349,9 +359,7 @@
 
         .timeline {
             position: relative;
-            top: -2rem;
-            left: 5vw;
-            width: min(80vw, 2000px);
+            margin: 0px 16px;
 
             @media screen and (min-width: $breakpoint-small) {
                 &:before,

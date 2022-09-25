@@ -17,8 +17,8 @@
 			<Title>DurHack</Title>
 
 			<Meta property="og:title" content="DurHack" />
-			<Meta property="og:description" content="The sixth-generation of Durham University Computing Society's annual flagship hackathon." />
-			<Meta property="og:image" content="https://durhack.com/assets/splash22.png" />
+			<Meta property="og:description" content="The seventh generation of Durham University Computing Society's annual flagship hackathon." />
+			<Meta property="og:image" content="https://durhack.com/assets/splash222.png" />
 			<Meta property="og:url" content="https://durhack.com" />
 			<Meta name="twitter:card" content="summary_large_image" />
 		</Head>

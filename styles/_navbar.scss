@@ -1,15 +1,6 @@
 
 @media only screen and (max-width: $breakpoint-extra-small) {
-    #navbar {
-        visibility: hidden
-    }
-    #navstripe {
-        visibility: hidden
-    }
-    #navouter {
-        visibility: hidden
-    }
-    #navcorner {
+    #navbar, #navstripe, #navouter, #navcorner, #navleft, #navright {
         visibility: hidden
     }
 }
@@ -18,6 +9,7 @@
     //overflow: hidden;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     background: linear-gradient(90deg, #52216B 0%, $primary-normal 90%);
     border: none;
 
@@ -26,7 +18,7 @@
         border: none;
         color: #ffffff;
         text-align: center;
-        padding: 18px;
+        padding: 18px 22px;
         text-decoration: none;
         font-size: 16px;
         //transform: skewX(45deg);
@@ -99,4 +91,23 @@
     left: 0px;
     width: $navheight;
     height: $navheight;
+}
+
+#navtrustbadge {
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    height: 180px;
+    min-width: 60px;
+    background-image: url('/assets/graphics/trustwrapper.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: calc(100vw - 50px - 119px) 3px;
+    z-index: 9999;
+    pointer-events: none;
+    margin-bottom: -180px;
+
+    @media screen and (max-width: $breakpoint-small) {
+        display: none;
+    }
 }
