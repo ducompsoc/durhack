@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" width="100%"
+     height="100%" viewBox="0 0 591 422" version="1.1" xmlns="http://www.w3.org/2000/svg"
+     xml:space="preserve"
+     style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-162,0)">
+        <g id="Bullet" transform="matrix(1,0,0,1,934.339,-149.533)">
+            <rect x="-772.341" y="149.533" width="590.503" height="421.207" style="fill:none;"/>
+            <clipPath id="_clip1">
+                <rect x="-772.341" y="149.533" width="590.503" height="421.207"/>
+            </clipPath>
+            <g clip-path="url(#_clip1)">
+                <g transform="matrix(1,0,0,1,-934.339,149.533)">
+                    <path
+                        d="M753.075,140.91L753.385,140.836L753.385,421.739L162.743,281.308L162.433,281.382L162.433,0.479L753.075,140.91Z"
+                        style="fill:rgb(255,0,64);"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
