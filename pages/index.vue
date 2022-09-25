@@ -216,12 +216,12 @@
 
         </div>
 
-        <div class="center">
+        <div class="team-padding" id="team">
             <h1>Meet the team</h1>
         </div>
 
 
-        <div class="section anchor team" id="team">
+        <div class="section anchor team">
             <div class="bg"></div>
             <div class="inner">
                 <div class="team-grid row center template">
