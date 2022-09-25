@@ -48,7 +48,7 @@
 #navstripe {
     position: sticky;
     background: $primary-normal; //
-    width: 100%;
+    width: calc(100% - 45px);
     height: $navstripe;
     margin-left: 45px;
     margin-top: calc(-1 * $navstripe);
