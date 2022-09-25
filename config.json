@@ -74,12 +74,6 @@
     },
     "team": [
         {
-            "name": "DurHack Dino",
-            "role": "Mascot",
-            "email": "",
-            "image": "placeholder.png"
-        },
-        {
             "name": "Charles Thomas",
             "role": "Logistics Officer",
             "email": "charles.t@durhack.com",
@@ -180,12 +174,6 @@
             "role": "Tech Officer",
             "email": "kai.h@durhack.com",
             "image": "kai.jpg"
-        },
-        {
-            "name": "DurHack Dino",
-            "role": "Mascot",
-            "email": "",
-            "image": "placeholder.png"
         }
     ],
     "schedule": [
