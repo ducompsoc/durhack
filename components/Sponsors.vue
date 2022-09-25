@@ -1,6 +1,6 @@
 <template>
 	<div v-for="(sponsorList, tier) in sponsors">
-		<h3><img :src="`/assets/sponsors/tier/${tier}.png`" /></h3>
+		<h3><img :src="`/assets/sponsors/tier/${tier}.svg`" /></h3>
 
 		<div :class="`${tier} row wrap`">
 			<div v-for="sponsor in sponsorList" class="sponsor biggest row">

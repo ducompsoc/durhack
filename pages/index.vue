@@ -219,7 +219,7 @@
 
         </div>
 
-        <div class="text-center">
+        <div class="text-center" id="team">
             <h1>Meet the team</h1>
         </div>
 
