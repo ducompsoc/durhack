@@ -74,14 +74,16 @@
             src="https://s3.amazonaws.com/logged-assets/trust-badge/2023/mlh-trust-badge-2023-black.svg"
             alt="Major League Hacking 2023 Hackathon Season" style="width:100%"></a>
 
-        <div class="midnav">
-            <ul>
-                <li><a href="#intro">Intro</a></li>
-                <li><a href="#faqs">FAQs</a></li>
-                <li><a href="#sponsors">Sponsors</a></li>
-                <li><a href="#schedule">Schedule</a></li>
-                <li><a href="#team">Team</a></li>
-            </ul>
+        <div id="navbar">
+            <a href="#intro">Intro</a>
+            <a href="#faqs">FAQs</a>
+            <a href="#sponsors">Sponsors</a>
+            <a href="#schedule">Schedule</a>
+            <a href="#team">Team</a>
+            <div id="navdiag2"/>
+        </div>
+
+        <div id="navdiag1">
         </div>
 
 

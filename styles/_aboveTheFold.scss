@@ -222,30 +222,6 @@
 	}
 }
 
-	.midnav {
-		background: $primary-normal;
-		padding-top: 20px;
-		padding-bottom: 50px;
-		li a {
-			float: left;
-			display: block;
-			color: white;
-			text-align: center;
-			text-decoration: none;
-		}
-
-		a {
-			display: block;
-			padding: 8px;
-			font-size: 30px;
-			color: #ffffff;
-		}
-
-		ul {
-			list-style-type: none;
-		}
-	}
-
 .alert-banner {
 	position: absolute;
 	top: 0px;

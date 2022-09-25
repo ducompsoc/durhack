@@ -16,6 +16,59 @@
     src: url('/assets/fonts/Deciso-LightItalic.otf');
 }
 
+#navbar {
+    //overflow: hidden;
+    background-color: $primary-normal;
+
+    a {
+        float: left;
+        display: block;
+        color: #ffffff;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+        font-size: 24px;
+        transform: skewX(-45deg);
+
+    }
+
+    //background-image: linear-gradient(to bottom right, $primary-normal, $tertiary);
+    position: sticky;
+    top: 0;
+    margin-top: -30px;
+    padding-left: 30px;
+    z-index: 5;
+    width: 50%;
+    height: 60px;
+    transform: skewX(45deg);
+
+}
+
+#navdiag1 {
+    content: '';
+    position: sticky;
+    background: $primary-normal; //#099;
+    width: 100%;
+    height: 30px;
+    margin-left: 45px;
+    margin-top: -30px;
+    top: 0;//5vh;
+    z-index: 4;
+    transform: skewX(45deg);
+}
+//
+//#navdiag2 {
+//    content: '';
+//    position: sticky;
+//    background: #909;
+//    width: 100%;
+//    height: 30px;
+//    margin-left: 45px;
+//    margin-top: -30px;
+//    top: 0;//5vh;
+//    z-index: 4;
+//}
+
 #map {
     .button {
         display: inline-block;
@@ -75,7 +128,7 @@
         aspect-ratio: 1;
         background: $primary-dark;
         outline: $thick1 solid $tertiary;
-        margin-right: 10vw;// $thick1;
+        margin-right: 10vw; // $thick1;
         border-radius: 50%;
     }
 
