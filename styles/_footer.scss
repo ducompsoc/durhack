@@ -132,7 +132,10 @@ footer {
 	// background-image: linear-gradient(180deg, rgba(34, 34, 34, 0) 0%, rgba(34, 34, 34, 1) 30%);
     background-color: rgba(34, 34, 34, 1);
 	text-align: left;
-	padding: 64px 0px 32px 0px;
+	//padding: 64px 0px 32px 0px;
+    position: relative;
+    padding-left: 10%;
+    padding-right: 10%;
 
 	.legal {
         font-size: 14px;

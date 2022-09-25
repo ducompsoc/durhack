@@ -2,7 +2,7 @@
 
 .section {
     overflow: hidden;
-    padding: 90px 0px;
+    padding: 4rem 0px;
 
     h2 {
         font-size: 48px;
@@ -12,42 +12,50 @@
 
     &.faqs {
         background-image: linear-gradient(rgba(0, 0, 0, 0.8),
-                rgba(0, 0, 0, 0.8)), url('/assets/photos/group_around_desk_monitor.jpg');
-        background-size: auto $breakpoint-medium;
+            rgba(0, 0, 0, 0.8)), url('/assets/photos/group_around_desk_monitor.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
 
         @media (min-width: $breakpoint-medium) {
             background-size: 100% auto;
         }
 
-        background-repeat: no-repeat;
-
         padding: 0;
 
-        ul {
+        .questions {
             list-style-type: none;
+            margin: 0 0 1.2rem 0;
         }
 
         .title {
+            display: flex;
             cursor: pointer;
+            font-size: 20px;
+            margin-top: 16px;
+            margin-bottom: -1rem;
 
             &:before {
                 content: '';
-                display: inline-block;
                 height: 3rem;
-                width: 3rem;
-                margin-bottom: -1rem;
-                margin-right: 1rem;
+                width: 5rem;
                 background-image: url("/assets/graphics/bullet.svg");
+                background-size: auto 100%;
                 background-repeat: no-repeat;
+            }
+
+            span {
+                padding: 20px 0px 0px 0px;
             }
 
             // todo: title wrapping inline with pseudo before element on small breakpoints
         }
 
         .answer {
-            margin-left: 4rem;
-
+            margin-left: 5rem;
+            padding-top: 18px;
             animation: show .75s ease-in;
+            font-size: 16px;
 
             &.fade-out {
                 animation: hide .75s ease-out;
@@ -91,6 +99,7 @@
             background-repeat: repeat-y;
             background-size: 20px;
             background-position-x: 3.2rem;
+            margin: -9px 0px;
 
             &.top {
                 background-position-y: bottom;
@@ -113,25 +122,13 @@
         //     border-width: 0px 0px 90px 100vw;
         //     border-color: transparent transparent #222 transparent;
         // }
-        .SponsorText {
-            // height: 10px;
-            width: 70px;
-            z-index: 2;
 
-            h1 {
-                padding-top: 100%;
-                text-transform: uppercase;
-                transform: rotate(-90deg) translate(-112px, -38px);
-                font-size: 30px;
-            }
-        }
-
-        .Sponsors {
+        .sponsor-grid {
             .sponsor {
                 box-sizing: border-box;
                 padding: 0px 9px 9px 0px;
 
-                >a {
+                > a {
                     width: 100%;
                     height: 100%;
                     background-color: #fff;
@@ -350,15 +347,12 @@
         }
 
         .timeline {
-
-
             position: relative;
-            top: -50px;
+            top: -2rem;
             left: 5vw;
             width: min(80vw, 2000px);
 
             @media screen and (min-width: $breakpoint-small) {
-
                 &:before,
                 .event .line:before,
                 .event .line:after {

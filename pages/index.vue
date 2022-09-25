@@ -6,16 +6,14 @@
 
         <div class="above-the-fold" id="top">
             <div class="foreground">
-
-                <div class="container content row center">
-
-                    <div class="flex"></div>
+                <div class="container content row">
                     <div class="hero">
                         <div class="cutout">
                             <div>
 
                                 <div class="logo">
-                                    <img alt="DurHack 2022 Logo: A purple glowing cyberpunk triangle with a shield in the centre."
+                                    <img
+                                        alt="DurHack 2022 Logo: A purple glowing cyberpunk triangle with a shield in the centre."
                                         src="/assets/logo22.png">
                                 </div>
 
@@ -67,9 +65,9 @@
         </div>
 
         <a id="mlh-trust-badge"
-            style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000"
-            href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=black"
-            target="_blank"><img
+           style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000;border: none"
+           href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=black"
+           target="_blank"><img
                 src="https://s3.amazonaws.com/logged-assets/trust-badge/2023/mlh-trust-badge-2023-black.svg"
                 alt="Major League Hacking 2023 Hackathon Season" style="width:100%"></a>
 
@@ -153,30 +151,30 @@
 
         <div id="faqs" class="section faqs">
             <div class="faq-cap top"></div>
-            <aside class="inside">
+            <aside>
                 <h1>FAQs</h1>
-                <FAQs />
+                <div>
+                    <FAQs/>
+                </div>
             </aside>
             <div class="faq-cap bottom"></div>
         </div>
 
         <div class="section anchor sponsors" id="sponsors">
-            <div class="SponsorText">
-                <!-- <aside class="inside"> -->
+            <aside>
                 <h1>Sponsors</h1>
-                <!-- </aside> -->
-            </div>
-            <div class="Sponsors">
-                <Sponsors />
+                <div class="sponsor-grid">
+                    <Sponsors/>
 
-                <!-- <div class="template"></div> -->
+                    <!-- <div class="template"></div> -->
 
-                <p>Thanks in advance to all our sponsors for making DurHack possible!</p>
+                    <p>Thanks in advance to all our sponsors for making DurHack possible!</p>
 
-                <p>Interested in sponsoring DurHack? We'd love to work with you. Send us an email at <a
-                        href="mailto:sponsor@durhack.com">sponsor@durhack.com</a>.</p>
-            </div>
-
+                    <p>Interested in sponsoring DurHack? We'd love to work with you. Send us an
+                        email at <a
+                            href="mailto:sponsor@durhack.com">sponsor@durhack.com</a>.</p>
+                </div>
+            </aside>
         </div>
 
 
@@ -186,7 +184,11 @@
             <div class="container">
                 <aside class="inside">
                     <h1>Schedule</h1>
-                    <Schedule />
+                    <div>
+                        <Schedule/>
+                        <p>This schedule is provisional. Some parts might change significantly
+                            before the event.</p>
+                    </div>
 
                 </aside>
 
@@ -216,7 +218,7 @@
 
         </div>
 
-        <div class="team-padding" id="team">
+        <div class="text-center">
             <h1>Meet the team</h1>
         </div>
 
