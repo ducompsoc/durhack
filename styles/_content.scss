@@ -126,6 +126,10 @@
         // }
 
         .sponsor-grid {
+            h3 > img {
+                height: 2rem;
+            }
+
             .sponsor {
                 box-sizing: border-box;
                 padding: 0px 9px 9px 0px;
