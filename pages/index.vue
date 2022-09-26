@@ -18,7 +18,7 @@
                                 </div>
 
                                 <p>
-                                    Pre-Register now for the seventh iteration of DurHack, Durham University Computing
+                                    Join us for the seventh iteration of DurHack, Durham University Computing
                                     Society’s annual flagship hackathon.
                                 </p>
 
@@ -27,16 +27,11 @@
                                     and learning from each other in order to create their own project.
                                 </p>
 
-                                <p>
-                                    <b>Pre-registering does not automatically give you a place; we will email you when
-                                        registration opens.</b>
-                                </p>
-
                                 <p class="date">
                                     19th &ndash; 20th November
                                 </p>
 
-                                <a href="/tickets" class="register button">Pre-Register now</a>
+                                <a href="/tickets" class="register button disabled">Registration opens 28/09</a>
 
                             </div>
 
@@ -206,7 +201,7 @@
                 <div class="flex-item" id="mapbody">
                     <p class="">Join us in the new Mathematics and Computer Science
                         building at Durham University.</p>
-                    <a href="/tickets" class="register button">Pre-Register now</a>
+                    <a href="/tickets" class="register button disabled">Registration opens 28/09</a>
                 </div>
                 <div class="flex-item">
                     <div id="hoop1">
