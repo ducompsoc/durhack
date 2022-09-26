@@ -15,6 +15,7 @@
     }
 
     &.faqs {
+        min-height: 800px;
         background-image: linear-gradient(rgba(0, 0, 0, 0.8),
             rgba(0, 0, 0, 0.8)), url('/assets/photos/group_around_desk_monitor.jpg');
         background-size: cover;
@@ -113,7 +114,31 @@
             }
 
             &.bottom {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-end;
                 background-position-y: top;
+                padding: 12px 0px 48px 136px;
+
+                a {
+                    font-weight: bold;
+                    border-bottom: none;
+                    margin: 9px 32px 9px 0px;
+
+                    &:after {
+                        display: inline-block;
+                        content: '';
+                        border-style: solid;
+                        border-width: 6px 0px 6px 6px;
+                        border-color: transparent transparent transparent $primary-normal;
+                        margin: 0px 6px;
+                        transition: .3s ease;
+                    }
+
+                    &:hover:after {
+                        margin: 0px 0px 0px 12px;
+                    }
+                }
             }
         }
     }

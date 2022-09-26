@@ -150,7 +150,7 @@
 
         </div>
 
-        <div id="faqs" class="section faqs">
+        <div id="faqs" class="section faqs column">
             <div class="faq-cap top"></div>
             <aside>
                 <h1>FAQs</h1>
@@ -158,7 +158,12 @@
                     <FAQs/>
                 </div>
             </aside>
-            <div class="faq-cap bottom"></div>
+            <div class="faq-cap bottom flex">
+                <div class="row">
+                    <a href="https://durhack2022.devpost.com/project-gallery" target="_blank">See last year's projects</a>
+                    <a href="https://drive.google.com/drive/folders/1b24TRZzD5vW7AAb5-oUV2Ac_ZvtFueNN?usp=sharing" target="_blank">See last year's photos</a>
+                </div>
+            </div>
         </div>
 
         <div class="section anchor sponsors" id="sponsors">
