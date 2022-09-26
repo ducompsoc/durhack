@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Chakra+Petch:wght@400;600;700&display=swap');
+
+@import './variables';
+
+// Reset user-agent stylesheets https://stackoverflow.com/questions/29307357/get-rid-of-webkit-padding-start-40px
+*:not(p) {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: $primary-dark;
+    font-family: 'Chakra Petch', 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #fff;
+    margin: 0px;
+    overflow-x: hidden;
+}
+
+.container {
+    margin: 0 0 0 0;
+}
+
+.tippy-tooltip {
+    background-color: $primary-dark !important;
+}
+
+.tippy-arrow {
+    border-top-color: $primary-dark !important;
+}
+
+.primary-normal-svg-filter {
+    filter: $primary-normal-filter;
+}
+
+h1 {
+    font-family: 'Audiowide', cursive;
+    color: $primary-normal;
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+
+aside {
+    display: block;
+    position: relative;
+    padding-left: 3rem;
+
+    > h1 {
+        position: absolute;
+
+        transform-origin: top left;
+        transform: rotate(-90deg) translate(-100%, 1.8rem);
+
+        left: -1.2rem;
+    }
+
+    > div {
+        padding-left: .5rem;
+    }
+}
+
+a:not(.tooltip) {
+    color: $primary-normal;
+    border-bottom: dashed 1px $primary-normal;
+    text-decoration: none;
+
+    &:hover {
+        border-bottom-style: solid;
+    }
+}
+
+.text-center {
+    text-align: center;
+    padding-top: 70px;
+}
+
+
+@import './404';
+@import './intro';
+@import './aboveTheFold';
+@import './artifacts';
+@import './content';
+@import './flex';
+@import './footer';
+@import './header';
+@import './navbar';
+@import './modal';

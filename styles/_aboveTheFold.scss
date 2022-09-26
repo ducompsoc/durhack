@@ -1,0 +1,256 @@
+@import './variables';
+
+.above-the-fold {
+    position: relative;
+    height: calc(100vh - $navstripe);
+
+    .row {
+        flex-direction: row !important;
+    }
+
+    .bg-wrap {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+		left: 0px;
+		background-image: radial-gradient(ellipse at bottom right, #444 20%, #262626 70%);
+		overflow: hidden;
+		z-index: -1;
+
+		> video {
+			width: 100vw;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		> .video-front {
+			position: absolute;
+			width: 100vw;
+			height: 100%;
+			// background-color: rgba(34, 34, 34, 0.5);
+			// background-color: rgba(132, 47, 215, 0.5);
+			// background-image: radial-gradient(circle at center right, #111, transparent);
+			// background-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.8) 50%);
+		}
+
+		@media screen and (max-width: $breakpoint-small) {
+			background-image: url('/assets/videos/splash-poster.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+
+			> video {
+				display: none;
+			}
+		}
+
+		> .nodes {
+			position: relative;
+			width: 200vw;
+			height: 200%;
+			transform: rotate(25deg);
+			margin: -50vh 0px 0px -50vw;
+
+			.bg {
+				position: absolute;
+				top: 0px;
+				right: 0px;
+				bottom: 0px;
+				left: 0px;
+				background-image: url('/assets/bg-pattern.png');
+				animation-name: slide-a;
+				animation-duration: 14s;
+				animation-timing-function: linear;
+				animation-iteration-count: infinite;
+
+				&.b {
+					animation-duration: 16s;
+					background-position: 100px 78px;
+				}
+
+				&.c {
+					animation-duration: 24s;
+					background-position: 100px 156px;
+				}
+			}
+		}
+	}
+
+	@keyframes slide-a {
+		0% {
+			// background-position-x: 0px;
+			transform: translateX(0px);
+		}
+
+		100% {
+			// background-position-x: 260px;
+			transform: translateX(260px);
+		}
+	}
+
+	.container {
+        box-sizing: border-box;
+        font-size: 18px;
+        padding: 32px;
+        justify-content: center;
+
+        @media (min-width: $breakpoint-extra-small) {
+            justify-content: right;
+        }
+
+        @media (min-width: $breakpoint-medium) {
+            padding-right: 15%;
+        }
+
+        > div.hero {
+            // todo: wide and short displays (e.g. landscape phone) have the hero cut into the intro section
+            max-width: 90%;
+
+            @media (min-width: $breakpoint-extra-small) {
+                max-width: 40%;
+            }
+        }
+
+		.cutout {
+			>div {
+                background-image: url('/assets/cutout.svg');
+                background-size: cover;
+                margin-top: 0px;
+                padding: 50px;
+                text-align: center;
+                overflow: hidden;
+            }
+		}
+
+		.logo {
+			text-align: center;
+			filter: drop-shadow(0px 0px 9px rgba(0, 0, 0, 0.7));
+			overflow: hidden;
+			margin-bottom: 36px;
+
+			img {
+				width: 100%;
+				max-height: 256px;
+				object-fit: contain;
+			}
+		}
+
+		h1 {
+			font-size: 64px;
+			font-weight: 300;
+			margin: 0px 0px 12px 0px;
+
+			strong {
+				color: $secondary-a;
+			}
+
+			@media screen and (max-width: $breakpoint-medium) {
+				font-size: 48px;
+			}
+		}
+
+		.date {
+			color: $secondary-a;
+		}
+
+		.location {
+			color: $secondary-b;
+		}
+
+		.date, .location {
+			font-family: "Chakra Petch", 'Open Sans', 'Helvetica Neue', sans-serif;
+			font-size: 24px;
+		}
+
+		@media screen and (max-width: $breakpoint-medium) {
+			.date, .location {
+				font-size: 18px;
+			}
+		}
+
+		@media screen and (max-width: $breakpoint-extra-small) {
+			padding: 16px 2px;
+
+			> div.hero {
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0px;
+
+				.cutout > div {
+					padding-left: 24px;
+					padding-right: 24px;
+
+					.logo img {
+						max-height: 170px;
+					}
+				}
+			}
+		}
+
+		.button {
+			display: inline-block;
+			border: solid 2px $secondary-a;
+			font-size: 24px;
+			font-weight: bold;
+			text-decoration: none;
+            color: $secondary-a;
+            padding: 16px 96px;
+            margin: 9px 0px;
+            transition: .5s ease;
+
+            &:not(.disabled):hover {
+                background-color: $secondary-a;
+                color: #222;
+            }
+
+            @media screen and (max-width: $breakpoint-medium + 100px) {
+                padding: .8rem 2rem;
+            }
+
+            &.disabled {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+        }
+
+		h5 {
+			font-size: 14px;
+			text-transform: uppercase;
+			margin: 28px 0px 0px 0px;
+		}
+
+		.non-durham {
+			font-size: 14px;
+			margin-top: 16px;
+
+			a {
+				border-bottom: dashed 1px $secondary-a;
+				color: $secondary-a;
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+.alert-banner {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	background-color: rgba($secondary-a, 0.8);
+	color: rgba(0, 0, 0, 0.8);
+	text-align: center;
+	padding: 16px;
+	z-index: 1;
+
+	a {
+		color: #000;
+		border-bottom: dashed 1px #000;
+		text-decoration: none;
+		opacity: 0.8;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
