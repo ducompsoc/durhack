@@ -186,8 +186,6 @@
             </aside>
         </div>
 
-        <img src="/assets/graphics/artifact-circle.svg" class="artifact schedule-circle rellax" data-rellax-speed="-5" />
-
         <div class="section anchor schedule" id="schedule">
             <div class="container">
                 <aside class="inside">
