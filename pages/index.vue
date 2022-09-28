@@ -31,7 +31,7 @@
                                     19th &ndash; 20th November
                                 </p>
 
-                                <a href="/tickets" class="register button">Register Now!</a>
+                                <a href="https://forms.gle/4phQuUdpQCad7Gbk6" class="register button">Register Now!</a>
 
                             </div>
 
@@ -201,7 +201,7 @@
                 <div class="flex-item" id="mapbody">
                     <p class="">Join us in the new Mathematics and Computer Science
                         building at Durham University.</p>
-                    <a href="/tickets" class="register button">Register Now!</a>
+                    <a href="https://forms.gle/4phQuUdpQCad7Gbk6" class="register button">Register Now!</a>
                 </div>
                 <div class="flex-item">
                     <div id="hoop1">
