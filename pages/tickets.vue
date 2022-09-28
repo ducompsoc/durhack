@@ -1,6 +1,6 @@
 
 <template>
-    <meta http-equiv="Refresh" content="0; url='https://www.w3docs.com'" />
+    <meta http-equiv="Refresh" content="0; url='https://forms.gle/4phQuUdpQCad7Gbk6'" />
 
     <div class="not-found">
         <p>Redirecting.</p>
