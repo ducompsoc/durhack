@@ -3,13 +3,13 @@
     <meta http-equiv="Refresh" content="0; url='https://www.w3docs.com'" />
 
     <div class="not-found">
-        <p>Aw no.</p>
+        <p>Redirecting.</p>
 
-        <h1>404</h1>
+        <h1>403</h1>
 
-        <p>We can't find what you're looking for.</p>
+        <p>We're sending you to our signup form.</p>
 
-        <p>If you think this is a mistake, let us know. <a href="mailto:hello@durhack.com">hello@durhack.com</a></p>
+        <p>If you're stuck on this page more than 5 seconds, let us know. <a href="mailto:hello@durhack.com">hello@durhack.com</a></p>
 
         <a href="/">Take me home</a>
     </div>
