@@ -9,11 +9,12 @@
 /jointheteam https://ducompsoc.typeform.com/to/jgFR9EJp 302
 /organise https://forms.gle/t4PC84A719pmcG3Y7 302
 /consentform /assets/consent_form.pdf 302
-/register-du /register-interest 302
-/register-nondu /register-interest 302
+/register /tickets 302
+/register-du /tickets 302
+/register-nondu /tickets 302
 /tickets https://forms.gle/4phQuUdpQCad7Gbk6 302
-/register-interest https://forms.gle/rJUQKZxyfevPWbe86 302
-/preregister /register-interest 302
+/register-interest /tickets 302
+/preregister /tickets 302
 /volunteer https://ducompsoc.typeform.com/to/E1F8lUpK 302
 /toolbox /assets/toolbox.pdf 302
 /zoombackgrounds https://drive.google.com/drive/folders/19w-Smy4ZSAJs1iGWyvEJO2fP66FF482A?usp=sharing 302
