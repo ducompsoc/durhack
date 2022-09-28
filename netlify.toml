@@ -65,7 +65,7 @@
 
 [[redirects]]
 	from = "/tickets"
-	to = "/register-interest"
+	to = "https://forms.gle/4phQuUdpQCad7Gbk6"
 	status = 302
 
 [[redirects]]
