@@ -49,6 +49,10 @@
             {
                 "link": "https://www.waterstons.com/",
                 "image": "waterstons.png"
+            },
+            {
+                "link": "https://www.qube-rt.com/",
+                "image": "qrt.svg"
             }
         ],
         "partners": [
