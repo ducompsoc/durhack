@@ -145,6 +145,7 @@
 
     &.sponsors {
         display: flex;
+        flex-direction: column;
         // padding-bottom: 90px;
 
         // &:after {

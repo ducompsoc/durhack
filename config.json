@@ -53,6 +53,10 @@
         ],
         "partners": [
             {
+                "image": "KeyboardCo.jpg",
+                "link": "https://www.keyboardco.com/"
+            },
+            {
                 "image": "mlh.png",
                 "link": "https://mlh.io/"
             },
@@ -63,6 +67,10 @@
             {
                 "image": "dsu.png",
                 "link": "https://www.durhamsu.com/"
+            },
+            {
+                "image": "durhamuni.svg",
+                "link": "https://www.durham.ac.uk/"
             }
         ]
     },
