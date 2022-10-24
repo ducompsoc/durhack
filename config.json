@@ -98,10 +98,10 @@
             "image": "alperen.jpg"
         },
         {
-            "name": "Quinn Dines",
-            "role": "Finance Officer",
-            "email": "qdines@durhack.com",
-            "image": "quinn.png"
+            "name": "Heidi Januszewski",
+            "role": "Head of Design & Marketing",
+            "email": "heidi.j@durhack.com",
+            "image": "heidi.jpg"
         },
         {
             "name": "Sum Yau Anavah Chiu",
@@ -110,16 +110,16 @@
             "image": "anavah.jpg"
         },
         {
-            "name": "Heidi Januszewski",
-            "role": "Head of Design & Marketing",
-            "email": "heidi.j@durhack.com",
-            "image": "heidi.jpg"
+            "name": "Matthew Chapman",
+            "role": "Advisor",
+            "email": "matthew.c@durhack.com",
+            "image": "matthew.jpg"
         },
         {
-            "name": "Faiza Jalil",
-            "role": "Sponsorship Officer",
-            "email": "faiza.j@durhack.com",
-            "image": "faiza.jpg"
+            "name": "Tom Nudd",
+            "role": "Advisor",
+            "email": "tom.n@durhack.com",
+            "image": "tom.jpeg"
         },
         {
             "name": "Allaida Siow",
@@ -140,22 +140,22 @@
             "image": "karl.jpg"
         },
         {
+            "name": "Faiza Jalil",
+            "role": "Sponsorship Officer",
+            "email": "faiza.j@durhack.com",
+            "image": "faiza.jpg"
+        },
+        {
             "name": "Ethan Waite",
             "role": "Tech Advisor",
             "email": "ethan.w@durhack.com",
             "image": "ethan.jpg"
         },
         {
-            "name": "Matthew Chapman",
-            "role": "Advisor",
-            "email": "matthew.c@durhack.com",
-            "image": "matthew.jpg"
-        },
-        {
-            "name": "Dave Kutner",
-            "role": "Head of Tech",
-            "email": "david.k@durhack.com",
-            "image": "dave.png"
+            "name": "Quinn Dines",
+            "role": "Finance Officer",
+            "email": "qdines@durhack.com",
+            "image": "quinn.png"
         },
         {
             "name": "Aaron Cheung",
@@ -170,16 +170,16 @@
             "image": "luca.jpg"
         },
         {
+            "name": "Dave Kutner",
+            "role": "Head of Tech",
+            "email": "david.k@durhack.com",
+            "image": "dave.png"
+        },
+        {
             "name": "Kai Heale",
             "role": "Tech Officer",
             "email": "kai.h@durhack.com",
             "image": "kai.jpg"
-        },
-        {
-            "name": "DurHack Dino",
-            "role": "Mascot",
-            "email": "",
-            "image": "dino.png"
         }
     ],
     "schedule": [
