@@ -61,8 +61,12 @@
                 "link": "https://www.keyboardco.com/"
             },
             {
-                "image": "mlh.png",
+                "image": "mlh-logo-color.svg",
                 "link": "https://mlh.io/"
+            },
+            {
+                "image": "standoutstickers.png",
+                "link": "https://hackp.ac/mlh-standoutstickers-hackathons"
             },
             {
                 "image": "compsoc.png",
