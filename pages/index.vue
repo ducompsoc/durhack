@@ -231,6 +231,20 @@
                     <Team />
                 </div>
                 <!-- <Team /> -->
+                <div class="socials">
+                    <a href="https://www.facebook.com/DurHackEvent">
+                        <img alt="Twitter" src="/assets/icons/facebook_white_58px.png">
+                    </a>
+                    <a href="https://www.instagram.com/durhackevent">
+                        <img alt="Twitter" src="/assets/icons/instagram_white.svg">
+                    </a>
+                    <a href="https://twitter.com/DurHackEvent">
+                        <img alt="Twitter" src="/assets/icons/twitter_white.svg">
+                    </a>
+                    <a href="https://www.linkedin.com/company/durhack/">
+                        <img alt="Twitter" src="/assets/icons/linkedin.png">
+                    </a>
+                </div>
                 <p><a href="mailto:hello@durhack.com">hello@durhack.com</a></p>
             </div>
         </div>

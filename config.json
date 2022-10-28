@@ -84,16 +84,16 @@
     },
     "team": [
         {
-            "name": "Charles Thomas",
-            "role": "Logistics Officer",
-            "email": "charles.t@durhack.com",
-            "image": "charles.png"
-        },
-        {
             "name": "Haygen Tsoi",
             "role": "Logistics Officer",
             "email": "haygent@durhack.com",
             "image": "haygen.jpg"
+        },
+        {
+            "name": "Charles Thomas",
+            "role": "Logistics Officer",
+            "email": "charles.t@durhack.com",
+            "image": "charles.png"
         },
         {
             "name": "Alperen Karadereli",
@@ -163,7 +163,7 @@
         },
         {
             "name": "Aaron Cheung",
-            "role": "Tech Officer",
+            "role": "Tech & Logistics Officer",
             "email": "aaron.c@durhack.com",
             "image": "aaron.jpg"
         },
