@@ -31,7 +31,7 @@
                                     19th &ndash; 20th November
                                 </p>
 
-                                <a href="https://forms.gle/4phQuUdpQCad7Gbk6" class="register button">Register Now!</a>
+                                <a href="https://forms.gle/pjNCpDGpZZBVPzwaA" class="register button">Join Waiting List!</a>
 
                             </div>
 
@@ -201,7 +201,7 @@
                 <div class="flex-item" id="mapbody">
                     <p class="">Join us in the new Mathematics and Computer Science
                         building at Durham University.</p>
-                    <a href="https://forms.gle/4phQuUdpQCad7Gbk6" class="register button">Register Now!</a>
+                    <a href="https://forms.gle/pjNCpDGpZZBVPzwaA" class="register button">Join Waiting List!</a>
                 </div>
                 <div class="flex-item">
                     <div id="hoop1">
@@ -232,16 +232,16 @@
                 </div>
                 <!-- <Team /> -->
                 <div class="socials">
-                    <a href="https://www.facebook.com/DurHackEvent">
+                    <a href="https://www.facebook.com/DurHackEvent" target="_blank">
                         <img alt="Twitter" src="/assets/icons/facebook_white_58px.png">
                     </a>
-                    <a href="https://www.instagram.com/durhackevent">
+                    <a href="https://www.instagram.com/durhackevent" target="_blank">
                         <img alt="Twitter" src="/assets/icons/instagram_white.svg">
                     </a>
-                    <a href="https://twitter.com/DurHackEvent">
+                    <a href="https://twitter.com/DurHackEvent" target="_blank">
                         <img alt="Twitter" src="/assets/icons/twitter_white.svg">
                     </a>
-                    <a href="https://www.linkedin.com/company/durhack/">
+                    <a href="https://www.linkedin.com/company/durhack/" target="_blank">
                         <img alt="Twitter" src="/assets/icons/linkedin.png">
                     </a>
                 </div>
