@@ -65,6 +65,10 @@
                 "link": "https://mlh.io/"
             },
             {
+                "link": "http://hackathons.org.uk/",
+                "image": "hackathonsuk.svg"
+            },
+            {
                 "image": "standoutstickers.png",
                 "link": "https://hackp.ac/mlh-standoutstickers-hackathons"
             },
