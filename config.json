@@ -53,6 +53,10 @@
             {
                 "link": "https://www.qube-rt.com/",
                 "image": "qrt.svg"
+            },
+            {
+                "link": "https://www.thg.com/",
+                "image": "THG.jpg"
             }
         ],
         "partners": [
@@ -63,6 +67,10 @@
             {
                 "image": "mlh-logo-color.svg",
                 "link": "https://mlh.io/"
+            },
+            {
+                "link": "http://hackathons.org.uk/",
+                "image": "hackathonsuk.svg"
             },
             {
                 "image": "standoutstickers.png",
