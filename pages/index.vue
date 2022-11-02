@@ -219,6 +219,26 @@
 
         </div>
 
+
+        <div class="section cta-foot" id="volunteer">
+            <div class="flex-container">
+                <div class="flex-item" id="volunteerBody">
+                    <p class="">If you’d like to gain hands-on experience of running an event, this role is for you. <br>Registration closes on the 14th November.</p>
+                    <a href="https://forms.gle/qGpH8c9tRb9M8eVa9" class="register button">Become a DurHack Volunteer</a>
+                </div>
+                <!-- <div class="flex-item">
+                    <div id="hoop1">
+                        <div id="hoop2">
+                            <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69" target="_blank">
+                                <img src="/assets/mcsmap.png"
+                                    alt="Map showing the location of the MCS building in Durham.">
+                            </a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
         <div class="text-center" id="team">
             <h1>Meet the team</h1>
         </div>
