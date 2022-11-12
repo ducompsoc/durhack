@@ -61,15 +61,19 @@
         ],
         "silver": [
             {
+                "image": "durhamuni.svg",
+                "link": "https://www.durham.ac.uk/departments/academic/computer-science/"
+            },
+            {
                 "link": "https://github.com/",
                 "image": "github.png"
+            },
+            {
+                "link": "https://overleaf.com/",
+                "image": "overleaf.png"
             }
         ],
         "partners": [
-            {
-                "image": "KeyboardCo.jpg",
-                "link": "https://www.keyboardco.com/"
-            },
             {
                 "image": "mlh-logo-color.svg",
                 "link": "https://mlh.io/"
@@ -79,8 +83,16 @@
                 "image": "hackathonsuk.svg"
             },
             {
+                "image": "KeyboardCo.jpg",
+                "link": "https://www.keyboardco.com/"
+            },
+            {
                 "image": "standoutstickers.png",
                 "link": "https://hackp.ac/mlh-standoutstickers-hackathons"
+            },
+            {
+                "image": "dsu.png",
+                "link": "https://www.durhamsu.com/"
             },
             {
                 "image": "compsoc.png",
@@ -89,14 +101,6 @@
             {
                 "image": "Dueg_transparent.png",
                 "link": "https://discord.gg/dueg"
-            },
-            {
-                "image": "dsu.png",
-                "link": "https://www.durhamsu.com/"
-            },
-            {
-                "image": "durhamuni.svg",
-                "link": "https://www.durham.ac.uk/"
             }
         ]
     },
@@ -216,7 +220,7 @@
                 {
                     "title": "Opening Keynote",
                     "icon": "microphone",
-                    "start": "11:15",
+                    "start": "11:00",
                     "end": "11:45"
                 },
                 {
@@ -234,26 +238,26 @@
                 {
                     "title": "Lunch",
                     "icon": "food",
-                    "start": "12:20",
-                    "end": "14:30"
+                    "start": "12:00",
+                    "end": "13:00"
                 },
                 {
                     "title": "Workshop",
                     "icon": "flask",
-                    "start": "14:30",
-                    "end": "15:15"
+                    "start": "13:00",
+                    "end": "13:45"
                 },
                 {
                     "title": "Workshop",
                     "icon": "flask",
-                    "start": "15:15",
-                    "end": "16:00"
+                    "start": "14:00",
+                    "end": "14:45"
                 },
                 {
                     "title": "Workshop",
                     "icon": "flask",
-                    "start": "15:30",
-                    "end": "16:30"
+                    "start": "15:00",
+                    "end": "15:45"
                 }
             ]
         },
@@ -266,40 +270,34 @@
                     "end": "16:45"
                 },
                 {
-                    "title": "Blackrock",
+                    "title": "Snyk (mini-CTF)",
                     "icon": "jigsaw",
-                    "start": "16:30",
-                    "end": "17:15"
-                },
-                {
-                    "title": "Workshop",
-                    "icon": "flask",
                     "start": "17:00",
-                    "end": "17:45"
+                    "end": "18:00"
                 },
                 {
                     "title": "Dinner",
                     "icon": "food",
-                    "start": "18:00",
-                    "end": "19:10"
-                },
-                {
-                    "title": "Workshop",
-                    "icon": "flask",
-                    "start": "19:20",
-                    "end": "20:05"
+                    "start": "18:30",
+                    "end": "19:30"
                 },
                 {
                     "title": "Slideshow Karaoke",
                     "icon": "jigsaw",
-                    "start": "20:05",
-                    "end": "20:50"
+                    "start": "19:15",
+                    "end": "20:15"
                 },
                 {
                     "title": "Cupstacking",
-                    "icon": "jigsaw",
-                    "start": "21:00",
-                    "end": "21:45"
+                    "icon": "cup",
+                    "start": "20:30",
+                    "end": "21:00"
+                },
+                {
+                    "title": "Mario Kart Tournament",
+                    "icon": "gaming",
+                    "start": "21:30",
+                    "end": ""
                 },
                 {
                     "title": "Relaxation room opens",
@@ -308,10 +306,10 @@
                     "end": ""
                 },
                 {
-                    "title": "Games through the night",
-                    "icon": "party",
-                    "start": "22:30",
-                    "end": "2:00"
+                    "title": "Midnight Pizza",
+                    "icon": "pizza",
+                    "start": "00:00",
+                    "end": ""
                 }
             ]
         },
@@ -319,16 +317,10 @@
             "day": "DAY TWO",
             "events": [
                 {
-                    "title": "Midnight Pizza",
-                    "icon": "pizza",
-                    "start": "0:00",
-                    "end": ""
-                },
-                {
                     "title": "Breakfast",
                     "icon": "food",
-                    "start": "6:30",
-                    "end": "8:30"
+                    "start": "09:30",
+                    "end": "10:00"
                 },
                 {
                     "title": "Project Submission Deadline",
@@ -345,25 +337,25 @@
                 {
                     "title": "Lunch",
                     "icon": "food",
-                    "start": "12:05",
-                    "end": "13:05"
+                    "start": "12:00",
+                    "end": "13:00"
                 },
                 {
                     "title": "Science Fair",
                     "icon": "flask",
-                    "start": "13:05",
-                    "end": "14:45"
+                    "start": "13:00",
+                    "end": "14:30"
                 },
                 {
                     "title": "Finalist presentations",
                     "icon": "presentation",
-                    "start": "15:00",
-                    "end": "15:45"
+                    "start": "14:45",
+                    "end": "15:15"
                 },
                 {
                     "title": "Closing Talks",
                     "icon": "microphone",
-                    "start": "15:45",
+                    "start": "15:15",
                     "end": "16:30"
                 }
             ]
