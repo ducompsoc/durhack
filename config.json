@@ -69,6 +69,10 @@
                 "image": "github.png"
             },
             {
+                "link": "https://www.scottlogic.com/",
+                "image": "scott-logic.png"
+            },
+            {
                 "link": "https://overleaf.com/",
                 "image": "overleaf.png"
             }
@@ -242,19 +246,19 @@
                     "end": "13:00"
                 },
                 {
-                    "title": "Workshop",
+                    "title": "GitHub Workshop",
                     "icon": "flask",
                     "start": "13:00",
                     "end": "13:45"
                 },
                 {
-                    "title": "Workshop",
+                    "title": "'Defeating Android Malware' w/ Netcraft",
                     "icon": "flask",
                     "start": "14:00",
                     "end": "14:45"
                 },
                 {
-                    "title": "Workshop",
+                    "title": "'Intro to GraphQL' w/ THG",
                     "icon": "flask",
                     "start": "15:00",
                     "end": "15:45"
@@ -264,7 +268,7 @@
         {
             "events": [
                 {
-                    "title": "Workshop",
+                    "title": "QRT Workshop",
                     "icon": "flask",
                     "start": "16:00",
                     "end": "16:45"
