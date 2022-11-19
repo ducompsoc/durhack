@@ -246,22 +246,22 @@
                     "end": "13:00"
                 },
                 {
-                    "title": "GitHub Workshop",
-                    "icon": "flask",
-                    "start": "13:00",
-                    "end": "13:45"
-                },
-                {
                     "title": "'Defeating Android Malware' w/ Netcraft",
                     "icon": "flask",
                     "start": "14:00",
-                    "end": "14:45"
+                    "end": "15:00"
+                },
+                {
+                    "title": "GitHub Workshop",
+                    "icon": "flask",
+                    "start": "15:00",
+                    "end": "15:45"
                 },
                 {
                     "title": "'Intro to GraphQL' w/ THG",
                     "icon": "flask",
-                    "start": "15:00",
-                    "end": "15:45"
+                    "start": "15:45",
+                    "end": "16:30"
                 }
             ]
         },
@@ -270,13 +270,13 @@
                 {
                     "title": "'Introduction to Kaggle data competitions' w/ QRT",
                     "icon": "flask",
-                    "start": "16:00",
-                    "end": "16:45"
+                    "start": "16:30",
+                    "end": "17:30"
                 },
                 {
                     "title": "Snyk (mini-CTF)",
                     "icon": "jigsaw",
-                    "start": "17:00",
+                    "start": "17:30",
                     "end": "18:00"
                 },
                 {
