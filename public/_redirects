@@ -1,17 +1,26 @@
-/codeofconduct https://static.mlh.io/docs/mlh-code-of-conduct.pdf
-/devpost https://durhack-2022-2.devpost.com 302
-/organise https://forms.gle/t4PC84A719pmcG3Y7 302
+# Main registration and tickets
 /register /tickets 302
 /register-du /tickets 302
 /register-nondu /tickets 302
 /tickets https://forms.gle/pjNCpDGpZZBVPzwaA 302
-/register-interest https://forms.gle/r5ZGwnrZiT3theL38 302
-/preregister /register-interest 302
+
+# Non-attendee signups and forms
+/confirmation https://forms.gle/m1Xc5zzDAxkATnxG9 302
+/feedback https://forms.gle/HvKZMHu34oUXbbmK7 302
 /volunteer https://forms.gle/qGpH8c9tRb9M8eVa9 302
+/organise https://forms.gle/t4PC84A719pmcG3Y7 302
+
+# During the event
+/codeofconduct https://static.mlh.io/docs/mlh-code-of-conduct.pdf
+/devpost https://durhack-2022-2.devpost.com 302
 /toolbox /assets/toolbox.pdf 302
 /live https://live.durhack.com/ 302
 /discord https://live.durhack.com/ 302
 /github https://education.github.com/discount_requests/student_application?utm_source=2022-11-19-DURHACK 302
-/confirmation https://forms.gle/m1Xc5zzDAxkATnxG9 302
-/feedback https://forms.gle/HvKZMHu34oUXbbmK7 302
+
+# Post-event
 /photos https://drive.google.com/drive/folders/1L7HPur6l4qoPQqgsdaCEZMEqm_Tg-owx 302
+
+/preregister /register-interest 302
+/register-interest https://forms.gle/r5ZGwnrZiT3theL38 302
+/2023 /preregister 302
