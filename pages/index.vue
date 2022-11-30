@@ -18,20 +18,24 @@
                                 </div>
 
                                 <p>
-                                    Join us for the seventh iteration of DurHack, Durham University Computing
+                                    Thank you for joining us for the seventh iteration of DurHack,
+                                    Durham University Computing
                                     Society’s annual flagship hackathon.
                                 </p>
 
                                 <p>
-                                    Students of all experience levels will come together in teams of up to five, helping
-                                    and learning from each other in order to create their own project.
+                                    Students of all experience levels came together in teams of up
+                                    to five, helping
+                                    and learning from each other in order to create their own
+                                    project.
                                 </p>
 
                                 <p class="date">
-                                    19th &ndash; 20th November
+                                    19th &ndash; 20th November 2022
                                 </p>
 
-                                <a href="https://forms.gle/pjNCpDGpZZBVPzwaA" class="register button">Join Waiting List!</a>
+                                <a class="register button" href="/preregister">Fancy joining us next
+                                    time?</a>
 
                             </div>
 
@@ -158,15 +162,15 @@
             </aside>
             <div class="faq-cap bottom flex">
                 <div class="row">
-                    <a href="https://durhack2022.devpost.com/project-gallery" target="_blank">See last year's projects</a>
-                    <a href="https://drive.google.com/drive/folders/1b24TRZzD5vW7AAb5-oUV2Ac_ZvtFueNN?usp=sharing" target="_blank">See last year's photos</a>
+                    <a href="/2022-submissions" target="_blank">Check out 2022's projects</a>
+                    <a href="/photos" target="_blank">See photos from 2022</a>
                 </div>
             </div>
         </div>
 
         <div class="section anchor sponsors" id="sponsors">
             <aside>
-                <h1>Sponsors</h1>
+                <h1>Sponsors 2022</h1>
                 <div class="sponsor-grid">
                     <Sponsors/>
 
@@ -184,11 +188,11 @@
         <div class="section anchor schedule" id="schedule">
             <div class="container">
                 <aside class="inside">
-                    <h1>Schedule</h1>
+                    <h1>Schedule 2022</h1>
                     <div>
                         <Schedule/>
-                        <p>This schedule is provisional. Some parts might change significantly
-                            before the event.</p>
+                        <p>Please note: this was 2022's schedule. The next DurHack is likely to
+                            follow a similar format.</p>
                     </div>
 
                 </aside>
@@ -199,9 +203,10 @@
         <div class="section cta-foot" id="map">
             <div class="flex-container">
                 <div class="flex-item" id="mapbody">
-                    <p class="">Join us in the new Mathematics and Computer Science
+                    <p class="">Join us in the Mathematics and Computer Science
                         building at Durham University.</p>
-                    <a href="https://forms.gle/pjNCpDGpZZBVPzwaA" class="register button">Join Waiting List!</a>
+                    <a class="register button" href="/preregister">Register your interest for the
+                        next DurHack</a>
                 </div>
                 <div class="flex-item">
                     <div id="hoop1">
@@ -220,24 +225,14 @@
         </div>
 
 
-        <div class="section cta-foot" id="volunteer">
-            <div class="flex-container">
-                <div class="flex-item" id="volunteerBody">
-                    <p class="">If you’d like to gain hands-on experience of running an event, this role is for you. <br>Registration closes on the 14th November.</p>
-                    <a href="https://forms.gle/qGpH8c9tRb9M8eVa9" class="register button">Become a DurHack Volunteer</a>
-                </div>
-                <!-- <div class="flex-item">
-                    <div id="hoop1">
-                        <div id="hoop2">
-                            <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69" target="_blank">
-                                <img src="/assets/mcsmap.png"
-                                    alt="Map showing the location of the MCS building in Durham.">
-                            </a>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-        </div>
+        <!--        <div class="section cta-foot" id="volunteer">-->
+        <!--            <div class="flex-container">-->
+        <!--                <div class="flex-item" id="volunteerBody">-->
+        <!--                    <p class="">If you’d like to gain hands-on experience of running an event, this role is for you. <br>Registration closes on the 14th November.</p>-->
+        <!--                    <a href="/volunteer" class="register button">Become a DurHack Volunteer</a>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
         <div class="text-center" id="team">
             <h1>Meet the team</h1>
