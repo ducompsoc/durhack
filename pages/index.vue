@@ -79,7 +79,7 @@
     </div>
 
     <div class="text-center" id="sponsors">
-        <h1>Sponsors 2022</h1>
+        <h1>Sponsors 2023</h1>
     </div>
 
     <div class="text-center" id="location">
@@ -134,7 +134,7 @@
                 <p class="bigger">
                     DurHack follows the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH Code of
                         Conduct</a>.
-                    Photos and videos taken at events in 2019 and 2022.
+                    Photos and videos taken at events in 2019, 2022 and 2023.
                 </p>
 
                 <p>
