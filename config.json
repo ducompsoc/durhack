@@ -41,42 +41,8 @@
         ]
     },
     "sponsors": {
-        "gold": [
-            {
-                "link": "https://www.netcraft.com/",
-                "image": "netcraft.png"
-            },
-            {
-                "link": "https://www.waterstons.com/",
-                "image": "waterstons.png"
-            },
-            {
-                "link": "https://www.qube-rt.com/",
-                "image": "qrt.svg"
-            },
-            {
-                "link": "https://www.thg.com/",
-                "image": "THG.jpg"
-            }
-        ],
-        "silver": [
-            {
-                "image": "durhamuni.svg",
-                "link": "https://www.durham.ac.uk/departments/academic/computer-science/"
-            },
-            {
-                "link": "https://github.com/",
-                "image": "github.png"
-            },
-            {
-                "link": "https://www.scottlogic.com/",
-                "image": "scott-logic.png"
-            },
-            {
-                "link": "https://overleaf.com/",
-                "image": "overleaf.png"
-            }
-        ],
+        "gold": [],
+        "silver": [],
         "partners": [
             {
                 "image": "mlh-logo-color.svg",
@@ -85,14 +51,6 @@
             {
                 "link": "http://hackathons.org.uk/",
                 "image": "hackathonsuk.svg"
-            },
-            {
-                "image": "KeyboardCo.jpg",
-                "link": "https://www.keyboardco.com/"
-            },
-            {
-                "image": "standoutstickers.png",
-                "link": "https://hackp.ac/mlh-standoutstickers-hackathons"
             },
             {
                 "image": "dsu.png",

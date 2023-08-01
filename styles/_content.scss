@@ -15,13 +15,6 @@
     }
 
     &.faqs {
-        min-height: 800px;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.8),
-            rgba(0, 0, 0, 0.8)), url('/assets/photos/group_around_desk_monitor.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-
         @media (min-width: $breakpoint-medium) {
             background-size: 100% auto;
         }
@@ -42,21 +35,10 @@
             margin-top: 16px;
             margin-bottom: -1rem;
 
-            &:before {
-                content: '';
-                height: 3rem;
-                width: 5rem;
-                background-image: url("/assets/graphics/bullet.svg");
-                background-size: auto 100%;
-                background-repeat: no-repeat;
-            }
-
             span {
                 flex: 1;
                 padding: 20px 0px 0px 0px;
             }
-
-            // todo: title wrapping inline with pseudo before element on small breakpoints
         }
 
         .answer {
@@ -98,282 +80,6 @@
             >.answer {
                 display: none;
             }
-        }
-
-        >.faq-cap {
-            width: auto;
-            height: 4rem;
-            background-image: url("/assets/graphics/circle.svg");
-            background-repeat: repeat-y;
-            background-size: 20px;
-            background-position-x: 3.2rem;
-            margin: -9px 0px;
-
-            &.top {
-                background-position-y: bottom;
-            }
-
-            &.bottom {
-                display: flex;
-                flex-direction: row;
-                align-items: flex-end;
-                background-position-y: top;
-                padding: 12px 0px 48px 136px;
-
-                a {
-                    font-weight: bold;
-                    border-bottom: none;
-                    margin: 9px 32px 9px 0px;
-
-                    &:after {
-                        display: inline-block;
-                        content: '';
-                        border-style: solid;
-                        border-width: 6px 0px 6px 6px;
-                        border-color: transparent transparent transparent $primary-normal;
-                        margin: 0px 6px;
-                        transition: .3s ease;
-                    }
-
-                    &:hover:after {
-                        margin: 0px 0px 0px 12px;
-                    }
-                }
-            }
-        }
-    }
-
-    &.sponsors {
-        display: flex;
-        flex-direction: column;
-        // padding-bottom: 90px;
-
-        // &:after {
-        //     content: '';
-        //     border-style: solid;
-        //     border-width: 0px 0px 90px 100vw;
-        //     border-color: transparent transparent #222 transparent;
-        // }
-
-        .sponsor-grid {
-            h3 > img {
-                height: 2.5rem;
-            }
-
-            .sponsor {
-                box-sizing: border-box;
-                padding: 0px 9px 9px 0px;
-
-                > a {
-                    width: 100%;
-                    height: 100%;
-                    background-color: #fff;
-                    border-bottom: solid 1px #ccc;
-                    padding: 16px;
-                    box-sizing: border-box;
-                }
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: contain;
-                }
-            }
-
-            // .platinum .sponsor, .presenting .sponsor {
-            //     width: 33%;
-            //     height: 152px;
-
-            //     > a {
-            //         padding: 32px 16px; // edited for AWS, remove me
-            //     }
-            // }
-
-            .gold .sponsor {
-                width: 40%;
-                height: 150px;
-
-                // > a {
-                // 	padding: 16px 32px; // little hack to deal with palantir's svg
-                // }
-            }
-
-            .silver .sponsor {
-                width: 35%;
-                height: 150px;
-            }
-
-            // .silver .sponsor {
-            .partners .sponsor {
-                width: 25%;
-                height: 108px;
-            }
-
-            // .partners .sponsor {
-            //     width: 16%;
-            //     height: 96px;
-            // }
-
-            @media screen and (max-width: $breakpoint-small) {
-                .sponsor {
-                    width: 100% !important;
-                }
-            }
-        }
-    }
-
-    &.inspiration {
-        background-image: url('/assets/photos/7334.jpg');
-        background-size: cover;
-        background-attachment: fixed;
-        padding: 0px;
-
-        >div {
-            background-color: rgba($primary-dark, 0.85);
-            font-size: 24px;
-            font-weight: 300;
-            text-align: center;
-            padding: 96px 0px;
-
-            a {
-                border-bottom: dashed 1px #fff;
-                color: #fff;
-                text-decoration: none;
-            }
-        }
-    }
-
-    &.team {
-        position: relative;
-        font-weight: 300;
-        text-align: center;
-        padding: 0px 0px 60px 0px;
-        margin-top: 32px;
-
-        // &:before {
-        // 	content: '';
-        // 	// border-style: solid;
-        // 	// border-width: 90px 100vw 0px 0px;
-        // 	// border-color: $primary-dark transparent transparent transparent;
-        //     // width: 0;
-        //     // height: 0;
-        //     // border-left: 40px solid transparent;
-        //     // border-right: 40px solid transparent;
-        //     // border-top: 40px solid #f00;
-
-        //     width: 100px;
-        //     height: 100px;
-        //     background: red;
-        // }
-
-        >.bg {
-            position: absolute;
-            top: 10px;
-            right: 0px;
-            left: -84px;
-            bottom: 0px;
-            background-image: url('/assets/diamond_tile.svg');
-            // background-position: left -22px top 0px;
-            background-position: calc(50% - -42px) 0%;
-            z-index: -1;
-        }
-
-        >.inner {
-            >p {
-                font-size: 22px;
-
-                >a {
-                    border-bottom-color: white;
-                    color: white;
-                }
-            }
-        }
-
-        .team-grid {
-            margin: 10px 0px 64px 0px;
-            border-bottom: 30px;
-            flex-wrap: wrap;
-            align-items: stretch;
-
-            a {
-                display: inline-grid;
-                // border: solid 2px #fff;
-                // border-radius: 100%;
-                // line-height: 0px;
-                justify-content: center;
-                align-content: center;
-                padding: 30px;
-                transform: rotate(45deg) scale(1.20);
-                margin: 41px -4px;
-                transition: .5s ease;
-                overflow: hidden;
-                width: 50px;
-                height: 50px;
-
-
-                img {
-                    width: 160px;
-                    height: 160px;
-
-                    // border-radius: 100%;
-                    transform: rotate(-45deg);
-                }
-
-                &:hover {
-                    transform: scale(1.3) rotate(45deg);
-                    // border: solid 5px $primary-normal;
-                    outline: $primary-normal solid 5px;
-                    z-index: 1;
-                    transition: outline-width .15s ease-in-out;
-                }
-            }
-        }
-
-        @media (min-width: 920px) and (max-width: 1325px) {
-            >.bg {
-                display: block;
-                background-position: calc(50% - -42px) 50%;
-                background-size: 166px 166px;
-                // background-size: auto 170px;
-                top: 9px;
-
-
-            }
-
-            .team-grid {
-                a {
-                    transition: .0s ease;
-                    width: 30px;
-                    height: 30px;
-                    margin: 40px -3.5px;
-
-
-                    img {
-                        width: 130px;
-                        height: 130px;
-                    }
-                }
-            }
-        }
-
-        @media screen and (max-width: 920px) {
-            .team-grid .column {
-                flex-direction: row;
-                border-bottom: 30px;
-
-                >a {
-                    margin: -6.2px 47px;
-                }
-            }
-
-            .team-grid {
-                margin-top: 55px;
-                margin-bottom: 100px;
-            }
-
-            // > .bg {
-            // 	display: none;
-            // }
         }
     }
 
@@ -529,6 +235,137 @@
 
                 .bracket {
                     display: none;
+                }
+            }
+        }
+    }
+
+    &.cta-map {
+        text-align: left;
+        padding: 0px calc(82px + 32px);
+
+        @media screen and (max-width: $breakpoint-medium) {
+            padding: 128px 32px;
+        }
+
+        p {
+            font-size: 32px;
+    }
+
+    .button {
+        display: inline-block;
+        border: solid 2px $secondary-a;
+        font-size: 24px;
+        font-weight: bold;
+        text-decoration: none;
+        color: $secondary-a;
+        padding: 16px 96px;
+        margin: 9px 0px;
+        transition: .5s ease;
+
+        &:not(.disabled):hover {
+            background-color: $secondary-a;
+            color: #222;
+        }
+
+        @media screen and (max-width: $breakpoint-medium) {
+            padding: 12px 32px;
+        }
+
+        &.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .flex-item{
+        flex: 50%;
+    }
+
+    #mapbody {
+        position: relative;
+        width: 80%;
+        text-align: left;
+        align-self: center;
+    }
+
+    $rad1: 50vw;
+    $thick1: calc($rad1 / 60);
+
+    $thick2: calc($rad1 / 20);
+    $rad2: 70%; // percentage of rad1
+
+    #hoop1 {
+        width: $rad1;
+        aspect-ratio: 1;
+        background: $primary-dark;
+        outline: $thick1 solid $tertiary;
+        border-radius: 50%;
+        margin: $thick1 -50vw $thick1 64px;
+    }
+
+    #hoop2 {
+        width: $rad2;
+        aspect-ratio: 1;
+        position: relative;
+        top: calc((100% - $rad2) / 2);
+        left: calc((100% - $rad2) / 2);
+        background: $primary-dark;
+        outline: $thick2 solid $tertiary;
+        //margin: $thick2;
+        border-radius: 50%;
+    }
+
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        border-radius: 50%;
+        width: 90%;
+    }
+
+    @media screen and (max-width: $breakpoint-small) {
+        .flex-container {
+            display: block;
+        }
+        #hoop1 {
+            margin-top: 50px;
+            margin-left: 0%;
+        }
+        #mapbody {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    @media screen and (max-width: $breakpoint-extra-small) {
+        #hoop1 {
+            width: 100%;
+        }
+    }
+}
+
+    &.socials {
+        a {
+            padding: 1rem;
+            text-decoration: none;
+            border-bottom: none;
+            img {
+                width: 35px;
+                height: 35px;
+                &:hover {
+                    transform: scale(1.2);
+                    transition: .15s ease-in-out;
+                    border-bottom-style: none;
                 }
             }
         }

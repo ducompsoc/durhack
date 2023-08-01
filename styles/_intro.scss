@@ -38,37 +38,6 @@
         }
     }
 
-    .image {
-        display: flex;
-        flex-direction: column;
-
-        .file-crop {
-            width: 90%;
-            height: auto;
-            mask-image: url('/assets/graphics/file_like_crop.svg');
-            mask-repeat: no-repeat;
-            align-self: center;
-
-            @media (min-width: $lucas-extra-small) {
-                width: 100%;
-                align-self: start;
-            }
-        }
-
-        .img-file-under-tic {
-            width: 90%;
-            height: auto;
-            margin-top: -6.5%;
-            align-self: center;
-
-            @media (min-width: $lucas-extra-small) {
-                width: 100%;
-                margin-left: 0;
-                align-self: start;
-            }
-        }
-    }
-
     .flex-item {
         flex: 50%;
         padding-bottom: 0;
