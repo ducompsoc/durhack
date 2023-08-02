@@ -11,6 +11,9 @@
     "postinstall": "nuxt prepare"
   },
   "author": "Ethan Waite <ethan.w.waite@durham.ac.uk>",
+  "contributors": [
+    "Joe Clack <joseph.clack@durham.ac.uk>"
+  ],
   "license": "UNLICENSED",
   "devDependencies": {
     "nuxt": "3.0.0-rc.8",
