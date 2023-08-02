@@ -20,9 +20,6 @@
     <div id="navcorner"></div>
     <div id="navtrustbadge"></div>
 
-    <img src="/assets/graphics/artifact-diamond.svg" class="artifact intro-diamond rellax" data-rellax-speed="-3" />
-    <img src="/assets/graphics/artifact-cross.svg" class="artifact intro-cross rellax" data-rellax-speed="-1" />
-
     <div id="intro" class="section intro container">
         <h2>DurHack is all about <b>learning something new</b></h2>
 
