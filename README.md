@@ -1,4 +1,4 @@
-# DurHack 2019 Website
+# DurHack 2023 Website
 This repository is the latest website for DurHack.
 
 We're hosting this using Netlify at [durhack.com](https://durhack.com).
@@ -13,12 +13,12 @@ We're hosting this using Netlify at [durhack.com](https://durhack.com).
     ```
     npm install
     ```
-   
+
 3. Build static site:
     ```
     npm run build
     ```
-   
+
 4. Install `netlify-cli` globally if you haven't already:
     ```
     npm install -g netlify-cli
