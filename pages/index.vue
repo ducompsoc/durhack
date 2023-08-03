@@ -20,110 +20,161 @@
     <div id="navcorner" hidden></div>
     <div id="navtrustbadge"></div>
 
+    <div id="splash" class="section splash container">
+        <div class="column container">
+            <svg class="clouds" viewbox="0 0 15 3" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="clouds-foreground-gradient" gradientTransform="rotate(90)">
+                        <stop class="start-stop" offset="0%" stop-color="var(--gradient-start)" />
+                        <stop class="end-stop" offset="100%" stop-color="var(--gradient-end)" />
+                    </linearGradient>
+                    <linearGradient id="clouds-background-gradient" gradientTransform="rotate(90)">
+                        <stop offset="0%" stop-color="var(--gradient-start)" />
+                        <stop offset="100%" stop-color="var(--gradient-end)" />
+                    </linearGradient>
+                </defs>
+                <g>
+                    <polygon class="clouds-background-polygon" points="0 0 15 0 15 2 0 2"></polygon>
+                    <polygon class="clouds-foreground-polygon" points="0 1 15 1 15 3 0 3"></polygon>
+                </g>
+            </svg>
+        </div>
+    </div>
+
     <div id="intro" class="section intro container">
-        <h2>DurHack is all about <b>learning something new</b></h2>
+        <div class="main">
+            <h2>DurHack is all about <b>learning something new</b></h2>
 
-        <div class="flex-container">
-            <div class="flex-item">
-                <p>
-                    The premise: work together in your team to create something awesome <span class="emphasis">in
+            <div class="flex-container">
+                <div class="flex-item">
+                    <p>
+                        The premise: work together in your team to create something awesome <span class="emphasis">in
                         just 24 hours</span>.
-                </p>
-                <ul>
-                    <li>
-                        <img alt="A icon of a light bulb" src="/assets/icons/lightbulb.svg">
-                        Optional team-formation activity
-                    </li>
-                    <li>
-                        <img alt="An icon of a person partying" src="/assets/icons/party.svg">
-                        Mini-events throughout the weekend
-                    </li>
-                    <li>
-                        <img alt="An icon of a shirt" src="/assets/icons/swag.svg">
-                        Hackathon swag and food included
-                    </li>
-                </ul>
-            </div>
+                    </p>
+                    <ul>
+                        <li>
+                            <img alt="A icon of a light bulb" src="/assets/icons/lightbulb.svg">
+                            Optional team-formation activity
+                        </li>
+                        <li>
+                            <img alt="An icon of a person partying" src="/assets/icons/party.svg">
+                            Mini-events throughout the weekend
+                        </li>
+                        <li>
+                            <img alt="An icon of a shirt" src="/assets/icons/swag.svg">
+                            Hackathon swag and food included
+                        </li>
+                    </ul>
+                </div>
 
-            <div class="flex-item">
-                <p>
-                    DurHack welcomes students of <span class="emphasis">all experience levels</span>,
-                    from all degrees and any university.
-                </p>
-                <ul>
-                    <li>
-                        <img alt="An icon of a person" src="/assets/icons/mentor.svg">
-                        Mentors on-hand to help with your project
-                    </li>
-                    <li>
-                        <img alt="An icon of a science flask" src="/assets/icons/flask.svg">
-                        Workshops to learn new skills
-                    </li>
-                    <li>
-                        <img alt="An icon of a rosette prize" src="/assets/icons/prizes.svg">
-                        Sponsor-led challenges to shoot for
-                    </li>
-                </ul>
+                <div class="flex-item">
+                    <p>
+                        DurHack welcomes students of <span class="emphasis">all experience levels</span>,
+                        from all degrees and any university.
+                    </p>
+                    <ul>
+                        <li>
+                            <img alt="An icon of a person" src="/assets/icons/mentor.svg">
+                            Mentors on-hand to help with your project
+                        </li>
+                        <li>
+                            <img alt="An icon of a science flask" src="/assets/icons/flask.svg">
+                            Workshops to learn new skills
+                        </li>
+                        <li>
+                            <img alt="An icon of a rosette prize" src="/assets/icons/prizes.svg">
+                            Sponsor-led challenges to shoot for
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="text-center" id="faqs" >
-        <h1>FAQs</h1>
-    </div>
-    <div class="section faqs column">
-        <FAQs/>
-    </div>
-
-    <div class="text-center" id="sponsors">
-        <h1>Sponsors 2023</h1>
-    </div>
-
-    <div class="text-center" id="location">
-        <h1>Location</h1>
-    </div>
     <div class="section cta-map" id="map">
-        <div class="flex-container">
-            <div class="flex-item" id="mapbody">
+        <div class="main">
+            <div class="text-center">
+                <h1>Your Way to Durhack</h1>
             </div>
-            <div class="flex-item">
-                <div id="hoop1">
-                    <div id="hoop2">
-                        <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69" target="_blank">
-                            <img src="/assets/mcsmap.png"
-                                alt="Map showing the location of the MCS building in Durham.">
-                        </a>
+            <div class="flex-container">
+                <div class="flex-item" id="mapbody">
+                </div>
+                <div class="flex-item">
+                    <div id="hoop1">
+                        <div id="hoop2">
+                            <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69" target="_blank">
+                                <img src="/assets/mcsmap.png"
+                                     alt="Map showing the location of the MCS building in Durham.">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="text-center" id="schedule">
-        <h1>Schedule</h1>
-    </div>
-    <div class="section schedule">
-        <Schedule/>
+    <div id="faqs" class="section faqs column">
+        <div class="main">
+            <div class="text-center">
+                <h1>FAQs</h1>
+            </div>
+            <FAQs/>
+        </div>
     </div>
 
-    <div class="text-center" id="team">
-        <h1>Meet the team</h1>
+    <div id="sponsors" class="section sponsors">
+        <div class="main">
+            <div class="text-center">
+                <h1>Sponsors 2023</h1>
+            </div>
+        </div>
     </div>
-    <div class="section socials">
-        <a href="https://www.facebook.com/DurHackEvent" target="_blank">
-            <img alt="Twitter" src="/assets/icons/facebook_white_58px.png">
-        </a>
-        <a href="https://www.instagram.com/durhackevent" target="_blank">
-            <img alt="Twitter" src="/assets/icons/instagram_white.svg">
-        </a>
-        <a href="https://twitter.com/DurHackEvent" target="_blank">
-            <img alt="Twitter" src="/assets/icons/twitter_white.svg">
-        </a>
-        <a href="https://www.linkedin.com/company/durhack/" target="_blank">
-            <img alt="Twitter" src="/assets/icons/linkedin.png">
-        </a>
+
+
+    <div id="schedule" class="section schedule">
+        <div class="main">
+            <div class="text-center">
+                <h1>Schedule</h1>
+            </div>
+        </div>
     </div>
-    <p><a href="mailto:hello@durhack.com">hello@durhack.com</a></p>
+
+
+    <div id="team" class="section team">
+        <div class="main">
+            <div class="text-center">
+                <h1>Meet the team</h1>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="megateams" class="section megateams">
+        <div class="main">
+            <div class="text-center">
+                <h1>Megateams</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="section socials" hidden>
+        <div class="main">
+            <a href="https://www.facebook.com/DurHackEvent" target="_blank">
+                <img alt="Twitter" src="/assets/icons/facebook_white_58px.png">
+            </a>
+            <a href="https://www.instagram.com/durhackevent" target="_blank">
+                <img alt="Twitter" src="/assets/icons/instagram_white.svg">
+            </a>
+            <a href="https://twitter.com/DurHackEvent" target="_blank">
+                <img alt="Twitter" src="/assets/icons/twitter_white.svg">
+            </a>
+            <a href="https://www.linkedin.com/company/durhack/" target="_blank">
+                <img alt="Twitter" src="/assets/icons/linkedin.png">
+            </a>
+        </div>
+    </div>
+
+    <p class="text-center" hidden><a href="mailto:hello@durhack.com">hello@durhack.com</a></p>
 
     <footer>
         <div class="container row center">
