@@ -2,10 +2,13 @@
 
 .section {
     overflow: hidden;
-    padding: 4rem 64px;
 
-    @media screen and (max-width: $breakpoint-medium) {
-        padding: 4rem 16px;
+    .main {
+        padding: 4rem 64px;
+
+        @media screen and (max-width: $breakpoint-medium) {
+            padding: 4rem 16px;
+        }
     }
 
     h2 {
@@ -242,10 +245,13 @@
 
     &.cta-map {
         text-align: left;
-        padding: 0px calc(82px + 32px);
 
-        @media screen and (max-width: $breakpoint-medium) {
-            padding: 128px 32px;
+        .main {
+            padding: 0px calc(82px + 32px);
+
+            @media screen and (max-width: $breakpoint-medium) {
+                padding: 128px 32px;
+            }
         }
 
         p {
