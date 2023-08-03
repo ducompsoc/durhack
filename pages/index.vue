@@ -17,7 +17,7 @@
     <div id="navouter"></div>
     <div id="navleft"></div>
     <div id="navright"></div>
-    <div id="navcorner"></div>
+    <div id="navcorner" hidden></div>
     <div id="navtrustbadge"></div>
 
     <div id="intro" class="section intro container">
