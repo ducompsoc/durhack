@@ -1,0 +1,67 @@
+@import "./variables";
+
+$background-gradient-indigo: #392b5e;
+$background-gradient-blue: #3ca2bc;
+$background-gradient-solid-pink: #aa6980;
+$background-gradient-pink: #ffe4db;
+$background-gradient-cyan: #426676;
+$background-gradient-light-blue: #1f80a1;
+$background-gradient-black: #{$primary-dark};
+$background-gradient-deep-blue: #131c6a;
+
+.section {
+    &.splash {
+        .clouds {
+            #clouds-foreground-gradient {
+                --gradient-start: #{$background-gradient-solid-pink};
+                --gradient-end: #{$background-gradient-pink};
+            }
+
+            #clouds-background-gradient {
+                --gradient-start: #bf4fe5;
+                --gradient-end: #5252de;
+            }
+
+            .clouds-foreground-polygon {
+                fill: url(#clouds-foreground-gradient);
+            }
+
+            .clouds-background-polygon {
+                fill: url(#clouds-background-gradient);
+            }
+        }
+    }
+
+    &.intro {
+        background: linear-gradient(
+            to bottom,
+            #{$background-gradient-pink},
+            #{$background-gradient-cyan}
+        );
+    }
+
+    &.cta-map {
+        background: linear-gradient(
+            to bottom,
+            #{$background-gradient-cyan},
+            #{$background-gradient-black} 60%
+        );
+    }
+
+    &.faqs {
+        background: linear-gradient(
+            to bottom,
+            #{$background-gradient-black},
+            #{$background-gradient-deep-blue},
+            #{$background-gradient-black}
+        );
+    }
+
+    &.megateams {
+        background: linear-gradient(
+            to bottom,
+            #{$background-gradient-black},
+            #{$background-gradient-light-blue}
+        );
+    }
+}
