@@ -1,8 +1,145 @@
 .section.splash {
-    .clouds {
-        width: 100%;
-        height: auto;
-        align-content: end;
+
+    .background {
+        position: relative;
+        display: block;
+        align-items: center;
+
+        height: 70vw;
+
+        // Medium devices (tablets, less than 992px)
+        @media (max-width: 991.98px) {
+            height: 150vw;
+        }
+
+        // Small devices (landscape phones, less than 768px)
+        @media (max-width: 767.98px) {
+            height: 175vw;
+        }
+
+        // X-Small devices (portrait phones, less than 576px)
+        @media (max-width: 575.98px) {
+            height: 200vw;
+        }
+
+        .splash-photo {
+            // anything bigger
+            height: auto;
+            width: 100vw;
+            left: 50%;
+
+            // 1920 desktops
+            @media (max-width: 1919.98px) {
+                height: 120vh;
+                width: auto;
+            }
+
+            // X-Small devices (portrait phones, less than 576px)
+            @media (max-width: 575.98px) {
+                height: 100vh;
+                left: 0;
+                width: auto;
+            }
+
+            position: absolute;
+            top: 0;
+            transform: translate(-50%, 0);
+            z-index: 1;
+        }
+
+        .circuitry-overlay {
+            height: auto;
+            width: 45vw;
+            top: -15vw;
+            left: -17vw;
+
+            // 1920 desktops
+            @media (max-width: 1919.98px) {
+                height: 55vw;
+                width: auto;
+                left: -15vw;
+            }
+
+            // Large devices (desktops, less than 1200px)
+            @media (max-width: 1199.98px) {
+                top: -12vw;
+            }
+
+            // Small devices (landscape phones, less than 768px)
+            @media (max-width: 767.98px) {
+                height: 80vw;
+            }
+
+            // X-Small devices (portrait phones, less than 576px)
+            @media (max-width: 575.98px) {
+                height: 80vw;
+                left: -20vw;
+            }
+
+            position: absolute;
+            z-index: 2;
+            mix-blend-mode: overlay;
+        }
+
+        .space-shadow {
+            height: auto;
+            width: 88vw;
+            top: -70%;
+
+            // 1920 desktops
+            @media (max-width: 1919.98px) {
+                height: 250%;
+                width: auto;
+                top: -60%;
+            }
+
+            // X-Large devices (large desktops, less than 1400px)
+            @media (max-width: 1399.98px) {
+                height: 220%;
+            }
+
+            // Large devices (desktops, less than 1200px)
+            @media (max-width: 1199.98px) {
+                height: 190%;
+                top: -50%;
+            }
+
+            // Medium devices (tablets, less than 992px)
+            @media (max-width: 991.98px) {
+                height: 155%;
+                top: -40%;
+            }
+
+            // Small devices (landscape phones, less than 768px)
+            @media (max-width: 767.98px) {
+                height: 150%;
+                top: -30%;
+            }
+
+            // X-Small devices (portrait phones, less than 576px)
+            @media (max-width: 575.98px) {
+                top: 0;
+            }
+
+            position: absolute;
+            right: 0;
+            z-index: 2;
+        }
+
+        .rocket {
+            width: 100vw;
+
+            // Medium devices (tablets, less than 992px)
+            @media (max-width: 991.98px) {
+                width: 200vw;
+                left: -90vw;
+            }
+
+            position: absolute;
+
+            bottom: 0;
+            z-index: 3;
+        }
     }
 
     .main {
