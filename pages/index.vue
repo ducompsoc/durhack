@@ -21,23 +21,11 @@
     <div id="navtrustbadge"></div>
 
     <div id="splash" class="section splash container">
-        <div class="column container">
-            <svg class="clouds" viewbox="0 0 15 3" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="clouds-foreground-gradient" gradientTransform="rotate(90)">
-                        <stop class="start-stop" offset="0%" stop-color="var(--gradient-start)" />
-                        <stop class="end-stop" offset="100%" stop-color="var(--gradient-end)" />
-                    </linearGradient>
-                    <linearGradient id="clouds-background-gradient" gradientTransform="rotate(90)">
-                        <stop offset="0%" stop-color="var(--gradient-start)" />
-                        <stop offset="100%" stop-color="var(--gradient-end)" />
-                    </linearGradient>
-                </defs>
-                <g>
-                    <polygon class="clouds-background-polygon" points="0 0 15 0 15 2 0 2"></polygon>
-                    <polygon class="clouds-foreground-polygon" points="0 1 15 1 15 3 0 3"></polygon>
-                </g>
-            </svg>
+        <div class="background container">
+            <img alt="top-down view of people at a desk programming" class="splash-photo" src="/assets/photos/splash-hacking.jpg">
+            <img alt="circuitry overlay" class="circuitry-overlay" src="/assets/graphics/artifact-circuitry.svg"/>
+            <img alt="dark space blur" class="space-shadow" src="/assets/graphics/artifact-space-blur.svg"/>
+            <object class="rocket" type="image/svg+xml" data="/assets/graphics/rocket/rocket-combined.svg">rocket</object>
         </div>
     </div>
 
