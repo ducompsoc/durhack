@@ -9,6 +9,7 @@ $primary-normal: #FF0040;
 /* Yeah I don't like it either:
 https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element/53336754#53336754 */
 $primary-normal-filter: invert(12%) sepia(76%) saturate(6526%) hue-rotate(339deg) brightness(106%) contrast(109%);
+$white-filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(263deg) brightness(109%) contrast(101%);
 
 $primary-dark: #111;
 $secondary-a: #00FFF0;
