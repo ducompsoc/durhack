@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Chakra+Petch:wght@400;600;700&display=swap');
-
+@import './fonts';
 @import './variables';
 
 // Reset user-agent stylesheets https://stackoverflow.com/questions/29307357/get-rid-of-webkit-padding-start-40px
@@ -14,7 +13,7 @@ html {
 
 body {
     background-color: $primary-dark;
-    font-family: 'Chakra Petch', 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 20px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
