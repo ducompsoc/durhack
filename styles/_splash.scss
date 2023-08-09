@@ -141,6 +141,115 @@
             bottom: 0;
             z-index: 3;
         }
+
+        .countdown {
+            bottom: calc(70vw - 100vh + 20px);
+
+            // Medium devices (tablets, less than 992px)
+            @media (max-width: 991.98px) {
+                bottom: calc(150vw - 100vh + 20px);
+            }
+
+            // Small devices (landscape phones, less than 768px)
+            @media (max-width: 767.98px) {
+                bottom: calc(175vw - 100vh + 20px);
+            }
+
+            // X-Small devices (portrait phones, less than 576px)
+            @media (max-width: 575.98px) {
+                bottom: calc(200vw - 100vh + 20px);
+            }
+
+            font-family: 'Space Grotesk', sans-serif;
+            position: absolute;
+            left: 5vw;
+            z-index: 3;
+
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+
+            $text-sm-size: 30px;
+            $text-md-size: 50px;
+            $text-lg-size: 90px;
+
+            .t-minus::after {
+                content: "T - minus";
+                font-size: $text-sm-size;
+
+                font-style: inherit;
+                font-weight: inherit;
+                line-height: inherit;
+            }
+
+            .twinkle-icon {
+                background-size: contain;
+                background-position: 0 0;
+                background-repeat: no-repeat;
+                display: inline-block;
+                filter: $white-filter;
+                content: "";
+                vertical-align: -10%;
+                width: $text-md-size;
+                height: $text-md-size;
+            }
+
+            .days {
+                font-size: $text-lg-size;
+
+                &::after {
+                    content: " days"
+                }
+            }
+
+            .hours {
+                font-size: $text-md-size;
+
+                &::before {
+                    @extend .twinkle-icon;
+                    background-image: url("/assets/icons/twinkle-bright.svg");
+                }
+
+                &::after {
+                    content: " hours";
+                    font-size: $text-sm-size;
+                }
+            }
+
+            .minutes {
+                font-size: $text-md-size;
+
+                &::before {
+                    @extend .twinkle-icon;
+                    background-image: url("/assets/icons/twinkle-dim.svg");
+                    background-position-x: 3px;
+                    padding-left: 3px;
+                    padding-right: calc($text-md-size - $text-sm-size - 3px);
+                    width: $text-sm-size;
+                    height: $text-sm-size;
+                    vertical-align: 0;
+                }
+
+                &::after {
+                    content: " minutes";
+                    font-size: $text-sm-size;
+                }
+            }
+
+            .seconds {
+                font-size: $text-md-size;
+
+                &::before {
+                    @extend .twinkle-icon;
+                    background-image: url("/assets/icons/twinkle-normal.svg");
+                }
+
+                &::after {
+                    content: " seconds";
+                    font-size: $text-sm-size;
+                }
+            }
+        }
     }
 
     .main {
