@@ -146,21 +146,23 @@
         }
 
         .countdown {
-            bottom: calc(70vw - 100vh + 20px);
+            $dist-from-bottom: 40px;
+
+            bottom: calc(70vw - 100vh + $dist-from-bottom);
 
             // Medium devices (tablets, less than 992px)
             @include breakpoint-down(md) {
-                bottom: calc(150vw - 100vh + 20px);
+                bottom: calc(150vw - 100vh + $dist-from-bottom);
             }
 
             // Small devices (landscape phones, less than 768px)
             @include breakpoint-down(sm) {
-                bottom: calc(175vw - 100vh + 20px);
+                bottom: calc(175vw - 100vh + $dist-from-bottom);
             }
 
             // X-Small devices (portrait phones, less than 576px)
             @include breakpoint-down(xs) {
-                bottom: calc(200vw - 100vh + 20px);
+                bottom: calc(200vw - 100vh + $dist-from-bottom);
             }
 
             font-family: 'Space Grotesk', sans-serif;
