@@ -1,24 +1,25 @@
 <template>
-    <a id="mlh-trust-badge"
-       style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000;border: none"
-       href="https://mlh.io/eu?utm_source=eu-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=black"
-       target="_blank"><img
-            src="https://s3.amazonaws.com/logged-assets/trust-badge/2023/mlh-trust-badge-2023-black.svg"
+    <div id="topbar">
+        <a id="mlh-trust-badge"
+           style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000;border: none"
+           href="https://mlh.io/eu?utm_source=eu-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=black"
+           target="_blank"><img
+            src="https://s3.amazonaws.com/logged-assets/trust-badge/2023/mlh-trust-badge-2023-white.svg"
             alt="Major League Hacking 2023 Hackathon Season" style="width:100%"></a>
-
-    <div id="navbar">
-        <a href="#intro">Intro</a>
-        <a href="#faqs">FAQs</a>
-        <a href="#sponsors">Sponsors</a>
-        <a href="#schedule">Schedule</a>
-        <a href="#team">Team</a>
+        <nav id="navbar">
+            <a href="#intro">Intro</a>
+            <a href="#faqs">FAQs</a>
+            <a href="#sponsors">Sponsors</a>
+            <a href="#schedule">Schedule</a>
+            <a href="#team">Team</a>
+        </nav>
+        <div id="navstripe"/>
+        <div id="navbrand">
+            <img alt="DurHack 2023 logo" src="/assets/logo23.svg">
+            <span>DURHACK</span>
+        </div>
+        <div id="navdiagonal"/>
     </div>
-    <div id="navstripe"></div>
-    <div id="navouter"></div>
-    <div id="navleft"></div>
-    <div id="navright"></div>
-    <div id="navcorner" hidden></div>
-    <div id="navtrustbadge"></div>
 
     <div id="splash" class="section splash container">
         <div class="main container">
