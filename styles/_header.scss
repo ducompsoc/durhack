@@ -9,7 +9,7 @@
 	min-width: 60px;
 	z-index: 9998;
 
-	@media screen and (max-width: $breakpoint-small) {
+	@media screen and (max-width: $old-breakpoint-small) {
 		right: 3%;
 	}
 }

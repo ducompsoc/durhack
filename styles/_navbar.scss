@@ -1,4 +1,4 @@
-@media only screen and (max-width: $breakpoint-extra-small) {
+@media only screen and (max-width: $old-breakpoint-extra-small) {
     #navbar, #navstripe, #navouter, #navcorner, #navleft, #navright {
         visibility: hidden
     }
@@ -106,7 +106,7 @@
     pointer-events: none;
     margin-bottom: -180px;
 
-    @media screen and (max-width: $breakpoint-small) {
+    @media screen and (max-width: $old-breakpoint-small) {
         display: none;
     }
 }

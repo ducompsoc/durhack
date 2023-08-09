@@ -7,7 +7,7 @@ footer {
     position: relative;
     padding: 48px calc(82px + 32px);
 
-    @media screen and (max-width: $breakpoint-medium) {
+    @media screen and (max-width: $old-breakpoint-medium) {
         padding: 48px 32px;
     }
 
