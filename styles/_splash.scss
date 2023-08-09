@@ -5,6 +5,7 @@
 
     position: relative;
     top: calc(-1 * $navbrandheight);
+    margin-bottom: calc(-1 * $navbrandheight);
 
     .main {
         position: relative;
