@@ -16,6 +16,16 @@ $secondary-a: #00FFF0;
 $secondary-b: #E3709C;
 $tertiary: #141B2F;
 
-$navwidth: max(30%, 520px);
+// common nav variables
 $navheight: 60px;
-$navstripe: 12px;
+$navstripe: $navheight;
+$navbrandheight: 90px;
+$navbackground: linear-gradient(88deg, #020316 0%, #3C2F62 16.67%, rgba(60, 163, 189, 0.85) 34.38%, #707B89 50%, rgba(205, 52, 44, 0.76) 72.40%, #E37F60 99.99%);
+
+// nav variables for long brand
+$navwidth: 60%;
+$longnavbrandwidth: max(25%, 350px);
+
+// nav variables for short brand
+$longnavwidth: 70%;
+$shortnavbrandwidth: max(10%, 150px);
