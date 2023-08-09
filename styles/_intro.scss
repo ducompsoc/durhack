@@ -6,7 +6,7 @@
     .main {
         padding: 128px 82px;
 
-        @media screen and (max-width: $breakpoint-medium) {
+        @media screen and (max-width: $old-breakpoint-medium) {
             padding: 128px 32px;
         }
     }

@@ -6,7 +6,7 @@
     .main {
         padding: 4rem 64px;
 
-        @media screen and (max-width: $breakpoint-medium) {
+        @media screen and (max-width: $old-breakpoint-medium) {
             padding: 4rem 16px;
         }
     }
@@ -18,7 +18,7 @@
     }
 
     &.faqs {
-        @media (min-width: $breakpoint-medium) {
+        @media (min-width: $old-breakpoint-medium) {
             background-size: 100% auto;
         }
 
@@ -100,7 +100,7 @@
             position: relative;
             margin: 0px 16px;
 
-            @media screen and (min-width: $breakpoint-small) {
+            @media screen and (min-width: $old-breakpoint-small) {
                 &:before,
                 .event .line:before,
                 .event .line:after {
@@ -249,7 +249,7 @@
         .main {
             padding: 0px calc(82px + 32px);
 
-            @media screen and (max-width: $breakpoint-medium) {
+            @media screen and (max-width: $old-breakpoint-medium) {
                 padding: 128px 32px;
             }
         }
@@ -274,7 +274,7 @@
             color: #222;
         }
 
-        @media screen and (max-width: $breakpoint-medium) {
+        @media screen and (max-width: $old-breakpoint-medium) {
             padding: 12px 32px;
         }
 
@@ -338,7 +338,7 @@
         width: 90%;
     }
 
-    @media screen and (max-width: $breakpoint-small) {
+    @media screen and (max-width: $old-breakpoint-small) {
         .flex-container {
             display: block;
         }
@@ -353,7 +353,7 @@
         }
     }
 
-    @media screen and (max-width: $breakpoint-extra-small) {
+    @media screen and (max-width: $old-breakpoint-extra-small) {
         #hoop1 {
             width: 100%;
         }
