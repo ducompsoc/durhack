@@ -1,0 +1,39 @@
+$breakpoints: (
+    // X-Small devices (portrait phones, less than 576px)
+    'xs': 576px,
+    // Small devices (landscape phones, less than 768px)
+    'sm': 768px,
+    // Medium devices (tablets, less than 992px)
+    'md': 992px,
+    // Large devices (desktops, less than 1200px)
+    'lg': 1200px,
+    // X-Large devices (large desktops, less than 1400px)
+    'xl': 1400px,
+    // 1920 desktops and TVs
+    'tv': 1920px,
+) !default;
+
+// https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/
+@mixin breakpoint-up($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+
+    @else {
+        @warn "Invalid breakpoint name `#{$breakpoint}`."
+    }
+}
+
+@mixin breakpoint-down($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (max-width: map-get($breakpoints, $breakpoint) - 0.02px) {
+            @content;
+        }
+    }
+
+    @else {
+        @warn "Invalid breakpoint name `#{$breakpoint}`."
+    }
+}
