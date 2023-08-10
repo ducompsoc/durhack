@@ -194,7 +194,7 @@
 
             <div class="photo">
                 <img alt="The text 2022 on its side and then DurHack written in a white outline font"
-                    src="/assets/logo-22-white.svg">
+                    src="/assets/logo23.svg">
             </div>
         </div>
     </footer>
