@@ -39,6 +39,11 @@
 
     <div id="intro" class="section intro container">
         <div class="main">
+            <div id="about">
+                <p>Thank you for joining us for the eighth iteration of Durhack, Durham University Computer Science Society's annual flagship hackathon.</p>
+                <h4>4 - 5 November</h4>
+                <p>Students of all experience levels come together in teams of up to five, helping and learning from each other in order to create their own project.</p>
+            </div>
             <h2>DurHack is all about <b>learning something new</b></h2>
 
             <div class="flex-container">
