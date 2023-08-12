@@ -4,7 +4,7 @@
     clear: left;
 
     .main {
-        padding: 128px 82px;
+        padding: 0px 120px 128px;
 
         @media screen and (max-width: $old-breakpoint-medium) {
             padding: 128px 32px;
@@ -52,6 +52,44 @@
         text-align: center;
         padding-top: 3rem;
     }
+
+    #about {
+        background-color: #1a6ba1;
+        background-image: linear-gradient(180deg, #1A5781, #148ED5);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+        -moz-text-fill-color: transparent;
+        text-align: center;
+        font-family: 'Space Grotesk', sans-serif;
+    }
+
+    #orion {
+        width: 246.372px;
+        height: 318.714px;
+        transform: rotate(30deg);
+        flex-shrink: 0;
+    }
+
+    #cygnus {
+        width: 370px;
+        height: 425.233px;
+        flex-shrink: 0;
+    }
+
+    #lyra {
+        width: 245.136px;
+    height: 351.561px;
+    flex-shrink: 0;
+    }
+
+    #pegasus {
+        width: 366.762px;
+        height: 277px;
+        flex-shrink: 0;
+    }
+
 
     @media (min-width: $lucas-extra-small) {
         // Mobile first development 🥰

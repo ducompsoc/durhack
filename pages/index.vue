@@ -44,6 +44,10 @@
                 <h4>4 - 5 November</h4>
                 <p>Students of all experience levels come together in teams of up to five, helping and learning from each other in order to create their own project.</p>
             </div>
+            <img alt="orion" id="orion" src="/assets/graphics/megateam/orion/constellation.svg"/>
+            <img alt="cygnus" id="cygnus" src="/assets/graphics/megateam/cygnus/constellation.svg"/>
+            <img alt="lyra" id="lyra" src="/assets/graphics/megateam/lyra/constellation.svg"/>
+            <img alt="pegasus" id="pegasus" src="/assets/graphics/megateam/pegasus/constellation.svg"/>
             <h2>DurHack is all about <b>learning something new</b></h2>
 
             <div class="flex-container">
