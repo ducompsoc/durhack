@@ -69,6 +69,10 @@
         -moz-text-fill-color: transparent;
         text-align: center;
         font-family: 'Space Grotesk', sans-serif;
+        font-weight: 400;
+        font-size: 1.875rem;
+        position: relative;
+        z-index: 5;
     }
 
     #orion {
@@ -77,8 +81,13 @@
         transform: rotate(30deg);
         flex-shrink: 0;
         position: absolute;
-        left: -120px;
-        bottom: 400px;
+        left: -20px;
+        bottom: 64%;
+    }
+
+    #orion2 {
+        @extend #orion;
+        filter: blur(20px);
     }
 
     #cygnus {
@@ -87,7 +96,12 @@
         flex-shrink: 0;
         position: absolute;
         right: -120px;
-        bottom: 400px;
+        bottom: 64%;
+    }
+
+    #cygnus2 {
+        @extend #cygnus;
+        filter: blur(20px);
     }
 
     #lyra {
@@ -96,7 +110,12 @@
         flex-shrink: 0;
         position: absolute;
         left: -120px;
-        bottom: -128px;
+        bottom: 0%;
+    }
+
+    #lyra2 {
+        @extend #lyra;
+        filter: blur(20px);
     }
 
     #pegasus {
@@ -105,7 +124,12 @@
         flex-shrink: 0;
         position: absolute;
         right: -120px;
-        bottom: -128px;
+        bottom: 0%;
+    }
+
+    #pegasus2 {
+        @extend #pegasus;
+        filter: blur(20px);
     }
 
 

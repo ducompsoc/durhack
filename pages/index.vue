@@ -51,6 +51,10 @@
                 <img alt="cygnus" id="cygnus" src="/assets/graphics/megateam/cygnus/constellation.svg"/>
                 <img alt="lyra" id="lyra" src="/assets/graphics/megateam/lyra/constellation.svg"/>
                 <img alt="pegasus" id="pegasus" src="/assets/graphics/megateam/pegasus/constellation.svg"/>
+                <img alt="orion" id="orion2" src="/assets/graphics/megateam/orion/constellation.svg"/>
+                <img alt="cygnus" id="cygnus2" src="/assets/graphics/megateam/cygnus/constellation.svg"/>
+                <img alt="lyra" id="lyra2" src="/assets/graphics/megateam/lyra/constellation.svg"/>
+                <img alt="pegasus" id="pegasus2" src="/assets/graphics/megateam/pegasus/constellation.svg"/>
             </div>
 
             <div class="flex-container">
