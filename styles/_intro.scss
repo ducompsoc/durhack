@@ -2,9 +2,15 @@
 
 .section.intro {
     clear: left;
+    overflow: visible;
+    z-index: 4;
+    position: relative;
 
     .main {
-        padding: 0px 120px 128px;
+        padding: 20px 120px 128px;
+        position: relative;
+        overflow-x: visible;
+        overflow-y: visible;
 
         @media screen and (max-width: $old-breakpoint-medium) {
             padding: 128px 32px;
@@ -70,24 +76,36 @@
         height: 318.714px;
         transform: rotate(30deg);
         flex-shrink: 0;
+        position: absolute;
+        left: -120px;
+        bottom: 400px;
     }
 
     #cygnus {
         width: 370px;
         height: 425.233px;
         flex-shrink: 0;
+        position: absolute;
+        right: -120px;
+        bottom: 400px;
     }
 
     #lyra {
         width: 245.136px;
-    height: 351.561px;
-    flex-shrink: 0;
+        height: 351.561px;
+        flex-shrink: 0;
+        position: absolute;
+        left: -120px;
+        bottom: -128px;
     }
 
     #pegasus {
         width: 366.762px;
         height: 277px;
         flex-shrink: 0;
+        position: absolute;
+        right: -120px;
+        bottom: -128px;
     }
 
 
