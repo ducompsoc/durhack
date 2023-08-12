@@ -39,22 +39,27 @@
 
     <div id="intro" class="section intro container">
         <div class="main">
-            <div id="about">
-                <p>Thank you for joining us for the eighth iteration of Durhack, Durham University Computer Science Society's annual flagship hackathon.</p>
-                <h4>4 - 5 November</h4>
-                <p>Students of all experience levels come together in teams of up to five, helping and learning from each other in order to create their own project.</p>
-            </div>
-            <h2>DurHack is all about <b>learning something new</b></h2>
+            <div id="intro-section">
+                <div id="about">
+                    <p>Thank you for joining us for the eighth iteration of Durhack, Durham University Computing Society's annual flagship hackathon.</p>
+                    <h4>4 - 5 November</h4>
+                    <p>Students of all experience levels come together in teams of up to five, helping and learning from each other in order to create their own project.</p>
+                </div>
+                <div id="button-div">
+                    <button type="button">BOOK TICKET</button>
+                </div>
+                <h2>DurHack is all about <b>learning something new</b></h2>
 
-            <div id="background-constellations">
-                <img alt="orion" id="orion" src="/assets/graphics/megateam/orion/constellation.svg"/>
-                <img alt="cygnus" id="cygnus" src="/assets/graphics/megateam/cygnus/constellation.svg"/>
-                <img alt="lyra" id="lyra" src="/assets/graphics/megateam/lyra/constellation.svg"/>
-                <img alt="pegasus" id="pegasus" src="/assets/graphics/megateam/pegasus/constellation.svg"/>
-                <img alt="orion" id="orion2" src="/assets/graphics/megateam/orion/constellation.svg"/>
-                <img alt="cygnus" id="cygnus2" src="/assets/graphics/megateam/cygnus/constellation.svg"/>
-                <img alt="lyra" id="lyra2" src="/assets/graphics/megateam/lyra/constellation.svg"/>
-                <img alt="pegasus" id="pegasus2" src="/assets/graphics/megateam/pegasus/constellation.svg"/>
+                <div id="background-constellations">
+                    <img alt="orion" id="orion" src="/assets/graphics/megateam/orion/constellation.svg"/>
+                    <img alt="cygnus" id="cygnus" src="/assets/graphics/megateam/cygnus/constellation.svg"/>
+                    <img alt="lyra" id="lyra" src="/assets/graphics/megateam/lyra/constellation.svg"/>
+                    <img alt="pegasus" id="pegasus" src="/assets/graphics/megateam/pegasus/constellation.svg"/>
+                    <img alt="orion" id="orion2" src="/assets/graphics/megateam/orion/constellation.svg"/>
+                    <img alt="cygnus" id="cygnus2" src="/assets/graphics/megateam/cygnus/constellation.svg"/>
+                    <img alt="lyra" id="lyra2" src="/assets/graphics/megateam/lyra/constellation.svg"/>
+                    <img alt="pegasus" id="pegasus2" src="/assets/graphics/megateam/pegasus/constellation.svg"/>
+                </div>
             </div>
 
             <div class="flex-container">
