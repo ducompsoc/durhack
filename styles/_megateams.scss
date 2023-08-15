@@ -1,0 +1,42 @@
+@import './variables';
+@import './breakpoints';
+
+.section.megateams {
+    $icon-size: 90%;
+
+    .main {
+        .text-center > h1 {
+            border-bottom: 2px solid;
+            border-image-slice: 1;
+            border-image-source: linear-gradient(to right, #00000000 0%, #fff 50%, #00000000 100%);
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #fff;
+            padding: 10px
+        }
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            list-style-type: none;
+            padding: 75px 0px;
+
+            li {
+                padding: 10px;
+
+                img {
+                    width: $icon-size;
+                }
+            }
+        }
+
+        button {
+            font-family: 'Jockey One';
+        }
+    }
+}

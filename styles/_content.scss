@@ -17,6 +17,32 @@
         margin-top: 0px;
     }
 
+    .button-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            border-radius: 4.88775rem;
+            border-width: 0;
+            background: rgba(217, 217, 217, 0.30);
+            backdrop-filter: blur(3px);
+            color: #FFF;
+            font-family: Space Grotesk;
+            font-size: 2rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            cursor: pointer;
+            padding: 1.25rem 5rem;
+            z-index: 12;
+
+            @media screen and (max-width: $old-breakpoint-extra-small) {
+                font-size: 1.25rem;
+            }
+        }
+    }
+
     &.faqs {
         @media (min-width: $old-breakpoint-medium) {
             background-size: 100% auto;

@@ -156,35 +156,6 @@
         }
     }
 
-    #button-div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        button {
-            border-radius: 4.88775rem;
-            border-width: 1px;
-            border-color: #FFF;
-            border-style: solid;
-            background: rgba(217, 217, 217, 0.30);
-            backdrop-filter: blur(3px);
-            color: #FFF;
-            font-family: Space Grotesk;
-            font-size: 2rem;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            cursor: pointer;
-            padding: 1.25rem 5rem;
-            z-index: 12;
-
-            @media screen and (max-width: $old-breakpoint-extra-small) {
-                font-size: 1.25rem;
-            }
-        }
-    }
-
-
     @media (min-width: $lucas-extra-small) {
         // Mobile first development 🥰
         .flex-item {
