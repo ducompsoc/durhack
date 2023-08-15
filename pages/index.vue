@@ -168,21 +168,7 @@
 
     <div id="megateams" class="section megateams">
         <div class="main">
-            <div class="text-center">
-                <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Megateams&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
-            </div>
-            <div class="text-center">
-                <p>This year, we're introducing 'Mega Teams'! These will put each of the hacking teams into larger groups, where they all can connect points for their mega team towards a small prize.</p>
-            </div>
-            <ul>
-                <li><img alt="pegasus icon" src="/assets/graphics/megateam/pegasus/icon-stars.png"></li>
-                <li><img alt="cygnus icon" src="/assets/graphics/megateam/cygnus/icon-stars.png"></li>
-                <li><img alt="lyra icon" src="/assets/graphics/megateam/lyra/icon-stars.png"></li>
-                <li><img alt="orion icon" src="/assets/graphics/megateam/orion/icon-stars.png"></li>
-            </ul>
-            <div class="button-div">
-                <button type="button">LEARN MORE</button>
-            </div>
+            <megateams/>
         </div>
     </div>
 
@@ -235,9 +221,10 @@
 
 <script>
 import FAQs from "../components/FAQs";
+import megateams from "../components/megateams";
 
 export default {
-    components: { FAQs },
+    components: { FAQs, megateams },
     mounted() {
         new Rellax('.rellax');
     }

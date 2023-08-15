@@ -38,8 +38,8 @@ $background-gradient-deep-blue: #131c6a;
     &.megateams {
         background: linear-gradient(
             to bottom,
-            #{$background-gradient-black},
-            #{$background-gradient-light-blue}
+            #{$background-gradient-black} 30%,
+            #{$background-gradient-light-blue} 100%
         );
     }
 }

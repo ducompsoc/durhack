@@ -2,8 +2,6 @@
 @import './breakpoints';
 
 .section.megateams {
-    $icon-size: 90%;
-
     .main {
         .text-center > h1 {
             border-bottom: 2px solid;
@@ -13,30 +11,74 @@
             margin: 0 auto;
         }
 
+        .text-center > p {
+            margin: -20px 0px;
+        }
+
+        p {
+            font-family: 'Space Grotesk', sans-serif;
+            padding: 0 5rem;
+
+            @media (max-width: 480px) {
+                font-size: 0.9rem;
+            }
+        }
+
+        b {
+            color: $secondary-a;
+        }
+
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity 0.5s ease;
+        }
+        .fade-enter-from, .fade-leave-to {
+            opacity: 0;
+        }
+
         h1 {
             color: #fff;
-            padding: 10px
+            padding: 10px;
+
+            @media (max-width: 480px) {
+                font-size: 1.2rem;
+            }
         }
 
         ul {
+            transition: 0.5s all;
             display: flex;
-            flex-direction: row;
+            flex-wrap: column wrap;
             justify-content: space-between;
             align-items: center;
             list-style-type: none;
-            padding: 75px 0px;
+            padding: 75px 50px;
 
             li {
                 padding: 10px;
 
                 img {
-                    width: $icon-size;
+                    width: 90%;
+                    transition: all 0.5s;
                 }
+
+                img:hover {
+                    width: 95%;
+                    transition: all 0.5s;
+                }
+            }
+
+            @media (max-width: 640px) {
+                display: grid;
+                grid-template-columns: auto auto;
             }
         }
 
         button {
             font-family: 'Jockey One';
+        }
+
+        #world {
+            height: 800px;
         }
     }
 }
