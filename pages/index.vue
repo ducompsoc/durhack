@@ -62,6 +62,17 @@
                 </div>
             </div>
 
+            <div class="intro-images">
+                <img alt="A person playing mario kart" src="/assets/photos/mario-kart.jpg">
+                <img alt="A person getting food" src="/assets/photos/food.jpg">
+                <img alt="A team being judged" src="/assets/photos/judging1.jpg">
+                <img alt="A team being judged" src="/assets/photos/judging2.jpg">
+                <img alt="People in a workshop" src="/assets/photos/workshop.jpg">
+                <img alt="A person explaining a whiteboard" src="/assets/photos/whiteboard.jpg">
+                <div id="empty-image"> </div>
+                <img alt="A team cup stacking" src="/assets/photos/cup-stacking.jpg">
+            </div>
+
             <div class="flex-container">
                 <div class="flex-item">
                     <p>
