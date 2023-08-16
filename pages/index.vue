@@ -79,7 +79,7 @@
                     Workshops to learn new skills
                 </li>
                 <li>
-                    <img alt="An icon of a rosette prize" src="/assets/icons/prizes.svg"><br>
+                    <img id="spaceship" alt="An icon of a rosette prize" src="/assets/icons/prizes.svg"><br>
                     Sponsor-led challenges to shoot for
                 </li>
                 <li>
@@ -101,11 +101,11 @@
             </div>
 
             <div class="text-center">
-                <p>
+                <p class="intro-text">
                     The premise: work together in your team to create something awesome <span class="emphasis">in
                     just 24 hours</span>.
                 </p>
-                <p>
+                <p class="intro-text">
                     DurHack welcomes students of <span class="emphasis">all experience levels</span>,
                     from all degrees and any university.
                 </p>
