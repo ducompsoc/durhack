@@ -73,48 +73,42 @@
                 <img alt="A team cup stacking" src="/assets/photos/cup-stacking.jpg">
             </div>
 
-            <div class="flex-container">
-                <div class="flex-item">
-                    <p>
-                        The premise: work together in your team to create something awesome <span class="emphasis">in
-                        just 24 hours</span>.
-                    </p>
-                    <ul>
-                        <li>
-                            <img alt="A icon of a light bulb" src="/assets/icons/lightbulb.svg">
-                            Optional team-formation activity
-                        </li>
-                        <li>
-                            <img alt="An icon of a person partying" src="/assets/icons/party.svg">
-                            Mini-events throughout the weekend
-                        </li>
-                        <li>
-                            <img alt="An icon of a shirt" src="/assets/icons/swag.svg">
-                            Hackathon swag and food included
-                        </li>
-                    </ul>
-                </div>
+            <div class="grid">
+                <li>
+                    <img alt="An icon of a science flask" src="/assets/icons/flask.svg"><br>
+                    Workshops to learn new skills
+                </li>
+                <li>
+                    <img alt="An icon of a rosette prize" src="/assets/icons/prizes.svg"><br>
+                    Sponsor-led challenges to shoot for
+                </li>
+                <li>
+                    <img alt="An icon of a person" src="/assets/icons/mentor.svg"><br>
+                    Mentors on-hand to help with your project
+                </li>
+                <li>
+                    <img alt="An icon of a shirt" src="/assets/icons/swag.svg"><br>
+                    Hackathon swag and food included
+                </li>
+                <li>
+                    <img alt="An icon of a person partying" src="/assets/icons/party.svg"><br>
+                    Mini-events throughout the weekend
+                </li>
+                <li>
+                    <img alt="A icon of a light bulb" src="/assets/icons/lightbulb.svg"><br>
+                    Optional team-formation activity
+                </li>
+            </div>
 
-                <div class="flex-item">
-                    <p>
-                        DurHack welcomes students of <span class="emphasis">all experience levels</span>,
-                        from all degrees and any university.
-                    </p>
-                    <ul>
-                        <li>
-                            <img alt="An icon of a person" src="/assets/icons/mentor.svg">
-                            Mentors on-hand to help with your project
-                        </li>
-                        <li>
-                            <img alt="An icon of a science flask" src="/assets/icons/flask.svg">
-                            Workshops to learn new skills
-                        </li>
-                        <li>
-                            <img alt="An icon of a rosette prize" src="/assets/icons/prizes.svg">
-                            Sponsor-led challenges to shoot for
-                        </li>
-                    </ul>
-                </div>
+            <div class="text-center">
+                <p>
+                    The premise: work together in your team to create something awesome <span class="emphasis">in
+                    just 24 hours</span>.
+                </p>
+                <p>
+                    DurHack welcomes students of <span class="emphasis">all experience levels</span>,
+                    from all degrees and any university.
+                </p>
             </div>
         </div>
     </div>

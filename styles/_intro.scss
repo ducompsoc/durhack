@@ -54,18 +54,6 @@
         }
     }
 
-    .flex-item {
-        flex: 50%;
-        padding-bottom: 0;
-    }
-
-    .flex-container {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        padding-top: 3rem;
-    }
-
     #about {
         background-color: #1a6ba1;
         background-image: linear-gradient(180deg, #1A5781, #148ED5);
@@ -171,6 +159,23 @@
 
         @media (max-width: calc($old-breakpoint-extra-small - 200px)) {
             grid-template-columns: auto auto;
+        }
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        text-align: center;
+        grid-gap: 1rem;
+        padding-top: 3rem;
+
+        li {
+            padding: 0px 6rem;
+
+            img {
+                padding: 1rem;
+                height: 3rem;
+            }
         }
     }
 
