@@ -11,7 +11,7 @@
             font-family: 'Space Grotesk', sans-serif;
             padding: 0 5rem;
 
-            @media (max-width: 480px) {
+            @include breakpoint-down('xs') {
                 font-size: 0.9rem;
             }
         }
@@ -28,8 +28,8 @@
         }
 
         h1 {
-            @media (max-width: 480px) {
-                font-size: 1.2rem;
+            @include breakpoint-down('xs') {
+                font-size: 1.4rem;
             }
         }
 
@@ -56,7 +56,7 @@
                 }
             }
 
-            @media (max-width: 640px) {
+            @include breakpoint-down('xs') {
                 display: grid;
                 grid-template-columns: auto auto;
             }
