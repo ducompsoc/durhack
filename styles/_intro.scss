@@ -13,7 +13,7 @@
         overflow-y: visible;
 
         @media screen and (max-width: $old-breakpoint-medium) {
-            padding: 64px 32px;
+            padding: 32px 0;
         }
     }
 
@@ -76,16 +76,34 @@
     #intro-section {
         position: relative;
         padding: 20px 120px 0px;
+
+        @media screen and (max-width: $old-breakpoint-extra-small) {
+            padding: 20px 60px 0;
+        }
+    }
+
+    .button-div {
+        padding-top: 20px;
+
+        button {
+            font-size: 1.5rem;
+        }
     }
 
     #orion {
         width: 246.372px;
-        height: 40vh;
+        height: 80%;
         transform: rotate(30deg);
         flex-shrink: 0;
         position: absolute;
         left: -45px;
-        bottom: 55%;
+        bottom: 35%;
+
+        @media screen and (max-width: $old-breakpoint-extra-small) {
+            height: 40%;
+            bottom: 55%;
+            left: -70px;
+        }
     }
 
     #orion2 {
@@ -95,11 +113,17 @@
 
     #cygnus {
         width: 370px;
-        height: 50vh;
+        height: 77%;
         flex-shrink: 0;
         position: absolute;
         right: -120px;
-        bottom: 67%;
+        bottom: 54%;
+
+        @media screen and (max-width: $old-breakpoint-extra-small) {
+            height: 50%;
+            bottom: 62%;
+            right: -160px;
+        }
     }
 
     #cygnus2 {
@@ -109,11 +133,16 @@
 
     #lyra {
         width: 245.136px;
-        height: 40vh;
+        height: 80%;
         flex-shrink: 0;
         position: absolute;
         left: -120px;
-        bottom: -5%;
+        bottom: -40%;
+
+        @media screen and (max-width: $old-breakpoint-extra-small) {
+            height: 40%;
+            bottom: -10%;
+        }
     }
 
     #lyra2 {
@@ -123,11 +152,17 @@
 
     #pegasus {
         width: 366.762px;
-        height: 35vh;
+        height: 70%;
         flex-shrink: 0;
         position: absolute;
         right: -120px;
-        bottom: 10%;
+        bottom: -23%;
+
+        @media screen and (max-width: $old-breakpoint-extra-small) {
+            height: 35%;
+            right: -180px;
+            bottom: 10%;
+        }
     }
 
     #pegasus2 {

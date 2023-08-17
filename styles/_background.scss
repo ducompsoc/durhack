@@ -13,9 +13,9 @@ $background-gradient-deep-blue: #131c6a;
     &.intro {
         background: linear-gradient(
             to bottom,
-            #{$background-gradient-pink} 20%,
+            #{$background-gradient-pink} 15%,
             #{$background-gradient-cyan} 40%,
-            #{$background-gradient-black} 70%
+            #{$background-gradient-black} 80%
         );
     }
 
