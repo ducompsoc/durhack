@@ -8,10 +8,10 @@
         </div>
     </Transition>
     <ul>
-        <li><img alt="pegasus icon" src="/assets/graphics/megateam/pegasus/icon-stars.png"></li>
-        <li><img alt="cygnus icon" src="/assets/graphics/megateam/cygnus/icon-stars.png"></li>
-        <li><img alt="lyra icon" src="/assets/graphics/megateam/lyra/icon-stars.png"></li>
-        <li><img alt="orion icon" src="/assets/graphics/megateam/orion/icon-stars.png"></li>
+        <li><object class="pegasus icon" type="image/svg+xml" data="/assets/graphics/megateam/pegasus/icon.svg"></object></li>
+        <li><object class="cygnus icon" type="image/svg+xml" data="/assets/graphics/megateam/cygnus/icon.svg"></object></li>
+        <li><object class="lyra icon" type="image/svg+xml" data="/assets/graphics/megateam/lyra/icon.svg"></object></li>
+        <li><object class="orion icon" type="image/svg+xml" data="/assets/graphics/megateam/orion/icon.svg"></object></li>
     </ul>
     <div class="button-div">
         <button type="button" v-on:click="isHidden = !isHidden">LEARN MORE</button>

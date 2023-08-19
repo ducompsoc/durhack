@@ -108,8 +108,8 @@
 
         @include breakpoint-down('xs') {
             left: -90px;
-            height: 30%;
-            bottom: 60%;
+            height: 20%;
+            bottom: 65%;
         }
     }
 
@@ -134,7 +134,7 @@
 
         @include breakpoint-down('xs') {
             right: -180px;
-            height: 40%;
+            height: 30%;
             bottom: 68%;
         }
     }
