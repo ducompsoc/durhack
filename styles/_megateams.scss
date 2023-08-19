@@ -46,15 +46,10 @@
                 padding: 10px;
                 margin: 0 auto;
                 text-align: center;
+                position: relative;
 
                 object {
                     width: 80%;
-                    transition: all 0.5s;
-                }
-
-                object:hover {
-                    width: 85%;
-                    transition: all 0.5s;
                 }
             }
 
