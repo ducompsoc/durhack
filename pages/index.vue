@@ -80,6 +80,7 @@
                         Workshops to learn new skills
                     </li>
                     <li>
+                        <object id="spaceship-shot" type="image/svg+xml" data="/assets/graphics/spaceship-shot/shot-combined.svg"></object>
                         <img id="spaceship" alt="An icon of a spaceship" src="/assets/icons/spaceship.svg"><br>
                         Sponsor-led challenges to shoot for
                     </li>

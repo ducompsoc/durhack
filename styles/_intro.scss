@@ -267,10 +267,60 @@
 
         li {
             padding: 0px 20%;
+            position: relative;
 
             img {
                 padding: 1rem;
                 height: 3rem;
+            }
+
+            #spaceship-shot {
+                position: absolute;
+                bottom: -20px;
+                left: 57%;
+                height: 270%;
+
+                @include breakpoint-down('xl') {
+                    bottom: -20%;
+                }
+
+                @include breakpoint-down('lg') {
+                    height: 220%;
+                    bottom: 0;
+                }
+
+                @include breakpoint-down('sm') {
+                    transform: scaleX(-1);
+                    left: -55%;
+                }
+
+                // In-between breakpoint
+                @media (max-width: calc($old-breakpoint-extra-small - 200px)) {
+                    rotate: -25deg;
+                    height: 350%;
+                    left: -130%;
+                    bottom: -140%;
+                }
+
+                @include breakpoint-down('xs') {
+                    height: 330%;
+                    left: -170%;
+                    bottom: -120%;
+                }
+
+                @media (max-width: 500px) {
+                    rotate: -25deg;
+                    height: 220%;
+                    left: -170%;
+                    bottom: -50%;
+                }
+
+                @media (max-width: 400px) {
+                    rotate: -25deg;
+                    height: 220%;
+                    left: -210%;
+                    bottom: -60%;
+                }
             }
 
             #spaceship {
