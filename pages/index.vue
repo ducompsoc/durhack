@@ -101,6 +101,15 @@
                     </li>
                 </div>
 
+                <div class="text-center view-previous">
+                    <div class="previous-row">
+                        <h5>See last year's projects&nbsp;</h5><img src="/assets/icons/blue-triangle.svg">
+                    </div>
+                    <div class="previous-row">
+                        <h5>See last year's projects&nbsp;</h5><img src="/assets/icons/blue-triangle.svg">
+                    </div>
+                </div>
+
                 <div class="text-center">
                     <p class="intro-text">
                         The premise: work together in your team to create something awesome <span class="emphasis">in

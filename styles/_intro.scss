@@ -7,6 +7,40 @@
     z-index: 4;
     position: relative;
 
+    #background {
+        background-image: url('/assets/graphics/blue-stars-bg.svg');
+        background-repeat: no-repeat;
+        background-position: bottom;
+    }
+
+    .text-center.view-previous {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5rem;
+        color: $secondary-a;
+        cursor: pointer;
+
+        .previous-row {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+
+            h5 {
+                padding-bottom: 5px;
+            }
+    
+            img {
+                height: 80%;
+            }
+        }
+
+        @include breakpoint-down('xs') {
+            flex-direction: column;
+            gap: 3rem;
+        }
+    }
+
     .main {
         font-family: 'Space Grotesk', sans-serif;
         position: relative;
