@@ -76,27 +76,27 @@
 
                 <div class="grid">
                     <li>
-                        <img alt="An icon of a science flask" src="/assets/icons/flask.svg"><br>
+                        <img alt="An icon of a science flask" src="/assets/icons/white-flask.svg"><br>
                         Workshops to learn new skills
                     </li>
                     <li>
-                        <img id="spaceship" alt="An icon of a rosette prize" src="/assets/icons/prizes.svg"><br>
+                        <img id="spaceship" alt="An icon of a spaceship" src="/assets/icons/spaceship.svg"><br>
                         Sponsor-led challenges to shoot for
                     </li>
                     <li>
-                        <img alt="An icon of a person" src="/assets/icons/mentor.svg"><br>
+                        <img alt="An icon of a bulb" src="/assets/icons/bulb.svg"><br>
                         Mentors on-hand to help with your project
                     </li>
                     <li>
-                        <img alt="An icon of a shirt" src="/assets/icons/swag.svg"><br>
+                        <img alt="An icon of a shirt" src="/assets/icons/shirt.svg"><br>
                         Hackathon swag and food included
                     </li>
                     <li>
-                        <img alt="An icon of a person partying" src="/assets/icons/party.svg"><br>
+                        <img alt="An icon of a star" src="/assets/icons/star.svg"><br>
                         Mini-events throughout the weekend
                     </li>
                     <li>
-                        <img alt="A icon of a light bulb" src="/assets/icons/lightbulb.svg"><br>
+                        <img alt="A icon of a jigsaw puzzle piece" src="/assets/icons/puzzle.svg"><br>
                         Optional team-formation activity
                     </li>
                 </div>
