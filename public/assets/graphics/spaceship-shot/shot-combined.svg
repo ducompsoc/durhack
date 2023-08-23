@@ -1,7 +1,7 @@
 <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g>
         <use href="#left_stars" xlink:href="#left_stars" x="0" y="0"/>
-        <use href="#right_stars" xlink:href="#right_stars" x="200" y="0"/>
+        <use href="#right_stars" xlink:href="#right_stars" x="100" y="0"/>
         <use href="#laser" xlink:href="#laser" x="0" y="40"/>
         <use href="#inner_star" xlink:href="#inner_star" x="35" y="10"/>
         <use href="#outer_star" xlink:href="#outer_star" x="25" y="0"/>
