@@ -185,7 +185,7 @@
 
     <div id="megateams" class="section megateams">
         <div class="main">
-            <megateams/>
+            <Megateams/>
         </div>
     </div>
 
@@ -238,10 +238,10 @@
 
 <script>
 import FAQs from "../components/FAQs";
-import megateams from "../components/megateams";
+import Megateams from "../components/Megateams";
 
 export default {
-    components: { FAQs, megateams },
+    components: { FAQs, Megateams },
     mounted() {
         new Rellax('.rellax');
     }
