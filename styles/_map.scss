@@ -174,24 +174,18 @@
         box-shadow: 0px 0px 30px 0px rgba(255, 255, 255, 1);
     }
 
-    @media screen and (max-width: $old-breakpoint-small) {
+    @include breakpoint-down('md') {
         .flex-container {
             display: block;
         }
         #hoop1 {
-            margin-top: 50px;
-            margin-left: 0%;
+            margin: 50px auto 0;
+            width: 80%;
         }
         #mapbody {
             width: 100%;
             margin-left: auto;
             margin-right: auto;
-        }
-    }
-
-    @media screen and (max-width: $old-breakpoint-extra-small) {
-        #hoop1 {
-            width: 100%;
         }
     }
 }
