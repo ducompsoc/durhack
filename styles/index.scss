@@ -47,6 +47,10 @@ h1 {
     padding: 10px;
 }
 
+h2 {
+    font-family: 'Space Grotesk';
+}
+
 a:not(.tooltip) {
     color: $primary-normal;
     border-bottom: dashed 1px $primary-normal;
@@ -78,6 +82,9 @@ a:not(.tooltip) {
     @include faded-underline();
 }
 
+.emphasis {
+    color: $secondary-a;
+}
 
 @import './404';
 @import './background';

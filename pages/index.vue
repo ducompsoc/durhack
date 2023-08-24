@@ -129,6 +129,8 @@
         <div class="main">
             <div class="flex-container">
                 <div class="flex-item">
+                    <h2>Join us in the <b class="emphasis">Teaching and Learning Centre</b> at Durham University</h2>
+                    <button type="button">FIND YOUR ROUTE</button>
                 </div>
                 <div class="flex-item" id="mapbody">
                     <div id="hoop1">
