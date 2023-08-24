@@ -37,6 +37,10 @@
             @include breakpoint-down('xs') {
                 font-size: 2rem;
             }
+
+            @media screen and (max-width: 450px) {
+                font-size: 1.5rem;
+            }
         }
 
         .button-div {
@@ -44,8 +48,11 @@
 
             button {
                 @include breakpoint-down('xs') {
-                    font-size: 1.25rem;
                     padding: 1.25rem 3rem;
+                }
+
+                @media screen and (max-width: 450px) {
+                    font-size: 1rem;
                 }
             }
         }
