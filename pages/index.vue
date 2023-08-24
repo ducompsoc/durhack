@@ -127,9 +127,6 @@
 
     <div class="section cta-map" id="map">
         <div class="main">
-            <div class="text-center">
-                <h1>Your Way to Durhack</h1>
-            </div>
             <div class="flex-container">
                 <div class="flex-item">
                 </div>
