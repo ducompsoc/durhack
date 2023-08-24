@@ -38,7 +38,7 @@
         padding: 1.25rem 5rem;
         z-index: 12;
 
-        @media screen and (max-width: $old-breakpoint-extra-small) {
+        @include breakpoint-down('md') {
             font-size: 1.25rem;
         }
     }
