@@ -131,9 +131,9 @@
                 <h1>Your Way to Durhack</h1>
             </div>
             <div class="flex-container">
-                <div class="flex-item" id="mapbody">
-                </div>
                 <div class="flex-item">
+                </div>
+                <div class="flex-item" id="mapbody">
                     <div id="hoop1">
                         <div id="hoop2">
                             <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69" target="_blank">
