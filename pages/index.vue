@@ -128,9 +128,11 @@
     <div class="section cta-map" id="map">
         <div class="main">
             <div class="flex-container">
-                <div class="flex-item">
+                <div class="flex-item" id="cta">
                     <h2>Join us in the <b class="emphasis">Teaching and Learning Centre</b> at Durham University</h2>
-                    <button type="button">FIND YOUR ROUTE</button>
+                    <div class="button-div">
+                        <button type="button">FIND YOUR ROUTE</button>
+                    </div>
                 </div>
                 <div class="flex-item" id="mapbody">
                     <div id="hoop1">

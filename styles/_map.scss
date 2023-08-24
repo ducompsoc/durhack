@@ -13,32 +13,6 @@
         font-size: 32px;
     }
 
-    .button {
-        display: inline-block;
-        border: solid 2px $secondary-a;
-        font-size: 24px;
-        font-weight: bold;
-        text-decoration: none;
-        color: $secondary-a;
-        padding: 16px 96px;
-        margin: 9px 0px;
-        transition: .5s ease;
-
-        &:not(.disabled):hover {
-            background-color: $secondary-a;
-            color: #222;
-        }
-
-        @media screen and (max-width: $old-breakpoint-medium) {
-            padding: 12px 32px;
-        }
-
-        &.disabled {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-    }
-
     .flex-container {
         display: flex;
         flex-direction: row;
@@ -47,6 +21,34 @@
 
     .flex-item{
         flex: 50%;
+    }
+
+    #cta {
+        margin: auto 32px;
+
+        @include breakpoint-down('lg') {
+            padding: 64px 32px;
+        }
+
+        h2 {
+            font-size: 38px;
+            margin-bottom: 64px;
+
+            @include breakpoint-down('xs') {
+                font-size: 2rem;
+            }
+        }
+
+        .button-div {
+            justify-content: left;
+
+            button {
+                @include breakpoint-down('xs') {
+                    font-size: 1.25rem;
+                    padding: 1.25rem 3rem;
+                }
+            }
+        }
     }
 
     #mapbody {
