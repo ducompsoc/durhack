@@ -141,6 +141,9 @@
                                      alt="Map showing the location of the MCS building in Durham.">
                             </a>
                         </div>
+                        <div id="o-planet">
+                            <div id="b-planet"></div>
+                        </div>
                     </div>
                 </div>
             </div>

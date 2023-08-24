@@ -57,45 +57,13 @@
     }
 
     $rad1: 50vw;
-    $thick1: calc($rad1 / 150);
+    $thick1: 2px;
 
-    $thick2: calc($rad1 / 150);
     $rad2: 70%; // percentage of rad1
     $s-angle: -150deg;
+    $orange-planet-angle: -20deg;
+    $blue-planet-angle: 70deg;
 
-    // Working code for the hoop, but without content rendering inside
-    // #hoop1 {
-    //     width: $rad1;
-    //     aspect-ratio: 1;
-    //     margin: 0 -50vw 0 64px;
-    //     border: $thick1 solid transparent;
-    //     border-radius: 50%;
-    //     background: linear-gradient(-135deg, #3CA3BD, #8467A070, #FFDDDD38, #E37F60) border-box; /*3*/
-    //     mask: /*4*/
-    //        linear-gradient(#fff 0 0) padding-box, 
-    //        linear-gradient(#fff 0 0);
-    //     -webkit-mask-composite: xor; /*5'*/
-    //             mask-composite: exclude; /*5*/
-    // }
-
-    // #hoop2 {
-    //     width: $rad2;
-    //     aspect-ratio: 1;
-    //     position: relative;
-    //     top: calc((100% - $rad2 - 2*$thick2) / 2);
-    //     left: calc((100% - $rad2 - 2*$thick2) / 2);
-    //     // https://dev.to/afif/border-with-gradient-and-radius-387f - This is some wacky stuff
-    //     border: $thick2 solid transparent;
-    //     border-radius: 50%;
-    //     background: linear-gradient(-135deg, #3CA3BD, #8467A070, #FFDDDD38, #E37F60) border-box; /*3*/
-    //     mask: /*4*/
-    //         linear-gradient(#fff 0 0) padding-box, 
-    //         linear-gradient(#fff 0 0);
-    //     -webkit-mask-composite: xor; /*5'*/
-    //             mask-composite: exclude; /*5*/
-    // }
-
-    // I have no idea why this is responsive but it is
     #hoop1 {
         position: relative;
         width: $rad1;
@@ -125,11 +93,11 @@
 
         width: $rad2;
         aspect-ratio: 1;
-        top: calc((100% - $rad2 - 2*$thick2) / 2);
-        left: calc((100% - $rad2 - 2*$thick2) / 2);
+        top: calc((100% - $rad2 - 2*$thick1) / 2);
+        left: calc((100% - $rad2 - 2*$thick1) / 2);
     
         content: "";
-        border: $thick2 solid transparent;
+        border: $thick1 solid transparent;
         border-radius: 50%;
         background: linear-gradient($s-angle, #5cdbfb, #8467A070, #FFDDDD38, #fd825c) border-box; /*3*/
         mask: /*4*/
@@ -139,7 +107,54 @@
                 mask-composite: exclude; /*5*/
     }
 
-    img {
+    #o-planet {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1;
+        background-color: transparent;
+        transform: rotate($orange-planet-angle);
+    }
+
+    #o-planet::before {
+        background-image: url("./assets/graphics/map/orange-planet.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        position: absolute;
+        content: "";
+
+        width: 10%;
+        aspect-ratio: 1;
+        top: 50%;
+        left: -4%;
+    }
+
+    #b-planet {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1;
+        background-color: transparent;
+        transform: rotate(calc($blue-planet-angle - $orange-planet-angle));
+    }
+
+    #b-planet::before {
+        background-image: url("./assets/graphics/map/blue-planet.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        position: absolute;
+        content: "";
+
+        width: 7%;
+        aspect-ratio: 1;
+        top: 50%;
+        left: calc(((100% - $rad2 - 2*$thick1) / 2) - 3%);
+        z-index: 5;
+    }
+
+    a > img {
         position: absolute;
         top: 50%;
         left: 50%;
