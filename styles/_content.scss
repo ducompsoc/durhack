@@ -55,6 +55,10 @@
         .questions {
             list-style-type: none;
             margin: 0 0 1.2rem 0;
+
+            li {
+                padding: 5px 0;
+            }
         }
 
         img {
