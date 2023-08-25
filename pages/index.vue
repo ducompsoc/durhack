@@ -154,7 +154,7 @@
     <div id="faqs" class="section faqs column">
         <div class="main">
             <div class="text-center">
-                <h1>FAQs</h1>
+                <h1>FREQUENTLY ASKED QUESTIONS</h1>
             </div>
             <FAQs/>
         </div>
