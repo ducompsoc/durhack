@@ -169,10 +169,15 @@
                 bottom: calc(200vw - 100vh + $dist-from-bottom);
             }
 
+            // The countdown text is being weird for long and thin screens
+            @media screen and (max-height: 900px) and (max-width: 450px) {
+                bottom: calc(200vw - 100vh + $dist-from-bottom + 30px);
+            }
+
             font-family: 'Space Grotesk', sans-serif;
             position: absolute;
             left: 5vw;
-            z-index: 3;
+            z-index: 4;
 
             font-style: normal;
             font-weight: 400;

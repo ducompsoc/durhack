@@ -28,7 +28,7 @@ $breakpoints: (
 
 @mixin breakpoint-down($breakpoint) {
     @if map-has-key($breakpoints, $breakpoint) {
-        @media (max-width: map-get($breakpoints, $breakpoint) - 0.02px) {
+        @media (max-width: calc(map-get($breakpoints, $breakpoint) - 0.02px)) {
             @content;
         }
     }

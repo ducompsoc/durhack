@@ -43,6 +43,8 @@ h1 {
     color: $primary-normal;
     text-transform: uppercase;
     font-size: 2rem;
+    color: #fff;
+    padding: 10px;
 }
 
 a:not(.tooltip) {
@@ -60,6 +62,22 @@ a:not(.tooltip) {
     padding-top: 70px;
 }
 
+@mixin faded-underline() {
+    border-bottom: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #00000000 0%, #fff 50%, #00000000 100%);
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.text-center > h1 {
+    @include faded-underline();
+}
+
+.text-center h5 {
+    @include faded-underline();
+}
+
 
 @import './404';
 @import './background';
@@ -71,3 +89,4 @@ a:not(.tooltip) {
 @import './intro';
 @import './content';
 @import './footer';
+@import './megateams';

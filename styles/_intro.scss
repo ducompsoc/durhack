@@ -1,20 +1,68 @@
 @import './variables';
+@import './breakpoints';
 
 .section.intro {
     clear: left;
+    overflow: visible;
+    z-index: 4;
+    position: relative;
+
+    #background {
+        background-image: url('/assets/graphics/blue-stars-bg.svg');
+        background-repeat: no-repeat;
+        background-position: bottom;
+    }
+
+    .text-center.view-previous {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5rem;
+        color: $secondary-a;
+        cursor: pointer;
+
+        .previous-row {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+
+            h5 {
+                padding-bottom: 5px;
+            }
+    
+            img {
+                height: 80%;
+            }
+        }
+
+        @include breakpoint-down('xs') {
+            flex-direction: column;
+            gap: 3rem;
+        }
+    }
 
     .main {
-        padding: 128px 82px;
+        font-family: 'Space Grotesk', sans-serif;
+        position: relative;
+        overflow-x: visible;
+        overflow-y: visible;
 
-        @media screen and (max-width: $old-breakpoint-medium) {
-            padding: 128px 32px;
+        @include breakpoint-down('lg') {
+            padding: 32px 0;
         }
     }
 
     h2 {
+        position: relative;
         font-weight: normal;
         text-align: center;
         font-size: xx-large;
+        padding: 25px 0px;
+        z-index: 5;
+
+        @include breakpoint-down('md') {
+            padding: 50px 0px;
+        }
     }
 
     b {
@@ -34,23 +82,259 @@
         padding-bottom: 1.5rem;
 
         img {
-            @extend .primary-normal-svg-filter;
             height: 1.5rem;
             vertical-align: middle;
             padding-right: 0.5rem
         }
     }
 
-    .flex-item {
-        flex: 50%;
-        padding-bottom: 0;
+    #about {
+        background-color: #1a6ba1;
+        background-image: linear-gradient(180deg, #1A5781, #148ED5);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+        -moz-text-fill-color: transparent;
+        text-align: center;
+        font-weight: 400;
+        font-size: 1.875rem;
+        position: relative;
+        z-index: 5;
+
+        @include breakpoint-down('md') {
+            font-size: 1.25rem;
+        }
     }
 
-    .flex-container {
-        display: flex;
-        flex-direction: column;
+    #intro-section {
+        position: relative;
+        padding: 20px 120px 0px;
+
+        @include breakpoint-down('md') {
+            padding: 20px 60px 0;
+        }
+    }
+
+    .button-div {
+        padding-top: 20px;
+
+        button {
+            font-size: 1.5rem;
+        }
+    }
+
+    #orion {
+        width: 246.372px;
+        height: 80%;
+        transform: rotate(30deg);
+        flex-shrink: 0;
+        position: absolute;
+        left: -45px;
+        bottom: 35%;
+
+        @include breakpoint-down('md') {
+            height: 40%;
+            bottom: 55%;
+            left: -70px;
+        }
+
+        @include breakpoint-down('xs') {
+            left: -90px;
+            height: 20%;
+            bottom: 65%;
+        }
+    }
+
+    #orion2 {
+        @extend #orion;
+        filter: drop-shadow(0px 4px 3px rgba(0, 0, 0, 0.05));
+    }
+
+    #cygnus {
+        width: 370px;
+        height: 77%;
+        flex-shrink: 0;
+        position: absolute;
+        right: -120px;
+        bottom: 54%;
+
+        @include breakpoint-down('md') {
+            height: 50%;
+            bottom: 62%;
+            right: -160px;
+        }
+
+        @include breakpoint-down('xs') {
+            right: -180px;
+            height: 30%;
+            bottom: 68%;
+        }
+    }
+
+    #cygnus2 {
+        @extend #cygnus;
+        filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.1));
+    }
+
+    #lyra {
+        width: 245.136px;
+        height: 80%;
+        flex-shrink: 0;
+        position: absolute;
+        left: -120px;
+        bottom: -40%;
+
+        @include breakpoint-down('md') {
+            height: 40%;
+            bottom: -10%;
+        }
+
+        @include breakpoint-down('xs') {
+            bottom: -10%;
+        }
+    }
+
+    #lyra2 {
+        @extend #lyra;
+        filter: blur(15px);
+    }
+
+    #pegasus {
+        width: 366.762px;
+        height: 70%;
+        flex-shrink: 0;
+        position: absolute;
+        right: -120px;
+        bottom: -23%;
+
+        @include breakpoint-down('md') {
+            height: 35%;
+            right: -180px;
+            bottom: 10%;
+        }
+
+        @include breakpoint-down('xs') {
+            height: 30%;
+            right: -220px;
+            bottom: 10%;
+        }
+    }
+
+    #pegasus2 {
+        @extend #pegasus;
+        filter: blur(15px);
+    }
+
+    h4 {
+        font-family: Audiowide;
+        padding: 1rem 0;
+
+        @include breakpoint-down('md') {
+            padding: 0;
+        }
+    }
+
+    .intro-images {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        align-items: center;
+        padding: 30px 0;
+
+        img {
+            object-fit: cover;
+            width: 80%;
+            height: 60%;
+            border-radius: 1rem;
+            margin: 0 auto;
+        }
+
+        @media (max-width: calc($old-breakpoint-extra-small - 200px)) {
+            grid-template-columns: auto auto;
+        }
+    }
+
+    .intro-text {
+        padding: 10px 20px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: auto auto auto;
         text-align: center;
+        grid-gap: 1rem;
         padding-top: 3rem;
+
+        li {
+            padding: 0px 20%;
+            position: relative;
+
+            img {
+                padding: 1rem;
+                height: 3rem;
+            }
+
+            #spaceship-shot {
+                position: absolute;
+                bottom: -20px;
+                left: 57%;
+                height: 270%;
+
+                @include breakpoint-down('xl') {
+                    bottom: -20%;
+                }
+
+                @include breakpoint-down('lg') {
+                    height: 220%;
+                    bottom: 0;
+                }
+
+                @include breakpoint-down('sm') {
+                    transform: scaleX(-1);
+                    left: -55%;
+                }
+
+                // In-between breakpoint
+                @media (max-width: calc($old-breakpoint-extra-small - 200px)) {
+                    rotate: -25deg;
+                    height: 350%;
+                    left: -130%;
+                    bottom: -140%;
+                }
+
+                @include breakpoint-down('xs') {
+                    height: 330%;
+                    left: -170%;
+                    bottom: -120%;
+                }
+
+                @media (max-width: 500px) {
+                    rotate: -25deg;
+                    height: 220%;
+                    left: -170%;
+                    bottom: -50%;
+                }
+
+                @media (max-width: 400px) {
+                    rotate: -25deg;
+                    height: 220%;
+                    left: -210%;
+                    bottom: -60%;
+                }
+            }
+
+            #spaceship {
+                transform: rotate(25deg);
+
+                @include breakpoint-down('sm') {
+                    transform: rotate(-65deg);
+                }
+            }
+        }
+
+        @include breakpoint-down('sm') {
+            grid-template-columns: auto auto;
+        }
     }
 
     @media (min-width: $lucas-extra-small) {

@@ -13,17 +13,14 @@ $background-gradient-deep-blue: #131c6a;
     &.intro {
         background: linear-gradient(
             to bottom,
-            #{$background-gradient-pink},
-            #{$background-gradient-cyan}
+            #{$background-gradient-pink} 15%,
+            #{$background-gradient-cyan} 40%,
+            #{$background-gradient-black} 80%
         );
     }
 
     &.cta-map {
-        background: linear-gradient(
-            to bottom,
-            #{$background-gradient-cyan},
-            #{$background-gradient-black} 60%
-        );
+        background: #{$background-gradient-black}
     }
 
     &.faqs {
@@ -38,8 +35,8 @@ $background-gradient-deep-blue: #131c6a;
     &.megateams {
         background: linear-gradient(
             to bottom,
-            #{$background-gradient-black},
-            #{$background-gradient-light-blue}
+            #{$background-gradient-black} 30%,
+            #{$background-gradient-light-blue} 100%
         );
     }
 }
