@@ -138,7 +138,7 @@
                     <div id="hoop1">
                         <div id="hoop2">
                             <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69" target="_blank">
-                                <img src="/assets/mcsmap.png"
+                                <img src="/assets//photos/tlcpng.png"
                                      alt="Map showing the location of the MCS building in Durham.">
                             </a>
                         </div>
