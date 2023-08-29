@@ -52,8 +52,8 @@ h2, p, span {
 }
 
 a:not(.tooltip) {
-    color: $primary-normal;
-    border-bottom: dashed 1px $primary-normal;
+    color: $secondary-a;
+    border-bottom: dashed 1px $secondary-a;
     text-decoration: none;
 
     &:hover {
