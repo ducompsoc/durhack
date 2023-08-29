@@ -32,6 +32,9 @@ $bg-g-dp-t: rgba(19, 28, 106, 0.6);
             #{$bg-g-dp-t},
             #{$bg-g-b-t}
         ), url("/assets/photos/faq-bg.jpeg");
+        background-position: center;
+        background-size: auto;
+        background-repeat: no-repeat;
     }
 
     &.sponsors {
