@@ -24,7 +24,7 @@
         },
         computed: {
             teams() {
-                return teams;
+                return teams.slice(1);
             }
         }
     };

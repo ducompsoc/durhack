@@ -6,7 +6,7 @@
         margin: 200px 0;
     }
 
-    $rad1: 40vw;
+    $rad1: 35vw;
     $thick1: 3px;
 
     $s-angle: -150deg;
@@ -50,7 +50,14 @@
 
     .hoop2{
         @extend .hoop;
-        width: calc($rad1 / 3);
+        width: calc($rad1 / 2.5);
+    }
+
+    .hoop3{
+        @extend .hoop;
+        &::before {
+            background: transparent;
+        }
     }
 
     .person {
@@ -70,7 +77,7 @@
         position: absolute;
         content: "";
 
-        width: 10%;
+        width: 25%;
         aspect-ratio: 1;
         left: 45%;
         bottom: -4%;
@@ -145,5 +152,9 @@
             box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 1);
             transition: all 0.5s ease-in-out;
         }
+    }
+
+    .hoop2 > img {
+        width: 45%;
     }
 }
