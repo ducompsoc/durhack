@@ -1,24 +1,21 @@
 .section.team {
     #mapbody {
         position: relative;
-        width: 80%;
-        text-align: left;
+        width: 100%;
         align-self: center;
+        margin: 200px 0;
     }
 
-    $rad1: 50vw;
+    $rad1: 40vw;
     $thick1: 2px;
 
-    $rad2: 70%; // percentage of rad1
     $s-angle: -150deg;
-    $orange-planet-angle: -20deg;
-    $blue-planet-angle: 70deg;
 
     #hoop {
         position: relative;
         width: $rad1;
         aspect-ratio: 1;
-        margin: 0 -50vw 0 64px;
+        margin: 0 auto;
     }
 
     #hoop::before {
@@ -83,29 +80,29 @@
         aspect-ratio: 1;
     }
 
-    #b-planet {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 1;
-        background-color: transparent;
-        transform: rotate(calc($blue-planet-angle - $orange-planet-angle));
-    }
+    // #b-planet {
+    //     position: relative;
+    //     width: 100%;
+    //     aspect-ratio: 1;
+    //     background-color: transparent;
+    //     transform: rotate(calc($blue-planet-angle - $orange-planet-angle));
+    // }
 
-    #b-planet::before {
-        background-image: url("./assets/graphics/map/blue-planet.svg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
+    // #b-planet::before {
+    //     background-image: url("./assets/graphics/map/blue-planet.svg");
+    //     background-repeat: no-repeat;
+    //     background-position: center;
+    //     background-size: cover;
 
-        position: absolute;
-        content: "";
+    //     position: absolute;
+    //     content: "";
 
-        width: 7%;
-        aspect-ratio: 1;
-        top: 50%;
-        left: calc(((100% - $rad2 - 2*$thick1) / 2) - 3%);
-        z-index: 5;
-    }
+    //     width: 7%;
+    //     aspect-ratio: 1;
+    //     top: 50%;
+    //     left: calc(((100% - $rad2 - 2*$thick1) / 2) - 3%);
+    //     z-index: 5;
+    // }
 
     #hoop > img {
         position: absolute;
