@@ -1,9 +1,11 @@
 <template>
-    <div class="flex-item">
-        <div class="hoop">
-            <img :src="`/assets/team/${center.image}`" :alt="image">
-            <div :class="`outer-members outer-members-${totalMembers}`">
-                <div v-for="(person, index) in members" class="person" :id="`person-${index+1}`"></div>
+    <div>
+        <div class="inner">
+            <div class="hoop2">
+                <img :src="`/assets/team/${center.image}`" :alt="image">
+                <div :class="`outer-members outer-members-${totalMembers}`">
+                    <div v-for="(person, index) in members" class="person" :id="`person-${index+1}`"></div>
+                </div>
             </div>
         </div>
     </div>

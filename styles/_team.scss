@@ -16,9 +16,8 @@
         width: $rad1;
         aspect-ratio: 1;
         margin: 0 auto;
-    }
 
-    .hoop::before {
+        &::before {
             position: absolute;
 
             content: "";
@@ -33,6 +32,25 @@
                linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor; /*5'*/
                     mask-composite: exclude; /*5*/
+        }
+    }
+
+    .team {
+        position: absolute;
+        aspect-ratio: 1;
+        background-color: transparent;
+        width: 100%;
+        aspect-ratio: 1;
+    }
+
+    .inner {
+        position: relative;
+        bottom: 17%;
+    }
+
+    .hoop2{
+        @extend .hoop;
+        width: calc($rad1 / 3);
     }
 
     .person {
@@ -52,16 +70,6 @@
         position: absolute;
         content: "";
 
-        width: 10%;
-        aspect-ratio: 1;
-        left: 45%;
-        bottom: -4%;
-    }
-
-    .team {
-        position: absolute;
-        aspect-ratio: 1;
-        background-color: transparent;
         width: 10%;
         aspect-ratio: 1;
         left: 45%;
@@ -129,7 +137,7 @@
 
         z-index: 5;
         border-radius: 50%;
-        width: 50%;
+        width: 30%;
         box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 1);
         transition: all 0.5s ease-in-out;
 
