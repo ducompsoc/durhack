@@ -6,7 +6,7 @@
         <div class="hoop">
             <img src="/assets/team/quinn.png" alt="Quinn">
             <div :class="`outer-members outer-members-${teams.length}`">
-                <TeamCircle v-for="(team, index) in teams" class="team" :id="`team-${index+1}`" :center="team" :members="[team, team, team, team]"/>
+                <TeamCircle v-for="(team, index) in teams" class="team" :id="`team-${index+1}`" :center="team[0]" :members="team.slice(1)"/>
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@
 
 <script>
     import TeamCircle from './TeamCircle';
-    import { team } from '../config.json';
+    import { teams } from '../config.json';
 
     // [ [{quinn}], [{...team1}], [{...team2}], ...]
 
@@ -23,12 +23,9 @@
             TeamCircle
         },
         computed: {
-            team() {
-                return team[0];
-            },
             teams() {
-                return [team[0], team[0], team[0]];
+                return teams;
             }
-        },
+        }
     };
 </script>

@@ -66,13 +66,15 @@
             }
         ]
     },
-    "team": [
-        {
-            "name": "Quinn Dines",
-            "role": "Lead Organiser",
-            "email": "email",
-            "image": "quinn.png"
-        }
+    "teams": [
+        [
+            {
+                "name": "Quinn Dines",
+                "role": "Lead Organiser",
+                "email": "email",
+                "image": "quinn.png"
+            }
+        ]
     ],
     "schedule": [
         {
