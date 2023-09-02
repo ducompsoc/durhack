@@ -1,3 +1,16 @@
+$size: 35vw;
+$hoop-thickness: 2px;
+$gradient-angle: -150deg;
+$centre-person-size: 30%;
+
+$inner-circle-person-distance: 20%;
+$inner-circle-person-size: 40%;
+
+$outer-circle-size: calc($size / 2.5);
+$outer-circle-person-distance: -14%;
+$outer-circle-person-size: 30%;
+$outer-circle-fine-tune-rotation: 34%;
+
 .section.team {
     #mapbody {
         position: relative;
@@ -6,14 +19,10 @@
         margin: 200px 0;
     }
 
-    $rad1: 35vw;
-    $thick1: 3px;
-
-    $s-angle: -150deg;
-
+    // This is the main hoop
     .hoop {
         position: relative;
-        width: $rad1;
+        width: $size;
         aspect-ratio: 1;
         margin: 0 auto;
 
@@ -22,11 +31,11 @@
 
             content: "";
             inset: 0;
-            border: $thick1 solid transparent;
+            border: $hoop-thickness solid transparent;
             border-radius: 50%;
 
             // https://dev.to/afif/border-with-gradient-and-radius-387f - This is some wacky stuff
-            background: linear-gradient($s-angle, #3CA3BD, #E37F6078, #CD342C3D, #8467A0) border-box; /*3*/
+            background: linear-gradient($gradient-angle, #3CA3BD, #E37F6078, #CD342C3D, #8467A0) border-box; /*3*/
             mask: /*4*/
                linear-gradient(#fff 0 0) padding-box, 
                linear-gradient(#fff 0 0);
@@ -35,6 +44,20 @@
         }
     }
 
+    // These are the hoops on the outer orbit
+    .hoop2{
+        @extend .hoop;
+        width: $outer-circle-size;
+    }
+
+    .hoop3{
+        @extend .hoop2;
+        &::before {
+            background: transparent;
+        }
+    }
+
+    // These are used to position the team circles
     .team {
         position: absolute;
         aspect-ratio: 1;
@@ -45,22 +68,10 @@
 
     .inner {
         position: relative;
-        bottom: 17%;
+        bottom: $inner-circle-person-distance;
     }
 
-    .hoop2{
-        @extend .hoop;
-        width: calc($rad1 / 2.5);
-    }
-
-    .hoop3{
-        @extend .hoop;
-        width: calc($rad1 / 2.5);
-        &::before {
-            background: transparent;
-        }
-    }
-
+    // These position the people on the inner circles
     .person {
         position: absolute;
         width: 100%;
@@ -69,22 +80,19 @@
     }
 
     .person::before {
-        background-image: url("./assets/team/quinn.png");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
+        background: url("./assets/team/quinn.png") center/cover no-repeat;
         border-radius: 50%;
 
         position: absolute;
         content: "";
 
-        width: 25%;
+        width: $outer-circle-person-size;
         aspect-ratio: 1;
-        left: 37%;
-        bottom: -10%;
+        left: $outer-circle-fine-tune-rotation;
+        bottom: $outer-circle-person-distance;
     }
 
-    // Automatically rotates the people around the hoop
+    // Automatically rotates the people around the hoops
     @for $i from 1 through 6 {        
         @for $j from 1 through $i {
             $angle: calc((360deg / ($i)) * ($j - 1));
@@ -113,30 +121,7 @@
         aspect-ratio: 1;
     }
 
-    // #b-planet {
-    //     position: relative;
-    //     width: 100%;
-    //     aspect-ratio: 1;
-    //     background-color: transparent;
-    //     transform: rotate(calc($blue-planet-angle - $orange-planet-angle));
-    // }
-
-    // #b-planet::before {
-    //     background-image: url("./assets/graphics/map/blue-planet.svg");
-    //     background-repeat: no-repeat;
-    //     background-position: center;
-    //     background-size: cover;
-
-    //     position: absolute;
-    //     content: "";
-
-    //     width: 7%;
-    //     aspect-ratio: 1;
-    //     top: 50%;
-    //     left: calc(((100% - $rad2 - 2*$thick1) / 2) - 3%);
-    //     z-index: 5;
-    // }
-
+    // Styles the lead circle
     .hoop > img {
         position: absolute;
         top: 50%;
@@ -145,17 +130,19 @@
 
         z-index: 5;
         border-radius: 50%;
-        width: 30%;
-        box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 1);
+        width: $centre-person-size;
+        // box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
         transition: all 0.5s ease-in-out;
 
         &:hover {
-            box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 1);
+            // box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
+            // width: 31%;
             transition: all 0.5s ease-in-out;
         }
     }
 
+    // Stles the inner circle portraits
     .hoop2 > img, .hoop3 > img {
-        width: 45%;
+        width: $inner-circle-person-size;
     }
 }
