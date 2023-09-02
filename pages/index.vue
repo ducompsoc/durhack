@@ -187,66 +187,67 @@
     
     <div id="team" class="section team">
         <div class="main">
-            <div class="text-center">
-                <h1>Meet the team</h1>
-            </div>
+            <Team/>
         </div>
     </div>
 
 
-    <div class="section socials" hidden>
-        <div class="main">
-            <a href="https://www.facebook.com/DurHackEvent" target="_blank">
-                <img alt="Twitter" src="/assets/icons/facebook_white_58px.png">
-            </a>
-            <a href="https://www.instagram.com/durhackevent" target="_blank">
-                <img alt="Twitter" src="/assets/icons/instagram_white.svg">
-            </a>
-            <a href="https://twitter.com/DurHackEvent" target="_blank">
-                <img alt="Twitter" src="/assets/icons/twitter_white.svg">
-            </a>
-            <a href="https://www.linkedin.com/company/durhack/" target="_blank">
-                <img alt="Twitter" src="/assets/icons/linkedin.png">
-            </a>
+    <div id="footer" class="section footer">
+        <div class="section socials" hidden>
+            <div class="main">
+                <a href="https://www.facebook.com/DurHackEvent" target="_blank">
+                    <img alt="Twitter" src="/assets/icons/facebook_white_58px.png">
+                </a>
+                <a href="https://www.instagram.com/durhackevent" target="_blank">
+                    <img alt="Twitter" src="/assets/icons/instagram_white.svg">
+                </a>
+                <a href="https://twitter.com/DurHackEvent" target="_blank">
+                    <img alt="Twitter" src="/assets/icons/twitter_white.svg">
+                </a>
+                <a href="https://www.linkedin.com/company/durhack/" target="_blank">
+                    <img alt="Twitter" src="/assets/icons/linkedin.png">
+                </a>
+            </div>
         </div>
+
+        <p class="text-center" hidden><a href="mailto:hello@durhack.com">hello@durhack.com</a></p>
+
+        <footer>
+            <div class="container row center">
+                <div class="legal flex">
+                    <p class="bigger">
+                        DurHack follows the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH Code of
+                            Conduct</a>.
+                        Photos and videos taken at events in 2019, 2022 and 2023.
+                    </p>
+
+                    <p>
+                        DurHack is an event hosted by Durham University Computing Society (<a
+                            href="https://compsoc.tech" target="_blank">compsoc.tech</a>), which is a student society
+                        affiliated with Durham Students' Union (<a href="https://durhamsu.com"
+                            target="_blank">durhamsu.com</a>).
+                        Durham Students' Union is registered in England as a company limited by guarantee (07689815) and
+                        a charity (1145400), with VAT number 119733690 and registered office Dunelm House, New Elvet,
+                        Durham DH1 3AN.
+                    </p>
+                </div>
+
+                <div class="photo">
+                    <img alt="The text 2022 on its side and then DurHack written in a white outline font"
+                        src="/assets/logo23.svg">
+                </div>
+            </div>
+        </footer>
     </div>
-
-    <p class="text-center" hidden><a href="mailto:hello@durhack.com">hello@durhack.com</a></p>
-
-    <footer>
-        <div class="container row center">
-            <div class="legal flex">
-                <p class="bigger">
-                    DurHack follows the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH Code of
-                        Conduct</a>.
-                    Photos and videos taken at events in 2019, 2022 and 2023.
-                </p>
-
-                <p>
-                    DurHack is an event hosted by Durham University Computing Society (<a
-                        href="https://compsoc.tech" target="_blank">compsoc.tech</a>), which is a student society
-                    affiliated with Durham Students' Union (<a href="https://durhamsu.com"
-                        target="_blank">durhamsu.com</a>).
-                    Durham Students' Union is registered in England as a company limited by guarantee (07689815) and
-                    a charity (1145400), with VAT number 119733690 and registered office Dunelm House, New Elvet,
-                    Durham DH1 3AN.
-                </p>
-            </div>
-
-            <div class="photo">
-                <img alt="The text 2022 on its side and then DurHack written in a white outline font"
-                    src="/assets/logo23.svg">
-            </div>
-        </div>
-    </footer>
 </template>
 
 <script>
 import FAQs from "../components/FAQs";
 import Megateams from "../components/Megateams";
+import Team from "../components/Team";
 
 export default {
-    components: { FAQs, Megateams },
+    components: { FAQs, Megateams, Team },
     mounted() {
         new Rellax('.rellax');
     }

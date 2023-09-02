@@ -47,9 +47,21 @@ $bg-g-dp-t: rgba(19, 28, 106, 0.6);
     }
 
     &.megateams {
+        background: #{$background-gradient-black}
+    }
+
+    &.team {
         background: linear-gradient(
             to bottom,
             #{$background-gradient-black} 30%,
+            #{$background-gradient-light-blue} 100%
+        );
+    }
+
+    &.footer {
+        background: linear-gradient(
+            to bottom,
+            #{$background-gradient-light-blue} 30%,
             #{$background-gradient-light-blue} 100%
         );
     }
