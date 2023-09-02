@@ -2,7 +2,7 @@
     <div class="text-center">
         <h1>MEET THE TEAM</h1>
     </div>
-    <TeamCircle :name="team.name" :role="team.role" :email="team.email" :image="team.image"/>
+    <TeamCircle :name="team.name" :role="team.role" :email="team.email" :image="team.image" size="large"/>
 </template>
 
 <script>
