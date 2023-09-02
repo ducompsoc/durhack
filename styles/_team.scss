@@ -61,11 +61,12 @@
         bottom: -4%;
     }
 
+    // Automatically rotates the people around the hoop
     @for $i from 1 through 6 {        
         @for $j from 1 through $i {
             $angle: calc((360deg / $i) * $j);
         
-            #outer-members-#{$i} {
+            .outer-members-#{$i} {
                 #person-#{$j} {
                     transform: rotate($angle);
                 }
