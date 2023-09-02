@@ -38,15 +38,14 @@
                     mask-composite: exclude; /*5*/
     }
 
-    #person {
-        position: relative;
+    .person {
+        position: absolute;
         width: 100%;
         aspect-ratio: 1;
         background-color: transparent;
-        transform: rotate($orange-planet-angle);
     }
 
-    #person::before {
+    .person::before {
         background-image: url("./assets/team/quinn.png");
         background-repeat: no-repeat;
         background-position: center;
@@ -58,9 +57,29 @@
 
         width: 10%;
         aspect-ratio: 1;
-        top: 50%;
+        top: 45%;
         left: -4%;
-        transform: rotate(-$orange-planet-angle);
+    }
+
+    @for $i from 1 through 6 {        
+        @for $j from 1 through $i {
+            $angle: calc((360deg / $i) * $j);
+        
+            #outer-members-#{$i} {
+                #person-#{$j} {
+                    transform: rotate($angle);
+                }
+                #person-#{$j}::before {
+                    transform: rotate(-$angle);
+                }
+            }
+        }
+    }
+
+    .outer-members {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1;
     }
 
     #b-planet {
