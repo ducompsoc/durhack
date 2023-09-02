@@ -1,11 +1,22 @@
 <template>
     <div class="text-center">
-        <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MEET THE TEAM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+        <h1>MEET THE TEAM</h1>
     </div>
+    <TeamCircle :name="team.name" :role="team.role" :email="team.email" :image="team.image"/>
 </template>
 
 <script>
-export default {
-    name: 'team'
-};
+    import TeamCircle from './TeamCircle';
+    import { team } from '../config.json';
+
+    export default {
+        components: {
+            TeamCircle
+        },
+        computed: {
+            team() {
+                return team[0];
+            }
+        },
+    };
 </script>
