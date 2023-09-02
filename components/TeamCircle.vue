@@ -1,14 +1,12 @@
 <template>
-    <div v-if="size === 'large'" class="container">
+    <div v-if="size === 'large'" class="flex-item" id="mapbody">
         <div id="hoop">
             <img :src="`/assets/team/${image}`" :alt="image">
-            <div id="person">
-                <div id="person2"></div>
-            </div>
+            <div id="person"></div>
         </div>
     </div>
 
-    <div v-if="size === 'small'" class="container">
+    <div v-if="size === 'small'" class="flex-item" id="mapbody">
     </div>
 </template>
 

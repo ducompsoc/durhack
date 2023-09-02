@@ -38,7 +38,7 @@
                     mask-composite: exclude; /*5*/
     }
 
-    #o-planet {
+    #person {
         position: relative;
         width: 100%;
         aspect-ratio: 1;
@@ -46,11 +46,12 @@
         transform: rotate($orange-planet-angle);
     }
 
-    #o-planet::before {
-        background-image: url("./assets/graphics/map/orange-planet.svg");
+    #person::before {
+        background-image: url("./assets/team/quinn.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
+        border-radius: 50%;
 
         position: absolute;
         content: "";
@@ -59,6 +60,7 @@
         aspect-ratio: 1;
         top: 50%;
         left: -4%;
+        transform: rotate(-$orange-planet-angle);
     }
 
     #b-planet {
