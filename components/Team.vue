@@ -6,7 +6,7 @@
         <div class="hoop">
             <img src="/assets/team/quinn.png" alt="Quinn">
             <div :class="`outer-members outer-members-${teams.length}`">
-                <TeamCircle v-for="(team, index) in teams" class="person" :id="`person-${index+1}`" :center="team" :members="[team, team, team, team]"/>
+                <TeamCircle v-for="(team, index) in teams" class="team" :id="`team-${index+1}`" :center="team" :members="[team, team, team, team]"/>
             </div>
         </div>
     </div>

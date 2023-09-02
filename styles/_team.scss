@@ -58,12 +58,29 @@
         bottom: -4%;
     }
 
+    .team {
+        position: absolute;
+        aspect-ratio: 1;
+        background-color: transparent;
+        width: 10%;
+        aspect-ratio: 1;
+        left: 45%;
+        bottom: -4%;
+    }
+
     // Automatically rotates the people around the hoop
     @for $i from 1 through 6 {        
         @for $j from 1 through $i {
             $angle: calc((360deg / $i) * $j);
         
             .outer-members-#{$i} {
+                #team-#{$j} {
+                    transform: rotate($angle);
+                }
+                #team-#{$j}::before {
+                    transform: rotate(-$angle);
+                }
+
                 #person-#{$j} {
                     transform: rotate($angle);
                 }
