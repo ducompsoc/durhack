@@ -55,6 +55,7 @@
 
     .hoop3{
         @extend .hoop;
+        width: calc($rad1 / 2.5);
         &::before {
             background: transparent;
         }
@@ -86,7 +87,7 @@
     // Automatically rotates the people around the hoop
     @for $i from 1 through 6 {        
         @for $j from 1 through $i {
-            $angle: calc((360deg / $i) * $j);
+            $angle: calc((360deg / ($i - 1)) * ($j - 1));
         
             .outer-members-#{$i} {
                 #team-#{$j} {
@@ -154,7 +155,7 @@
         }
     }
 
-    .hoop2 > img {
+    .hoop2 > img, .hoop3 > img {
         width: 45%;
     }
 }
