@@ -1,8 +1,6 @@
 <template>
     <div id="hoop">
-        <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69" target="_blank">
-            <img :src="`/assets/team/${image}`" :alt="image">
-        </a>
+        <img :src="`/assets/team/${image}`" :alt="image">
         <div id="person">
             <div id="person2"></div>
         </div>

@@ -30,7 +30,7 @@
             border-radius: 50%;
 
             // https://dev.to/afif/border-with-gradient-and-radius-387f - This is some wacky stuff
-            background: linear-gradient($s-angle, #5cdbfb, #8467A070, #FFDDDD38, #fd825c) border-box; /*3*/
+            background: linear-gradient($s-angle, #3CA3BD, #E37F6078, #CD342C3D, #8467A0) border-box; /*3*/
             mask: /*4*/
                linear-gradient(#fff 0 0) padding-box, 
                linear-gradient(#fff 0 0);
@@ -85,7 +85,7 @@
         z-index: 5;
     }
 
-    a > img {
+    #hoop > img {
         position: absolute;
         top: 50%;
         left: 50%;
