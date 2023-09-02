@@ -16,6 +16,8 @@
     import TeamCircle from './TeamCircle';
     import { team } from '../config.json';
 
+    // [ [{quinn}], [{...team1}], [{...team2}], ...]
+
     export default {
         components: {
             TeamCircle
@@ -25,7 +27,7 @@
                 return team[0];
             },
             teams() {
-                return [team[0], team[0], team[0], team[0]];
+                return [team[0], team[0], team[0]];
             }
         },
     };

@@ -2,7 +2,7 @@
     <div>
         <div class="inner">
             <div class="hoop2">
-                <img :src="`/assets/team/${center.image}`" :alt="image">
+                <img :src="`/assets/team/${center.image}`" :alt="center.image">
                 <div :class="`outer-members outer-members-${totalMembers}`">
                     <div v-for="(person, index) in members" class="person" :id="`person-${index+1}`"></div>
                 </div>
@@ -14,7 +14,7 @@
 <script>
     export default {
         name: 'teamCircle',
-        props: ['center', 'members', 'size'],
+        props: ['center', 'members'],
         computed: {
             totalMembers() {
                 return this.members.length;

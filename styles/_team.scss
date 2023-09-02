@@ -85,7 +85,7 @@
                 #team-#{$j} {
                     transform: rotate($angle);
                 }
-                #team-#{$j}::before {
+                #team-#{$j} > .inner {
                     transform: rotate(-$angle);
                 }
 
