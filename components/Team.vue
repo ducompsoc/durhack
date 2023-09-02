@@ -2,7 +2,14 @@
     <div class="text-center">
         <h1>MEET THE TEAM</h1>
     </div>
-    <TeamCircle :center="team" :members="[team, team, team, team]" size="large"/>
+    <div class="flex-item" id="mapbody">
+        <div class="hoop">
+            <img src="/assets/team/quinn.png" alt="Quinn">
+            <div :class="`outer-members outer-members-${teams.length}`">
+                <TeamCircle v-for="(team, index) in teams" class="person" :id="`person-${index+1}`" :center="team" :members="[team, team, team, team]"/>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -16,6 +23,9 @@
         computed: {
             team() {
                 return team[0];
+            },
+            teams() {
+                return [team[0], team[0], team[0], team[0]];
             }
         },
     };

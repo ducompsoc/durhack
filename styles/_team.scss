@@ -7,18 +7,18 @@
     }
 
     $rad1: 40vw;
-    $thick1: 2px;
+    $thick1: 3px;
 
     $s-angle: -150deg;
 
-    #hoop {
+    .hoop {
         position: relative;
         width: $rad1;
         aspect-ratio: 1;
         margin: 0 auto;
     }
 
-    #hoop::before {
+    .hoop::before {
             position: absolute;
 
             content: "";
@@ -104,7 +104,7 @@
     //     z-index: 5;
     // }
 
-    #hoop > img {
+    .hoop > img {
         position: absolute;
         top: 50%;
         left: 50%;
