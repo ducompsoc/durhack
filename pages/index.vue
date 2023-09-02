@@ -178,6 +178,13 @@
     </div>
 
 
+    <div id="megateams" class="section megateams">
+        <div class="main">
+            <Megateams/>
+        </div>
+    </div>
+
+    
     <div id="team" class="section team">
         <div class="main">
             <div class="text-center">
@@ -186,12 +193,6 @@
         </div>
     </div>
 
-
-    <div id="megateams" class="section megateams">
-        <div class="main">
-            <Megateams/>
-        </div>
-    </div>
 
     <div class="section socials" hidden>
         <div class="main">
