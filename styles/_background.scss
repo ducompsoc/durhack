@@ -35,7 +35,7 @@ $bg-g-dp-t: rgba(19, 28, 106, 0.6);
             #{$bg-g-b-t}
         ), url("/assets/photos/faq-bg.jpeg");
         background-position: center;
-        background-size: auto 100%;
+        background-size: 100% 100%;
         background-repeat: no-repeat;
     }
 
@@ -71,10 +71,14 @@ $bg-g-dp-t: rgba(19, 28, 106, 0.6);
         );
 
         .footer-main {
-            background-image: url('/assets/graphics/earth.svg');
+            background-image: linear-gradient(
+                to top,
+                rgba(22, 20, 40, 0.5) 14.55%,
+                rgba(8, 3, 63, 0) 97.73%
+            ), url('/assets/graphics/earth.svg');
             background-position: center;
             background-repeat: no-repeat;
-            background-size: 100% auto;
+            background-size: cover;
         }
     }
 }

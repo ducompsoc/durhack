@@ -196,17 +196,20 @@
         <div class="footer-main">
             <div class="section socials">
                 <div class="main">
-                    <a href="https://www.facebook.com/DurHackEvent" target="_blank">
-                        <img alt="Twitter" src="/assets/icons/facebook_white_58px.png">
-                    </a>
                     <a href="https://www.instagram.com/durhackevent" target="_blank">
-                        <img alt="Twitter" src="/assets/icons/instagram_white.svg">
+                        <img alt="Instagram" src="/assets/icons/instagram.svg">
                     </a>
-                    <a href="https://twitter.com/DurHackEvent" target="_blank">
-                        <img alt="Twitter" src="/assets/icons/twitter_white.svg">
+                    <a href="https://www.facebook.com/DurHackEvent" target="_blank">
+                        <img alt="Facebook" src="/assets/icons/facebook.svg">
+                    </a>
+                    <a href="#" target="_blank">
+                        <img alt="Tiktok" src="/assets/icons/tiktok.svg">
                     </a>
                     <a href="https://www.linkedin.com/company/durhack/" target="_blank">
-                        <img alt="Twitter" src="/assets/icons/linkedin.png">
+                        <img alt="LinkedIn" src="/assets/icons/linkedin.svg">
+                    </a>
+                    <a href="https://twitter.com/DurHackEvent" target="_blank">
+                        <img alt="X" src="/assets/icons/x-twitter.svg">
                     </a>
                 </div>
             </div>
@@ -231,11 +234,6 @@
                             a charity (1145400), with VAT number 119733690 and registered office Dunelm House, New Elvet,
                             Durham DH1 3AN.
                         </p>
-                    </div>
-
-                    <div class="photo">
-                        <img alt="The text 2022 on its side and then DurHack written in a white outline font"
-                            src="/assets/logo23.svg">
                     </div>
                 </div>
             </footer>
