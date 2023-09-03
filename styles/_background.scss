@@ -64,11 +64,17 @@ $bg-g-dp-t: rgba(19, 28, 106, 0.6);
     }
 
     &.footer {
-        background-image:
-        linear-gradient(
+        background-image: linear-gradient(
             to bottom,
             #{$background-gradient-light-blue} 30%,
             #{$background-gradient-light-blue} 100%
         );
+
+        .footer-main {
+            background-image: url('/assets/graphics/earth.svg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+        }
     }
 }
