@@ -8,6 +8,7 @@ $background-gradient-cyan: #426676;
 $background-gradient-light-blue: #1f80a1;
 $background-gradient-black: #{$primary-dark};
 $background-gradient-deep-blue: #131c6a;
+$bg-g-lb-t: rgba(31, 128, 161, 1);
 $bg-g-b-t: rgba(17, 17, 17, 1);
 $bg-g-dp-t: rgba(19, 28, 106, 0.6);
 
@@ -51,10 +52,10 @@ $bg-g-dp-t: rgba(19, 28, 106, 0.6);
     }
 
     &.team {
-        background: url('/assets/graphics/bottom-stars.svg'), linear-gradient(
+        background-image: url('/assets/graphics/bottom-stars.svg'), linear-gradient(
             to bottom,
-            #{$background-gradient-black} 30%,
-            #{$background-gradient-light-blue} 100%
+            #{$bg-g-b-t} 30%,
+            #{$bg-g-lb-t} 100%
         );
         background-position: center;
         background-size: auto 100%;
