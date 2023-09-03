@@ -237,7 +237,10 @@
                     </div>
                 </div>
             </footer>
+
+            <img alt="earth" src="/assets/graphics/earth.svg"/>
         </div>
+        <div class="shadow"></div>
     </div>
 </template>
 
