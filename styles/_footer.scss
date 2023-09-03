@@ -1,6 +1,9 @@
 @import './variables';
 
 .section.footer {
+    .text-center {
+        padding-top: 0;
+    }
 
     .footer-main {
         padding-top: 0%;
@@ -15,7 +18,8 @@
     footer {
         text-align: left;
         bottom: 0;
-        padding: 48px calc(82px + 32px);
+        padding: 24px calc(82px + 32px);
+        color: rgba(255, 255, 255, 0.50);
     
         @media screen and (max-width: $old-breakpoint-medium) {
             padding: 48px 32px;

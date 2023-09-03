@@ -194,8 +194,10 @@
 
     <div id="footer" class="section footer">
         <div class="footer-main">
-            <div class="section socials">
-                <div class="main">
+            <p class="text-center"><a href="mailto:hello@durhack.com">hello@durhack.com</a></p>
+
+            <div class="socials">
+                <div class="text-center">
                     <a href="https://www.instagram.com/durhackevent" target="_blank">
                         <img alt="Instagram" src="/assets/icons/instagram.svg">
                     </a>
@@ -213,8 +215,6 @@
                     </a>
                 </div>
             </div>
-
-            <p class="text-center"><a href="mailto:hello@durhack.com">hello@durhack.com</a></p>
 
             <footer>
                 <div class="container row center">
