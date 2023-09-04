@@ -124,27 +124,27 @@
         [
             {
                 "name": "Abigail",
-                "role": "Lead Organiser",
+                "role": "Head of Logistics",
                 "email": "email",
                 "image": "Abigail.png"
             },
             {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
+                "name": "Charlotte",
+                "role": "Logistics Officer",
                 "email": "email",
-                "image": "quinn.png"
+                "image": "charlotte.png"
             },
             {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
+                "name": "Lauren",
+                "role": "Logistics Officer",
                 "email": "email",
-                "image": "quinn.png"
+                "image": "lauren.png"
             },
             {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
+                "name": "Tanheed",
+                "role": "Logistics Officer",
                 "email": "email",
-                "image": "quinn.png"
+                "image": "tanheed.png"
             }
         ],
         [

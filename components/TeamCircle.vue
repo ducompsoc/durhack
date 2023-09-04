@@ -20,7 +20,7 @@
 <script>
     export default {
         name: 'teamCircle',
-        props: ['center', 'members'],
+        props: ['center', 'members', 'teamNumber'],
         computed: {
             totalMembers() {
                 return this.members.length;
@@ -30,7 +30,7 @@
             let i = 1
             while (i <= this.totalMembers) {
                 var styleElem = document.head.appendChild(document.createElement("style"));
-                styleElem.innerHTML = `.outer-members-${this.totalMembers} #person-${i}::before { background-image: url(/assets/team/${this.members[i-1].image}); }`;
+                styleElem.innerHTML = `#team-${this.teamNumber} #person-${i}::before { background-image: url(/assets/team/${this.members[i-1].image}); }`;
                 i++;
             }
         }
