@@ -11,6 +11,9 @@ $outer-circle-person-distance: -14%;
 $outer-circle-person-size: 30%;
 $outer-circle-fine-tune-rotation: 36%;
 
+$outer-circle-rotation: -195deg;
+$inner-circle-rotation: 0deg;
+
 .section.team {
     #mapbody {
         position: relative;
@@ -42,6 +45,11 @@ $outer-circle-fine-tune-rotation: 36%;
             -webkit-mask-composite: xor; /*5'*/
                     mask-composite: exclude; /*5*/
         }
+
+        > .outer-members {
+            transition: all 1.5s ease-in-out;
+            rotate: $outer-circle-rotation;
+        }
     }
 
     // These are the hoops on the outer orbit
@@ -69,6 +77,8 @@ $outer-circle-fine-tune-rotation: 36%;
     .inner {
         position: relative;
         bottom: $inner-circle-person-distance;
+        rotate: - ($outer-circle-rotation);
+        // rotate: calc($inner-circle-rotation - (2 * $outer-circle-rotation));
     }
 
     // These position the people on the inner circles
@@ -77,6 +87,9 @@ $outer-circle-fine-tune-rotation: 36%;
         width: 100%;
         aspect-ratio: 1;
         background-color: transparent;
+
+        transition: all 1.5s ease-in-out;
+        rotate: calc( $inner-circle-rotation - $outer-circle-rotation );
     }
 
     .person::before {
@@ -90,6 +103,9 @@ $outer-circle-fine-tune-rotation: 36%;
         aspect-ratio: 1;
         left: $outer-circle-fine-tune-rotation;
         bottom: $outer-circle-person-distance;
+
+        transition: all 1.5s ease-in-out;
+        rotate: -$inner-circle-rotation;
     }
 
     // Automatically rotates the people around the hoops
