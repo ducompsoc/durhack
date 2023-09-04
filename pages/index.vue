@@ -204,7 +204,7 @@
                     <a href="https://www.facebook.com/DurHackEvent" target="_blank">
                         <img alt="Facebook" src="/assets/icons/facebook.svg">
                     </a>
-                    <a href="#" target="_blank">
+                    <a href="https://www.tiktok.com/@durhack" target="_blank">
                         <img alt="Tiktok" src="/assets/icons/tiktok.svg">
                     </a>
                     <a href="https://www.linkedin.com/company/durhack/" target="_blank">
