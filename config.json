@@ -150,41 +150,41 @@
         [
             {
                 "name": "Clary H",
-                "role": "Lead Organiser",
+                "role": "Head of Design and Marketing",
                 "email": "email",
                 "image": "Clary H.png"
             },
             {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
+                "name": "Fatima",
+                "role": "Design and Marketing Officer",
                 "email": "email",
-                "image": "quinn.png"
+                "image": "fatima.png"
             }
         ],
         [
             {
                 "name": "Eve R",
-                "role": "Lead Organiser",
+                "role": "Head of Sponsorship",
                 "email": "email",
                 "image": "Eve R.png"
             },            
             {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
+                "name": "Eve S",
+                "role": "Sponsorship Officer",
                 "email": "email",
-                "image": "quinn.png"
+                "image": "eve_s.png"
             },            
             {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
+                "name": "George",
+                "role": "Sponsorship Officer",
                 "email": "email",
-                "image": "quinn.png"
+                "image": "george.png"
             },            
             {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
+                "name": "Rushil",
+                "role": "Sponsorship Officer",
                 "email": "email",
-                "image": "quinn.png"
+                "image": "rushil.png"
             }
         ],
         [
