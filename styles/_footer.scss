@@ -49,7 +49,7 @@
     footer {
         text-align: left;
         bottom: 0;
-        padding: 24px calc(82px + 32px);
+        padding: 124px calc(82px + 32px) 24px;
         color: rgba(255, 255, 255, 0.50);
     
         @media screen and (max-width: $old-breakpoint-medium) {
@@ -66,10 +66,6 @@
                 border-bottom: none;
                 color: white;
             }
-    
-            .bigger {
-                font-size: 18px;
-            }
 
             p {
                 font-size: 1.1rem;
@@ -84,7 +80,7 @@
     
     .socials {
         .text-center {
-            margin: 20px 0 50px 0;
+            margin: 20px 0 0 0;
         }
         a {
             padding: 1rem;
@@ -98,6 +94,55 @@
                     transition: .15s ease-in-out;
                     border-bottom-style: none;
                 }
+            }
+        }
+    }
+
+    @mixin footer-content-size($font-1, $img-height, $font-2, $f-padding) {
+        .footer-main {
+            > p > a {
+                font-size: $font-1;
+            }
+        }
+
+        .socials {
+            a {
+                img {
+                    width: $img-height;
+                    height: $img-height;
+                }
+            }
+        }
+
+        footer {
+            padding: $f-padding;
+
+            .legal {
+                p {
+                    font-size: $font-2;
+                }
+            }
+        }
+    }
+
+    @include breakpoint-down('xl') {
+        @include footer-content-size(1.7rem, 35px, 0.8rem, 80px 20px 24px);
+    }
+
+    @include breakpoint-down('md') {
+        @include footer-content-size(1.5rem, 30px, 0.6rem, 50px 20px 16px);
+    }
+
+    @include breakpoint-down('sm') {
+        @include footer-content-size(1.1rem, 25px, 0.5rem, 20px 20px 16px);
+    }
+
+    @include breakpoint-down('xs') {
+        @include footer-content-size(1rem, 25px, 0.3rem, 8px 10px 8px);
+
+        .footer-main {
+            .text-center {
+                margin: 10px;
             }
         }
     }
