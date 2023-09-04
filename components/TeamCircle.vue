@@ -27,12 +27,14 @@
             }
         },
         mounted() {
+            var styleElem = document.head.appendChild(document.createElement("style"));
+            let styling = '';
             let i = 1
             while (i <= this.totalMembers) {
-                var styleElem = document.head.appendChild(document.createElement("style"));
-                styleElem.innerHTML = `#team-${this.teamNumber} #person-${i}::before { background-image: url(/assets/team/${this.members[i-1].image}); }`;
+                styling += `#team-${this.teamNumber} #person-${i}::before { background-image: url(/assets/team/${this.members[i-1].image}); } `;
                 i++;
             }
+            styleElem.innerHTML = styling;
         }
     };
 </script>
