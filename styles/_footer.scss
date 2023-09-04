@@ -151,4 +151,8 @@
             }
         }
     }
+
+    #blur-1 {
+        filter: blur(60px) brightness(1.75) saturate(1.5);
+    }
 }

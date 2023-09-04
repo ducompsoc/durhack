@@ -238,6 +238,7 @@
                 </div>
             </footer>
 
+            <img id="blur-1" alt="earth" src="/assets/graphics/earth.svg"/>
             <img alt="earth" src="/assets/graphics/earth.svg"/>
         </div>
         <div class="shadow"></div>
