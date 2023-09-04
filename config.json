@@ -77,10 +77,10 @@
         ],
         [
             {
-                "name": "Quinn Dines",
+                "name": "Disha G",
                 "role": "Lead Organiser",
                 "email": "email",
-                "image": "quinn.png"
+                "image": "Disha G.png"
             },
             {
                 "name": "Quinn Dines",
@@ -93,6 +93,40 @@
                 "role": "Lead Organiser",
                 "email": "email",
                 "image": "quinn.png"
+            },
+            {
+                "name": "Luca",
+                "role": "Lead Organiser",
+                "email": "email",
+                "image": "luca.jpg"
+            },
+            {
+                "name": "Quinn Dines",
+                "role": "Lead Organiser",
+                "email": "email",
+                "image": "quinn.png"
+            },
+            {
+                "name": "Quinn Dines",
+                "role": "Lead Organiser",
+                "email": "email",
+                "image": "quinn.png"
+            }
+        ],
+        [
+            {
+                "name": "Karl Southern",
+                "role": "Emeritus Organiser",
+                "email": "email",
+                "image": "karl.jpg"
+            }
+        ],
+        [
+            {
+                "name": "Abigail",
+                "role": "Lead Organiser",
+                "email": "email",
+                "image": "Abigail.png"
             },
             {
                 "name": "Quinn Dines",
@@ -115,30 +149,10 @@
         ],
         [
             {
-                "name": "Quinn Dines",
+                "name": "Clary H",
                 "role": "Lead Organiser",
                 "email": "email",
-                "image": "quinn.png"
-            }
-        ],
-        [
-            {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
-                "email": "email",
-                "image": "quinn.png"
-            },
-            {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
-                "email": "email",
-                "image": "quinn.png"
-            },
-            {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
-                "email": "email",
-                "image": "quinn.png"
+                "image": "Clary H.png"
             },
             {
                 "name": "Quinn Dines",
@@ -149,11 +163,23 @@
         ],
         [
             {
+                "name": "Eve R",
+                "role": "Lead Organiser",
+                "email": "email",
+                "image": "Eve R.png"
+            },            
+            {
                 "name": "Quinn Dines",
                 "role": "Lead Organiser",
                 "email": "email",
                 "image": "quinn.png"
-            },
+            },            
+            {
+                "name": "Quinn Dines",
+                "role": "Lead Organiser",
+                "email": "email",
+                "image": "quinn.png"
+            },            
             {
                 "name": "Quinn Dines",
                 "role": "Lead Organiser",
@@ -163,33 +189,10 @@
         ],
         [
             {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
+                "name": "Allaida S",
+                "role": "Hacker Experience",
                 "email": "email",
-                "image": "quinn.png"
-            },            {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
-                "email": "email",
-                "image": "quinn.png"
-            },            {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
-                "email": "email",
-                "image": "quinn.png"
-            },            {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
-                "email": "email",
-                "image": "quinn.png"
-            }
-        ],
-        [
-            {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
-                "email": "email",
-                "image": "quinn.png"
+                "image": "Allaida S - Hacker Experience.png"
             }
         ]
     ],
