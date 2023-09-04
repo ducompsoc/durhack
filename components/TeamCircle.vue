@@ -3,9 +3,6 @@
         <div v-if="totalMembers == 0" class="inner">
             <div class="hoop3">
                 <img :src="`/assets/team/${center.image}`" :alt="center.image">
-                <div :class="`outer-members outer-members-${totalMembers}`">
-                    <div v-for="(person, index) in members" class="person" :id="`person-${index+1}`"></div>
-                </div>
             </div>
         </div>
         
