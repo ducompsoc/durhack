@@ -1,3 +1,6 @@
+$outer-circle-rotation: 0deg;
+$inner-circle-rotation: 0deg;
+
 $size: 43vw;
 $hoop-thickness: 2px;
 $gradient-angle: -150deg;
@@ -10,9 +13,6 @@ $outer-circle-size: calc($size / 2.5);
 $outer-circle-person-distance: -14%;
 $outer-circle-person-size: 30%;
 $outer-circle-fine-tune-rotation: 36%;
-
-$outer-circle-rotation: -195deg;
-$inner-circle-rotation: 0deg;
 
 .section.team {
     #mapbody {
@@ -77,6 +77,8 @@ $inner-circle-rotation: 0deg;
     .inner {
         position: relative;
         bottom: $inner-circle-person-distance;
+
+        transition: all 1.5s ease-in-out;
         rotate: - ($outer-circle-rotation);
         // rotate: calc($inner-circle-rotation - (2 * $outer-circle-rotation));
     }
