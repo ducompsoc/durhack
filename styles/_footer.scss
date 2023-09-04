@@ -50,7 +50,7 @@
     footer {
         text-align: left;
         bottom: 0;
-        padding: 124px calc(82px + 32px) 24px;
+        padding: 64px calc(82px + 32px) 24px;
         color: rgba(255, 255, 255, 0.50);
     
         @media screen and (max-width: $old-breakpoint-medium) {
@@ -124,6 +124,10 @@
                 }
             }
         }
+    }
+
+    @include breakpoint-up('xl') {
+        padding-top: 15%;
     }
 
     @include breakpoint-down('xl') {
