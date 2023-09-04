@@ -28,7 +28,7 @@
         },
         mounted() {
             let i = 1
-            while (i < this.totalMembers) {
+            while (i <= this.totalMembers) {
                 var styleElem = document.head.appendChild(document.createElement("style"));
                 styleElem.innerHTML = `.outer-members-${this.totalMembers} #person-${i}::before { background-image: url(/assets/team/${this.members[i-1].image}); }`;
                 i++;

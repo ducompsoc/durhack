@@ -83,34 +83,34 @@
                 "image": "Disha G.png"
             },
             {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
-                "email": "email",
-                "image": "quinn.png"
-            },
-            {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
-                "email": "email",
-                "image": "quinn.png"
-            },
-            {
                 "name": "Luca",
-                "role": "Lead Organiser",
+                "role": "Tech Officer",
                 "email": "email",
                 "image": "luca.jpg"
             },
             {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
+                "name": "Joe Clark",
+                "role": "Tech Officer",
                 "email": "email",
-                "image": "quinn.png"
+                "image": "joe.png"
             },
             {
-                "name": "Quinn Dines",
-                "role": "Lead Organiser",
+                "name": "Amber",
+                "role": "Tech Officer",
                 "email": "email",
-                "image": "quinn.png"
+                "image": "amber.png"
+            },
+            {
+                "name": "Will Woodward",
+                "role": "Tech Officer",
+                "email": "email",
+                "image": "will.png"
+            },
+            {
+                "name": "Jacob Wrenn",
+                "role": "Tech Officer",
+                "email": "email",
+                "image": "jacob.png"
             }
         ],
         [
