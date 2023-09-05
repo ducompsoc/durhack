@@ -1,8 +1,10 @@
 // To rotate the circles, change the angles
-$outer-circle-rotation: 0deg;
+$outer-circle-rotation: -0deg;
 $inner-circle-rotation: 0deg;
 
-$size: 43vw;
+$rotation-rate: 15s;
+
+$size: 40vw;
 $hoop-thickness: 2px;
 $gradient-angle: -150deg;
 $centre-person-size: 30%;
@@ -14,6 +16,24 @@ $outer-circle-size: calc($size / 2.5);
 $outer-circle-person-distance: -14%;
 $outer-circle-person-size: 30%;
 $outer-circle-fine-tune-rotation: 36%;
+
+@keyframes outer1 {
+    from {
+        rotate: 0deg;
+    }
+    to {
+        rotate: 360deg;
+    }
+}
+
+@keyframes inner1 {
+    from {
+        rotate: 0deg;
+    }
+    to {
+        rotate: -360deg;
+    }
+}
 
 .section.team {
     #mapbody {
@@ -50,6 +70,8 @@ $outer-circle-fine-tune-rotation: 36%;
         > .outer-members {
             transition: all 1.5s ease-in-out;
             rotate: $outer-circle-rotation;
+
+            animation: outer1 $rotation-rate linear infinite;
         }
     }
 
@@ -81,6 +103,8 @@ $outer-circle-fine-tune-rotation: 36%;
 
         transition: all 1.5s ease-in-out;
         rotate: - ($outer-circle-rotation);
+
+        animation: inner1 $rotation-rate linear infinite;
         // rotate: calc($inner-circle-rotation - (2 * $outer-circle-rotation));
     }
 
@@ -93,6 +117,8 @@ $outer-circle-fine-tune-rotation: 36%;
 
         transition: all 1.5s ease-in-out;
         rotate: calc( $inner-circle-rotation - $outer-circle-rotation );
+
+        animation: outer1 $rotation-rate linear infinite;
     }
 
     .person::before {
@@ -109,6 +135,8 @@ $outer-circle-fine-tune-rotation: 36%;
 
         transition: all 1.5s ease-in-out;
         rotate: -$inner-circle-rotation;
+
+        animation: inner1 calc($rotation-rate / 2) linear infinite;
     }
 
     // Automatically rotates the people around the hoops
