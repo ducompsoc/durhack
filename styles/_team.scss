@@ -124,6 +124,7 @@ $outer-circle-fine-tune-rotation: 36%;
     .person::before {
         background: url("./assets/team/quinn.png") center/cover no-repeat;
         border-radius: 50%;
+        box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.5);
 
         position: absolute;
         content: "";
@@ -177,13 +178,13 @@ $outer-circle-fine-tune-rotation: 36%;
 
         z-index: 5;
         border-radius: 50%;
+        box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.5);
         width: $centre-person-size;
-        // box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
         transition: all 0.5s ease-in-out;
 
         &:hover {
             // box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
-            // width: 31%;
+            width: 31%;
             transition: all 0.5s ease-in-out;
         }
     }
