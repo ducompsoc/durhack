@@ -1,6 +1,10 @@
 // This is a previous year's template
 
 <template>
+	<div class="text-center">
+		<h1>Past Sponsors</h1>
+	</div>
+
 	<div v-for="(sponsorList, tier) in sponsors">
 		<h3><img :src="`/assets/graphics/sponsor_${tier}.svg`" class="primary-normal-svg-filter"/>
         </h3>
