@@ -1,3 +1,5 @@
+// This is a previous year's template
+
 <template>
 	<div class="timeline">
 		<div class="group" v-for="(day, key) in schedule">

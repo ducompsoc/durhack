@@ -1,3 +1,5 @@
+// This is a previous year's template
+
 <template>
 	<div v-for="teamColumn in teamColumns" class="column center">
 		<a
