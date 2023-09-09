@@ -24,6 +24,6 @@
 
 <script>
     export default {
-        name: 'map'
+        name: 'CTAMap'
     }
 </script>
