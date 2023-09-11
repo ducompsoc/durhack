@@ -2,13 +2,23 @@
     <div>
         <div v-if="totalMembers == 0" class="inner">
             <div class="hoop3">
-                <img :src="`/assets/team/${center.image}`" :alt="center.image">
+                <img 
+                    class="tooltip"
+                    :src="`/assets/team/${center.image}`" 
+                    :alt="center.image" 
+                    :data-tippy-content="`<div><strong>${center.name}</strong></div><div>${center.role}</div>`"
+                >
             </div>
         </div>
         
         <div v-else class="inner">
             <div class="hoop2">
-                <img :src="`/assets/team/${center.image}`" :alt="center.image">
+                <img 
+                    class="tooltip"
+                    :src="`/assets/team/${center.image}`" 
+                    :alt="center.image" 
+                    :data-tippy-content="`<div><strong>${center.name}</strong></div><div>${center.role}</div>`"
+                >
                 <div :class="`outer-members outer-members-${totalMembers}`">
                     <div v-for="(person, index) in members" class="person" :id="`person-${index+1}`"></div>
                 </div>
@@ -35,6 +45,8 @@
                 i++;
             }
             styleElem.innerHTML = styling;
+
+            tippy('.tooltip', { allowHTML: true });
         }
     };
 </script>

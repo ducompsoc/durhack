@@ -184,7 +184,7 @@ $outer-circle-fine-tune-rotation: 36%;
 
         &:hover {
             // box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
-            width: 31%;
+            width: calc($centre-person-size * 1.1);
             transition: all 0.5s ease-in-out;
         }
     }
@@ -192,6 +192,12 @@ $outer-circle-fine-tune-rotation: 36%;
     // Stles the inner circle portraits
     .hoop2 > img, .hoop3 > img {
         width: $inner-circle-person-size;
+        transition: all 0.5s ease-in-out;
+
+        &:hover {
+            width: calc($inner-circle-person-size * 1.1);
+            transition: all 0.5s ease-in-out;
+        }
     }
 
     // This is for the smaller hoops
@@ -201,11 +207,23 @@ $outer-circle-fine-tune-rotation: 36%;
         // Sets new animations
         .inner {
             animation: none;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+
+            .hoop2 {
+                width: $size;
+                aspect-ratio: 1;
+            }
         }
     }
 
     .hoop-container {
         position: relative;
-        height: 400px;
+        height: calc($size * 1.5);
+    }
+
+    .two-people {
+        display: flex;
     }
 }

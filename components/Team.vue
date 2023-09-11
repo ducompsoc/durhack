@@ -2,7 +2,7 @@
     <div class="text-center">
         <h1>MEET THE TEAM</h1>
     </div>
-    <div v-if="screenSize > 1080" class="flex-item" id="mapbody">
+    <div v-if="screenSize > 576" class="flex-item" id="mapbody">
         <div class="hoop">
             <img src="/assets/team/quinn.png" alt="Quinn">
             <div :class="`outer-members outer-members-${teams.length}`">
@@ -12,7 +12,7 @@
     </div>
 
     <div id="small-hoops" v-else>
-        <div class="hoop-container" v-for="(team, index) in teams">
+        <div class="hoop-container" v-for="(team, index) in members">
             <TeamCircle class="team" :id="`team-${index+1}`" :center="team[0]" :members="team.slice(1)" :teamNumber="index+1" />
         </div>
     </div>
@@ -33,6 +33,15 @@
         },
         computed: {
             members() {
+                // remove carl and allida manually
+                const karl = teams.find(team => team[0].name === 'Karl Southern');
+                teams.splice(teams.findIndex(team => team[0].name === 'Karl Southern'), 1);
+                const allida = teams.find(team => team[0].name === 'Allaida S');
+                teams.splice(teams.findIndex(team => team[0].name === 'Allaida S'), 1);
+
+                teams.push(karl);
+                teams.push(allida);
+                
                 return teams;
             },
             teams() {
@@ -41,7 +50,8 @@
             },
             screenSize() {
                 // return the screen size
-                return 1070
+                // return screen.width;
+                return 575;
             }
         }
     };
