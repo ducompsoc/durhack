@@ -69,7 +69,8 @@ $outer-circle-fine-tune-rotation: 36%;
 
         > .outer-members {
             transition: all 1.5s ease-in-out;
-            rotate: $outer-circle-rotation;
+            // rotate: $outer-circle-rotation;
+            pointer-events: none;
 
             animation: outer1 $rotation-rate linear infinite;
         }
@@ -116,9 +117,11 @@ $outer-circle-fine-tune-rotation: 36%;
         background-color: transparent;
 
         transition: all 1.5s ease-in-out;
-        rotate: calc( $inner-circle-rotation - $outer-circle-rotation );
+        // rotate: calc( $inner-circle-rotation - $outer-circle-rotation );
 
         animation: outer1 $rotation-rate linear infinite;
+
+        pointer-events: none;
     }
 
     .person::before {
@@ -135,9 +138,16 @@ $outer-circle-fine-tune-rotation: 36%;
         bottom: $outer-circle-person-distance;
 
         transition: all 1.5s ease-in-out;
-        rotate: -$inner-circle-rotation;
+        // rotate: -$inner-circle-rotation;
 
         animation: inner1 calc($rotation-rate / 2) linear infinite;
+
+        pointer-events: visible;
+
+        &:hover {
+            width: calc(200px);
+            transition: all 0.5s ease-in-out;
+        }
     }
 
     // Automatically rotates the people around the hoops
@@ -181,6 +191,8 @@ $outer-circle-fine-tune-rotation: 36%;
         box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.5);
         width: $centre-person-size;
         transition: all 0.5s ease-in-out;
+
+        pointer-events: visible;
 
         &:hover {
             // box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
