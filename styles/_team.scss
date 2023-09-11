@@ -193,4 +193,19 @@ $outer-circle-fine-tune-rotation: 36%;
     .hoop2 > img, .hoop3 > img {
         width: $inner-circle-person-size;
     }
+
+    // This is for the smaller hoops
+    #small-hoops {
+        position: relative;
+
+        // Sets new animations
+        .inner {
+            animation: none;
+        }
+    }
+
+    .hoop-container {
+        position: relative;
+        height: 400px;
+    }
 }

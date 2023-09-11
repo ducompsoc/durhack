@@ -2,7 +2,7 @@
     <div class="text-center">
         <h1>MEET THE TEAM</h1>
     </div>
-    <div class="flex-item" id="mapbody">
+    <div v-if="screenSize > 1080" class="flex-item" id="mapbody">
         <div class="hoop">
             <img src="/assets/team/quinn.png" alt="Quinn">
             <div :class="`outer-members outer-members-${teams.length}`">
@@ -10,7 +10,16 @@
             </div>
         </div>
     </div>
+
+    <div id="small-hoops" v-else>
+        <div class="hoop-container" v-for="(team, index) in teams">
+            <TeamCircle class="team" :id="`team-${index+1}`" :center="team[0]" :members="team.slice(1)" :teamNumber="index+1" />
+        </div>
+    </div>
 </template>
+
+// To check:
+// screenSize()
 
 <script>
     import TeamCircle from './TeamCircle';
@@ -23,8 +32,16 @@
             TeamCircle
         },
         computed: {
+            members() {
+                return teams;
+            },
             teams() {
+                // Returns the members apart from Quinn
                 return teams.slice(1);
+            },
+            screenSize() {
+                // return the screen size
+                return 1070
             }
         }
     };

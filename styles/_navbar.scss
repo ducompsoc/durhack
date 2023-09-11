@@ -123,3 +123,14 @@
     z-index: 7;
     clip-path: polygon(0% 0%, 0% 100%, 100% 0%)
 }
+
+#navbarline {
+    position: absolute;
+    background: $navbackground fixed;
+    width: $navbrandheight;
+    height: calc($navbrandheight - $navheight);
+    margin-top: calc(-1 * ($navbrandheight - $navheight));
+    top: 0;
+    z-index: 7;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 0%)
+}

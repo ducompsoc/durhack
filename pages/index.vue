@@ -19,6 +19,7 @@
             <span>DURHACK</span>
         </div>
         <div id="navdiagonal"/>
+        <div id="navbarline"/>
     </div>
 
     <div id="splash" class="section splash container">
