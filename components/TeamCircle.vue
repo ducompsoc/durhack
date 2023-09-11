@@ -20,7 +20,11 @@
                     :data-tippy-content="`<div><strong>${center.name}</strong></div><div>${center.role}</div>`"
                 >
                 <div :class="`outer-members outer-members-${totalMembers}`">
-                    <div v-for="(person, index) in members" class="person" :id="`person-${index+1}`"></div>
+                    <div v-for="(person, index) in members" 
+                        class="person tooltip" 
+                        :id="`person-${index+1}`"
+                        :data-tippy-content="`<div><strong>${center.name}</strong></div><div>${center.role}</div>`"
+                    ></div>
                 </div>
             </div>
         </div>

@@ -33,15 +33,6 @@
         },
         computed: {
             members() {
-                // remove carl and allida manually
-                // const karl = teams.find(team => team[0].name === 'Karl Southern');
-                // teams.splice(teams.findIndex(team => team[0].name === 'Karl Southern'), 1);
-                // const allida = teams.find(team => team[0].name === 'Allaida S');
-                // teams.splice(teams.findIndex(team => team[0].name === 'Allaida S'), 1);
-
-                // teams.push(karl);
-                // teams.push(allida);
-                
                 return teams;
             },
             teams() {
@@ -49,8 +40,7 @@
                 return teams.slice(1);
             },
             screenSize() {
-                // return the screen size
-                // return screen.width;
+                // NEED TO MAKE THIS RESPONSIVE
                 return 577;
             }
         }
