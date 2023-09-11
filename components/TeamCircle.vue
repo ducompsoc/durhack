@@ -26,7 +26,7 @@
                     >
                         <div 
                             class="person-container"
-                            :data-tippy-content="`<div><strong>${center.name}</strong></div><div>${center.role}</div>`"
+                            :data-tippy-content="`<div><strong>${person.name}</strong></div><div>${person.role}</div>`"
                         ></div>
                     </div>
                 </div>
