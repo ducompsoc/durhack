@@ -4,7 +4,7 @@
     </div>
     <div v-if="screenSize > 576" class="flex-item" id="mapbody">
         <div class="hoop">
-            <img src="/assets/team/quinn.png" alt="Quinn">
+            <img id="lead" src="/assets/team/quinn.png" alt="Quinn">
             <div :class="`outer-members outer-members-${teams.length}`">
                 <TeamCircle v-for="(team, index) in teams" class="team" :id="`team-${index+1}`" :center="team[0]" :members="team.slice(1)" :teamNumber="index+1" />
             </div>
@@ -43,6 +43,15 @@
                 // NEED TO MAKE THIS RESPONSIVE
                 return 577;
             }
+        },
+        mounted() {
+            tippy('#lead', 
+                {
+                    content: `<div><strong>${this.members[0][0].name}</strong></div><div>${this.members[0][0].role}</div>`,
+                    allowHTML: true,
+                    sticky: true
+                }
+            );
         }
     };
 </script>
