@@ -5,6 +5,7 @@
     height: fit-content;
     padding-top: 10%;
     overflow: visible;
+    pointer-events: none;
 
     .footer-main {
         position: relative;
@@ -26,6 +27,8 @@
         }
 
         .socials {
+            pointer-events: all;
+            
             .text-center {
                 margin: 20px 0 0 0;
             }

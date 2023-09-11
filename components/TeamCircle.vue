@@ -21,10 +21,14 @@
                 >
                 <div :class="`outer-members outer-members-${totalMembers}`">
                     <div v-for="(person, index) in members" 
-                        class="person tooltip" 
+                        class="person" 
                         :id="`person-${index+1}`"
-                        :data-tippy-content="`<div><strong>${center.name}</strong></div><div>${center.role}</div>`"
-                    ></div>
+                    >
+                        <div 
+                            class="person-container"
+                            :data-tippy-content="`<div><strong>${center.name}</strong></div><div>${center.role}</div>`"
+                        ></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -45,12 +49,18 @@
             let styling = '';
             let i = 1
             while (i <= this.totalMembers) {
-                styling += `#team-${this.teamNumber} #person-${i}::before { background-image: url(/assets/team/${this.members[i-1].image}); } `;
+                styling += `#team-${this.teamNumber} #person-${i} > .person-container { background-image: url(/assets/team/${this.members[i-1].image}); } `;
                 i++;
             }
             styleElem.innerHTML = styling;
 
             tippy('.tooltip', 
+                { 
+                    allowHTML: true,
+                    sticky: true
+                }
+            );
+            tippy('.person-container', 
                 { 
                     allowHTML: true,
                     sticky: true

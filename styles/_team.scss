@@ -122,33 +122,31 @@ $outer-circle-fine-tune-rotation: 36%;
         animation: outer1 $rotation-rate linear infinite;
 
         pointer-events: none;
-
-        &:hover::before {
-            width: calc($outer-circle-person-size * 1.3);
-            bottom: calc($outer-circle-person-distance * 1.3);
-            transition: all 0.5s ease-in-out;
-        }
     }
 
-    .person::before {
+    .person-container {
         background: url("./assets/team/quinn.png") center/cover no-repeat;
         border-radius: 50%;
         box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.5);
 
         position: absolute;
-        content: "";
 
         width: $outer-circle-person-size;
         aspect-ratio: 1;
         left: $outer-circle-fine-tune-rotation;
         bottom: $outer-circle-person-distance;
 
-        transition: all 1.5s ease-in-out;
-        // rotate: -$inner-circle-rotation;
-
         animation: inner1 calc($rotation-rate / 2) linear infinite;
-
         pointer-events: visible;
+
+        transition: all 0.5s ease-in-out;
+
+        &:hover {
+            // This isn't really centered but you can hardly notice
+            width: calc($outer-circle-person-size * 1.3);
+            bottom: calc($outer-circle-person-distance * 1.3);
+            transition: all 0.5s ease-in-out;
+        }
     }
 
     // Automatically rotates the people around the hoops
@@ -167,7 +165,7 @@ $outer-circle-fine-tune-rotation: 36%;
                 > #person-#{$j} {
                     transform: rotate($angle);
                 }
-                > #person-#{$j}::before {
+                > #person-#{$j} > .person-container {
                     transform: rotate(-$angle);
                 }
             }
