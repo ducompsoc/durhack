@@ -50,7 +50,12 @@
             }
             styleElem.innerHTML = styling;
 
-            tippy('.tooltip', { allowHTML: true });
+            tippy('.tooltip', 
+                { 
+                    allowHTML: true,
+                    sticky: true
+                }
+            );
         }
     };
 </script>
