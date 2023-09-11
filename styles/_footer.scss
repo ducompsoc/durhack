@@ -6,12 +6,12 @@
     padding-top: 10%;
     overflow: visible;
 
-    .text-center {
-        padding-top: 0;
-    }
-
     .footer-main {
         position: relative;
+
+        .text-center {
+            padding-top: 0;
+        }
 
         > p, > .socials, > footer {
             position: relative;
@@ -25,11 +25,63 @@
             border-bottom: none;
         }
 
+        .socials {
+            .text-center {
+                margin: 20px 0 0 0;
+            }
+            a {
+                padding: 1rem;
+                text-decoration: none;
+                border-bottom: none;
+                img {
+                    width: 50px;
+                    height: 50px;
+                    &:hover {
+                        transform: scale(1.2);
+                        transition: .15s ease-in-out;
+                        border-bottom-style: none;
+                    }
+                }
+            }
+        }
+
         > img {
             position: absolute;
             width: 100%;
             height: auto;
             bottom: 0;
+        }
+
+        footer {
+            text-align: left;
+            bottom: 0;
+            padding: 64px calc(82px + 32px) 24px;
+            color: rgba(255, 255, 255, 0.50);
+        
+            @media screen and (max-width: $old-breakpoint-medium) {
+                padding: 48px 32px;
+            }
+        
+            .legal {
+                font-size: 14px;
+                padding-right: 32px;
+        
+        
+                a {
+                    border-bottom-color: white;
+                    border-bottom: none;
+                    color: white;
+                }
+    
+                p {
+                    font-size: 1.1rem;
+                }
+            }
+        
+            .photo img {
+                width: 100px;
+                height: auto;
+            }
         }
     }
 
@@ -47,80 +99,28 @@
         );
     }
 
-    footer {
-        text-align: left;
-        bottom: 0;
-        padding: 64px calc(82px + 32px) 24px;
-        color: rgba(255, 255, 255, 0.50);
-    
-        @media screen and (max-width: $old-breakpoint-medium) {
-            padding: 48px 32px;
-        }
-    
-        .legal {
-            font-size: 14px;
-            padding-right: 32px;
-    
-    
-            a {
-                border-bottom-color: white;
-                border-bottom: none;
-                color: white;
-            }
-
-            p {
-                font-size: 1.1rem;
-            }
-        }
-    
-        .photo img {
-            width: 100px;
-            height: auto;
-        }
-    }
-    
-    .socials {
-        .text-center {
-            margin: 20px 0 0 0;
-        }
-        a {
-            padding: 1rem;
-            text-decoration: none;
-            border-bottom: none;
-            img {
-                width: 50px;
-                height: 50px;
-                &:hover {
-                    transform: scale(1.2);
-                    transition: .15s ease-in-out;
-                    border-bottom-style: none;
-                }
-            }
-        }
-    }
-
     @mixin footer-content-size($font-1, $img-height, $font-2, $f-padding) {
         .footer-main {
             > p > a {
                 font-size: $font-1;
             }
-        }
 
-        .socials {
-            a {
-                img {
-                    width: $img-height;
-                    height: $img-height;
+            .socials {
+                a {
+                    img {
+                        width: $img-height;
+                        height: $img-height;
+                    }
                 }
             }
-        }
 
-        footer {
-            padding: $f-padding;
-
-            .legal {
-                p {
-                    font-size: $font-2;
+            footer {
+                padding: $f-padding;
+    
+                .legal {
+                    p {
+                        font-size: $font-2;
+                    }
                 }
             }
         }
