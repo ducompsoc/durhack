@@ -33,6 +33,15 @@
                 screenSize: window.innerWidth
             };
         },
+        mounted() {
+            tippy('#lead', 
+                {
+                    content: `<div><strong>${this.members[0][0].name}</strong></div><div>${this.members[0][0].role}</div>`,
+                    allowHTML: true,
+                    sticky: true
+                }
+            );
+        },
         created() {
             if (process.client) {
                 this.screenSize = window.innerWidth;
@@ -49,15 +58,6 @@
                 // Returns the members apart from Quinn
                 return teams.slice(1);
             }
-        },
-        mounted() {
-            tippy('#lead', 
-                {
-                    content: `<div><strong>${this.members[0][0].name}</strong></div><div>${this.members[0][0].role}</div>`,
-                    allowHTML: true,
-                    sticky: true
-                }
-            );
         }
     };
 </script>

@@ -4,6 +4,8 @@ $inner-circle-rotation: 0deg;
 
 $rotation-rate: 30s;
 
+$shadow: 0px 0px 20px 0px rgba(255, 255, 255, 0.35);
+
 $size: 40vw;
 $hoop-thickness: 2px;
 $gradient-angle: -150deg;
@@ -127,7 +129,7 @@ $outer-circle-fine-tune-rotation: 36%;
     .person-container {
         background: url("./assets/team/quinn.png") center/cover no-repeat;
         border-radius: 50%;
-        box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.5);
+        box-shadow: $shadow;
 
         position: absolute;
 
@@ -188,7 +190,7 @@ $outer-circle-fine-tune-rotation: 36%;
 
         z-index: 5;
         border-radius: 50%;
-        box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.5);
+        box-shadow: $shadow;
         width: $centre-person-size;
         transition: all 0.5s ease-in-out;
 
