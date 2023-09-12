@@ -18,9 +18,6 @@
     </div>
 </template>
 
-// To check:
-// screenSize()
-
 <script>
     import TeamCircle from './TeamCircle';
     import { teams } from '../config.json';
@@ -31,6 +28,19 @@
         components: {
             TeamCircle
         },
+        data() {
+            return {
+                screenSize: window.innerWidth
+            };
+        },
+        created() {
+            if (process.client) {
+                this.screenSize = window.innerWidth;
+                window.addEventListener('resize', () => {
+                    this.screenSize = window.innerWidth;
+                });
+            }
+        },
         computed: {
             members() {
                 return teams;
@@ -38,10 +48,6 @@
             teams() {
                 // Returns the members apart from Quinn
                 return teams.slice(1);
-            },
-            screenSize() {
-                // NEED TO MAKE THIS RESPONSIVE
-                return 577;
             }
         },
         mounted() {
