@@ -8,6 +8,8 @@ $background-gradient-cyan: #426676;
 $background-gradient-light-blue: #1f80a1;
 $background-gradient-black: #{$primary-dark};
 $background-gradient-deep-blue: #131c6a;
+$bg-g-b-t: rgba(17, 17, 17, 1);
+$bg-g-dp-t: rgba(19, 28, 106, 0.6);
 
 .section {
     &.intro {
@@ -24,6 +26,18 @@ $background-gradient-deep-blue: #131c6a;
     }
 
     &.faqs {
+        background-image: linear-gradient(
+            to bottom,
+            #{$bg-g-b-t},
+            #{$bg-g-dp-t},
+            #{$bg-g-b-t}
+        ), url("/assets/photos/faq-bg.jpeg");
+        background-position: center;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+    }
+
+    &.sponsors {
         background: linear-gradient(
             to bottom,
             #{$background-gradient-black},

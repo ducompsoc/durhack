@@ -127,19 +127,23 @@
 
     <div class="section cta-map" id="map">
         <div class="main">
-            <div class="text-center">
-                <h1>Your Way to Durhack</h1>
-            </div>
             <div class="flex-container">
-                <div class="flex-item" id="mapbody">
+                <div class="flex-item" id="cta">
+                    <h2>Join us in the <b class="emphasis">Teaching and Learning Centre</b> at Durham University</h2>
+                    <div class="button-div">
+                        <button type="button">FIND YOUR ROUTE</button>
+                    </div>
                 </div>
-                <div class="flex-item">
+                <div class="flex-item" id="mapbody">
                     <div id="hoop1">
                         <div id="hoop2">
                             <a href="https://goo.gl/maps/rmFLyMWWXC5c8im69" target="_blank">
-                                <img src="/assets/mcsmap.png"
+                                <img src="/assets//photos/tlcpng.png"
                                      alt="Map showing the location of the MCS building in Durham.">
                             </a>
+                        </div>
+                        <div id="o-planet">
+                            <div id="b-planet"></div>
                         </div>
                     </div>
                 </div>
@@ -150,7 +154,7 @@
     <div id="faqs" class="section faqs column">
         <div class="main">
             <div class="text-center">
-                <h1>FAQs</h1>
+                <h1>FREQUENTLY ASKED QUESTIONS</h1>
             </div>
             <FAQs/>
         </div>

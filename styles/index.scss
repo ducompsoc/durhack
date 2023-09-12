@@ -47,9 +47,17 @@ h1 {
     padding: 10px;
 }
 
+h2, p, span {
+    font-family: 'Space Grotesk';
+}
+
+#navbrand > span {
+    font-family: 'Audiowide';
+}
+
 a:not(.tooltip) {
-    color: $primary-normal;
-    border-bottom: dashed 1px $primary-normal;
+    color: $secondary-a;
+    border-bottom: dashed 1px $secondary-a;
     text-decoration: none;
 
     &:hover {
@@ -78,6 +86,9 @@ a:not(.tooltip) {
     @include faded-underline();
 }
 
+.emphasis {
+    color: $secondary-a;
+}
 
 @import './404';
 @import './background';
@@ -90,3 +101,4 @@ a:not(.tooltip) {
 @import './content';
 @import './footer';
 @import './megateams';
+@import './map';
