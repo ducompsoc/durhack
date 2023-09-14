@@ -70,6 +70,9 @@
             <div class="text-center">
                 <h1>Schedule</h1>
             </div>
+            <div id="bg-container">
+                <object id="schedule" type="image/svg+xml" data="/assets/graphics/schedule.svg"></object>
+            </div>
         </div>
     </div>
 

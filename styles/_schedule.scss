@@ -1,0 +1,11 @@
+@import './variables';
+@import './breakpoints';
+
+.section.schedule {
+    .main {
+        object {
+            width: 100%;
+            pointer-events: none;
+        }
+    }
+}
