@@ -23,14 +23,14 @@
     </div>
 
     <div class="intro-images">
-        <img alt="A person playing mario kart" src="/assets/photos/mario-kart.jpg">
-        <img alt="A person getting food" src="/assets/photos/food.jpg">
-        <img alt="A team being judged" src="/assets/photos/judging1.jpg">
-        <img alt="A team being judged" src="/assets/photos/judging2.jpg">
-        <img alt="People in a workshop" src="/assets/photos/workshop.jpg">
-        <img alt="A person explaining a whiteboard" src="/assets/photos/whiteboard.jpg">
+        <img alt="A person playing mario kart" src="/assets/photos/mario-kart-min.jpg">
+        <img alt="A person getting food" src="/assets/photos/food-min.jpg">
+        <img alt="A team being judged" src="/assets/photos/judging1-min.jpg">
+        <img alt="A team being judged" src="/assets/photos/judging2-min.jpg">
+        <img alt="People in a workshop" src="/assets/photos/workshop-min.jpg">
+        <img alt="A person explaining a whiteboard" src="/assets/photos/whiteboard-min.jpg">
         <div id="empty-image"></div>
-        <img alt="A team cup stacking" src="/assets/photos/cup-stacking.jpg">
+        <img alt="A team cup stacking" src="/assets/photos/cup-stacking-min.jpg">
     </div>
 
     <div class="grid">
@@ -88,30 +88,30 @@
         methods: {
             getDifference() {
                 const emptyImage = document.getElementById('empty-image');
-                    const rect = emptyImage.getBoundingClientRect();
+                const rect = emptyImage.getBoundingClientRect();
 
-                    const x22 = rect.left + rect.width * 0.85 + window.scrollX;
+                const x22 = rect.left + rect.width * 0.85 + window.scrollX;
 
-                    const y22 = rect.top + rect.height + window.scrollY;
-                    const [x2, y2] = [Math.round(x22*100)/100, Math.round(y22*100)/100];
-
-
-
-                    const spaceship = document.getElementById('spaceship');
-                    const rect2 = spaceship.getBoundingClientRect();
-
-                    const x11 = rect2.left + rect2.width / 2 + window.scrollX;
-
-                    const y11 = rect2.top + rect2.height / 2 + window.scrollY;
-                    const [x1, y1] = [Math.round(x11*100)/100, Math.round(y11*100)/100];
+                const y22 = rect.top + rect.height + window.scrollY;
+                const [x2, y2] = [Math.round(x22*100)/100, Math.round(y22*100)/100];
 
 
 
-                    const difference = [ Math.round(x2 - x1), Math.round(y1 - y2)];
-                    
-                    const shot = document.getElementById('spaceship-shot');
-                    shot.style.height = difference[1] + 'px';
-                    shot.style.width = difference[0] + 'px';
+                const spaceship = document.getElementById('spaceship');
+                const rect2 = spaceship.getBoundingClientRect();
+
+                const x11 = rect2.left + rect2.width / 2 + window.scrollX;
+
+                const y11 = rect2.top + rect2.height / 2 + window.scrollY;
+                const [x1, y1] = [Math.round(x11*100)/100, Math.round(y11*100)/100];
+
+
+
+                const difference = [ Math.round(x2 - x1), Math.round(y1 - y2)];
+                
+                const shot = document.getElementById('spaceship-shot');
+                shot.style.height = difference[1] + 'px';
+                shot.style.width = difference[0] + 'px';
             }
         },
         created() {

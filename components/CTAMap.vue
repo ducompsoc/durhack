@@ -10,7 +10,7 @@
             <div id="hoop1">
                 <div id="hoop2">
                     <a href="https://maps.app.goo.gl/jxoBZftwrarF7XuaA" target="_blank">
-                        <img src="/assets//photos/tlcpng.png" id="map-img" alt="Map showing the location of the TLC building in Durham.">
+                        <img src="/assets//photos/tlcpng-min.png" id="map-img" alt="Map showing the location of the TLC building in Durham.">
                     </a>
                 </div>
                 <div id="o-planet">
