@@ -9,7 +9,11 @@
 		<object id="schedule" type="image/svg+xml" data="/assets/graphics/schedule.svg"></object>
 	</div>
 
-	<div class="timeline" id="small">
+	<div id="small">
+		<object id="schedule" type="image/svg+xml" data="/assets/graphics/long-schedule.svg"></object>
+	</div>
+
+	<!-- <div class="timeline" id="small">
 		<div class="group" v-for="(day, key) in schedule">
 			<div v-if="key" class="bracket center column">
 				<div class="day">{{day.day}}</div>
@@ -33,7 +37,7 @@
 				</div>
 			</div>
         </div>
-	</div>
+	</div> -->
 </template>
 
 <script>
@@ -41,6 +45,6 @@
 import { schedule } from '../config.json';
 
 export default {
-	
+
 };
 </script>
