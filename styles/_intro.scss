@@ -273,10 +273,10 @@
             }
 
             #spaceship-shot {
+                display: none;
                 position: absolute;
                 bottom: -20px;
                 left: 57%;
-                height: 270%;
 
                 @include breakpoint-down('xl') {
                     bottom: -20%;
@@ -333,6 +333,17 @@
         @include breakpoint-down('sm') {
             grid-template-columns: auto auto;
         }
+    }
+
+    #spaceship-shot2 {
+        $shot-height: 240px;
+        $shot-width: 250px;
+
+        position: absolute;
+        left: $shot-width;
+        bottom: calc($shot-height / 2);
+        height: $shot-height;
+        width: $shot-width;
     }
 
     @media (min-width: $lucas-extra-small) {

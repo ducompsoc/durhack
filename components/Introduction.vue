@@ -29,7 +29,7 @@
         <img alt="A team being judged" src="/assets/photos/judging2.jpg">
         <img alt="People in a workshop" src="/assets/photos/workshop.jpg">
         <img alt="A person explaining a whiteboard" src="/assets/photos/whiteboard.jpg">
-        <div id="empty-image"> </div>
+        <div id="empty-image">{{ difference }}</div>
         <img alt="A team cup stacking" src="/assets/photos/cup-stacking.jpg">
     </div>
 
@@ -40,6 +40,7 @@
         </li>
         <li>
             <object id="spaceship-shot" type="image/svg+xml" data="/assets/graphics/spaceship-shot/shot-combined.svg"></object>
+            <object id="spaceship-shot2" type="image/svg+xml" data="/assets/graphics/spaceship-shot/shot-combined.svg"></object>
             <img id="spaceship" alt="An icon of a spaceship" src="/assets/icons/spaceship.svg"><br>
             Sponsor-led challenges to shoot for
         </li>
@@ -84,6 +85,47 @@
 
 <script>
     export default {
-        name: 'introduction'
+        name: 'introduction',
+        computed: {
+            endingCords() {
+                try {
+                    const emptyImage = document.getElementById('empty-image');
+                    const rect = emptyImage.getBoundingClientRect();
+
+                    const x = rect.left + rect.width / 2 + window.scrollX;
+
+                    const y = rect.top + rect.height / 2 + window.scrollY;
+                    console.log([x, y]);
+                    return [Math.round(x*100)/100, Math.round(y*100)/100];
+                } catch (e) {
+                    return e;
+                }
+            },
+            startingCords() {
+                try {
+                    const spaceship = document.getElementById('spaceship');
+                    const rect = spaceship.getBoundingClientRect();
+
+                    const x = rect.left + rect.width / 2 + window.scrollX;
+
+                    const y = rect.top + rect.height / 2 + window.scrollY;
+                    console.log([x, y]);
+                    return [Math.round(x*100)/100, Math.round(y*100)/100];
+                } catch (e) {
+                    return e;
+                }
+            },
+            difference() {
+                try {
+                    const [x1, y1] = this.startingCords;
+                    const [x2, y2] = this.endingCords;
+                    const difference = [ Math.round(x2 - x1), Math.round(y1 - y2)];
+                    console.log(difference);
+                    return difference;
+                } catch (e) {
+                    return e;
+                }
+            }
+        },
     };
 </script>
