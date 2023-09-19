@@ -134,10 +134,12 @@
     z-index: 7;
 }
 
-$blue-rect-width: 5px;
+$blue-rect-width: 4px;
+$blue-nav-bg: linear-gradient(90deg, rgba(255, 255, 255, 0.77) 0%, #3D9FBA 50.31%, rgba(255, 255, 255, 0.87) 100%);
+
 #mainbluestripe {
     position: absolute;
-    background: blue fixed;
+    background: $blue-nav-bg fixed;
     width: calc(100% - $longnavbrandwidth);
     height: $blue-rect-width;
     top: $navstripe;
@@ -151,7 +153,7 @@ $blue-rect-width: 5px;
 
 #smallbluestripe {
     position: absolute;
-    background: blue fixed;
+    background: $blue-nav-bg fixed;
     width: calc($longnavbrandwidth - $navbrandheight);
     height: $blue-rect-width;
     top: $navbrandheight;
@@ -164,7 +166,7 @@ $blue-rect-width: 5px;
 
 #diagonalbluestripe {
     position: absolute;
-    background: red fixed;
+    background: $blue-nav-bg fixed;
     width: $navbrandheight;
     height: calc($navbrandheight - $navheight + $blue-rect-width);
     top: $navstripe;
