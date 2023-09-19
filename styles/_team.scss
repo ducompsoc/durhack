@@ -98,6 +98,7 @@ $outer-circle-fine-tune-rotation: 36%;
         background-color: transparent;
         width: 100%;
         aspect-ratio: 1;
+        pointer-events: none;
     }
 
     .inner {
@@ -236,5 +237,6 @@ $outer-circle-fine-tune-rotation: 36%;
     .hoop-container {
         position: relative;
         height: calc($size * 1.5);
+        pointer-events: none;
     }
 }
