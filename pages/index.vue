@@ -20,6 +20,9 @@
         </div>
         <div id="navdiagonal"/>
         <div id="navbarline"/>
+        <div id="mainbluestripe"/>
+        <div id="smallbluestripe"/>
+        <div id="diagonalbluestripe"/>
     </div>
 
     <div id="splash" class="section splash container">

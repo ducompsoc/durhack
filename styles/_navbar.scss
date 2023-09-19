@@ -2,7 +2,7 @@
 @import './breakpoints';
 
 @media only screen and (max-width: $old-breakpoint-extra-small) {
-    #navbar, #navstripe, #navouter, #navcorner, #navleft, #navdiagonal, #navbrand {
+    #navbar, #navstripe, #navouter, #navcorner, #navleft, #navdiagonal, #navbrand, #mainbluestripe, #smallbluestripe, #diagonalbluestripe {
         visibility: hidden
     }
 }
@@ -132,5 +132,48 @@
     margin-top: calc(-1 * ($navbrandheight - $navheight));
     top: 0;
     z-index: 7;
-    clip-path: polygon(0% 0%, 0% 100%, 100% 0%)
+}
+
+$blue-rect-width: 5px;
+#mainbluestripe {
+    position: absolute;
+    background: blue fixed;
+    width: calc(100% - $longnavbrandwidth);
+    height: $blue-rect-width;
+    top: $navstripe;
+    right: 0;
+    z-index: 9;
+
+    @include breakpoint-down('lg') {
+        width: calc(100% - $shortnavbrandwidth);
+    }
+}
+
+#smallbluestripe {
+    position: absolute;
+    background: blue fixed;
+    width: calc($longnavbrandwidth - $navbrandheight);
+    height: $blue-rect-width;
+    top: $navbrandheight;
+    z-index: 9;
+
+    @include breakpoint-down('lg') {
+        width: calc($shortnavbrandwidth - $navbrandheight);
+    }
+}
+
+#diagonalbluestripe {
+    position: absolute;
+    background: red fixed;
+    width: $navbrandheight;
+    height: calc($navbrandheight - $navheight + $blue-rect-width);
+    top: $navstripe;
+    left: calc($longnavbrandwidth - $navbrandheight);
+    z-index: 9;
+
+    clip-path: polygon(0% 100%, 0% calc(100% - $blue-rect-width), 100% 0%, 100% $blue-rect-width);
+
+    @include breakpoint-down('lg') {
+        left: calc($shortnavbrandwidth - $navbrandheight);
+    }
 }
