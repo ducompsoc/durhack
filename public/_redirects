@@ -1,8 +1,9 @@
 # == Main registration and tickets ==
-# /tickets https://forms.gle/pjNCpDGpZZBVPzwaA 302
-# /register /tickets 302
-# /register-du /tickets 302
-# /register-nondu /tickets 302
+/tickets https://forms.gle/doTSegdtYFpQ8XLC6 302
+/ticket /tickets 302
+/register /tickets 302
+/register-du /tickets 302
+/register-nondu /tickets 302
 
 /preregister https://forms.gle/r5ZGwnrZiT3theL38 302
 /register-interest /preregister 302
