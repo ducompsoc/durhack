@@ -239,4 +239,20 @@ $outer-circle-fine-tune-rotation: 36%;
         height: calc($size * 1.5);
         pointer-events: none;
     }
+
+    #mapbody {
+        display: block;
+    }
+    #small-hoops {
+        display: none;
+    }
+
+    @include breakpoint-down('xs') {
+        #mapbody {
+            display: none;
+        }
+        #small-hoops {
+            display: block;
+        }
+    }
 }

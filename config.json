@@ -95,7 +95,7 @@
                 "image": "joe.png"
             },
             {
-                "name": "Amber",
+                "name": "Amber Gosling",
                 "role": "Tech Officer",
                 "email": "email",
                 "image": "amber.png"
@@ -129,7 +129,7 @@
                 "image": "Abigail.png"
             },
             {
-                "name": "Charlotte",
+                "name": "Charlotte Lawrence",
                 "role": "Logistics Officer",
                 "email": "email",
                 "image": "charlotte.png"
@@ -149,7 +149,7 @@
         ],
         [
             {
-                "name": "Clary",
+                "name": "Clary Hui",
                 "role": "Head of Design and Marketing",
                 "email": "email",
                 "image": "Clary H.png"
@@ -175,7 +175,7 @@
                 "image": "eve_s.png"
             },            
             {
-                "name": "George",
+                "name": "George Osborne",
                 "role": "Sponsorship Officer",
                 "email": "email",
                 "image": "george.png"
