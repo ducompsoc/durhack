@@ -272,55 +272,6 @@
                 height: 3rem;
             }
 
-            #spaceship-shot {
-                display: none;
-                position: absolute;
-                bottom: -20px;
-                left: 57%;
-
-                @include breakpoint-down('xl') {
-                    bottom: -20%;
-                }
-
-                @include breakpoint-down('lg') {
-                    height: 220%;
-                    bottom: 0;
-                }
-
-                @include breakpoint-down('sm') {
-                    transform: scaleX(-1);
-                    left: -55%;
-                }
-
-                // In-between breakpoint
-                @media (max-width: calc($old-breakpoint-extra-small - 200px)) {
-                    rotate: -25deg;
-                    height: 350%;
-                    left: -130%;
-                    bottom: -140%;
-                }
-
-                @include breakpoint-down('xs') {
-                    height: 330%;
-                    left: -170%;
-                    bottom: -120%;
-                }
-
-                @media (max-width: 500px) {
-                    rotate: -25deg;
-                    height: 220%;
-                    left: -170%;
-                    bottom: -50%;
-                }
-
-                @media (max-width: 400px) {
-                    rotate: -25deg;
-                    height: 220%;
-                    left: -210%;
-                    bottom: -60%;
-                }
-            }
-
             #spaceship {
                 transform: rotate(25deg);
 
@@ -335,15 +286,21 @@
         }
     }
 
-    #spaceship-shot2 {
+    #spaceship-shot {
         $shot-height: 240px;
         $shot-width: 250px;
 
         position: absolute;
-        left: $shot-width;
-        bottom: calc($shot-height / 2);
+        left: calc(50% + 25px);
+        bottom: 100%;
         height: $shot-height;
         width: $shot-width;
+
+        @include breakpoint-down('sm') {
+            transform: scaleX(-1);
+            left: auto;
+            right: calc(50% + 40px);
+        }
     }
 
     @media (min-width: $lucas-extra-small) {

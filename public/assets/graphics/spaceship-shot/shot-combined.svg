@@ -1,4 +1,4 @@
-<svg viewBox="0 0 189 238" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg viewBox="0 0 189 238" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g>
         <use href="#left_stars" xlink:href="#left_stars" x="0" y="0"/>
         <use href="#right_stars" xlink:href="#right_stars" x="100" y="0"/>
