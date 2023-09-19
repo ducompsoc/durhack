@@ -67,12 +67,7 @@
 
     <div id="schedule" class="section schedule">
         <div class="main">
-            <div class="text-center">
-                <h1>Schedule</h1>
-            </div>
-            <div id="bg-container">
-                <object id="schedule" type="image/svg+xml" data="/assets/graphics/schedule.svg"></object>
-            </div>
+            <Schedule />
         </div>
     </div>
 
@@ -151,9 +146,10 @@
     import Sponsors from "../components/Sponsors";
     import Megateams from "../components/Megateams";
     import Team from "../components/Team";
+    import Schedule from "../components/Schedule.vue";
 
     export default {
-        components: { Introduction, CTAMap, FAQs, Sponsors, Megateams, Team },
+        components: { Introduction, CTAMap, FAQs, Sponsors, Megateams, Team, Schedule },
         mounted() {
             new Rellax('.rellax');
         }
