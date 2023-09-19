@@ -1,6 +1,10 @@
 .section.cta-map {
     text-align: left;
 
+    a:not(.tooltip) {
+        border-bottom: none;
+    }
+
     .main {
         padding: 0px calc(82px + 32px);
 
@@ -45,6 +49,11 @@
 
         .button-div {
             justify-content: left;
+            width: max-content;
+
+            @include breakpoint-down('xs') {
+                width: auto;
+            }
 
             button {
                 @include breakpoint-down('xs') {

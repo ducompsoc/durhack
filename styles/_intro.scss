@@ -11,6 +11,10 @@
         background: url('/assets/graphics/blue-stars-bg.svg') bottom no-repeat;
     }
 
+    a:not(.tooltip) {
+        border-bottom: none;
+    }
+
     .text-center.view-previous {
         display: flex;
         justify-content: center;

@@ -62,12 +62,12 @@
     </div>
 
     <div class="text-center view-previous">
-        <div class="previous-row">
-            <h5>See last year's projects&nbsp;</h5><img src="/assets/icons/blue-triangle.svg">
-        </div>
-        <div class="previous-row">
-            <h5>See last year's projects&nbsp;</h5><img src="/assets/icons/blue-triangle.svg">
-        </div>
+        <a href="https://durhack-2022-2.devpost.com/project-gallery" target="_blank" class="previous-row">
+                <h5>See last year's projects&nbsp;</h5><img src="/assets/icons/blue-triangle.svg">
+        </a>
+        <a href="https://drive.google.com/drive/folders/1L7HPur6l4qoPQqgsdaCEZMEqm_Tg-owx" target="_blank" class="previous-row">
+            <h5>See last year's photos&nbsp;</h5><img src="/assets/icons/blue-triangle.svg">
+        </a>
     </div>
 
     <div class="text-center">
