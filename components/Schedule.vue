@@ -6,11 +6,24 @@
 	</div>
 
 	<div id="big">
-		<object id="schedule" type="image/svg+xml" data="/assets/graphics/schedule.svg"></object>
+		<object type="image/svg+xml" data="/assets/graphics/schedule.svg"></object>
 	</div>
 
 	<div id="small">
-		<object id="schedule" type="image/svg+xml" data="/assets/graphics/long-schedule.svg"></object>
+		<Transition>
+			<div v-if="isHidden">
+				<object id="short" type="image/svg+xml" data="/assets/graphics/short-schedule.svg"></object>
+				<div class="button-div">
+					<button type="button" v-on:click="isHidden = !isHidden">READ MORE</button>
+				</div>
+			</div>
+			<div v-else>
+				<object type="image/svg+xml" data="/assets/graphics/long-schedule.svg"></object>
+				<div class="button-div">
+					<button type="button" v-on:click="isHidden = !isHidden">READ LESS</button>
+				</div>
+			</div>
+		</Transition>
 	</div>
 
 	<!-- <div class="timeline" id="small">
@@ -45,6 +58,11 @@
 import { schedule } from '../config.json';
 
 export default {
-
+    name: 'schedule',
+    data() {
+        return {
+            isHidden: true
+        };
+    }
 };
 </script>
