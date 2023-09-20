@@ -12,10 +12,10 @@
         </h3>
 
 		<div :class="`${tier} row wrap`">
-			<div v-for="sponsor in sponsorList" class="sponsor biggest row">
+			<div v-for="sponsor in sponsorList" class="sponsor biggest">
 				<a :href="sponsor.link" target="_blank" class="column center">
 					<img :src="`/assets/sponsors/${sponsor.image}`" class="sponsor-image"/>
-					<img :src="`/assets/sponsors/tiles/${tier}.svg`" class="tile"/>
+					<img :src="`/assets/sponsors/tiles/${tier}.svg`" class="frame"/>
 				</a>
 			</div>
 		</div>

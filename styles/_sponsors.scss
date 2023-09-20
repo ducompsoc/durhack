@@ -1,9 +1,35 @@
 .section.sponsors {
-    img {
-        width: 100px;
+    $tile-width: 100px;
+    $sponsor-scale: 0.7;
+
+    .row {
+        position: relative;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 50px 0 50px 0;
+        margin: 0 auto;
     }
 
-    .tile {
-        position: absolute;
+    a {
+        width: $tile-width;
+        height: $tile-width;
+        position: relative;
+        border-bottom: none;
+
+        .sponsor-image {
+            width: calc(($tile-width - ($tile-width * 0.17)) * $sponsor-scale);
+            position: relative;
+            mask-image: url('/assets/sponsors/tiles/mask.png');
+            mask-size: $tile-width;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            z-index: 3;
+        }
+
+        .frame {
+            width: $tile-width;
+            position: absolute;
+            z-index: 2;
+        }
     }
 }
