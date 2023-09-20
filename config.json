@@ -41,6 +41,12 @@
         ]
     },
     "sponsors": {
+        "platinum": [
+            {
+                "image": "THG.jpg",
+                "link": "https://www.thg.com/"
+            }
+        ],
         "gold": [],
         "silver": [],
         "partners": [

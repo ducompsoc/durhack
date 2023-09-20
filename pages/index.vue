@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <div id="sponsors" class="section sponsors" v-if="false">
+    <div id="sponsors" class="section sponsors" v-if="true">
         <div class="main">
             <Sponsors />
         </div>
