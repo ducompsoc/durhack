@@ -27,17 +27,7 @@
 
     <div id="splash" class="section splash container">
         <div class="main container">
-            <img alt="top-down view of people at a desk programming" class="splash-photo" src="/assets/photos/splash-hacking-min.jpg">
-            <img alt="circuitry overlay" class="circuitry-overlay" src="/assets/graphics/artifact-circuitry.svg"/>
-            <img alt="dark space blur" class="space-shadow" src="/assets/graphics/artifact-space-blur.svg"/>
-            <object class="rocket" type="image/svg+xml" data="/assets/graphics/rocket/rocket-combined.svg">rocket</object>
-            <div class="countdown">
-                <div class="t-minus"/>
-                <div class="days">106</div>
-                <div class="hours">8</div>
-                <div class="minutes">15</div>
-                <div class="seconds">30</div>
-            </div>
+            <Splash />
         </div>
     </div>
 
@@ -150,9 +140,10 @@
     import Megateams from "../components/Megateams";
     import Team from "../components/Team";
     import Schedule from "../components/Schedule.vue";
+    import Splash from "../components/Splash.vue";
 
     export default {
-        components: { Introduction, CTAMap, FAQs, Sponsors, Megateams, Team, Schedule },
+        components: { Introduction, CTAMap, FAQs, Sponsors, Megateams, Team, Schedule, Splash },
         mounted() {
             new Rellax('.rellax');
         }
