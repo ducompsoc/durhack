@@ -13,18 +13,22 @@
 </template>
 
 <script>
-    import TeamCircle from './TeamCircle';
     import { teams } from '../config.json';
-
-    // [ [{quinn}], [{...team1}], [{...team2}], ...]
 
     export default {
         name: 'splash',
-        components: {
-            TeamCircle
+        data() {
+            return {
+                daysTo: {
+                    days: 0,
+                    hours: 0,
+                    minutes: 0,
+                    seconds: 0
+                }
+            };
         },
-        computed: {
-            daysTo() {
+        methods: {
+            daysUntil: function () {
                 // https://stackoverflow.com/questions/2627473/how-to-calculate-the-number-of-days-between-two-dates
                 const firstDate = new Date();
 
@@ -41,7 +45,7 @@
                 const diffMinutes = Math.floor((Math.abs((firstDate - secondDate) / (60 * 1000))) - (diffDays * 24 * 60) - (diffHours * 60));
                 const diffSeconds = Math.floor((Math.abs((firstDate - secondDate) / (1000))) - (diffDays * 24 * 60 * 60) - (diffHours * 60 * 60) - (diffMinutes * 60));
 
-                return {
+                this.daysTo = {
                     days: diffDays,
                     hours: diffHours,
                     minutes: diffMinutes,
@@ -52,6 +56,12 @@
                 // Returns the members apart from Quinn
                 return teams.slice(1);
             }
+        },
+        created() {
+            this.daysUntil();
+        },
+        mounted() {
+            setInterval(this.daysUntil, 1000);
         }
     };
 </script>
