@@ -90,7 +90,11 @@
                 const emptyImage = document.getElementById('empty-image');
                 const rect = emptyImage.getBoundingClientRect();
 
-                const x22 = rect.left + rect.width * 0.85 + window.scrollX;
+                let x22 = rect.left + rect.width * 0.85 + window.scrollX;
+
+                if (window.innerWidth < 720) {
+                    x22 = rect.left + rect.width * 0.15 + window.scrollX;
+                }
 
                 const y22 = rect.top + rect.height + window.scrollY;
                 const [x2, y2] = [Math.round(x22*100)/100, Math.round(y22*100)/100];
