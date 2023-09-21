@@ -6,10 +6,10 @@
 	</div>
 
 	<div v-for="(sponsorList, tier) in sponsors">
-		<h3>
-			<!-- <img :src="`/assets/graphics/sponsor_${tier}.svg`" class="primary-normal-svg-filter"/> -->
+		<!-- <h3>
+			<img :src="`/assets/graphics/sponsor_${tier}.svg`" class="primary-normal-svg-filter"/>
 			{{ tier }}
-        </h3>
+        </h3> -->
 
 		<div :class="`${tier} row wrap`">
 			<div v-for="sponsor in sponsorList" class="sponsor biggest">

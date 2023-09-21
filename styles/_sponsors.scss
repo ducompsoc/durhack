@@ -1,13 +1,23 @@
 .section.sponsors {
     $tile-width: 100px;
     $sponsor-scale: 0.7;
+    $tier-widths: ("platinum": 200px, "gold": 150px, "silver": 100px);
+
+    h3 {
+        text-align: center;
+    }
 
     .row {
         position: relative;
         display: flex;
         justify-content: space-evenly;
-        padding: 50px 0 50px 0;
-        margin: 0 auto;
+        padding: 35px 0;
+        margin: 0 5%;
+
+        @include breakpoint-down('md') {
+            display: grid;
+            grid-template-columns: auto auto;
+        }
     }
 
     a {
@@ -15,6 +25,10 @@
         height: $tile-width;
         position: relative;
         border-bottom: none;
+
+        @include breakpoint-down('md') {
+            margin: 30px 0;
+        }
 
         .sponsor-image {
             width: calc(($tile-width - ($tile-width * 0.17)) * $sponsor-scale);
@@ -30,6 +44,24 @@
             width: $tile-width;
             position: absolute;
             z-index: 2;
+        }
+    }
+
+    @each $tier, $tier-width in $tier-widths {
+        .#{$tier} {
+            a {
+                width: $tier-width;
+                height: $tier-width;
+
+                .sponsor-image {
+                    width: calc(($tier-width - ($tier-width * 0.17)) * $sponsor-scale);
+                    mask-size: $tier-width;
+                }
+
+                .frame {
+                    width: $tier-width;
+                }
+            }
         }
     }
 }
