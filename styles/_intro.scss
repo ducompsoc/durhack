@@ -19,9 +19,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-top: 0;
+        margin-top: 70px;
         gap: 5rem;
         color: $secondary-a;
-        cursor: pointer;
+        cursor: default;
 
         .previous-row {
             position: relative;
