@@ -1,11 +1,11 @@
 <template>
     <div id="topbar">
-        <a id="mlh-trust-badge"
+        <!-- <a id="mlh-trust-badge"
            style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000;border: none"
            href="https://mlh.io/eu?utm_source=eu-hackathon&utm_medium=TrustBadge&utm_campaign=2024-season&utm_content=black"
            target="_blank"><img
             src="https://s3.amazonaws.com/logged-assets/trust-badge/2024/mlh-trust-badge-2024-white.svg"
-            alt="Major League Hacking 2023 Hackathon Season" style="width:100%"></a>
+            alt="Major League Hacking 2023 Hackathon Season" style="width:100%"></a> -->
         <nav id="navbar">
             <a href="#intro">Intro</a>
             <a href="#faqs">FAQs</a>

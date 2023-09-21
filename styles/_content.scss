@@ -46,6 +46,7 @@
     &.faqs {
         @media (min-width: $old-breakpoint-medium) {
             background-size: 100% auto;
+            background-position: top center;
         }
 
         padding-top: 0px;
