@@ -44,11 +44,6 @@
     }
 
     &.faqs {
-        @media (min-width: $old-breakpoint-medium) {
-            background-size: 100% auto;
-            background-position: top center;
-        }
-
         padding-top: 0px;
         padding-bottom: 0px;
         margin-bottom: 64px;
@@ -62,7 +57,7 @@
             }
         }
 
-        img {
+        > .main img {
             height: 26px;
             width: 20px;
             padding: 20px 20px 0px 10px;

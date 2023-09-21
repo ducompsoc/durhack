@@ -46,6 +46,7 @@
     </div>
 
     <div id="faqs" class="section faqs column">
+        <img src="/assets/photos/faq-bg-min.jpg">
         <div class="main">
             <FAQs />
         </div>
