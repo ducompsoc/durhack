@@ -249,6 +249,10 @@
             margin: 0 auto;
         }
 
+        #empty-image {
+            height: 100%;
+        }
+
         @media (max-width: calc($old-breakpoint-extra-small - 200px)) {
             grid-template-columns: auto auto;
         }

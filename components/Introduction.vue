@@ -92,11 +92,11 @@
 
                 let x22 = rect.left + rect.width * 0.85 + window.scrollX;
 
-                if (window.innerWidth < 720) {
+                if (window.innerWidth < 768) {
                     x22 = rect.left + rect.width * 0.15 + window.scrollX;
                 }
 
-                const y22 = rect.top + rect.height + window.scrollY;
+                const y22 = rect.top + rect.height * 0.5 + window.scrollY;
                 const [x2, y2] = [Math.round(x22*100)/100, Math.round(y22*100)/100];
 
 
@@ -111,7 +111,7 @@
 
 
 
-                const difference = [ Math.round(x2 - x1), Math.round(y1 - y2)];
+                const difference = [ Math.abs(Math.round(x2 - x1)), Math.round(y1 - y2)];
                 
                 const shot = document.getElementById('spaceship-shot');
                 shot.style.height = difference[1] + 'px';
