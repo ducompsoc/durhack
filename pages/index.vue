@@ -46,8 +46,8 @@
     </div>
 
     <div id="faqs" class="section faqs column">
-        <img src="/assets/photos/faq-bg-min.jpg">
-        <div class="main">
+        <img src="/assets/photos/faq-bg-min.jpg" id="faq-background">
+        <div class="main" id="faq-main">
             <FAQs />
         </div>
     </div>
