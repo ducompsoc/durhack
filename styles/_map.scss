@@ -152,7 +152,7 @@ $blue-planet-angle: 70deg;
     }
 
     #o-planet::before {
-        background-image: url("./assets/graphics/map/orange-planet.svg");
+        background-image: url("/assets/graphics/map/orange-planet.svg");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -175,7 +175,7 @@ $blue-planet-angle: 70deg;
     }
 
     #b-planet::before {
-        background-image: url("./assets/graphics/map/blue-planet.svg");
+        background-image: url("/assets/graphics/map/blue-planet.svg");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
