@@ -61,7 +61,7 @@
             this.daysUntil();
         },
         mounted() {
-            setInterval(this.daysUntil, 1000);
+            setInterval(this.daysUntil, 500);
         }
     };
 </script>

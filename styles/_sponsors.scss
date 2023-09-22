@@ -77,8 +77,8 @@
     @each $tier, $tier-width in $tier-widths {
         .#{$tier} {
             a {
-                width: $tier-width;
-                height: $tier-width;
+                width: calc($tier-width * 1.1);
+                height: calc($tier-width * 1.3);
 
                 .sponsor-image {
                     width: calc(($tier-width - ($tier-width * 0.17)) * $sponsor-scale);

@@ -34,13 +34,13 @@ $bg-g-dp-t: rgba(19, 28, 106, 0.6);
         > img {
             z-index: 1;
             position: absolute;
-            width: 100%;
+            width: max(100vw, 150vh);
             height: auto;
 
-            @include breakpoint-down('lg') {
-                width: auto;
-                height: 100%;
-            }
+            // @include breakpoint-down('lg') {
+            //     width: auto;
+            //     height: 100%;
+            // }
             // aspect-ratio: 1;
 
             -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
