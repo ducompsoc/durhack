@@ -41,8 +41,72 @@
         ]
     },
     "sponsors": {
-        "gold": [],
-        "silver": [],
+        "platinum": [
+            {
+                "image": "quinn.png",
+                "link": "#"
+            },
+            {
+                "image": "quinn.png",
+                "link": "#"
+            },
+            {
+                "image": "quinn.png",
+                "link": "#"
+            }
+        ],
+        "gold": [
+            {
+                "image": "quinn.png",
+                "link": "#"
+            },
+            {
+                "image": "quinn.png",
+                "link": "#"
+            },
+            {
+                "image": "quinn.png",
+                "link": "#"
+            },
+            {
+                "image": "quinn.png",
+                "link": "#"
+            },
+            {
+                "image": "quinn.png",
+                "link": "#"
+            }
+        ],
+        "silver": [
+            {
+                "image": "quinn.png",
+                "link": "#"
+            },
+            {
+                "image": "quinn.png",
+                "link": "#"
+            },
+            {
+                "image": "quinn.png",
+                "link": "#"
+            },
+            {
+                "image": "quinn.png",
+                "link": "#"
+            },
+            {
+                "image": "quinn.png",
+                "link": "#"
+            },
+            {
+                "image": "quinn.png",
+                "link": "#"
+            },
+            {
+                "image": "quinn.png",
+                "link": "#"
+            }
+        ],
         "partners": [
             {
                 "image": "mlh-logo-color.svg",
@@ -59,10 +123,6 @@
             {
                 "image": "compsoc.png",
                 "link": "https://www.compsoc.tech/"
-            },
-            {
-                "image": "Dueg_transparent.png",
-                "link": "https://discord.gg/dueg"
             }
         ]
     },
@@ -77,14 +137,14 @@
         ],
         [
             {
-                "name": "Disha G",
-                "role": "Lead Organiser",
+                "name": "Disha Gupta",
+                "role": "Head of Tech",
                 "email": "email",
                 "image": "Disha G.png"
             },
             {
-                "name": "Luca",
-                "role": "Tech Officer",
+                "name": "Luca Huelle",
+                "role": "Megateams PM & Tech Advisor",
                 "email": "email",
                 "image": "luca.jpg"
             },
@@ -95,7 +155,7 @@
                 "image": "joe.png"
             },
             {
-                "name": "Amber",
+                "name": "Amber Gosling",
                 "role": "Tech Officer",
                 "email": "email",
                 "image": "amber.png"
@@ -116,32 +176,32 @@
         [
             {
                 "name": "Karl Southern",
-                "role": "Emeritus Organiser",
+                "role": "Organiser Emeritus",
                 "email": "email",
                 "image": "karl.jpg"
             }
         ],
         [
             {
-                "name": "Abigail",
+                "name": "Abi Collins",
                 "role": "Head of Logistics",
                 "email": "email",
                 "image": "Abigail.png"
             },
             {
-                "name": "Charlotte",
+                "name": "Charlotte Lawrence",
                 "role": "Logistics Officer",
                 "email": "email",
                 "image": "charlotte.png"
             },
             {
-                "name": "Lauren",
+                "name": "Lauren Yeung",
                 "role": "Logistics Officer",
                 "email": "email",
                 "image": "lauren.png"
             },
             {
-                "name": "Tanheed",
+                "name": "Tanheed Rahman",
                 "role": "Logistics Officer",
                 "email": "email",
                 "image": "tanheed.png"
@@ -149,13 +209,13 @@
         ],
         [
             {
-                "name": "Clary H",
+                "name": "Clary Hui",
                 "role": "Head of Design and Marketing",
                 "email": "email",
                 "image": "Clary H.png"
             },
             {
-                "name": "Fatima",
+                "name": "Fatima Jabeen",
                 "role": "Design and Marketing Officer",
                 "email": "email",
                 "image": "fatima.png"
@@ -163,25 +223,25 @@
         ],
         [
             {
-                "name": "Eve R",
+                "name": "Eve Routledge",
                 "role": "Head of Sponsorship",
                 "email": "email",
                 "image": "Eve R.png"
             },            
             {
-                "name": "Eve S",
+                "name": "Eve Sherratt",
                 "role": "Sponsorship Officer",
                 "email": "email",
                 "image": "eve_s.png"
             },            
             {
-                "name": "George",
+                "name": "George Osborne",
                 "role": "Sponsorship Officer",
                 "email": "email",
                 "image": "george.png"
             },            
             {
-                "name": "Rushil",
+                "name": "Rushil Shah",
                 "role": "Sponsorship Officer",
                 "email": "email",
                 "image": "rushil.png"
@@ -189,7 +249,7 @@
         ],
         [
             {
-                "name": "Allaida S",
+                "name": "Allaida Siow",
                 "role": "Hacker Experience",
                 "email": "email",
                 "image": "Allaida S - Hacker Experience.png"

@@ -2,7 +2,7 @@
     <div class="text-center">
         <h1>MEET THE TEAM</h1>
     </div>
-    <div v-if="screenSize > 576" class="flex-item" id="mapbody">
+    <div class="flex-item" id="mapbody">
         <div class="hoop">
             <img id="lead" src="/assets/team/quinn.png" alt="Quinn">
             <div :class="`outer-members outer-members-${teams.length}`">
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div id="small-hoops" v-else>
+    <div id="small-hoops">
         <div class="hoop-container" v-for="(team, index) in members">
             <TeamCircle class="team" :id="`team-${index+1}`" :center="team[0]" :members="team.slice(1)" :teamNumber="index+1" />
         </div>
@@ -27,28 +27,6 @@
     export default {
         components: {
             TeamCircle
-        },
-        data() {
-            return {
-                screenSize: window.innerWidth
-            };
-        },
-        mounted() {
-            tippy('#lead', 
-                {
-                    content: `<div><strong>${this.members[0][0].name}</strong></div><div>${this.members[0][0].role}</div>`,
-                    allowHTML: true,
-                    sticky: true
-                }
-            );
-        },
-        created() {
-            if (process.client) {
-                this.screenSize = window.innerWidth;
-                window.addEventListener('resize', () => {
-                    this.screenSize = window.innerWidth;
-                });
-            }
         },
         computed: {
             members() {

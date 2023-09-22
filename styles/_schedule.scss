@@ -34,7 +34,7 @@
         }
     }
 
-    @include breakpoint-down('xs') {
+    @media screen and (max-width: $old-breakpoint-extra-small) {
         #big {
             display: none;
         }
