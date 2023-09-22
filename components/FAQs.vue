@@ -37,7 +37,7 @@ export default {
     created() {
         if (process.client) {
             window.addEventListener('resize', () => {
-                console.log(this.getHeight());
+                //console.log(this.getHeight());
             });
         }
     },
