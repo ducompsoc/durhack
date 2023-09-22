@@ -43,7 +43,7 @@
         .sponsor-image {
             width: calc(($tile-width - ($tile-width * 0.17)) * $sponsor-scale);
             position: relative;
-            mask-image: url('/assets/sponsors/tiles/mask.png');
+            mask-image: url('/assets/sponsors/tiles/gold-mask.png');
             mask-size: $tile-width;
             mask-position: center;
             mask-repeat: no-repeat;
@@ -83,6 +83,7 @@
                 .sponsor-image {
                     width: calc(($tier-width - ($tier-width * 0.17)) * $sponsor-scale);
                     mask-size: $tier-width;
+                    mask-image: url('/assets/sponsors/tiles/#{$tier}-mask.png');
                 }
 
                 .frame {
