@@ -91,7 +91,7 @@
             // https://dev.to/afif/border-with-gradient-and-radius-387f - This is some wacky stuff
             background: linear-gradient($s-angle, #5cdbfb, #8467A070, #FFDDDD38, #fd825c) border-box; /*3*/
             mask: /*4*/
-               linear-gradient(#fff 0 0) padding-box, 
+               linear-gradient(#fff 0 0) padding-box,
                linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor; /*5'*/
                     mask-composite: exclude; /*5*/
@@ -104,13 +104,13 @@
         aspect-ratio: 1;
         top: calc((100% - $rad2 - 2*$thick1) / 2);
         left: calc((100% - $rad2 - 2*$thick1) / 2);
-    
+
         content: "";
         border: $thick1 solid transparent;
         border-radius: 50%;
         background: linear-gradient($s-angle, #5cdbfb, #8467A070, #FFDDDD38, #fd825c) border-box; /*3*/
         mask: /*4*/
-            linear-gradient(#fff 0 0) padding-box, 
+            linear-gradient(#fff 0 0) padding-box,
             linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor; /*5'*/
                 mask-composite: exclude; /*5*/
@@ -125,7 +125,7 @@
     }
 
     #o-planet::before {
-        background-image: url("./assets/graphics/map/orange-planet.svg");
+        background-image: url("/assets/graphics/map/orange-planet.svg");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -148,7 +148,7 @@
     }
 
     #b-planet::before {
-        background-image: url("./assets/graphics/map/blue-planet.svg");
+        background-image: url("/assets/graphics/map/blue-planet.svg");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
