@@ -66,6 +66,13 @@
                     sticky: true
                 }
             );
+            tippy('#lead', 
+                {
+                    content: `<div><strong>Quinn Dines</strong></div><div>Lead Organiser</div>`,
+                    allowHTML: true,
+                    sticky: true
+                }
+            );
         }
     };
 </script>

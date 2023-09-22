@@ -6,13 +6,28 @@
 	</div>
 
 	<div v-for="(sponsorList, tier) in sponsors">
-		<h3><img :src="`/assets/graphics/sponsor_${tier}.svg`" class="primary-normal-svg-filter"/>
-        </h3>
+		<!-- <h3>
+			<img :src="`/assets/graphics/sponsor_${tier}.svg`" class="primary-normal-svg-filter"/>
+			{{ tier }}
+        </h3> -->
+		<div class="text-center" v-if="tier == 'partners'">
+			<h3>Partners</h3>
+		</div>
 
-		<div :class="`${tier} row wrap`">
-			<div v-for="sponsor in sponsorList" class="sponsor biggest row">
+		<div :class="`${tier} row wrap`" v-if="tier != 'partners'">
+			<div v-for="sponsor in sponsorList" class="sponsor biggest">
 				<a :href="sponsor.link" target="_blank" class="column center">
-					<img :src="`/assets/sponsors/${sponsor.image}`" />
+					<img :src="`/assets/sponsors/${sponsor.image}`" class="sponsor-image"/>
+					<img :src="`/assets/sponsors/tiles/${tier}.svg`" class="frame"/>
+				</a>
+			</div>
+		</div>
+
+		<div :class="`${tier} row wrap`" v-else>
+			<div v-for="sponsor in sponsorList" class="sponsor biggest">
+				<a :href="sponsor.link" target="_blank" class="column center">
+					<img :src="`/assets/sponsors/${sponsor.image}`" class="partner-image"/>
+					<img :src="`/assets/sponsors/tiles/${tier}.svg`" class="partner-frame"/>
 				</a>
 			</div>
 		</div>

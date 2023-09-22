@@ -1,11 +1,11 @@
 <template>
     <div id="topbar">
-        <a id="mlh-trust-badge"
+        <!-- <a id="mlh-trust-badge"
            style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000;border: none"
            href="https://mlh.io/eu?utm_source=eu-hackathon&utm_medium=TrustBadge&utm_campaign=2024-season&utm_content=black"
            target="_blank"><img
             src="https://s3.amazonaws.com/logged-assets/trust-badge/2024/mlh-trust-badge-2024-white.svg"
-            alt="Major League Hacking 2023 Hackathon Season" style="width:100%"></a>
+            alt="Major League Hacking 2023 Hackathon Season" style="width:100%"></a> -->
         <nav id="navbar">
             <a href="#intro">Intro</a>
             <a href="#faqs">FAQs</a>
@@ -20,21 +20,14 @@
         </div>
         <div id="navdiagonal"/>
         <div id="navbarline"/>
+        <div id="mainbluestripe"/>
+        <div id="smallbluestripe"/>
+        <div id="diagonalbluestripe"/>
     </div>
 
     <div id="splash" class="section splash container">
         <div class="main container">
-            <img alt="top-down view of people at a desk programming" class="splash-photo" src="/assets/photos/splash-hacking.jpg">
-            <img alt="circuitry overlay" class="circuitry-overlay" src="/assets/graphics/artifact-circuitry.svg"/>
-            <img alt="dark space blur" class="space-shadow" src="/assets/graphics/artifact-space-blur.svg"/>
-            <object class="rocket" type="image/svg+xml" data="/assets/graphics/rocket/rocket-combined.svg">rocket</object>
-            <div class="countdown">
-                <div class="t-minus"/>
-                <div class="days">106</div>
-                <div class="hours">8</div>
-                <div class="minutes">15</div>
-                <div class="seconds">30</div>
-            </div>
+            <Splash />
         </div>
     </div>
 
@@ -53,7 +46,8 @@
     </div>
 
     <div id="faqs" class="section faqs column">
-        <div class="main">
+        <img src="/assets/photos/faq-bg-min.jpg" id="faq-background">
+        <div class="main" id="faq-main">
             <FAQs />
         </div>
     </div>
@@ -67,9 +61,7 @@
 
     <div id="schedule" class="section schedule">
         <div class="main">
-            <div class="text-center">
-                <h1>Schedule</h1>
-            </div>
+            <Schedule />
         </div>
     </div>
 
@@ -148,9 +140,11 @@
     import Sponsors from "../components/Sponsors";
     import Megateams from "../components/Megateams";
     import Team from "../components/Team";
+    import Schedule from "../components/Schedule.vue";
+    import Splash from "../components/Splash.vue";
 
     export default {
-        components: { Introduction, CTAMap, FAQs, Sponsors, Megateams, Team },
+        components: { Introduction, CTAMap, FAQs, Sponsors, Megateams, Team, Schedule, Splash },
         mounted() {
             new Rellax('.rellax');
         }
