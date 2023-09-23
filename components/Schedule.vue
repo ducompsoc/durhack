@@ -6,21 +6,18 @@
 	</div>
 
 	<div id="big">
-		<object type="image/svg+xml" data="/assets/graphics/schedule.svg"></object>
+		<object class="schedule-content" type="image/svg+xml" data="/assets/graphics/schedule.svg"></object>
 	</div>
 
 	<div id="small">
 		<Transition>
-			<div v-if="isHidden">
-				<object id="short" type="image/svg+xml" data="/assets/graphics/short-schedule.svg"></object>
+			<div :class="{ expanded: !isHidden }">
+                <div class="schedule-content-wrapper">
+                    <object class="schedule-content" type="image/svg+xml" data="/assets/graphics/long-schedule.svg"/>
+                </div>
+
 				<div class="button-div">
-					<button type="button" v-on:click="isHidden = !isHidden">READ MORE</button>
-				</div>
-			</div>
-			<div v-else>
-				<object type="image/svg+xml" data="/assets/graphics/long-schedule.svg"></object>
-				<div class="button-div">
-					<button type="button" v-on:click="isHidden = !isHidden">READ LESS</button>
+					<button type="button" v-on:click="isHidden = !isHidden">{{ isHidden ? "See More" : "See Less" }}</button>
 				</div>
 			</div>
 		</Transition>
