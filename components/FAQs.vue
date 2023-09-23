@@ -1,4 +1,7 @@
 <template>
+    <div class="text-center">
+        <h1>FREQUENTLY ASKED QUESTIONS</h1>
+    </div>
     <ul class="questions">
         <li v-for="(answers, question, index) in faqs" class="question closed">
             <div class="title container">
@@ -26,8 +29,21 @@ export default {
     data() {
         return {faqs};
     },
+    methods: {
+        getHeight() {
+            document.getElementById('faq-background').style.height = document.getElementById('faq-main').getBoundingClientRect().height + 'px';
+        }
+    },
+    created() {
+        if (process.client) {
+            window.addEventListener('resize', () => {
+                //console.log(this.getHeight());
+            });
+        }
+    },
     mounted() {
         faqLogic();
+        this.getHeight();
     }
 };
 </script>

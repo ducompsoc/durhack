@@ -1,5 +1,35 @@
+$rad1: 50vw;
+$thick1: 2px;
+
+$rad2: 70%; // percentage of rad1
+$s-angle: -150deg;
+$orange-planet-angle: -20deg;
+$blue-planet-angle: 70deg;
+
+@keyframes outerPlanet {
+    from {
+        rotate: 0deg;
+    }
+    to {
+        rotate: 150deg;
+    }
+}
+
+@keyframes innerPlanet {
+    from {
+        rotate: 0deg;
+    }
+    to {
+        rotate: -80deg;
+    }
+}
+
 .section.cta-map {
     text-align: left;
+
+    a:not(.tooltip) {
+        border-bottom: none;
+    }
 
     .main {
         padding: 0px calc(82px + 32px);
@@ -45,6 +75,11 @@
 
         .button-div {
             justify-content: left;
+            width: max-content;
+
+            @include breakpoint-down('xs') {
+                width: auto;
+            }
 
             button {
                 @include breakpoint-down('xs') {
@@ -64,14 +99,6 @@
         text-align: left;
         align-self: center;
     }
-
-    $rad1: 50vw;
-    $thick1: 2px;
-
-    $rad2: 70%; // percentage of rad1
-    $s-angle: -150deg;
-    $orange-planet-angle: -20deg;
-    $blue-planet-angle: 70deg;
 
     #hoop1 {
         position: relative;
@@ -125,7 +152,7 @@
     }
 
     #o-planet::before {
-        background-image: url("./assets/graphics/map/orange-planet.svg");
+        background-image: url("/assets/graphics/map/orange-planet.svg");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -148,7 +175,7 @@
     }
 
     #b-planet::before {
-        background-image: url("./assets/graphics/map/blue-planet.svg");
+        background-image: url("/assets/graphics/map/blue-planet.svg");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;

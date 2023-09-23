@@ -29,3 +29,7 @@ $longnavbrandwidth: max(25%, 350px);
 // nav variables for short brand
 $longnavwidth: 70%;
 $shortnavbrandwidth: max(10%, 150px);
+
+// nav variables for blue border
+$blue-rect-width: 4px;
+$blue-nav-bg: linear-gradient(90deg, rgba(255, 255, 255, 0.77) 0%, #3D9FBA 50.31%, rgba(255, 255, 255, 0.87) 100%);
