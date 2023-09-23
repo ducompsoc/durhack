@@ -42,70 +42,10 @@
     },
     "sponsors": {
         "platinum": [
-            {
-                "image": "quinn.png",
-                "link": "#"
-            },
-            {
-                "image": "quinn.png",
-                "link": "#"
-            },
-            {
-                "image": "quinn.png",
-                "link": "#"
-            }
         ],
         "gold": [
-            {
-                "image": "quinn.png",
-                "link": "#"
-            },
-            {
-                "image": "quinn.png",
-                "link": "#"
-            },
-            {
-                "image": "quinn.png",
-                "link": "#"
-            },
-            {
-                "image": "quinn.png",
-                "link": "#"
-            },
-            {
-                "image": "quinn.png",
-                "link": "#"
-            }
         ],
         "silver": [
-            {
-                "image": "quinn.png",
-                "link": "#"
-            },
-            {
-                "image": "quinn.png",
-                "link": "#"
-            },
-            {
-                "image": "quinn.png",
-                "link": "#"
-            },
-            {
-                "image": "quinn.png",
-                "link": "#"
-            },
-            {
-                "image": "quinn.png",
-                "link": "#"
-            },
-            {
-                "image": "quinn.png",
-                "link": "#"
-            },
-            {
-                "image": "quinn.png",
-                "link": "#"
-            }
         ],
         "partners": [
             {
@@ -227,19 +167,19 @@
                 "role": "Head of Sponsorship",
                 "email": "email",
                 "image": "Eve R.png"
-            },            
+            },
             {
                 "name": "Eve Sherratt",
                 "role": "Sponsorship Officer",
                 "email": "email",
                 "image": "eve_s.png"
-            },            
+            },
             {
                 "name": "George Osborne",
                 "role": "Sponsorship Officer",
                 "email": "email",
                 "image": "george.png"
-            },            
+            },
             {
                 "name": "Rushil Shah",
                 "role": "Sponsorship Officer",
