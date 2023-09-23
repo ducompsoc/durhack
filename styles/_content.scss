@@ -37,6 +37,7 @@
         cursor: pointer;
         padding: 1.25rem 5rem;
         z-index: 12;
+        text-align: center;
 
         @include breakpoint-down('md') {
             font-size: 1.25rem;
