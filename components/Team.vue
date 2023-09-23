@@ -13,7 +13,7 @@
 
     <div id="small-hoops">
         <div class="hoop-container" v-for="(team, index) in members">
-            <TeamCircle class="team" :id="`team-${index+1}`" :center="team[0]" :members="team.slice(1)" :teamNumber="index+1" />
+            <TeamCircle class="team" :id="`team-${index}`" :center="team[0]" :members="team.slice(1)" :teamNumber="index" />
         </div>
     </div>
 </template>

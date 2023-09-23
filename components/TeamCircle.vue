@@ -53,6 +53,7 @@
                 i++;
             }
             styleElem.innerHTML = styling;
+            console.log(styling);
 
             tippy('.tooltip', 
                 { 
