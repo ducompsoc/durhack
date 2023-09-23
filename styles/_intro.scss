@@ -3,7 +3,8 @@
 
 .section.intro {
     clear: left;
-    overflow: visible;
+    overflow-y: visible;
+    overflow-x: clip;
     z-index: 4;
     position: relative;
 
