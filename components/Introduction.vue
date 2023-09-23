@@ -5,9 +5,13 @@
             <h4>4 - 5 November</h4>
             <p>Students of all experience levels come together in teams of up to five, helping and learning from each other in order to create their own project.</p>
         </div>
-        <a href="https://durhack.com/ticket" target="_blank" class="button-div">
-            <button type="button">BOOK TICKET</button>
-        </a>
+
+        <div class="button-div">
+            <a href="https://durhack.com/ticket" target="_blank" class="link-button">
+                BOOK TICKET
+            </a>
+        </div>
+
         <h2>DurHack is all about <b>learning something new</b></h2>
 
         <div id="background-constellations">
@@ -112,7 +116,7 @@
 
 
                 const difference = [ Math.abs(Math.round(x2 - x1)), Math.round(y1 - y2)];
-                
+
                 const shot = document.getElementById('spaceship-shot');
                 shot.style.height = difference[1] + 'px';
                 shot.style.width = difference[0] + 'px';
