@@ -85,6 +85,10 @@ a:not(.tooltip) {
 
     padding-left: 30px;
     padding-right: 30px;
+
+    @include breakpoint-down('xs') {
+        padding: 0;
+    }
 }
 
 .text-center > h1 {

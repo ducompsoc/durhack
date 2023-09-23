@@ -6,10 +6,6 @@
 	</div>
 
 	<div v-for="(sponsorList, tier) in sponsors">
-		<!-- <h3>
-			<img :src="`/assets/graphics/sponsor_${tier}.svg`" class="primary-normal-svg-filter"/>
-			{{ tier }}
-        </h3> -->
 		<div class="text-center" v-if="tier == 'partners'">
 			<h3>Partners</h3>
 		</div>

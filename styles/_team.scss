@@ -15,7 +15,7 @@ $centre-person-size: 30%;
 $inner-circle-person-distance: 70%;
 $inner-circle-person-size: 40%;
 
-$outer-circle-size: calc($size / 2.5);
+$outer-circle-size: calc($size / 2.7);
 $outer-circle-person-distance: -14%;
 $outer-circle-person-size: 30%;
 $outer-circle-fine-tune-rotation: 36%;
@@ -221,13 +221,15 @@ $outer-circle-fine-tune-rotation: 36%;
     #small-hoops {
         position: relative;
 
+        .team {
+            position: relative;
+        }
+
         // Sets new animations
         .inner {
             position: relative;
             animation: none;
-            top: 50%;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
+            bottom: 0;
 
             .hoop2 {
                 width: $mobile-size;
