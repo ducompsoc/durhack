@@ -29,21 +29,8 @@ export default {
     data() {
         return {faqs};
     },
-    methods: {
-        getHeight() {
-            document.getElementById('faq-background').style.height = document.getElementById('faq-main').getBoundingClientRect().height + 'px';
-        }
-    },
-    created() {
-        if (process.client) {
-            window.addEventListener('resize', () => {
-                //console.log(this.getHeight());
-            });
-        }
-    },
     mounted() {
         faqLogic();
-        this.getHeight();
     }
 };
 </script>

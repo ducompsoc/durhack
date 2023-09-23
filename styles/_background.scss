@@ -31,18 +31,25 @@ $bg-g-dp-t: rgba(19, 28, 106, 0.6);
     &.faqs {
         position: relative;
 
-        > img {
+        #faq-background {
             z-index: 1;
             position: absolute;
-            width: auto;
+            width: 100%;
+            height: 120%;
+            overflow: hidden;
 
-            @media screen and (min-width: '1300px') {
+            img {
                 width: 100%;
                 height: auto;
+
+                @include breakpoint-down("xxl") {
+                    height: 100%;
+                    width: auto;
+                }
             }
 
             -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 90%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 2%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 98%);
         }
 
         .main {
