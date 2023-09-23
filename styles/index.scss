@@ -47,12 +47,12 @@ h1 {
     padding: 10px;
 }
 
-h2, p, span {
-    font-family: 'Space Grotesk';
+body {
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 #navbrand > span {
-    font-family: 'Audiowide';
+    font-family: 'Audiowide', sans-serif;
 }
 
 a:not(.tooltip) {
