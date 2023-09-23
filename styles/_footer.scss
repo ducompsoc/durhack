@@ -7,6 +7,10 @@
     overflow: visible;
     pointer-events: none;
 
+    a {
+        pointer-events: auto;
+    }
+
     .footer-main {
         position: relative;
 
@@ -28,7 +32,7 @@
 
         .socials {
             pointer-events: all;
-            
+
             .text-center {
                 margin: 20px 0 0 0;
             }
@@ -61,27 +65,27 @@
             bottom: 0;
             padding: 64px calc(82px + 32px) 24px;
             color: rgba(255, 255, 255, 0.50);
-        
+
             @media screen and (max-width: $old-breakpoint-medium) {
                 padding: 48px 32px;
             }
-        
+
             .legal {
                 font-size: 14px;
                 padding-right: 32px;
-        
-        
+
+
                 a {
                     border-bottom-color: white;
                     border-bottom: none;
                     color: white;
                 }
-    
+
                 p {
                     font-size: 1.1rem;
                 }
             }
-        
+
             .photo img {
                 width: 100px;
                 height: auto;
@@ -120,7 +124,7 @@
 
             footer {
                 padding: $f-padding;
-    
+
                 .legal {
                     p {
                         font-size: $font-2;
