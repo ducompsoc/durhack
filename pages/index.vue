@@ -9,7 +9,7 @@
         <nav id="navbar">
             <a href="#intro">Intro</a>
             <a href="#faqs">FAQs</a>
-            <a href="#sponsors">Sponsors</a>
+            <a href="#sponsors" style="display: none">Sponsors</a>
             <a href="#schedule">Schedule</a>
             <a href="#team">Team</a>
         </nav>
