@@ -249,6 +249,7 @@
 
         #empty-image {
             height: 100%;
+            position: relative;
         }
 
         @media (max-width: calc($old-breakpoint-extra-small - 200px)) {
@@ -299,11 +300,25 @@
         bottom: 100%;
         height: $shot-height;
         width: $shot-width;
+        z-index: 2;
 
         @include breakpoint-down('sm') {
             transform: scaleX(-1);
             left: auto;
             right: calc(50% + 40px);
+        }
+    }
+
+    #explosion {
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        height: 80%;
+        width: 80%;
+        z-index: 3;
+
+        @include breakpoint-down('sm') {
+            transform: scaleX(-1);
         }
     }
 
