@@ -1,5 +1,6 @@
 @import './fonts';
 @import './variables';
+@import './breakpoints';
 
 // Reset user-agent stylesheets https://stackoverflow.com/questions/29307357/get-rid-of-webkit-padding-start-40px
 *:not(p) {
@@ -80,6 +81,10 @@ a:not(.tooltip) {
     span {
         padding-left: 25px;
         padding-right: 25px;
+
+        @include breakpoint-down('xs') {
+            padding: 0;
+        }
     }
 }
 
