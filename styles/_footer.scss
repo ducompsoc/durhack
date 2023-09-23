@@ -7,6 +7,10 @@
     overflow: visible;
     pointer-events: none;
 
+    a {
+        pointer-events: auto;
+    }
+
     .footer-main {
         position: relative;
 
