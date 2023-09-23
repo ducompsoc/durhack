@@ -155,24 +155,40 @@
         }
 
         .countdown {
-            $dist-from-bottom: 40px;
             margin: 0 auto;
-            bottom: calc(70vw - 100vh + $dist-from-bottom);
+            bottom: calc(70vw - 100vh + 40px);
+
+            --text-sm-size: 30px;
+            --text-md-size: 50px;
+            --text-lg-size: 90px;
+
+            @include breakpoint-down(xxl) {
+                bottom: 20%;
+            }
 
             // Medium devices (tablets, less than 992px)
             @include breakpoint-down(md) {
-                bottom: calc(150vw - 100vh + $dist-from-bottom);
+                bottom: 30%;
             }
 
             // Small devices (landscape phones, less than 768px)
             @include breakpoint-down(sm) {
-                bottom: calc(175vw - 100vh + $dist-from-bottom);
+                //bottom: calc(175vw - 100vh + $dist-from-bottom);
+                --text-sm-size: 20px;
+                --text-md-size: 40px;
+                --text-lg-size: 70px;
             }
 
             // X-Small devices (portrait phones, less than 576px)
             @include breakpoint-down(xs) {
-                top: calc($dist-from-bottom + 30px);
+                width: 70%;
+                left: 15%;
+                bottom: unset;
+                top: 3rem;
                 text-align: center;
+                --text-sm-size: 15px;
+                --text-md-size: 30px;
+                --text-lg-size: 50px;
             }
 
             // The countdown text is being weird for long and thin screens
@@ -189,13 +205,9 @@
             font-weight: 400;
             line-height: normal;
 
-            $text-sm-size: 30px;
-            $text-md-size: 50px;
-            $text-lg-size: 90px;
-
             .t-minus::after {
                 content: "T - minus";
-                font-size: $text-sm-size;
+                font-size: var(--text-sm-size);
 
                 font-style: inherit;
                 font-weight: inherit;
@@ -209,12 +221,12 @@
                 display: inline-block;
                 content: "";
                 vertical-align: -10%;
-                width: $text-md-size;
-                height: $text-md-size;
+                width: var(--text-md-size);
+                height: var(--text-md-size);
             }
 
             .days {
-                font-size: $text-lg-size;
+                font-size: var(--text-lg-size);
 
                 &::after {
                     content: " days"
@@ -222,7 +234,7 @@
             }
 
             .hours {
-                font-size: $text-md-size;
+                font-size: var(--text-md-size);
 
                 &::before {
                     @extend .twinkle-icon;
@@ -231,32 +243,32 @@
 
                 &::after {
                     content: " hours";
-                    font-size: $text-sm-size;
+                    font-size: var(--text-sm-size);
                 }
             }
 
             .minutes {
-                font-size: $text-md-size;
+                font-size: var(--text-md-size);
 
                 &::before {
                     @extend .twinkle-icon;
                     background-image: url("/assets/icons/twinkle-dim.svg");
                     background-position-x: 3px;
                     padding-left: 3px;
-                    padding-right: calc($text-md-size - $text-sm-size - 3px);
-                    width: $text-sm-size;
-                    height: $text-sm-size;
+                    padding-right: calc(var(--text-md-size) - var(--text-sm-size) - 3px);
+                    width: var(--text-sm-size);
+                    height: var(--text-sm-size);
                     vertical-align: 0;
                 }
 
                 &::after {
                     content: " minutes";
-                    font-size: $text-sm-size;
+                    font-size: var(--text-sm-size);
                 }
             }
 
             .seconds {
-                font-size: $text-md-size;
+                font-size: var(--text-md-size);
 
                 &::before {
                     @extend .twinkle-icon;
@@ -265,56 +277,8 @@
 
                 &::after {
                     content: " seconds";
-                    font-size: $text-sm-size;
+                    font-size: var(--text-sm-size);
                 }
-            }
-
-            @include breakpoint-down('xs') {
-                .t-minus::after {
-                    font-size: calc($text-sm-size / 2);
-                }
-
-                .twinkle-icon {
-                    width: calc($text-md-size / 2);
-                    height: calc($text-md-size / 2);
-                }
-
-                .days {
-                    font-size: calc($text-lg-size / 2);
-                }
-
-                .hours {
-                    font-size: calc($text-md-size / 2);
-
-                    &::after {
-                        font-size: calc($text-sm-size / 2);
-                    }
-                }
-
-                .minutes {
-                    font-size: calc($text-md-size / 2);
-
-                    &::before {
-                        padding-right: calc($text-md-size / 2 - $text-sm-size / 2 - 3px);
-                        width: calc($text-sm-size / 2);
-                        height: calc($text-sm-size / 2);
-                    }
-
-                    &::after {
-                        font-size: calc($text-sm-size / 2);
-                    }
-                }
-
-                .seconds {
-                    font-size: calc($text-md-size / 2);
-
-                    &::after {
-                        font-size: calc($text-sm-size / 2);
-                    }
-                }
-
-                width: 50%;
-                left: 25%;
             }
         }
     }
