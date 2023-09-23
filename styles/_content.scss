@@ -23,13 +23,13 @@
         align-items: center;
     }
 
-    button {
+    button, a.link-button {
         border-radius: 4.88775rem;
         border-width: 0;
         background: rgba(217, 217, 217, 0.30);
         backdrop-filter: blur(3px);
         color: #FFF;
-        font-family: Space Grotesk;
+        font-family: Space Grotesk, sans-serif;
         font-size: 2rem;
         font-style: normal;
         font-weight: 400;
