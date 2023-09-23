@@ -42,11 +42,11 @@ $bg-g-dp-t: rgba(19, 28, 106, 0.6);
 
             img {
                 width: 100%;
-                height: auto;
+                object-fit: cover;
 
                 @include breakpoint-down("xxl") {
+                    width: unset;
                     height: 100%;
-                    width: auto;
                 }
             }
 
