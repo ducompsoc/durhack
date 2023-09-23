@@ -9,8 +9,8 @@
 
     <use href="#smoke" xlink:href="#smoke" x="0" y="425"/>
     <use href="#flames-blur" xlink:href="#flames-blur" x="1024" y="391"/>
-    <use style="filter: blur(20px);" href="#rocket-ship-blur" xlink:href="#rocket-blur" x="980" y="40"/>
-    <use style="filter: drop-shadow(0px 20px 20px rgba(0, 2, 20, 0.50));" href="#rocket-ship" xlink:href="#rocket-blur" x="980" y="40"/>
+    <use style="filter: blur(20px);" href="#rocket-ship-blur" xlink:href="#rocket-ship-blur" x="980" y="40"/>
+    <use style="filter: drop-shadow(0px 20px 20px rgba(0, 2, 20, 0.50));" href="#rocket-ship" xlink:href="#rocket-ship" x="980" y="40"/>
     <use href="#flames" xlink:href="#flames" x="1050" y="417"/>
     <defs>
         <image id="rocket-ship" href="./rocket-ship.svg" xlink:href="./rocket-ship.svg"/>
