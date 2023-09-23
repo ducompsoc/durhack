@@ -41,6 +41,12 @@
         @include breakpoint-down('md') {
             font-size: 1.25rem;
         }
+
+        transition: scale .15s ease-in-out;
+        &:hover {
+            scale: 1.05;
+            border-bottom-style: none;
+        }
     }
 
     &.faqs {
