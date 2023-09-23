@@ -76,6 +76,11 @@ a:not(.tooltip) {
     border-image-source: linear-gradient(to right, #00000000 0%, #fff 50%, #00000000 100%);
     width: fit-content;
     margin: 0 auto;
+
+    span {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
 }
 
 .text-center > h1 {

@@ -2,7 +2,7 @@
 
 <template>
 	<div class="text-center">
-		<h1>Schedule</h1>
+		<h1><span>Schedule</span></h1>
 	</div>
 
 	<div id="big">

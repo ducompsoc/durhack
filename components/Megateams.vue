@@ -1,6 +1,8 @@
 <template>
     <div class="text-center">
-        <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Megateams&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+        <h1>
+            <span>Megateams</span>
+        </h1>
     </div>
     <Transition name="fade">
         <div class="text-center">

@@ -1,6 +1,6 @@
 <template>
     <div class="text-center">
-        <h1>MEET THE TEAM</h1>
+        <h1><span>MEET THE TEAM</span></h1>
     </div>
     <div class="flex-item" id="mapbody">
         <div class="hoop">

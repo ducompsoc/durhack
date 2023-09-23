@@ -1,6 +1,6 @@
 <template>
     <div class="text-center">
-        <h1>FREQUENTLY ASKED QUESTIONS</h1>
+        <h1><span>FREQUENTLY ASKED QUESTIONS</span></h1>
     </div>
     <ul class="questions">
         <li v-for="(answers, question, index) in faqs" class="question closed">
