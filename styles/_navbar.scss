@@ -3,7 +3,7 @@
 
 @media only screen and (max-width: $old-breakpoint-extra-small) {
     #navbar, #navstripe, #navouter, #navcorner, #navleft, #navdiagonal, #navbrand, #mainbluestripe, #smallbluestripe, #diagonalbluestripe {
-        visibility: hidden
+        visibility: hidden;
     }
 }
 
@@ -50,6 +50,11 @@
     height: $navheight;
     //transform: skewX(-45deg);
     overflow: hidden;
+
+    @media screen and (max-width: $old-breakpoint-extra-small) {
+        // Navbar is hidden rather than display: none; and for some reason this works
+        width: 10%;
+    }
 
 }
 

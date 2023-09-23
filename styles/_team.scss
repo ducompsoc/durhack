@@ -221,13 +221,15 @@ $outer-circle-fine-tune-rotation: 36%;
     #small-hoops {
         position: relative;
 
+        .team {
+            position: relative;
+        }
+
         // Sets new animations
         .inner {
             position: relative;
             animation: none;
-            top: 50%;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
+            bottom: 0;
 
             .hoop2 {
                 width: $mobile-size;
