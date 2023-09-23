@@ -1,4 +1,5 @@
 @import "./variables";
+@import './breakpoints';
 
 $background-gradient-indigo: #392b5e;
 $background-gradient-blue: #3ca2bc;
@@ -8,7 +9,9 @@ $background-gradient-cyan: #426676;
 $background-gradient-light-blue: #1f80a1;
 $background-gradient-black: #{$primary-dark};
 $background-gradient-deep-blue: #131c6a;
+$bg-g-lb-t: rgba(31, 128, 161, 1);
 $bg-g-b-t: rgba(17, 17, 17, 1);
+$bg-g-b-t2: rgba(17, 17, 17, 1);
 $bg-g-dp-t: rgba(19, 28, 106, 0.6);
 
 .section {
@@ -26,15 +29,33 @@ $bg-g-dp-t: rgba(19, 28, 106, 0.6);
     }
 
     &.faqs {
-        background-image: linear-gradient(
-            to bottom,
-            #{$bg-g-b-t},
-            #{$bg-g-dp-t},
-            #{$bg-g-b-t}
-        ), url("/assets/photos/faq-bg.jpeg");
-        background-position: center;
-        background-size: auto 100%;
+        position: relative;
+
+        > img {
+            z-index: 1;
+            position: absolute;
+            width: auto;
+
+            @media screen and (min-width: '1300px') {
+                width: 100%;
+                height: auto;
+            }
+
+            -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 90%);
+        }
+
+        .main {
+            z-index: 2;
+        }
+
+        background-position: top center;
+        background-size: 100% auto;
         background-repeat: no-repeat;
+
+        @media screen and (max-width: $old-breakpoint-small) {
+            background-size: auto 100%;
+        }
     }
 
     &.sponsors {
@@ -47,10 +68,39 @@ $bg-g-dp-t: rgba(19, 28, 106, 0.6);
     }
 
     &.megateams {
-        background: linear-gradient(
+        background: #{$background-gradient-black}
+    }
+
+    &.team {
+        background-image: url('/assets/graphics/bottom-stars.svg'), linear-gradient(
             to bottom,
-            #{$background-gradient-black} 30%,
+            #{$bg-g-b-t2} 30%,
+            #{$bg-g-lb-t} 100%
+        );
+        background-position: center;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+
+        @include breakpoint-down('xs') {
+            background-image: url('/assets/graphics/bottom-stars-mobile.svg'), linear-gradient(
+                to bottom,
+                #{$bg-g-b-t2} 30%,
+                #{$bg-g-lb-t} 100%
+            );
+        }
+    }
+
+    &.footer {
+        background-image: linear-gradient(
+            to bottom,
+            #{$background-gradient-light-blue} 30%,
             #{$background-gradient-light-blue} 100%
         );
+
+        .footer-main {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     }
 }

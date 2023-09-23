@@ -8,18 +8,22 @@
     position: relative;
 
     #background {
-        background-image: url('/assets/graphics/blue-stars-bg.svg');
-        background-repeat: no-repeat;
-        background-position: bottom;
+        background: url('/assets/graphics/blue-stars-bg.svg') bottom no-repeat;
+    }
+
+    a:not(.tooltip) {
+        border-bottom: none;
     }
 
     .text-center.view-previous {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-top: 0;
+        margin-top: 70px;
         gap: 5rem;
         color: $secondary-a;
-        cursor: pointer;
+        cursor: default;
 
         .previous-row {
             position: relative;
@@ -245,6 +249,10 @@
             margin: 0 auto;
         }
 
+        #empty-image {
+            height: 100%;
+        }
+
         @media (max-width: calc($old-breakpoint-extra-small - 200px)) {
             grid-template-columns: auto auto;
         }
@@ -270,55 +278,6 @@
                 height: 3rem;
             }
 
-            #spaceship-shot {
-                position: absolute;
-                bottom: -20px;
-                left: 57%;
-                height: 270%;
-
-                @include breakpoint-down('xl') {
-                    bottom: -20%;
-                }
-
-                @include breakpoint-down('lg') {
-                    height: 220%;
-                    bottom: 0;
-                }
-
-                @include breakpoint-down('sm') {
-                    transform: scaleX(-1);
-                    left: -55%;
-                }
-
-                // In-between breakpoint
-                @media (max-width: calc($old-breakpoint-extra-small - 200px)) {
-                    rotate: -25deg;
-                    height: 350%;
-                    left: -130%;
-                    bottom: -140%;
-                }
-
-                @include breakpoint-down('xs') {
-                    height: 330%;
-                    left: -170%;
-                    bottom: -120%;
-                }
-
-                @media (max-width: 500px) {
-                    rotate: -25deg;
-                    height: 220%;
-                    left: -170%;
-                    bottom: -50%;
-                }
-
-                @media (max-width: 400px) {
-                    rotate: -25deg;
-                    height: 220%;
-                    left: -210%;
-                    bottom: -60%;
-                }
-            }
-
             #spaceship {
                 transform: rotate(25deg);
 
@@ -330,6 +289,23 @@
 
         @include breakpoint-down('sm') {
             grid-template-columns: auto auto;
+        }
+    }
+
+    #spaceship-shot {
+        $shot-height: 240px;
+        $shot-width: 250px;
+
+        position: absolute;
+        left: calc(50% + 25px);
+        bottom: 100%;
+        height: $shot-height;
+        width: $shot-width;
+
+        @include breakpoint-down('sm') {
+            transform: scaleX(-1);
+            left: auto;
+            right: calc(50% + 40px);
         }
     }
 

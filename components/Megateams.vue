@@ -16,7 +16,6 @@
     <div class="button-div">
         <button type="button" v-on:click="isHidden = !isHidden">LEARN MORE</button>
     </div>
-    <div id="world"></div>
 </template>
 
 <script>

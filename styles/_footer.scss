@@ -1,33 +1,162 @@
 @import './variables';
 
-footer {
-	// background-image: linear-gradient(180deg, rgba(34, 34, 34, 0) 0%, rgba(34, 34, 34, 1) 30%);
-    background-color: rgba(34, 34, 34, 1);
-	text-align: left;
+.section.footer {
     position: relative;
-    padding: 48px calc(82px + 32px);
+    height: fit-content;
+    padding-top: 10%;
+    overflow: visible;
+    pointer-events: none;
 
-    @media screen and (max-width: $old-breakpoint-medium) {
-        padding: 48px 32px;
-    }
+    .footer-main {
+        position: relative;
 
-	.legal {
-        font-size: 14px;
-        padding-right: 32px;
-
-
-        a {
-            border-bottom-color: white;
-            color: white;
+        .text-center {
+            padding-top: 0;
         }
 
-        .bigger {
-            font-size: 18px;
+        > p, > .socials, > footer {
+            position: relative;
+            z-index: 2;
+        }
+
+        > p > a {
+            font-size: 2.3rem;
+            font-family: 'Space Grotesk';
+            color: #fff;
+            border-bottom: none;
+        }
+
+        .socials {
+            pointer-events: all;
+            
+            .text-center {
+                margin: 20px 0 0 0;
+            }
+            a {
+                padding: 1rem;
+                text-decoration: none;
+                border-bottom: none;
+                img {
+                    width: 50px;
+                    height: 50px;
+                    &:hover {
+                        transform: scale(1.2);
+                        transition: .15s ease-in-out;
+                        border-bottom-style: none;
+                    }
+                }
+            }
+        }
+
+        > img {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        footer {
+            text-align: left;
+            bottom: 0;
+            padding: 64px calc(82px + 32px) 24px;
+            color: rgba(255, 255, 255, 0.50);
+        
+            @media screen and (max-width: $old-breakpoint-medium) {
+                padding: 48px 32px;
+            }
+        
+            .legal {
+                font-size: 14px;
+                padding-right: 32px;
+        
+        
+                a {
+                    border-bottom-color: white;
+                    border-bottom: none;
+                    color: white;
+                }
+    
+                p {
+                    font-size: 1.1rem;
+                }
+            }
+        
+            .photo img {
+                width: 100px;
+                height: auto;
+            }
         }
     }
 
-	.photo img {
-		width: 100px;
-		height: auto;
-	}
+    .shadow {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        height: 100%;
+        z-index: 1;
+        background-image: linear-gradient(
+            to top,
+            rgba(22, 20, 50, 0.6) 24.55%,
+            rgba(8, 3, 63, 0) 97.73%
+        );
+    }
+
+    @mixin footer-content-size($font-1, $img-height, $font-2, $f-padding) {
+        .footer-main {
+            > p > a {
+                font-size: $font-1;
+            }
+
+            .socials {
+                a {
+                    img {
+                        width: $img-height;
+                        height: $img-height;
+                    }
+                }
+            }
+
+            footer {
+                padding: $f-padding;
+    
+                .legal {
+                    p {
+                        font-size: $font-2;
+                    }
+                }
+            }
+        }
+    }
+
+    @include breakpoint-up('xl') {
+        padding-top: 15%;
+    }
+
+    @include breakpoint-down('xl') {
+        @include footer-content-size(1.7rem, 35px, 0.8rem, 80px 20px 24px);
+    }
+
+    @include breakpoint-down('md') {
+        @include footer-content-size(1.5rem, 30px, 0.6rem, 50px 20px 16px);
+    }
+
+    @include breakpoint-down('sm') {
+        @include footer-content-size(1.1rem, 25px, 0.5rem, 20px 20px 16px);
+    }
+
+    @include breakpoint-down('xs') {
+        @include footer-content-size(1rem, 25px, 0.3rem, 8px 10px 8px);
+
+        .footer-main {
+            .text-center {
+                margin: 10px;
+            }
+        }
+    }
+
+    #blur-1 {
+        filter: blur(60px) brightness(1.75) saturate(1.5);
+    }
 }

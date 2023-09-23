@@ -41,6 +41,7 @@
         ]
     },
     "sponsors": {
+        "platinum": [],
         "gold": [],
         "silver": [],
         "partners": [
@@ -59,115 +60,290 @@
             {
                 "image": "compsoc.png",
                 "link": "https://www.compsoc.tech/"
-            },
-            {
-                "image": "Dueg_transparent.png",
-                "link": "https://discord.gg/dueg"
             }
         ]
     },
-    "team": [
+    "teams": [
+        [
+            {
+                "name": "Quinn Dines",
+                "role": "Lead Organiser",
+                "email": "email",
+                "image": "quinn.png"
+            }
+        ],
+        [
+            {
+                "name": "Disha Gupta",
+                "role": "Head of Tech",
+                "email": "email",
+                "image": "Disha G.png"
+            },
+            {
+                "name": "Luca Huelle",
+                "role": "Megateams PM & Tech Advisor",
+                "email": "email",
+                "image": "luca.jpg"
+            },
+            {
+                "name": "Joe Clack",
+                "role": "Tech Officer",
+                "email": "email",
+                "image": "joe.png"
+            },
+            {
+                "name": "Amber Gosling",
+                "role": "Tech Officer",
+                "email": "email",
+                "image": "amber.png"
+            },
+            {
+                "name": "Will Woodward",
+                "role": "Tech Officer",
+                "email": "email",
+                "image": "will.png"
+            },
+            {
+                "name": "Jacob Wrenn",
+                "role": "Tech Officer",
+                "email": "email",
+                "image": "jacob.png"
+            }
+        ],
+        [
+            {
+                "name": "Karl Southern",
+                "role": "Organiser Emeritus",
+                "email": "email",
+                "image": "karl.jpg"
+            }
+        ],
+        [
+            {
+                "name": "Abi Collins",
+                "role": "Head of Logistics",
+                "email": "email",
+                "image": "Abigail.png"
+            },
+            {
+                "name": "Charlotte Lawrence",
+                "role": "Logistics Officer",
+                "email": "email",
+                "image": "charlotte.png"
+            },
+            {
+                "name": "Lauren Yeung",
+                "role": "Logistics Officer",
+                "email": "email",
+                "image": "lauren.png"
+            },
+            {
+                "name": "Tanheed Rahman",
+                "role": "Logistics Officer",
+                "email": "email",
+                "image": "tanheed.png"
+            }
+        ],
+        [
+            {
+                "name": "Clary Hui",
+                "role": "Head of Design and Marketing",
+                "email": "email",
+                "image": "Clary H.png"
+            },
+            {
+                "name": "Fatima Jabeen",
+                "role": "Design and Marketing Officer",
+                "email": "email",
+                "image": "fatima.png"
+            }
+        ],
+        [
+            {
+                "name": "Eve Routledge",
+                "role": "Head of Sponsorship",
+                "email": "email",
+                "image": "Eve R.png"
+            },
+            {
+                "name": "Eve Sherratt",
+                "role": "Sponsorship Officer",
+                "email": "email",
+                "image": "eve_s.png"
+            },
+            {
+                "name": "George Osborne",
+                "role": "Sponsorship Officer",
+                "email": "email",
+                "image": "george.png"
+            },
+            {
+                "name": "Rushil Shah",
+                "role": "Sponsorship Officer",
+                "email": "email",
+                "image": "rushil.png"
+            }
+        ],
+        [
+            {
+                "name": "Allaida Siow",
+                "role": "Hacker Experience",
+                "email": "email",
+                "image": "Allaida S - Hacker Experience.png"
+            }
+        ]
+    ],
+    "schedule": [
         {
-            "name": "Haygen Tsoi",
-            "role": "Logistics Officer",
-            "email": "haygent@durhack.com",
-            "image": "haygen.jpg"
+            "events": [
+                {
+                    "title": "Registration",
+                    "icon": "edit",
+                    "start": "9:30",
+                    "end": "11:00"
+                },
+                {
+                    "title": "Opening Keynote",
+                    "icon": "microphone",
+                    "start": "11:00",
+                    "end": "11:45"
+                },
+                {
+                    "title": "Team-forming activity",
+                    "icon": "lightbulb",
+                    "start": "11:45",
+                    "end": "12:00"
+                },
+                {
+                    "title": "Hacking begins",
+                    "icon": "code",
+                    "start": "12:00",
+                    "end": ""
+                },
+                {
+                    "title": "Lunch",
+                    "icon": "food",
+                    "start": "12:00",
+                    "end": "13:00"
+                },
+                {
+                    "title": "'Defeating Android Malware' w/ Netcraft",
+                    "icon": "flask",
+                    "start": "14:00",
+                    "end": "15:00"
+                },
+                {
+                    "title": "GitHub Workshop",
+                    "icon": "flask",
+                    "start": "15:00",
+                    "end": "15:45"
+                },
+                {
+                    "title": "'Intro to GraphQL' w/ THG",
+                    "icon": "flask",
+                    "start": "15:45",
+                    "end": "16:30"
+                }
+            ]
         },
         {
-            "name": "Charles Thomas",
-            "role": "Logistics Officer",
-            "email": "charles.t@durhack.com",
-            "image": "charles.png"
+            "events": [
+                {
+                    "title": "'Introduction to Kaggle data competitions' w/ QRT",
+                    "icon": "flask",
+                    "start": "16:30",
+                    "end": "17:30"
+                },
+                {
+                    "title": "Snyk (mini-CTF)",
+                    "icon": "jigsaw",
+                    "start": "17:30",
+                    "end": "18:00"
+                },
+                {
+                    "title": "Dinner",
+                    "icon": "food",
+                    "start": "18:30",
+                    "end": "19:30"
+                },
+                {
+                    "title": "Slideshow Karaoke",
+                    "icon": "jigsaw",
+                    "start": "19:15",
+                    "end": "20:15"
+                },
+                {
+                    "title": "Cupstacking",
+                    "icon": "cup",
+                    "start": "20:30",
+                    "end": "21:00"
+                },
+                {
+                    "title": "Mario Kart Tournament",
+                    "icon": "gaming",
+                    "start": "21:30",
+                    "end": ""
+                },
+                {
+                    "title": "Relaxation room opens",
+                    "icon": "moon",
+                    "start": "22:00",
+                    "end": ""
+                },
+                {
+                    "title": "Midnight Pizza",
+                    "icon": "pizza",
+                    "start": "00:00",
+                    "end": ""
+                }
+            ]
         },
         {
-            "name": "Alperen Karadereli",
-            "role": "Head of Logistics",
-            "email": "alperen.k@durhack.com",
-            "image": "alperen.jpg"
-        },
-        {
-            "name": "Heidi Januszewski",
-            "role": "Head of Design & Marketing",
-            "email": "heidi.j@durhack.com",
-            "image": "heidi.jpg"
-        },
-        {
-            "name": "Sum Yau Anavah Chiu",
-            "role": "Design & Marketing Officer",
-            "email": "sum.c@durhack.com",
-            "image": "anavah.jpg"
-        },
-        {
-            "name": "Matthew Chapman",
-            "role": "Advisor",
-            "email": "matthew.c@durhack.com",
-            "image": "matthew.jpg"
-        },
-        {
-            "name": "Tom Nudd",
-            "role": "Advisor",
-            "email": "tom.n@durhack.com",
-            "image": "tom.jpeg"
-        },
-        {
-            "name": "Allaida Siow",
-            "role": "Sponsorship Officer",
-            "email": "allaida.s@durhack.com",
-            "image": "allaida.jpg"
-        },
-        {
-            "name": "Mohsin Ahmed",
-            "role": "Lead Organiser & Head of Sponsorship",
-            "email": "mohammed.a@durhack.com",
-            "image": "mohsin.jpg"
-        },
-        {
-            "name": "Karl Southern",
-            "role": "General Advisor",
-            "email": "karl.s@durhack.com",
-            "image": "karl.jpg"
-        },
-        {
-            "name": "Faiza Jalil",
-            "role": "Sponsorship Officer",
-            "email": "faiza.j@durhack.com",
-            "image": "faiza.jpg"
-        },
-        {
-            "name": "Ethan Waite",
-            "role": "Tech Advisor",
-            "email": "ethan.w@durhack.com",
-            "image": "ethan.jpg"
-        },
-        {
-            "name": "Quinn Dines",
-            "role": "Finance Officer",
-            "email": "qdines@durhack.com",
-            "image": "quinn.png"
-        },
-        {
-            "name": "Aaron Cheung",
-            "role": "Tech & Logistics Officer",
-            "email": "aaron.c@durhack.com",
-            "image": "aaron.jpg"
-        },
-        {
-            "name": "Luca Huelle",
-            "role": "Tech Officer",
-            "email": "luca.huelle@durhack.com",
-            "image": "luca.jpg"
-        },
-        {
-            "name": "Dave Kutner",
-            "role": "Head of Tech",
-            "email": "david.k@durhack.com",
-            "image": "dave.png"
-        },
-        {
-            "name": "Kai Heale",
-            "role": "Tech Officer",
-            "email": "kai.h@durhack.com",
-            "image": "kai.jpg"
+            "day": "DAY TWO",
+            "events": [
+                {
+                    "title": "Breakfast",
+                    "icon": "food",
+                    "start": "09:30",
+                    "end": "10:00"
+                },
+                {
+                    "title": "Project Submission Deadline",
+                    "icon": "calendar",
+                    "start": "11:00",
+                    "end": ""
+                },
+                {
+                    "title": "Hacking Ends",
+                    "icon": "code",
+                    "start": "12:00",
+                    "end": ""
+                },
+                {
+                    "title": "Lunch",
+                    "icon": "food",
+                    "start": "12:00",
+                    "end": "13:00"
+                },
+                {
+                    "title": "Science Fair",
+                    "icon": "flask",
+                    "start": "13:00",
+                    "end": "14:30"
+                },
+                {
+                    "title": "Finalist presentations",
+                    "icon": "presentation",
+                    "start": "14:45",
+                    "end": "15:15"
+                },
+                {
+                    "title": "Closing Talks",
+                    "icon": "microphone",
+                    "start": "15:15",
+                    "end": "16:30"
+                }
+            ]
         }
     ]
 }
