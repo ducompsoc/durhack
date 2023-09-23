@@ -33,7 +33,9 @@
         <img alt="A team being judged" src="/assets/photos/judging2-min.jpg">
         <img alt="People in a workshop" src="/assets/photos/workshop-min.jpg">
         <img alt="A person explaining a whiteboard" src="/assets/photos/whiteboard-min.jpg">
-        <div id="empty-image"></div>
+        <div id="empty-image">
+            <object id="explosion" type="image/svg+xml" data="/assets/graphics/spaceship-shot/explosion.svg"></object>
+        </div>
         <img alt="A team cup stacking" src="/assets/photos/cup-stacking-min.jpg">
     </div>
 
@@ -43,7 +45,7 @@
             Workshops to learn new skills
         </li>
         <li>
-            <object id="spaceship-shot" type="image/svg+xml" data="/assets/graphics/spaceship-shot/shot-combined.svg"></object>
+            <object id="spaceship-shot" type="image/svg+xml" data="/assets/graphics/spaceship-shot/laser.svg"></object>
             <img id="spaceship" alt="An icon of a spaceship" src="/assets/icons/spaceship.svg"><br>
             Sponsor-led challenges to shoot for
         </li>
@@ -94,13 +96,13 @@
                 const emptyImage = document.getElementById('empty-image');
                 const rect = emptyImage.getBoundingClientRect();
 
-                let x22 = rect.left + rect.width * 0.85 + window.scrollX;
+                let x22 = rect.left + rect.width * 0.4 + window.scrollX;
 
                 if (window.innerWidth < 768) {
-                    x22 = rect.left + rect.width * 0.15 + window.scrollX;
+                    x22 = rect.left + rect.width * 0.7 + window.scrollX;
                 }
 
-                const y22 = rect.top + rect.height * 0.5 + window.scrollY;
+                const y22 = rect.top + rect.height * 0.85 + window.scrollY;
                 const [x2, y2] = [Math.round(x22*100)/100, Math.round(y22*100)/100];
 
 

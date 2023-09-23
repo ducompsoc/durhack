@@ -12,7 +12,7 @@ $hoop-thickness: 2px;
 $gradient-angle: -150deg;
 $centre-person-size: 30%;
 
-$inner-circle-person-distance: 20%;
+$inner-circle-person-distance: 70%;
 $inner-circle-person-size: 40%;
 
 $outer-circle-size: calc($size / 2.5);
@@ -103,7 +103,7 @@ $outer-circle-fine-tune-rotation: 36%;
     }
 
     .inner {
-        position: relative;
+        position: absolute;
         bottom: $inner-circle-person-distance;
 
         transition: all 1.5s ease-in-out;
@@ -223,6 +223,7 @@ $outer-circle-fine-tune-rotation: 36%;
 
         // Sets new animations
         .inner {
+            position: relative;
             animation: none;
             top: 50%;
             -ms-transform: translateY(-50%);
