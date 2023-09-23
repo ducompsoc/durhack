@@ -4,7 +4,8 @@
     position: relative;
     height: fit-content;
     padding-top: 10%;
-    overflow: visible;
+    overflow-y: visible;
+    overflow-x: clip;
     pointer-events: none;
 
     a {
