@@ -27,12 +27,6 @@
             opacity: 0;
         }
 
-        h1 {
-            @include breakpoint-down('xs') {
-                font-size: 1.4rem;
-            }
-        }
-
         ul {
             transition: 0.5s all;
             display: flex;
