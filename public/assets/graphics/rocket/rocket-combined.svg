@@ -1,0 +1,24 @@
+<svg viewBox="0 0 1440 855" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g>
+        <use href="#cluster-small" xlink:href="#cluster-small" x="1250" y="300" style="filter: blur(20px);"/>
+        <use href="#cluster-small" xlink:href="#cluster-small" x="1250" y="300"/>
+
+        <use href="#cluster-smallest" xlink:href="#cluster-smallest" x="925" y="375" style="filter: blur(20px);"/>
+        <use href="#cluster-smallest" xlink:href="#cluster-smallest" x="925" y="375"/>
+    </g>
+
+    <use href="#smoke" xlink:href="#smoke" x="0" y="425"/>
+    <use href="#flames-blur" xlink:href="#flames-blur" x="1024" y="391"/>
+    <use style="filter: blur(20px);" href="#rocket-ship-blur" xlink:href="#rocket-ship-blur" x="980" y="40"/>
+    <use style="filter: drop-shadow(0px 20px 20px rgba(0, 2, 20, 0.50));" href="#rocket-ship" xlink:href="#rocket-ship" x="980" y="40"/>
+    <use href="#flames" xlink:href="#flames" x="1050" y="417"/>
+    <defs>
+        <image id="rocket-ship" href="./rocket-ship.svg" xlink:href="./rocket-ship.svg"/>
+        <image id="rocket-ship-blur" href="./rocket-ship-blur.svg" xlink:href="./rocket-ship-blur.svg"/>
+        <image id="flames" href="./flames.svg" xlink:href="./flames.svg"/>
+        <image id="flames-blur" href="./flames-blur.svg" xlink:href="./flames-blur.svg"/>
+        <image id="smoke" href="./smoke.svg" xlink:href="./smoke.svg"/>
+        <image id="cluster-small" width="100" height="200" href="../stars/stars-cluster-small.svg" xlink:href="../stars/stars-cluster-small.svg"/>
+        <image id="cluster-smallest" width="70" height="150"  href="../stars/stars-cluster-smallest.svg" xlink:href="../stars/stars-cluster-smallest.svg"/>
+    </defs>
+</svg>

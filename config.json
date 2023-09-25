@@ -23,7 +23,7 @@
         ],
         "How large can my team be?": [
             "There's absolutely no obligation for you to come to DurHack with a pre-made team. Many attendees won't, and we'll run team-forming exercises at the start to make sure everyone is part of an awesome team",
-            "However, if you are already looking for teammates, we'd recommend teams to have roughly 4 people in them, but a maximum of 5 people is allowed per team. Remember that, of course, each member of your team needs to have their own DurHack ticket."
+            "However, if you are already looking for teammates, there is a maximum of 4 people allowed per team. Remember that, of course, each member of your team needs to have their own DurHack ticket."
         ],
         "Can I take a break overnight?": [
             "You'll have 24 hours to create your project. It's important to take regular breaks, and that's why we'll be providing a relaxation room for attendees to have a rest if they want. Part of the fun of the hackathon is coding through the night!"
@@ -41,42 +41,9 @@
         ]
     },
     "sponsors": {
-        "gold": [
-            {
-                "link": "https://www.netcraft.com/",
-                "image": "netcraft.png"
-            },
-            {
-                "link": "https://www.waterstons.com/",
-                "image": "waterstons.png"
-            },
-            {
-                "link": "https://www.qube-rt.com/",
-                "image": "qrt.svg"
-            },
-            {
-                "link": "https://www.thg.com/",
-                "image": "THG.jpg"
-            }
-        ],
-        "silver": [
-            {
-                "image": "durhamuni.svg",
-                "link": "https://www.durham.ac.uk/departments/academic/computer-science/"
-            },
-            {
-                "link": "https://github.com/",
-                "image": "github.png"
-            },
-            {
-                "link": "https://www.scottlogic.com/",
-                "image": "scott-logic.png"
-            },
-            {
-                "link": "https://overleaf.com/",
-                "image": "overleaf.png"
-            }
-        ],
+        "platinum": [],
+        "gold": [],
+        "silver": [],
         "partners": [
             {
                 "image": "mlh-logo-color.svg",
@@ -87,130 +54,138 @@
                 "image": "hackathonsuk.svg"
             },
             {
-                "image": "KeyboardCo.jpg",
-                "link": "https://www.keyboardco.com/"
-            },
-            {
-                "image": "standoutstickers.png",
-                "link": "https://hackp.ac/mlh-standoutstickers-hackathons"
-            },
-            {
                 "image": "dsu.png",
                 "link": "https://www.durhamsu.com/"
             },
             {
                 "image": "compsoc.png",
                 "link": "https://www.compsoc.tech/"
-            },
-            {
-                "image": "Dueg_transparent.png",
-                "link": "https://discord.gg/dueg"
             }
         ]
     },
-    "team": [
-        {
-            "name": "Haygen Tsoi",
-            "role": "Logistics Officer",
-            "email": "haygent@durhack.com",
-            "image": "haygen.jpg"
-        },
-        {
-            "name": "Charles Thomas",
-            "role": "Logistics Officer",
-            "email": "charles.t@durhack.com",
-            "image": "charles.png"
-        },
-        {
-            "name": "Alperen Karadereli",
-            "role": "Head of Logistics",
-            "email": "alperen.k@durhack.com",
-            "image": "alperen.jpg"
-        },
-        {
-            "name": "Heidi Januszewski",
-            "role": "Head of Design & Marketing",
-            "email": "heidi.j@durhack.com",
-            "image": "heidi.jpg"
-        },
-        {
-            "name": "Sum Yau Anavah Chiu",
-            "role": "Design & Marketing Officer",
-            "email": "sum.c@durhack.com",
-            "image": "anavah.jpg"
-        },
-        {
-            "name": "Matthew Chapman",
-            "role": "Advisor",
-            "email": "matthew.c@durhack.com",
-            "image": "matthew.jpg"
-        },
-        {
-            "name": "Tom Nudd",
-            "role": "Advisor",
-            "email": "tom.n@durhack.com",
-            "image": "tom.jpeg"
-        },
-        {
-            "name": "Allaida Siow",
-            "role": "Sponsorship Officer",
-            "email": "allaida.s@durhack.com",
-            "image": "allaida.jpg"
-        },
-        {
-            "name": "Mohsin Ahmed",
-            "role": "Lead Organiser & Head of Sponsorship",
-            "email": "mohammed.a@durhack.com",
-            "image": "mohsin.jpg"
-        },
-        {
-            "name": "Karl Southern",
-            "role": "General Advisor",
-            "email": "karl.s@durhack.com",
-            "image": "karl.jpg"
-        },
-        {
-            "name": "Faiza Jalil",
-            "role": "Sponsorship Officer",
-            "email": "faiza.j@durhack.com",
-            "image": "faiza.jpg"
-        },
-        {
-            "name": "Ethan Waite",
-            "role": "Tech Advisor",
-            "email": "ethan.w@durhack.com",
-            "image": "ethan.jpg"
-        },
-        {
-            "name": "Quinn Dines",
-            "role": "Finance Officer",
-            "email": "qdines@durhack.com",
-            "image": "quinn.png"
-        },
-        {
-            "name": "Aaron Cheung",
-            "role": "Tech & Logistics Officer",
-            "email": "aaron.c@durhack.com",
-            "image": "aaron.jpg"
-        },
-        {
-            "name": "Luca Huelle",
-            "role": "Tech Officer",
-            "email": "luca.huelle@durhack.com",
-            "image": "luca.jpg"
-        },
-        {
-            "name": "Dave Kutner",
-            "role": "Head of Tech",
-            "email": "david.k@durhack.com",
-            "image": "dave.png"
-        },
-        {
-            "name": "Kai Heale",
-            "role": "Tech Officer",
-            "email": "kai.h@durhack.com",
-            "image": "kai.jpg"
-        }
+    "teams": [
+        [
+            {
+                "name": "Quinn Dines",
+                "role": "Lead Organiser",
+                "email": "email",
+                "image": "quinn.png"
+            }
+        ],
+        [
+            {
+                "name": "Disha Gupta",
+                "role": "Head of Tech",
+                "email": "email",
+                "image": "Disha G.png"
+            },
+            {
+                "name": "Luca Huelle",
+                "role": "Megateams PM & Tech Advisor",
+                "email": "email",
+                "image": "luca.jpg"
+            },
+            {
+                "name": "Joe Clack",
+                "role": "Tech Officer",
+                "email": "email",
+                "image": "joe.png"
+            },
+            {
+                "name": "Amber Gosling",
+                "role": "Tech Officer",
+                "email": "email",
+                "image": "amber.png"
+            },
+            {
+                "name": "Will Woodward",
+                "role": "Tech Officer",
+                "email": "email",
+                "image": "will.png"
+            },
+            {
+                "name": "Jacob Wrenn",
+                "role": "Tech Officer",
+                "email": "email",
+                "image": "jacob.png"
+            }
+        ],
+        [
+            {
+                "name": "Karl Southern",
+                "role": "Organiser Emeritus",
+                "email": "email",
+                "image": "karl.jpg"
+            }
+        ],
+        [
+            {
+                "name": "Abi Collins",
+                "role": "Head of Logistics",
+                "email": "email",
+                "image": "Abigail.png"
+            },
+            {
+                "name": "Charlotte Lawrence",
+                "role": "Logistics Officer",
+                "email": "email",
+                "image": "charlotte.png"
+            },
+            {
+                "name": "Lauren Yeung",
+                "role": "Logistics Officer",
+                "email": "email",
+                "image": "lauren.png"
+            },
+            {
+                "name": "Tanheed Rahman",
+                "role": "Logistics Officer",
+                "email": "email",
+                "image": "tanheed.png"
+            }
+        ],
+        [
+            {
+                "name": "Clary Hui",
+                "role": "Head of Design and Marketing",
+                "email": "email",
+                "image": "Clary H.png"
+            },
+            {
+                "name": "Fatima Jabeen",
+                "role": "Design and Marketing Officer",
+                "email": "email",
+                "image": "fatima.png"
+            }
+        ],
+        [
+            {
+                "name": "Eve Routledge",
+                "role": "Head of Sponsorship",
+                "email": "email",
+                "image": "Eve R.png"
+            },
+            {
+                "name": "Eve Sherratt",
+                "role": "Sponsorship Officer",
+                "email": "email",
+                "image": "eve_s.png"
+            },
+            {
+                "name": "George Osborne",
+                "role": "Sponsorship Officer",
+                "email": "email",
+                "image": "george.png"
+            }
+        ],
+        [
+            {
+                "name": "Allaida Siow",
+                "role": "Hacker Experience",
+                "email": "email",
+                "image": "Allaida S - Hacker Experience.png"
+            }
+        ]
     ],
     "schedule": [
         {

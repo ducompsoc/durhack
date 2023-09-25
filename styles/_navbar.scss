@@ -1,16 +1,24 @@
+@import './variables';
+@import './breakpoints';
 
-@media only screen and (max-width: $breakpoint-extra-small) {
-    #navbar, #navstripe, #navouter, #navcorner, #navleft, #navright {
-        visibility: hidden
+@media only screen and (max-width: $old-breakpoint-extra-small) {
+    #navbar, #navstripe, #navouter, #navcorner, #navleft, #navdiagonal, #navbrand, #mainbluestripe, #smallbluestripe, #diagonalbluestripe {
+        visibility: hidden;
     }
 }
 
+#topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    font-family: "Audiowide", sans-serif;
+}
+
 #navbar {
-    //overflow: hidden;
+    // overflow: hidden;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    background: linear-gradient(90deg, #52216B 0%, $primary-normal 90%);
+    justify-content: space-around;
     border: none;
 
     a {
@@ -18,96 +26,158 @@
         border: none;
         color: #ffffff;
         text-align: center;
-        padding: 18px 22px;
+        padding: 18px 2vw;
         text-decoration: none;
-        font-size: 16px;
+        font-size: 19px;
+        font-weight: 400;
         //transform: skewX(45deg);
     }
 
+    margin-left: $longnavbrandwidth;
+    width: $navwidth;
+
+    @include breakpoint-down(lg) {
+        margin-left: $shortnavbrandwidth;
+        width: $longnavwidth;
+    }
+
     //background-image: linear-gradient(to bottom right, $primary-normal, $tertiary);
-    position: sticky;
+    position: relative;
     top: 0;
     margin-top: calc(-1 * ($navheight - $navstripe));
-    margin-left: 30px;
     z-index: 9;
-    width: $navwidth;
+
     height: $navheight;
     //transform: skewX(-45deg);
     overflow: hidden;
 
+    @media screen and (max-width: $old-breakpoint-extra-small) {
+        // Navbar is hidden rather than display: none; and for some reason this works
+        width: 10%;
+    }
+
 }
 
 #navstripe {
-    position: sticky;
-    background: $primary-normal; //
-    width: calc(100% - 45px);
+    position: relative;
+    background: $navbackground fixed;
+    width: 100%;
     height: $navstripe;
-    margin-left: 45px;
     margin-top: calc(-1 * $navstripe);
     top: 0; //5vh;
     z-index: 8;
 }
 
-#navouter {
-    position: sticky;
-    background: $primary-normal; //
-    width: 120px;
-    height: $navheight;
-    margin-left: $navwidth;
-    margin-top: calc(-1 * $navheight);
-    top: calc(-1 * $navheight);
-    z-index: 8;
-    transform: skewX(45deg);
-}
+#navbrand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 
-#navleft {
-    position: sticky;
-    background: #52216B;
-    width: 30px;
-    height: $navheight;
-    // margin-left: -40px;
-    margin-top: calc($navheight * -1.25);
-    top: -15px;
-    z-index: 9;
-    transform: skewY(45deg);
-}
+    @include breakpoint-down(tv) {
+        justify-content: start;
+    }
 
-#navright {
-    position: sticky;
-    background: $primary-normal;
-    width: 60px;
-    height: $navheight;
-    margin-left: $navwidth;
-    margin-top: calc(-1 * ($navheight - $navstripe - 3px));
+    img {
+        padding-left: 10px;
+        height: 80%;
+        width: auto;
+        display: inline-block;
+        filter: brightness(250%) contrast(60%);
+    }
+
+    span {
+        padding-left: 10px;
+        font-size: 36px;
+        display: inline-block;
+        @include breakpoint-down(lg) {
+            display: none;
+        }
+    }
+
+    width: calc($longnavbrandwidth - $navbrandheight);
+
+    @include breakpoint-down(lg) {
+        width: calc($shortnavbrandwidth - $navbrandheight)
+    }
+
+    position: relative;
+    background: $navbackground fixed no-repeat;
+    background-position-y: $navheight;
+
+    height: $navbrandheight;
+    margin-left: 0;
+    margin-top: calc(-1 * ($navstripe));
     top: 0;
-    z-index: 10;
-    transform: skewX(-45deg);
+    z-index: 8;
 }
 
-#navcorner {
+#navdiagonal {
+    margin-left: calc($longnavbrandwidth - $navbrandheight);
+
+    @include breakpoint-down(lg) {
+        margin-left: calc($shortnavbrandwidth - $navbrandheight);
+    }
+
+    position: relative;
+    background: $navbackground fixed;
+    width: $navbrandheight;
+    height: calc($navbrandheight - $navheight);
+    margin-top: calc(-1 * ($navbrandheight - $navheight));
+    top: 0;
+    z-index: 7;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 0%)
+}
+
+#navbarline {
     position: absolute;
-    background-color: $primary-dark;
-    bottom: 0px;
-    left: 0px;
-    width: $navheight;
-    height: $navheight;
+    background: $navbackground fixed;
+    width: $navbrandheight;
+    height: calc($navbrandheight - $navheight);
+    margin-top: calc(-1 * ($navbrandheight - $navheight));
+    top: 0;
+    z-index: 7;
 }
 
-#navtrustbadge {
-    position: sticky;
-    top: 0px;
-    width: 100%;
-    height: 180px;
-    min-width: 60px;
-    background-image: url('/assets/graphics/trustwrapper.svg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: calc(100vw - 50px - 104px) 3px;
-    z-index: 9999;
-    pointer-events: none;
-    margin-bottom: -180px;
+#mainbluestripe {
+    position: absolute;
+    background: $blue-nav-bg fixed;
+    width: calc(100% - $longnavbrandwidth);
+    height: $blue-rect-width;
+    top: $navstripe;
+    right: 0;
+    z-index: 9;
 
-    @media screen and (max-width: $breakpoint-small) {
-        display: none;
+    @include breakpoint-down('lg') {
+        width: calc(100% - $shortnavbrandwidth);
+    }
+}
+
+#smallbluestripe {
+    position: absolute;
+    background: $blue-nav-bg fixed;
+    width: calc($longnavbrandwidth - $navbrandheight);
+    height: $blue-rect-width;
+    top: $navbrandheight;
+    z-index: 9;
+
+    @include breakpoint-down('lg') {
+        width: calc($shortnavbrandwidth - $navbrandheight);
+    }
+}
+
+#diagonalbluestripe {
+    position: absolute;
+    background: $blue-nav-bg fixed;
+    width: $navbrandheight;
+    height: calc($navbrandheight - $navheight + $blue-rect-width);
+    top: $navstripe;
+    left: calc($longnavbrandwidth - $navbrandheight);
+    z-index: 9;
+
+    clip-path: polygon(0% 100%, 0% calc(100% - $blue-rect-width), 100% 0%, 100% $blue-rect-width);
+
+    @include breakpoint-down('lg') {
+        left: calc($shortnavbrandwidth - $navbrandheight);
     }
 }

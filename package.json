@@ -1,7 +1,7 @@
 {
   "name": "durhack",
-  "version": "1.0.1",
-  "description": "Website for DurHack",
+  "version": "2.0.0",
+  "description": "Redesigned website for DurHack 2023",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -11,6 +11,10 @@
     "postinstall": "nuxt prepare"
   },
   "author": "Ethan Waite <ethan.w.waite@durham.ac.uk>",
+  "contributors": [
+    "Joe Clack <joseph.clack@durham.ac.uk>",
+    "Will Woodward <will@woodwardweb.com>"
+  ],
   "license": "UNLICENSED",
   "devDependencies": {
     "nuxt": "3.0.0-rc.8",

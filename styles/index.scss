@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Chakra+Petch:wght@400;600;700&display=swap');
-
+@import './fonts';
 @import './variables';
+@import './breakpoints';
 
 // Reset user-agent stylesheets https://stackoverflow.com/questions/29307357/get-rid-of-webkit-padding-start-40px
 *:not(p) {
@@ -14,7 +14,7 @@ html {
 
 body {
     background-color: $primary-dark;
-    font-family: 'Chakra Petch', 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 20px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -44,30 +44,26 @@ h1 {
     color: $primary-normal;
     text-transform: uppercase;
     font-size: 2rem;
+
+    @include breakpoint-down(xs) {
+        font-size: 1.4rem;
+    }
+
+    color: #fff;
+    padding: 10px;
 }
 
-aside {
-    display: block;
-    position: relative;
-    padding-left: 3rem;
+body {
+    font-family: 'Space Grotesk', sans-serif;
+}
 
-    > h1 {
-        position: absolute;
-
-        transform-origin: top left;
-        transform: rotate(-90deg) translate(-100%, 1.8rem);
-
-        left: -1.2rem;
-    }
-
-    > div {
-        padding-left: .5rem;
-    }
+#navbrand > span {
+    font-family: 'Audiowide', sans-serif;
 }
 
 a:not(.tooltip) {
-    color: $primary-normal;
-    border-bottom: dashed 1px $primary-normal;
+    color: $secondary-a;
+    border-bottom: dashed 1px $secondary-a;
     text-decoration: none;
 
     &:hover {
@@ -80,37 +76,45 @@ a:not(.tooltip) {
     padding-top: 70px;
 }
 
-.socials {
+@mixin faded-underline() {
+    border-bottom: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #00000000 0%, #fff 50%, #00000000 100%);
+    width: fit-content;
+    margin: 0 auto;
 
-    a {
+    padding-left: 30px;
+    padding-right: 30px;
 
-        padding: 1rem;
-        text-decoration: none;
-        border-bottom: none;
-
-        img {
-            width: 35px;
-            height: 35px;
-
-            &:hover {
-                transform: scale(1.2);
-                transition: .15s ease-in-out;
-                border-bottom-style: none;
-
-            }
-        }
-
+    @include breakpoint-down('xs') {
+        padding: 0;
     }
 }
 
+.text-center > h1 {
+    @include faded-underline();
+}
+
+.text-center h5 {
+    @include faded-underline();
+}
+
+.emphasis {
+    color: $secondary-a;
+}
 
 @import './404';
-@import './intro';
-@import './aboveTheFold';
-@import './artifacts';
-@import './content';
-@import './flex';
-@import './footer';
+@import './background';
 @import './header';
 @import './navbar';
-@import './modal';
+@import './artifacts';
+@import './flex';
+@import './splash';
+@import './intro';
+@import './content';
+@import './footer';
+@import './megateams';
+@import './map';
+@import './team';
+@import './schedule';
+@import './sponsors';
