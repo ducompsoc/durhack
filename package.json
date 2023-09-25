@@ -13,7 +13,8 @@
   "author": "Ethan Waite <ethan.w.waite@durham.ac.uk>",
   "contributors": [
     "Joe Clack <joseph.clack@durham.ac.uk>",
-    "Will Woodward <will@woodwardweb.com>"
+    "Will Woodward <will@woodwardweb.com>",
+    "Jacob Wrenn <jacob@wrenn.me>"
   ],
   "license": "UNLICENSED",
   "devDependencies": {
