@@ -4,7 +4,7 @@
 .section.splash {
     position: relative;
     top: calc(-1 * $navbrandheight);
-    margin-bottom: calc(-1 * $navbrandheight);
+    margin-bottom: calc((-1 * $navbrandheight) - 1px);
 
     .main {
         position: relative;
