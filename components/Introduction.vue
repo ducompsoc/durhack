@@ -11,7 +11,17 @@
                 BOOK TICKET
             </a>
         </div>
-
+        
+        <div id="volunteer">
+            <p>We're also looking for volunteers to help us out at the event, e.g. with making sure everyone gets their food, or helping sponsors get set-up for their workshops.</p>
+            
+            <div class="button-div">
+                <a href="https://durhack.com/volunteer" target="_blank" class="link-button">
+                    SIGN UP TO VOLUNTEER
+                </a>
+            </div>
+        </div>
+        
         <h2>DurHack is all about <b>learning something new</b></h2>
 
         <div id="background-constellations">

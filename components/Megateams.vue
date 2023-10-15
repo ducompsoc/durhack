@@ -8,7 +8,8 @@
         <div class="text-center">
             <p>
                 This year, we're introducing <b>'Megateams'</b>! These will gather teams of hackers together into larger groups, in which
-                they will be able to compete for small prizes by completing challenges!
+                they will be able to compete for small prizes by completing challenges!<br/><br/>
+                Don't worry, you'll still make your project in a team of 4 - megateams are like a house system (think Harry Potter!).<br/>&nbsp;
             </p>
         </div>
     </Transition>

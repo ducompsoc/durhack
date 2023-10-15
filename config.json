@@ -5,7 +5,10 @@
             "DurHack is completely free to attend, and could not run without the generosity of our sponsors. We provide the space, WiFi, meals, snacks, and free swag."
         ],
         "Will I be able to get my travel costs reimbursed?": [
-            "We are currently unlikely to be able to offer any travel reimbursements."
+            "We hope to! We're looking to partner with other Computing Societies and reimburse travel costs through them, and also some limited reimbursement for anyone not from a partner computing society. We'll release more details soon."
+        ],
+        "What time does DurHack start and end?": [
+            "Check-in for DurHack is 9:30-10:30am on Saturday 4th November, and we're expecting to finish our closing ceremony at 16:30 on Sunday."
         ],
         "Do I need to be able to code to attend DurHack?": [
             "The most important thing when attending a hackathon is your enthusiasm for technology. DurHack is passionate about being very welcoming and beginner-friendly, and you'll learn loads at the event!",
@@ -17,6 +20,9 @@
         ],
         "What should I bring?": [
             "All attendees will need to show valid student ID (other photo ID is acceptable for graduates) at registration. You'll also need a laptop and a charger, and you might want to bring toiletries."
+        ],
+        "Are students or alumni who aren't from Durham allowed to attend?": [
+            "Absolutely! We welcome students from any university, as long a you were a student in the last year."
         ],
         "What if I don't have a team?": [
             "Don't worry! Part of the fun of a hackathon is meeting new people. We'll have a team-forming event before hacking begins for those who want to meet and form new teams."

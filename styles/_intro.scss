@@ -89,6 +89,17 @@
         }
     }
 
+    #volunteer {
+        margin: 2em 0;
+        text-align: center;
+        font-size: 1.5rem;
+
+        @include breakpoint-down('md') {
+            font-size: 1.25rem;
+            color: #1a6ba1;
+        }
+    }
+
     #about {
         background-color: #1a6ba1;
         background-image: linear-gradient(180deg, #1A5781, #148ED5);
