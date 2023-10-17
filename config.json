@@ -50,39 +50,39 @@
         "platinum": [
             {
                 "image": "MW.svg",
-                "link": ""
+                "link": "https://www.mwam.com/"
             },
             {
                 "image": "BidFX.png",
-                "link": ""
+                "link": "https://www.bidfx.com/"
             },
             {
                 "image": "qrt.svg",
-                "link": ""
+                "link": "https://www.qube-rt.com/"
             }
         ],
         "gold": [
             {
                 "image": "bede.svg",
-                "link": ""
+                "link": "https://bedegaming.com/"
             },
             {
                 "image": "netcraft.svg",
-                "link": ""
+                "link": "https://www.netcraft.com/"
             },
             {
                 "image": "THG.svg",
-                "link": ""
+                "link": "https://www.thg.com/"
             },
             {
                 "image": "waterstons.svg",
-                "link": ""
+                "link": "https://www.waterstons.com/"
             }
         ],
         "silver": [
             {
                 "image": "createc.svg",
-                "link": ""
+                "link": "https://createc.co.uk/"
             }
         ],
         "partners": []
