@@ -47,27 +47,45 @@
         ]
     },
     "sponsors": {
-        "platinum": [],
-        "gold": [],
-        "silver": [],
-        "partners": [
+        "platinum": [
             {
-                "image": "mlh-logo-color.svg",
-                "link": "https://mlh.io/"
+                "image": "MW.svg",
+                "link": ""
             },
             {
-                "link": "http://hackathons.org.uk/",
-                "image": "hackathonsuk.svg"
+                "image": "BidFX.png",
+                "link": ""
             },
             {
-                "image": "dsu.png",
-                "link": "https://www.durhamsu.com/"
-            },
-            {
-                "image": "compsoc.png",
-                "link": "https://www.compsoc.tech/"
+                "image": "qrt.svg",
+                "link": ""
             }
-        ]
+        ],
+        "gold": [
+            {
+                "image": "bede.svg",
+                "link": ""
+            },
+            {
+                "image": "netcraft.svg",
+                "link": ""
+            },
+            {
+                "image": "THG.svg",
+                "link": ""
+            },
+            {
+                "image": "waterstons.svg",
+                "link": ""
+            }
+        ],
+        "silver": [
+            {
+                "image": "createc.svg",
+                "link": ""
+            }
+        ],
+        "partners": []
     },
     "teams": [
         [

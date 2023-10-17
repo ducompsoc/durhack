@@ -1,12 +1,10 @@
-// This is a previous year's template
-
 <template>
 	<div class="text-center">
-		<h1>Past Sponsors</h1>
+		<h1>Sponsors</h1>
 	</div>
 
 	<div v-for="(sponsorList, tier) in sponsors">
-		<div class="text-center" v-if="tier == 'partners'">
+		<div class="text-center" v-if="(tier == 'partners') && (sponsorList.length > 0)">
 			<h3>Partners</h3>
 		</div>
 
