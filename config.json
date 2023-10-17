@@ -47,27 +47,45 @@
         ]
     },
     "sponsors": {
-        "platinum": [],
-        "gold": [],
-        "silver": [],
-        "partners": [
+        "platinum": [
             {
-                "image": "mlh-logo-color.svg",
-                "link": "https://mlh.io/"
+                "image": "MW.svg",
+                "link": "https://www.mwam.com/"
             },
             {
-                "link": "http://hackathons.org.uk/",
-                "image": "hackathonsuk.svg"
+                "image": "BidFX.png",
+                "link": "https://www.bidfx.com/"
             },
             {
-                "image": "dsu.png",
-                "link": "https://www.durhamsu.com/"
-            },
-            {
-                "image": "compsoc.png",
-                "link": "https://www.compsoc.tech/"
+                "image": "qrt.svg",
+                "link": "https://www.qube-rt.com/"
             }
-        ]
+        ],
+        "gold": [
+            {
+                "image": "bede.svg",
+                "link": "https://bedegaming.com/"
+            },
+            {
+                "image": "netcraft.svg",
+                "link": "https://www.netcraft.com/"
+            },
+            {
+                "image": "THG.svg",
+                "link": "https://www.thg.com/"
+            },
+            {
+                "image": "waterstons.svg",
+                "link": "https://www.waterstons.com/"
+            }
+        ],
+        "silver": [
+            {
+                "image": "createc.svg",
+                "link": "https://createc.co.uk/"
+            }
+        ],
+        "partners": []
     },
     "teams": [
         [
