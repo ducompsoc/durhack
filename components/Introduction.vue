@@ -4,6 +4,7 @@
             <p>We hope you'll join us for the eighth iteration of Durhack, Durham University Computing Society's annual flagship hackathon.</p>
             <h4>4 - 5 November 2023</h4>
             <p>Students of all experience levels will come together in teams of up to four, helping and learning from each other while creating their own project.</p>
+            <p>Aim to arrive at 9:30-10:30am on the 4th, and we will aim to finish at 16:30pm on the 5th.</p>
         </div>
 
         <div class="button-div">
