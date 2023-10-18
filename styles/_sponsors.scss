@@ -5,6 +5,10 @@
     $partner-width: 200px;
     $partner-scale: 1;
 
+    @include breakpoint-down('md') {
+        display: none;
+    }
+
     h3 {
         @extend h1;
         background-color: white;
