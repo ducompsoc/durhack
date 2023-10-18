@@ -72,7 +72,7 @@
             @extend .sponsor-image;
             width: calc((100% - (100% * 0.17)) * $partner-scale);
             mask-image: url('/assets/sponsors/tiles/partners.svg');
-            mask-size: 100%;
+            mask-size: 120%;
         }
 
         .partner-frame {

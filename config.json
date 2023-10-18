@@ -77,6 +77,22 @@
             {
                 "image": "waterstons.svg",
                 "link": "https://www.waterstons.com/"
+            },
+            {
+                "image": "atom.svg",
+                "link": ""
+            },
+            {
+                "image": "du-dark.svg",
+                "link": ""
+            },
+            {
+                "image": "digital-durham.svg",
+                "link": ""
+            },
+            {
+                "image": "durham-city-council.svg",
+                "link": ""
             }
         ],
         "silver": [
@@ -85,7 +101,20 @@
                 "link": "https://createc.co.uk/"
             }
         ],
-        "partners": []
+        "partners": [
+            {
+                "image": "hackathonsuk.svg",
+                "link": ""
+            },
+            {
+                "image": "mlh-logo-color.svg",
+                "link": ""
+            },
+            {
+                "image": "Dueg_transparent.png",
+                "link": ""
+            }
+        ]
     },
     "teams": [
         [
