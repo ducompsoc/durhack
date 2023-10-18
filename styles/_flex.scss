@@ -25,9 +25,3 @@
 .flex {
 	flex: 1;
 }
-
-@media screen and (max-width: $old-breakpoint-extra-small) {
-	.row:not(.nav):not(.underline) {
-		flex-direction: column;
-	}
-}

@@ -24,11 +24,6 @@
         padding: 35px 0;
         margin: 0 5%;
 
-        @include breakpoint-down('md') {
-            display: grid;
-            grid-template-columns: auto auto;
-        }
-
         &.silver {
             @include breakpoint-down('md') {
                 grid-template-columns: auto;
@@ -47,10 +42,7 @@
         height: $tile-width;
         position: relative;
         border-bottom: none;
-
-        @include breakpoint-down('md') {
-            margin: 30px 0;
-        }
+        margin: 10px 5px;
 
         .sponsor-image {
             width: calc(($tile-width - ($tile-width * 0.17)) * $sponsor-scale);
@@ -86,11 +78,12 @@
             width: $partner-width;
         }
     }
+    
     @each $tier, $tier-width in $tier-widths {
         .#{$tier} {
             a {
                 width: calc($tier-width * 1.1);
-                height: calc($tier-width * 1.3);
+                height: calc($tier-width * 1.3);;
 
                 .sponsor-image {
                     width: calc(($tier-width - ($tier-width * 0.17)) * $sponsor-scale);
