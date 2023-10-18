@@ -5,10 +5,6 @@
     $partner-width: 200px;
     $partner-scale: 1;
 
-    @include breakpoint-down('md') {
-        display: none;
-    }
-
     h3 {
         @extend h1;
         background-color: white;
@@ -31,6 +27,18 @@
         @include breakpoint-down('md') {
             display: grid;
             grid-template-columns: auto auto;
+        }
+
+        &.silver {
+            @include breakpoint-down('md') {
+                grid-template-columns: auto;
+            }
+        }
+
+        &.platinum {
+            @include breakpoint-down('xs') {
+                grid-template-columns: auto;
+            }
         }
     }
 
