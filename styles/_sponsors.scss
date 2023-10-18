@@ -23,18 +23,6 @@
         justify-content: space-evenly;
         padding: 35px 0;
         margin: 0 5%;
-
-        &.silver {
-            @include breakpoint-down('md') {
-                grid-template-columns: auto;
-            }
-        }
-
-        &.platinum {
-            @include breakpoint-down('xs') {
-                grid-template-columns: auto;
-            }
-        }
     }
 
     a {
