@@ -1,3 +1,5 @@
+@import './mixin';
+
 .section.sponsors {
     $tile-width: 100px;
     $sponsor-scale: 0.7;
@@ -12,7 +14,7 @@
         background-clip: text;
         -webkit-background-clip: text;
         -moz-background-clip: text;
-        -webkit-text-fill-color: transparent; 
+        -webkit-text-fill-color: transparent;
         -moz-text-fill-color: transparent;
     }
 
@@ -23,6 +25,67 @@
         justify-content: space-evenly;
         padding: 35px 0;
         margin: 0 5%;
+
+        .sponsor {
+            position: relative;
+
+            &:first-child::before {
+                font-family: "Space Grotesk", sans-serif;
+                font-weight: 700;
+                font-size: 20px;
+                text-align: center;
+                color: white;
+                rotate: -30deg;
+                translate: -50%, -50%;
+                position: absolute;
+                z-index: 10;
+            }
+        }
+    }
+
+    .platinum.row {
+        .sponsor:first-child::before {
+            @include faded-underline();
+            padding: 0 0;
+
+            content: "PLATINUM";
+            top: 10%;
+            left: 4%;
+
+            background: linear-gradient(99deg, #C5BAAA 10.22%, #E4E0D9 51.14%, #8E7FEF 95.61%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+
+    .gold.row {
+        .sponsor:first-child::before {
+            @include faded-underline();
+            padding: 0 0;
+
+            content: "GOLD";
+            top: 5%;
+            left: 8%;
+
+            background: linear-gradient(99deg, #825F2A 10.22%, #F6DDB8 51.14%, #9E773D 95.61%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+
+    .silver.row {
+        .sponsor:first-child::before {
+            content: "SILVER";
+            left: -4%;
+            top: 5%;
+
+            background: linear-gradient(99deg, #898277 10.22%, #FBF2E5 48.47%, #F6DDB8 51.14%, #85A5B7 92.94%, #9E773D 95.61%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     }
 
     a {
@@ -66,7 +129,7 @@
             width: $partner-width;
         }
     }
-    
+
     @each $tier, $tier-width in $tier-widths {
         .#{$tier} {
             a {
