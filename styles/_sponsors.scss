@@ -137,7 +137,9 @@
                 height: calc($tier-width * 1.3);;
 
                 .sponsor-image {
-                    width: calc(($tier-width - ($tier-width * 0.17)) * $sponsor-scale);
+                    $diameter: calc(($tier-width - ($tier-width * 0.17)) * $sponsor-scale);
+                    width: $diameter;
+                    max-height: $diameter;
                     mask-size: $tier-width;
                     mask-image: url('/assets/sponsors/tiles/#{$tier}-mask.png');
                 }
