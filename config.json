@@ -49,15 +49,15 @@
     "sponsors": {
         "platinum": [
             {
-                "image": "MW.svg",
+                "image": "marshall_wace.svg",
                 "link": "https://www.mwam.com/"
             },
             {
-                "image": "BidFX.png",
+                "image": "BidFX.svg",
                 "link": "https://www.bidfx.com/"
             },
             {
-                "image": "qrt.svg",
+                "image": "qrt-stacked-dark.svg",
                 "link": "https://www.qube-rt.com/"
             }
         ],
