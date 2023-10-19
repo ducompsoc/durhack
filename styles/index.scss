@@ -1,6 +1,7 @@
 @import './fonts';
 @import './variables';
 @import './breakpoints';
+@import './mixin';
 
 // Reset user-agent stylesheets https://stackoverflow.com/questions/29307357/get-rid-of-webkit-padding-start-40px
 *:not(p) {
@@ -74,21 +75,6 @@ a:not(.tooltip) {
 .text-center {
     text-align: center;
     padding-top: 70px;
-}
-
-@mixin faded-underline() {
-    border-bottom: 2px solid;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(to right, #00000000 0%, #fff 50%, #00000000 100%);
-    width: fit-content;
-    margin: 0 auto;
-
-    padding-left: 30px;
-    padding-right: 30px;
-
-    @include breakpoint-down('xs') {
-        padding: 0;
-    }
 }
 
 .text-center > h1 {
