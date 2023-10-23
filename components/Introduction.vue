@@ -8,8 +8,8 @@
         </div>
 
         <div class="button-div">
-            <a href="https://durhack.com/ticket" target="_blank" class="link-button">
-                BOOK TICKET
+            <a href="/ticket" target="_blank" class="link-button">
+                WAITING LIST
             </a>
         </div>
         
@@ -17,7 +17,7 @@
             <p>We're also looking for volunteers to help us out at the event, e.g. with making sure everyone gets their food, or helping sponsors get set-up for their workshops.</p>
             
             <div class="button-div">
-                <a href="https://durhack.com/volunteer" target="_blank" class="link-button">
+                <a href="/volunteer" target="_blank" class="link-button">
                     SIGN UP TO VOLUNTEER
                 </a>
             </div>
