@@ -49,15 +49,15 @@
     "sponsors": {
         "platinum": [
             {
-                "image": "MW.svg",
+                "image": "marshall_wace.svg",
                 "link": "https://www.mwam.com/"
             },
             {
-                "image": "BidFX.png",
+                "image": "BidFX.svg",
                 "link": "https://www.bidfx.com/"
             },
             {
-                "image": "qrt.svg",
+                "image": "qrt-stacked-dark.svg",
                 "link": "https://www.qube-rt.com/"
             }
         ],
@@ -77,6 +77,22 @@
             {
                 "image": "waterstons.svg",
                 "link": "https://www.waterstons.com/"
+            },
+            {
+                "image": "atom.svg",
+                "link": "https://www.atombank.co.uk/"
+            },
+            {
+                "image": "du-dark.svg",
+                "link": "https://www.durham.ac.uk/"
+            },
+            {
+                "image": "digital-durham.svg",
+                "link": "https://digitaldurham.org/"
+            },
+            {
+                "image": "durham-city-council.svg",
+                "link": "https://www.durham.gov.uk/"
             }
         ],
         "silver": [
@@ -85,7 +101,20 @@
                 "link": "https://createc.co.uk/"
             }
         ],
-        "partners": []
+        "partners": [
+            {
+                "image": "hackathonsuk.svg",
+                "link": "https://www.hackathons.org.uk/"
+            },
+            {
+                "image": "mlh-logo-color.svg",
+                "link": "https://mlh.io/"
+            },
+            {
+                "image": "Dueg_transparent.png",
+                "link": "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/"
+            }
+        ]
     },
     "teams": [
         [

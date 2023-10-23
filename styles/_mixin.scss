@@ -1,0 +1,14 @@
+@mixin faded-underline() {
+    border-bottom: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #00000000 0%, #fff 50%, #00000000 100%);
+    width: fit-content;
+    margin: 0 auto;
+
+    padding-left: 30px;
+    padding-right: 30px;
+
+    @include breakpoint-down('xs') {
+        padding: 0;
+    }
+}
