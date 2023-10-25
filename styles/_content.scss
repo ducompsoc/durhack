@@ -91,6 +91,10 @@
             animation: show .75s ease-in;
             font-size: 16px;
 
+            ul {
+                padding-left: 30px;
+            }
+
             &.fade-out {
                 animation: hide .75s ease-out;
             }
