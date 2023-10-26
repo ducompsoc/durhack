@@ -1,9 +1,17 @@
 @import './variables';
 @import './breakpoints';
 
+#mlh-trust-badge {
+    display: block;
+}
+
 @media only screen and (max-width: $old-breakpoint-extra-small) {
     #navbar, #navstripe, #navouter, #navcorner, #navleft, #navdiagonal, #navbrand, #mainbluestripe, #smallbluestripe, #diagonalbluestripe {
         visibility: hidden;
+    }
+
+    #mlh-trust-badge {
+        display: none;
     }
 }
 
