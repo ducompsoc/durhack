@@ -40,6 +40,16 @@
                     secondDate = new Date(2023, 10, 4, 9, 30);
                 }
 
+                if (secondDate < firstDate) {
+                    this.daysTo = {
+                        days: 0,
+                        hours: 0,
+                        minutes: 0,
+                        seconds: 0
+                    };
+                    return;
+                }
+
                 const diffDays = Math.floor(Math.abs((secondDate - firstDate) / (24 * 60 * 60 * 1000)));
                 const diffHours = Math.floor((Math.abs((secondDate - firstDate) / (60 * 60 * 1000))) - (diffDays * 24));
                 const diffMinutes = Math.floor((Math.abs((secondDate - firstDate) / (60 * 1000))) - (diffDays * 24 * 60) - (diffHours * 60));
