@@ -37,7 +37,7 @@
                 let secondDate = new Date(2023, 10, 4, 8);
 
                 if (firstDate > new Date(2023, 9, 29, 23)) {
-                    secondDate = new Date(2023, 11, 4, 9);
+                    secondDate = new Date(2023, 10, 4, 9);
                 }
 
                 const diffDays = Math.floor(Math.abs((secondDate - firstDate) / (24 * 60 * 60 * 1000)));
