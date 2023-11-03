@@ -118,6 +118,18 @@
             {
                 "image": "Dueg_transparent.png",
                 "link": "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/"
+            },
+            {
+                "image": "compsoc.png",
+                "link": "https://compsoc.tech/"
+            },
+            {
+                "image": "KeyboardCo.png",
+                "link": "https://www.keyboardco.com/"
+            },
+            {
+                "image": "durham_su.png",
+                "link": "https://www.durhamsu.com/"
             }
         ]
     },
