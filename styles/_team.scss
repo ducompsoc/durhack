@@ -155,7 +155,7 @@ $outer-circle-fine-tune-rotation: 36%;
     }
 
     // Automatically rotates the people around the hoops
-    @for $i from 1 through 6 {        
+    @for $i from 1 through 7 {        
         @for $j from 1 through $i {
             $angle: calc((360deg / ($i)) * ($j - 1));
         
