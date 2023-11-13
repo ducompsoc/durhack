@@ -201,7 +201,7 @@
             line-height: normal;
 
             .t-minus::after {
-                content: "T - minus";
+                content: "Durhack ended";
                 font-size: var(--text-sm-size);
 
                 font-style: inherit;
@@ -271,7 +271,7 @@
                 }
 
                 &::after {
-                    content: " seconds";
+                    content: " seconds ago";
                     font-size: var(--text-sm-size);
                 }
             }

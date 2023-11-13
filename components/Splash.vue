@@ -34,21 +34,7 @@
 
                 // We switch from BST to GMT on October 29th
                 // Change the 10 to 9 on October 29th
-                let secondDate = new Date(2023, 10, 4, 10, 30);
-
-                if (firstDate > new Date(2023, 9, 29, 23)) {
-                    secondDate = new Date(2023, 10, 4, 9, 30);
-                }
-
-                if (secondDate < firstDate) {
-                    this.daysTo = {
-                        days: 0,
-                        hours: 0,
-                        minutes: 0,
-                        seconds: 0
-                    };
-                    return;
-                }
+                let secondDate = new Date(2023, 10, 4, 16, 30);
 
                 const diffDays = Math.floor(Math.abs((secondDate - firstDate) / (24 * 60 * 60 * 1000)));
                 const diffHours = Math.floor((Math.abs((secondDate - firstDate) / (60 * 60 * 1000))) - (diffDays * 24));
