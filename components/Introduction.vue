@@ -7,18 +7,26 @@
             <p>Aim to arrive at 9:30-10:30am on the 4th, and we will aim to finish at 16:30pm on the 5th.</p>
         </div>
 
-        <div class="button-div">
-            <a href="/ticket" target="_blank" class="link-button">
-                WAITING LIST
-            </a>
+        <div class="row wrap">
+            <div class="button-div">
+                <a href="https://durhack-2023.devpost.com/project-gallery" target="_blank" class="link-button">
+                    WINNING PROJECTS
+                </a>
+            </div>
+
+            <div class="button-div">
+                <a href="https://forms.gle/pMzZCFaBTVufqub58" target="_blank" class="link-button">
+                    TRAVEL REIMBURSEMENT
+                </a>
+            </div>
         </div>
         
         <div id="volunteer">
-            <p>We're also looking for volunteers to help us out at the event, e.g. with making sure everyone gets their food, or helping sponsors get set-up for their workshops.</p>
+            <p>If you enjoyed the event this year and are interested in organising next year's Durhack, please let us know!</p>
             
             <div class="button-div">
-                <a href="/volunteer" target="_blank" class="link-button">
-                    SIGN UP TO VOLUNTEER
+                <a href="https://forms.gle/T6UzQqSvXaYQgzGA9" target="_blank" class="link-button">
+                    SIGN UP TO ORGANISE
                 </a>
             </div>
         </div>
