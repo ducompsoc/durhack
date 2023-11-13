@@ -1,24 +1,31 @@
 <template>
     <div id="intro-section">
         <div id="about">
-            <p>We hope you'll join us for the eighth iteration of Durhack, Durham University Computing Society's annual flagship hackathon.</p>
+            <p>Thank you for joining us at the eighth iteration of Durhack, Durham University Computing Society's annual flagship hackathon.</p>
             <h4>4 - 5 November 2023</h4>
-            <p>Students of all experience levels will come together in teams of up to four, helping and learning from each other while creating their own project.</p>
-            <p>Aim to arrive at 9:30-10:30am on the 4th, and we will aim to finish at 16:30pm on the 5th.</p>
+            <p>Students of all experience levels came together in teams of up to four, helping and learning from each other while creating their own project.</p>
         </div>
 
-        <div class="button-div">
-            <a href="/ticket" target="_blank" class="link-button">
-                WAITING LIST
-            </a>
+        <div class="row wrap">
+            <div class="button-div">
+                <a href="https://durhack-2023.devpost.com/project-gallery" target="_blank" class="link-button">
+                    WINNING PROJECTS
+                </a>
+            </div>
+
+            <div class="button-div">
+                <a href="https://forms.gle/pMzZCFaBTVufqub58" target="_blank" class="link-button">
+                    TRAVEL REIMBURSEMENT
+                </a>
+            </div>
         </div>
         
         <div id="volunteer">
-            <p>We're also looking for volunteers to help us out at the event, e.g. with making sure everyone gets their food, or helping sponsors get set-up for their workshops.</p>
+            <p>If you enjoyed the event this year and are interested in organising next year's Durhack, please let us know!</p>
             
             <div class="button-div">
-                <a href="/volunteer" target="_blank" class="link-button">
-                    SIGN UP TO VOLUNTEER
+                <a href="https://forms.gle/T6UzQqSvXaYQgzGA9" target="_blank" class="link-button">
+                    SIGN UP TO ORGANISE
                 </a>
             </div>
         </div>
