@@ -6,18 +6,10 @@
             <p>Students of all experience levels came together in teams of up to four, helping and learning from each other while creating their own project.</p>
         </div>
 
-        <div class="row wrap">
-            <div class="button-div">
-                <a href="https://durhack-2023.devpost.com/project-gallery" target="_blank" class="link-button">
-                    WINNING PROJECTS
-                </a>
-            </div>
-
-            <div class="button-div">
-                <a href="https://forms.gle/pMzZCFaBTVufqub58" target="_blank" class="link-button">
-                    TRAVEL REIMBURSEMENT
-                </a>
-            </div>
+        <div class="button-div">
+            <a href="https://forms.gle/Cn2cjbb7jTWjEh226" target="_blank" class="link-button">
+                FEEDBACK
+            </a>
         </div>
         
         <div id="volunteer">
@@ -86,10 +78,10 @@
     </div>
 
     <div class="text-center view-previous">
-        <a href="https://durhack-2022-2.devpost.com/project-gallery" target="_blank" class="previous-row">
+        <a href="https://durhack-2023.devpost.com/project-gallery" target="_blank" class="previous-row">
                 <h5>See last year's projects&nbsp;</h5><img src="/assets/icons/blue-triangle.svg">
         </a>
-        <a href="https://drive.google.com/drive/folders/1L7HPur6l4qoPQqgsdaCEZMEqm_Tg-owx" target="_blank" class="previous-row">
+        <a href="https://durhack.com/photos" target="_blank" class="previous-row">
             <h5>See last year's photos&nbsp;</h5><img src="/assets/icons/blue-triangle.svg">
         </a>
     </div>
