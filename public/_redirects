@@ -15,6 +15,9 @@
 # /volunteer https://docs.google.com/forms/d/e/1FAIpQLSdCJZ7R5TGx_iSoK2zKrNjikkEwyU2pTEgIJ0qYr3PAqBJ2WA/viewform 302
 /organise https://docs.google.com/forms/d/e/1FAIpQLSfIu0ajbd1tbSNF4gtr58TBLIerouofYUytB69EPHK82ALksA/viewform 302
 
+# == Sponsorship ==
+/sponsor /assets/sponsorship-deck.pdf 200
+
 # == During the event ==
 /codeofconduct https://static.mlh.io/docs/mlh-code-of-conduct.pdf
 # /devpost [durhack 2023 devpost] 302
