@@ -1,3 +1,0 @@
-[dev]
-	publish = "dist/"
-	framework = "nuxt"
