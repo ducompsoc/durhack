@@ -12,6 +12,7 @@
     "@radix-ui/react-icons": "^1.3.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "durhack-web-components": "github:ducompsoc/durhack-web-components",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
