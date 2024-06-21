@@ -33,7 +33,7 @@ export default function RootLayout({
     <html lang="en">
     <body className={cn(electrolize.className, "dark min-h-screen antialiased bg-background")}>
       <a id="mlh-trust-badge"
-         style={{display: "block", maxWidth: "100px", minWidth: "60px", position: "fixed", right: "50px", top: "0", width: "10%", zIndex: "10000"}}
+         style={{display: "block", maxWidth: "100px", minWidth: "60px", position: "absolute", right: "50px", top: "0", width: "10%", zIndex: "10000"}}
          href="https://mlh.io/eu?utm_source=eu-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white"
          target="_blank">
         <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg"
