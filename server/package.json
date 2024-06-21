@@ -12,6 +12,7 @@
     "@tinyhttp/app": "^2.2.3",
     "@tinyhttp/cors": "^2.0.0",
     "@tinyhttp/logger": "^2.0.0",
+    "milliparsec": "^2.3.0",
     "zod": "^3.23.8"
   },
   "type": "module",

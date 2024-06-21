@@ -20,6 +20,9 @@ importers:
       '@tinyhttp/logger':
         specifier: ^2.0.0
         version: 2.0.0
+      milliparsec:
+        specifier: ^2.3.0
+        version: 2.3.0
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -321,6 +324,10 @@ packages:
     resolution: {integrity: sha512-Ag3wB2o37wslZS19hZqorUnrnzSkpOVy+IiiDEiTqNubEYpYuHWIf6K4psgN2ZWKExS4xhVCrRVfb/wfW8fWJA==}
     engines: {node: '>= 10'}
 
+  milliparsec@2.3.0:
+    resolution: {integrity: sha512-b+6KYJw+DwQjk24qCUuq+lZvRXDpXJ02qsllKgKaDurHpQ0v7D5op9VAkdYM/pXRhFeh7uLYHmnwFnYvdXGa3A==}
+    engines: {node: '>=12.4'}
+
   mime@4.0.1:
     resolution: {integrity: sha512-5lZ5tyrIfliMXzFtkYyekWbtRXObT9OWa8IwQ5uxTBDHucNNwniRqo0yInflj+iYi5CBa6qxadGzGarDfuEOxA==}
     engines: {node: '>=16'}
@@ -584,6 +591,8 @@ snapshots:
   http-status-emojis@2.2.0: {}
 
   ipaddr.js@2.2.0: {}
+
+  milliparsec@2.3.0: {}
 
   mime@4.0.1: {}
 
