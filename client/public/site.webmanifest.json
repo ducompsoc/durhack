@@ -45,7 +45,7 @@
       "purpose": "monochrome"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#1d1934",
+  "background_color": "#1d1934",
   "display": "standalone"
 }
