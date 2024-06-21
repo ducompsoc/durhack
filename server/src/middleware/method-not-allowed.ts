@@ -9,7 +9,7 @@ export function methodNotAllowed(allowedMethods: Iterable<HttpVerb>): Handler {
   return function(req: Request, res: Response, next: NextFunction): void {
     if (!req.method || !allowedMethodSet.has(req.method)) {
       res.setHeader("Allow", allowHeaderValue)
-      res.sendStatus(409)
+      res.sendStatus(405)
       return;
     }
 
