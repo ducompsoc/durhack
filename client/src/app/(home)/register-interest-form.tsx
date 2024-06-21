@@ -82,7 +82,9 @@ export function RegisterInterestForm(props: React.HTMLAttributes<HTMLFormElement
         <FormItem>
           <FormLabel><br/></FormLabel>
           <FormControl>
-            <Button variant="default" className="w-full border border-input" type="submit">Register Interest</Button>
+            <Button variant="default" className="w-full border border-input" type="submit">
+              Register Interest
+            </Button>
           </FormControl>
         </FormItem>
       </form>
