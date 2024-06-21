@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Electrolize } from "next/font/google";
 
+import { Toaster } from "durhack-web-components/ui/toaster"
+
 import "@/styles/globals.css";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -37,10 +39,11 @@ export default function RootLayout({
         <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg"
                               alt="Major League Hacking 2025 Hackathon Season" className="w-full"/>
       </a>
-    <div className="relative flex min-h-screen flex-col bg-background">
-      {children}
-      <footer/>
-    </div>
+      <div className="relative flex min-h-screen flex-col bg-background">
+        {children}
+        <Toaster />
+        <footer/>
+      </div>
     </body>
     </html>
   );
