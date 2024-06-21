@@ -33,5 +33,6 @@
 
 ## Sources
 !/src
+!/prisma
 
 # Explicit exceptions/ignores
