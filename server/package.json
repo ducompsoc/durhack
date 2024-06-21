@@ -1,0 +1,23 @@
+{
+  "name": "durhack-server",
+  "private": true,
+  "scripts": {
+    "start": "node dist/index.cjs",
+    "build": "esbuild src/main.ts --bundle --platform=node --outfile=dist/index.cjs",
+    "dev": "tsx src/main.ts",
+    "dev:watch": "tsx watch src/main.ts"
+  },
+  "dependencies": {
+    "@tinyhttp/app": "^2.2.3",
+    "@tinyhttp/cors": "^2.0.0",
+    "@tinyhttp/logger": "^2.0.0",
+    "zod": "^3.23.8"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^20.14.6",
+    "esbuild": "^0.21.5",
+    "tsx": "^4.15.6",
+    "typescript": "^5.4.5"
+  }
+}
