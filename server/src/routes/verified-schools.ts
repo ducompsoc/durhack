@@ -10,7 +10,7 @@ const schoolNameRegex = new RegExp('^"?(.+)"?$', 'gm')
 verifiedSchoolsRoutesApp
   .route("/")
     .all(methodNotAllowed(["OPTIONS", "GET"]))
-    .options(cors({ methods: ["OPTIONS", "GET"] }))
+    .options(cors())
     .get(async function (req, res): Promise<void>{
       const response = await fetch("https://github.com/MLH/mlh-policies/raw/main/schools.csv",)
       const body = await response.text()
