@@ -18,9 +18,6 @@
 !/*config.json
 !/*rc.json
 
-## Next.js
-!/components.json
-
 ## Markdowns
 !*.md
 !LICENSE
@@ -35,8 +32,6 @@
 !/.github/
 
 ## Sources
-!/asset-src
-!/public
 !/src
 
 # Explicit exceptions/ignores
