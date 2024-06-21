@@ -1,17 +1,25 @@
 import type { Metadata } from "next";
 import { Electrolize } from "next/font/google";
+
 import "@/styles/globals.css";
+import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 const electrolize = Electrolize({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "DurHack",
-    template: `%s - DurHack`,
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
   },
-  metadataBase: new URL("https://durhack.com"),
-  description: "Durham University Computing Society presents the 9th version of Durhack!",
+  metadataBase: new URL(siteConfig.url),
+  description: siteConfig.description,
+  icons: {
+    icon: "/icon/hd-hi.ico",
+    shortcut: "/icon/16x16.png",
+    apple: "/icon/apple-touch-180x180.png",
+  },
+  manifest: "/site.webmanifest.json",
 };
 
 export default function RootLayout({
