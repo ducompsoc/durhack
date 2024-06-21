@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   description: siteConfig.description,
   icons: {
-    icon: "/icon/hd-hi.ico",
-    shortcut: "/icon/16x16.png",
-    apple: "/icon/apple-touch-180x180.png",
+    icon: "/icon/favicon.ico",
+    shortcut: "/icon/favicon-16x16.png",
+    apple: "/icon/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest.json",
 };
