@@ -86,7 +86,7 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
 
   return (
     <Form {...form} >
-      <form onSubmit={form.handleSubmit(onSubmit)} {...props}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-1" {...props}>
         <FormField
           control={form.control}
           name="firstNames"
@@ -246,7 +246,7 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
             </FormItem>
           )}
         />
-        <Button variant="default" className="w-full border border-input mt-3" type="submit">Register</Button>
+        <Button variant="default" className="w-full border border-input !mt-3" type="submit">Register</Button>
       </form>
     </Form>
   )
