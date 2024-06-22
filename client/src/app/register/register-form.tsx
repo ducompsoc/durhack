@@ -11,7 +11,7 @@ import {
   ComboBox,
   ComboBoxButton,
   ComboBoxContent,
-  ComboBoxTrigger
+  ComboBoxTrigger,
 } from "durhack-web-components/ui/combobox"
 import {
   Form,
@@ -19,7 +19,7 @@ import {
   FormItem,
   FormControl,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "durhack-web-components/ui/form"
 import { Input } from "durhack-web-components/ui/input"
 import { PhoneInput } from "durhack-web-components/ui/phone-number-input"
