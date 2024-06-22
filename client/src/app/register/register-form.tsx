@@ -171,7 +171,7 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
               >
                 <ComboBoxTrigger>
                   <FormControl>
-                    <ComboBoxButton />
+                    <ComboBoxButton size="form" />
                   </FormControl>
                 </ComboBoxTrigger>
                 <ComboBoxContent />
@@ -237,7 +237,7 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
               >
                 <ComboBoxTrigger>
                   <FormControl>
-                    <ComboBoxButton />
+                    <ComboBoxButton size="form" />
                   </FormControl>
                 </ComboBoxTrigger>
                 <ComboBoxContent />
