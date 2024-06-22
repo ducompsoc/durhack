@@ -55,12 +55,12 @@ const registerFormSchema = z.object({
   countryOfResidence: z.string().iso3()
 })
 
-export function RegisterForm(props: React.HTMLAttributes<HTMLFormElement>) {
-  const { data: schoolOptions } = useSWR(
-    `${siteConfig.apiUrl}/verified-schools`,
-    (...args) => fetch(...args).then(res => res.json())
-  )
+type RegisterFormProps = {
+  schoolOptions: { label: string, value: string }[]
+  countryOptions: { label: string, value: string, emoji: string}[]
+}
 
+export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HTMLAttributes<HTMLFormElement> & RegisterFormProps) {
   const form = useForm<z.infer<typeof registerFormSchema>>({
     resolver: zodResolver(registerFormSchema),
     defaultValues: {
@@ -158,8 +158,8 @@ export function RegisterForm(props: React.HTMLAttributes<HTMLFormElement>) {
               <FormLabel>Educational Institution</FormLabel>
               <ComboBox<string>
                 placeholder="Select institution..."
-                options={schoolOptions || []}
-                prominentOptions={new Set("Durham University")}
+                options={schoolOptions}
+                prominentOptions={new Set(["Durham University"])}
                 {...field}
               >
                 <ComboBoxTrigger>
