@@ -154,7 +154,7 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
           control={form.control}
           name="school"
           render={({ field: {ref, ...field} } ) => (
-            <FormItem className="flex flex-col">
+            <FormItem>
               <FormLabel>Educational Institution</FormLabel>
               <ComboBox<string>
                 placeholder="Select institution..."
