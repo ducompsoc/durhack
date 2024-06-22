@@ -5,6 +5,7 @@ import { Toaster } from "durhack-web-components/ui/toaster"
 
 import "@/styles/globals.css";
 import { siteConfig } from "@/config/site";
+import { Footer } from "@/components/footer"
 import { cn } from "@/lib/utils";
 
 const electrolize = Electrolize({ weight: "400", subsets: ["latin"] });
@@ -42,7 +43,7 @@ export default function RootLayout({
       <div className="relative flex min-h-screen flex-col bg-background">
         {children}
         <Toaster />
-        <footer/>
+        <Footer />
       </div>
     </body>
     </html>

@@ -7,7 +7,7 @@ export default function HomeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="bg-homepage-gradient flex-1 flex flex-col content-center items-center justify-center">
+    <div className="bg-homepage-gradient min-h-[100vh] flex-1 flex flex-col content-center items-center justify-center">
       <div className="w-full min-h-[110px] lg:hidden"/>
       {children}
       <div className="w-full min-h-[110px] lg:hidden"/>
