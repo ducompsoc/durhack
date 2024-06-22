@@ -372,6 +372,19 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
           )}
         />
 
+        {/*
+        # Potentially Missing
+        - T-Shirt size
+        - Gender
+        - Pronouns (multi-select)
+        - Race/ethnicity
+        - Sexuality
+        - Degree/course title
+        - Highest level of formal education completed
+        - 'What do you want to get out of DurHack?'
+        - 'Do you identify as part of an underrepresented group in the technology industry?'
+         */}
+
         <Button variant="default" className="w-full border border-input !mt-3" type="submit">Register</Button>
       </form>
     </Form>
