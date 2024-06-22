@@ -111,7 +111,7 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
             <FormItem>
               <FormLabel>Age</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="18" {...field} />
+                <Input type="number" inputMode="numeric" placeholder="18" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
