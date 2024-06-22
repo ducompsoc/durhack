@@ -34,7 +34,7 @@ const registerFormSchema = z.object({
   age: z.coerce.number({ message: "Please provide a valid age." })
     .min(16, { message: "Age must be >= 16" })
     .max(256, { message: "Ain't no way you're that old." }),
-  phoneNumber: z.string().phone().or(z.literal("")),
+  phoneNumber: z.string().phone(),
   email: z.string().email(),
   school: z.string(),
 })
