@@ -24,8 +24,8 @@ import {
 import { Input } from "durhack-web-components/ui/input"
 import { PhoneInput } from "durhack-web-components/ui/phone-number-input"
 
-import "@/lib/zodExtensions"
 import {siteConfig} from "@/config/site";
+import "@/lib/zod-phone-extension"
 
 const registerFormSchema = z.object({
   firstNames: z.string().trim().min(1),
