@@ -171,8 +171,7 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
             </FormItem>
           )}
         />
-
-        <Button variant="default" className="w-full border border-input" type="submit">Register Interest</Button>
+        <Button variant="default" className="w-full border border-input mt-3" type="submit">Register</Button>
       </form>
     </Form>
   )
