@@ -37,6 +37,22 @@ const registerFormSchema = z.object({
   phoneNumber: z.string().phone(),
   email: z.string().email(),
   school: z.string(),
+  graduationYear: z.coerce.number({ message: "Please provide a valid year." })
+    .min(1900, { message: "Be serious. You didn't graduate before 1900." }),
+  levelOfStudy: z.enum([
+    "less-than-secondary",
+    "secondary",
+    "undergraduate-2-year",
+    "undergraduate-3-or-more-years",
+    "graduate",
+    "bootcamp",
+    "vocational-or-apprenticeship",
+    "post-doctorate",
+    "other",
+    "not-a-student",
+    "prefer-not-to-answer",
+  ]),
+  countryOfResidence: z.string().iso3()
 })
 
 export function RegisterForm(props: React.HTMLAttributes<HTMLFormElement>) {
