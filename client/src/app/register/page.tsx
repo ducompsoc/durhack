@@ -17,7 +17,7 @@ export default async function RegisterPage() {
   }))
 
   return (
-    <main className="container">
+    <main className="container py-5">
       <RegisterForm schoolOptions={schoolOptions} countryOptions={countryOptions} />
     </main>
   )
