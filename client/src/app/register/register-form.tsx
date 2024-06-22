@@ -81,7 +81,7 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
   })
 
   async function onSubmit(values: z.infer<typeof registerFormSchema>): Promise<void> {
-
+    console.log(values)
   }
 
   return (
