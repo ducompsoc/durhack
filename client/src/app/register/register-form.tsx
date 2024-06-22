@@ -4,7 +4,6 @@ import * as React from "react"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import useSWR from "swr"
 
 import { Button } from "durhack-web-components/ui/button"
 import {
@@ -24,7 +23,6 @@ import {
 import { Input } from "durhack-web-components/ui/input"
 import { PhoneInput } from "durhack-web-components/ui/phone-number-input"
 
-import {siteConfig} from "@/config/site";
 import "@/lib/zod-phone-extension"
 import "@/lib/zod-iso3-extension"
 
