@@ -1,3 +1,5 @@
+@import "numerical-input-spinners.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
