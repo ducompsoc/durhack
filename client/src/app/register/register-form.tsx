@@ -22,6 +22,13 @@ import {
 } from "durhack-web-components/ui/form"
 import { Input } from "durhack-web-components/ui/input"
 import { PhoneInput } from "durhack-web-components/ui/phone-number-input"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "durhack-web-components/ui/select"
 
 import "@/lib/zod-phone-extension"
 import "@/lib/zod-iso3-extension"
@@ -68,6 +75,8 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
       phoneNumber: "",
       email: "",
       school: undefined,
+      graduationYear: undefined, //
+      levelOfStudy: undefined,
     }
   })
 
@@ -158,6 +167,72 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
                 placeholder="Select institution..."
                 options={schoolOptions}
                 prominentOptions={new Set(["Durham University"])}
+                {...field}
+              >
+                <ComboBoxTrigger>
+                  <FormControl>
+                    <ComboBoxButton />
+                  </FormControl>
+                </ComboBoxTrigger>
+                <ComboBoxContent />
+              </ComboBox>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="graduationYear"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Graduation Year</FormLabel>
+              <FormControl>
+                <Input type="number" inputMode="numeric" placeholder="2027" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="levelOfStudy"
+          render={({ field: {onChange, value, ...field} }) => (
+            <FormItem>
+              <FormLabel>Level of Study</FormLabel>
+              <Select onValueChange={onChange} defaultValue={value} >
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select level of study..." className="" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="less-than-secondary">Less than Secondary/High School</SelectItem>
+                  <SelectItem value="secondary">Secondary/High School</SelectItem>
+                  <SelectItem value="undergraduate-2-year">Undergraduate University (2 year)</SelectItem>
+                  <SelectItem value="undergraduate-3-or-more-years">Undergraduate University (3+ year)</SelectItem>
+                  <SelectItem value="graduate">Graduate University (Masters&apos;, etc)</SelectItem>
+                  <SelectItem value="bootcamp">Code School/Bootcamp</SelectItem>
+                  <SelectItem value="vocational-or-apprenticeship">Vocational/Trade Program or Apprenticeship</SelectItem>
+                  <SelectItem value="post-doctorate">Post Doctorate</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                  <SelectItem value="not-a-student">I’m not currently a student</SelectItem>
+                  <SelectItem value="prefer-not-to-answer">Prefer not to answer</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="countryOfResidence"
+          render={({ field: {ref, ...field} } ) => (
+            <FormItem>
+              <FormLabel>Country of Residence</FormLabel>
+              <ComboBox<string>
+                placeholder="Select country..."
+                options={countryOptions}
+                prominentOptions={new Set(["GBR"])}
                 {...field}
               >
                 <ComboBoxTrigger>
