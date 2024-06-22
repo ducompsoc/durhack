@@ -284,6 +284,7 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
               <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                 <FormControl>
                   <Checkbox
+                    className="mt-[0.2em] lg:mt-0"
                     checked={field.value}
                     onCheckedChange={field.onChange}
                     required
@@ -312,6 +313,7 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
               <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                 <FormControl>
                   <Checkbox
+                    className="mt-[0.2em] lg:mt-0"
                     checked={field.value}
                     onCheckedChange={field.onChange}
                     required
@@ -353,6 +355,7 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
               <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                 <FormControl>
                   <Checkbox
+                    className="mt-[0.2em] lg:mt-0"
                     checked={field.value}
                     onCheckedChange={field.onChange}
                   />
