@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
 import { Button } from "durhack-web-components/ui/button"
+import { Checkbox } from "durhack-web-components/ui/checkbox"
 import {
   ComboBox,
   ComboBoxButton,
@@ -19,6 +20,7 @@ import {
   FormControl,
   FormLabel,
   FormMessage,
+  FormDescription,
 } from "durhack-web-components/ui/form"
 import { Input } from "durhack-web-components/ui/input"
 import { PhoneInput } from "durhack-web-components/ui/phone-number-input"
@@ -32,17 +34,37 @@ import {
 
 import "@/lib/zod-phone-extension"
 import "@/lib/zod-iso3-extension"
+import Link from "next/link"
+
+type RegisterFormFields = {
+  firstNames: string
+  lastNames: string
+  age: string
+  phoneNumber: string
+  email: string
+  school: string
+  graduationYear: string
+  levelOfStudy: string
+  countryOfResidence: string
+  mlhCodeOfConductAcceptance: boolean | 'indeterminate'
+  mlhPoliciesAcceptance: boolean | 'indeterminate'
+  mlhMarketingAcceptance: boolean | 'indeterminate'
+}
 
 const registerFormSchema = z.object({
-  firstNames: z.string().trim().min(1),
-  lastNames: z.string().trim().min(1),
-  age: z.coerce.number({ message: "Please provide a valid age." })
+  firstNames: z.string().trim().min(1).max(256),
+  lastNames: z.string().trim().min(1).max(256),
+  age: z.coerce.number({ invalid_type_error: "Please provide a valid age." })
+    .positive("Please provide a valid age.")
     .min(16, { message: "Age must be >= 16" })
-    .max(256, { message: "Ain't no way you're that old." }),
+    .max(256, { message: "Ain't no way you're that old." })
+    .int("Please provide your age rounded down to the nearest integer."),
   phoneNumber: z.string().phone(),
   email: z.string().email(),
   school: z.string(),
-  graduationYear: z.coerce.number({ message: "Please provide a valid year." })
+  graduationYear: z.coerce.number({ invalid_type_error: "Please provide a valid year." })
+    .positive("Please provide a valid year.")
+    .int("Oh, come on. Really?")
     .min(1900, { message: "Be serious. You didn't graduate before 1900." }),
   levelOfStudy: z.enum([
     "less-than-secondary",
@@ -57,7 +79,10 @@ const registerFormSchema = z.object({
     "not-a-student",
     "prefer-not-to-answer",
   ]),
-  countryOfResidence: z.string().iso3()
+  countryOfResidence: z.string().iso3(),
+  mlhCodeOfConductAcceptance: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  mlhPoliciesAcceptance: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  mlhMarketingAcceptance: z.boolean(),
 })
 
 type RegisterFormProps = {
@@ -66,17 +91,21 @@ type RegisterFormProps = {
 }
 
 export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HTMLAttributes<HTMLFormElement> & RegisterFormProps) {
-  const form = useForm<z.infer<typeof registerFormSchema>>({
+  const form = useForm<RegisterFormFields, any, z.infer<typeof registerFormSchema>>({
     resolver: zodResolver(registerFormSchema),
     defaultValues: {
       firstNames: "",
       lastNames: "",
-      age: undefined,
+      age: "",
       phoneNumber: "",
       email: "",
       school: undefined,
-      graduationYear: undefined, //
+      graduationYear: "",
       levelOfStudy: undefined,
+      countryOfResidence: undefined,
+      mlhCodeOfConductAcceptance: false,
+      mlhPoliciesAcceptance: false,
+      mlhMarketingAcceptance: false,
     }
   })
 
@@ -209,7 +238,7 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
                   <SelectItem value="less-than-secondary">Less than Secondary/High School</SelectItem>
                   <SelectItem value="secondary">Secondary/High School</SelectItem>
                   <SelectItem value="undergraduate-2-year">Undergraduate University (2 year)</SelectItem>
-                  <SelectItem value="undergraduate-3-or-more-years">Undergraduate University (3+ year)</SelectItem>
+                  <SelectItem value="undergraduate-3-or-more-years">Undergraduate University (3+ years)</SelectItem>
                   <SelectItem value="graduate">Graduate University (Masters&apos;, etc)</SelectItem>
                   <SelectItem value="bootcamp">Code School/Bootcamp</SelectItem>
                   <SelectItem value="vocational-or-apprenticeship">Vocational/Trade Program or Apprenticeship</SelectItem>
@@ -246,6 +275,103 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
             </FormItem>
           )}
         />
+
+        <FormField
+          control={form.control}
+          name="mlhCodeOfConductAcceptance"
+          render={({ field }) => (
+            <FormItem>
+              <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    required
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>
+                    MLH Code of Conduct
+                  </FormLabel>
+                  <FormDescription>
+                    I have read and agree to the{" "}
+                    <Link className="underline" href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md">MLH Code of Conduct</Link>.
+                  </FormDescription>
+                </div>
+              </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="mlhPoliciesAcceptance"
+          render={({field}) => (
+            <FormItem>
+              <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    required
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>
+                    MLH Policies, Terms & Conditions
+                  </FormLabel>
+                  <FormDescription>
+                    I authorize DU Computing Society to share my application/registration information with Major{" "}
+                    League Hacking for event administration, ranking, and MLH administration in-line with the{" "}
+                    <Link className="underline" href="https://github.com/MLH/mlh-policies/blob/main/privacy-policy.md">
+                      MLH Privacy Policy
+                    </Link>.
+                  </FormDescription>
+                  <FormDescription>
+                    I further agree to the terms of both the{" "}
+                      <Link className="underline" href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md">
+                        MLH Contest Terms and Conditions
+                      </Link>{" "}
+                      and the{" "}
+                      <Link className="underline" href="https://github.com/MLH/mlh-policies/blob/main/privacy-policy.md">
+                        MLH Privacy Policy
+                      </Link>.
+                  </FormDescription>
+                </div>
+              </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="mlhMarketingAcceptance"
+          render={({field}) => (
+            <FormItem>
+              <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>
+                    MLH Marketing
+                  </FormLabel>
+                  <FormDescription>
+                    I authorize MLH to send me occasional emails about relevant events, career opportunities, and{" "}
+                    community announcements.
+                  </FormDescription>
+                </div>
+              </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <Button variant="default" className="w-full border border-input !mt-3" type="submit">Register</Button>
       </form>
     </Form>
