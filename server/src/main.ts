@@ -1,5 +1,5 @@
+import { cors } from "corstisol"
 import { App } from "@tinyhttp/app"
-import { cors } from "@tinyhttp/cors"
 import { logger } from "@tinyhttp/logger"
 
 import { routesApp } from "@/routes"

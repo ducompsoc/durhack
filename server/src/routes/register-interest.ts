@@ -1,5 +1,5 @@
+import { cors } from "corstisol"
 import { App } from "@tinyhttp/app"
-import { cors } from "@tinyhttp/cors"
 import { z, ZodError } from "zod"
 import { json } from "milliparsec"
 import { Prisma } from "@prisma/client"
