@@ -18,6 +18,9 @@
 !/*config.json
 !/*rc.json
 
+## Biome
+!/biome.json
+
 ## Markdowns
 !*.md
 !LICENSE
