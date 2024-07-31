@@ -4,7 +4,7 @@
   "scripts": {
     "start": "node dist/index.cjs",
     "prebuild": "pnpm run type-check",
-    "build": "esbuild src/main.ts --bundle --platform=node --outfile=dist/index.cjs",
+    "build": "tsup",
     "check": "biome check .",
     "check:fix": "biome check --write .",
     "dev": "tsx src/main.ts",
@@ -24,8 +24,9 @@
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
     "@types/node": "^20.14.6",
-    "esbuild": "^0.21.5",
+    "glob": "^11.0.0",
     "prisma": "^5.15.1",
+    "tsup": "^8.2.3",
     "tsx": "^4.15.6",
     "typescript": "^5.4.5",
     "vitest": "^2.0.5"
