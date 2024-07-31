@@ -3,9 +3,14 @@
   "private": true,
   "scripts": {
     "start": "node dist/index.cjs",
+    "prebuild": "pnpm run type-check",
     "build": "esbuild src/main.ts --bundle --platform=node --outfile=dist/index.cjs",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
     "dev": "tsx src/main.ts",
-    "dev:watch": "tsx watch src/main.ts"
+    "dev:watch": "tsx watch src/main.ts",
+    "test": "vitest run --silent",
+    "type-check:": "tsc --noEmit"
   },
   "dependencies": {
     "@prisma/client": "^5.15.1",
@@ -17,10 +22,12 @@
   },
   "type": "module",
   "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
     "@types/node": "^20.14.6",
     "esbuild": "^0.21.5",
     "prisma": "^5.15.1",
     "tsx": "^4.15.6",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vitest": "^2.0.5"
   }
 }
