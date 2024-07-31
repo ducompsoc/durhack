@@ -4,7 +4,7 @@
     "target": "esnext",
     "module": "esnext",
     "rootDir": "./src",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "sourceMap": true,
