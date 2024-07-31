@@ -21,6 +21,11 @@ const config = await loadConfig({
   }),
 })
 
-export const { listen: listenConfig, url, siteUrl } = config
+export const {
+  listen: listenConfig,
+  url,
+  siteUrl,
+  session: sessionConfig
+} = config
 
 export { config }

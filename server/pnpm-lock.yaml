@@ -14,6 +14,9 @@ importers:
       '@tinyhttp/app':
         specifier: ^2.2.3
         version: 2.2.3
+      '@tinyhttp/cookie-signature':
+        specifier: ^2.1.1
+        version: 2.1.1
       '@tinyhttp/logger':
         specifier: ^2.0.0
         version: 2.0.0
@@ -23,6 +26,9 @@ importers:
       milliparsec:
         specifier: ^2.3.0
         version: 2.3.0
+      next-session:
+        specifier: ^4.0.5
+        version: 4.0.5
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -558,6 +564,10 @@ packages:
     resolution: {integrity: sha512-bpOXBGf9rKoajtEG75O7xjwW+u2I/NNPkJWJTDdr6j7Vx0lG5R9Hnl3ty80Af4jwyo90ywXVpZIxKLubPK6RzA==}
     engines: {node: '>=12.20.0'}
 
+  '@tinyhttp/cookie-signature@2.1.1':
+    resolution: {integrity: sha512-VDsSMY5OJfQJIAtUgeQYhqMPSZptehFSfvEEtxr+4nldPA8IImlp3QVcOVuK985g4AFR4Hl1sCbWCXoqBnVWnw==}
+    engines: {node: '>=12.20.0'}
+
   '@tinyhttp/cookie@2.1.0':
     resolution: {integrity: sha512-o56utxXvIuLTCtPm66r8lcyUufpw0RkO+u4wQrTbc6snyyGZZ9hHzGRxPyko0ks90ctOkLh0mNKn7YZaTWlvfw==}
     engines: {node: '>=12.20.0'}
@@ -718,6 +728,10 @@ packages:
   consola@3.2.3:
     resolution: {integrity: sha512-I5qxpzLv+sJhTVEoLYNcTW+bThDCPsit0vLNKShZx6rLtpilNpmmeTPaeqJb9ZE9dV3DGaeby6Vuhrw38WjeyQ==}
     engines: {node: ^14.18.0 || >=16.10.0}
+
+  cookie@0.4.2:
+    resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
+    engines: {node: '>= 0.6'}
 
   corstisol@1.0.0:
     resolution: {integrity: sha512-XEs7pWuUn8WaU2wx3eLtMb2yaH8Ptq9dC6w/lktQSQC19TPbZiOkxhRrhfReBaaC05PZhDAR9okOdPmdqE/LIA==}
@@ -978,6 +992,10 @@ packages:
   negotiator@0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
+
+  next-session@4.0.5:
+    resolution: {integrity: sha512-GS1X2XJcoQlND8ldw4VfeZoK44i8p2tPpwhk6mLFga07A97AbvMIq1sKYHmCJHmdSuwKtCR2YKIK3j1mPM6s4g==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
@@ -1651,6 +1669,8 @@ snapshots:
 
   '@tinyhttp/cookie-signature@2.1.0': {}
 
+  '@tinyhttp/cookie-signature@2.1.1': {}
+
   '@tinyhttp/cookie@2.1.0': {}
 
   '@tinyhttp/encode-url@2.1.1': {}
@@ -1818,6 +1838,8 @@ snapshots:
   commander@4.1.1: {}
 
   consola@3.2.3: {}
+
+  cookie@0.4.2: {}
 
   corstisol@1.0.0:
     dependencies:
@@ -2099,6 +2121,11 @@ snapshots:
   nanoid@3.3.7: {}
 
   negotiator@0.6.3: {}
+
+  next-session@4.0.5:
+    dependencies:
+      cookie: 0.4.2
+      nanoid: 3.3.7
 
   normalize-path@3.0.0: {}
 

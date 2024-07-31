@@ -15,9 +15,11 @@
   "dependencies": {
     "@prisma/client": "^5.15.1",
     "@tinyhttp/app": "^2.2.3",
+    "@tinyhttp/cookie-signature": "^2.1.1",
     "@tinyhttp/logger": "^2.0.0",
     "corstisol": "^1.0.0",
     "milliparsec": "^2.3.0",
+    "next-session": "^4.0.5",
     "zod": "^3.23.8",
     "zod-config": "^0.0.5"
   },
