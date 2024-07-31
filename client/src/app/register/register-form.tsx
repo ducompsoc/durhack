@@ -5,14 +5,14 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
-import { Button } from "durhack-web-components/ui/button"
-import { Checkbox } from "durhack-web-components/ui/checkbox"
+import { Button } from "@durhack/web-components/ui/button"
+import { Checkbox } from "@durhack/web-components/ui/checkbox"
 import {
   ComboBox,
   ComboBoxButton,
   ComboBoxContent,
   ComboBoxTrigger,
-} from "durhack-web-components/ui/combobox"
+} from "@durhack/web-components/ui/combobox"
 import {
   Form,
   FormField,
@@ -21,16 +21,16 @@ import {
   FormLabel,
   FormMessage,
   FormDescription,
-} from "durhack-web-components/ui/form"
-import { Input } from "durhack-web-components/ui/input"
-import { PhoneInput } from "durhack-web-components/ui/phone-number-input"
+} from "@durhack/web-components/ui/form"
+import { Input } from "@durhack/web-components/ui/input"
+import { PhoneInput } from "@durhack/web-components/ui/phone-number-input"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "durhack-web-components/ui/select"
+} from "@durhack/web-components/ui/select"
 
 import "@/lib/zod-phone-extension"
 import "@/lib/zod-iso3-extension"

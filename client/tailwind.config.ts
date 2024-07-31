@@ -7,7 +7,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-    './node_modules/durhack-web-components/dist/**/*.{ts,tsx}',
+    './node_modules/@durhack/web-components/dist/**/*.{ts,tsx}',
 	],
   prefix: "",
   theme: {

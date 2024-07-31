@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Electrolize } from "next/font/google";
 
-import { Toaster } from "durhack-web-components/ui/toaster"
+import { Toaster } from "@durhack/web-components/ui/toaster"
 
 import "@/styles/globals.css";
 import { siteConfig } from "@/config/site";

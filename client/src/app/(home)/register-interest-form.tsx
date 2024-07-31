@@ -5,7 +5,7 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
-import { Button } from "durhack-web-components/ui/button"
+import { Button } from "@durhack/web-components/ui/button"
 import {
   Form,
   FormField,
@@ -13,9 +13,9 @@ import {
   FormControl,
   FormLabel,
   FormMessage
-} from "durhack-web-components/ui/form"
-import { Input } from "durhack-web-components/ui/input"
-import { useToast } from "durhack-web-components/ui/use-toast"
+} from "@durhack/web-components/ui/form"
+import { Input } from "@durhack/web-components/ui/input"
+import { useToast } from "@durhack/web-components/ui/use-toast"
 
 import { siteConfig } from "@/config/site";
 
