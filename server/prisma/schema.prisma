@@ -19,3 +19,21 @@ model Interest {
     lastNames  String @db.VarChar(256)
     email      String @unique @db.VarChar(256)
 }
+
+model User {
+    keycloakUserId String    @id @map("keycloak_user_id") @db.Uuid
+    tokenSet       TokenSet?
+}
+
+model TokenSet {
+    userId String @id @map("user_id") @db.Uuid
+    user   User   @relation(fields: [userId], references: [keycloakUserId])
+
+    tokenType    String?   @map("token_type")
+    accessToken  String?   @map("access_token")
+    idToken      String?   @map("id_token")
+    refreshToken String?   @map("refresh_token")
+    scope        String?
+    accessExpiry DateTime? @db.Timestamp(0)
+    sessionState String?
+}
