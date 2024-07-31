@@ -18,7 +18,8 @@
     "@tinyhttp/logger": "^2.0.0",
     "corstisol": "^1.0.0",
     "milliparsec": "^2.3.0",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zod-config": "^0.0.5"
   },
   "type": "module",
   "devDependencies": {

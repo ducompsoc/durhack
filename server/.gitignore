@@ -35,4 +35,7 @@
 !/src
 !/prisma
 
+## Config files
+/src/config/local*
+
 # Explicit exceptions/ignores
