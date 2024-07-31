@@ -1,4 +1,4 @@
-import { App } from "@tinyhttp/app";
+import { App } from "@tinyhttp/app"
 
 import { registerInterestRoutesApp } from "@/routes/register-interest"
 
