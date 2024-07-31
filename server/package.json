@@ -10,7 +10,7 @@
     "dev": "tsx src/main.ts",
     "dev:watch": "tsx watch src/main.ts",
     "test": "vitest run --silent",
-    "type-check:": "tsc --noEmit"
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@prisma/client": "^5.15.1",
