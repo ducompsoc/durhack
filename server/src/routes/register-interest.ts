@@ -4,7 +4,7 @@ import { cors } from "corstisol"
 import { json } from "milliparsec"
 import { ZodError, z } from "zod"
 
-import { prisma } from "@/lib/prisma-client-instance"
+import { prisma } from "@/database"
 import { methodNotAllowed } from "@/middleware/method-not-allowed"
 
 export const registerInterestRoutesApp = new App()

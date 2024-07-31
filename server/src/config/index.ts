@@ -23,9 +23,10 @@ const config = await loadConfig({
 
 export const {
   listen: listenConfig,
-  url,
-  siteUrl,
-  session: sessionConfig
+  hostname,
+  frontendHostname,
+  session: sessionConfig,
+  keycloak: keycloakConfig,
 } = config
 
 export { config }

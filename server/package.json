@@ -18,14 +18,17 @@
     "@tinyhttp/cookie-signature": "^2.1.1",
     "@tinyhttp/logger": "^2.0.0",
     "corstisol": "^1.0.0",
+    "http-errors": "^2.0.0",
     "milliparsec": "^2.3.0",
     "next-session": "^4.0.5",
+    "openid-client": "^5.6.5",
     "zod": "^3.23.8",
     "zod-config": "^0.0.5"
   },
   "type": "module",
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
+    "@types/http-errors": "^2.0.4",
     "@types/node": "^20.14.6",
     "glob": "^11.0.0",
     "prisma": "^5.15.1",

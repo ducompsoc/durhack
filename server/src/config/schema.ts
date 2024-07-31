@@ -9,6 +9,7 @@ export const cookieOptionsSchema = z.object({
   sameSite: z.union([z.literal("none"), z.literal("lax"), z.literal("strict")]).optional(),
   path: z.string().optional(),
   secure: z.boolean(),
+  domain: z.string().optional(),
 })
 
 export const sessionOptionsSchema = z.object({
@@ -17,11 +18,20 @@ export const sessionOptionsSchema = z.object({
   cookie: cookieOptionsSchema,
 })
 
+export const keycloakOptionsSchema = z.object({
+  url: z.string().url(),
+  clientId: z.string(),
+  clientSecret: z.string(),
+  redirectUris: z.array(z.string()),
+  responseTypes: z.array(z.union([z.literal("code"), z.literal("token"), z.literal("id_token"), z.literal("none")])),
+})
+
 export const configSchema = z.object({
   listen: listenOptionsSchema,
-  url: z.string().url(),
-  siteUrl: z.string().url(),
+  hostname: z.string().url(),
+  frontendHostname: z.string().url(),
   session: sessionOptionsSchema,
+  keycloak: keycloakOptionsSchema,
 })
 
 export type Config = z.infer<typeof configSchema>
