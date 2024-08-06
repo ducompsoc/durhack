@@ -20,7 +20,8 @@
   },
   "javascript": {
     "formatter": {
-      "semicolons": "asNeeded"
+      "semicolons": "asNeeded",
+      "trailingCommas": "all"
     }
   }
 }

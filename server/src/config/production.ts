@@ -1,5 +1,5 @@
-import { DeepPartial } from "@/types/deep-partial";
-import { ConfigIn } from "@/config/schema";
+import type { ConfigIn } from "@/config/schema"
+import type { DeepPartial } from "@/types/deep-partial"
 
 export default {
   session: {

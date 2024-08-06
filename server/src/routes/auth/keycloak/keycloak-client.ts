@@ -33,7 +33,7 @@ export async function getKeycloakClientCredentials() {
 export async function fetchWithClientCredentials(input: string | URL | Request, init?: RequestInit): Promise<Response> {
   const { headers, ...restInit } = init ?? {}
   const credentials = await getKeycloakClientCredentials()
-  return await fetch(input, { 
+  return await fetch(input, {
     headers: {
       Authorization: `Bearer ${keycloakClientCredentials.access_token}`,
       ...headers,

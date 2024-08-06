@@ -2,7 +2,7 @@ import { App } from "@tinyhttp/app"
 import { logger } from "@tinyhttp/logger"
 import { cors } from "corstisol"
 
-import { listenConfig, frontendHostname } from "@/config"
+import { frontendHostname, listenConfig } from "@/config"
 import { routesApp } from "@/routes"
 
 const app = new App()

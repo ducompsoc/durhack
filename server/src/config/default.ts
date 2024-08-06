@@ -11,7 +11,7 @@ export default {
     name: "durhack-session",
     signingSecret: "session_cookie_secret",
     cookie: {
-      secure: false
+      secure: false,
     },
   },
   keycloak: {
