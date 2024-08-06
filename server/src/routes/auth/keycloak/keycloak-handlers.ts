@@ -2,12 +2,12 @@ import type { NextFunction, Request, Response } from "@tinyhttp/app"
 import createHttpError from "http-errors"
 import { type Client, generators } from "openid-client"
 
-import { getSession } from "@/lib/session"
 import { hostname } from "@/config"
 import { type User, prisma } from "@/database"
+import { adaptTokenSetToDatabase } from "@/lib/adapt-token-set"
+import { getSession } from "@/lib/session"
 import type { Middleware } from "@/types/middleware"
 
-import { adaptTokenSetToDatabase } from "@/lib/adapt-token-set"
 import { keycloakClient } from "./keycloak-client"
 
 export class KeycloakHandlers {
@@ -17,13 +17,19 @@ export class KeycloakHandlers {
     this.client = client
   }
 
+  async getOrGenerateCodeVerifier(request: Request, response: Response): Promise<string> {
+    const session = await getSession(request, response)
+    if (typeof session.keycloakOAuth2FlowCodeVerifier === "string") return session.keycloakOAuth2FlowCodeVerifier
+
+    const codeVerifier = generators.codeVerifier()
+    session.keycloakOAuth2FlowCodeVerifier = codeVerifier
+    await session.commit()
+    return codeVerifier
+  }
+
   beginOAuth2Flow(): Middleware {
     return async (request: Request, response: Response) => {
-      const codeVerifier = generators.codeVerifier()
-      const session = await getSession(request, response)
-      session.keycloakOAuth2FlowCodeVerifier = codeVerifier
-      await session.commit()
-
+      const codeVerifier = await this.getOrGenerateCodeVerifier(request, response)
       const codeChallenge = generators.codeChallenge(codeVerifier)
 
       const url = this.client.authorizationUrl({
