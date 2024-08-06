@@ -3,7 +3,6 @@
 import { Button } from "@durhack/web-components/ui/button";
 import React, { use, useEffect } from "react";
 import { useToast } from "@durhack/web-components/ui/use-toast"
-// import styled from "styled-components";
 
 interface IProfileDetails{ //matches registration form fields, minus mlh info
     firstNames: string,

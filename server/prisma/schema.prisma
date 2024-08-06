@@ -24,6 +24,20 @@ model User {
     keycloakUserId String          @id @map("keycloak_user_id") @db.Uuid
     tokenSet       TokenSet?
     sessions       SessionRecord[]
+
+    firstNames          String    @db.VarChar(256)
+    lastNames           String    @db.VarChar(256)
+    age                 Int       @db.SmallInt
+    phoneNumber         String    @unique @db.VarChar(20)
+    email               String    @unique @db.VarChar(256)
+    university          String    @db.VarChar(50)
+    gradYear            DateTime  @db.Date
+    levelOfStudy        String    @db.VarChar(50)
+    country             String    @db.VarChar(256)
+
+    mlhCodeConduct      Boolean   @db.Boolean
+    mlhPolicies         Boolean   @db.Boolean
+    mlhMarketing        Boolean   @db.Boolean
 }
 
 model TokenSet {
