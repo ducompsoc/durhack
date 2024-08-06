@@ -13,7 +13,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@prisma/client": "^5.15.1",
+    "@prisma/client": "^5.18.0",
     "@tinyhttp/app": "^2.3.1",
     "@tinyhttp/cookie-signature": "^2.1.1",
     "@tinyhttp/logger": "^2.0.0",
@@ -31,7 +31,7 @@
     "@types/http-errors": "^2.0.4",
     "@types/node": "^20.14.6",
     "glob": "^11.0.0",
-    "prisma": "^5.15.1",
+    "prisma": "^5.18.0",
     "tsup": "^8.2.3",
     "tsx": "^4.15.6",
     "typescript": "^5.4.5",
