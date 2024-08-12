@@ -22,17 +22,20 @@ model Interest {
 
 model User {
     keycloakUserId String          @id @map("keycloak_user_id") @db.Uuid
+
+    userInfo       UserInfo?
     tokenSet       TokenSet?
     sessions       SessionRecord[]
+}
 
-    firstNames          String    @db.VarChar(256)
-    lastNames           String    @db.VarChar(256)
+model UserInfo{ // stores extra data not covered by keycloak
+    userInfoId          String    @id @map("user_info_id") @db.Uuid
+    user                User      @relation(fields: [userInfoId], references: [keycloakUserId])
+
     age                 Int       @db.SmallInt
-    phoneNumber         String    @unique @db.VarChar(20)
-    email               String    @unique @db.VarChar(256)
     university          String    @db.VarChar(50)
-    gradYear            DateTime  @db.Date
-    levelOfStudy        String    @db.VarChar(50)
+    gradYear            DateTime  @db.Date         @map("graduation_year")
+    levelOfStudy        String    @db.VarChar(50)  @map("level_of_study")
     country             String    @db.VarChar(256)
 
     mlhCodeConduct      Boolean   @db.Boolean

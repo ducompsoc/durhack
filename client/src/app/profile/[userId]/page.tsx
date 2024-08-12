@@ -22,20 +22,6 @@ const profileListing = React.memo(function PeopleList({params}:{ //   TODO: crea
     const { toast } = useToast()
     const [error, setError] = React.useState<string>();
 
-    // const [profileDetails, setProfileDetails] = React.useState<IProfileDetails | null>(null);
-
-    // const AdminInfo=()=>( // Extra content for the full info drop admins get
-    //     <section>
-    //         <p><b>Email:</b> {profileDetails.email}</p>
-    //         <p><b>Phone:</b> {profileDetails.phone_number}</p>
-    //         <p className="mt-3"><b>University:</b> {profileDetails.university}</p>
-    //         <p><b>Graduation year:</b> {profileDetails.graduation_year}</p>
-    //         <p className="mt-3"><b>Ethnicity:</b> {profileDetails.ethnicity}</p>
-    //         <p><b>Gender:</b> {profileDetails.gender}</p>
-    //         <p><b>Age:</b> {profileDetails.age}</p>
-    //     </section>
-    // );
-
     const AdminInfo=()=>( // Extra content for the full info drop admins get
         <section>
             <p><b>Email:</b> mail</p>
@@ -70,15 +56,11 @@ const profileListing = React.memo(function PeopleList({params}:{ //   TODO: crea
                     <div className="grid grid-rows-2 grid-flow-col flex justify-center">
                         <p className="lg:text-4xl md:text-2xl break-word"><strong>User #{params.userId}</strong></p>
                         <p><strong>Attendance: </strong>False</p>
-                        {/* <p className="lg:text-4xl md:text-2xl break-word"><strong>{profileDetails.preferred_name}</strong></p>
-                        <p><strong>Attendance:</strong> {profileDetails.checked_in ? 'True' : 'False'}</p>  */}
                     </div>
 
                     <div className="ml-8 justify-center break-all">
                         <p><b>Role: </b>Hacker</p>
                         <AdminInfo/>
-                        {/* <p><b>Role:</b> {profileDetails.role}</p>
-                        {hackathon.role === "admin" && <AdminInfo/>} */}
                     </div>
 
                     <AttendanceButton/>
