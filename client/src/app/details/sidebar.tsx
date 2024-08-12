@@ -9,11 +9,11 @@ export function Sidebar(selectPage: Function) {
     const menuItems: menuItem[] = [
         {name: 'Home', link: 'home'},
         {name: 'Accounts', link: 'accounts'},
-        {name: 'Contact', link: 'contact'}
+        {name: 'CV', link: 'cv'}
     ];
 
     return (
-        <div className="px-2 my-2 w-64 absolute">
+        <div className="px-2 py-2 w-64 absolute bg-white bg-opacity-5 h-[calc(100%-8rem)]">
             <div className="flex flex-col">
             {
                 menuItems.map((item) => {
