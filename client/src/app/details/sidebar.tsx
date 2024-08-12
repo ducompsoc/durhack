@@ -1,15 +1,15 @@
 "use client"
 
-export function Sidebar() {
+export function Sidebar(selectPage: Function) {
     interface menuItem {
         name: string,
         link: string
     }
 
     const menuItems: menuItem[] = [
-        {name: 'Home', link: '/'},
-        {name: 'Accounts', link: '/'},
-        {name: 'Tab3', link: '/'}
+        {name: 'Home', link: 'home'},
+        {name: 'Accounts', link: 'accounts'},
+        {name: 'Contact', link: 'contact'}
     ];
 
     return (
@@ -18,9 +18,9 @@ export function Sidebar() {
             {
                 menuItems.map((item) => {
                     return (
-                        <a href={'details/' + item.link} className="py-1 mt-1 px-2 border-x-2 rounded-lg hover:border-white  bg-white bg-opacity-5 hover:bg-opacity-15 hover:transition-all duration-300">
+                        <div onClick={() => selectPage(item.link)} className="py-1 mt-1 px-2 border-x-2 rounded-lg hover:border-white  bg-white bg-opacity-5 hover:bg-opacity-15 hover:transition-all duration-300">
                             <p className="text-xl font-medium">{ item.name }</p>
-                        </a>
+                        </div>
                     )
                 })
             }
