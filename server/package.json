@@ -1,0 +1,35 @@
+{
+  "name": "durhack-server",
+  "private": true,
+  "scripts": {
+    "start": "node dist/index.cjs",
+    "prebuild": "pnpm run type-check",
+    "build": "tsup",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "dev": "tsx src/main.ts",
+    "dev:watch": "tsx watch src/main.ts",
+    "test": "vitest run --silent",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.15.1",
+    "@tinyhttp/app": "^2.2.3",
+    "@tinyhttp/logger": "^2.0.0",
+    "corstisol": "^1.0.0",
+    "milliparsec": "^2.3.0",
+    "zod": "^3.23.8",
+    "zod-config": "^0.0.5"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@types/node": "^20.14.6",
+    "glob": "^11.0.0",
+    "prisma": "^5.15.1",
+    "tsup": "^8.2.3",
+    "tsx": "^4.15.6",
+    "typescript": "^5.4.5",
+    "vitest": "^2.0.5"
+  }
+}
