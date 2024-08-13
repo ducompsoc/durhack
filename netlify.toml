@@ -1,2 +1,5 @@
 [dev]
 	publish = "dist/"
+
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "false"
