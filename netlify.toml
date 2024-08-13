@@ -1,7 +1,7 @@
 [build]
   base = "client"
   command = "next build"
-  publish = "client/.next/"
+  publish = ".next/"
 
 [build.environment]
   NODE_VERSION = 18
