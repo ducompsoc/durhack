@@ -4,5 +4,5 @@
   publish = ".next/"
 
 [build.environment]
-  NODE_VERSION = 18
-  NETLIFY_NEXT_PLUGIN_SKIP = false
+  NODE_VERSION = "18"
+  NETLIFY_NEXT_PLUGIN_SKIP = "false"
