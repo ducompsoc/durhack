@@ -18,7 +18,7 @@ export function Sidebar({selectPage}: any) {
             {
                 menuItems.map((item) => {
                     return (
-                        <div onClick={() => selectPage(item.link)} className="py-1 mt-1 px-2 border-x-2 rounded-lg hover:border-white  bg-white bg-opacity-5 hover:bg-opacity-15 hover:transition-all duration-300">
+                        <div onClick={() => selectPage(item.link)} className="py-1 mt-1 px-2 border-x-2 rounded-lg hover:border-white  bg-white bg-opacity-5 hover:bg-opacity-15 hover:cursor-pointer transition-all duration-300">
                             <p className="text-xl font-medium">{ item.name }</p>
                         </div>
                     )
