@@ -2,3 +2,7 @@
   base = "client"
   command = "next build"
   publish = "client/.next/"
+
+[build.environment]
+  NODE_VERSION = 18
+  NETLIFY_NEXT_PLUGIN_SKIP = false
