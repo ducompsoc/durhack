@@ -1,5 +1,9 @@
 [dev]
 	publish = "dist/"
 
+[build]
+  publish = "dist/"
+  command = "nuxt build"
+
 [build.environment]
   NETLIFY_NEXT_PLUGIN_SKIP = "false"
