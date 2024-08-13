@@ -1,0 +1,4 @@
+[build]
+  base = "client"
+  command = "next build"
+  publish = "client/.next/"
