@@ -7,6 +7,7 @@ import Header from "@/app/details/header";
 
 import { Input } from "@durhack/web-components/ui/input"
 import { Label } from "@durhack/web-components/ui/label";
+import { LinkBox } from "./linkbox";
 
 type Profile = {
     firstNames: string
@@ -69,11 +70,7 @@ export default function DetailsPage() {
                         <h2 className="text-2xl">
                             Authentication
                         </h2>
-                        <div className="bg-white bg-opacity-10 py-8 px-32 rounded-md mb-8 mt-2">
-                            <div className="bg-white bg-opacity-10 rounded-sm p-4 text-center hover:cursor-pointer">
-                                Keycloak
-                            </div>
-                        </div>
+                        <LinkBox links={["Keycloak"]} />
                         <div className="mt-16">
                             <div className="mx-[45%] py-2 px-4 text-center rounded-sm bg-white bg-opacity-15 hover:bg-green-500 hover:cursor-pointer hover:shadow-[0_0px_50px_0px_rgba(34,197,94,0.8)] transition-all">
                                 Submit
@@ -82,14 +79,7 @@ export default function DetailsPage() {
                     </>
                 }
                 { page == "accounts" &&
-                    <div className="bg-white bg-opacity-10 py-8 px-32 rounded-md">
-                        <div className="bg-white bg-opacity-10 rounded-sm my-4 p-4 text-center hover:cursor-pointer">
-                            GitHub
-                        </div>
-                        <div className="bg-white bg-opacity-10 rounded-sm my-4 p-4 text-center hover:cursor-pointer">
-                            LinkedIn
-                        </div>
-                    </div>
+                    <LinkBox links={["GitHub", "LinkedIn"]} />
                 }
             </div>
         </main>
