@@ -75,7 +75,7 @@ export default function DetailsPage() {
                             </div>
                         </div>
                         <div className="mt-16">
-                            <div className="mx-[45%] p-4 text-center rounded-sm bg-white bg-opacity-15 hover:bg-green-500 hover:cursor-pointer hover:shadow-[0_0px_50px_0px_rgba(34,197,94,0.6)] transition-all">
+                            <div className="mx-[45%] py-2 px-4 text-center rounded-sm bg-white bg-opacity-15 hover:bg-green-500 hover:cursor-pointer hover:shadow-[0_0px_50px_0px_rgba(34,197,94,0.6)] transition-all">
                                 Submit
                             </div>
                         </div>

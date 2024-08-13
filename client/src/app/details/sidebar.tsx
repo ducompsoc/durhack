@@ -1,6 +1,6 @@
 "use client"
 
-export function Sidebar(selectPage: Function) {
+export function Sidebar({selectPage}: any) {
     interface menuItem {
         name: string,
         link: string
