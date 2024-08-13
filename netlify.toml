@@ -3,6 +3,7 @@
   framework = "nuxt"
 
 [build]
+  publish = "dist/"
   command = "nuxt build"
 
 [build.environment]
