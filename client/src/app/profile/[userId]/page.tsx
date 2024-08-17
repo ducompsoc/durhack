@@ -4,41 +4,76 @@ import { Button } from "@durhack/web-components/ui/button";
 import React, { use, useEffect } from "react";
 import { useToast } from "@durhack/web-components/ui/use-toast"
 
-interface IProfileDetails{ //matches registration form fields, minus mlh info
-    firstNames: string,
-    lastNames: string,
-    age: string,
-    phoneNumber: string,
-    email: string,
-    school: string,
-    graduationYear: string,
+import { siteConfig } from "@/config/site";
+
+interface IProfileDetails{ //matches registration form fields -ish
+    attendance: boolean,
+
+    age: number,
+    university: string,
+    gradYear: string,
     levelOfStudy: string,
-    countryOfResidence: string
+    country: string,
+
+    mlhCodeConduct: boolean,
+    mlhPolicies: boolean,
+    mlhMarketing: boolean
 }
 
-const profileListing = React.memo(function PeopleList({params}:{ //   TODO: create prisma user object, routing for request, check if admin is even required atp
+const profileListing = React.memo(function PeopleList({params}:{
     params: {userId: string}
 }) {
     const { toast } = useToast()
+    const [profileData, setProfileData] = React.useState<IProfileDetails | null>(null);
     const [error, setError] = React.useState<string>();
 
-    const AdminInfo=()=>( // Extra content for the full info drop admins get
-        <section>
-            <p><b>Email:</b> mail</p>
-            <p><b>Phone:</b> phnumber</p>
-            <p className="mt-3"><b>University:</b> uni</p>
-            <p><b>Graduation year:</b> gyear</p>
-            <p className="mt-3"><b>Ethnicity:</b> eth</p>
-            <p><b>Gender:</b> gen</p>
-            <p><b>Age:</b> age</p>
-        </section>
-    );
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`${siteConfig.apiUrl}/profile?userId=${params.userId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }})
+                if(response.status == 200){
+                    const profData = await response.json()
+                    setProfileData(profData)
+                }
+            }catch(err){
+                console.warn(err)
+            }
+        }
+        fetchData();
+    },[params.userId]);
 
-    function toggleAttendance(){
-        toast({
-            description: "Successfully updated attendance!",
-            variant: "success"
-          })
+    async function toggleAttendance(){
+        try{
+            const response = await fetch(`${siteConfig.apiUrl}/profile/update-attendance`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({userId:params.userId})
+            })
+            if(response.status != 200){
+                throw new Error("Something went wrong.")
+            }else{
+                toast({
+                    description: "Sucecssfully toggled attendance!",
+                    variant: "success"
+                })
+                
+                setProfileData({
+                    ...profileData,
+                    attendance: !profileData!.attendance
+                } as IProfileDetails);
+            }
+        }catch(err){
+            toast({
+                description: String(err),
+                variant: "destructive"
+              })
+        }
     }
 
     const AttendanceButton=()=>(
@@ -55,12 +90,17 @@ const profileListing = React.memo(function PeopleList({params}:{ //   TODO: crea
 
                     <div className="grid grid-rows-2 grid-flow-col flex justify-center">
                         <p className="lg:text-4xl md:text-2xl break-word"><strong>User #{params.userId}</strong></p>
-                        <p><strong>Attendance: </strong>False</p>
+                        <p><strong>Attendance: </strong>{String(profileData?.attendance).toUpperCase()}</p>
                     </div>
 
                     <div className="ml-8 justify-center break-all">
                         <p><b>Role: </b>Hacker</p>
-                        <AdminInfo/>
+                        <p className="mt-3"><b>University:</b> {profileData?.university} </p>
+                        <p><b>Graduation year:</b> {profileData?.gradYear} </p>
+                        <p><b>Level of study:</b> {profileData?.levelOfStudy} </p>
+                        <p className="mt-3"><b>Age:</b> {profileData?.age} </p>
+                        <p><b>Country:</b> {profileData?.country} </p>
+                        <p className="mt-3">Todo: keycloak attributes</p>
                     </div>
 
                     <AttendanceButton/>
