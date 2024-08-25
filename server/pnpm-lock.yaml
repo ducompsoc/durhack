@@ -18,8 +18,8 @@ importers:
         specifier: ^0.2.1
         version: 0.2.1
       '@otterhttp/parsec':
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.1.2
+        version: 0.1.2
       '@prisma/client':
         specifier: ^5.18.0
         version: 5.18.0(prisma@5.18.0)
@@ -487,8 +487,8 @@ packages:
     resolution: {integrity: sha512-yhqvMwsEZNA5iSssRzcjxi+sDUWg1TUyvxe6P5EeMgHFprsLoqh1TJgQO6Vji0wciHgkZduNzKSrlPdjyV7qyA==}
     engines: {node: '>=20.16.0'}
 
-  '@otterhttp/parsec@0.1.0':
-    resolution: {integrity: sha512-gIlDYQ6AssDzmBbOY5bknTAFGwrw3Fgu+b90l01meBSno2aaEa9lkZ6fuHU52EQlSAHEKm2W+0q5SRKeOOzp+A==}
+  '@otterhttp/parsec@0.1.2':
+    resolution: {integrity: sha512-zfixEHS3dLvIPqTHf/+W7w7CZGbwGf3hRKCizNReO2KBspXicTKG/6lEifuiu1Wj8Nn+HSJAeWqFOUmehCWhWw==}
     engines: {node: '>=20.16'}
 
   '@otterhttp/proxy-address@3.0.0':
@@ -1655,7 +1655,7 @@ snapshots:
 
   '@otterhttp/parameters@0.1.0': {}
 
-  '@otterhttp/parsec@0.1.0':
+  '@otterhttp/parsec@0.1.2':
     dependencies:
       '@otterhttp/content-disposition': 3.1.0
       '@otterhttp/content-type': 0.4.0
