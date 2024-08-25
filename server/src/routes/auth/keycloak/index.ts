@@ -1,11 +1,12 @@
-import { App } from "@tinyhttp/app"
+import { App } from "@otterhttp/app"
 
+import type { Request, Response } from "@/types";
 import { methodNotAllowed } from "@/middleware/method-not-allowed"
 import { authHandlers } from "@/routes/auth/auth-handlers"
 
 import { keycloakHandlers } from "./keycloak-handlers"
 
-const keycloakApp = new App()
+const keycloakApp = new App<Request, Response>()
 
 keycloakApp
   .route("/login")

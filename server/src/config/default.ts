@@ -9,10 +9,12 @@ export default {
   frontendHostname: "https://durhack.com",
   session: {
     name: "durhack-session",
-    signingSecret: "session_cookie_secret",
     cookie: {
       secure: false,
     },
+  },
+  cookieSigning: {
+    secret: "cookie_signing_secret",
   },
   keycloak: {
     url: "https://auth.durhack.com/realms/durhack",

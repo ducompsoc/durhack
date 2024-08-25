@@ -1,13 +1,14 @@
 import { Prisma } from "@prisma/client"
-import { App } from "@tinyhttp/app"
+import { App } from "@otterhttp/app"
 import { cors } from "corstisol"
-import { json } from "milliparsec"
+import { json } from "@otterhttp/parsec"
 import { ZodError, z } from "zod"
 
+import type { Request, Response } from "@/types"
 import { prisma } from "@/database"
 import { methodNotAllowed } from "@/middleware/method-not-allowed"
 
-export const registerInterestRoutesApp = new App()
+export const registerInterestRoutesApp = new App<Request, Response>()
 
 const registerInterestFormSchema = z.object({
   firstNames: z.string().trim().min(1),

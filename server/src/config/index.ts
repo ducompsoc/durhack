@@ -26,6 +26,7 @@ export const {
   hostname,
   frontendHostname,
   session: sessionConfig,
+  cookieSigning: cookieSigningConfig,
   keycloak: keycloakConfig,
 } = config
 
