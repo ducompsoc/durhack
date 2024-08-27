@@ -5,9 +5,9 @@ import * as React from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import "@/lib/zod-phone-extension"
 
 import type { Profile } from "@/app/details/page";
-import { Label } from "@durhack/web-components/ui/label";
 import { Input } from "@durhack/web-components/ui/input";
 import {
     Form,
@@ -16,7 +16,6 @@ import {
     FormControl,
     FormLabel,
     FormMessage,
-    FormDescription,
 } from "@durhack/web-components/ui/form";
 import { Button } from "@durhack/web-components/ui/button";
 
