@@ -10,6 +10,7 @@ export function Sidebar({selectPage}: any) {
         {name: 'Personal', link: 'home'},
         {name: 'Contact', link: 'contact'},
         {name: 'Education', link: 'education'},
+        {name: 'Authentication', link: 'auth'},
     ];
 
     return (

@@ -5,10 +5,10 @@ import * as React from "react";
 import { Sidebar } from "@/app/details/sidebar";
 import Header from "@/app/details/header";
 
-import { LinkBox } from "@/app/details/linkbox";
 import PersonalPage from "@/app/details/personalpage";
 import ContactPage from "@/app/details/contactpage";
 import EducationPage from "@/app/details/educationpage";
+import AuthPage from "@/app/details/authpage";
 
 import { getCountryDataList } from "countries-list";
 import countriesEmoji from 'countries-list/minimal/countries.emoji.min.json'
@@ -93,8 +93,8 @@ export default function DetailsPage() {
                 { page == "education" &&
                     EducationPage({schoolOptions: schoolData, countryOptions: countryData, profile: mockProfile})
                 }
-                { page == "accounts" &&
-                    <LinkBox links={["GitHub", "LinkedIn"]} />
+                { page == "auth" &&
+                    AuthPage(mockProfile)
                 }
                 { page == "complete" && 
                     <>
