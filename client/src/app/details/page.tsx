@@ -9,6 +9,7 @@ import PersonalPage from "@/app/details/personalpage";
 import ContactPage from "@/app/details/contactpage";
 import EducationPage from "@/app/details/educationpage";
 import AuthPage from "@/app/details/authpage";
+import SubmitPage from "@/app/details/submitpage";
 
 import { getCountryDataList } from "countries-list";
 import countriesEmoji from 'countries-list/minimal/countries.emoji.min.json'
@@ -41,11 +42,17 @@ export type countryOptionsType = {
 
 export default function DetailsPage() {
     const [page, setPage] = React.useState("home");
+    const [isFinalSubmitHovering, setIsFinalSubmitHovering] = React.useState(false);
     const [schoolData, setSchoolData] = React.useState<schoolOptionsType[]>([]);
     const [countryData, setCountryData] = React.useState<countryOptionsType[]>([]);
 
     function selectPage(name: string) {
         setPage(name);
+    }
+
+    function setHover(condition: boolean) {
+      console.log("Hovering")
+      setIsFinalSubmitHovering(condition);
     }
 
     async function getRegisterData() {
@@ -80,7 +87,9 @@ export default function DetailsPage() {
     }
 
     return (
-        <main className="min-h-[100vh]">
+        <main className="min-h-[100vh] relative">
+          <div className={`absolute top-0 bottom-0 left-0 right-0 h-full transition-all duration-1000 ease-in-out bg-gradient-to-t from-green-500/40 to-transparent to-50% z-0 ${isFinalSubmitHovering ? "opacity-100" : "opacity-0"}`}></div>
+          <div className="min-h-[100vh] relative z-10">
             <Header />
             <Sidebar selectPage={selectPage}/>
             <div className="ml-64 py-16 pl-16 pr-64">
@@ -96,11 +105,11 @@ export default function DetailsPage() {
                 { page == "auth" &&
                     AuthPage(mockProfile)
                 }
-                { page == "complete" && 
-                    <>
-                    </>
+                { page == "submit" && 
+                    SubmitPage({profile: mockProfile, setHoverState: setHover})
                 }
             </div>
+          </div>
         </main>
     )
 }

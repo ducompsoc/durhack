@@ -11,6 +11,7 @@ export function Sidebar({selectPage}: any) {
         {name: 'Contact', link: 'contact'},
         {name: 'Education', link: 'education'},
         {name: 'Authentication', link: 'auth'},
+        {name: 'Submit', link: 'submit'},
     ];
 
     return (
