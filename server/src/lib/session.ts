@@ -1,7 +1,10 @@
-import nextSession from "next-session"
-import { sign, unsign } from "@otterhttp/cookie-signature"
+import nextSession from "@otterhttp/session"
 
-import { sessionConfig, cookieSigningConfig } from "@/config"
+import { signCookie, unsignCookieOrThrow } from "@/lib/cookies"
+
+import { sessionConfig } from "@/config"
+
+const { cookie: cookieOptions, ...sessionOptions } = sessionConfig
 
 export type DurHackSessionRecord = Record<string, unknown> & {
   keycloakOAuth2FlowCodeVerifier?: string | undefined
@@ -9,8 +12,10 @@ export type DurHackSessionRecord = Record<string, unknown> & {
 
 export const getSession = nextSession<DurHackSessionRecord>({
   store: undefined,
-  encode: (value: string): string => `s:${sign(value, cookieSigningConfig.secret)}`,
-  decode: (encodedValue: string): string | null => unsign(encodedValue.slice(2), cookieSigningConfig.secret) || null,
-  autoCommit: false,
-  ...sessionConfig,
+  ...sessionOptions,
+  cookie: {
+    ...cookieOptions,
+    sign: signCookie,
+    unsign: unsignCookieOrThrow,
+  },
 })

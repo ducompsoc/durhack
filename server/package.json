@@ -13,13 +13,13 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@otterhttp/app": "^3.4.0",
+    "@otterhttp/app": "^3.4.3",
     "@otterhttp/cookie-signature": "^3.0.0",
     "@otterhttp/errors": "^0.2.1",
     "@otterhttp/parsec": "^0.1.2",
+    "@otterhttp/session": "^0.2.0",
     "@prisma/client": "^5.18.0",
     "corstisol": "^1.0.0",
-    "next-session": "^4.0.5",
     "openid-client": "^5.6.5",
     "zod": "^3.23.8",
     "zod-config": "^0.0.5"
