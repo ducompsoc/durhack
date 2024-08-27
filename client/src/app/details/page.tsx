@@ -21,11 +21,13 @@ import { Button } from "@durhack/web-components/ui/button"
 import { Checkbox } from "@durhack/web-components/ui/checkbox"
 
 import { LinkBox } from "@/app/details/linkbox";
-import HomePage from "@/app/details/homepage";
+import PersonalPage from "@/app/details/personalpage";
 
 export type Profile = {
     firstNames: string
     lastNames: string
+    preferredName: string
+    pronouns: string
     age: string
     phoneNumber: string
     email: string
@@ -45,6 +47,8 @@ export default function DetailsPage() {
     const mockProfile: Profile = {
         firstNames: "Will",
         lastNames: "Woodward",
+        preferredName: "Will",
+        pronouns: "He/Him",
         age: "20",
         phoneNumber: "phone number",
         email: "Will's email",
@@ -60,7 +64,7 @@ export default function DetailsPage() {
             <Sidebar selectPage={selectPage}/>
             <div className="ml-64 py-16 pl-16 pr-64">
                 { page == "home" &&
-                    HomePage(mockProfile)
+                    PersonalPage(mockProfile)
                 }
                 { page == "accounts" &&
                     <LinkBox links={["GitHub", "LinkedIn"]} />
