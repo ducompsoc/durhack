@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@otterhttp/app':
-        specifier: ^3.4.3
-        version: 3.4.3
+        specifier: ^3.4.4
+        version: 3.4.4
       '@otterhttp/cookie-signature':
         specifier: ^3.0.0
         version: 3.0.0
@@ -443,8 +443,8 @@ packages:
     resolution: {integrity: sha512-8G9vqGrmEarsIPI0jyPyuPRxnRQMvQpbAUuoXPZNIz569ypy0qGBs3YPTxtQiRy4Q2KDTNMa8PRLMQhkz4I8Gw==}
     engines: {node: '>=20.16.0'}
 
-  '@otterhttp/app@3.4.3':
-    resolution: {integrity: sha512-bDQlFoeK3KTE+iOq0EPtDeqgP0C1vmAk7mBm92ASiBR7j6UPGDmDoVCZ9PhFPHcSJXJc90aKaLWdUFC89mh7cw==}
+  '@otterhttp/app@3.4.4':
+    resolution: {integrity: sha512-isJofGBu4rMCZABLzWyZkuosFaqZbm5Jxz9OsT6IImJP5EPcYnS1Bc5wAewjkzTbEu8C7RSClih1Mr0Pvuh3Mg==}
     engines: {node: '>=20.16.0'}
 
   '@otterhttp/content-disposition@3.1.0':
@@ -463,8 +463,8 @@ packages:
     resolution: {integrity: sha512-AcWQokILP5/oz4Nw5cj5d4UYCrhTaMupQ30eVcDJrNt06+MCJQ+NGgob3xsJJMXUxuUkOVu8eVgchatOqKvGQw==}
     engines: {node: '>=20.16.0'}
 
-  '@otterhttp/cookie@3.0.1':
-    resolution: {integrity: sha512-yCEQQR6pSvBlry4k4+EsXDvHfTvLaB5ELq4tz1eStAThzMjUtgz1RG4FUvu2fQuCtaGoj/BE0xsRcZOxgx2YNw==}
+  '@otterhttp/cookie@3.0.2':
+    resolution: {integrity: sha512-KUHZmH+cstno15NbpS2G88fYKqcUyM4iClXq+ogmmLbD0ICvnBC+mjH5tkC439D5Fl/1fJnpv+Fui0ve4PyyIQ==}
     engines: {node: '>=20.16.0'}
 
   '@otterhttp/encode-url@3.0.0':
@@ -495,12 +495,12 @@ packages:
     resolution: {integrity: sha512-FVD/OTmlyQbD9MfPjgTcdLpglEmJknIXSc8KBGtdgmnfx+nAahy9tZt7JFWQKR/K9nzDreBO6FQD5Bg9YhhmuQ==}
     engines: {node: '>=20.16.0'}
 
-  '@otterhttp/request@3.4.1':
-    resolution: {integrity: sha512-NrWAR1c3odMvUvM6si8pMHGn90ufRA6S+n6IEOijzE8n3Z2KDE6IXlcROX2V3y/hBgDguPh07rZTp/FoJmOM+w==}
+  '@otterhttp/request@3.4.2':
+    resolution: {integrity: sha512-z39mtm3LNHYoUnH2CHiQltLLtUMcLAjyBHWGY71nfGi4NHDDohtmJrFalPdZY3/lhmg9uU3g+0EDdBkq1XzDHg==}
     engines: {node: '>=20.16.0'}
 
-  '@otterhttp/response@3.4.1':
-    resolution: {integrity: sha512-kzleW2iqEFySGp0YOBfkx8IeWTDnUZ3yQ61neDJdRzoqcV7r353aSkRBntOj7Qs4YR2uW2ehkZb+HBqgXPf/Ww==}
+  '@otterhttp/response@3.4.2':
+    resolution: {integrity: sha512-4bet874/qrW/p8ESl/uAOlTAiQzXNfkYYElrRG7yOfOGrHd/VCWWLxdhVDlsF9acBaq3SDw1pZh29a+aXyMJjg==}
     engines: {node: '>=20.16.0'}
 
   '@otterhttp/router@3.0.0':
@@ -1611,13 +1611,13 @@ snapshots:
       mime: 4.0.4
       negotiator: 0.6.3
 
-  '@otterhttp/app@3.4.3':
+  '@otterhttp/app@3.4.4':
     dependencies:
-      '@otterhttp/cookie': 3.0.1
+      '@otterhttp/cookie': 3.0.2
       '@otterhttp/errors': 0.2.1
       '@otterhttp/proxy-address': 3.0.0
-      '@otterhttp/request': 3.4.1
-      '@otterhttp/response': 3.4.1
+      '@otterhttp/request': 3.4.2
+      '@otterhttp/response': 3.4.2
       '@otterhttp/router': 3.0.0
       '@otterhttp/url': 3.0.0
       header-range-parser: 1.1.3
@@ -1637,7 +1637,7 @@ snapshots:
 
   '@otterhttp/cookie-signature@3.0.0': {}
 
-  '@otterhttp/cookie@3.0.1': {}
+  '@otterhttp/cookie@3.0.2': {}
 
   '@otterhttp/encode-url@3.0.0': {}
 
@@ -1665,25 +1665,25 @@ snapshots:
       '@otterhttp/forwarded': 3.0.0
       ipaddr.js: 2.2.0
 
-  '@otterhttp/request@3.4.1':
+  '@otterhttp/request@3.4.2':
     dependencies:
       '@otterhttp/accepts': 3.0.0
       '@otterhttp/content-type': 0.5.0
-      '@otterhttp/cookie': 3.0.1
+      '@otterhttp/cookie': 3.0.2
       '@otterhttp/proxy-address': 3.0.0
       '@otterhttp/router': 3.0.0
       '@otterhttp/type-is': 4.0.1
       '@otterhttp/url': 3.0.0
       header-range-parser: 1.1.3
 
-  '@otterhttp/response@3.4.1':
+  '@otterhttp/response@3.4.2':
     dependencies:
       '@otterhttp/content-disposition': 3.1.0
       '@otterhttp/content-type': 0.5.0
-      '@otterhttp/cookie': 3.0.1
+      '@otterhttp/cookie': 3.0.2
       '@otterhttp/encode-url': 3.0.0
       '@otterhttp/errors': 0.2.1
-      '@otterhttp/request': 3.4.1
+      '@otterhttp/request': 3.4.2
       '@otterhttp/send': 3.0.2
       '@otterhttp/vary': 0.2.0
       es-escape-html: 0.1.1
