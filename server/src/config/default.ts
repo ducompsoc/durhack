@@ -8,8 +8,8 @@ export default {
   hostname: "https://api.durhack.com",
   frontendHostname: "https://durhack.com",
   session: {
-    name: "durhack-session",
     cookie: {
+      name: "durhack-session",
       secure: false,
     },
   },

@@ -21,8 +21,8 @@ importers:
         specifier: ^0.1.2
         version: 0.1.2
       '@otterhttp/session':
-        specifier: ^0.2.0
-        version: 0.2.0
+        specifier: ^0.3.0
+        version: 0.3.0
       '@prisma/client':
         specifier: ^5.18.0
         version: 5.18.0(prisma@5.18.0)
@@ -511,8 +511,8 @@ packages:
     resolution: {integrity: sha512-nPQBRUNUCV607NdcprueC8b41n4306yRGNkLZuxXX9VHwnOHRW1oh7BjrE3WMUuTgpCBl6BYhai3u7Qdjv4O4Q==}
     engines: {node: '>=20.16.0'}
 
-  '@otterhttp/session@0.2.0':
-    resolution: {integrity: sha512-5WyW5+Bm4bPcJkWw2ZusV7ONuRi0sfif+sGNl/Ax5ho+WYcNWwLLSY8gWSxVyGomktwvf1WZb+xzXHg56HNwqA==}
+  '@otterhttp/session@0.3.0':
+    resolution: {integrity: sha512-ILBpnTwkcS+a7Y7683NIgIPMmXv5fP5acDk2uMRFgXCcoOQP8VpDS5abQVI499oGyRhn0YRQp/hpgqOPSO1LLw==}
     engines: {node: '>=20'}
 
   '@otterhttp/type-is@4.0.1':
@@ -1697,7 +1697,7 @@ snapshots:
       '@otterhttp/etag': 3.0.0
       mime: 4.0.4
 
-  '@otterhttp/session@0.2.0':
+  '@otterhttp/session@0.3.0':
     dependencies:
       nanoid: 3.3.7
 
