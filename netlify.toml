@@ -46,5 +46,8 @@
 [dev]
 	publish = "dist/"
 
+[build]
+command = "npm run build"
+
 [build.environment]
   NODE_VERSION = "12"
