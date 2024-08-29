@@ -3,6 +3,6 @@ updates:
   - directories:
     - "./client"
     - "./server"
-  - package-ecosystem: "npm"
-  - schedule:
-    - interval: daily
+    package-ecosystem: "npm"
+    schedule:
+      interval: daily
