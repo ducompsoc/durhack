@@ -1,3 +1,4 @@
-directories:
-  - "./client"
-  - "./server"
+updates:
+  - directories:
+    - "./client"
+    - "./server"
