@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Electrolize } from "next/font/google";
 
 import { Toaster } from "@durhack/web-components/ui/toaster"
@@ -10,7 +10,11 @@ import { cn } from "@/lib/utils";
 
 const electrolize = Electrolize({ weight: "400", subsets: ["latin"] });
 
-export const metadata: Metadata = {
+export const viewport = {
+  themeColor: siteConfig.themeColor,
+} satisfies Viewport
+
+export const metadata = {
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
@@ -18,12 +22,25 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   description: siteConfig.description,
   icons: {
-    icon: "/icon/favicon.ico",
-    shortcut: "/icon/favicon-16x16.png",
+    icon: [
+      "icon/favicon.svg",
+      "/icon/favicon.ico",
+      "/icon/favicon-16x16.png",
+      "./icon/favicon-32x32.png",
+    ],
+    shortcut: ["/icon/favicon-16x16.png", "./icon/favicon-32x32.png"],
     apple: "/icon/apple-touch-icon.png",
+    other: [{
+      rel: "mask-icon",
+      url: "/icon/safari-pinned-tab.svg",
+      color: "#5bbad5"
+    }],
   },
-  manifest: "/site.webmanifest.json",
-};
+  other: {
+    "msapplication-TileColor": "#008987",
+    "theme-color": siteConfig.themeColor,
+  }
+} satisfies Metadata
 
 export default function RootLayout({
   children,
