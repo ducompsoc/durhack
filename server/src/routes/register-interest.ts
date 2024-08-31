@@ -39,6 +39,10 @@ registerInterestRoutesApp
           res.sendStatus(409)
           return
         }
+
+        throw error
       }
+
+      throw error
     }
   })
