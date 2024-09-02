@@ -17,6 +17,7 @@ import {
     FormMessage,
 } from "@durhack/web-components/ui/form";
 import { Button } from "@durhack/web-components/ui/button";
+import useUser from "@/lib/useUser";
 
 type PersonalFormFields = {
     firstNames: string
@@ -38,7 +39,7 @@ const personalFormSchema = z.object({
       .int("Please provide your age rounded down to the nearest integer."),
 });
 
-export default function PersonalPage(profile: Profile) {
+export default function PersonalPage() {
     const form = useForm<PersonalFormFields, any, z.infer<typeof personalFormSchema>>({
         resolver: zodResolver(personalFormSchema),
         defaultValues: {
@@ -49,6 +50,8 @@ export default function PersonalPage(profile: Profile) {
             age: "",
         }
     });
+
+    const profile = useUser()
 
     async function onSubmit(values: z.infer<typeof personalFormSchema>): Promise<void> {
         console.log(values)

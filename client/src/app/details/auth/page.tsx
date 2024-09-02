@@ -17,7 +17,7 @@ import {
     FormMessage,
 } from "@durhack/web-components/ui/form";
 import { Button } from "@durhack/web-components/ui/button";
-import { LinkBox } from "./linkbox";
+import { LinkBox } from "../linkbox";
 
 type PersonalFormFields = {
     firstNames: string

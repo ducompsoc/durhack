@@ -32,6 +32,7 @@ import {
     SelectValue,
 } from "@durhack/web-components/ui/select"
 import { Button } from "@durhack/web-components/ui/button";
+import { mockProfile as profile } from "@/app/details/page";
 
 type EducationFormFields = {
     school: undefined,
@@ -62,7 +63,7 @@ const educationFormSchema = z.object({
     countryOfResidence: z.string().iso3(),
 });
 
-export default function EducationPage({schoolOptions, countryOptions, profile}: {schoolOptions: schoolOptionsType[], countryOptions: countryOptionsType[], profile: Profile}) {
+export default function EducationPage({schoolOptions, countryOptions}: {schoolOptions: schoolOptionsType[], countryOptions: countryOptionsType[]}) {
     const form = useForm<EducationFormFields, any, z.infer<typeof educationFormSchema>>({
         resolver: zodResolver(educationFormSchema
         ),

@@ -18,6 +18,7 @@ import {
 } from "@durhack/web-components/ui/form";
 import { PhoneInput } from "@durhack/web-components/ui/phone-number-input"
 import { Button } from "@durhack/web-components/ui/button";
+import "@/lib/zod-phone-extension"
 
 type ContactFormFields = {
     phoneNumber: string

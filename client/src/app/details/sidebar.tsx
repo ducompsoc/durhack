@@ -1,5 +1,7 @@
 "use client"
 
+import Link from 'next/link';
+
 export function Sidebar({selectPage}: any) {
     interface menuItem {
         name: string,
