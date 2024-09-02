@@ -32,7 +32,8 @@ import {
     SelectValue,
 } from "@durhack/web-components/ui/select"
 import { Button } from "@durhack/web-components/ui/button";
-import { mockProfile as profile } from "@/app/details/page";
+import useUser from "@/lib/useUser";
+import useLocationData from "@/lib/useLocationData";
 
 type EducationFormFields = {
     school: undefined,
@@ -63,7 +64,27 @@ const educationFormSchema = z.object({
     countryOfResidence: z.string().iso3(),
 });
 
-export default function EducationPage({schoolOptions, countryOptions}: {schoolOptions: schoolOptionsType[], countryOptions: countryOptionsType[]}) {
+export default function EducationPage() {
+    const [schoolOptions, setSchoolOptions] = React.useState<schoolOptionsType>([])
+    const [countryOptions, setCountryOptions] = React.useState<countryOptionsType>([])
+
+    React.useEffect(() => {
+        async function fetchSchoolOptions() {
+            const response = await fetch("/api/fetchSchools")
+            const data = await response.json()
+            setSchoolOptions(data.schoolOptions)
+        }
+
+        async function fetchCountryOptions() {
+            const response = await fetch("/api/fetchCountries")
+            const data = await response.json()
+            setCountryOptions(data.countryOptions)
+        }
+
+        fetchSchoolOptions()
+        fetchCountryOptions()
+    }, [])
+
     const form = useForm<EducationFormFields, any, z.infer<typeof educationFormSchema>>({
         resolver: zodResolver(educationFormSchema
         ),
@@ -78,6 +99,8 @@ export default function EducationPage({schoolOptions, countryOptions}: {schoolOp
     async function onSubmit(values: z.infer<typeof educationFormSchema>): Promise<void> {
         console.log(values)
     }
+
+    const profile = useUser()
     
     return (
         <Form {...form} >

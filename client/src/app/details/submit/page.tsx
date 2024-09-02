@@ -20,6 +20,8 @@ import {
 } from "@durhack/web-components/ui/form";
 import { Button } from "@durhack/web-components/ui/button";
 
+import useUser from "@/lib/useUser";
+
 type SubmitFormFields = {
     mlhCodeOfConductAcceptance: boolean | 'indeterminate'
     mlhPoliciesAcceptance: boolean | 'indeterminate'
@@ -32,7 +34,7 @@ const submitFormSchema = z.object({
     mlhMarketingAcceptance: z.boolean(),
 });
 
-export default function SubmitPage({profile, setHoverState}: {profile: Profile, setHoverState: any}) {
+export default function SubmitPage({setHoverState}: {setHoverState: any}) {
     const form = useForm<SubmitFormFields, any, z.infer<typeof submitFormSchema>>({
         resolver: zodResolver(submitFormSchema),
         defaultValues: {
@@ -45,6 +47,8 @@ export default function SubmitPage({profile, setHoverState}: {profile: Profile, 
     async function onSubmit(values: z.infer<typeof submitFormSchema>): Promise<void> {
         console.log(values)
     }
+
+    const profile = useUser()
     
     return (
         <Form {...form} >
