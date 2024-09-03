@@ -18,6 +18,7 @@ import {
 } from "@durhack/web-components/ui/form";
 import { Button } from "@durhack/web-components/ui/button";
 import useUser from "@/lib/useUser";
+import { useRouter } from 'next/navigation';
 
 type PersonalFormFields = {
     firstNames: string
@@ -40,6 +41,8 @@ const personalFormSchema = z.object({
 });
 
 export default function PersonalPage() {
+    const router = useRouter();
+
     const form = useForm<PersonalFormFields, any, z.infer<typeof personalFormSchema>>({
         resolver: zodResolver(personalFormSchema),
         defaultValues: {
@@ -55,6 +58,7 @@ export default function PersonalPage() {
 
     async function onSubmit(values: z.infer<typeof personalFormSchema>): Promise<void> {
         console.log(values)
+        router.push('/details/contact')
     }
     
     return (
@@ -137,7 +141,7 @@ export default function PersonalPage() {
 
                 <div className="mt-16">
                     <Button variant="default" className="mx-[45%] py-2 px-4 text-center rounded-sm text-white bg-white bg-opacity-15 hover:bg-green-500 hover:cursor-pointer hover:shadow-[0_0px_50px_0px_rgba(34,197,94,0.8)] transition-all" type="submit">
-                        Submit
+                        Save Progress
                     </Button>
                 </div>
             </form>

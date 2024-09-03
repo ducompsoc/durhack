@@ -20,8 +20,8 @@ import {
     FormDescription,
 } from "@durhack/web-components/ui/form";
 import { Button } from "@durhack/web-components/ui/button";
-
 import useUser from "@/lib/useUser";
+import { useRouter } from 'next/navigation';
 
 type SubmitFormFields = {
     mlhCodeOfConductAcceptance: boolean | 'indeterminate'
@@ -38,6 +38,8 @@ const submitFormSchema = z.object({
 export default function SubmitPage() {
     const { setIsFinalSubmitHovering } = React.useContext(BackgroundContext)
 
+    const router = useRouter()
+
     const form = useForm<SubmitFormFields, any, z.infer<typeof submitFormSchema>>({
         resolver: zodResolver(submitFormSchema),
         defaultValues: {
@@ -49,6 +51,8 @@ export default function SubmitPage() {
 
     async function onSubmit(values: z.infer<typeof submitFormSchema>): Promise<void> {
         console.log(values)
+        router.push("/details")
+        setIsFinalSubmitHovering(false)
     }
 
     const profile = useUser()

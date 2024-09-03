@@ -19,6 +19,7 @@ import {
 import { PhoneInput } from "@durhack/web-components/ui/phone-number-input"
 import { Button } from "@durhack/web-components/ui/button";
 import "@/lib/zod-phone-extension"
+import { useRouter } from 'next/navigation';
 
 type ContactFormFields = {
     phoneNumber: string
@@ -31,6 +32,8 @@ const contactFormSchema = z.object({
 });
 
 export default function ContactPage(profile: Profile) {
+    const router = useRouter()
+    
     const form = useForm<ContactFormFields, any, z.infer<typeof contactFormSchema>>({
         resolver: zodResolver(contactFormSchema),
         defaultValues: {
@@ -41,6 +44,7 @@ export default function ContactPage(profile: Profile) {
 
     async function onSubmit(values: z.infer<typeof contactFormSchema>): Promise<void> {
         console.log(values)
+        router.push("/details/education")
     }
     
     return (
@@ -87,7 +91,7 @@ export default function ContactPage(profile: Profile) {
 
                 <div className="mt-16">
                     <Button variant="default" className="mx-[45%] py-2 px-4 text-center rounded-sm text-white bg-white bg-opacity-15 hover:bg-green-500 hover:cursor-pointer hover:shadow-[0_0px_50px_0px_rgba(34,197,94,0.8)] transition-all" type="submit">
-                        Submit
+                        Save Progress
                     </Button>
                 </div>
             </form>

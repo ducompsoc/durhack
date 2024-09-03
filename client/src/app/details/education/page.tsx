@@ -32,6 +32,7 @@ import {
 } from "@durhack/web-components/ui/select"
 import { Button } from "@durhack/web-components/ui/button";
 import useUser from "@/lib/useUser";
+import { useRouter } from 'next/navigation';
 
 type EducationFormFields = {
     school: undefined,
@@ -77,6 +78,8 @@ export default function EducationPage() {
     const [schoolOptions, setSchoolOptions] = React.useState<schoolOptionsType>([])
     const [countryOptions, setCountryOptions] = React.useState<countryOptionsType>([])
 
+    const router = useRouter()
+
     React.useEffect(() => {
         async function fetchSchoolOptions() {
             const response = await fetch("/api/fetchSchools")
@@ -107,6 +110,7 @@ export default function EducationPage() {
 
     async function onSubmit(values: z.infer<typeof educationFormSchema>): Promise<void> {
         console.log(values)
+        router.push("/details/auth")
     }
 
     const profile = useUser()
@@ -128,6 +132,7 @@ export default function EducationPage() {
                                 placeholder="Select institution..."
                                 options={schoolOptions}
                                 prominentOptions={new Set(["Durham University"])}
+                                {...field}
                           >
                                 <ComboBoxTrigger>
                                 <FormControl>
@@ -232,7 +237,7 @@ export default function EducationPage() {
 
                 <div className="mt-16">
                     <Button variant="default" className="mx-[45%] py-2 px-4 text-center rounded-sm text-white bg-white bg-opacity-15 hover:bg-green-500 hover:cursor-pointer hover:shadow-[0_0px_50px_0px_rgba(34,197,94,0.8)] transition-all" type="submit">
-                        Submit
+                        Save Progress
                     </Button>
                 </div>
             </form>
