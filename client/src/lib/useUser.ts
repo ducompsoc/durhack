@@ -1,4 +1,17 @@
-import type { Profile } from "@/app/details/page";
+export type Profile = {
+    firstNames: string
+    lastNames: string
+    preferredName: string
+    pronouns: string
+    age: string
+    phoneNumber: string
+    email: string
+    school: string
+    graduationYear: string
+    levelOfStudy: string
+    countryOfResidence: string
+    applicationStatus: string
+}
 
 export default function useUser() {
     const profile: Profile = {

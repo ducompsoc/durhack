@@ -4,17 +4,18 @@ import Link from 'next/link';
 
 export function Sidebar({selectPage}: any) {
     interface menuItem {
+        id: number,
         name: string,
         link: string
     }
 
     const menuItems: menuItem[] = [
-        {name: 'Status', link: 'home'},
-        {name: 'Personal', link: 'home'},
-        {name: 'Contact', link: 'contact'},
-        {name: 'Education', link: 'education'},
-        {name: 'Authentication', link: 'auth'},
-        {name: 'Submit', link: 'submit'},
+        {id: 1, name: 'Status', link: ''},
+        {id: 2, name: 'Personal', link: '/personal'},
+        {id: 3, name: 'Contact', link: '/contact'},
+        {id: 4, name: 'Education', link: '/education'},
+        {id: 5, name: 'Authentication', link: '/auth'},
+        {id: 6, name: 'Submit', link: '/submit'},
     ];
 
     return (
@@ -23,9 +24,9 @@ export function Sidebar({selectPage}: any) {
             {
                 menuItems.map((item) => {
                     return (
-                        <div onClick={() => selectPage(item.link)} className="py-1 mt-1 px-2 border-x-2 rounded-lg hover:border-white  bg-white bg-opacity-5 hover:bg-opacity-15 hover:cursor-pointer transition-all duration-300">
+                        <Link href={`/details/${item.link}`} className="py-1 mt-1 px-2 border-x-2 rounded-lg hover:border-white  bg-white bg-opacity-5 hover:bg-opacity-15 hover:cursor-pointer transition-all duration-300" key={item.id}>
                             <p className="text-xl font-medium">{ item.name }</p>
-                        </div>
+                        </Link>
                     )
                 })
             }

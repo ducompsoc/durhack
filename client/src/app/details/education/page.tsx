@@ -7,8 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import "@/lib/zod-iso3-extension"
 
-import type { Profile } from "@/app/details/page";
-import type { schoolOptionsType, countryOptionsType } from "@/app/details/page";
+import type { Profile } from "@/lib/useUser";
 import { Input } from "@durhack/web-components/ui/input";
 import {
     Form,
@@ -33,13 +32,23 @@ import {
 } from "@durhack/web-components/ui/select"
 import { Button } from "@durhack/web-components/ui/button";
 import useUser from "@/lib/useUser";
-import useLocationData from "@/lib/useLocationData";
 
 type EducationFormFields = {
     school: undefined,
     graduationYear: "",
     levelOfStudy: undefined,
     countryOfResidence: undefined,
+}
+
+export type schoolOptionsType = {
+    label: string
+    value: string
+}
+
+export type countryOptionsType = {
+    label: string
+    emoji: string
+    value: string
 }
 
 const educationFormSchema = z.object({

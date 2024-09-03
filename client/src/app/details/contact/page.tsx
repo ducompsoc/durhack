@@ -6,7 +6,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import type { Profile } from "@/app/details/page";
+import type { Profile } from "@/lib/useUser";
 import { Input } from "@durhack/web-components/ui/input";
 import {
     Form,
