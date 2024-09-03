@@ -1,13 +1,13 @@
 "use client";
 
+import useSWR from "swr";
 import { Button } from "@durhack/web-components/ui/button";
 import React, { use, useEffect } from "react";
 import { useToast } from "@durhack/web-components/ui/use-toast"
 
 import { siteConfig } from "@/config/site";
-import useSWR from "swr";
 
-interface IProfileDetails{
+export type UserProfile = {
     age: number,
     university: string,
     gradYear: string,
@@ -15,15 +15,15 @@ interface IProfileDetails{
     country: string
 }
 
-interface IFlagDetails{
-    attendance: boolean,
-    mlhCodeConduct: boolean,
-    mlhPolicies: boolean,
-    mlhMarketing: boolean
+type Flags = {
+    [T in FlagName]?: boolean | undefined;
 }
 
-interface IFlag {
-    name: string;
+const flagNames = ["attendance", "mlhCodeOfConduct", "mlhPolicies", "mlhMarketing"] as const;
+type FlagName = typeof flagNames[number];
+
+type Flag = {
+    name: FlagName;
     userId: string;
 }
 
@@ -32,54 +32,62 @@ const profileListing = React.memo(function PeopleList({params}:{
 }) {
     const { toast } = useToast()
 
-    const [profileData, setProfileData] = React.useState<IProfileDetails | null>(null);
-    const [flagData, setFlagData] = React.useState<IFlagDetails | null>(null);
+    const [profileData, setProfileData] = React.useState<UserProfile | null>(null);
+    const [flagData, setFlagData] = React.useState<Flags | null>(null);
 
     async function toggleAttendance(){
-        const response = await fetch(`${siteConfig.apiUrl}/profile/user-flags`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                userId:params.userId,
-                userFlags:{
-                    "attendance": null
-                }
+        try{
+            const allFlags = await fetch(`${siteConfig.apiUrl}/profile/${params.userId}/flags`);
+            var attendanceStatus = false;
+            
+            if(!allFlags.ok){
+                throw("Error")
+            }
+
+            attendanceStatus = (await allFlags.json()).includes("attendance");
+            
+            const response = await fetch(`${siteConfig.apiUrl}/profile/${params.userId}/flags`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    userFlags:{
+                        "attendance": !attendanceStatus
+                    }
+                })
             })
-        })
-        if(response.ok){
-            toast({
-                description: "Sucecssfully toggled attendance!",
-                variant: "success"
-            })
+
+            if(!response.ok){
+                throw("Error")
+            }
 
             setFlagData({
                 ...flagData,
                 attendance: !flagData!.attendance
-            } as IFlagDetails);
-        }else{
+            } as Flags);
+
+            toast({
+                description: "Sucecssfully toggled attendance!",
+                variant: "success"
+            })
+        }catch(error){
             toast({
                 description: "Something went wrong.",
                 variant: "destructive"
             })
+            return 
         }
     }
 
-    function processFlags(flagResponse:IFlag[]){ //flags get returned as an array of objects {name, userid}
-        const dummyFlags:IFlagDetails = {
-            attendance: false,
-            mlhCodeConduct: false,
-            mlhPolicies: false,
-            mlhMarketing: false
-        };
-
-        for (const flag of flagResponse){
-            if (flag.name in dummyFlags){
-                dummyFlags[flag.name as keyof IFlagDetails] = true;
-            }
+    function processFlags(flagResponse:[]){
+        const dummyFlags:Flags = Object.fromEntries(flagNames.map(flagName => [flagName, false])) as Flags;
+        
+        for (const flag of flagResponse) {
+            dummyFlags[flag as FlagName] = true;
         }
-        return dummyFlags;
+
+        return dummyFlags
     }
 
     const AttendanceButton=()=>(
@@ -100,8 +108,8 @@ const profileListing = React.memo(function PeopleList({params}:{
         }
     });
 
-    const { data: swrProfileData, error: profError, isLoading: profIsLoading } = useSWR(`${siteConfig.apiUrl}/profile?userId=${params.userId}`, fetcher);
-    const { data: swrFlagData, error: flagError, isLoading: flagIsLoading } = useSWR(`${siteConfig.apiUrl}/profile/user-flags?userId=${params.userId}`, fetcher);
+    const { data: swrProfileData, error: profError, isLoading: profIsLoading } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}`, fetcher);
+    const { data: swrFlagData, error: flagError, isLoading: flagIsLoading } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}/flags`, fetcher);
 
     useEffect(() => {
         if (swrProfileData && swrFlagData) {
