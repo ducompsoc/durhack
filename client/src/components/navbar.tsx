@@ -5,13 +5,13 @@ const audiowide = Audiowide({ weight: "400",  subsets: ["latin"] });
 
 export default function Navbar() {
     return (
-        <nav className={cn(audiowide.className, "flex px-16 py-4 mx-auto relative")}>
-            <div className="flex pl-8 pr-32 hover:cursor-pointer absolute">
-                <div>Icon</div>
-                <div className="text-2xl">DURHACK</div>
-            </div>
+        <nav className={cn(audiowide.className, "flex px-16 py-5 mx-auto relative")}>
+            <a href="/" className="flex pr-32 space-x-4 hover:cursor-pointer absolute">
+                <img src="/assets/icons/logo.svg" className="w-16 h-16" />
+                <div className="text-2xl pt-3.5" id="title">DURHACK</div>
+            </a>
 
-            <ul className="flex py-4 space-x-16 mx-auto">
+            <ul className="flex py-5 pl-16 space-x-16 mx-auto">
                 <li>HOME</li>
                 <li>ABOUT</li>
                 <li>FAQs</li>
