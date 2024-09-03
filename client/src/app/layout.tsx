@@ -8,7 +8,6 @@ import Navbar from "@/components/navbar";
 import { cn } from "@/lib/utils";
 
 const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
-// const audiowide = Audiowide({ weight: "400",  subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {

@@ -7,6 +7,7 @@ import Gallery from "@/components/gallery";
 import End from "@/components/end";
 
 import "@/styles/background.scss";
+import "@/styles/navbar.scss";
 import "@/styles/splash.scss";
 
 export default function HomePage() {

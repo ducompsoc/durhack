@@ -1,0 +1,14 @@
+nav {
+    background: linear-gradient(0deg, rgba(19, 41, 56, 0.52) 0%, #081418 100%);
+
+    ul > li {
+        background: linear-gradient(90deg, #EDC891 0%, #9F6937 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    ul > li:hover {
+        cursor: pointer;
+    }
+}
