@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-export function Sidebar({selectPage}: any) {
+export function Sidebar() {
     interface menuItem {
         id: number,
         name: string,

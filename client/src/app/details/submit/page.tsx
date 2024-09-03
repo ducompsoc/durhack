@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react";
-import { z } from "zod";
+import { BackgroundContext } from "@/app/details/layout";
+import { set, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import "@/lib/zod-phone-extension"
@@ -34,7 +35,9 @@ const submitFormSchema = z.object({
     mlhMarketingAcceptance: z.boolean(),
 });
 
-export default function SubmitPage({setHoverState}: {setHoverState: any}) {
+export default function SubmitPage() {
+    const { setIsFinalSubmitHovering } = React.useContext(BackgroundContext)
+
     const form = useForm<SubmitFormFields, any, z.infer<typeof submitFormSchema>>({
         resolver: zodResolver(submitFormSchema),
         defaultValues: {
@@ -165,8 +168,8 @@ export default function SubmitPage({setHoverState}: {setHoverState: any}) {
                         variant="default" 
                         className="mx-[45%] py-2 px-4 text-center rounded-sm text-white bg-white bg-opacity-15 hover:bg-green-500 hover:cursor-pointer hover:shadow-[0_0px_50px_0px_rgba(34,197,94,0.8)] transition-all" 
                         type="submit"
-                        onMouseEnter={() => setHoverState(true)}
-                        onMouseLeave={() => setHoverState(false)}>
+                        onMouseEnter={() => setIsFinalSubmitHovering(true)}
+                        onMouseLeave={() => setIsFinalSubmitHovering(false)}>
                         Submit
                     </Button>
                 </div>
