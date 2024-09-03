@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { Electrolize } from "next/font/google";
-
-import { Toaster } from "@durhack/web-components/ui/toaster"
+import { Space_Grotesk } from "next/font/google"
 
 import "@/styles/globals.css";
 import { siteConfig } from "@/config/site";
 import { Footer } from "@/components/footer"
 import { cn } from "@/lib/utils";
 
-const electrolize = Electrolize({ weight: "400", subsets: ["latin"] });
+const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
+// const audiowide = Audiowide({ weight: "400",  subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
@@ -32,27 +31,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <body className={cn(electrolize.className, "dark min-h-screen antialiased bg-background")}>
+    <body className={cn(space_grotesk.className, "dark antialiased")}>
       <a id="mlh-trust-badge"
          style={{display: "block", maxWidth: "100px", minWidth: "60px", position: "absolute", right: "50px", top: "0", width: "10%", zIndex: "10000"}}
          href="https://mlh.io/eu?utm_source=eu-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white"
          target="_blank">
         <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg"
-                              alt="Major League Hacking 2025 Hackathon Season" className="w-full"/>
+          alt="Major League Hacking 2025 Hackathon Season" className="w-full"/>
       </a>
-      <div className="relative flex min-h-screen flex-col bg-background">
+      <div className="relative bg-background">
         {children}
-        <Toaster />
         <Footer />
       </div>
     </body>
     </html>
   );
 }
-
-// import { Audiowide, Space_Grotesk } from "next/font/google"
-// import { cn } from "@/lib/utils";
-// import { RegisterInterestForm } from "./register-interest-form";
-
-// const audiowide = Audiowide({ weight: "400",  subsets: ["latin"] });
-// const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
