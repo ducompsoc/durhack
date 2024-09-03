@@ -4,7 +4,7 @@ import * as React from "react";
 import useUser from "@/lib/useUser";
 
 export default function EducationPage() {
-    const profile = useUser()
+    const { profile } = useUser()
     
     return (
         <>

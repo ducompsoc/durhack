@@ -1,9 +1,12 @@
+import * as React from "react";
+import { set } from "zod";
+
 export type Profile = {
     firstNames: string
     lastNames: string
     preferredName: string
     pronouns: string
-    age: string
+    age: string | number
     phoneNumber: string
     email: string
     school: string
@@ -14,7 +17,7 @@ export type Profile = {
 }
 
 export default function useUser() {
-    const profile: Profile = {
+    const [profile, setProfile] = React.useState<Profile>({
         firstNames: "Will",
         lastNames: "Woodward",
         preferredName: "Will",
@@ -27,7 +30,12 @@ export default function useUser() {
         levelOfStudy: "Level 3",
         countryOfResidence: "United Kingdom",
         applicationStatus: "Submitted",
+    })
+
+    async function updateProfile(newProfile: Partial<Profile>) {
+        const updatedProfile: Profile = {...profile, ...newProfile}
+        setProfile(updatedProfile)
     }
 
-    return profile
+    return { profile, updateProfile }
 }

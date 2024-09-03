@@ -55,7 +55,7 @@ export default function SubmitPage() {
         setIsFinalSubmitHovering(false)
     }
 
-    const profile = useUser()
+    const { profile } = useUser()
     
     return (
         <Form {...form} >

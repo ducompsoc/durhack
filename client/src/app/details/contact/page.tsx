@@ -20,6 +20,7 @@ import { PhoneInput } from "@durhack/web-components/ui/phone-number-input"
 import { Button } from "@durhack/web-components/ui/button";
 import "@/lib/zod-phone-extension"
 import { useRouter } from 'next/navigation';
+import useUser from "@/lib/useUser";
 
 type ContactFormFields = {
     phoneNumber: string
@@ -31,9 +32,9 @@ const contactFormSchema = z.object({
     email: z.string().email(),
 });
 
-export default function ContactPage(profile: Profile) {
+export default function ContactPage() {
     const router = useRouter()
-    
+
     const form = useForm<ContactFormFields, any, z.infer<typeof contactFormSchema>>({
         resolver: zodResolver(contactFormSchema),
         defaultValues: {
@@ -46,6 +47,8 @@ export default function ContactPage(profile: Profile) {
         console.log(values)
         router.push("/details/education")
     }
+
+    const { profile } = useUser()
     
     return (
         <Form {...form} >

@@ -54,11 +54,12 @@ export default function PersonalPage() {
         }
     });
 
-    const profile = useUser()
+    const { profile, updateProfile } = useUser()
 
     async function onSubmit(values: z.infer<typeof personalFormSchema>): Promise<void> {
         console.log(values)
         router.push('/details/contact')
+        updateProfile(values)
     }
     
     return (

@@ -113,7 +113,7 @@ export default function EducationPage() {
         router.push("/details/auth")
     }
 
-    const profile = useUser()
+    const { profile } = useUser()
     
     return (
         <Form {...form} >
