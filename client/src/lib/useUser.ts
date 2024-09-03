@@ -12,7 +12,8 @@ export default function useUser() {
         school: "Durham",
         graduationYear: "2026",
         levelOfStudy: "Level 3",
-        countryOfResidence: "United Kingdom"
+        countryOfResidence: "United Kingdom",
+        applicationStatus: "submitted",
     }
 
     return profile

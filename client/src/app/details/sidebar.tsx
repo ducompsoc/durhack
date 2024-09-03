@@ -9,6 +9,7 @@ export function Sidebar({selectPage}: any) {
     }
 
     const menuItems: menuItem[] = [
+        {name: 'Status', link: 'home'},
         {name: 'Personal', link: 'home'},
         {name: 'Contact', link: 'contact'},
         {name: 'Education', link: 'education'},
