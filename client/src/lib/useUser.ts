@@ -26,7 +26,7 @@ export default function useUser() {
         graduationYear: "2026",
         levelOfStudy: "Level 3",
         countryOfResidence: "United Kingdom",
-        applicationStatus: "submitted",
+        applicationStatus: "Submitted",
     }
 
     return profile
