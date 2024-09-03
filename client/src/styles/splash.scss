@@ -1,3 +1,10 @@
 section#splash {
-    // Extra styling
+
+    #moon {
+        box-shadow: 0px 1.953px 116.469px 0px rgba(255, 243, 225, 0.72), 0px 1.136px 41.749px 11.356px #FFE0D7;
+    }
+
+    #moon:hover {
+        box-shadow: 0px 1.953px 156.469px 0px rgba(255, 243, 225, 0.72), 0px 1.136px 71.749px 11.356px #FFE0D7;
+    }
 }
