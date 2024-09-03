@@ -17,7 +17,7 @@
     "@otterhttp/cookie-signature": "^3.0.0",
     "@otterhttp/errors": "^0.2.1",
     "@otterhttp/parsec": "^0.1.2",
-    "@otterhttp/session": "^0.3.0",
+    "@otterhttp/session": "^0.3.1",
     "@prisma/client": "^5.18.0",
     "corstisol": "^1.0.0",
     "openid-client": "^5.6.5",
