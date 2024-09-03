@@ -49,3 +49,10 @@ export default function RootLayout({
     </html>
   );
 }
+
+// import { Audiowide, Space_Grotesk } from "next/font/google"
+// import { cn } from "@/lib/utils";
+// import { RegisterInterestForm } from "./register-interest-form";
+
+// const audiowide = Audiowide({ weight: "400",  subsets: ["latin"] });
+// const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
