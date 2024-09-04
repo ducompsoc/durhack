@@ -17,7 +17,6 @@ app
   )
   .use(routesApp)
 
-// @ts-expect-error
 const server = createServer<typeof Request, typeof Response>({
   IncomingMessage: Request,
   ServerResponse: Response,
