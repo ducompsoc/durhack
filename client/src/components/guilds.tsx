@@ -8,7 +8,7 @@ export default function Guilds() {
 
             <div className="w-1/5 h-0.5 mx-auto bg-gradient-to-r from-transparent via-white to-transparent my-2"></div>
 
-            <div className="text-center text-lg transition-opacity duration-500 ease-in-out opacity-100 p-4 text-size-4">
+            <div className="text-center text-lg p-4 text-size-4">
                 This year, we're introducing <b className="text-amber-300">'Guilds'</b>! These will gather teams of hackers together into larger groups, in which
                 they will be able to compete for small prizes by completing challenges!
                 <br/>
