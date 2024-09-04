@@ -24,7 +24,11 @@ export default function Splash() {
     const cloud3Y = useTransform(scrollYProgress, [0, 1], ["0rem", "0rem"]);
 
     return (
-        <div ref={ref} className="overflow-hidden relative h-[300vh]">
+        <div ref={ref} className="overflow-hidden relative">
+            <div id="stars" className="absolute h-full w-full z-20">
+                <img src="/assets/icons/stars.png" className="h-full w-full" />
+            </div>
+
             <div id="outer-ring" className="rounded-[50%] absolute h-[94rem] w-[94rem] top-[-35rem] z-10"></div>
             <div id="inner-ring" className="rounded-[50%] absolute h-[56rem] w-[56rem] top-[-16rem] z-10"></div>
             <img src="/assets/icons/moon.png" alt="splash" className="h-[32rem] w-[32rem] top-[-4rem] mx-auto rounded-[50%] transition-all duration-500 hover:transition-all hover:duration-300 absolute z-20" id="moon"/>
@@ -41,7 +45,7 @@ export default function Splash() {
                 <img src="/assets/icons/cloud-3.png" alt="cloud" className="" />
             </motion.div>
 
-            <div className="h-[200vh] relative">
+            <div className="h-[100vh] relative">
                 <div className="pt-[40rem]">
                     <h2 id="title" className={cn(audiowide.className, "text-8xl text-center relative z-20")}>DURHACK 2024</h2>
                 </div>
