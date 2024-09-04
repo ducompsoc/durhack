@@ -35,4 +35,15 @@ section#splash {
         -webkit-text-stroke-color: #aaa;
         line-height: normal;
     }
+
+    #subtitle {
+        background: linear-gradient(90deg, #C19B64 0%, #A39487 36.53%, #A48B6F 49.42%, #BCA38F 66.74%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        -webkit-text-stroke-width: 0px;
+        -webkit-text-stroke-color: #aaa;
+        line-height: normal;
+    }
 }

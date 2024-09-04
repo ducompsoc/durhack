@@ -16,11 +16,11 @@ export default function Splash() {
     });
     const springProgress = useSpring(scrollYProgress, { stiffness: 400, damping: 90 });
 
-    const cloud1X = useTransform(springProgress, [0, 1], ["0rem", "200rem"]);
+    const cloud1X = useTransform(springProgress, [0, 1], ["0rem", "100rem"]);
     const cloud1Y = useTransform(scrollYProgress, [0, 1], ["0rem", "0rem"]);
-    const cloud2X = useTransform(springProgress, [0, 1], ["0rem", "-200rem"]);
+    const cloud2X = useTransform(springProgress, [0, 1], ["0rem", "-100rem"]);
     const cloud2Y = useTransform(scrollYProgress, [0, 1], ["0rem", "0rem"]);
-    const cloud3X = useTransform(springProgress, [0, 1], ["0rem", "-300rem"]);
+    const cloud3X = useTransform(springProgress, [0, 1], ["0rem", "-150rem"]);
     const cloud3Y = useTransform(scrollYProgress, [0, 1], ["0rem", "0rem"]);
 
     return (
@@ -33,21 +33,28 @@ export default function Splash() {
             <div id="inner-ring" className="rounded-[50%] absolute h-[56rem] w-[56rem] top-[-16rem] z-10"></div>
             <img src="/assets/icons/moon.png" alt="splash" className="h-[32rem] w-[32rem] top-[-4rem] mx-auto rounded-[50%] transition-all duration-500 hover:transition-all hover:duration-300 absolute z-20" id="moon"/>
         
-            <motion.div id="cloud-1" className="absolute right-[-10rem] top-[16rem] z-30" style={{ x: cloud1X, y: cloud1Y }}>
+            <motion.div id="cloud-1" className="absolute right-[-10rem] top-[16rem] z-30 pointer-events-none" style={{ x: cloud1X, y: cloud1Y }}>
                 <img src="/assets/icons/cloud-1.png" alt="cloud" className="" />
             </motion.div>
 
-            <motion.div id="cloud-2" className="absolute left-[-20rem] top-[16rem] z-30" style={{ x: cloud2X, y: cloud2Y }}>
+            <motion.div id="cloud-2" className="absolute left-[-20rem] top-[16rem] z-30 pointer-events-none" style={{ x: cloud2X, y: cloud2Y }}>
                 <img src="/assets/icons/cloud-2.png" alt="cloud" className="" />
             </motion.div>
 
-            <motion.div id="cloud-3" className="absolute left-[-5rem] top-[26rem] z-30" style={{ x: cloud3X, y: cloud3Y }}>
+            <motion.div id="cloud-3" className="absolute left-[-5rem] top-[26rem] z-30 pointer-events-none" style={{ x: cloud3X, y: cloud3Y }}>
                 <img src="/assets/icons/cloud-3.png" alt="cloud" className="" />
             </motion.div>
 
-            <div className="h-[100vh] relative">
-                <div className="pt-[40rem]">
+            <div className="relative">
+                <div className="pt-[40rem] pb-[8rem]">
                     <h2 id="title" className={cn(audiowide.className, "text-8xl text-center relative z-20")}>DURHACK 2024</h2>
+                    <h4 id="subtitle" className={cn(audiowide.className, "text-6xl text-center relative z-20")}>2-3 NOVEMBER</h4>
+                </div>
+                <div className="flex justify-center py-32">
+                    <motion.a id="book" 
+                        className="px-16 py-6 rounded-[4.8rem] text-4xl text-center backdrop-blur-lg bg-white bg-opacity-40 hover:scale-110 z-50 transition-all cursor-pointer">
+                        BOOK TICKETS
+                    </motion.a>
                 </div>
             </div>
             <div>
