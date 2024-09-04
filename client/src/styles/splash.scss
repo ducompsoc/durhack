@@ -24,4 +24,15 @@ section#splash {
         left: 50%;
         transform: translate(-50%, 0%);
     }
+
+    #title {
+        background: linear-gradient(90deg, #face8f 0%, #d8c5b4 36.53%, #e8c091 49.42%, #bc9b80 66.74%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: #aaa;
+        line-height: normal;
+    }
 }
