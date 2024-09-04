@@ -69,7 +69,7 @@ export type DurHackSessionRecord = Record<string, unknown> & {
 }
 
 export const getSession = session<DurHackSessionRecord>({
-  store: undefined,
+  store: new PrismaSessionStore(),
   ...sessionOptions,
   cookie: {
     ...cookieOptions,
