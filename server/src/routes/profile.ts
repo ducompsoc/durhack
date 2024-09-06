@@ -34,7 +34,7 @@ profileRoutesApp
   })
 
   .route("/flags")
-  .all(methodNotAllowed(["OPTIONS","PUT","GET","PATCH"]))
+  .all(methodNotAllowed(["OPTIONS","GET","PATCH"]))
   .options(cors())
   .patch(async(req,res):Promise<void>=>{
     const validatedPayload = userFlagSchema.parse(req.body)
@@ -45,9 +45,9 @@ profileRoutesApp
     const removeFlagQuery = (flagName: string) => {
       return prisma.userFlag.deleteMany({
         where:{
-            userId: userId,
-            name: flagName
-          }
+          userId: userId,
+          name: flagName
+        }
       })
     } 
     
@@ -70,12 +70,13 @@ profileRoutesApp
     }
     
     const operations = Object.keys(flags).map((flagName) => {
-      if(legalFlagNames.has(flagName)){
-        if (flags[flagName]) 
-          return setFlagQuery(flagName)
-        else
-          return removeFlagQuery(flagName)
-      }else throw new createHttpError.BadRequest
+      if(!legalFlagNames.has(flagName)) 
+        throw new createHttpError.BadRequest
+
+      if (flags[flagName]) 
+        return setFlagQuery(flagName)
+      else
+        return removeFlagQuery(flagName)
     })
 
     await prisma.$transaction(operations)
@@ -89,8 +90,10 @@ profileRoutesApp
           keycloakUserId:userId
         }
       }).userFlags()
-      if(specificUserFlags != null){
-        const userFlagArray = specificUserFlags.map(flag => flag.name);
-        res.status(200).json(userFlagArray)
-      }
+      
+      if(specificUserFlags == null)
+        throw new createHttpError.NotFound
+
+      const userFlagArray = specificUserFlags.map(flag => flag.name);
+      res.status(200).json(userFlagArray)
   })

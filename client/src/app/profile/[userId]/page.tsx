@@ -34,7 +34,7 @@ const ProfileListing = React.memo(function PeopleList({params}:{
 }) {
     const { toast } = useToast()
 
-    const fetcher = (url: string) => fetch(url, {
+    const fetcher = async (url: string) => fetch(url, {
         headers: {
             'Accept': 'application/json'
         }
@@ -46,7 +46,7 @@ const ProfileListing = React.memo(function PeopleList({params}:{
         }
     });
 
-    const flagsFetcher = (url: string) => fetch(url, {
+    const flagsFetcher = async (url: string) => fetch(url, {
         headers: {
             'Accept': 'application/json'
         }
@@ -77,7 +77,7 @@ const ProfileListing = React.memo(function PeopleList({params}:{
     }
 
     const handleCheckbox = (checked:boolean) => {
-        setAttendance(checked)
+        void setAttendance(checked)
     };
 
     async function setAttendance(setValue:boolean){
@@ -94,7 +94,7 @@ const ProfileListing = React.memo(function PeopleList({params}:{
                 })
             })
             if(!response.ok){
-                throw("Error")
+                throw new Error("Something went wrong.")
             }
 
             toast({
@@ -103,7 +103,7 @@ const ProfileListing = React.memo(function PeopleList({params}:{
             })
         }catch(error){
             toast({
-                description: "Something went wrong.",
+                description: String(error),
                 variant: "destructive"
             })
             return 
