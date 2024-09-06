@@ -4,10 +4,10 @@ import { Prisma } from "@prisma/client"
 import { cors } from "corstisol"
 import { json } from "milliparsec"
 import { ZodError, set, z } from "zod"
+import createHttpError from "http-errors";
 
 import { prisma } from "@/database"
 import { methodNotAllowed } from "@/middleware/method-not-allowed"
-import createHttpError from "http-errors";
 
 export const profileRoutesApp = new App()
 
@@ -24,47 +24,36 @@ profileRoutesApp
   .all(methodNotAllowed(["OPTIONS", "GET"]))
   .options(cors())
   .get(async (req, res): Promise<void> =>{
-    try{
-      const userId = req.params.user_id as string;
-      const uInfo = await prisma.userInfo.findUnique({
-        where: {
-          userId: userId
-        }
-      })
-      res.status(200).json(uInfo)
-    }catch(error){
-      res.sendStatus(400) // refuse to elaborate :3
-      return
-    }
+    const userId = req.params.user_id as string;
+    const userInfo = await prisma.userInfo.findUnique({
+      where: {
+        userId: userId
+      }
+    })
+    res.status(200).json(userInfo)
   })
 
   .route("/flags")
   .all(methodNotAllowed(["OPTIONS","PUT","GET","PATCH"]))
   .options(cors())
-  .put(async(req,res):Promise<void>=>{
-    try{
-      const validatedPayload = userFlagSchema.parse(req.body)
-      const flags = validatedPayload.userFlags;
+  .patch(async(req,res):Promise<void>=>{
+    const validatedPayload = userFlagSchema.parse(req.body)
+    const flags = validatedPayload.userFlags;
 
-      const userId = req.params.user_id;
+    const userId = req.params.user_id;
 
-      var trueFlags = [];
-      var falseFlags = [];
-
-      for(const flag in flags){
-        if(!(legalFlagNames.has(flag))){
-          throw new createHttpError.BadRequest()
-        }else{
-          if(flags[flag] === true){
-            trueFlags.push(flag)
-          }else{
-            falseFlags.push(flag)
+    const removeFlagQuery = (flagName: string) => {
+      return prisma.userFlag.deleteMany({
+        where:{
+            userId: userId,
+            name: flagName
           }
-        }
-      }
-
-      const upsertOperations = trueFlags.map(flagName=>{
-        return prisma.userFlag.upsert({
+      })
+    } 
+    
+    const setFlagQuery = (flagName: string) => {
+      return prisma.userFlag.upsert(
+        {
           where:{
             id:{
               userId: userId,
@@ -76,39 +65,32 @@ profileRoutesApp
             name: flagName
           },
           update:{}
-        });
-      });
-
-      const deleteOperations = falseFlags.map(flagName=>{
-        return prisma.userFlag.deleteMany({
-          where:{
-            userId: userId,
-            name: flagName
-          }
-        });
-      });
-
-      const allOperations = [...upsertOperations, ...deleteOperations];
- 
-      await prisma.$transaction(allOperations)
-      res.sendStatus(200)
-    }catch(error){
-      if(error instanceof ZodError){
-        res.sendStatus(400) //do NOT elaborate
-        return
-      }
+        }
+      )
     }
+    
+    const operations = Object.keys(flags).map((flagName) => {
+      if(legalFlagNames.has(flagName)){
+        if (flags[flagName]) 
+          return setFlagQuery(flagName)
+        else
+          return removeFlagQuery(flagName)
+      }else throw new createHttpError.BadRequest
+    })
+
+    await prisma.$transaction(operations)
+    res.sendStatus(200)
   })
   
   .get(async(req,res):Promise<void>=>{
       const userId = req.params.user_id as string;
-      const userInfo = await prisma.userFlag.findMany({
+      const specificUserFlags = await prisma.user.findUnique({
         where:{
-          userId:{
-            equals: userId
-          }
+          keycloakUserId:userId
         }
-      })
-      const userFlagArray = userInfo.map(flag => flag.name);
-      res.status(200).json(userFlagArray)
+      }).userFlags()
+      if(specificUserFlags != null){
+        const userFlagArray = specificUserFlags.map(flag => flag.name);
+        res.status(200).json(userFlagArray)
+      }
   })

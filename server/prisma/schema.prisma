@@ -34,7 +34,7 @@ model UserInfo{ // stores extra data not covered by keycloak
 
     age                 Int       @db.SmallInt
     university          String    @db.VarChar(50)
-    gradYear            DateTime  @db.Date         @map("graduation_year")
+    graduationYear            DateTime  @db.Date         @map("graduation_year")
     levelOfStudy        String    @db.VarChar(50)  @map("level_of_study")
     country             String    @db.VarChar(256)
 }

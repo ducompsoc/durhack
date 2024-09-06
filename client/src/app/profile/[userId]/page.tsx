@@ -2,6 +2,7 @@
 
 import useSWR from "swr";
 import { Button } from "@durhack/web-components/ui/button";
+import { Checkbox } from "@durhack/web-components/ui/checkbox";
 import React, { use, useEffect } from "react";
 import { useToast } from "@durhack/web-components/ui/use-toast"
 
@@ -19,82 +20,19 @@ type Flags = {
     [T in FlagName]?: boolean | undefined;
 }
 
-const flagNames = ["attendance", "mlhCodeOfConduct", "mlhPolicies", "mlhMarketing"] as const;
-type FlagName = typeof flagNames[number];
+const defaultFlags = {
+    attendance: false,
+    mlhCodeOfConduct: false,
+    mlhPolicies: false,
+    mlhMarketing: false
+};
 
-type Flag = {
-    name: FlagName;
-    userId: string;
-}
+type FlagName = keyof typeof defaultFlags;
 
-const profileListing = React.memo(function PeopleList({params}:{
+const ProfileListing = React.memo(function PeopleList({params}:{
     params: {userId: string}
 }) {
     const { toast } = useToast()
-
-    const [profileData, setProfileData] = React.useState<UserProfile | null>(null);
-    const [flagData, setFlagData] = React.useState<Flags | null>(null);
-
-    async function toggleAttendance(){
-        try{
-            const allFlags = await fetch(`${siteConfig.apiUrl}/profile/${params.userId}/flags`);
-            var attendanceStatus = false;
-            
-            if(!allFlags.ok){
-                throw("Error")
-            }
-
-            attendanceStatus = (await allFlags.json()).includes("attendance");
-            
-            const response = await fetch(`${siteConfig.apiUrl}/profile/${params.userId}/flags`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    userFlags:{
-                        "attendance": !attendanceStatus
-                    }
-                })
-            })
-
-            if(!response.ok){
-                throw("Error")
-            }
-
-            setFlagData({
-                ...flagData,
-                attendance: !flagData!.attendance
-            } as Flags);
-
-            toast({
-                description: "Sucecssfully toggled attendance!",
-                variant: "success"
-            })
-        }catch(error){
-            toast({
-                description: "Something went wrong.",
-                variant: "destructive"
-            })
-            return 
-        }
-    }
-
-    function processFlags(flagResponse:[]){
-        const dummyFlags:Flags = Object.fromEntries(flagNames.map(flagName => [flagName, false])) as Flags;
-        
-        for (const flag of flagResponse) {
-            dummyFlags[flag as FlagName] = true;
-        }
-
-        return dummyFlags
-    }
-
-    const AttendanceButton=()=>(
-        <div className="flex justify-center">
-            <Button onClick={toggleAttendance} className="text-center">Toggle attendance</Button>
-        </div>
-    );
 
     const fetcher = (url: string) => fetch(url, {
         headers: {
@@ -108,15 +46,27 @@ const profileListing = React.memo(function PeopleList({params}:{
         }
     });
 
-    const { data: swrProfileData, error: profError, isLoading: profIsLoading } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}`, fetcher);
-    const { data: swrFlagData, error: flagError, isLoading: flagIsLoading } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}/flags`, fetcher);
-
-    useEffect(() => {
-        if (swrProfileData && swrFlagData) {
-            setProfileData(swrProfileData);
-            setFlagData(processFlags(swrFlagData));
+    const flagsFetcher = (url: string) => fetch(url, {
+        headers: {
+            'Accept': 'application/json'
         }
-    }, [swrProfileData, swrFlagData]);
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        return response.json();
+    }).then((json:string[]) => {
+        const dummyFlags = Object.assign({}, defaultFlags);
+        const flagResponse = json;
+
+        for (const flag of flagResponse) {
+            dummyFlags[flag as FlagName] = true;
+        }
+        return dummyFlags
+    });
+
+    const { data: swrProfileData, error: profError, isLoading: profIsLoading } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}`, fetcher);
+    const { data: swrFlagData, error: flagError, isLoading: flagIsLoading } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}/flags`, flagsFetcher);
 
     if(profError || flagError){
         return <div>Failed to load profile data.</div>
@@ -126,6 +76,40 @@ const profileListing = React.memo(function PeopleList({params}:{
         return <div>Loading profile data...</div>
     }
 
+    const handleCheckbox = (checked:boolean) => {
+        setAttendance(checked)
+    };
+
+    async function setAttendance(setValue:boolean){
+        try{
+            const response = await fetch(`${siteConfig.apiUrl}/profile/${params.userId}/flags`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    userFlags:{
+                        "attendance": setValue
+                    }
+                })
+            })
+            if(!response.ok){
+                throw("Error")
+            }
+
+            toast({
+                description: "Successfully toggled attendance!",
+                variant: "success"
+            })
+        }catch(error){
+            toast({
+                description: "Something went wrong.",
+                variant: "destructive"
+            })
+            return 
+        }
+    }
+
     return (
         <main className="flex justify-center">
             
@@ -133,21 +117,23 @@ const profileListing = React.memo(function PeopleList({params}:{
                 <div className="grid space-y-6 my-5">
 
                     <div className="grid grid-rows-2 grid-flow-col flex justify-center">
-                        <p className="lg:text-4xl md:text-2xl break-word"><strong>User #{params.userId}</strong></p>
-                        <p><strong>Attendance: </strong>{String(flagData?.attendance).toUpperCase()}</p>
+                        <p className="lg:text-4xl md:text-2xl break-word"><b>User #{params.userId}</b></p>
+                        <div className="flex items-center">
+                            <p><b>Attendance:</b></p> 
+                            <Checkbox className="ml-2" defaultChecked={swrFlagData?.attendance ? true : false} 
+                            onCheckedChange={handleCheckbox}> </Checkbox>
+                        </div>
                     </div>
 
                     <div className="ml-8 justify-center break-all">
                         <p><b>Role: </b>Hacker</p>
-                        <p className="mt-3"><b>University:</b> {profileData?.university} </p>
-                        <p><b>Graduation year:</b> {profileData?.gradYear} </p>
-                        <p><b>Level of study:</b> {profileData?.levelOfStudy} </p>
-                        <p className="mt-3"><b>Age:</b> {profileData?.age} </p>
-                        <p><b>Country:</b> {profileData?.country} </p>
-                        <p className="mt-3">Todo: keycloak attributes</p>
+                        <p className="mt-3"><b>University:</b> {swrProfileData?.university} </p>
+                        <p><b>Graduation year:</b> {swrProfileData?.gradYear} </p>
+                        <p><b>Level of study:</b> {swrProfileData?.levelOfStudy} </p>
+                        <p className="mt-3"><b>Age:</b> {swrProfileData?.age} </p>
+                        <p><b>Country:</b> {swrProfileData?.country} </p>
+                        <p className="mt-3">Todo: keyclock attributes</p>
                     </div>
-
-                    <AttendanceButton/>
                 </div>
             </div>
             
@@ -155,4 +141,4 @@ const profileListing = React.memo(function PeopleList({params}:{
     );
 });
 
-export default profileListing;
+export default ProfileListing;
