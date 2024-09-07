@@ -65,7 +65,7 @@ const ProfileListing = React.memo(function PeopleList({params}:{
     });
 
     const { data: swrProfileData, error: profError, isLoading: profIsLoading } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}`, fetcher);
-    const { data: swrFlagData, error: flagError, isLoading: flagIsLoading } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}/flags`, flagsFetcher);
+    const { data: swrFlagData, error: flagError, isLoading: flagIsLoading } = useSWR(`${siteConfig.apiUrl}/profile/flags/${params.userId}`, flagsFetcher);
 
     if(profError || flagError){
         return <div>Failed to load profile data.</div>
@@ -81,7 +81,7 @@ const ProfileListing = React.memo(function PeopleList({params}:{
 
     async function setAttendance(setValue:boolean){
         try{
-            const response = await fetch(`${siteConfig.apiUrl}/profile/${params.userId}/flags`, {
+            const response = await fetch(`${siteConfig.apiUrl}/profile/flags/${params.userId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
