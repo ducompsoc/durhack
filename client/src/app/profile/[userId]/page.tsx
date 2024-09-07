@@ -1,7 +1,6 @@
 "use client";
 
 import useSWR from "swr";
-import { Button } from "@durhack/web-components/ui/button";
 import { Checkbox } from "@durhack/web-components/ui/checkbox";
 import React, { use, useEffect } from "react";
 import { useToast } from "@durhack/web-components/ui/use-toast"
@@ -103,7 +102,7 @@ const ProfileListing = React.memo(function PeopleList({params}:{
             })
         }catch(error){
             toast({
-                description: String(error),
+                description: "Something went wrong.",
                 variant: "destructive"
             })
             return 

@@ -10,6 +10,7 @@ import { prisma } from "@/database"
 import { methodNotAllowed } from "@/middleware/method-not-allowed"
 
 export const profileRoutesApp = new App()
+export const flagRoutesApp = new App()
 
 const userFlagSchema = z.object({
   userFlags: z.object({}).catchall(z.boolean())
@@ -18,6 +19,7 @@ const userFlagSchema = z.object({
 const legalFlagNames = new Set(["attendance", "mlhCodeOfConduct", "mlhPolicies", "mlhMarketing"])
 
 profileRoutesApp.use(json());
+flagRoutesApp.use(json());
 
 profileRoutesApp
   .route("/:user_id")
@@ -30,10 +32,13 @@ profileRoutesApp
         userId: userId
       }
     })
+    if(userInfo == null)
+      throw new createHttpError.NotFound
     res.status(200).json(userInfo)
   })
 
-  .route("/flags")
+flagRoutesApp
+  .route("/:user_id")
   .all(methodNotAllowed(["OPTIONS","GET","PATCH"]))
   .options(cors())
   .patch(async(req,res):Promise<void>=>{
@@ -82,7 +87,7 @@ profileRoutesApp
     await prisma.$transaction(operations)
     res.sendStatus(200)
   })
-  
+
   .get(async(req,res):Promise<void>=>{
       const userId = req.params.user_id as string;
       const specificUserFlags = await prisma.user.findUnique({
