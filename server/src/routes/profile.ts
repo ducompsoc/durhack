@@ -1,6 +1,4 @@
-//WIP
 import { App } from "@tinyhttp/app";
-import { Prisma } from "@prisma/client"
 import { cors } from "corstisol"
 import { json } from "milliparsec"
 import { ZodError, set, z } from "zod"
@@ -9,19 +7,16 @@ import createHttpError from "http-errors";
 import { prisma } from "@/database"
 import { methodNotAllowed } from "@/middleware/method-not-allowed"
 
-export const profileRoutesApp = new App()
-export const flagRoutesApp = new App()
-
 const userFlagSchema = z.object({
   userFlags: z.object({}).catchall(z.boolean())
 })
 
 const legalFlagNames = new Set(["attendance", "mlhCodeOfConduct", "mlhPolicies", "mlhMarketing"])
 
-profileRoutesApp.use(json());
-flagRoutesApp.use(json());
+export const profileApp = new App();
+profileApp.use(json());
 
-profileRoutesApp
+profileApp
   .route("/:user_id")
   .all(methodNotAllowed(["OPTIONS", "GET"]))
   .options(cors())
@@ -37,8 +32,8 @@ profileRoutesApp
     res.status(200).json(userInfo)
   })
 
-flagRoutesApp
-  .route("/:user_id")
+profileApp
+  .route("/:user_id/flags")
   .all(methodNotAllowed(["OPTIONS","GET","PATCH"]))
   .options(cors())
   .patch(async(req,res):Promise<void>=>{

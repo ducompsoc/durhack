@@ -1,9 +1,9 @@
 "use client";
 
 import useSWR from "swr";
-import { Checkbox } from "@durhack/web-components/ui/checkbox";
-import React, { use, useEffect } from "react";
+import React from "react";
 import { useToast } from "@durhack/web-components/ui/use-toast"
+import { Checkbox } from "@durhack/web-components/ui/checkbox";
 
 import { siteConfig } from "@/config/site";
 
@@ -65,7 +65,7 @@ const ProfileListing = React.memo(function PeopleList({params}:{
     });
 
     const { data: swrProfileData, error: profError, isLoading: profIsLoading } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}`, fetcher);
-    const { data: swrFlagData, error: flagError, isLoading: flagIsLoading } = useSWR(`${siteConfig.apiUrl}/profile/flags/${params.userId}`, flagsFetcher);
+    const { data: swrFlagData, error: flagError, isLoading: flagIsLoading } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}/flags`, flagsFetcher);
 
     if(profError || flagError){
         return <div>Failed to load profile data.</div>
@@ -81,7 +81,7 @@ const ProfileListing = React.memo(function PeopleList({params}:{
 
     async function setAttendance(setValue:boolean){
         try{
-            const response = await fetch(`${siteConfig.apiUrl}/profile/flags/${params.userId}`, {
+            const response = await fetch(`${siteConfig.apiUrl}/profile/${params.userId}/flags`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
