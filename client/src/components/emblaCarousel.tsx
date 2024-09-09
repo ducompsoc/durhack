@@ -9,7 +9,6 @@ import {
   NextButton,
   usePrevNextButtons,
 } from './emblaCarouselArrowButtons';
-import "@/styles/emblaCarousel.css";
 
 type PropType = {
   options?: EmblaOptionsType;
@@ -51,24 +50,25 @@ export const EmblaCarousel: React.FC<PropType> = ({ options }) => {
     usePrevNextButtons(emblaApi, onNavButtonClick);
 
   return (
-    <section className="embla border-4 content-center" dir="rtl">
-      <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container flex items-center">
+    <section className="max-w-4xl mx-auto" dir="rtl">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex items-center flex-col mt-[-1rem] h-[calc(1rem+19rem)]">
           {images.map((image, index) => (
-            <div className="embla__slide w-2/6" key={index}>
+            <div className="relative w-full h-[300px] py-30">
               <img
                 src={image.src}
                 alt={image.alt}
+                className="w-full h-full object-contain"
               />
             </div>
           ))}
         </div>
       </div>
 
-      <div className="embla__controls">
-        <div className="embla__buttons">
-            <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-            <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+      <div className="flex justify-center mt-7">
+        <div className="flex gap-2">
+          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
         </div>
       </div>
     </section>

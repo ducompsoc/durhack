@@ -12,6 +12,18 @@ export default function Gallery() {
         </h1>
 
         <div className="w-1/5 h-0.5 mx-auto bg-gradient-to-r from-transparent via-white to-transparent my-2"></div>
+        
+        <div className="text-center text-lg text-xl p-4">
+                Word Word Word Word Word Word Word Word Word Word Word Word  Word Word Word Word  Word Word Word Word 
+                Word Word Word Word  Word Word Word Word Word Word Word Word Word Word Word Word 
+                <br/>
+                <br/>
+                Word but cool this time
+                <br/>
+                &nbsp;
+            </div>
+
+        
 
         <EmblaCarousel options={OPTIONS} />
     </div>
