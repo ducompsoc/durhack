@@ -17,11 +17,8 @@ export default function Splash() {
     const springProgress = useSpring(scrollYProgress, { stiffness: 400, damping: 90 });
 
     const cloud1X = useTransform(springProgress, [0, 1], ["0rem", "100rem"]);
-    const cloud1Y = useTransform(scrollYProgress, [0, 1], ["0rem", "0rem"]);
     const cloud2X = useTransform(springProgress, [0, 1], ["0rem", "-100rem"]);
-    const cloud2Y = useTransform(scrollYProgress, [0, 1], ["0rem", "0rem"]);
     const cloud3X = useTransform(springProgress, [0, 1], ["0rem", "-150rem"]);
-    const cloud3Y = useTransform(scrollYProgress, [0, 1], ["0rem", "0rem"]);
 
     return (
         <div ref={ref} className="overflow-hidden relative">
@@ -33,16 +30,16 @@ export default function Splash() {
             <div id="inner-ring" className="rounded-[50%] absolute h-[56rem] w-[56rem] top-[-16rem] z-10"></div>
             <img src="/assets/icons/moon.png" alt="splash" className="h-[32rem] w-[32rem] top-[-4rem] mx-auto rounded-[50%] transition-all duration-500 hover:transition-all hover:duration-300 absolute z-20" id="moon"/>
         
-            <motion.div id="cloud-1" className="absolute right-[-2rem] top-[16rem] z-30 pointer-events-none" style={{ x: cloud1X, y: cloud1Y }}>
-                <img src="/assets/icons/cloud-1.png" alt="cloud" className="" />
+            <motion.div id="cloud-1" className="absolute right-[-6rem] xl:right-[-2rem] top-[16rem] z-30 pointer-events-none" style={{ x: cloud1X }}>
+                <img src="/assets/icons/cloud-1.png" alt="cloud" className="h-[6rem] xl:h-64" />
             </motion.div>
 
-            <motion.div id="cloud-2" className="absolute left-[-24rem] top-[13rem] z-30 pointer-events-none" style={{ x: cloud2X, y: cloud2Y }}>
-                <img src="/assets/icons/cloud-2.png" alt="cloud" className="" />
+            <motion.div id="cloud-2" className="absolute left-[-29rem] xl:left-[-24rem] top-[13rem] z-30 pointer-events-none" style={{ x: cloud2X }}>
+                <img src="/assets/icons/cloud-2.png" alt="cloud" className="h-[15rem] xl:h-[25rem]" />
             </motion.div>
 
-            <motion.div id="cloud-3" className="absolute left-[-9rem] top-[23rem] z-30 pointer-events-none" style={{ x: cloud3X, y: cloud3Y }}>
-                <img src="/assets/icons/cloud-3.png" alt="cloud" className="" />
+            <motion.div id="cloud-3" className="absolute left-[-19rem] xl:left-[-9rem] top-[23rem] z-30 pointer-events-none" style={{ x: cloud3X }}>
+                <img src="/assets/icons/cloud-3.png" alt="cloud" className="h-[11rem] xl:h-[21rem]" />
             </motion.div>
 
             <div className="relative">
