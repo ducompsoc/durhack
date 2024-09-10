@@ -110,7 +110,7 @@ export function RegisterInterestForm(props: React.HTMLAttributes<HTMLFormElement
           )}
         />
         <FormItem>
-          <FormLabel className="hidden lg:inline-block"><br/></FormLabel>
+          <FormLabel className="hidden lg:inline-block">&nbsp;</FormLabel>
           <FormControl>
             <Button variant="default" className="w-full border border-input" type="submit">
               Register Interest
