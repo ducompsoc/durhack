@@ -23,7 +23,7 @@ export default function Splash() {
     return (
         <div ref={ref} className="overflow-hidden relative">
             <div id="stars" className="absolute h-full w-full z-20">
-                <img src="/assets/icons/stars.png" className="h-full w-full" />
+                <img src="/assets/icons/stars.png" className="h-full max-w-[none] xl:w-full absolute" />
             </div>
 
             <div id="outer-ring" className="rounded-[50%] absolute h-[94rem] w-[94rem] top-[-55rem] md:top-[-35rem] z-10"></div>
