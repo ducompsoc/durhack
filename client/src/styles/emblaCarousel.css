@@ -1,5 +1,5 @@
 .embla {
-  max-width: 48rem;
+  max-width: 100%;
   margin: auto;
   --slide-height: 19rem;
   --slide-spacing: 1rem;
@@ -19,7 +19,8 @@
 }
 
 .embla__slide {
-  transform: translate3d(0, 0, 0);
+  width: 100%;
+  height: auto;
   flex: 0 0 var(--slide-size);
   min-height: 0;
   padding-top: var(--slide-spacing);

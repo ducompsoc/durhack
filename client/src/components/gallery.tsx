@@ -6,7 +6,7 @@ const OPTIONS: EmblaOptionsType = { axis: "y", direction: "rtl", loop: true };
 export default function Gallery() {
     
   return (
-    <div className="text-center px-28">
+    <div className="w-screen text-center">
         <h1 className="text-3xl font-bold">
             <span>Gallary</span>
         </h1>
@@ -24,8 +24,10 @@ export default function Gallery() {
             </div>
 
         
-
-        <EmblaCarousel options={OPTIONS} />
+            <div className=" flex item-start">
+              <EmblaCarousel options={OPTIONS} />
+            </div>
+        
     </div>
   
   )
