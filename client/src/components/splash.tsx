@@ -50,7 +50,7 @@ export default function Splash() {
                     <h2 id="title" className={cn(audiowide.className, "text-8xl text-center relative z-20")}>DURHACK 2024</h2>
                     <h4 id="subtitle" className={cn(audiowide.className, "text-6xl text-center relative z-20")}>2-3 NOVEMBER</h4>
                 </div>
-                <div className="flex justify-center py-32">
+                <div className="flex justify-center pt-32 pb-64">
                     <motion.a id="book" 
                         className="px-16 py-6 rounded-[4.8rem] text-4xl text-center backdrop-blur-lg bg-white bg-opacity-40 hover:scale-110 z-50 transition-all cursor-pointer">
                         BOOK TICKETS
