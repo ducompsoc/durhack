@@ -1,5 +1,4 @@
 import * as React from "react";
-import { set } from "zod";
 
 export type Profile = {
     firstNames: string
@@ -10,13 +9,14 @@ export type Profile = {
     phoneNumber: string
     email: string
     school: string
-    graduationYear: string
+    graduationYear: string | number
     levelOfStudy: string
     countryOfResidence: string
     applicationStatus: string
 }
 
 export default function useUser() {
+    // Should be fetched from the server
     const [profile, setProfile] = React.useState<Profile>({
         firstNames: "Will",
         lastNames: "Woodward",
@@ -34,7 +34,8 @@ export default function useUser() {
 
     async function updateProfile(newProfile: Partial<Profile>) {
         const updatedProfile: Profile = {...profile, ...newProfile}
-        setProfile(updatedProfile)
+
+        // POST to server
     }
 
     return { profile, updateProfile }

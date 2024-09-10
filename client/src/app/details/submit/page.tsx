@@ -2,12 +2,11 @@
 
 import * as React from "react";
 import { BackgroundContext } from "@/app/details/layout";
-import { set, z } from "zod";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import "@/lib/zod-phone-extension"
 
-import type { Profile } from "@/lib/useUser";
 import { Checkbox } from "@durhack/web-components/ui/checkbox";
 import Link from "next/link";
 import {
@@ -20,7 +19,6 @@ import {
     FormDescription,
 } from "@durhack/web-components/ui/form";
 import { Button } from "@durhack/web-components/ui/button";
-import useUser from "@/lib/useUser";
 import { useRouter } from 'next/navigation';
 
 type SubmitFormFields = {
@@ -50,12 +48,9 @@ export default function SubmitPage() {
     });
 
     async function onSubmit(values: z.infer<typeof submitFormSchema>): Promise<void> {
-        console.log(values)
         router.push("/details")
         setIsFinalSubmitHovering(false)
     }
-
-    const { profile } = useUser()
     
     return (
         <Form {...form} >

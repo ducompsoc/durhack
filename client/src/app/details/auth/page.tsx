@@ -6,19 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import "@/lib/zod-phone-extension"
 
-import type { Profile } from "@/lib/useUser";
-import { Input } from "@durhack/web-components/ui/input";
-import {
-    Form,
-    FormField,
-    FormItem,
-    FormControl,
-    FormLabel,
-    FormMessage,
-} from "@durhack/web-components/ui/form";
+import { Form } from "@durhack/web-components/ui/form";
 import { Button } from "@durhack/web-components/ui/button";
 import { LinkBox } from "../linkbox";
 import { useRouter } from 'next/navigation';
+import useUser from "@/lib/useUser";
 
 type PersonalFormFields = {
     firstNames: string

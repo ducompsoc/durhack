@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import "@/lib/zod-phone-extension"
 
-import type { Profile } from "@/lib/useUser";
 import { Input } from "@durhack/web-components/ui/input";
 import {
     Form,
@@ -57,9 +56,8 @@ export default function PersonalPage() {
     const { profile, updateProfile } = useUser()
 
     async function onSubmit(values: z.infer<typeof personalFormSchema>): Promise<void> {
-        console.log(values)
-        router.push('/details/contact')
         updateProfile(values)
+        router.push('/details/contact')
     }
     
     return (

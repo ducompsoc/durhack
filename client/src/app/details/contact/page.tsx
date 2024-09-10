@@ -6,7 +6,6 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import type { Profile } from "@/lib/useUser";
 import { Input } from "@durhack/web-components/ui/input";
 import {
     Form,
@@ -34,6 +33,7 @@ const contactFormSchema = z.object({
 
 export default function ContactPage() {
     const router = useRouter()
+    const { profile, updateProfile } = useUser()
 
     const form = useForm<ContactFormFields, any, z.infer<typeof contactFormSchema>>({
         resolver: zodResolver(contactFormSchema),
@@ -44,11 +44,9 @@ export default function ContactPage() {
     });
 
     async function onSubmit(values: z.infer<typeof contactFormSchema>): Promise<void> {
-        console.log(values)
+        updateProfile(values)
         router.push("/details/education")
     }
-
-    const { profile } = useUser()
     
     return (
         <Form {...form} >

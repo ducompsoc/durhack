@@ -7,7 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import "@/lib/zod-iso3-extension"
 
-import type { Profile } from "@/lib/useUser";
 import { Input } from "@durhack/web-components/ui/input";
 import {
     Form,
@@ -79,6 +78,7 @@ export default function EducationPage() {
     const [countryOptions, setCountryOptions] = React.useState<countryOptionsType>([])
 
     const router = useRouter()
+    const { profile, updateProfile } = useUser()
 
     React.useEffect(() => {
         async function fetchSchoolOptions() {
@@ -109,11 +109,9 @@ export default function EducationPage() {
     });
 
     async function onSubmit(values: z.infer<typeof educationFormSchema>): Promise<void> {
-        console.log(values)
+        updateProfile(values)
         router.push("/details/auth")
     }
-
-    const { profile } = useUser()
     
     return (
         <Form {...form} >
@@ -155,21 +153,6 @@ export default function EducationPage() {
                             <FormLabel>Graduation Year</FormLabel>
                             <FormControl>
                                 <Input type="number" placeholder={profile.graduationYear} {...field} />
-                            </FormControl>
-                            <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                </div>
-                <div className="mb-4">
-                    <FormField
-                        control={form.control}
-                        name="graduationYear"
-                        render={({ field }) => (
-                            <FormItem>
-                            <FormLabel>Graduation Year</FormLabel>
-                            <FormControl>
-                                <Input type="number" inputMode="numeric" placeholder={profile.graduationYear} {...field} />
                             </FormControl>
                             <FormMessage />
                             </FormItem>
