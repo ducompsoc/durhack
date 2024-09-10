@@ -26,9 +26,9 @@ export default function Splash() {
                 <img src="/assets/icons/stars.png" className="h-full w-full" />
             </div>
 
-            <div id="outer-ring" className="rounded-[50%] absolute h-[94rem] w-[94rem] top-[-35rem] z-10"></div>
-            <div id="inner-ring" className="rounded-[50%] absolute h-[56rem] w-[56rem] top-[-16rem] z-10"></div>
-            <img src="/assets/icons/moon.png" alt="splash" className="h-[32rem] w-[32rem] top-[-4rem] mx-auto rounded-[50%] transition-all duration-500 hover:transition-all hover:duration-300 absolute z-20" id="moon"/>
+            <div id="outer-ring" className="rounded-[50%] absolute h-[94rem] w-[94rem] top-[-55rem] md:top-[-35rem] z-10"></div>
+            <div id="inner-ring" className="rounded-[50%] absolute h-[56rem] w-[56rem] top-[-36rem] md:top-[-16rem] z-10"></div>
+            <img src="/assets/icons/moon.png" alt="splash" className="h-[32rem] w-[32rem] top-[-24rem] md:top-[-4rem] mx-auto rounded-[50%] transition-all duration-500 hover:transition-all hover:duration-300 absolute z-20 max-w-[none]" id="moon"/>
         
             <motion.div id="cloud-1" className="absolute right-[-6rem] xl:right-[-2rem] top-[16rem] z-30 pointer-events-none" style={{ x: cloud1X }}>
                 <img src="/assets/icons/cloud-1.png" alt="cloud" className="h-[6rem] xl:h-64" />
@@ -48,10 +48,10 @@ export default function Splash() {
                     <h4 id="subtitle" className={cn(audiowide.className, "text-6xl text-center relative z-20")}>2-3 NOVEMBER</h4>
                 </div>
                 <div className="flex justify-center pt-32 pb-64">
-                    <motion.a id="book" 
+                    <a id="book" 
                         className="px-16 py-6 rounded-[4.8rem] text-4xl text-center backdrop-blur-lg bg-white bg-opacity-40 hover:scale-110 z-50 transition-all cursor-pointer">
                         BOOK TICKETS
-                    </motion.a>
+                    </a>
                 </div>
             </div>
             <div>
