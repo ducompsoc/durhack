@@ -15,7 +15,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "countries-list": "^3.1.0",
-    "libphonenumber-js": "^1.11.4",
+    "libphonenumber-js": "^1.11.8",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
