@@ -19,3 +19,13 @@ nav {
         cursor: pointer;
     }
 }
+
+#mlh-trust-badge {
+    display: none;
+}
+
+@media (min-width: 1120px) {
+    #mlh-trust-badge {
+        display: block;
+    }
+}

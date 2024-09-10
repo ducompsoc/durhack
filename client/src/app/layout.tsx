@@ -34,7 +34,7 @@ export default function RootLayout({
     <body className={cn(space_grotesk.className, "dark antialiased")}>
       <div className="fixed top-0 overflow-visible w-[100%] z-50">
         <a id="mlh-trust-badge"
-          style={{display: "block", maxWidth: "100px", minWidth: "60px", position: "absolute", right: "50px", top: "0", width: "10%", zIndex: "10000"}}
+          style={{maxWidth: "100px", minWidth: "60px", position: "absolute", right: "50px", top: "0", width: "10%", zIndex: "10000"}}
           href="https://mlh.io/eu?utm_source=eu-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white"
           target="_blank">
           <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg"
