@@ -1,8 +1,12 @@
 "use client"
 
+import * as React from "react";
 import Link from 'next/link';
+import { SidebarContext } from "@/app/details/layout";
 
 export default function Sidebar() {
+    const { isOpen } = React.useContext(SidebarContext);
+
     interface menuItem {
         id: number,
         name: string,
@@ -19,7 +23,7 @@ export default function Sidebar() {
     ];
 
     return (
-        <div className="px-2 py-2 w-full md:w-64 absolute bg-white bg-opacity-5 h-[calc(100%-8rem)]">
+        <div className={`px-2 py-2 md:w-64 absolute bg-white bg-opacity-5 h-[calc(100%-8rem)] ${isOpen ? "w-full" : "hidden"}`}>
             <div className="flex flex-col">
             {
                 menuItems.map((item) => {
