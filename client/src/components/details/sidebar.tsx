@@ -19,13 +19,13 @@ export default function Sidebar() {
     ];
 
     return (
-        <div className="px-2 py-2 w-64 absolute bg-white bg-opacity-5 h-[calc(100%-8rem)]">
+        <div className="px-2 py-2 w-full md:w-64 absolute bg-white bg-opacity-5 h-[calc(100%-8rem)]">
             <div className="flex flex-col">
             {
                 menuItems.map((item) => {
                     return (
                         <Link href={`/details/${item.link}`} className="py-1 mt-1 px-2 border-x-2 rounded-lg hover:border-white  bg-white bg-opacity-5 hover:bg-opacity-15 hover:cursor-pointer transition-all duration-300" key={item.id}>
-                            <p className="text-xl font-medium">{ item.name }</p>
+                            <p className="text-xl font-medium text-center md:text-left">{ item.name }</p>
                         </Link>
                     )
                 })

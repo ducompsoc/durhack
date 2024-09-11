@@ -8,7 +8,6 @@ import "@/lib/zod-phone-extension"
 
 import { Form } from "@durhack/web-components/ui/form";
 import { Button } from "@durhack/web-components/ui/button";
-import { LinkBox } from "../../../components/details/linkbox";
 import { useRouter } from 'next/navigation';
 import useUser from "@/lib/useUser";
 

@@ -66,61 +66,69 @@ export default function PersonalPage() {
                 <h2 className="text-2xl">
                     Personal Details
                 </h2>
-                <div className="columns-2 mb-4">
-                    <FormField
-                        control={form.control}
-                        name="firstNames"
-                        render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>First name(s)</FormLabel>
-                            <FormControl>
-                            <Input placeholder={profile.firstNames} {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="lastNames"
-                        render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Last name(s)</FormLabel>
-                            <FormControl>
-                            <Input placeholder={profile.lastNames} {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                        )}
-                    />
+                <div className="lg:columns-2">
+                    <div className="mb-4">
+                        <FormField
+                            control={form.control}
+                            name="firstNames"
+                            render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>First name(s)</FormLabel>
+                                <FormControl>
+                                <Input placeholder={profile.firstNames} {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                            )}
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <FormField
+                            control={form.control}
+                            name="lastNames"
+                            render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Last name(s)</FormLabel>
+                                <FormControl>
+                                <Input placeholder={profile.lastNames} {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                            )}
+                        />
+                    </div>
                 </div>
-                <div className="columns-2 mb-4">
-                    <FormField
-                        control={form.control}
-                        name="preferredName"
-                        render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Preffered name</FormLabel>
-                            <FormControl>
-                            <Input placeholder={profile.preferredName} {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="pronouns"
-                        render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Pronouns</FormLabel>
-                            <FormControl>
-                            <Input placeholder={profile.pronouns} {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                        )}
-                    />
+                <div className="lg:columns-2">
+                    <div className="mb-4">
+                        <FormField
+                            control={form.control}
+                            name="preferredName"
+                            render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Preffered name</FormLabel>
+                                <FormControl>
+                                <Input placeholder={profile.preferredName} {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                            )}
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <FormField
+                            control={form.control}
+                            name="pronouns"
+                            render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Pronouns</FormLabel>
+                                <FormControl>
+                                <Input placeholder={profile.pronouns} {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                            )}
+                        />
+                    </div>
                 </div>
                 <div className="mb-4">
                     <FormField
@@ -128,7 +136,7 @@ export default function PersonalPage() {
                         name="age"
                         render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Age</FormLabel>
+                            <FormLabel>Age as of 2nd November 2024</FormLabel>
                             <FormControl>
                             <Input placeholder={profile.age} {...field} />
                             </FormControl>
