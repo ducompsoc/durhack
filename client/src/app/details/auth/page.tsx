@@ -13,36 +13,21 @@ import { useRouter } from 'next/navigation';
 import useUser from "@/lib/useUser";
 
 type PersonalFormFields = {
-    firstNames: string
-    lastNames: string
-    preferredName: string
-    pronouns: string
-    age: string
+    authenticated: boolean,
 }
 
 const personalFormSchema = z.object({
-    firstNames: z.string().trim().min(1).max(256),
-    lastNames: z.string().trim().min(1).max(256),
-    preferredName: z.string().trim().min(1).max(256),
-    pronouns: z.string().trim().min(1).max(256),
-    age: z.coerce.number({ invalid_type_error: "Please provide a valid age." })
-      .positive("Please provide a valid age.")
-      .min(16, { message: "Age must be >= 16" })
-      .max(256, { message: "Ain't no way you're that old." })
-      .int("Please provide your age rounded down to the nearest integer."),
+    authenticated: z.boolean(),
 });
 
 export default function AuthPage() {
     const router  = useRouter()
+    const { profile } = useUser();
 
     const form = useForm<PersonalFormFields, any, z.infer<typeof personalFormSchema>>({
         resolver: zodResolver(personalFormSchema),
         defaultValues: {
-            firstNames: "",
-            lastNames: "",
-            preferredName: "",
-            pronouns: "",
-            age: "",
+            authenticated: false,
         }
     });
 
@@ -58,7 +43,11 @@ export default function AuthPage() {
                     Authentication
                 </h2>
 
-                <LinkBox links={["Keycloak"]} />
+                <div className="bg-white bg-opacity-10 py-8 px-32 rounded-md mb-8 mt-2">
+                    <div className={`rounded-sm p-4 my-4 text-center hover:cursor-pointer ${profile.authenticated ? "bg-green-400 bg-opacity-90" : "bg-white bg-opacity-10"}`}>
+                        Keycloak
+                    </div>
+                </div>
 
                 <div className="mt-16">
                     <Button variant="default" className="mx-[45%] py-2 px-4 text-center rounded-sm text-white bg-white bg-opacity-15 hover:bg-green-500 hover:cursor-pointer hover:shadow-[0_0px_50px_0px_rgba(34,197,94,0.8)] transition-all" type="submit">

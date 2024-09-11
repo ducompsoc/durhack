@@ -13,6 +13,7 @@ export type Profile = {
     levelOfStudy: string
     countryOfResidence: string
     applicationStatus: string
+    authenticated: boolean
 }
 
 export default function useUser() {
@@ -30,6 +31,7 @@ export default function useUser() {
         levelOfStudy: "Level 3",
         countryOfResidence: "United Kingdom",
         applicationStatus: "Submitted",
+        authenticated: false,
     })
 
     async function updateProfile(newProfile: Partial<Profile>) {
