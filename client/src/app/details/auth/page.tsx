@@ -22,7 +22,7 @@ const personalFormSchema = z.object({
 
 export default function AuthPage() {
     const router  = useRouter()
-    const { profile } = useUser();
+    const { profile, updateProfile } = useUser();
 
     const form = useForm<PersonalFormFields, any, z.infer<typeof personalFormSchema>>({
         resolver: zodResolver(personalFormSchema),
@@ -32,7 +32,7 @@ export default function AuthPage() {
     });
 
     async function onSubmit(values: z.infer<typeof personalFormSchema>): Promise<void> {
-        console.log(values)
+        updateProfile(values)
         router.push("/details/submit")
     }
     

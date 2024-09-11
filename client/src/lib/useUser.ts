@@ -12,6 +12,9 @@ export type Profile = {
     graduationYear: string | number
     levelOfStudy: string
     countryOfResidence: string
+    mlhCodeOfConductAcceptance: boolean | 'indeterminate'
+    mlhPoliciesAcceptance: boolean | 'indeterminate'
+    mlhMarketingAcceptance: boolean | 'indeterminate'
     applicationStatus: string
     authenticated: boolean
 }
@@ -30,6 +33,9 @@ export default function useUser() {
         graduationYear: "2026",
         levelOfStudy: "Level 3",
         countryOfResidence: "United Kingdom",
+        mlhCodeOfConductAcceptance: false,
+        mlhPoliciesAcceptance: false,
+        mlhMarketingAcceptance: false,
         applicationStatus: "Submitted",
         authenticated: false,
     })

@@ -20,6 +20,7 @@ import {
 } from "@durhack/web-components/ui/form";
 import { Button } from "@durhack/web-components/ui/button";
 import { useRouter } from 'next/navigation';
+import useUser from "@/lib/useUser";
 
 type SubmitFormFields = {
     mlhCodeOfConductAcceptance: boolean | 'indeterminate'
@@ -30,13 +31,14 @@ type SubmitFormFields = {
 const submitFormSchema = z.object({
     mlhCodeOfConductAcceptance: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
     mlhPoliciesAcceptance: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
-    mlhMarketingAcceptance: z.boolean(),
+    mlhMarketingAcceptance: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
 });
 
 export default function SubmitPage() {
     const { setIsFinalSubmitHovering } = React.useContext(BackgroundContext)
 
     const router = useRouter()
+    const { updateProfile } = useUser();
 
     const form = useForm<SubmitFormFields, any, z.infer<typeof submitFormSchema>>({
         resolver: zodResolver(submitFormSchema),
@@ -48,6 +50,7 @@ export default function SubmitPage() {
     });
 
     async function onSubmit(values: z.infer<typeof submitFormSchema>): Promise<void> {
+        updateProfile(values)
         router.push("/details")
         setIsFinalSubmitHovering(false)
     }
@@ -144,6 +147,7 @@ export default function SubmitPage() {
                                     className="mt-[0.2em] lg:mt-0"
                                     checked={field.value}
                                     onCheckedChange={field.onChange}
+                                    required
                                 />
                                 </FormControl>
                                 <div className="space-y-1 leading-none">
