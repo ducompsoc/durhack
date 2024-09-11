@@ -31,7 +31,7 @@ export default function RootLayout({
               <div className="min-h-[100vh] relative z-10">
                 <Header />
                 <Sidebar />
-                  <div className="ml-64 py-16 pl-16 pr-64">
+                  <div className="md:ml-64 py-16 pl-16 pr-16 2xl:pr-64">
                       {children}
                   </div>
               </div>

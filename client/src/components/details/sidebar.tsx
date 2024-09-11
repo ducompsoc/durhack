@@ -23,7 +23,7 @@ export default function Sidebar() {
     ];
 
     return (
-        <div className={`px-2 py-2 md:w-64 absolute bg-white bg-opacity-5 h-[calc(100%-8rem)] ${isOpen ? "w-full" : "hidden"}`}>
+        <div className={`px-2 py-2 md:w-64 md:block absolute bg-white bg-opacity-5 h-[calc(100%-8rem)] ${isOpen ? "w-full" : "hidden"}`}>
             <div className="flex flex-col">
             {
                 menuItems.map((item) => {
