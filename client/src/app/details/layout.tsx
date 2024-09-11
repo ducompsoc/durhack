@@ -12,7 +12,7 @@ export const BackgroundContext = React.createContext({
 
 export const SidebarContext = React.createContext({
   isOpen: false,
-  setIsOpen: (open: boolean) => {}
+  toggleSidebar: () => {}
 });
 
 export default function RootLayout({
@@ -23,15 +23,19 @@ export default function RootLayout({
     const [isFinalSubmitHovering, setIsFinalSubmitHovering] = React.useState(false);
     const [isOpen, setIsOpen] = React.useState(false);
 
+    function toggleSidebar() {
+      setIsOpen(prevOpen => !prevOpen);
+    }
+
     return (
       <BackgroundContext.Provider value={{ isFinalSubmitHovering, setIsFinalSubmitHovering}}>
-        <SidebarContext.Provider value={{ isOpen, setIsOpen}}>
+        <SidebarContext.Provider value={{ isOpen, toggleSidebar}}>
           <main className="min-h-[100vh] relative">
             <div className={`absolute top-0 bottom-0 left-0 right-0 h-full transition-all duration-1000 ease-in-out bg-gradient-to-t from-green-500/40 to-transparent to-50% z-0 ${isFinalSubmitHovering ? "opacity-100" : "opacity-0"}`}></div>
               <div className="min-h-[100vh] relative z-10">
                 <Header />
                 <Sidebar />
-                  <div className="md:ml-64 py-16 pl-16 pr-16 2xl:pr-64">
+                  <div className={`md:ml-64 py-16 pl-16 pr-16 2xl:pr-64 ${isOpen ? "hidden" : ""}`}>
                       {children}
                   </div>
               </div>
