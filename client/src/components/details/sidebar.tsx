@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { SidebarContext } from "@/app/details/layout";
 
 export default function Sidebar() {
-    const { isOpen } = React.useContext(SidebarContext);
+    const { isOpen, setIsOpen } = React.useContext(SidebarContext);
 
     interface menuItem {
         id: number,
@@ -28,7 +28,8 @@ export default function Sidebar() {
             {
                 menuItems.map((item) => {
                     return (
-                        <Link href={`/details/${item.link}`} className="py-1 mt-1 px-2 border-x-2 rounded-lg hover:border-white  bg-white bg-opacity-5 hover:bg-opacity-15 hover:cursor-pointer transition-all duration-300" key={item.id}>
+                        <Link href={`/details/${item.link}`} className="py-1 mt-1 px-2 border-x-2 rounded-lg hover:border-white  bg-white bg-opacity-5 hover:bg-opacity-15 hover:cursor-pointer transition-all duration-300" key={item.id}
+                        onClick={() => setIsOpen(false)}>
                             <p className="text-xl font-medium text-center md:text-left">{ item.name }</p>
                         </Link>
                     )
