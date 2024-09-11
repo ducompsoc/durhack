@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-export function Sidebar() {
+export default function Sidebar() {
     interface menuItem {
         id: number,
         name: string,

@@ -2,8 +2,8 @@
 
 import * as React from "react";
 
-import { Sidebar } from "@/app/details/sidebar";
-import Header from "@/app/details/header";
+import Sidebar from "@/components/details/sidebar";
+import Header from "@/components/details/header";
 
 export const BackgroundContext = React.createContext({
     isFinalSubmitHovering: false,
