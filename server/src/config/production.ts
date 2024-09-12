@@ -6,7 +6,7 @@ export default {
     cookie: {
       secure: true,
       sameSite: "strict",
-      domain: "durhack.com",
+      domain: ".durhack.com",
     },
   },
 } satisfies DeepPartial<ConfigIn>

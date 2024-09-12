@@ -24,6 +24,7 @@ export const sessionOptionsSchema = z.object({
 
 export const keycloakOptionsSchema = z.object({
   url: z.string().url(),
+  adminBaseUrl: z.string().url(),
   clientId: z.string(),
   clientSecret: z.string(),
   redirectUris: z.array(z.string()),

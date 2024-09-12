@@ -1,6 +1,5 @@
 import { Audiowide, Space_Grotesk } from "next/font/google"
 import { cn } from "@/lib/utils";
-import { RegisterInterestForm } from "./register-interest-form";
 
 const audiowide = Audiowide({ weight: "400",  subsets: ["latin"] });
 const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
@@ -28,9 +27,6 @@ export default function HomePage() {
             2<sup>nd</sup>-3<sup>rd</sup> November
           </h2>
         </div>
-      </section>
-      <section className="pt-3 lg:col-span-2">
-        <RegisterInterestForm className="grid grid-cols-1 lg:grid-cols-4 lg:gap-3" />
       </section>
     </main>
   );

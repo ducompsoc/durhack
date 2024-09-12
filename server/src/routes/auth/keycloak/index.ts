@@ -19,4 +19,9 @@ keycloakApp
   .get(keycloakHandlers.oauth2FlowCallback())
   .get(authHandlers.handleLoginSuccess())
 
+keycloakApp
+  .route("/logout")
+  .all(methodNotAllowed(["GET"]))
+  .get(keycloakHandlers.logout())
+
 export { keycloakApp }

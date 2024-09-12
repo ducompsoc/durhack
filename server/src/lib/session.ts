@@ -66,6 +66,8 @@ class PrismaSessionStore implements SessionStore {
 
 export type DurHackSessionRecord = Record<string, unknown> & {
   keycloakOAuth2FlowCodeVerifier?: string | undefined
+  userId?: string | undefined
+  redirectTo?: string | undefined
 }
 
 export const getSession = session<DurHackSessionRecord>({

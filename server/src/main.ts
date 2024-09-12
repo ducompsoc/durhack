@@ -13,6 +13,7 @@ app
   .use(
     cors({
       origin: frontendHostname,
+      credentials: true,
     }),
   )
   .use(routesApp)

@@ -1,14 +1,13 @@
-import type { NextFunction, Request, Response } from "@otterhttp/app"
+import type { NextFunction, Request as OtterRequest, Response } from "@otterhttp/app"
 import { ClientError } from "@otterhttp/errors"
 import { type Client, generators } from "openid-client"
 
-import { hostname } from "@/config"
-import { type User, prisma } from "@/database"
 import { adaptTokenSetToDatabase } from "@/lib/adapt-token-set"
+import { keycloakClient } from "@/lib/keycloak-client"
 import { getSession } from "@/lib/session"
-import type { Middleware } from "@/types/middleware"
-
-import { keycloakClient } from "./keycloak-client"
+import { frontendHostname, hostname } from "@/config"
+import { type User, prisma } from "@/database"
+import type { Middleware, Request } from "@/types"
 
 export class KeycloakHandlers {
   client: Client
@@ -42,18 +41,38 @@ export class KeycloakHandlers {
     }
   }
 
+  logout(): Middleware {
+    return async (request: Request, response: Response) => {
+      const session = await getSession(request, response)
+      session.userId = undefined
+      await session.commit()
+
+      if (request.user?.tokenSet?.idToken) {
+        const endSessionUrl = keycloakClient.endSessionUrl({
+          id_token_hint: request.user?.tokenSet?.idToken,
+          post_logout_redirect_uri: frontendHostname
+        });
+        response.redirect(endSessionUrl)
+        return
+      }
+
+      response.redirect(frontendHostname)
+    }
+  }
+
   static redirectUri = new URL("/auth/keycloak/callback", hostname).toString()
 
   oauth2FlowCallback(): Middleware {
-    return async (request: Request & { user?: User }, response: Response, next: NextFunction) => {
+    return async (request: OtterRequest & { user?: User }, response: Response, next: NextFunction) => {
       const session = await getSession(request, response)
       let codeVerifier: unknown
       try {
         codeVerifier = session.keycloakOAuth2FlowCodeVerifier
-        if (typeof codeVerifier !== "string") throw new ClientError("Code verifier not initialized", {
-          statusCode: 400,
-          exposeMessage: false,
-        })
+        if (typeof codeVerifier !== "string")
+          throw new ClientError("Code verifier not initialized", {
+            statusCode: 400,
+            exposeMessage: false,
+          })
       } finally {
         session.keycloakOAuth2FlowCodeVerifier = undefined
         await session.commit()

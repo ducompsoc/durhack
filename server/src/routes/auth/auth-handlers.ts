@@ -1,20 +1,27 @@
 import type { Request, Response } from "@/types"
 import type { User } from "@/database"
 import { getSession } from "@/lib/session"
+import { frontendHostname } from "@/config"
+import { NextFunction } from "@otterhttp/app"
 
 export class AuthHandlers {
+  static redirectUri = new URL("/details", frontendHostname).toString()
+
   handleLoginSuccess() {
     return async (request: Request & { user?: User }, response: Response) => {
-      if (request.user == null) {
-        return response.redirect("/login")
+      if (!request.userProfile) {
+        return response.redirect("/auth/keycloak/login")
       }
 
       const session = await getSession(request, response)
-      if ("redirect_to" in session && typeof session.redirect_to === "string") {
-        return response.redirect(session.redirect_to)
+      if (session.redirectTo != null) {
+        const redirectTo = session.redirectTo
+        session.redirectTo = undefined
+        await response.redirect(redirectTo)
+        return
       }
 
-      return response.redirect("/")
+      return response.redirect(AuthHandlers.redirectUri)
     }
   }
 }

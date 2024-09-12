@@ -18,6 +18,7 @@ export default {
   },
   keycloak: {
     url: "https://auth.durhack.com/realms/durhack",
+    adminBaseUrl: "https://admin.auth.durhack.com",
     clientId: "not-a-real-client-id",
     clientSecret: "not-a-real-client-secret",
     responseTypes: ["code"],
