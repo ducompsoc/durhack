@@ -7,6 +7,7 @@ export default function Gallery() {
 
   return (
     <div className="w-screen text-center mx-auto px-16">
+
       <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold">
         <span>Gallary</span>
       </h1>
@@ -22,6 +23,7 @@ export default function Gallery() {
         <br />
         &nbsp;
       </div>
+      
       <div className=" flex item-start">
         <EmblaCarousel options={OPTIONS} />
       </div>

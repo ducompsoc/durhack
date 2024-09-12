@@ -1,17 +1,38 @@
 import Link from "next/link";
 import { Facebook, Instagram, LinkedIn, TikTok, X } from "../../public/icon/social";
 
+const socialLinks = [
+  { href: "https://www.instagram.com/durhackevent/", Icon: Instagram },
+  { href: "https://www.facebook.com/DurHackEvent/", Icon: Facebook },
+  { href: "https://www.tiktok.com/@durhack", Icon: TikTok },
+  { href: "https://www.linkedin.com/company/durhack/mycompany/", Icon: LinkedIn },
+  { href: "https://x.com/durhackevent", Icon: X },
+];
+
 export function Footer() {
   return (
-    <footer >
-      <p className="text-center text-lg sm:text-1xl md:text-2xl lg:text-4xl pb-6"><a href="mailto:hello@durhack.com">hello@durhack.com</a></p>
+    <footer className="text-white">
+      
+      <p className="text-center text-lg sm:text-1xl md:text-2xl lg:text-4xl pb-10">
+        <a href="mailto:hello@durhack.com">
+          hello@durhack.com
+        </a>
+      </p>
+      
       <div className="flex justify-center w-full max-w-screen-lg mx-auto gap-x-6 pb-20">
-        <Instagram className="w-[8%] max-w-[55px] h-auto object-cover" />
-        <Facebook className="w-[8%] max-w-[55px] h-auto object-cover" />
-        <TikTok className="w-[8%] max-w-[55px] h-auto object-cover" />
-        <LinkedIn className="w-[8%] max-w-[55px] h-auto object-cover" />
-        <X className="w-[8%] max-w-[55px] h-auto object-cover" />
+        {socialLinks.map(({ href, Icon }, index) => (
+          <a
+            key={index}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-[8%] max-w-[55px] h-auto object-cover"
+          >
+            <Icon />
+          </a>
+        ))}
       </div>
+
       <div className="text-center justify-center pb-24 w-screen px-8 sm:px-16 md:px-24 lg:px-20 xl:34">
         <div className="flex flex-col w-fill">
           <p className="text-xs text-start sm:text-sm md:text-md lg:text-lg xl:text-xl">

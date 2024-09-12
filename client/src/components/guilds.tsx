@@ -1,6 +1,7 @@
 export default function Guilds() {
     return (
         <div className="text-center px-16">
+
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold">
                 <span>Guilds</span>
             </h1>
@@ -25,6 +26,7 @@ export default function Guilds() {
                     <object className="w-full h-auto mx-auto shadow-md" type="image/svg+xml" data="/assets/graphics/guilds/orion/icon.svg"></object>
                 </div>
             </div>
+            
         </div>
     );
 }
