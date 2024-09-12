@@ -1,8 +1,6 @@
 import { EmblaCarousel } from "./emblaCarousel";
 import { EmblaOptionsType } from "embla-carousel";
 
-const OPTIONS: EmblaOptionsType = { axis: "y", direction: "rtl", loop: true };
-
 export default function Gallery() {
 
   return (
@@ -25,7 +23,7 @@ export default function Gallery() {
       </div>
 
       <div className=" flex item-start">
-        <EmblaCarousel options={OPTIONS} />
+        <EmblaCarousel options={{ axis: "y", direction: "rtl", loop: true }} />
       </div>
     </div>
   )
