@@ -1,7 +1,5 @@
-import type { Request, Response } from "@tinyhttp/app"
-
+import type { Request, Response } from "@/types"
 import type { User } from "@/database"
-
 import { getSession } from "@/lib/session"
 
 export class AuthHandlers {

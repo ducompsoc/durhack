@@ -21,8 +21,9 @@ model Interest {
 }
 
 model User {
-    keycloakUserId String    @id @map("keycloak_user_id") @db.Uuid
+    keycloakUserId String          @id @map("keycloak_user_id") @db.Uuid
     tokenSet       TokenSet?
+    sessions       SessionRecord[]
 }
 
 model TokenSet {
@@ -36,4 +37,16 @@ model TokenSet {
     scope        String?
     accessExpiry DateTime? @db.Timestamp(0)
     sessionState String?
+}
+
+model SessionRecord {
+    sessionRecordId String    @id @map("session_record_id")
+    userId          String?   @map("user_id") @db.Uuid
+    user            User?     @relation(fields: [userId], references: [keycloakUserId])
+    data            Json
+    expiresAt       DateTime?
+    createdAt       DateTime  @default(now()) @map("created_at")
+    updatedAt       DateTime  @updatedAt @map("updated_at")
+
+    @@index([userId])
 }

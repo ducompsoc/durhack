@@ -12,10 +12,14 @@ export const cookieOptionsSchema = z.object({
   domain: z.string().optional(),
 })
 
+export const cookieSigningOptionsSchema = z.object({
+  secret: z.string(),
+})
+
 export const sessionOptionsSchema = z.object({
-  name: z.string(),
-  signingSecret: z.string(),
-  cookie: cookieOptionsSchema,
+  cookie: cookieOptionsSchema.extend({
+    name: z.string().optional(),
+  })
 })
 
 export const keycloakOptionsSchema = z.object({
@@ -31,6 +35,7 @@ export const configSchema = z.object({
   hostname: z.string().url(),
   frontendHostname: z.string().url(),
   session: sessionOptionsSchema,
+  cookieSigning: cookieSigningOptionsSchema,
   keycloak: keycloakOptionsSchema,
 })
 

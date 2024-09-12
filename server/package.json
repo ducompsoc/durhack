@@ -13,14 +13,13 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@prisma/client": "^5.18.0",
-    "@tinyhttp/app": "^2.3.1",
-    "@tinyhttp/cookie-signature": "^2.1.1",
-    "@tinyhttp/logger": "^2.0.0",
+    "@otterhttp/app": "^3.4.4",
+    "@otterhttp/cookie-signature": "^3.0.0",
+    "@otterhttp/errors": "^0.2.1",
+    "@otterhttp/parsec": "^0.1.2",
+    "@otterhttp/session": "^0.3.1",
+    "@prisma/client": "^5.19.1",
     "corstisol": "^1.0.0",
-    "http-errors": "^2.0.0",
-    "milliparsec": "^2.3.0",
-    "next-session": "^4.0.5",
     "openid-client": "^5.6.5",
     "zod": "^3.23.8",
     "zod-config": "^0.0.5"
@@ -28,13 +27,12 @@
   "type": "module",
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@types/http-errors": "^2.0.4",
-    "@types/node": "^20.14.6",
+    "@types/node": "^22.5.3",
     "glob": "^11.0.0",
-    "prisma": "^5.18.0",
+    "prisma": "^5.19.1",
     "tsup": "^8.2.3",
     "tsx": "^4.15.6",
-    "typescript": "^5.4.5",
+    "typescript": "^5.5.4",
     "vitest": "^2.0.5"
   }
 }

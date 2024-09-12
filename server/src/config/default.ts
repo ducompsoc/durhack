@@ -8,11 +8,13 @@ export default {
   hostname: "https://api.durhack.com",
   frontendHostname: "https://durhack.com",
   session: {
-    name: "durhack-session",
-    signingSecret: "session_cookie_secret",
     cookie: {
+      name: "durhack-session",
       secure: false,
     },
+  },
+  cookieSigning: {
+    secret: "cookie_signing_secret",
   },
   keycloak: {
     url: "https://auth.durhack.com/realms/durhack",

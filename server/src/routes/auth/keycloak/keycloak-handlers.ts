@@ -1,5 +1,5 @@
-import type { NextFunction, Request, Response } from "@tinyhttp/app"
-import createHttpError from "http-errors"
+import type { NextFunction, Request, Response } from "@otterhttp/app"
+import { ClientError } from "@otterhttp/errors"
 import { type Client, generators } from "openid-client"
 
 import { hostname } from "@/config"
@@ -50,14 +50,16 @@ export class KeycloakHandlers {
       let codeVerifier: unknown
       try {
         codeVerifier = session.keycloakOAuth2FlowCodeVerifier
-        if (typeof codeVerifier !== "string") throw new createHttpError.BadRequest()
+        if (typeof codeVerifier !== "string") throw new ClientError("Code verifier not initialized", {
+          statusCode: 400,
+          exposeMessage: false,
+        })
       } finally {
         session.keycloakOAuth2FlowCodeVerifier = undefined
         await session.commit()
       }
 
       const params = this.client.callbackParams(request)
-      // todo: get URL from `req` once tinyhttp is fixed
       const tokenSet = await this.client.callback(KeycloakHandlers.redirectUri, params, { code_verifier: codeVerifier })
 
       const userId = tokenSet.claims().sub
