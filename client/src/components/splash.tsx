@@ -43,11 +43,11 @@ export default function Splash() {
             </motion.div>
 
             <div className="relative">
-                <div className="pt-[20rem] md:pt-[40rem] pb-[8rem]">
+                <div className="pt-[20rem] md:pt-[40rem] pb-8">
                     <h2 id="title" className={cn(audiowide.className, "text-5xl md:text-8xl text-center relative z-20")}>DURHACK 2024</h2>
                     <h4 id="subtitle" className={cn(audiowide.className, "text-3xl md:text-6xl text-center relative z-20")}>2-3 NOVEMBER</h4>
                 </div>
-                <div className="flex justify-center pt-32 pb-64">
+                <div className="flex justify-center pt-8 pb-64">
                     <a id="book" 
                         className="px-12 sm:px-16 py-4 sm:py-6 rounded-[4.8rem] text-xl sm:text-4xl text-center backdrop-blur-lg bg-white bg-opacity-40 hover:scale-110 z-50 transition-all cursor-pointer">
                         BOOK TICKETS
