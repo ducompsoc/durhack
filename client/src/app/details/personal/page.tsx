@@ -19,6 +19,7 @@ import { Button } from "@durhack/web-components/ui/button";
 import { useApplication } from "@/hooks/useApplication";
 import { useRouter } from 'next/navigation';
 import { updateApplication } from "@/lib/updateApplication";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select";
 
 type PersonalFormFields = {
     firstNames: string
@@ -32,7 +33,14 @@ const personalFormSchema = z.object({
     firstNames: z.string().trim().min(1).max(256),
     lastNames: z.string().trim().min(1).max(256),
     preferredNames: z.string().trim().min(1).max(256),
-    pronouns: z.string().trim().min(1).max(256),
+    pronouns: z.enum([
+        "pnts",
+        "he/him",
+        "she/her",
+        "they/them",
+        "xe/xem",
+        "other"
+    ]),
     age: z.coerce.number({ invalid_type_error: "Please provide a valid age." })
       .positive("Please provide a valid age.")
       .min(16, { message: "Age must be >= 16" })
@@ -47,7 +55,10 @@ export default function PersonalPage() {
     React.useEffect(() => {
         if (!isLoading && data) {
             for (let key of Object.keys(data)) {
-                form.setValue(key as any, (data as any)[key] ?? "")
+                form.setValue(
+                    key as any,
+                    (data as any)[key] ?? (key === "pronouns" ? "pnts" : "")
+                )
             }
         }
     }, [isLoading, data])
@@ -66,6 +77,12 @@ export default function PersonalPage() {
     async function onSubmit(values: z.infer<typeof personalFormSchema>): Promise<void> {
         await updateApplication("personal", values)
         router.push('/details/contact')
+    }
+
+    function pronounsChange(onChange: (str: string) => void) {
+        return (value: string) => {
+            if (value !== "") onChange(value)
+        }
     }
     
     return (
@@ -123,19 +140,34 @@ export default function PersonalPage() {
                         />
                     </div>
                     <div className="mb-4">
-                        <FormField
-                            control={form.control}
-                            name="pronouns"
-                            render={({ field }) => (
+                    <FormField
+                        control={form.control}
+                        name="pronouns"
+                        render={({ field: { onChange, value } }) => (
                             <FormItem>
-                                <FormLabel>Pronouns</FormLabel>
-                                <FormControl>
-                                <Input {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                            )}
-                        />
+                            <FormLabel>Pronouns</FormLabel>
+                            <div className="flex">
+                                <Select onValueChange={pronounsChange(onChange)} value={value} >
+                                    <FormControl>
+                                    <SelectTrigger>
+                                        <SelectValue className="" />
+                                    </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        <SelectItem value="pnts">Prefer Not To Say</SelectItem>
+                                        <SelectItem value="she/her">She/Her</SelectItem>
+                                        <SelectItem value="he/him">He/Him</SelectItem>
+                                        <SelectItem value="they/them">They/Them</SelectItem>
+                                        <SelectItem value="xe/them">Xe/Xem</SelectItem>
+                                        <SelectItem value="other">Other</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                                { (value === "other") && <Input placeholder="Pronouns..."></Input> }
+                            </div>
+                            <FormMessage />
+                        </FormItem>
+                        )}
+                    />
                     </div>
                 </div>
                 <div className="mb-4">

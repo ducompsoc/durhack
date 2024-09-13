@@ -12,7 +12,14 @@ const personalFormSchema = z.object({
   firstNames: z.string().trim().min(1).max(256),
   lastNames: z.string().trim().min(1).max(256),
   preferredNames: z.string().trim().min(1).max(256),
-  pronouns: z.string().trim().min(1).max(256),
+  pronouns: z.enum([
+    "pnts",
+    "he/him",
+    "she/her",
+    "they/them",
+    "xe/xem",
+    "other"
+  ]),
   age: z.coerce.number({ invalid_type_error: "Please provide a valid age." })
     .positive("Please provide a valid age.")
     .min(16, { message: "Age must be >= 16" })
