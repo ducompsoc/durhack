@@ -4,7 +4,7 @@ import type { TokenSet as ClientTokenSet, UserinfoResponse } from "openid-client
 
 import { KeycloakUserInfo } from "@/lib/keycloak-client"
 
-export class Request extends OtterRequest {
+export class Request extends OtterRequest<any> {
   user?: Prisma.UserGetPayload<{ include: { tokenSet: true } }>
   userTokenSet?: ClientTokenSet
   userProfile?: UserinfoResponse<KeycloakUserInfo>

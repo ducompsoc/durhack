@@ -19,7 +19,8 @@ export default function Sidebar() {
         {id: 3, name: 'Personal', link: '/personal'},
         {id: 4, name: 'Contact', link: '/contact'},
         {id: 5, name: 'Education', link: '/education'},
-        {id: 6, name: 'Submit', link: '/submit'},
+        {id: 6, name: 'CV', link: '/cv'},
+        {id: 7, name: 'Submit', link: '/submit'},
     ];
 
     return (

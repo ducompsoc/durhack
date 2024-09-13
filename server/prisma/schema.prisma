@@ -24,7 +24,7 @@ model User {
     keycloakUserId    String                  @id @map("keycloak_user_id") @db.Uuid
     tokenSet          TokenSet?
     sessions          SessionRecord[]
-    cv                UserCV?
+    cvFile            UserCV?
     applicationStatus User_application_status @default(INCOMPLETE) @map("application_status")
     age               Int?
     university        String?
@@ -34,6 +34,7 @@ model User {
     mlhCode           Boolean                 @default(false) @map("mlh_code")
     mlhTerms          Boolean                 @default(false) @map("mlh_terms")
     mlhMarketing      Boolean                 @default(false) @map("mlh_marketing")
+    cv                Boolean?
 }
 
 model TokenSet {

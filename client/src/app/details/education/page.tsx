@@ -119,7 +119,7 @@ export default function EducationPage() {
 
     async function onSubmit(values: z.infer<typeof educationFormSchema>): Promise<void> {
         await updateApplication("education", values)
-        router.push("/details/submit")
+        router.push("/details/cv")
     }
     
     return (

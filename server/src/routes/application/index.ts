@@ -28,6 +28,11 @@ applicationApp
   .patch(applicationHandlers.patchEducation())
 
 applicationApp
+  .route("/cv")
+  .all(methodNotAllowed(["PATCH"]))
+  .patch(applicationHandlers.patchCv())
+
+applicationApp
   .route("/submit")
   .all(methodNotAllowed(["POST"]))
   .post(applicationHandlers.submit())

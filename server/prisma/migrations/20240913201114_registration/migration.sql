@@ -5,6 +5,7 @@ CREATE TYPE "User_application_status" AS ENUM ('INCOMPLETE', 'SUBMITTED', 'ACCEP
 ALTER TABLE "User" ADD COLUMN     "age" INTEGER,
 ADD COLUMN     "application_status" "User_application_status" NOT NULL DEFAULT 'INCOMPLETE',
 ADD COLUMN     "country" TEXT,
+ADD COLUMN     "cv" BOOLEAN,
 ADD COLUMN     "graduation" INTEGER,
 ADD COLUMN     "level_of_study" TEXT,
 ADD COLUMN     "mlh_code" BOOLEAN NOT NULL DEFAULT false,

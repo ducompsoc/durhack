@@ -59,10 +59,15 @@ const submitFormSchema = z.object({
   mlhMarketing: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
 });
 
+const cvFormSchema = z.object({
+  cv: z.boolean({ invalid_type_error: "Please choose yes or no!" })
+});
+
 const applicationSchema = personalFormSchema
   .merge(contactFormSchema)
   .merge(educationFormSchema)
   .merge(submitFormSchema)
+  .merge(cvFormSchema)
 
 class ApplicationHandlers {
   async loadApplication(userId: string) {
@@ -172,6 +177,22 @@ class ApplicationHandlers {
       assert(request.user)
 
       const body = educationFormSchema.parse(request.body)
+
+      await prisma.user.update({
+        where: { keycloakUserId: request.user.keycloakUserId },
+        data: body,
+      })
+
+      response.status(200)
+      response.json({ status: response.statusCode, message: "OK" })
+    }
+  }
+
+  patchCv(): Middleware {
+    return async (request, response) => {
+      assert(request.user)
+
+      const body = cvFormSchema.parse(request.body)
 
       await prisma.user.update({
         where: { keycloakUserId: request.user.keycloakUserId },

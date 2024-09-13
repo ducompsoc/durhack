@@ -1,7 +1,7 @@
 import assert from "node:assert/strict"
 import { App } from "@otterhttp/app"
 import { ClientError, HttpStatus, ServerError } from "@otterhttp/errors"
-import { json } from "@otterhttp/parsec"
+import { json, multipartFormData } from "@otterhttp/parsec"
 import type { UserinfoResponse } from "openid-client"
 
 import { adaptTokenSetToClient, adaptTokenSetToDatabase } from "@/lib/adapt-token-set"
@@ -18,6 +18,7 @@ import { applicationApp } from "@/routes/application"
 export const routesApp = new App<Request, Response>()
 
 routesApp.use(json())
+routesApp.use(multipartFormData())
 routesApp.use(async (request, response, next) => {
   const session = await getSession(request, response)
   if (session.userId == null) return next()

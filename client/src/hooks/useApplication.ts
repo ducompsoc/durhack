@@ -18,6 +18,7 @@ export type Application = {
   mlhCode: boolean
   mlhTerms: boolean
   mlhMarketing: boolean
+  cv?: boolean
 }
 
 async function applicationFetcher(url: string): Promise<Application | null> {

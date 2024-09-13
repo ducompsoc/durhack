@@ -3,14 +3,21 @@ import { siteConfig } from "@/config/site";
 export async function updateApplication(path: string, body: any) {
   const uri = new URL("/application/" + path, siteConfig.apiUrl).toString()
 
-  const res = await fetch(uri, {
+  const options: RequestInit = {
     method: path === "submit" ? "POST" : "PATCH",
     credentials: "include",
-    headers: {
+  }
+
+  if (body instanceof FormData) {
+    options.body = body
+  } else {
+    options.headers = {
       "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body)
-  })
+    }
+    options.body = JSON.stringify(body)
+  }
+
+  const res = await fetch(uri, options)
 
   if (!res.ok) throw new Error("Failed to save application!")
 
