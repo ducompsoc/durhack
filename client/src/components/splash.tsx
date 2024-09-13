@@ -23,23 +23,23 @@ export default function Splash() {
     return (
         <div ref={ref} className="overflow-hidden relative">
             <div id="stars" className="absolute h-full w-full z-20">
-                <img src="/assets/icons/stars.png" className="h-full max-w-[none] xl:w-full absolute" />
+                <img src="/assets/icons/stars.svg" className="h-full max-w-[none] xl:w-full absolute" />
             </div>
 
             <div id="outer-ring" className="rounded-[50%] absolute h-[94rem] w-[94rem] top-[-55rem] md:top-[-35rem] z-10"></div>
             <div id="inner-ring" className="rounded-[50%] absolute h-[56rem] w-[56rem] top-[-36rem] md:top-[-16rem] z-10"></div>
-            <img src="/assets/icons/moon.png" alt="splash" className="h-[32rem] w-[32rem] top-[-24rem] md:top-[-4rem] mx-auto rounded-[50%] transition-all duration-500 hover:transition-all hover:duration-300 absolute z-20 max-w-[none]" id="moon"/>
+            <img src="/assets/icons/moon.svg" alt="splash" className="h-[32rem] w-[32rem] top-[-24rem] md:top-[-4rem] mx-auto rounded-[50%] transition-all duration-500 hover:transition-all hover:duration-300 absolute z-20 max-w-[none]" id="moon"/>
         
             <motion.div id="cloud-1" className="absolute right-[-6rem] xl:right-[-2rem] top-[8rem] md:top-[16rem] z-30 pointer-events-none" style={{ x: cloud1X }}>
-                <img src="/assets/icons/cloud-1.png" alt="cloud" className="h-[6rem] xl:h-64" />
+                <img src="/assets/icons/cloud-1.svg" alt="cloud" className="h-[6rem] xl:h-64" />
             </motion.div>
 
             <motion.div id="cloud-2" className="absolute left-[-29rem] xl:left-[-24rem] top-[5rem] md:top-[13rem] z-30 pointer-events-none" style={{ x: cloud2X }}>
-                <img src="/assets/icons/cloud-2.png" alt="cloud" className="h-[15rem] xl:h-[25rem]" />
+                <img src="/assets/icons/cloud-2.svg" alt="cloud" className="h-[15rem] xl:h-[25rem]" />
             </motion.div>
 
             <motion.div id="cloud-3" className="absolute left-[-19rem] xl:left-[-9rem] top-[11rem] md:top-[23rem] z-30 pointer-events-none" style={{ x: cloud3X }}>
-                <img src="/assets/icons/cloud-3.png" alt="cloud" className="h-[11rem] xl:h-[21rem]" />
+                <img src="/assets/icons/cloud-3.svg" alt="cloud" className="h-[11rem] xl:h-[21rem]" />
             </motion.div>
 
             <div className="relative">
