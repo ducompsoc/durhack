@@ -1,10 +1,11 @@
 "use client"
 
 import * as React from "react";
-import useUser from "@/lib/useUser";
+
+import { useApplication } from "@/hooks/useApplication";
 
 export default function EducationPage() {
-    const { profile } = useUser()
+    const { data } = useApplication()
     
     return (
         <>
@@ -13,7 +14,7 @@ export default function EducationPage() {
             </h2>
             <p>The current status of your application is:</p>
             <div className="mx-auto w-64 py-16">
-                <p className="text-center font-bold text-xl">{ profile.applicationStatus }</p>
+                <p className="text-center font-bold text-xl">{ data?.applicationStatus }</p>
             </div>
         </>
     )

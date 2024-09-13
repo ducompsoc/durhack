@@ -1,32 +1,39 @@
 "use client"
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 
 import Sidebar from "@/components/details/sidebar";
 import Header from "@/components/details/header";
-import { set } from "zod";
+import { useApplication } from "@/hooks/useApplication";
 
 export const BackgroundContext = React.createContext({
     isFinalSubmitHovering: false,
     setIsFinalSubmitHovering: (hovering: boolean) => {}
-});
+})
 
 export const SidebarContext = React.createContext({
   isOpen: false,
   setIsOpen: (open: boolean) => {},
   toggleSidebar: () => {},
-});
+})
 
 export default function RootLayout({
     children,
   }: Readonly<{
     children: React.ReactNode;
   }>) {
-    const [isFinalSubmitHovering, setIsFinalSubmitHovering] = React.useState(false);
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [isFinalSubmitHovering, setIsFinalSubmitHovering] = React.useState(false)
+    const [isOpen, setIsOpen] = React.useState(false)
+    const { isLoading, data } = useApplication()
+    const router = useRouter()
+
+    React.useEffect(() => {
+      if (!isLoading && !data) router.push("/")
+    }, [isLoading, data])
 
     function toggleSidebar() {
-      setIsOpen(prevOpen => !prevOpen);
+      setIsOpen(prevOpen => !prevOpen)
     }
 
     return (

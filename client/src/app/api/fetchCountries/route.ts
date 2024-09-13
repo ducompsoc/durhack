@@ -10,6 +10,12 @@ export async function GET() {
       value: country.iso3,
     }));
 
+    countryOptions.sort((a, b) => {
+      if (a.value === "GBR") return -1;
+      if (b.value === "GBR") return 1;
+      return a.label.localeCompare(b.label);
+    });
+
     return NextResponse.json({ countryOptions });
   } catch (error) {
     return NextResponse.error();

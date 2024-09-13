@@ -15,10 +15,10 @@ export default function Sidebar() {
 
     const menuItems: menuItem[] = [
         {id: 1, name: 'Status', link: ''},
-        {id: 2, name: 'Personal', link: '/personal'},
-        {id: 3, name: 'Contact', link: '/contact'},
-        {id: 4, name: 'Education', link: '/education'},
-        {id: 5, name: 'Authentication', link: '/auth'},
+        {id: 2, name: 'Authentication', link: '/auth'},
+        {id: 3, name: 'Personal', link: '/personal'},
+        {id: 4, name: 'Contact', link: '/contact'},
+        {id: 5, name: 'Education', link: '/education'},
         {id: 6, name: 'Submit', link: '/submit'},
     ];
 

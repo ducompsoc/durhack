@@ -20,38 +20,53 @@ import {
 } from "@durhack/web-components/ui/form";
 import { Button } from "@durhack/web-components/ui/button";
 import { useRouter } from 'next/navigation';
-import useUser from "@/lib/useUser";
+import { useApplication } from "@/hooks/useApplication";
+import { updateApplication } from "@/lib/updateApplication";
 
 type SubmitFormFields = {
-    mlhCodeOfConductAcceptance: boolean | 'indeterminate'
-    mlhPoliciesAcceptance: boolean | 'indeterminate'
-    mlhMarketingAcceptance: boolean | 'indeterminate'
+    mlhCode: boolean | 'indeterminate'
+    mlhTerms: boolean | 'indeterminate'
+    mlhMarketing: boolean | 'indeterminate'
 }
 
 const submitFormSchema = z.object({
-    mlhCodeOfConductAcceptance: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
-    mlhPoliciesAcceptance: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
-    mlhMarketingAcceptance: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+    mlhCode: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+    mlhTerms: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+    mlhMarketing: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
 });
 
 export default function SubmitPage() {
     const { setIsFinalSubmitHovering } = React.useContext(BackgroundContext)
 
     const router = useRouter()
-    const { updateProfile } = useUser();
+    const { data, isLoading } = useApplication()
+
+    React.useEffect(() => {
+        if (!isLoading && data) {
+            for (let key of Object.keys(data)) {
+                form.setValue(key as any, (data as any)[key] ?? "")
+            }
+        }
+    }, [isLoading, data])
 
     const form = useForm<SubmitFormFields, any, z.infer<typeof submitFormSchema>>({
         resolver: zodResolver(submitFormSchema),
         defaultValues: {
-            mlhCodeOfConductAcceptance: false,
-            mlhPoliciesAcceptance: false,
-            mlhMarketingAcceptance: false,
+            mlhCode: false,
+            mlhTerms: false,
+            mlhMarketing: false,
         }
     });
 
     async function onSubmit(values: z.infer<typeof submitFormSchema>): Promise<void> {
-        updateProfile(values)
-        router.push("/details")
+        try {
+            await updateApplication("submit", values)
+            router.push("/details")
+        } catch (e: any) {
+            form.setError("mlhMarketing", {
+                message: "Application is incomplete or already submitted!"
+            })
+        }
         setIsFinalSubmitHovering(false)
     }
     
@@ -64,7 +79,7 @@ export default function SubmitPage() {
                 <div className="mb-4">
                     <FormField
                         control={form.control}
-                        name="mlhCodeOfConductAcceptance"
+                        name="mlhCode"
                         render={({ field }) => (
                             <FormItem>
                             <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
@@ -95,7 +110,7 @@ export default function SubmitPage() {
                 <div className="mb-4">
                         <FormField
                         control={form.control}
-                        name="mlhPoliciesAcceptance"
+                        name="mlhTerms"
                         render={({field}) => (
                             <FormItem>
                             <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
@@ -138,7 +153,7 @@ export default function SubmitPage() {
                 <div className="mb-4">
                         <FormField
                         control={form.control}
-                        name="mlhMarketingAcceptance"
+                        name="mlhMarketing"
                         render={({field}) => (
                             <FormItem>
                             <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">

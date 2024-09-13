@@ -1,5 +1,7 @@
 import { Audiowide, Space_Grotesk } from "next/font/google"
 import { cn } from "@/lib/utils";
+import { Button } from "@durhack/web-components/ui/button";
+import Link from "next/link";
 
 const audiowide = Audiowide({ weight: "400",  subsets: ["latin"] });
 const space_grotesk = Space_Grotesk({ subsets: ["latin"] });
@@ -27,6 +29,13 @@ export default function HomePage() {
             2<sup>nd</sup>-3<sup>rd</sup> November
           </h2>
         </div>
+      </section>
+      <section className="pt-3 lg:col-span-2">
+        <Link href="/details">
+          <Button variant="default" className="w-full border border-input" type="button">
+                Sign Up Now
+          </Button>
+        </Link>
       </section>
     </main>
   );

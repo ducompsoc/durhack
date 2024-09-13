@@ -21,9 +21,19 @@ model Interest {
 }
 
 model User {
-    keycloakUserId String          @id @map("keycloak_user_id") @db.Uuid
-    tokenSet       TokenSet?
-    sessions       SessionRecord[]
+    keycloakUserId    String                  @id @map("keycloak_user_id") @db.Uuid
+    tokenSet          TokenSet?
+    sessions          SessionRecord[]
+    cv                UserCV?
+    applicationStatus User_application_status @default(INCOMPLETE) @map("application_status")
+    age               Int?
+    university        String?
+    graduation        Int?
+    levelOfStudy      String?                 @map("level_of_study")
+    country           String?
+    mlhCode           Boolean                 @default(false) @map("mlh_code")
+    mlhTerms          Boolean                 @default(false) @map("mlh_terms")
+    mlhMarketing      Boolean                 @default(false) @map("mlh_marketing")
 }
 
 model TokenSet {
@@ -49,4 +59,19 @@ model SessionRecord {
     updatedAt       DateTime  @updatedAt @map("updated_at")
 
     @@index([userId])
+}
+
+model UserCV {
+  userId      String @id() @db.Uuid() @map("user_id")
+  user        User   @relation(fields: [userId], references: [keycloakUserId])
+  filename    String
+  contentType String @map("content_type")
+  content     Bytes
+}
+
+enum User_application_status {
+  INCOMPLETE
+  SUBMITTED
+  ACCEPTED
+  WAITING_LIST
 }

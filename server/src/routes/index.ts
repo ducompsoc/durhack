@@ -1,6 +1,6 @@
 import assert from "node:assert/strict"
 import { App } from "@otterhttp/app"
-import { ServerError } from "@otterhttp/errors"
+import { ClientError, HttpStatus, ServerError } from "@otterhttp/errors"
 import { json } from "@otterhttp/parsec"
 import type { UserinfoResponse } from "openid-client"
 
@@ -8,11 +8,12 @@ import { adaptTokenSetToClient, adaptTokenSetToDatabase } from "@/lib/adapt-toke
 import { keycloakClient } from "@/lib/keycloak-client"
 import type { KeycloakUserInfo } from "@/lib/keycloak-client"
 import { getSession } from "@/lib/session"
-import { isNetworkError } from "@/lib/is-network-error"
+import { isNetworkError } from "@/common/is-network-error"
 import { prisma } from "@/database"
 import type { Request, Response } from "@/types"
 import { authApp } from "@/routes/auth"
 import { userApp } from "@/routes/user"
+import { applicationApp } from "@/routes/application"
 
 export const routesApp = new App<Request, Response>()
 
@@ -89,4 +90,13 @@ routesApp.use(async (request, response, next) => {
 })
 
 routesApp.use("/auth", authApp)
+
+routesApp.use((request: Request, response: Response, next: () => void) => {
+  if (!request.user) {
+    throw new ClientError("", { statusCode: HttpStatus.Unauthorized })
+  }
+
+  next()
+})
 routesApp.use("/user", userApp)
+routesApp.use("/application", applicationApp)

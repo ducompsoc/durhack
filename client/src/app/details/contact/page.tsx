@@ -19,32 +19,40 @@ import { PhoneInput } from "@durhack/web-components/ui/phone-number-input"
 import { Button } from "@durhack/web-components/ui/button";
 import "@/lib/zod-phone-extension"
 import { useRouter } from 'next/navigation';
-import useUser from "@/lib/useUser";
+import { useApplication } from "@/hooks/useApplication";
+import { updateApplication } from "@/lib/updateApplication";
 
 type ContactFormFields = {
-    phoneNumber: string
+    phone: string
     email: string
 }
 
 const contactFormSchema = z.object({
-    phoneNumber: z.string().phone(),
-    email: z.string().email(),
+    phone: z.string().phone(),
 });
 
 export default function ContactPage() {
     const router = useRouter()
-    const { profile, updateProfile } = useUser()
+    const { data, isLoading } = useApplication()
+
+    React.useEffect(() => {
+        if (!isLoading && data) {
+            for (let key of Object.keys(data)) {
+                form.setValue(key as any, (data as any)[key] ?? "")
+            }
+        }
+    }, [isLoading, data])
 
     const form = useForm<ContactFormFields, any, z.infer<typeof contactFormSchema>>({
         resolver: zodResolver(contactFormSchema),
         defaultValues: {
-            phoneNumber: "",
+            phone: "",
             email: "",
         }
     });
 
     async function onSubmit(values: z.infer<typeof contactFormSchema>): Promise<void> {
-        updateProfile(values)
+        await updateApplication("contact", values)
         router.push("/details/education")
     }
     
@@ -57,7 +65,7 @@ export default function ContactPage() {
                 <div className="mb-4">
                     <FormField
                         control={form.control}
-                        name="phoneNumber"
+                        name="phone"
                         render={({ field }) => (
                             <FormItem>
                             <FormLabel>Phone Number</FormLabel>
@@ -65,7 +73,6 @@ export default function ContactPage() {
                                 <PhoneInput
                                 countrySelectProps={{ prominentCountries: new Set(["GB"]) }}
                                 defaultCountry="GB"
-                                placeholder={profile.phoneNumber}
                                 {...field}
                                 />
                             </FormControl>
@@ -76,13 +83,14 @@ export default function ContactPage() {
                 </div>
                 <div className="mb-4">
                     <FormField
+                        disabled={true}
                         control={form.control}
                         name="email"
                         render={({ field }) => (
                             <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input type="email" placeholder={profile.email} {...field} />
+                                <Input type="email" {...field} />
                             </FormControl>
                             <FormMessage />
                             </FormItem>

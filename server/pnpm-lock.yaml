@@ -32,6 +32,12 @@ importers:
       corstisol:
         specifier: ^1.0.0
         version: 1.0.0
+      countries-list:
+        specifier: ^3.1.0
+        version: 3.1.1
+      libphonenumber-js:
+        specifier: ^1.11.4
+        version: 1.11.8
       openid-client:
         specifier: ^5.6.5
         version: 5.6.5
@@ -764,6 +770,9 @@ packages:
     resolution: {integrity: sha512-XEs7pWuUn8WaU2wx3eLtMb2yaH8Ptq9dC6w/lktQSQC19TPbZiOkxhRrhfReBaaC05PZhDAR9okOdPmdqE/LIA==}
     engines: {node: '>= 20'}
 
+  countries-list@3.1.1:
+    resolution: {integrity: sha512-nPklKJ5qtmY5MdBKw1NiBAoyx5Sa7p2yPpljZyQ7gyCN1m+eMFs9I6CT37Mxt8zvR5L3VzD3DJBE4WQzX3WF4A==}
+
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
@@ -938,6 +947,9 @@ packages:
   joycon@3.1.1:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
     engines: {node: '>=10'}
+
+  libphonenumber-js@1.11.8:
+    resolution: {integrity: sha512-0fv/YKpJBAgXKy0kaS3fnqoUVN8901vUYAKIGD/MWZaDfhJt1nZjPL3ZzdZBt/G8G8Hw2J1xOIrXWdNHFHPAvg==}
 
   lilconfig@3.1.2:
     resolution: {integrity: sha512-eop+wDAvpItUys0FWkHIKeC9ybYrTGbU41U5K7+bttZZeohvnY7M9dZ5kB21GNWiFT2q1OoPTvncPCgSOVO5ow==}
@@ -1932,6 +1944,8 @@ snapshots:
     dependencies:
       '@tinyhttp/vary': 0.1.3
 
+  countries-list@3.1.1: {}
+
   cross-spawn@7.0.3:
     dependencies:
       path-key: 3.1.1
@@ -2151,6 +2165,8 @@ snapshots:
   jose@4.15.9: {}
 
   joycon@3.1.1: {}
+
+  libphonenumber-js@1.11.8: {}
 
   lilconfig@3.1.2: {}
 

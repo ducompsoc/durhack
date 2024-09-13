@@ -30,14 +30,15 @@ import {
     SelectValue,
 } from "@durhack/web-components/ui/select"
 import { Button } from "@durhack/web-components/ui/button";
-import useUser from "@/lib/useUser";
 import { useRouter } from 'next/navigation';
+import { useApplication } from "@/hooks/useApplication";
+import { updateApplication } from "@/lib/updateApplication";
 
 type EducationFormFields = {
-    school: undefined,
-    graduationYear: "",
-    levelOfStudy: undefined,
-    countryOfResidence: undefined,
+    university: "",
+    graduation: "",
+    levelOfStudy: "",
+    country: "",
 }
 
 export type schoolOptionsType = {
@@ -52,8 +53,8 @@ export type countryOptionsType = {
 }
 
 const educationFormSchema = z.object({
-    school: z.string(),
-    graduationYear: z.coerce.number({ invalid_type_error: "Please provide a valid year." })
+    university: z.string(),
+    graduation: z.coerce.number({ invalid_type_error: "Please provide a valid year." })
       .positive("Please provide a valid year.")
       .int("Oh, come on. Really?")
       .min(1900, { message: "Be serious. You didn't graduate before 1900." }),
@@ -70,15 +71,23 @@ const educationFormSchema = z.object({
       "not-a-student",
       "prefer-not-to-answer",
     ]),
-    countryOfResidence: z.string().iso3(),
+    country: z.string().iso3(),
 });
 
 export default function EducationPage() {
-    const [schoolOptions, setSchoolOptions] = React.useState<schoolOptionsType>([])
-    const [countryOptions, setCountryOptions] = React.useState<countryOptionsType>([])
+    const [schoolOptions, setSchoolOptions] = React.useState<schoolOptionsType[]>([])
+    const [countryOptions, setCountryOptions] = React.useState<countryOptionsType[]>([])
 
     const router = useRouter()
-    const { profile, updateProfile } = useUser()
+    const { data, isLoading } = useApplication()
+
+    React.useEffect(() => {
+        if (!isLoading && data && schoolOptions.length && countryOptions.length) {
+            for (let key of Object.keys(data)) {
+                form.setValue(key as any, (data as any)[key] ?? "")
+            }
+        }
+    }, [isLoading, data, schoolOptions, countryOptions])
 
     React.useEffect(() => {
         async function fetchSchoolOptions() {
@@ -101,16 +110,16 @@ export default function EducationPage() {
         resolver: zodResolver(educationFormSchema
         ),
         defaultValues: {
-            school: undefined,
-            graduationYear: "",
-            levelOfStudy: undefined,
-            countryOfResidence: undefined,
+            university: "",
+            graduation: "",
+            levelOfStudy: "",
+            country: "",
         }
     });
 
     async function onSubmit(values: z.infer<typeof educationFormSchema>): Promise<void> {
-        updateProfile(values)
-        router.push("/details/auth")
+        await updateApplication("education", values)
+        router.push("/details/submit")
     }
     
     return (
@@ -122,14 +131,15 @@ export default function EducationPage() {
                 <div className="mb-4">
                     <FormField
                         control={form.control}
-                        name="school"
-                        render={({ field: {ref, ...field} } ) => (
+                        name="university"
+                        render={({ field: {ref, value, ...field} } ) => (
                             <FormItem>
                             <FormLabel>Educational Institution</FormLabel>
                             <ComboBox<string>
-                                placeholder="Select institution..."
+                                placeholder={value || "Please select..."}
                                 options={schoolOptions}
                                 prominentOptions={new Set(["Durham University"])}
+                                value={value}
                                 {...field}
                           >
                                 <ComboBoxTrigger>
@@ -147,12 +157,12 @@ export default function EducationPage() {
                 <div className="mb-4">
                     <FormField
                         control={form.control}
-                        name="graduationYear"
+                        name="graduation"
                         render={({ field }) => (
                             <FormItem>
                             <FormLabel>Graduation Year</FormLabel>
                             <FormControl>
-                                <Input type="number" placeholder={profile.graduationYear} {...field} />
+                                <Input type="number" {...field} />
                             </FormControl>
                             <FormMessage />
                             </FormItem>
@@ -166,10 +176,10 @@ export default function EducationPage() {
                         render={({ field: {onChange, value, ...field} }) => (
                             <FormItem>
                             <FormLabel>Level of Study</FormLabel>
-                            <Select onValueChange={onChange} defaultValue={value} >
+                            <Select onValueChange={onChange} value={value} >
                                 <FormControl>
                                 <SelectTrigger>
-                                    <SelectValue placeholder={profile.levelOfStudy} className="" />
+                                    <SelectValue className="" />
                                 </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
@@ -194,14 +204,14 @@ export default function EducationPage() {
                 <div className="mb-4">
                     <FormField
                         control={form.control}
-                        name="countryOfResidence"
+                        name="country"
                         render={({ field: {onChange, value, ...field} }) => (
                             <FormItem>
                             <FormLabel>Country of Residence</FormLabel>
-                            <Select onValueChange={onChange} defaultValue={value} >
+                            <Select onValueChange={onChange} value={value} >
                                 <FormControl>
                                 <SelectTrigger>
-                                    <SelectValue placeholder={profile.countryOfResidence} className="" />
+                                    <SelectValue className="" />
                                 </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>

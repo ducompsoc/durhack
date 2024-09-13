@@ -6,8 +6,11 @@ import { Request } from "@/request"
 import { Response } from "@/response"
 import { frontendHostname, listenConfig } from "@/config"
 import { routesApp } from "@/routes"
+import { apiErrorHandler } from "@/routes/error-handling"
 
-const app = new App<Request, Response>()
+const app = new App<Request, Response>({
+  onError: apiErrorHandler
+})
 
 app
   .use(

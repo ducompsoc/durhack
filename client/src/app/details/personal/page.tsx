@@ -16,13 +16,14 @@ import {
     FormMessage,
 } from "@durhack/web-components/ui/form";
 import { Button } from "@durhack/web-components/ui/button";
-import useUser from "@/lib/useUser";
+import { useApplication } from "@/hooks/useApplication";
 import { useRouter } from 'next/navigation';
+import { updateApplication } from "@/lib/updateApplication";
 
 type PersonalFormFields = {
     firstNames: string
     lastNames: string
-    preferredName: string
+    preferredNames: string
     pronouns: string
     age: string
 }
@@ -30,7 +31,7 @@ type PersonalFormFields = {
 const personalFormSchema = z.object({
     firstNames: z.string().trim().min(1).max(256),
     lastNames: z.string().trim().min(1).max(256),
-    preferredName: z.string().trim().min(1).max(256),
+    preferredNames: z.string().trim().min(1).max(256),
     pronouns: z.string().trim().min(1).max(256),
     age: z.coerce.number({ invalid_type_error: "Please provide a valid age." })
       .positive("Please provide a valid age.")
@@ -40,23 +41,30 @@ const personalFormSchema = z.object({
 });
 
 export default function PersonalPage() {
-    const router = useRouter();
+    const router = useRouter()
+    const { data, isLoading } = useApplication()
 
+    React.useEffect(() => {
+        if (!isLoading && data) {
+            for (let key of Object.keys(data)) {
+                form.setValue(key as any, (data as any)[key] ?? "")
+            }
+        }
+    }, [isLoading, data])
+    
     const form = useForm<PersonalFormFields, any, z.infer<typeof personalFormSchema>>({
         resolver: zodResolver(personalFormSchema),
         defaultValues: {
             firstNames: "",
             lastNames: "",
-            preferredName: "",
+            preferredNames: "",
             pronouns: "",
             age: "",
         }
     });
 
-    const { profile, updateProfile } = useUser()
-
     async function onSubmit(values: z.infer<typeof personalFormSchema>): Promise<void> {
-        updateProfile(values)
+        await updateApplication("personal", values)
         router.push('/details/contact')
     }
     
@@ -75,7 +83,7 @@ export default function PersonalPage() {
                             <FormItem>
                                 <FormLabel>First name(s)</FormLabel>
                                 <FormControl>
-                                <Input placeholder={profile.firstNames} {...field} />
+                                <Input {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -90,7 +98,7 @@ export default function PersonalPage() {
                             <FormItem>
                                 <FormLabel>Last name(s)</FormLabel>
                                 <FormControl>
-                                <Input placeholder={profile.lastNames} {...field} />
+                                <Input {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -102,12 +110,12 @@ export default function PersonalPage() {
                     <div className="mb-4">
                         <FormField
                             control={form.control}
-                            name="preferredName"
+                            name="preferredNames"
                             render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Preffered name</FormLabel>
+                                <FormLabel>Preferred name</FormLabel>
                                 <FormControl>
-                                <Input placeholder={profile.preferredName} {...field} />
+                                <Input {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -122,7 +130,7 @@ export default function PersonalPage() {
                             <FormItem>
                                 <FormLabel>Pronouns</FormLabel>
                                 <FormControl>
-                                <Input placeholder={profile.pronouns} {...field} />
+                                <Input {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -138,7 +146,7 @@ export default function PersonalPage() {
                         <FormItem>
                             <FormLabel>Age as of 2nd November 2024</FormLabel>
                             <FormControl>
-                            <Input placeholder={profile.age} {...field} />
+                            <Input {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
