@@ -7,7 +7,7 @@ $intro-height: 2000px;
 section#intro {
     position: relative;
     overflow: hidden;
-    height: 2000px;
+    height: $intro-height;
     top: calc(-0.1 * #{$intro-height});
     clip-path: ellipse(120% 100% at 50% 100%);
     background: linear-gradient(180deg, #3A7EA0 38%, #968B69);

@@ -8,19 +8,29 @@ export default function Intro() {
 
     const { scrollYProgress } = useScroll({
         target: ref,
-        offset: ["start start", "end start"],
+        offset: ["start 0.1", "end start"],
     });
+
     const springProgress = useSpring(scrollYProgress, { stiffness: 400, damping: 90 });
 
+    const cloud4X = useTransform(springProgress, [0, 1], ["0rem", "-30rem"]);
+    const cloud5X = useTransform(springProgress, [0, 1], ["0rem", "30rem"]);
+
     return (
-        <div ref={ref} className="relative">
-            <div id="cloud-4" className="absolute left-[-10rem] top-[30rem] z-30 pointer-events-none">
-                <img src="/assets/icons/cloud-4.svg" alt="cloud" className="h-[6rem] xl:h-[20rem]" />
+        <>
+            <div ref={ref} className="relative">
+                <motion.div id="cloud-4" className="absolute left-[-10rem] top-[40rem] z-30 pointer-events-none" style={{ x: cloud4X }}>
+                    <img src="/assets/icons/cloud-4.svg" alt="cloud" className="h-[6rem] xl:h-[20rem]" />
+                </motion.div>
+
+                <motion.div id="cloud-5" className="absolute right-[-7rem] top-[60rem] z-30 pointer-events-none" style={{ x: cloud5X }}>
+                    <img src="/assets/icons/cloud-5.svg" alt="cloud" className="h-[6rem] xl:h-[20rem]" />
+                </motion.div>
             </div>
 
-            <div id="cloud-5" className="absolute right-[-7rem] top-[50rem] z-30 pointer-events-none">
-                <img src="/assets/icons/cloud-5.svg" alt="cloud" className="h-[6rem] xl:h-[20rem]" />
+            <div className="absolute mt-[22rem] ml-[7rem] text-4xl w-[40rem]">
+                We welcome you to join us for the ninth iteration of DurHack, Durham University Computing Society's annual flagship hackathon.
             </div>
-        </div>
+        </>
     )
 }
