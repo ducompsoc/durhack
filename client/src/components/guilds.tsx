@@ -1,12 +1,10 @@
+import { SectionHeader } from "@/components/section-header"
+
 export default function Guilds() {
     return (
         <div className="text-center px-16">
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold">
-                <span>Guilds</span>
-            </h1>
-
-            <div className="w-1/5 h-0.5 mx-auto bg-gradient-to-r from-transparent via-white to-transparent my-2"></div>
+      <SectionHeader>Guilds</SectionHeader>
 
             <div className="text-center text-center text-lg sm:text-lg md:text-xl lg:text-xl px-4 sm:px-8 md:px-12 lg:px-24">
                 This year, we're introducing <b className="text-amber-300">'Guilds'</b>! These will gather teams of hackers together into larger groups, in which
