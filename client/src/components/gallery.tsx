@@ -7,10 +7,12 @@ import {
   CarouselNext,
 } from "@durhack/web-components/ui/carousel"
 
+import { SectionHeader } from "@/components/section-header";
+
 export default function Gallery() {
 
   return (
-    <div className="w-screen text-center mx-auto px-16">
+    <div className="w-full px-4">
 
       <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold">
         <span>Gallery</span>
