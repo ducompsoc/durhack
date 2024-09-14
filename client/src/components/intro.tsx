@@ -28,7 +28,7 @@ export default function Intro() {
                 </motion.div>
             </div>
 
-            <div className="absolute mt-[22rem] mx-[12.5vw] text-3xl md:text-4xl w-[75vw]">
+            <div className="absolute mt-[22rem] mx-[12.5vw] text-3xl md:text-4xl w-[75vw] md:w-[40rem]">
                 We welcome you to join us for the ninth iteration of DurHack, Durham University Computing Society's annual flagship hackathon.
             </div>
         </>

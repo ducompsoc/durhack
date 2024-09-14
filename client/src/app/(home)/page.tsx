@@ -22,6 +22,7 @@ export default function HomePage() {
       </section>
 
       <section id="about">
+        <div id="background"></div>
         <About />
       </section>
 

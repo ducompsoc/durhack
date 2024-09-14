@@ -2,7 +2,7 @@ section#splash {
     background: linear-gradient(180deg, #102330, #1D4963);
 }
 
-$intro-height: 120rem;
+$intro-height: 100rem;
 section#intro {
     position: relative;
     overflow: hidden;
@@ -31,7 +31,18 @@ section#intro {
 }
 
 section#about {
+    margin-top: calc(-0.1 * #{$intro-height});
+    height: $intro-height;
+    position: relative;
+}
+
+section#about > #background {
     background: linear-gradient(180deg, #216782, #306379);
+    position: absolute;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    clip-path: ellipse(120% 100% at 50% 100%);
 }
 
 section#sponsors {
