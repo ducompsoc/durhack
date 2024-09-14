@@ -28,6 +28,7 @@ export const {
   session: sessionConfig,
   cookieSigning: cookieSigningConfig,
   keycloak: keycloakConfig,
+  mailgun: mailgunConfig,
 } = config
 
 export { config }

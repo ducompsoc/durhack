@@ -6,6 +6,8 @@ import {fileTypeFromBuffer} from 'file-type';
 import type { Middleware } from "@/types"
 import { getKeycloakAdminClient } from "@/lib/keycloak-client"
 import { prisma } from "@/database"
+import { mailgunConfig } from "@/config"
+import MailgunClient from "@/common/mailgun"
 import "@/lib/zod-phone-extension"
 import "@/lib/zod-iso3-extension"
 
@@ -288,6 +290,20 @@ class ApplicationHandlers {
       await prisma.user.update({
         where: { keycloakUserId: request.user.keycloakUserId },
         data: { ...body, applicationStatus: "SUBMITTED" },
+      })
+
+      await MailgunClient.messages.create(mailgunConfig.domain, {
+        from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
+        "h:Reply-To": "hello@durhack.com",
+        to: request.userProfile?.email,
+        subject: `DurHack Application Submitted`,
+        text: [
+          `Hi ${request.userProfile?.preferred_name},`,
+          `Thanks for applying to attend DurHack! Your application has been submitted successfully.`,
+          "If you have any questions, please reach out to hello@durhack.com.",
+          "Thanks,",
+          "The DurHack Team",
+        ].join("\n\n"),
       })
 
       response.status(200)

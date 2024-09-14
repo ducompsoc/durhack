@@ -31,6 +31,14 @@ export const keycloakOptionsSchema = z.object({
   responseTypes: z.array(z.union([z.literal("code"), z.literal("token"), z.literal("id_token"), z.literal("none")])),
 })
 
+export const mailgunOptionsSchema = z.object({
+  username: z.string(),
+  key: z.string(),
+  domain: z.string(),
+  sendAsDomain: z.string(),
+  url: z.string(),
+})
+
 export const configSchema = z.object({
   listen: listenOptionsSchema,
   hostname: z.string().url(),
@@ -38,6 +46,7 @@ export const configSchema = z.object({
   session: sessionOptionsSchema,
   cookieSigning: cookieSigningOptionsSchema,
   keycloak: keycloakOptionsSchema,
+  mailgun: mailgunOptionsSchema,
 })
 
 export type Config = z.infer<typeof configSchema>

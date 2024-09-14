@@ -24,4 +24,11 @@ export default {
     responseTypes: ["code"],
     redirectUris: ["https://api.durhack.com/auth/keycloak/callback"],
   },
+  mailgun: {
+    username: "api",
+    key: "yourAPIKeyHere",
+    domain: "mailgun.durhack.com",
+    sendAsDomain: "durhack.com",
+    url: "https://api.eu.mailgun.net",
+  },
 } satisfies ConfigIn
