@@ -1,6 +1,7 @@
 import assert from "node:assert/strict"
 import { z } from "zod";
 import { ClientError } from "@otterhttp/errors";
+import {fileTypeFromBuffer} from 'file-type';
 
 import type { Middleware } from "@/types"
 import { getKeycloakAdminClient } from "@/lib/keycloak-client"
@@ -68,6 +69,17 @@ const applicationSchema = personalFormSchema
   .merge(educationFormSchema)
   .merge(submitFormSchema)
   .merge(cvFormSchema)
+
+type ParsedHeaders = {
+    'content-type'?: any | undefined;
+    'content-disposition'?: any | undefined;
+};
+
+type ParsedFormFieldFile = {
+    filename: string;
+    headers: ParsedHeaders;
+    content: Buffer;
+};
 
 class ApplicationHandlers {
   async loadApplication(userId: string) {
@@ -188,15 +200,61 @@ class ApplicationHandlers {
     }
   }
 
+  readonly BYTES_LIMIT = 10 * 1024 * 1024
+  readonly ALLOWED_FILES = ["doc", "docx", "pdf"]
+
+  async validateFile(files: ParsedFormFieldFile[]) {
+    if (files.length !== 1) return { valid: false }
+    const file = files[0]
+
+    if (file.content.byteLength > this.BYTES_LIMIT) return { valid: false }
+
+    const split = file.filename.split(".")
+    const extension = split[split.length - 1]
+    const fileType = await fileTypeFromBuffer(file.content)
+    const { type, subtype } = file.headers["content-type"]
+    const mime = `${type}/${subtype}`
+    file.headers["content-type"] = mime
+
+    if (mime !== fileType?.mime) return { valid: false }
+    if (extension !== fileType?.ext) return { valid: false }
+    if (!this.ALLOWED_FILES.includes(extension)) return { valid: false }
+
+    return { file, valid: true } 
+  }
+
   patchCv(): Middleware {
     return async (request, response) => {
       assert(request.user)
+      assert(request.body?.cv?.value?.content)
 
-      const body = cvFormSchema.parse(request.body)
+      const cv = request.body.cv.value.content.toString() === "true"
+      const userId = request.user.keycloakUserId
+      
+      await prisma.$transaction(async (context) => {
+        await context.user.update({
+          where: { keycloakUserId: userId },
+          data: { cv },
+        })
 
-      await prisma.user.update({
-        where: { keycloakUserId: request.user.keycloakUserId },
-        data: body,
+        if (cv) {
+          const { file, valid } = await this.validateFile(request.body.file.files)
+          if (!valid) throw new ClientError("Invalid file!")
+          assert(file)
+
+          const data = {
+            userId,
+            filename: file.filename,
+            contentType: file.headers["content-type"]!,
+            content: file.content,
+          }
+
+          await context.userCV.upsert({
+            where: { userId },
+            update: data,
+            create: data,
+          })
+        }
       })
 
       response.status(200)

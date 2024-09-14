@@ -63,17 +63,36 @@ export default function EducationPage() {
     });
 
     async function onSubmit(values: z.infer<typeof cvFormSchema>): Promise<void> {
-        if (values.cv === "true" && files.length === 0) {
-            form.setError("cv", { message: "Please provide a CV!" })
-            return
-        }
-
         const formData = new FormData()
         formData.append("cv", values.cv)
-        if (files.length === 1) formData.append("file", files[0])
 
-        await updateApplication("cv", formData)
-        router.push("/details/submit")
+        if (values.cv === "true") {
+            if (files.length !== 1) {
+                form.setError("cv", { message: "Please provide one CV!" })
+                return
+            }
+            if (files[0].size > 10 * 1024 * 1024) {
+                form.setError("cv", { message: "Maximum file size is 10MB!" })
+                return
+            }
+
+            const split = files[0].name.split(".")
+            const extension = split[split.length - 1]
+
+            if (!["doc", "docx", "pdf"].includes(extension)) {
+                form.setError("cv", { message: "Please upload a PDF or Word doc!" })
+                return
+            }
+
+            formData.append("file", files[0])
+        }
+
+        try {
+            await updateApplication("cv", formData)
+            router.push("/details/submit")
+        } catch {
+            form.setError("cv", { message: "CV file was rejected (try uploading a PDF)!" })
+        }
     }
 
     function cvChange(onChange: (str: string) => void) {
