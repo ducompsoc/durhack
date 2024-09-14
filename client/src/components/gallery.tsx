@@ -10,13 +10,10 @@ import {
 import { SectionHeader } from "@/components/section-header";
 
 export default function Gallery() {
-
   return (
     <div className="w-full px-4">
 
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold">
-        <span>Gallery</span>
-      </h1>
+      <SectionHeader>Gallery</SectionHeader>
 
       <div className="flex flex-row justify-center">
         <div className="w-full max-w-[60rem]">
