@@ -17,8 +17,8 @@ export default function About() {
                 <motion.div 
                 className="absolute flex justify-center top-[-13rem] z-30 pointer-events-none w-full"
                 style={{ transformOrigin: "50% 5400px" }}
-                animate={{ rotate: isInView ? 0 : -45 }}
-                transition={{ duration: 2, ease: "easeInOut" }}>
+                animate={{ rotate: isInView ? 0 : -20 }}
+                transition={{ duration: 1, ease: "easeInOut" }}>
                     <img src="/assets/icons/mountains.svg" alt="mountains" className="relative h-[12rem] lg:h-[20rem]" />
                 </motion.div>
             </div>
