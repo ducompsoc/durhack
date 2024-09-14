@@ -1,30 +1,24 @@
 import { SectionHeader } from "@/components/section-header"
 
 export default function Guilds() {
-    return (
-        <div className="text-center px-16">
+  return (
+    <div className="text-center px-16">
 
       <SectionHeader>Guilds</SectionHeader>
 
-            <div className="text-center text-center text-lg sm:text-lg md:text-xl lg:text-xl px-4 sm:px-8 md:px-12 lg:px-24">
-                This year, we're introducing <b className="text-amber-300">'Guilds'</b>! These will gather teams of hackers together into larger groups, in which
-                they will be able to compete for small prizes by completing challenges!
-                <br/>
-                <br/>
-                Don't worry, you'll still make your project in a team of 4 - guilds are like a house system (think Harry Potter!).
-                <br/>
-                &nbsp;
-            </div>
+      <div className="text-center text-lg md:text-xl px-4 sm:px-8 md:px-12 lg:px-24">
+        Guilds text goes here. needs to be rewritten for 2024
+      </div>
 
-            <div className="container mx-auto">
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-16 w-full">
-                    <object className="w-full h-auto mx-auto shadow-md" type="image/svg+xml" data="/assets/graphics/guilds/pegasus/icon.svg"></object>
-                    <object className="w-full h-auto mx-auto shadow-md" type="image/svg+xml" data="/assets/graphics/guilds/cygnus/icon.svg"></object>
-                    <object className="w-full h-auto mx-auto shadow-md" type="image/svg+xml" data="/assets/graphics/guilds/lyra/icon.svg"></object>
-                    <object className="w-full h-auto mx-auto shadow-md" type="image/svg+xml" data="/assets/graphics/guilds/orion/icon.svg"></object>
-                </div>
-            </div>
-            
+      <div className="container mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-16 w-full">
+          <object className="w-full h-auto mx-auto shadow-md" type="image/svg+xml" data="/assets/graphics/guilds/centre-of-the-earth/icon.svg"/>
+          <object className="w-full h-auto mx-auto shadow-md" type="image/svg+xml" data="/assets/graphics/guilds/atlantis/icon.svg"/>
+          <object className="w-full h-auto mx-auto shadow-md" type="image/svg+xml" data="/assets/graphics/guilds/moon/icon.svg"/>
+          <object className="w-full h-auto mx-auto shadow-md" type="image/svg+xml" data="/assets/graphics/guilds/mysterious-island/icon.svg"/>
         </div>
-    );
+      </div>
+
+    </div>
+  );
 }
