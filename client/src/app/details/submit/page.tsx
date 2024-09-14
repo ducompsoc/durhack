@@ -40,7 +40,7 @@ export default function SubmitPage() {
     const { setIsFinalSubmitHovering } = React.useContext(BackgroundContext)
 
     const router = useRouter()
-    const { application, applicationIsLoading } = useApplicationContext()
+    const { application, applicationIsLoading, mutateApplication } = useApplicationContext()
 
     React.useEffect(() => {
         if (applicationIsLoading || !application) return
@@ -63,6 +63,7 @@ export default function SubmitPage() {
     async function onSubmit(values: z.infer<typeof submitFormSchema>): Promise<void> {
         try {
             await updateApplication("submit", values)
+            await mutateApplication()
             router.push("/details")
         } catch (e: any) {
             form.setError("mlhMarketing", {
