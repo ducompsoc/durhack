@@ -2,10 +2,10 @@
 
 import * as React from "react";
 
-import { useApplication } from "@/hooks/useApplication";
+import { useApplicationContext } from "@/hooks/use-application-context";
 
 export default function EducationPage() {
-    const { data } = useApplication()
+    const { application } = useApplicationContext()
     
     return (
         <>
@@ -14,7 +14,7 @@ export default function EducationPage() {
             </h2>
             <p>The current status of your application is:</p>
             <div className="mx-auto w-64 py-16">
-                <p className="text-center font-bold text-xl">{ data?.applicationStatus }</p>
+                <p className="text-center font-bold text-xl">{ application?.applicationStatus }</p>
             </div>
         </>
     )

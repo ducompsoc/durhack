@@ -5,10 +5,11 @@ import { BackgroundContext } from "@/app/details/layout";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation';
+import Link from "next/link";
 import "@/lib/zod-phone-extension"
 
 import { Checkbox } from "@durhack/web-components/ui/checkbox";
-import Link from "next/link";
 import {
     Form,
     FormField,
@@ -19,9 +20,9 @@ import {
     FormDescription,
 } from "@durhack/web-components/ui/form";
 import { Button } from "@durhack/web-components/ui/button";
-import { useRouter } from 'next/navigation';
-import { useApplication } from "@/hooks/useApplication";
+
 import { updateApplication } from "@/lib/updateApplication";
+import { useApplicationContext } from "@/hooks/use-application-context";
 
 type SubmitFormFields = {
     mlhCode: boolean | 'indeterminate'
@@ -39,15 +40,16 @@ export default function SubmitPage() {
     const { setIsFinalSubmitHovering } = React.useContext(BackgroundContext)
 
     const router = useRouter()
-    const { data, isLoading } = useApplication()
+    const { application, applicationIsLoading } = useApplicationContext()
 
     React.useEffect(() => {
-        if (!isLoading && data) {
-            for (let key of Object.keys(data)) {
-                form.setValue(key as any, (data as any)[key] ?? "")
-            }
-        }
-    }, [isLoading, data])
+        if (applicationIsLoading || !application) return
+        form.reset({
+            mlhCode: application.mlhCode,
+            mlhTerms: application.mlhTerms,
+            mlhMarketing: application.mlhMarketing,
+        })
+    }, [applicationIsLoading, application])
 
     const form = useForm<SubmitFormFields, any, z.infer<typeof submitFormSchema>>({
         resolver: zodResolver(submitFormSchema),

@@ -1,10 +1,10 @@
 "use client"
 
-
 import * as React from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation';
 
 import {
     Form,
@@ -29,9 +29,9 @@ import {
   FileUploadFileList,
 } from "@durhack/web-components/ui/file-upload";
 import { Button } from "@durhack/web-components/ui/button";
-import { useRouter } from 'next/navigation';
-import { useApplication } from "@/hooks/useApplication";
+
 import { updateApplication } from "@/lib/updateApplication";
+import { useApplicationContext } from "@/hooks/use-application-context";
 
 type CvFormFields = {
     cv: string
@@ -43,16 +43,17 @@ const cvFormSchema = z.object({
 
 export default function EducationPage() {
     const router = useRouter()
-    const { data, isLoading } = useApplication()
+    const { application, applicationIsLoading } = useApplicationContext()
     const [files, setFiles] = React.useState<File[]>([])
     const [showForm, setShowForm] = React.useState(false)
 
     React.useEffect(() => {
-        if (!isLoading && data) {
-            form.setValue("cv", data?.cv?.toString() ?? "")
-            setShowForm(data.cv ?? false)
-        }
-    }, [isLoading, data])
+        if (applicationIsLoading || !application) return
+        form.reset({
+            cv: application?.cv?.toString() ?? ""
+        })
+        setShowForm(application.cv ?? false)
+    }, [applicationIsLoading, application])
 
     const form = useForm<CvFormFields, any, z.infer<typeof cvFormSchema>>({
         resolver: zodResolver(cvFormSchema

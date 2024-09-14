@@ -4,6 +4,7 @@ import * as React from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation';
 import "@/lib/zod-phone-extension"
 
 import { Input } from "@durhack/web-components/ui/input";
@@ -16,10 +17,10 @@ import {
     FormMessage,
 } from "@durhack/web-components/ui/form";
 import { Button } from "@durhack/web-components/ui/button";
-import { useApplication } from "@/hooks/useApplication";
-import { useRouter } from 'next/navigation';
-import { updateApplication } from "@/lib/updateApplication";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select";
+
+import { updateApplication } from "@/lib/updateApplication";
+import { useApplicationContext } from "@/hooks/use-application-context";
 
 type PersonalFormFields = {
     firstNames: string
@@ -50,18 +51,18 @@ const personalFormSchema = z.object({
 
 export default function PersonalPage() {
     const router = useRouter()
-    const { data, isLoading } = useApplication()
+    const { application, applicationIsLoading } = useApplicationContext()
 
     React.useEffect(() => {
-        if (!isLoading && data) {
-            for (let key of Object.keys(data)) {
-                form.setValue(
-                    key as any,
-                    (data as any)[key] ?? (key === "pronouns" ? "pnts" : "")
-                )
-            }
-        }
-    }, [isLoading, data])
+        if (applicationIsLoading || !application) return
+        form.reset({
+            pronouns: application.pronouns ?? "pnts",
+            firstNames: application.firstNames ?? "",
+            lastNames: application.lastNames ?? "",
+            preferredNames: application.preferredNames ?? "",
+            age: application.age ?? "",
+        })
+    }, [applicationIsLoading, application])
     
     const form = useForm<PersonalFormFields, any, z.infer<typeof personalFormSchema>>({
         resolver: zodResolver(personalFormSchema),

@@ -5,6 +5,7 @@ import * as React from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation';
 
 import { Input } from "@durhack/web-components/ui/input";
 import {
@@ -17,10 +18,10 @@ import {
 } from "@durhack/web-components/ui/form";
 import { PhoneInput } from "@durhack/web-components/ui/phone-number-input"
 import { Button } from "@durhack/web-components/ui/button";
+
 import "@/lib/zod-phone-extension"
-import { useRouter } from 'next/navigation';
-import { useApplication } from "@/hooks/useApplication";
 import { updateApplication } from "@/lib/updateApplication";
+import { useApplicationContext } from "@/hooks/use-application-context";
 
 type ContactFormFields = {
     phone: string
@@ -33,15 +34,15 @@ const contactFormSchema = z.object({
 
 export default function ContactPage() {
     const router = useRouter()
-    const { data, isLoading } = useApplication()
+    const { application, applicationIsLoading } = useApplicationContext()
 
     React.useEffect(() => {
-        if (!isLoading && data) {
-            for (let key of Object.keys(data)) {
-                form.setValue(key as any, (data as any)[key] ?? "")
-            }
-        }
-    }, [isLoading, data])
+        if (applicationIsLoading || !application) return
+        form.reset({
+            phone: application.phone ?? "",
+            email: application.email ?? "",
+        })
+    }, [applicationIsLoading, application])
 
     const form = useForm<ContactFormFields, any, z.infer<typeof contactFormSchema>>({
         resolver: zodResolver(contactFormSchema),

@@ -1,10 +1,10 @@
 "use client"
 
-
 import * as React from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation';
 import "@/lib/zod-iso3-extension"
 
 import { Input } from "@durhack/web-components/ui/input";
@@ -30,15 +30,15 @@ import {
     SelectValue,
 } from "@durhack/web-components/ui/select"
 import { Button } from "@durhack/web-components/ui/button";
-import { useRouter } from 'next/navigation';
-import { useApplication } from "@/hooks/useApplication";
+
 import { updateApplication } from "@/lib/updateApplication";
+import { useApplicationContext } from "@/hooks/use-application-context";
 
 type EducationFormFields = {
-    university: "",
-    graduation: "",
-    levelOfStudy: "",
-    country: "",
+    university: string,
+    graduation: string,
+    levelOfStudy: string,
+    country: string,
 }
 
 export type schoolOptionsType = {
@@ -79,15 +79,18 @@ export default function EducationPage() {
     const [countryOptions, setCountryOptions] = React.useState<countryOptionsType[]>([])
 
     const router = useRouter()
-    const { data, isLoading } = useApplication()
+    const { application, applicationIsLoading } = useApplicationContext()
 
     React.useEffect(() => {
-        if (!isLoading && data && schoolOptions.length && countryOptions.length) {
-            for (let key of Object.keys(data)) {
-                form.setValue(key as any, (data as any)[key] ?? "")
-            }
-        }
-    }, [isLoading, data, schoolOptions, countryOptions])
+        if (applicationIsLoading || !application) return
+        if (schoolOptions.length === 0 || countryOptions.length === 0) return
+        form.reset({
+            university: application.university ?? "",
+            graduation: application.graduation ?? "",
+            levelOfStudy: application.levelOfStudy ?? "",
+            country: application.country ?? "",
+        })
+    }, [applicationIsLoading, application, schoolOptions, countryOptions])
 
     React.useEffect(() => {
         async function fetchSchoolOptions() {
