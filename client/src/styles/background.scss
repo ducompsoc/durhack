@@ -1,5 +1,4 @@
 section#splash {
-    height: 2000px;
     background: linear-gradient(180deg, #102330, #1D4963);
 }
 
@@ -8,9 +7,27 @@ section#intro {
     position: relative;
     overflow: hidden;
     height: $intro-height;
-    top: calc(-0.1 * #{$intro-height});
+    margin-top: calc(-0.1 * #{$intro-height});
     clip-path: ellipse(120% 100% at 50% 100%);
     background: linear-gradient(180deg, #3A7EA0 38%, #968B69);
+}
+
+@media (max-width: 1280px) {
+    section#intro {
+        clip-path: ellipse(140% 100% at 50% 100%);
+    }
+}
+
+@media (max-width: 1024px) {
+    section#intro {
+        clip-path: ellipse(160% 100% at 50% 100%);
+    }
+}
+
+@media (max-width: 768px) {
+    section#intro {
+        clip-path: ellipse(250% 100% at 50% 100%);
+    }
 }
 
 section#about {
