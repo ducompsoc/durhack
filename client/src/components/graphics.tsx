@@ -530,7 +530,15 @@ export function MountainGraphic(props: GraphicProps) {
 
 export function StarsGraphic(props: GraphicProps) {
   return (
-    <svg width="1440" height="992" viewBox="0 0 1440 992" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      width="1440"
+      height="992"
+      viewBox="0 0 1440 992"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none"
+      {...props}
+    >
       <path
         d="M99.2629 172.308C99.622 177.694 99.622 184.517 101.058 186.312C102.495 188.108 105.367 188.108 110.036 188.467C105.367 188.826 102.495 188.826 101.058 190.621C99.622 192.417 99.622 199.958 99.2629 205.344C98.9038 199.958 98.9038 192.417 97.4674 190.621C96.031 188.826 93.1583 188.826 88.4901 188.467C93.1583 188.108 96.031 188.108 97.4674 186.312C98.9038 184.517 98.9038 177.694 99.2629 172.308Z"
         fill="white"
