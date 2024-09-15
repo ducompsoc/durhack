@@ -5,7 +5,6 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import "@/lib/zod-iso3-extension";
 
 import { Input } from "@durhack/web-components/ui/input";
 import { Form, FormField, FormItem, FormControl, FormLabel, FormMessage } from "@durhack/web-components/ui/form";
@@ -16,6 +15,7 @@ import { Button } from "@durhack/web-components/ui/button";
 import { updateApplication } from "@/lib/updateApplication";
 import { useApplicationContext } from "@/hooks/use-application-context";
 import Skeleton from "@/components/details/skeleton";
+import "@/lib/zod-iso3-extension";
 
 type EducationFormFields = {
   university: string
@@ -24,12 +24,12 @@ type EducationFormFields = {
   country: string
 }
 
-export type schoolOptionsType = {
+export type SchoolOption = {
   label: string
   value: string
 }
 
-export type countryOptionsType = {
+export type CountryOption = {
   label: string
   emoji: string
   value: string
@@ -59,8 +59,8 @@ const educationFormSchema = z.object({
 })
 
 export default function EducationPage() {
-  const [schoolOptions, setSchoolOptions] = React.useState<schoolOptionsType[]>([])
-  const [countryOptions, setCountryOptions] = React.useState<countryOptionsType[]>([])
+  const [schoolOptions, setSchoolOptions] = React.useState<SchoolOption[]>([])
+  const [countryOptions, setCountryOptions] = React.useState<CountryOption[]>([])
 
   const router = useRouter()
   const { application, applicationIsLoading } = useApplicationContext()
