@@ -39,7 +39,7 @@ export default function Intro() {
       </div>
 
       <div className="absolute mt-[22rem] mx-[12.5vw] text-3xl md:text-4xl w-[75vw] md:w-[40rem]">
-        We welcome you to join us for the ninth iteration of DurHack, Durham University Computing Society's annual
+        We welcome you to join us for the ninth iteration of DurHack, Durham University Computing Society&apos;s annual
         flagship hackathon.
       </div>
     </>
