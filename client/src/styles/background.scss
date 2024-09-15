@@ -1,64 +1,64 @@
 section#splash {
-    background: linear-gradient(180deg, #102330, #1D4963);
+  background: linear-gradient(180deg, #102330, #1d4963);
 }
 
 .ellipse {
-    clip-path: ellipse(120% 100% at 50% 100%);
+  clip-path: ellipse(120% 100% at 50% 100%);
 }
 
 @media (max-width: 1280px) {
-    .ellipse {
-        clip-path: ellipse(140% 100% at 50% 100%);
-    }
+  .ellipse {
+    clip-path: ellipse(140% 100% at 50% 100%);
+  }
 }
 
 @media (max-width: 1024px) {
-    .ellipse {
-        clip-path: ellipse(160% 100% at 50% 100%);
-    }
+  .ellipse {
+    clip-path: ellipse(160% 100% at 50% 100%);
+  }
 }
 
 @media (max-width: 768px) {
-    .ellipse {
-        clip-path: ellipse(250% 100% at 50% 100%);
-    }
+  .ellipse {
+    clip-path: ellipse(250% 100% at 50% 100%);
+  }
 }
 
 $intro-height: 100rem;
 section#intro {
-    position: relative;
-    overflow: hidden;
-    margin-top: calc(-0.1 * #{$intro-height});
-    height: $intro-height;
-    background: linear-gradient(180deg, #3A7EA0 38%, #968B69);
+  position: relative;
+  overflow: hidden;
+  margin-top: calc(-0.1 * #{$intro-height});
+  height: $intro-height;
+  background: linear-gradient(180deg, #3a7ea0 38%, #968b69);
 }
 
 section#about {
-    margin-top: calc(-0.1 * #{$intro-height});
-    height: $intro-height;
-    position: relative;
+  margin-top: calc(-0.1 * #{$intro-height});
+  height: $intro-height;
+  position: relative;
 }
 
 section#about #background {
-    background: linear-gradient(180deg, #216782, #306379);
-    position: absolute;
-    overflow: hidden;
-    height: 100%;
-    width: 100%;
+  background: linear-gradient(180deg, #216782, #306379);
+  position: absolute;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
 }
 
 section#sponsors {
-    background: linear-gradient(180deg, #306379, #175A82 50%, #196798);
+  background: linear-gradient(180deg, #306379, #175a82 50%, #196798);
 }
 
 section#guilds {
-    background: linear-gradient(180deg, #196798, #3983AB);
+  background: linear-gradient(180deg, #196798, #3983ab);
 }
 
 section#gallery {
-    background: linear-gradient(180deg, #3983AB, #73AFC5);
+  background: linear-gradient(180deg, #3983ab, #73afc5);
 }
 
 section#end {
-    background: #73AFC5;
+  background: #73afc5;
 }
