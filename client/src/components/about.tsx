@@ -3,6 +3,8 @@
 import { motion, useInView } from "framer-motion";
 import * as React from "react";
 
+import { MountainGraphic } from "@/components/graphics";
+
 export default function About() {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -20,11 +22,7 @@ export default function About() {
           animate={{ rotate: isInView ? 0 : -20 }}
           transition={{ duration: 1, ease: "easeInOut" }}
         >
-          <img
-            src="/assets/icons/mountains.svg"
-            alt="mountains"
-            className="relative h-[12rem] md:h-[16rem] lg:h-[20rem]"
-          />
+          <MountainGraphic className="relative h-[12rem] md:h-[16rem] lg:h-[20rem]" />
         </motion.div>
       </div>
     </>

@@ -3,6 +3,8 @@
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import * as React from "react";
 
+import { Cloud4Graphic, Cloud5Graphic } from "@/components/graphics";
+
 export default function Intro() {
   const ref = React.useRef(null);
 
@@ -24,7 +26,7 @@ export default function Intro() {
           className="absolute left-[-10rem] top-[40rem] z-30 pointer-events-none"
           style={{ x: cloud4X }}
         >
-          <img src="/assets/icons/cloud-4.svg" alt="cloud" className="h-[12rem] lg:h-[20rem]" />
+          <Cloud4Graphic className="h-[12rem] lg:h-[20rem]" />
         </motion.div>
 
         <motion.div
@@ -32,7 +34,7 @@ export default function Intro() {
           className="absolute right-[-7rem] top-[60rem] z-30 pointer-events-none"
           style={{ x: cloud5X }}
         >
-          <img src="/assets/icons/cloud-5.svg" alt="cloud" className="h-[12rem] lg:h-[20rem]" />
+          <Cloud5Graphic className="h-[12rem] lg:h-[20rem]" />
         </motion.div>
       </div>
 

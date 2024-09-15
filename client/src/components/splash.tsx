@@ -3,7 +3,9 @@
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import * as React from "react";
 import { Audiowide } from "next/font/google";
+
 import { cn } from "@/lib/utils";
+import { Cloud1Graphic, Cloud2Graphic, Cloud3Graphic, StarsGraphic } from "@/components/graphics";
 
 const audiowide = Audiowide({ weight: "400", subsets: ["latin"] });
 
@@ -24,7 +26,7 @@ export default function Splash() {
     <>
       <div ref={ref} className="overflow-hidden relative">
         <div id="stars" className="absolute h-full w-full z-20">
-          <img src="/assets/icons/stars.svg" className="h-full max-w-[none] xl:w-full absolute" />
+          <StarsGraphic className="h-full max-w-[none] xl:w-full absolute" />
         </div>
 
         <div
@@ -47,7 +49,7 @@ export default function Splash() {
           className="absolute right-[-6rem] xl:right-[-2rem] top-[8rem] md:top-[16rem] z-30 pointer-events-none"
           style={{ x: cloud1X }}
         >
-          <img src="/assets/icons/cloud-1.svg" alt="cloud" className="h-[6rem] xl:h-64" />
+          <Cloud1Graphic className="h-[6rem] xl:h-64" />
         </motion.div>
 
         <motion.div
@@ -55,7 +57,7 @@ export default function Splash() {
           className="absolute left-[-29rem] xl:left-[-24rem] top-[5rem] md:top-[13rem] z-30 pointer-events-none"
           style={{ x: cloud2X }}
         >
-          <img src="/assets/icons/cloud-2.svg" alt="cloud" className="h-[15rem] xl:h-[25rem]" />
+          <Cloud2Graphic className="h-[15rem] xl:h-[25rem]" />
         </motion.div>
 
         <motion.div
@@ -63,7 +65,7 @@ export default function Splash() {
           className="absolute left-[-19rem] xl:left-[-9rem] top-[11rem] md:top-[23rem] z-30 pointer-events-none"
           style={{ x: cloud3X }}
         >
-          <img src="/assets/icons/cloud-3.svg" alt="cloud" className="h-[11rem] xl:h-[21rem]" />
+          <Cloud3Graphic className="h-[11rem] xl:h-[21rem]" />
         </motion.div>
 
         <div className="relative">

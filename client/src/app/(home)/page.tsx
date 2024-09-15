@@ -5,7 +5,6 @@ import Sponsors from "@/components/sponsors";
 import Guilds from "@/components/guilds";
 import Gallery from "@/components/gallery";
 import End from "@/components/end";
-
 import "@/styles/background.scss";
 import "@/styles/navbar.scss";
 import "@/styles/splash.scss";
