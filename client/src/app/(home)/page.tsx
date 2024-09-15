@@ -17,12 +17,12 @@ export default function HomePage() {
         <Splash />
       </section>
 
-      <section id="intro">
+      <section id="intro" className="ellipse">
         <Intro />
       </section>
 
       <section id="about">
-        <div id="background"></div>
+        <div id="background" className="ellipse"></div>
         <About />
       </section>
 
