@@ -49,7 +49,7 @@ export function Footer() {
             <Link href="https://compsoc.tech" className="underline">compsoc.tech</Link>
             ), which is a student society affiliated with Durham Students&apos; Union (
             <Link href="https://durhamsu.com" className="underline">durhamsu.com</Link>
-            ). Durham Students' Union is registered in England as a company limited by guarantee (07689815) and a charity
+            ). Durham Students&apos; Union is registered in England as a company limited by guarantee (07689815) and a charity
             (1145400), with VAT number 119733690 and registered office Dunelm House, New Elvet, Durham DH1 3AN.
           </p>
         </div>
