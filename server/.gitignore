@@ -18,8 +18,8 @@
 !/*config.json
 !/*rc.json
 
-## Next.js
-!/components.json
+## Biome
+!/biome.json
 
 ## Markdowns
 !*.md
@@ -35,8 +35,10 @@
 !/.github/
 
 ## Sources
-!/asset-src
-!/public
 !/src
+!/prisma
+
+## Config files
+/src/config/local*
 
 # Explicit exceptions/ignores
