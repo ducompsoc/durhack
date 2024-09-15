@@ -36,7 +36,7 @@ section#about {
     position: relative;
 }
 
-section#about > #background {
+section#about #background {
     background: linear-gradient(180deg, #216782, #306379);
     position: absolute;
     overflow: hidden;
