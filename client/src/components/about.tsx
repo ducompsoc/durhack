@@ -10,7 +10,7 @@ export default function About() {
   return (
     <>
       <div className="absolute w-full top-[-1rem] md:top-[-3rem]">
-        <img src="/assets/icons/waves.svg" className="w-full" />
+        <img src="/assets/icons/waves.svg" className="w-full" id="waves" />
       </div>
 
       <div ref={ref} className="w-full h-full absolute">
