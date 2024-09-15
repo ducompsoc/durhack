@@ -4,7 +4,7 @@ type GuildIconProps = React.HTMLAttributes<SVGElement>
 
 export function GuildAtlantisIcon(props: GuildIconProps) {
   return (
-    <svg role="img" viewBox="0 0 1816 1816">
+    <svg role="img" viewBox="0 0 1816 1816" {...props}>
       <title>Atlantis</title>
       <use href="/assets/graphics/guild-icons.svg#guild-border"/>
       <use href="/assets/graphics/guild-icons.svg#guild-atlantis"/>
@@ -15,7 +15,7 @@ export function GuildAtlantisIcon(props: GuildIconProps) {
 
 export function GuildCentreOfTheEarthIcon(props: GuildIconProps) {
   return (
-    <svg role="img" viewBox="0 0 1816 1816">
+    <svg role="img" viewBox="0 0 1816 1816" {...props}>
       <title>Centre of the Earth</title>
       <use href="/assets/graphics/guild-icons.svg#guild-border"/>
       <use href="/assets/graphics/guild-icons.svg#guild-centre-of-the-earth"/>
@@ -26,7 +26,7 @@ export function GuildCentreOfTheEarthIcon(props: GuildIconProps) {
 
 export function GuildMoonIcon(props: GuildIconProps) {
   return (
-    <svg role="img" viewBox="0 0 1816 1816">
+    <svg role="img" viewBox="0 0 1816 1816" {...props}>
       <title>Moon</title>
       <use href="/assets/graphics/guild-icons.svg#guild-border"/>
       <use href="/assets/graphics/guild-icons.svg#guild-moon"/>
@@ -37,7 +37,7 @@ export function GuildMoonIcon(props: GuildIconProps) {
 
 export function GuildMysteriousIslandIcon(props: GuildIconProps) {
   return (
-    <svg role="img" viewBox="0 0 1816 1816">
+    <svg role="img" viewBox="0 0 1816 1816" {...props}>
       <title>Mysterious Island</title>
       <use href="/assets/graphics/guild-icons.svg#guild-border"/>
       <use href="/assets/graphics/guild-icons.svg#guild-mysterious-island"/>
