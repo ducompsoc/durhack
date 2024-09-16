@@ -67,8 +67,8 @@ export default function Splash() {
           <Cloud3Graphic className="h-[11rem] xl:h-[21rem]" />
         </motion.div>
 
-        <div className="relative">
-          <div className="pt-[20rem] md:pt-[40rem] pb-8">
+        <div className="relative top-[-10rem] md:top-[10rem]">
+          <div className="pb-8">
             <h2 id="title" className={cn(audiowide.className, "text-5xl md:text-8xl text-center relative uppercase z-20")}>
               DurHack 2024
             </h2>
