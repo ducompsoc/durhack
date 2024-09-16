@@ -6,6 +6,7 @@ import { Audiowide } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 import { Cloud1Graphic, Cloud2Graphic, Cloud3Graphic, StarsGraphic } from "@/components/graphics";
+import { MoonGraphic } from "@/components/graphics/moon";
 
 const audiowide = Audiowide({ weight: "400", subsets: ["latin"] });
 
@@ -36,11 +37,9 @@ export default function Splash() {
         <div
           id="inner-ring"
           className="rounded-[50%] absolute h-[56rem] w-[56rem] top-[-36rem] md:top-[-16rem] z-10"
-        ></div>
-        <img
-          src="/assets/icons/moon.svg"
-          alt="splash"
-          className="h-[32rem] w-[32rem] top-[-24rem] md:top-[-4rem] mx-auto rounded-[50%] transition-all duration-500 hover:transition-all hover:duration-300 absolute z-20 max-w-[none]"
+        />
+        <MoonGraphic
+          className="h-[32rem] w-[32rem] top-[-24rem] md:top-[-4rem] translate-x-[-50%] left-1/2 z-20"
           id="moon"
         />
 
