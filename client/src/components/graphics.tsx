@@ -5,14 +5,14 @@ export function Cloud1Graphic(props: GraphicProps) {
     <svg width="621" height="239" viewBox="0 0 621 239" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <mask id="path-1-inside-1_142_699" fill="white">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M443.983 234C415.201 234 389.116 221.173 370.106 200.384C356.058 213.456 337.455 221.413 317.052 221.413C301.084 221.413 286.218 216.539 273.776 208.154C268.488 223.229 254.495 234 238.066 234C220.141 234 205.118 221.18 201.133 203.938C191.737 208.474 181.297 211 170.3 211C169.821 211 169.344 210.995 168.867 210.986C160.235 227.646 143.068 239 123.3 239C102.566 239 84.6932 226.509 76.5287 208.506C70.3134 210.932 63.5755 212.259 56.5372 212.259C25.3126 212.259 0 186.132 0 153.902C0 121.673 25.3126 95.5452 56.5372 95.5452C72.7889 95.5452 87.439 102.623 97.7522 113.955C105.45 79.0201 135.009 53 170.3 53C189.658 53 207.292 60.8292 220.539 73.6645C226.694 53.0199 245.365 38.0102 267.443 38.0102C283.601 38.0102 297.934 46.0495 306.871 58.4533C310.204 58.0122 313.602 57.7848 317.052 57.7848C328.66 57.7848 339.685 60.3605 349.621 64.9884C366.856 26.47 402.637 0 443.983 0C485.787 0 521.902 27.0602 538.911 66.2739C546.657 61.9477 555.47 59.5012 564.817 59.5012C595.735 59.5012 620.8 86.2689 620.8 119.288C620.8 152.308 595.735 179.076 564.817 179.076C554.803 179.076 545.403 176.268 537.269 171.349C519.651 208.597 484.487 234 443.983 234Z"
         />
       </mask>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M443.983 234C415.201 234 389.116 221.173 370.106 200.384C356.058 213.456 337.455 221.413 317.052 221.413C301.084 221.413 286.218 216.539 273.776 208.154C268.488 223.229 254.495 234 238.066 234C220.141 234 205.118 221.18 201.133 203.938C191.737 208.474 181.297 211 170.3 211C169.821 211 169.344 210.995 168.867 210.986C160.235 227.646 143.068 239 123.3 239C102.566 239 84.6932 226.509 76.5287 208.506C70.3134 210.932 63.5755 212.259 56.5372 212.259C25.3126 212.259 0 186.132 0 153.902C0 121.673 25.3126 95.5452 56.5372 95.5452C72.7889 95.5452 87.439 102.623 97.7522 113.955C105.45 79.0201 135.009 53 170.3 53C189.658 53 207.292 60.8292 220.539 73.6645C226.694 53.0199 245.365 38.0102 267.443 38.0102C283.601 38.0102 297.934 46.0495 306.871 58.4533C310.204 58.0122 313.602 57.7848 317.052 57.7848C328.66 57.7848 339.685 60.3605 349.621 64.9884C366.856 26.47 402.637 0 443.983 0C485.787 0 521.902 27.0602 538.911 66.2739C546.657 61.9477 555.47 59.5012 564.817 59.5012C595.735 59.5012 620.8 86.2689 620.8 119.288C620.8 152.308 595.735 179.076 564.817 179.076C554.803 179.076 545.403 176.268 537.269 171.349C519.651 208.597 484.487 234 443.983 234Z"
         fill="url(#paint0_linear_142_699)"
       />
@@ -30,9 +30,9 @@ export function Cloud1Graphic(props: GraphicProps) {
           y2="431.772"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.224783" stop-color="#D9D9D9" />
-          <stop offset="0.728115" stop-color="#737373" stop-opacity="0" />
-          <stop offset="0.77626" stop-color="#737373" stop-opacity="0" />
+          <stop offset="0.224783" stopColor="#D9D9D9" />
+          <stop offset="0.728115" stopColor="#737373" stopOpacity="0" />
+          <stop offset="0.77626" stopColor="#737373" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_142_699"
@@ -42,8 +42,8 @@ export function Cloud1Graphic(props: GraphicProps) {
           y2="5.6982e-05"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#836363" stop-opacity="0" />
-          <stop offset="1" stop-color="white" />
+          <stop stopColor="#836363" stopOpacity="0" />
+          <stop offset="1" stopColor="white" />
         </linearGradient>
       </defs>
     </svg>
@@ -55,14 +55,14 @@ export function Cloud2Graphic(props: GraphicProps) {
     <svg width="1225" height="394" viewBox="0 0 1225 394" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <mask id="path-1-inside-1_142_684" fill="white">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M319 394C370.926 394 417.987 372.402 452.283 337.398C477.628 359.408 511.19 372.807 548 372.807C576.808 372.807 603.627 364.601 626.074 350.482C635.615 375.864 660.859 394 690.5 394C719.657 394 744.56 376.451 754.446 351.719C768.478 355.419 783.25 357.394 798.5 357.394C849.419 357.394 894.999 335.375 925.54 300.682C941.79 334.183 977.081 357.394 1018 357.394C1063.78 357.394 1102.51 328.346 1115.42 288.341C1126.86 296.617 1141.09 301.521 1156.5 301.521C1194.33 301.521 1225 271.977 1225 235.533C1225 199.089 1194.33 169.545 1156.5 169.545C1132.46 169.545 1111.31 181.474 1099.09 199.521C1080.45 176.03 1051.06 160.875 1018 160.875C997.995 160.875 979.334 166.423 963.587 176.009C952.914 97.3453 883.07 36.6064 798.5 36.6064C755.407 36.6064 716.138 52.3767 686.573 78.2532C672.529 69.2491 655.653 64 637.5 64C608.349 64 582.491 77.5363 566.366 98.4214C560.353 97.6787 554.223 97.2958 548 97.2958C527.057 97.2958 507.166 101.633 489.241 109.425C458.147 44.5693 393.593 0 319 0C243.58 0 178.423 45.5628 147.737 111.589C133.762 104.305 117.864 100.186 101 100.186C45.2192 100.186 0 145.256 0 200.853C0 256.45 45.2192 301.521 101 301.521C119.067 301.521 136.026 296.793 150.699 288.51C182.485 351.227 245.925 394 319 394Z"
         />
       </mask>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M319 394C370.926 394 417.987 372.402 452.283 337.398C477.628 359.408 511.19 372.807 548 372.807C576.808 372.807 603.627 364.601 626.074 350.482C635.615 375.864 660.859 394 690.5 394C719.657 394 744.56 376.451 754.446 351.719C768.478 355.419 783.25 357.394 798.5 357.394C849.419 357.394 894.999 335.375 925.54 300.682C941.79 334.183 977.081 357.394 1018 357.394C1063.78 357.394 1102.51 328.346 1115.42 288.341C1126.86 296.617 1141.09 301.521 1156.5 301.521C1194.33 301.521 1225 271.977 1225 235.533C1225 199.089 1194.33 169.545 1156.5 169.545C1132.46 169.545 1111.31 181.474 1099.09 199.521C1080.45 176.03 1051.06 160.875 1018 160.875C997.995 160.875 979.334 166.423 963.587 176.009C952.914 97.3453 883.07 36.6064 798.5 36.6064C755.407 36.6064 716.138 52.3767 686.573 78.2532C672.529 69.2491 655.653 64 637.5 64C608.349 64 582.491 77.5363 566.366 98.4214C560.353 97.6787 554.223 97.2958 548 97.2958C527.057 97.2958 507.166 101.633 489.241 109.425C458.147 44.5693 393.593 0 319 0C243.58 0 178.423 45.5628 147.737 111.589C133.762 104.305 117.864 100.186 101 100.186C45.2192 100.186 0 145.256 0 200.853C0 256.45 45.2192 301.521 101 301.521C119.067 301.521 136.026 296.793 150.699 288.51C182.485 351.227 245.925 394 319 394Z"
         fill="url(#paint0_linear_142_684)"
       />
@@ -73,9 +73,9 @@ export function Cloud2Graphic(props: GraphicProps) {
       />
       <defs>
         <linearGradient id="paint0_linear_142_684" x1="613" y1="-544" x2="613" y2="727" gradientUnits="userSpaceOnUse">
-          <stop offset="0.143887" stop-color="#F2F2F2" />
-          <stop offset="0.667909" stop-color="#737373" stop-opacity="0" />
-          <stop offset="0.736231" stop-color="#737373" stop-opacity="0" />
+          <stop offset="0.143887" stopColor="#F2F2F2" />
+          <stop offset="0.667909" stopColor="#737373" stopOpacity="0" />
+          <stop offset="0.736231" stopColor="#737373" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_142_684"
@@ -85,8 +85,8 @@ export function Cloud2Graphic(props: GraphicProps) {
           y2="394"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" />
-          <stop offset="0.577164" stop-color="#999999" stop-opacity="0.01" />
+          <stop stopColor="white" />
+          <stop offset="0.577164" stopColor="#999999" stopOpacity="0.01" />
         </linearGradient>
       </defs>
     </svg>
@@ -98,14 +98,14 @@ export function Cloud3Graphic(props: GraphicProps) {
     <svg width="927" height="338" viewBox="0 0 927 338" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <mask id="path-1-inside-1_142_693" fill="white">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M673.424 204.233C649.814 231.003 614.611 247.988 575.289 247.988C552.542 247.988 531.173 242.304 512.629 232.329C496.804 292.875 439.843 337.701 372 337.701C291.919 337.701 227 275.245 227 198.201C227 121.157 291.919 58.701 372 58.701C402.338 58.701 430.499 67.6646 453.78 82.9891C471.353 34.6597 519.12 0 575.289 0C641.641 0 696.267 48.3642 703.25 110.494C714.699 104.895 727.919 101.701 742 101.701C769.951 101.701 794.512 114.288 808.555 133.281C819.837 114.926 840.002 102.701 863 102.701C898.346 102.701 927 131.579 927 167.201C927 202.823 898.346 231.701 863 231.701C841.322 231.701 822.161 220.839 810.584 204.221C796.963 224.822 771.351 238.701 742 238.701C712.655 238.701 687.047 224.828 673.424 204.233ZM176 149.201C176 197.526 136.601 236.701 88 236.701C39.3989 236.701 0 197.526 0 149.201C0 100.876 39.3989 61.701 88 61.701C136.601 61.701 176 100.876 176 149.201Z"
         />
       </mask>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M673.424 204.233C649.814 231.003 614.611 247.988 575.289 247.988C552.542 247.988 531.173 242.304 512.629 232.329C496.804 292.875 439.843 337.701 372 337.701C291.919 337.701 227 275.245 227 198.201C227 121.157 291.919 58.701 372 58.701C402.338 58.701 430.499 67.6646 453.78 82.9891C471.353 34.6597 519.12 0 575.289 0C641.641 0 696.267 48.3642 703.25 110.494C714.699 104.895 727.919 101.701 742 101.701C769.951 101.701 794.512 114.288 808.555 133.281C819.837 114.926 840.002 102.701 863 102.701C898.346 102.701 927 131.579 927 167.201C927 202.823 898.346 231.701 863 231.701C841.322 231.701 822.161 220.839 810.584 204.221C796.963 224.822 771.351 238.701 742 238.701C712.655 238.701 687.047 224.828 673.424 204.233ZM176 149.201C176 197.526 136.601 236.701 88 236.701C39.3989 236.701 0 197.526 0 149.201C0 100.876 39.3989 61.701 88 61.701C136.601 61.701 176 100.876 176 149.201Z"
         fill="url(#paint0_linear_142_693)"
       />
@@ -123,8 +123,8 @@ export function Cloud3Graphic(props: GraphicProps) {
           y2="487.514"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.143887" stop-color="#F2F2F2" />
-          <stop offset="0.718133" stop-color="#737373" stop-opacity="0" />
+          <stop offset="0.143887" stopColor="#F2F2F2" />
+          <stop offset="0.718133" stopColor="#737373" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_142_693"
@@ -134,8 +134,8 @@ export function Cloud3Graphic(props: GraphicProps) {
           y2="337.729"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" />
-          <stop offset="0.499677" stop-color="#999999" stop-opacity="0" />
+          <stop stopColor="white" />
+          <stop offset="0.499677" stopColor="#999999" stopOpacity="0" />
         </linearGradient>
       </defs>
     </svg>
@@ -147,14 +147,14 @@ export function Cloud4Graphic(props: GraphicProps) {
     <svg width="788" height="304" viewBox="0 0 788 304" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <mask id="path-1-inside-1_142_48" fill="white">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M224.439 297.023C260.973 297.023 294.084 280.742 318.213 254.353C336.045 270.946 359.658 281.046 385.557 281.046C405.825 281.046 424.694 274.86 440.488 264.217C447.2 283.351 464.961 297.023 485.816 297.023C508.568 297.023 527.638 280.75 532.696 258.865C544.623 264.622 557.875 267.829 571.833 267.829C572.441 267.829 573.047 267.823 573.652 267.811C584.609 288.958 606.399 303.37 631.492 303.37C657.81 303.37 680.496 287.515 690.86 264.663C698.749 267.742 707.302 269.427 716.236 269.427C755.87 269.427 788 236.263 788 195.353C788 154.443 755.87 121.278 716.236 121.278C695.607 121.278 677.011 130.262 663.92 144.647C654.149 100.303 616.629 67.2745 571.833 67.2745C547.261 67.2745 524.878 77.2124 508.064 93.5046C500.251 67.2998 476.551 48.2474 448.527 48.2474C428.017 48.2474 409.824 58.452 398.479 74.1966C394.248 73.6367 389.935 73.348 385.557 73.348C370.822 73.348 356.827 76.6174 344.216 82.4917C322.339 33.5992 276.921 0 224.439 0C171.376 0 125.534 34.3483 103.944 84.1234C94.1112 78.6321 82.9256 75.5267 71.0607 75.5267C31.815 75.5267 0 109.504 0 151.416C0 193.329 31.815 227.306 71.0607 227.306C83.7721 227.306 95.704 223.742 106.028 217.498C128.392 264.778 173.026 297.023 224.439 297.023Z"
         />
       </mask>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M224.439 297.023C260.973 297.023 294.084 280.742 318.213 254.353C336.045 270.946 359.658 281.046 385.557 281.046C405.825 281.046 424.694 274.86 440.488 264.217C447.2 283.351 464.961 297.023 485.816 297.023C508.568 297.023 527.638 280.75 532.696 258.865C544.623 264.622 557.875 267.829 571.833 267.829C572.441 267.829 573.047 267.823 573.652 267.811C584.609 288.958 606.399 303.37 631.492 303.37C657.81 303.37 680.496 287.515 690.86 264.663C698.749 267.742 707.302 269.427 716.236 269.427C755.87 269.427 788 236.263 788 195.353C788 154.443 755.87 121.278 716.236 121.278C695.607 121.278 677.011 130.262 663.92 144.647C654.149 100.303 616.629 67.2745 571.833 67.2745C547.261 67.2745 524.878 77.2124 508.064 93.5046C500.251 67.2998 476.551 48.2474 448.527 48.2474C428.017 48.2474 409.824 58.452 398.479 74.1966C394.248 73.6367 389.935 73.348 385.557 73.348C370.822 73.348 356.827 76.6174 344.216 82.4917C322.339 33.5992 276.921 0 224.439 0C171.376 0 125.534 34.3483 103.944 84.1234C94.1112 78.6321 82.9256 75.5267 71.0607 75.5267C31.815 75.5267 0 109.504 0 151.416C0 193.329 31.815 227.306 71.0607 227.306C83.7721 227.306 95.704 223.742 106.028 217.498C128.392 264.778 173.026 297.023 224.439 297.023Z"
         fill="url(#paint0_linear_142_48)"
       />
@@ -172,9 +172,9 @@ export function Cloud4Graphic(props: GraphicProps) {
           y2="548.061"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.224783" stop-color="#D9D9D9" />
-          <stop offset="0.728115" stop-color="#737373" stop-opacity="0" />
-          <stop offset="0.77626" stop-color="#737373" stop-opacity="0" />
+          <stop offset="0.224783" stopColor="#D9D9D9" />
+          <stop offset="0.728115" stopColor="#737373" stopOpacity="0" />
+          <stop offset="0.77626" stopColor="#737373" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_142_48"
@@ -184,8 +184,8 @@ export function Cloud4Graphic(props: GraphicProps) {
           y2="7.2329e-05"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#836363" stop-opacity="0" />
-          <stop offset="1" stop-color="white" />
+          <stop stopColor="#836363" stopOpacity="0" />
+          <stop offset="1" stopColor="white" />
         </linearGradient>
       </defs>
     </svg>
@@ -197,14 +197,14 @@ export function Cloud5Graphic(props: GraphicProps) {
     <svg width="613" height="281" viewBox="0 0 613 281" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <mask id="path-1-inside-1_142_39" fill="white">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M451.98 233.287C423.449 237.085 395.9 227.813 374.313 209.714C362.112 224.526 344.723 234.868 324.498 237.561C308.669 239.668 293.291 236.799 279.851 230.129C276.598 245.769 264.149 258.293 247.863 260.461C230.096 262.826 213.512 252.101 207.286 235.536C198.571 241.271 188.556 245.154 177.655 246.605C177.181 246.668 176.707 246.726 176.233 246.78C169.875 264.433 154.356 277.954 134.761 280.562C114.208 283.298 94.8438 273.275 84.3749 256.507C78.534 259.732 72.0302 261.937 65.0535 262.866C34.1019 266.986 5.56286 244.428 1.30968 212.48C-2.9435 180.532 18.6998 151.293 49.6513 147.172C65.7609 145.028 81.217 150.11 92.9354 159.982C95.9554 124.337 121.823 94.6437 156.805 89.9866C175.994 87.432 194.506 92.8657 209.331 103.841C212.708 82.5644 229.235 65.2219 251.12 62.3084C267.136 60.1762 282.405 66.2537 292.901 77.3696C296.147 76.4925 299.485 75.8187 302.904 75.3635C314.411 73.8316 325.68 74.9298 336.139 78.2062C348.14 37.7502 380.115 6.78985 421.1 1.33363C462.539 -4.18307 501.909 17.8745 523.944 54.5007C531.052 49.1901 539.464 45.6021 548.729 44.3686C579.377 40.2885 607.755 63.5144 612.112 96.2452C616.47 128.976 595.157 158.817 564.509 162.897C554.582 164.219 544.894 162.676 536.183 158.873C523.634 198.12 492.13 227.942 451.98 233.287Z"
         />
       </mask>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M451.98 233.287C423.449 237.085 395.9 227.813 374.313 209.714C362.112 224.526 344.723 234.868 324.498 237.561C308.669 239.668 293.291 236.799 279.851 230.129C276.598 245.769 264.149 258.293 247.863 260.461C230.096 262.826 213.512 252.101 207.286 235.536C198.571 241.271 188.556 245.154 177.655 246.605C177.181 246.668 176.707 246.726 176.233 246.78C169.875 264.433 154.356 277.954 134.761 280.562C114.208 283.298 94.8438 273.275 84.3749 256.507C78.534 259.732 72.0302 261.937 65.0535 262.866C34.1019 266.986 5.56286 244.428 1.30968 212.48C-2.9435 180.532 18.6998 151.293 49.6513 147.172C65.7609 145.028 81.217 150.11 92.9354 159.982C95.9554 124.337 121.823 94.6437 156.805 89.9866C175.994 87.432 194.506 92.8657 209.331 103.841C212.708 82.5644 229.235 65.2219 251.12 62.3084C267.136 60.1762 282.405 66.2537 292.901 77.3696C296.147 76.4925 299.485 75.8187 302.904 75.3635C314.411 73.8316 325.68 74.9298 336.139 78.2062C348.14 37.7502 380.115 6.78985 421.1 1.33363C462.539 -4.18307 501.909 17.8745 523.944 54.5007C531.052 49.1901 539.464 45.6021 548.729 44.3686C579.377 40.2885 607.755 63.5144 612.112 96.2452C616.47 128.976 595.157 158.817 564.509 162.897C554.582 164.219 544.894 162.676 536.183 158.873C523.634 198.12 492.13 227.942 451.98 233.287Z"
         fill="url(#paint0_linear_142_39)"
       />
@@ -222,9 +222,9 @@ export function Cloud5Graphic(props: GraphicProps) {
           y2="450.834"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.224783" stop-color="#D9D9D9" />
-          <stop offset="0.728115" stop-color="#737373" stop-opacity="0" />
-          <stop offset="0.77626" stop-color="#737373" stop-opacity="0" />
+          <stop offset="0.224783" stopColor="#D9D9D9" />
+          <stop offset="0.728115" stopColor="#737373" stopOpacity="0" />
+          <stop offset="0.77626" stopColor="#737373" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_142_39"
@@ -234,8 +234,8 @@ export function Cloud5Graphic(props: GraphicProps) {
           y2="18.9619"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#836363" stop-opacity="0" />
-          <stop offset="1" stop-color="white" />
+          <stop stopColor="#836363" stopOpacity="0" />
+          <stop offset="1" stopColor="white" />
         </linearGradient>
       </defs>
     </svg>
@@ -306,9 +306,8 @@ export function MountainGraphic(props: GraphicProps) {
           width="226.458"
           height="153.145"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -329,9 +328,8 @@ export function MountainGraphic(props: GraphicProps) {
           width="481.499"
           height="380.707"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -352,9 +350,8 @@ export function MountainGraphic(props: GraphicProps) {
           width="262.256"
           height="128.598"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -375,9 +372,8 @@ export function MountainGraphic(props: GraphicProps) {
           width="373.942"
           height="213.6"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -399,8 +395,8 @@ export function MountainGraphic(props: GraphicProps) {
           y2="233.297"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#3F4257" />
-          <stop offset="1" stop-color="#D29956" />
+          <stop stopColor="#3F4257" />
+          <stop offset="1" stopColor="#D29956" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_142_61"
@@ -410,8 +406,8 @@ export function MountainGraphic(props: GraphicProps) {
           y2="219.025"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.0126796" stop-color="#3F4257" />
-          <stop offset="0.890988" stop-color="#D29956" />
+          <stop offset="0.0126796" stopColor="#3F4257" />
+          <stop offset="0.890988" stopColor="#D29956" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_142_61"
@@ -421,8 +417,8 @@ export function MountainGraphic(props: GraphicProps) {
           y2="259.427"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#3F4257" />
-          <stop offset="1" stop-color="#D29956" />
+          <stop stopColor="#3F4257" />
+          <stop offset="1" stopColor="#D29956" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_142_61"
@@ -432,8 +428,8 @@ export function MountainGraphic(props: GraphicProps) {
           y2="195.566"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#3F4257" />
-          <stop offset="1" stop-color="#D29956" />
+          <stop stopColor="#3F4257" />
+          <stop offset="1" stopColor="#D29956" />
         </linearGradient>
         <linearGradient
           id="paint4_linear_142_61"
@@ -443,8 +439,8 @@ export function MountainGraphic(props: GraphicProps) {
           y2="266.129"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#3F4257" />
-          <stop offset="1" stop-color="#D29956" />
+          <stop stopColor="#3F4257" />
+          <stop offset="1" stopColor="#D29956" />
         </linearGradient>
         <linearGradient
           id="paint5_linear_142_61"
@@ -454,8 +450,8 @@ export function MountainGraphic(props: GraphicProps) {
           y2="283.403"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#3F4257" />
-          <stop offset="1" stop-color="#D29956" />
+          <stop stopColor="#3F4257" />
+          <stop offset="1" stopColor="#D29956" />
         </linearGradient>
         <linearGradient
           id="paint6_linear_142_61"
@@ -465,8 +461,8 @@ export function MountainGraphic(props: GraphicProps) {
           y2="177.625"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#3F4257" />
-          <stop offset="1" stop-color="#D29956" />
+          <stop stopColor="#3F4257" />
+          <stop offset="1" stopColor="#D29956" />
         </linearGradient>
         <linearGradient
           id="paint7_linear_142_61"
@@ -476,8 +472,8 @@ export function MountainGraphic(props: GraphicProps) {
           y2="278.062"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#3F4257" />
-          <stop offset="1" stop-color="#D29956" />
+          <stop stopColor="#3F4257" />
+          <stop offset="1" stopColor="#D29956" />
         </linearGradient>
         <linearGradient
           id="paint8_linear_142_61"
@@ -487,8 +483,8 @@ export function MountainGraphic(props: GraphicProps) {
           y2="316.666"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#3F4257" />
-          <stop offset="1" stop-color="#D29956" />
+          <stop stopColor="#3F4257" />
+          <stop offset="1" stopColor="#D29956" />
         </linearGradient>
         <linearGradient
           id="paint9_linear_142_61"
@@ -498,8 +494,8 @@ export function MountainGraphic(props: GraphicProps) {
           y2="236.212"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#3F4257" />
-          <stop offset="1" stop-color="#D29956" />
+          <stop stopColor="#3F4257" />
+          <stop offset="1" stopColor="#D29956" />
         </linearGradient>
         <linearGradient
           id="paint10_linear_142_61"
@@ -509,8 +505,8 @@ export function MountainGraphic(props: GraphicProps) {
           y2="255.273"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#3F4257" />
-          <stop offset="1" stop-color="#D29956" />
+          <stop stopColor="#3F4257" />
+          <stop offset="1" stopColor="#D29956" />
         </linearGradient>
         <linearGradient
           id="paint11_linear_142_61"
@@ -520,8 +516,8 @@ export function MountainGraphic(props: GraphicProps) {
           y2="230.115"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#3F4257" />
-          <stop offset="1" stop-color="#D29956" />
+          <stop stopColor="#3F4257" />
+          <stop offset="1" stopColor="#D29956" />
         </linearGradient>
       </defs>
     </svg>
