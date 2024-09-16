@@ -24,18 +24,19 @@ section#splash {
   }
 }
 
-$intro-height: 100rem;
 section#intro {
+  --height: 100rem;
   position: relative;
   overflow: hidden;
-  margin-top: calc(-0.1 * #{$intro-height});
-  height: $intro-height;
+  margin-top: calc(-0.1 * var(--height));
+  height: var(--height);
   background: linear-gradient(180deg, #3a7ea0 38%, #968b69);
 }
 
 section#about {
-  margin-top: calc(-0.1 * #{$intro-height});
-  height: $intro-height;
+  --height: 100rem;
+  margin-top: calc(-0.1 * var(--height));
+  height: var(--height);
   position: relative;
 
   #background {
