@@ -33,7 +33,7 @@ export default function Splash() {
         <div
           id="outer-ring"
           className="rounded-[50%] absolute h-[94rem] w-[94rem] top-[-55rem] md:top-[-35rem] z-10"
-        ></div>
+        />
         <div
           id="inner-ring"
           className="rounded-[50%] absolute h-[56rem] w-[56rem] top-[-36rem] md:top-[-16rem] z-10"
@@ -69,19 +69,19 @@ export default function Splash() {
 
         <div className="relative">
           <div className="pt-[20rem] md:pt-[40rem] pb-8">
-            <h2 id="title" className={cn(audiowide.className, "text-5xl md:text-8xl text-center relative z-20")}>
-              DURHACK 2024
+            <h2 id="title" className={cn(audiowide.className, "text-5xl md:text-8xl text-center relative uppercase z-20")}>
+              DurHack 2024
             </h2>
-            <h4 id="subtitle" className={cn(audiowide.className, "text-3xl md:text-6xl text-center relative z-20")}>
-              2-3 NOVEMBER
+            <h4 id="subtitle" className={cn(audiowide.className, "text-3xl md:text-6xl text-center relative uppercase z-20")}>
+              2-3 November
             </h4>
           </div>
           <div className="flex justify-center pt-8 pb-64">
             <a
               id="book"
-              className="relative px-12 sm:px-16 py-4 sm:py-6 rounded-[4.8rem] text-xl sm:text-4xl text-center backdrop-blur-lg bg-white bg-opacity-40 hover:scale-110 z-50 transition-all cursor-pointer"
+              className="relative px-12 sm:px-16 py-4 sm:py-6 rounded-[4.8rem] text-xl sm:text-4xl text-center backdrop-blur-lg bg-white bg-opacity-40 hover:scale-110 z-50 transition-all uppercase cursor-pointer"
             >
-              BOOK TICKETS
+              Book Tickets
             </a>
           </div>
         </div>
