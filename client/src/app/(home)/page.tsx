@@ -1,3 +1,5 @@
+import * as React from "react"
+
 import Splash from "@/components/splash";
 import Intro from "@/components/intro";
 import About from "@/components/about";
