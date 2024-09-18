@@ -50,10 +50,11 @@ export class KeycloakHandlers {
       let codeVerifier: unknown
       try {
         codeVerifier = session.keycloakOAuth2FlowCodeVerifier
-        if (typeof codeVerifier !== "string") throw new ClientError("Code verifier not initialized", {
-          statusCode: 400,
-          exposeMessage: false,
-        })
+        if (typeof codeVerifier !== "string")
+          throw new ClientError("Code verifier not initialized", {
+            statusCode: 400,
+            exposeMessage: false,
+          })
       } finally {
         session.keycloakOAuth2FlowCodeVerifier = undefined
         await session.commit()

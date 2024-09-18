@@ -11,7 +11,7 @@ export function matchSignedCookie(value: string): boolean {
 }
 
 export function unsignCookie(encodedValue: string): string | null {
-  return unsign((encodedValue).slice(2), cookieSigningConfig.secret) || null
+  return unsign(encodedValue.slice(2), cookieSigningConfig.secret) || null
 }
 
 export function unsignCookieOrThrow(encodedValue: string): string {

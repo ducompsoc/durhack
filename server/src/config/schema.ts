@@ -19,7 +19,7 @@ export const cookieSigningOptionsSchema = z.object({
 export const sessionOptionsSchema = z.object({
   cookie: cookieOptionsSchema.extend({
     name: z.string().optional(),
-  })
+  }),
 })
 
 export const keycloakOptionsSchema = z.object({

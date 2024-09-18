@@ -1,6 +1,6 @@
-import type { Request, Response } from "@/types"
 import type { User } from "@/database"
 import { getSession } from "@/lib/session"
+import type { Request, Response } from "@/types"
 
 export class AuthHandlers {
   handleLoginSuccess() {

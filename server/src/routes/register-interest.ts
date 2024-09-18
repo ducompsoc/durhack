@@ -1,12 +1,12 @@
-import { Prisma } from "@prisma/client"
 import { App } from "@otterhttp/app"
-import { cors } from "corstisol"
 import { json } from "@otterhttp/parsec"
+import { Prisma } from "@prisma/client"
+import { cors } from "corstisol"
 import { ZodError, z } from "zod"
 
-import type { Request, Response } from "@/types"
 import { prisma } from "@/database"
 import { methodNotAllowed } from "@/middleware/method-not-allowed"
+import type { Request, Response } from "@/types"
 
 export const registerInterestRoutesApp = new App<Request, Response>()
 

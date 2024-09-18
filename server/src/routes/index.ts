@@ -1,9 +1,9 @@
 import { App } from "@otterhttp/app"
 
-import type { Request, Response } from "@/types"
 import { authApp } from "@/routes/auth"
-import { registerInterestRoutesApp } from "@/routes/register-interest"
 import { profileApp } from "@/routes/profile"
+import { registerInterestRoutesApp } from "@/routes/register-interest"
+import type { Request, Response } from "@/types"
 
 export const routesApp = new App<Request, Response>()
 
