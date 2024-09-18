@@ -4,7 +4,11 @@ import Image from "next/image"
 import "@/styles/moon.css"
 import { cn } from "@/lib/utils";
 
-export function MoonGraphic({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.ReactElement {
+type MoonGraphicProps = Omit<React.HTMLAttributes<HTMLDivElement>, "children"> & {
+  priority?: boolean
+}
+
+export function MoonGraphic({ className, priority, ...props }: MoonGraphicProps): React.ReactElement {
   return (
     <div className={cn("relative aspect-square isolate", className)} {...props}>
       <div className="moon-backdrop clip-circle w-full h-full" />
@@ -16,6 +20,7 @@ export function MoonGraphic({ className, ...props }: React.HTMLAttributes<HTMLDi
             height={4096}
             alt="photograph of moon"
             className="moon-image"
+            priority={priority}
           />
           <svg viewBox="0 0 632 632" fill="none" className="absolute w-full h-full">
             <defs>

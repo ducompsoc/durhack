@@ -40,6 +40,7 @@ export default function Splash() {
         />
         <MoonGraphic
           className="h-[32rem] w-[32rem] top-[-24rem] md:top-[-4rem] translate-x-[-50%] left-1/2 z-20"
+          priority={true}
           id="moon"
         />
 
