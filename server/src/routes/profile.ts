@@ -1,11 +1,12 @@
-import { App } from "@tinyhttp/app";
+import { App } from "@otterhttp/app";
+import { ClientError, HttpStatus } from "@otterhttp/errors";
+import { json } from "@otterhttp/parsec"
 import { cors } from "corstisol"
-import { json } from "milliparsec"
-import { ZodError, set, z } from "zod"
-import createHttpError from "http-errors";
+import { z } from "zod"
 
 import { prisma } from "@/database"
 import { methodNotAllowed } from "@/middleware/method-not-allowed"
+import type { Request, Response } from "@/types"
 
 const userFlagSchema = z.object({
   userFlags: z.object({}).catchall(z.boolean())
@@ -13,7 +14,7 @@ const userFlagSchema = z.object({
 
 const legalFlagNames = new Set(["attendance", "mlhCodeOfConduct", "mlhPolicies", "mlhMarketing"])
 
-export const profileApp = new App();
+export const profileApp = new App<Request, Response>();
 profileApp.use(json());
 
 profileApp
@@ -27,8 +28,7 @@ profileApp
         userId: userId
       }
     })
-    if(userInfo == null)
-      throw new createHttpError.NotFound
+    if(userInfo == null) throw new ClientError("", { statusCode: HttpStatus.NotFound })
     res.status(200).json(userInfo)
   })
 
@@ -49,8 +49,8 @@ profileApp
           name: flagName
         }
       })
-    } 
-    
+    }
+
     const setFlagQuery = (flagName: string) => {
       return prisma.userFlag.upsert(
         {
@@ -68,12 +68,12 @@ profileApp
         }
       )
     }
-    
-    const operations = Object.keys(flags).map((flagName) => {
-      if(!legalFlagNames.has(flagName)) 
-        throw new createHttpError.BadRequest
 
-      if (flags[flagName]) 
+    const operations = Object.keys(flags).map((flagName) => {
+      if(!legalFlagNames.has(flagName))
+        throw new ClientError(`Unrecognised flag name '${flagName}'`, { statusCode: HttpStatus.BadRequest })
+
+      if (flags[flagName])
         return setFlagQuery(flagName)
       else
         return removeFlagQuery(flagName)
@@ -90,9 +90,9 @@ profileApp
           keycloakUserId:userId
         }
       }).userFlags()
-      
+
       if(specificUserFlags == null)
-        throw new createHttpError.NotFound
+        throw new ClientError("", { statusCode: HttpStatus.NotFound })
 
       const userFlagArray = specificUserFlags.map(flag => flag.name);
       res.status(200).json(userFlagArray)
