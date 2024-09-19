@@ -1,15 +1,14 @@
-import { SectionHeader } from "@/components/section-header"
 import {
-  GuildCentreOfTheEarthIcon,
   GuildAtlantisIcon,
+  GuildCentreOfTheEarthIcon,
   GuildMoonIcon,
   GuildMysteriousIslandIcon,
 } from "@/components/graphics/guild-icons"
+import { SectionHeader } from "@/components/section-header"
 
 export default function Guilds() {
   return (
     <div className="text-center px-16">
-
       <SectionHeader>Guilds</SectionHeader>
 
       <div className="text-center text-lg md:text-xl px-4 sm:px-8 md:px-12 lg:px-24">
@@ -24,7 +23,6 @@ export default function Guilds() {
           <GuildMysteriousIslandIcon className="w-full h-auto mx-auto shadow-md" />
         </div>
       </div>
-
     </div>
-  );
+  )
 }

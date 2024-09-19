@@ -1,13 +1,13 @@
-import Splash from "@/components/splash";
-import Intro from "@/components/intro";
-import About from "@/components/about";
-import Sponsors from "@/components/sponsors";
-import Guilds from "@/components/guilds";
-import Gallery from "@/components/gallery";
-import End from "@/components/end";
+import About from "@/components/about"
+import End from "@/components/end"
+import Gallery from "@/components/gallery"
+import Guilds from "@/components/guilds"
+import Intro from "@/components/intro"
+import Splash from "@/components/splash"
+import Sponsors from "@/components/sponsors"
 
-import "@/styles/background.css";
-import "@/styles/splash.css";
+import "@/styles/background.css"
+import "@/styles/splash.css"
 
 export default function HomePage() {
   return (
@@ -40,5 +40,5 @@ export default function HomePage() {
         <End />
       </section>
     </main>
-  );
+  )
 }

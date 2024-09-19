@@ -1,18 +1,17 @@
-import Image from "next/image"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
   CarouselNext,
+  CarouselPrevious,
 } from "@durhack/web-components/ui/carousel"
+import Image from "next/image"
 
-import { SectionHeader } from "@/components/section-header";
+import { SectionHeader } from "@/components/section-header"
 
 export default function Gallery() {
   return (
     <div className="w-full px-4">
-
       <SectionHeader>Gallery</SectionHeader>
 
       <div className="flex flex-row justify-center">

@@ -1,16 +1,16 @@
-import { getCountryDataList } from "countries-list";
-import countriesEmoji from 'countries-list/minimal/countries.emoji.min.json'
+import { getCountryDataList } from "countries-list"
+import countriesEmoji from "countries-list/minimal/countries.emoji.min.json"
 
-import { RegisterForm } from "@/app/register/register-form";
-import { getVerifiedSchoolsList } from "@/data/verified-schools";
+import { RegisterForm } from "@/app/register/register-form"
+import { getVerifiedSchoolsList } from "@/data/verified-schools"
 
 export default async function RegisterPage() {
-  const schoolOptions = (await getVerifiedSchoolsList()).map(schoolName => ({
+  const schoolOptions = (await getVerifiedSchoolsList()).map((schoolName) => ({
     label: schoolName,
     value: schoolName,
   }))
 
-  const countryOptions = getCountryDataList().map(country => ({
+  const countryOptions = getCountryDataList().map((country) => ({
     label: country.name,
     emoji: countriesEmoji[country.iso2],
     value: country.iso3,
