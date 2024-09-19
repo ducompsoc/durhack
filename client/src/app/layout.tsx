@@ -44,16 +44,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <body className={cn(spaceGrotesk.className, "dark antialiased")}>
-      <div className="fixed top-0 overflow-visible w-[100%] z-50">
-        <MLHBanner variant="white" />
-        <Navbar />
-      </div>
-      <div className="relative bg-background">
-        {children}
-        <Footer />
-      </div>
-    </body>
+      <body className={cn(spaceGrotesk.className, "dark antialiased")}>
+        <div className="fixed top-0 overflow-visible w-[100%] z-50">
+          <MLHBanner variant="white" />
+          <Navbar />
+        </div>
+        <div className="relative bg-background">
+          {children}
+          <Footer />
+        </div>
+      </body>
     </html>
   )
 }

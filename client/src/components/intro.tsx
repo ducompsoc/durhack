@@ -1,22 +1,22 @@
-"use client";
+"use client"
 
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import * as React from "react";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion"
+import * as React from "react"
 
-import { Cloud4Graphic, Cloud5Graphic } from "@/components/graphics";
+import { Cloud4Graphic, Cloud5Graphic } from "@/components/graphics"
 
 export default function Intro() {
-  const ref = React.useRef(null);
+  const ref = React.useRef(null)
 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 0.1", "end start"],
-  });
+  })
 
-  const springProgress = useSpring(scrollYProgress, { stiffness: 400, damping: 90 });
+  const springProgress = useSpring(scrollYProgress, { stiffness: 400, damping: 90 })
 
-  const cloud4X = useTransform(springProgress, [0, 1], ["0rem", "-30rem"]);
-  const cloud5X = useTransform(springProgress, [0, 1], ["0rem", "30rem"]);
+  const cloud4X = useTransform(springProgress, [0, 1], ["0rem", "-30rem"])
+  const cloud5X = useTransform(springProgress, [0, 1], ["0rem", "30rem"])
 
   return (
     <>
@@ -43,5 +43,5 @@ export default function Intro() {
         flagship hackathon.
       </div>
     </>
-  );
+  )
 }

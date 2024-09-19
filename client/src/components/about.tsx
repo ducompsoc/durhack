@@ -1,18 +1,24 @@
-"use client";
+"use client"
 
-import { motion, useInView } from "framer-motion";
-import * as React from "react";
+import { motion, useInView } from "framer-motion"
+import Image from "next/image"
+import * as React from "react"
 
-import { MountainGraphic } from "@/components/graphics";
+import { MountainGraphic } from "@/components/graphics"
 
 export default function About() {
-  const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const ref = React.useRef(null)
+  const isInView = useInView(ref, { once: true })
 
   return (
     <>
       <div className="absolute w-full top-[-1rem] md:top-[-3rem]">
-        <img src="/assets/icons/waves.svg" className="w-full" id="waves" />
+        <Image
+          src="/assets/graphics/waves.svg"
+          alt="an abstract rendering of ocean waves"
+          className="w-full"
+          id="waves"
+        />
       </div>
 
       <div ref={ref} className="w-full h-full absolute">
@@ -26,5 +32,5 @@ export default function About() {
         </motion.div>
       </div>
     </>
-  );
+  )
 }

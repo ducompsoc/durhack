@@ -1,11 +1,14 @@
-import { cn } from "@/lib/utils";
+import Image from "next/image"
+import * as React from "react"
+
 import { audiowide } from "@/lib/google-fonts"
+import { cn } from "@/lib/utils"
 
 export default function Navbar() {
   return (
     <nav className={cn(audiowide.className, "hidden md:flex px-16 py-5 mx-auto relative")}>
       <a href="/" className="flex pr-32 space-x-4 hover:cursor-pointer absolute">
-        <img src="/assets/icons/logo.svg" className="w-16 h-16" />
+        <Image src="/assets/branding/durhack-2024-mark.svg" alt="DurHack 2024" className="w-16 h-16" />
         <div className="text-2xl pt-3.5 hidden xl:block uppercase" id="title">
           DurHack
         </div>

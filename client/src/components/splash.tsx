@@ -1,27 +1,26 @@
-"use client";
+"use client"
 
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import * as React from "react";
-import { Audiowide } from "next/font/google";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion"
+import Link from "next/link"
+import * as React from "react"
 
-import { cn } from "@/lib/utils";
-import { Cloud1Graphic, Cloud2Graphic, Cloud3Graphic, StarsGraphic } from "@/components/graphics";
-import { MoonGraphic } from "@/components/graphics/moon";
-
-const audiowide = Audiowide({ weight: "400", subsets: ["latin"] });
+import { Cloud1Graphic, Cloud2Graphic, Cloud3Graphic, StarsGraphic } from "@/components/graphics"
+import { MoonGraphic } from "@/components/graphics/moon"
+import { audiowide } from "@/lib/google-fonts"
+import { cn } from "@/lib/utils"
 
 export default function Splash() {
-  const ref = React.useRef(null);
+  const ref = React.useRef(null)
 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
-  });
-  const springProgress = useSpring(scrollYProgress, { stiffness: 400, damping: 90 });
+  })
+  const springProgress = useSpring(scrollYProgress, { stiffness: 400, damping: 90 })
 
-  const cloud1X = useTransform(springProgress, [0, 1], ["0rem", "100rem"]);
-  const cloud2X = useTransform(springProgress, [0, 1], ["0rem", "-100rem"]);
-  const cloud3X = useTransform(springProgress, [0, 1], ["0rem", "-150rem"]);
+  const cloud1X = useTransform(springProgress, [0, 1], ["0rem", "100rem"])
+  const cloud2X = useTransform(springProgress, [0, 1], ["0rem", "-100rem"])
+  const cloud3X = useTransform(springProgress, [0, 1], ["0rem", "-150rem"])
 
   return (
     <>
@@ -30,14 +29,8 @@ export default function Splash() {
           <StarsGraphic className="h-full max-w-[none] xl:w-full absolute" />
         </div>
 
-        <div
-          id="outer-ring"
-          className="rounded-[50%] absolute h-[94rem] w-[94rem] top-[-55rem] md:top-[-35rem] z-10"
-        />
-        <div
-          id="inner-ring"
-          className="rounded-[50%] absolute h-[56rem] w-[56rem] top-[-36rem] md:top-[-16rem] z-10"
-        />
+        <div id="outer-ring" className="rounded-[50%] absolute h-[94rem] w-[94rem] top-[-55rem] md:top-[-35rem] z-10" />
+        <div id="inner-ring" className="rounded-[50%] absolute h-[56rem] w-[56rem] top-[-36rem] md:top-[-16rem] z-10" />
         <MoonGraphic
           className="h-[32rem] w-[32rem] top-[-24rem] md:top-[-4rem] translate-x-[-50%] left-1/2 z-20"
           priority={true}
@@ -70,25 +63,32 @@ export default function Splash() {
 
         <div className="relative top-[-10rem] md:top-[10rem]">
           <div className="pb-8">
-            <h2 id="title" className={cn(audiowide.className, "text-5xl md:text-8xl text-center relative uppercase z-20")}>
+            <h2
+              id="title"
+              className={cn(audiowide.className, "text-5xl md:text-8xl text-center relative uppercase z-20")}
+            >
               DurHack 2024
             </h2>
-            <h4 id="subtitle" className={cn(audiowide.className, "text-3xl md:text-6xl text-center relative uppercase z-20")}>
+            <h4
+              id="subtitle"
+              className={cn(audiowide.className, "text-3xl md:text-6xl text-center relative uppercase z-20")}
+            >
               2-3 November
             </h4>
           </div>
           <div className="flex justify-center pt-8 pb-64">
-            <a
+            <Link
+              href="/dashboard"
               id="book"
               className="relative px-12 sm:px-16 py-4 sm:py-6 rounded-[4.8rem] text-xl sm:text-4xl text-center backdrop-blur-lg bg-white bg-opacity-40 hover:scale-110 z-50 transition-all uppercase cursor-pointer"
             >
               Book Tickets
-            </a>
+            </Link>
           </div>
         </div>
       </div>
 
-      <div className="pb-[20rem]"></div>
+      <div className="pb-[20rem]" />
     </>
   )
 }
