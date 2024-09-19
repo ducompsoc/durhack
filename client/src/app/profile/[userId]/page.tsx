@@ -28,12 +28,13 @@ const defaultFlags = {
 
 type FlagName = keyof typeof defaultFlags
 
-const ProfileListing = React.memo(
+const ProfilePage = React.memo(
   ({
     params,
   }: {
     params: { userId: string }
-  }): React.ReactNode => {
+  }): React.ReactNode =>
+  {
     const { toast } = useToast()
 
     const profileFetcher = async (url: string): Promise<UserProfile> => {
@@ -160,5 +161,6 @@ const ProfileListing = React.memo(
     )
   },
 )
+ProfilePage.displayName = "ProfilePage"
 
-export default ProfileListing
+export default ProfilePage
