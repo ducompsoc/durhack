@@ -26,3 +26,7 @@ tab_width = 2
 [*.{css,scss,sass}]
 indent_size = 2
 tab_width = 2
+
+[*.{svg,xml}]
+indent_size = 2
+tab_width = 2

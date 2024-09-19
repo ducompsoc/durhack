@@ -6,6 +6,7 @@ import { Audiowide } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 import { Cloud1Graphic, Cloud2Graphic, Cloud3Graphic, StarsGraphic } from "@/components/graphics";
+import { MoonGraphic } from "@/components/graphics/moon";
 
 const audiowide = Audiowide({ weight: "400", subsets: ["latin"] });
 
@@ -32,15 +33,14 @@ export default function Splash() {
         <div
           id="outer-ring"
           className="rounded-[50%] absolute h-[94rem] w-[94rem] top-[-55rem] md:top-[-35rem] z-10"
-        ></div>
+        />
         <div
           id="inner-ring"
           className="rounded-[50%] absolute h-[56rem] w-[56rem] top-[-36rem] md:top-[-16rem] z-10"
-        ></div>
-        <img
-          src="/assets/icons/moon.svg"
-          alt="splash"
-          className="h-[32rem] w-[32rem] top-[-24rem] md:top-[-4rem] mx-auto rounded-[50%] transition-all duration-500 hover:transition-all hover:duration-300 absolute z-20 max-w-[none]"
+        />
+        <MoonGraphic
+          className="h-[32rem] w-[32rem] top-[-24rem] md:top-[-4rem] translate-x-[-50%] left-1/2 z-20"
+          priority={true}
           id="moon"
         />
 
@@ -68,21 +68,21 @@ export default function Splash() {
           <Cloud3Graphic className="h-[11rem] xl:h-[21rem]" />
         </motion.div>
 
-        <div className="relative">
-          <div className="pt-[20rem] md:pt-[40rem] pb-8">
-            <h2 id="title" className={cn(audiowide.className, "text-5xl md:text-8xl text-center relative z-20")}>
-              DURHACK 2024
+        <div className="relative top-[-10rem] md:top-[10rem]">
+          <div className="pb-8">
+            <h2 id="title" className={cn(audiowide.className, "text-5xl md:text-8xl text-center relative uppercase z-20")}>
+              DurHack 2024
             </h2>
-            <h4 id="subtitle" className={cn(audiowide.className, "text-3xl md:text-6xl text-center relative z-20")}>
-              2-3 NOVEMBER
+            <h4 id="subtitle" className={cn(audiowide.className, "text-3xl md:text-6xl text-center relative uppercase z-20")}>
+              2-3 November
             </h4>
           </div>
           <div className="flex justify-center pt-8 pb-64">
             <a
               id="book"
-              className="relative px-12 sm:px-16 py-4 sm:py-6 rounded-[4.8rem] text-xl sm:text-4xl text-center backdrop-blur-lg bg-white bg-opacity-40 hover:scale-110 z-50 transition-all cursor-pointer"
+              className="relative px-12 sm:px-16 py-4 sm:py-6 rounded-[4.8rem] text-xl sm:text-4xl text-center backdrop-blur-lg bg-white bg-opacity-40 hover:scale-110 z-50 transition-all uppercase cursor-pointer"
             >
-              BOOK TICKETS
+              Book Tickets
             </a>
           </div>
         </div>
