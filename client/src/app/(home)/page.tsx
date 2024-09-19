@@ -1,3 +1,5 @@
+import * as React from "react"
+
 import About from "@/components/about"
 import End from "@/components/end"
 import Gallery from "@/components/gallery"
@@ -7,6 +9,7 @@ import Splash from "@/components/splash"
 import Sponsors from "@/components/sponsors"
 
 import "@/styles/background.css"
+import "@/styles/navbar.css"
 import "@/styles/splash.css"
 
 export default function HomePage() {
@@ -16,11 +19,12 @@ export default function HomePage() {
         <Splash />
       </section>
 
-      <section id="intro">
+      <section id="intro" className="ellipse">
         <Intro />
       </section>
 
       <section id="about">
+        <div id="background" className="ellipse" />
         <About />
       </section>
 

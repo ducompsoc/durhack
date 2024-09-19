@@ -22,7 +22,7 @@ export function Footer() {
         <div className="flex flex-col w-fill">
           <p className="text-xs text-start sm:text-sm md:text-md lg:text-lg xl:text-xl">
             DurHack follows the{" "}
-            <Link href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" className="underline">
+            <Link href="https://hackp.ac/coc" className="underline">
               MLH Code of Conduct
             </Link>
             . Photos and videos taken at events in 2019 and 2022.
