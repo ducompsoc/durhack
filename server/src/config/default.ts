@@ -5,6 +5,22 @@ export default {
     host: "localhost",
     port: 3021,
   },
-  url: "https://api.durhack.com",
-  siteUrl: "https://durhack.com",
+  hostname: "https://api.durhack.com",
+  frontendHostname: "https://durhack.com",
+  session: {
+    cookie: {
+      name: "durhack-session",
+      secure: false,
+    },
+  },
+  cookieSigning: {
+    secret: "cookie_signing_secret",
+  },
+  keycloak: {
+    url: "https://auth.durhack.com/realms/durhack",
+    clientId: "not-a-real-client-id",
+    clientSecret: "not-a-real-client-secret",
+    responseTypes: ["code"],
+    redirectUris: ["https://api.durhack.com/auth/keycloak/callback"],
+  },
 } satisfies ConfigIn

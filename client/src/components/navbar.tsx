@@ -1,7 +1,5 @@
-import { Audiowide } from "next/font/google";
 import { cn } from "@/lib/utils";
-
-const audiowide = Audiowide({ weight: "400", subsets: ["latin"] });
+import { audiowide } from "@/lib/google-fonts"
 
 export default function Navbar() {
   return (
@@ -22,5 +20,5 @@ export default function Navbar() {
         <li>Team</li>
       </ul>
     </nav>
-  );
+  )
 }

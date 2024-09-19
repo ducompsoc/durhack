@@ -90,5 +90,5 @@ export default function Splash() {
 
       <div className="pb-[20rem]"></div>
     </>
-  );
+  )
 }

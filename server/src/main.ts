@@ -1,22 +1,29 @@
-import { App } from "@tinyhttp/app"
-import { logger } from "@tinyhttp/logger"
+import { createServer } from "node:http"
+import { App } from "@otterhttp/app"
 import { cors } from "corstisol"
 
-import { listenConfig, siteUrl } from "@/config"
+import { frontendHostname, listenConfig } from "@/config"
+import { Request } from "@/request"
+import { Response } from "@/response"
 import { routesApp } from "@/routes"
 
-const app = new App()
+const app = new App<Request, Response>()
 
 app
-  .use(logger())
   .use(
     cors({
-      origin: siteUrl,
+      origin: frontendHostname,
     }),
   )
   .use(routesApp)
-  .listen(
-    listenConfig.port,
-    () => console.log(`Listening on http://${listenConfig.host}:${listenConfig.port}`),
-    listenConfig.host,
-  )
+
+const server = createServer<typeof Request, typeof Response>({
+  IncomingMessage: Request,
+  ServerResponse: Response,
+})
+
+server.on("request", app.attach)
+
+server.listen(listenConfig.port, listenConfig.host, () =>
+  console.log(`Listening on http://${listenConfig.host}:${listenConfig.port}`),
+)
