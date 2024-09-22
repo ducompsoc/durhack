@@ -21,20 +21,40 @@ model Interest {
 }
 
 model User {
-    keycloakUserId    String                  @id @map("keycloak_user_id") @db.Uuid
-    tokenSet          TokenSet?
-    sessions          SessionRecord[]
-    cvFile            UserCV?
-    applicationStatus User_application_status @default(INCOMPLETE) @map("application_status")
-    age               Int?
-    university        String?
-    graduation        Int?
-    levelOfStudy      String?                 @map("level_of_study")
-    country           String?
-    mlhCode           Boolean                 @default(false) @map("mlh_code")
-    mlhTerms          Boolean                 @default(false) @map("mlh_terms")
-    mlhMarketing      Boolean                 @default(false) @map("mlh_marketing")
-    cv                Boolean?
+    keycloakUserId String          @id @map("keycloak_user_id") @db.Uuid
+    tokenSet       TokenSet?
+    sessions       SessionRecord[]
+    userCv         UserCV?
+    userInfo       UserInfo?
+    userFlags      UserFlag[]
+}
+
+model UserCV {
+    userId      String @id() @map("user_id") @db.Uuid()
+    user        User   @relation(fields: [userId], references: [keycloakUserId])
+    filename    String
+    contentType String @map("content_type")
+    content     Bytes
+}
+
+model UserInfo {
+    userId              String    @id @map("user_id") @db.Uuid
+    user                User      @relation(fields: [userId], references: [keycloakUserId])
+
+    applicationStatus   UserApplicationStatus @default(INCOMPLETE) @map("application_status")
+    age                 Int       @db.SmallInt
+    university          String    @db.VarChar(50)
+    graduationYear            DateTime  @db.Date         @map("graduation_year")
+    levelOfStudy        String    @db.VarChar(50)  @map("level_of_study")
+    country             String    @db.VarChar(256)
+}
+
+model UserFlag {
+    userId              String    @map("user_id") @db.Uuid
+    user                User      @relation(fields: [userId], references: [keycloakUserId])
+    name                String    @map("flag_name")
+
+    @@id(fields: [userId, name], name:"id", map:"user_id_and_name")
 }
 
 model TokenSet {
@@ -62,17 +82,9 @@ model SessionRecord {
     @@index([userId])
 }
 
-model UserCV {
-  userId      String @id() @db.Uuid() @map("user_id")
-  user        User   @relation(fields: [userId], references: [keycloakUserId])
-  filename    String
-  contentType String @map("content_type")
-  content     Bytes
-}
-
-enum User_application_status {
-  INCOMPLETE
-  SUBMITTED
-  ACCEPTED
-  WAITING_LIST
+enum UserApplicationStatus {
+  Incomplete
+  Submitted
+  Accepted @map()
+  WaitingList @map("waiting_list")
 }

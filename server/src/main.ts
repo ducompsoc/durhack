@@ -1,10 +1,10 @@
+import { createServer } from "node:http"
 import { App } from "@otterhttp/app"
 import { cors } from "corstisol"
-import { createServer } from "node:http"
 
+import { frontendHostname, listenConfig } from "@/config"
 import { Request } from "@/request"
 import { Response } from "@/response"
-import { frontendHostname, listenConfig } from "@/config"
 import { routesApp } from "@/routes"
 import { apiErrorHandler } from "@/routes/error-handling"
 
@@ -26,10 +26,8 @@ const server = createServer<typeof Request, typeof Response>({
   ServerResponse: Response,
 })
 
-server.on('request', app.attach)
+server.on("request", app.attach)
 
-server.listen(
-  listenConfig.port,
-  listenConfig.host,
-  () => console.log(`Listening on http://${listenConfig.host}:${listenConfig.port}`),
+server.listen(listenConfig.port, listenConfig.host, () =>
+  console.log(`Listening on http://${listenConfig.host}:${listenConfig.port}`),
 )

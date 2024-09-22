@@ -1,0 +1,31 @@
+nav {
+  background: linear-gradient(0deg, rgba(19, 41, 56, 0.52) 0%, #081418 100%);
+
+  div#title {
+    background: linear-gradient(90deg, #cca469 0%, #665235 24%, #c2b198 42.48%, #b69c76 52.23%, #665235 91%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  ul > li {
+    background: linear-gradient(90deg, #edc891 0%, #9f6937 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  ul > li:hover {
+    cursor: pointer;
+  }
+}
+
+#mlh-trust-badge {
+  display: none;
+}
+
+@media (min-width: 1120px) {
+  #mlh-trust-badge {
+    display: block;
+  }
+}

@@ -1,8 +1,8 @@
 import { App } from "@otterhttp/app"
 
-import type { Request, Response } from "@/types";
 import { methodNotAllowed } from "@/middleware/method-not-allowed"
 import { authHandlers } from "@/routes/auth/auth-handlers"
+import type { Request, Response } from "@/types"
 
 import { keycloakHandlers } from "./keycloak-handlers"
 
