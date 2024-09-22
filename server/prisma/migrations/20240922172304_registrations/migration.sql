@@ -1,6 +1,9 @@
 -- CreateEnum
 CREATE TYPE "UserApplicationStatus" AS ENUM ('unsubmitted', 'submitted', 'accepted', 'waiting_list');
 
+-- CreateEnum
+CREATE TYPE "CvUploadChoice" AS ENUM ('indeterminate', 'upload', 'remind', 'noUpload');
+
 -- AlterTable
 ALTER TABLE "Interest" ADD COLUMN     "year" INTEGER NOT NULL DEFAULT 2024;
 
@@ -25,6 +28,7 @@ CREATE TABLE "UserCV" (
 CREATE TABLE "UserInfo" (
     "user_id" UUID NOT NULL,
     "application_status" "UserApplicationStatus" NOT NULL DEFAULT 'unsubmitted',
+    "cv_upload_choice" "CvUploadChoice" NOT NULL DEFAULT 'indeterminate',
     "age" SMALLINT,
     "university" VARCHAR(50),
     "graduation_year" DATE,
