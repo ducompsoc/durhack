@@ -25,11 +25,11 @@ CREATE TABLE "UserCV" (
 CREATE TABLE "UserInfo" (
     "user_id" UUID NOT NULL,
     "application_status" "UserApplicationStatus" NOT NULL DEFAULT 'incomplete',
-    "age" SMALLINT NOT NULL,
-    "university" VARCHAR(50) NOT NULL,
-    "graduation_year" DATE NOT NULL,
-    "level_of_study" VARCHAR(50) NOT NULL,
-    "country" CHAR(3) NOT NULL,
+    "age" SMALLINT,
+    "university" VARCHAR(50),
+    "graduation_year" DATE,
+    "level_of_study" VARCHAR(50),
+    "country" CHAR(3),
 
     CONSTRAINT "UserInfo_pkey" PRIMARY KEY ("user_id")
 );
