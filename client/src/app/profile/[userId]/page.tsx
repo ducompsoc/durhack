@@ -33,8 +33,7 @@ const ProfilePage = React.memo(
     params,
   }: {
     params: { userId: string }
-  }): React.ReactNode =>
-  {
+  }): React.ReactNode => {
     const { toast } = useToast()
 
     const profileFetcher = async (url: string): Promise<UserProfile> => {

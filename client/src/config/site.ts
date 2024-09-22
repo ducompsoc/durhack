@@ -1,10 +1,9 @@
-import type * as React from "react"
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants"
+import type * as React from "react"
 
 import { FacebookIcon, GitHubIcon, InstagramIcon, LinkedInIcon, TikTokIcon, XIcon } from "@/components/icons"
 
 type socialLink = { key: string; href: string; icon: React.FC }
-
 
 export const siteConfig = {
   name: "DurHack",

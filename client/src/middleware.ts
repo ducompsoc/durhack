@@ -1,6 +1,6 @@
-import { type NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from "next/server"
 
-import {siteConfig} from "@/config/site";
+import { siteConfig } from "@/config/site"
 
 type User = {
   id: string
@@ -14,12 +14,10 @@ async function getUserProfile(request: NextRequest): Promise<User | null> {
   let userProfile: { data: User } | undefined
   const sessionCookie = request.cookies.get("durhack-session")
   if (sessionCookie != null) {
-    const userProfileResponse = await fetch(
-      new URL('/user', siteConfig.apiUrl),
-      {
-        headers: { cookie: request.headers.get("cookie")! }
-      }
-    )
+    const userProfileResponse = await fetch(new URL("/user", siteConfig.apiUrl), {
+      // biome-ignore lint/style/noNonNullAssertion: we know the 'cookie' header is set because we asserted the session cookie is non-null
+      headers: { cookie: request.headers.get("cookie")! },
+    })
     if (userProfileResponse.ok) userProfile = await userProfileResponse.json()
   }
   return userProfile?.data ?? null
@@ -31,7 +29,7 @@ function redirectToLogin(request: NextRequest) {
 
 export async function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith("/details")) {
-    const userProfile = await getUserProfile(request);
+    const userProfile = await getUserProfile(request)
     // if the user is not logged in, go back to root
     if (!userProfile) return redirectToLogin(request)
     // continue as usual

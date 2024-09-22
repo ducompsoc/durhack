@@ -13,12 +13,6 @@ export default function About() {
   return (
     <>
       <div className="absolute w-full top-[-1rem] md:top-[-3rem]">
-        <Image
-          src="/assets/graphics/waves.svg"
-          alt="an abstract rendering of ocean waves"
-          className="w-full"
-          id="waves"
-        />
       </div>
 
       <div ref={ref} className="w-full h-full absolute">

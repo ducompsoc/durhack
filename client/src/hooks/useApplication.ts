@@ -1,6 +1,6 @@
-import useSWR from "swr";
+import useSWR from "swr"
 
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config/site"
 
 export type Application = {
   email: string
@@ -21,16 +21,16 @@ export type Application = {
   cv?: boolean
 }
 
-async function applicationFetcher(url: string): Promise<Application | null> {
-  const uri = new URL(url, siteConfig.apiUrl).toString()
-  const response = await fetch(uri, { credentials: "include" });
+async function applicationFetcher(path: string): Promise<Application | null> {
+  const url = new URL(path, siteConfig.apiUrl).toString()
+  const response = await fetch(url, { credentials: "include" })
 
-  if (response.status === 401) return null;
-  if (!response.ok) throw new Error("Couldn't fetch application!");
+  if (response.status === 401) return null
+  if (!response.ok) throw new Error("Couldn't fetch application!")
 
-  return (await response.json()).data as Application;
+  return (await response.json()).data as Application
 }
 
 export function useApplication() {
-  return useSWR<Application | null, unknown | undefined>("/application", applicationFetcher);
+  return useSWR<Application | null, unknown | undefined>("/application", applicationFetcher)
 }

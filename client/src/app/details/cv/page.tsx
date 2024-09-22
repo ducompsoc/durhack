@@ -1,25 +1,25 @@
 "use client"
 
-import * as React from "react";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import * as React from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
-import { Form, FormField, FormItem, FormControl, FormLabel, FormMessage } from "@durhack/web-components/ui/form";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select";
+import { Button } from "@durhack/web-components/ui/button"
 import {
   FileUpload,
-  FileUploadDropzoneRoot,
   FileUploadDropzoneBasket,
   FileUploadDropzoneInput,
+  FileUploadDropzoneRoot,
   FileUploadFileList,
-} from "@durhack/web-components/ui/file-upload";
-import { Button } from "@durhack/web-components/ui/button";
+} from "@durhack/web-components/ui/file-upload"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select"
 
-import { updateApplication } from "@/lib/updateApplication";
-import { useApplicationContext } from "@/hooks/use-application-context";
-import Skeleton from "@/components/details/skeleton";
+import Skeleton from "@/components/details/skeleton"
+import { useApplicationContext } from "@/hooks/use-application-context"
+import { updateApplication } from "@/lib/updateApplication"
 
 type CvFormFields = {
   cv: string
@@ -43,7 +43,7 @@ export default function CvPage() {
     setShowForm(application.cv ?? false)
   }, [applicationIsLoading, application])
 
-  const form = useForm<CvFormFields, any, z.infer<typeof cvFormSchema>>({
+  const form = useForm<CvFormFields, unknown, z.infer<typeof cvFormSchema>>({
     resolver: zodResolver(cvFormSchema),
     defaultValues: {
       cv: "",

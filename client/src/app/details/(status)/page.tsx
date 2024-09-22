@@ -1,9 +1,9 @@
 "use client"
 
-import * as React from "react";
+import * as React from "react"
 
-import { useApplicationContext } from "@/hooks/use-application-context";
-import Skeleton from "@/components/details/skeleton";
+import Skeleton from "@/components/details/skeleton"
+import { useApplicationContext } from "@/hooks/use-application-context"
 
 export default function EducationPage() {
   const { application, applicationIsLoading } = useApplicationContext()

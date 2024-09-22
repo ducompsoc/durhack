@@ -1,6 +1,6 @@
-import * as React from "react";
+import * as React from "react"
 
-import { ApplicationContextContext } from "@/components/details/application-context-provider";
+import { ApplicationContextContext } from "@/components/details/application-context-provider"
 
 export function useApplicationContext() {
   const context = React.useContext(ApplicationContextContext)

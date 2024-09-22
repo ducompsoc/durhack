@@ -1,21 +1,21 @@
 "use client"
 
-import * as React from "react";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import * as React from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
-import { Input } from "@durhack/web-components/ui/input";
-import { Form, FormField, FormItem, FormControl, FormLabel, FormMessage } from "@durhack/web-components/ui/form";
-import { ComboBox, ComboBoxButton, ComboBoxContent, ComboBoxTrigger } from "@durhack/web-components/ui/combobox";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select";
-import { Button } from "@durhack/web-components/ui/button";
+import { Button } from "@durhack/web-components/ui/button"
+import { ComboBox, ComboBoxButton, ComboBoxContent, ComboBoxTrigger } from "@durhack/web-components/ui/combobox"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
+import { Input } from "@durhack/web-components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select"
 
-import { updateApplication } from "@/lib/updateApplication";
-import { useApplicationContext } from "@/hooks/use-application-context";
-import Skeleton from "@/components/details/skeleton";
-import "@/lib/zod-iso3-extension";
+import Skeleton from "@/components/details/skeleton"
+import { useApplicationContext } from "@/hooks/use-application-context"
+import { updateApplication } from "@/lib/updateApplication"
+import "@/lib/zod-iso3-extension"
 
 type EducationFormFields = {
   university: string
@@ -93,7 +93,7 @@ export default function EducationPage() {
     fetchCountryOptions()
   }, [])
 
-  const form = useForm<EducationFormFields, any, z.infer<typeof educationFormSchema>>({
+  const form = useForm<EducationFormFields, unknown, z.infer<typeof educationFormSchema>>({
     resolver: zodResolver(educationFormSchema),
     defaultValues: {
       university: "",
@@ -237,5 +237,5 @@ export default function EducationPage() {
         )}
       </form>
     </Form>
-  );
+  )
 }

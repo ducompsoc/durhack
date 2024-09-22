@@ -1,20 +1,20 @@
 "use client"
 
-import * as React from "react";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import "@/lib/zod-phone-extension";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import * as React from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import "@/lib/zod-phone-extension"
 
-import { Input } from "@durhack/web-components/ui/input";
-import { Form, FormField, FormItem, FormControl, FormLabel, FormMessage } from "@durhack/web-components/ui/form";
-import { Button } from "@durhack/web-components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select";
+import { Button } from "@durhack/web-components/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
+import { Input } from "@durhack/web-components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select"
 
-import { updateApplication } from "@/lib/updateApplication";
-import { useApplicationContext } from "@/hooks/use-application-context";
-import Skeleton from "@/components/details/skeleton";
+import Skeleton from "@/components/details/skeleton"
+import { useApplicationContext } from "@/hooks/use-application-context"
+import { updateApplication } from "@/lib/updateApplication"
 
 type PersonalFormFields = {
   firstNames: string
@@ -52,13 +52,13 @@ export default function PersonalPage() {
     })
   }, [applicationIsLoading, application])
 
-  const form = useForm<PersonalFormFields, any, z.infer<typeof personalFormSchema>>({
+  const form = useForm<PersonalFormFields, unknown, z.infer<typeof personalFormSchema>>({
     resolver: zodResolver(personalFormSchema),
     defaultValues: {
+      pronouns: "pnts",
       firstNames: "",
       lastNames: "",
       preferredNames: "",
-      pronouns: "",
       age: "",
     },
   })
@@ -144,11 +144,11 @@ export default function PersonalPage() {
                         <SelectItem value="she/her">She/Her</SelectItem>
                         <SelectItem value="he/him">He/Him</SelectItem>
                         <SelectItem value="they/them">They/Them</SelectItem>
-                        <SelectItem value="xe/them">Xe/Xem</SelectItem>
+                        <SelectItem value="xe/xem">Xe/Xem</SelectItem>
                         <SelectItem value="other">Other</SelectItem>
                       </SelectContent>
                     </Select>
-                    {value === "other" && <Input placeholder="Pronouns..."></Input>}
+                    {value === "other" && <Input placeholder="Pronouns..." />}
                   </div>
                   <FormMessage />
                 </FormItem>
@@ -189,7 +189,7 @@ export default function PersonalPage() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <h2 className="text-2xl">Personal Details</h2>
-        { applicationIsLoading ? <Skeleton rows={3} className="mt-4" /> : getForm() }
+        {applicationIsLoading ? <Skeleton rows={3} className="mt-4" /> : getForm()}
       </form>
     </Form>
   )

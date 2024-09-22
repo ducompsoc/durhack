@@ -1,20 +1,20 @@
 "use client"
 
-import * as React from "react";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import * as React from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
-import { Input } from "@durhack/web-components/ui/input";
-import { Form, FormField, FormItem, FormControl, FormLabel, FormMessage } from "@durhack/web-components/ui/form";
-import { PhoneInput } from "@durhack/web-components/ui/phone-number-input";
-import { Button } from "@durhack/web-components/ui/button";
+import { Button } from "@durhack/web-components/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
+import { Input } from "@durhack/web-components/ui/input"
+import { PhoneInput } from "@durhack/web-components/ui/phone-number-input"
 
-import "@/lib/zod-phone-extension";
-import { updateApplication } from "@/lib/updateApplication";
-import { useApplicationContext } from "@/hooks/use-application-context";
-import Skeleton from "@/components/details/skeleton";
+import "@/lib/zod-phone-extension"
+import Skeleton from "@/components/details/skeleton"
+import { useApplicationContext } from "@/hooks/use-application-context"
+import { updateApplication } from "@/lib/updateApplication"
 
 type ContactFormFields = {
   phone: string
@@ -37,7 +37,7 @@ export default function ContactPage() {
     })
   }, [applicationIsLoading, application])
 
-  const form = useForm<ContactFormFields, any, z.infer<typeof contactFormSchema>>({
+  const form = useForm<ContactFormFields, unknown, z.infer<typeof contactFormSchema>>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
       phone: "",
