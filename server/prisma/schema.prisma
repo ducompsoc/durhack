@@ -51,11 +51,11 @@ model UserInfo {
 }
 
 model UserFlag {
-    userId String @map("user_id") @db.Uuid
-    user   User   @relation(fields: [userId], references: [keycloakUserId])
-    name   String @map("flag_name")
+    userId   String @map("user_id") @db.Uuid
+    user     User   @relation(fields: [userId], references: [keycloakUserId])
+    flagName String
 
-    @@id(fields: [userId, name], name: "id", map: "user_id_and_name")
+    @@id(fields: [userId, flagName], name: "id", map: "user_id_and_flag_name")
 }
 
 model TokenSet {

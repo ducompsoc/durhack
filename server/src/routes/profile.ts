@@ -91,6 +91,6 @@ profileApp
 
     if (specificUserFlags == null) throw new ClientError("", { statusCode: HttpStatus.NotFound })
 
-    const userFlagArray = specificUserFlags.map((flag) => flag.name)
+    const userFlagArray: string[] = specificUserFlags.map((flag) => flag.flagName)
     res.status(200).json(userFlagArray)
   })
