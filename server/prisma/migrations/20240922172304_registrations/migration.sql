@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "UserApplicationStatus" AS ENUM ('incomplete', 'submitted', 'accepted', 'waiting_list');
+CREATE TYPE "UserApplicationStatus" AS ENUM ('unsubmitted', 'submitted', 'accepted', 'waiting_list');
 
 -- AlterTable
 ALTER TABLE "Interest" ADD COLUMN     "year" INTEGER NOT NULL DEFAULT 2024;
@@ -24,7 +24,7 @@ CREATE TABLE "UserCV" (
 -- CreateTable
 CREATE TABLE "UserInfo" (
     "user_id" UUID NOT NULL,
-    "application_status" "UserApplicationStatus" NOT NULL DEFAULT 'incomplete',
+    "application_status" "UserApplicationStatus" NOT NULL DEFAULT 'unsubmitted',
     "age" SMALLINT,
     "university" VARCHAR(50),
     "graduation_year" DATE,
