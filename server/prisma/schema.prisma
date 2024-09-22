@@ -18,6 +18,7 @@ model Interest {
     firstNames String @db.VarChar(256)
     lastNames  String @db.VarChar(256)
     email      String @unique @db.VarChar(256)
+    year       Int    @default(2024)
 }
 
 model User {
@@ -38,23 +39,23 @@ model UserCV {
 }
 
 model UserInfo {
-    userId              String    @id @map("user_id") @db.Uuid
-    user                User      @relation(fields: [userId], references: [keycloakUserId])
+    userId String @id @map("user_id") @db.Uuid
+    user   User   @relation(fields: [userId], references: [keycloakUserId])
 
-    applicationStatus   UserApplicationStatus @default(INCOMPLETE) @map("application_status")
-    age                 Int       @db.SmallInt
-    university          String    @db.VarChar(50)
-    graduationYear            DateTime  @db.Date         @map("graduation_year")
-    levelOfStudy        String    @db.VarChar(50)  @map("level_of_study")
-    country             String    @db.VarChar(256)
+    applicationStatus UserApplicationStatus @default(incomplete) @map("application_status")
+    age               Int                   @db.SmallInt
+    university        String                @db.VarChar(50)
+    graduationYear    DateTime              @map("graduation_year") @db.Date
+    levelOfStudy      String                @map("level_of_study") @db.VarChar(50)
+    country           String                @db.Char(3)
 }
 
 model UserFlag {
-    userId              String    @map("user_id") @db.Uuid
-    user                User      @relation(fields: [userId], references: [keycloakUserId])
-    name                String    @map("flag_name")
+    userId String @map("user_id") @db.Uuid
+    user   User   @relation(fields: [userId], references: [keycloakUserId])
+    name   String @map("flag_name")
 
-    @@id(fields: [userId, name], name:"id", map:"user_id_and_name")
+    @@id(fields: [userId, name], name: "id", map: "user_id_and_name")
 }
 
 model TokenSet {
@@ -66,8 +67,8 @@ model TokenSet {
     idToken      String?   @map("id_token")
     refreshToken String?   @map("refresh_token")
     scope        String?
-    accessExpiry DateTime? @db.Timestamp(0)
-    sessionState String?
+    accessExpiry DateTime? @map("access_expiry") @db.Timestamp(0)
+    sessionState String?   @map("session_state")
 }
 
 model SessionRecord {
@@ -75,7 +76,7 @@ model SessionRecord {
     userId          String?   @map("user_id") @db.Uuid
     user            User?     @relation(fields: [userId], references: [keycloakUserId])
     data            Json
-    expiresAt       DateTime?
+    expiresAt       DateTime? @map("expires_at")
     createdAt       DateTime  @default(now()) @map("created_at")
     updatedAt       DateTime  @updatedAt @map("updated_at")
 
@@ -83,8 +84,8 @@ model SessionRecord {
 }
 
 enum UserApplicationStatus {
-  Incomplete
-  Submitted
-  Accepted @map()
-  WaitingList @map("waiting_list")
+    incomplete
+    submitted
+    accepted
+    waitingList @map("waiting_list")
 }
