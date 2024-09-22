@@ -26,6 +26,8 @@ export const siteConfig = {
 
 if (PHASE_DEVELOPMENT_SERVER) {
   Object.assign(siteConfig, {
-    apiUrl: "http://api.durhack.com",
+    url: "http://durhack-dev.com",
+    apiUrl: "http://api.durhack-dev.com",
+    authUrl: "https://auth.durhack.com/dev",
   })
 }

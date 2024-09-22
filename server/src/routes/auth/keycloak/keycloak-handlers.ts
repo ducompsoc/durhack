@@ -16,6 +16,25 @@ export class KeycloakHandlers {
     this.client = client
   }
 
+  /**
+   * 'lazily' log out the user - don't call the keycloak logout endpoint.
+   * Just remove the user ID from the user's session.
+   *
+   * It's important we do this before initiating the keycloak login flow because we downgrade the session cookie to
+   * SameSite 'Lax' during the OAuth flow (not implemented yet -
+   * requires https://github.com/OtterJS/otterhttp-session/issues/1).
+   *
+   * @param request
+   * @param response
+   */
+  async lazyLogout(request: Request, response: Response): Promise<void> {
+    const session = await getSession(request, response)
+    if (session.userId == null) return
+
+    session.userId = undefined
+    await session.commit()
+  }
+
   async getOrGenerateCodeVerifier(request: Request, response: Response): Promise<string> {
     const session = await getSession(request, response)
     if (typeof session.keycloakOAuth2FlowCodeVerifier === "string") return session.keycloakOAuth2FlowCodeVerifier
@@ -28,7 +47,10 @@ export class KeycloakHandlers {
 
   beginOAuth2Flow(): Middleware {
     return async (request: Request, response: Response) => {
-      const codeVerifier = await this.getOrGenerateCodeVerifier(request, response)
+      const [codeVerifier] = await Promise.all([
+        this.getOrGenerateCodeVerifier(request, response),
+        this.lazyLogout(request, response),
+      ])
       const codeChallenge = generators.codeChallenge(codeVerifier)
 
       const url = this.client.authorizationUrl({
@@ -44,6 +66,11 @@ export class KeycloakHandlers {
   logout(): Middleware {
     return async (request: Request, response: Response) => {
       const session = await getSession(request, response)
+      if (session.userId == null) {
+        await response.redirect(frontendOrigin)
+        return
+      }
+
       session.userId = undefined
       await session.commit()
 

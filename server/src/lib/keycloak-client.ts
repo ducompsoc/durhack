@@ -13,13 +13,14 @@ function adaptClientConfig(clientConfig: typeof keycloakConfig): ClientMetadata 
   } satisfies ClientMetadata
 }
 
-export const keycloakIssuer = await Issuer.discover(keycloakConfig.url)
+const keycloakIssuerUrl = new URL(`/realms/${keycloakConfig.realm}`, keycloakConfig.baseUrl)
+export const keycloakIssuer = await Issuer.discover(keycloakIssuerUrl.toString())
 
 const keycloakClientConfig = adaptClientConfig(keycloakConfig)
 export const keycloakClient = new keycloakIssuer.Client(keycloakClientConfig)
 const keycloakAdminClient = new KeycloakAdminClient({
   baseUrl: keycloakConfig.adminBaseUrl,
-  realmName: "durhack",
+  realmName: keycloakConfig.realm,
 })
 
 async function fetchKeycloakClientCredentials() {
