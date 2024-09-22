@@ -11,7 +11,7 @@
     "check:fix": "biome check --write ."
   },
   "dependencies": {
-    "@durhack/web-components": "^0.6.0",
+    "@durhack/web-components": "^0.6.1",
     "@hookform/resolvers": "^3.6.0",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
     "@radix-ui/react-icons": "^1.3.0",
