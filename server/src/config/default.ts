@@ -5,8 +5,8 @@ export default {
     host: "localhost",
     port: 3021,
   },
-  hostname: "https://api.durhack.com",
-  frontendHostname: "https://durhack.com",
+  origin: "https://api.durhack.com",
+  frontendOrigin: "https://durhack.com",
   session: {
     cookie: {
       name: "durhack-session",

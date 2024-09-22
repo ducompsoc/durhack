@@ -5,7 +5,7 @@ import { type Client, generators } from "openid-client"
 import { adaptTokenSetToDatabase } from "@/lib/adapt-token-set"
 import { keycloakClient } from "@/lib/keycloak-client"
 import { getSession } from "@/lib/session"
-import { frontendHostname, hostname } from "@/config"
+import { frontendOrigin, origin } from "@/config"
 import { type User, prisma } from "@/database"
 import type { Middleware, Request } from "@/types"
 
@@ -50,17 +50,17 @@ export class KeycloakHandlers {
       if (request.user?.tokenSet?.idToken) {
         const endSessionUrl = keycloakClient.endSessionUrl({
           id_token_hint: request.user?.tokenSet?.idToken,
-          post_logout_redirect_uri: frontendHostname
+          post_logout_redirect_uri: frontendOrigin
         });
         response.redirect(endSessionUrl)
         return
       }
 
-      response.redirect(frontendHostname)
+      response.redirect(frontendOrigin)
     }
   }
 
-  static redirectUri = new URL("/auth/keycloak/callback", hostname).toString()
+  static redirectUri = new URL("/auth/keycloak/callback", origin).toString()
 
   oauth2FlowCallback(): Middleware {
     return async (request: OtterRequest & { user?: User }, response: Response, next: NextFunction) => {

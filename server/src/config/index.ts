@@ -23,8 +23,8 @@ const config = await loadConfig({
 
 export const {
   listen: listenConfig,
-  hostname,
-  frontendHostname,
+  origin,
+  frontendOrigin,
   session: sessionConfig,
   cookieSigning: cookieSigningConfig,
   keycloak: keycloakConfig,

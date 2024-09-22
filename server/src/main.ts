@@ -2,7 +2,7 @@ import { createServer } from "node:http"
 import { App } from "@otterhttp/app"
 import { cors } from "corstisol"
 
-import { frontendHostname, listenConfig } from "@/config"
+import { frontendOrigin, listenConfig } from "@/config"
 import { Request } from "@/request"
 import { Response } from "@/response"
 import { routesApp } from "@/routes"
@@ -15,7 +15,7 @@ const app = new App<Request, Response>({
 app
   .use(
     cors({
-      origin: frontendHostname,
+      origin: frontendOrigin,
       credentials: true,
     }),
   )

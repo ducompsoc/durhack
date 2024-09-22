@@ -3,10 +3,10 @@ import { NextFunction } from "@otterhttp/app"
 import type { User } from "@/database"
 import { getSession } from "@/lib/session"
 import type { Request, Response } from "@/types"
-import { frontendHostname } from "@/config"
+import { frontendOrigin } from "@/config"
 
 export class AuthHandlers {
-  static redirectUri = new URL("/details", frontendHostname).toString()
+  static redirectUri = new URL("/details", frontendOrigin).toString()
 
   handleLoginSuccess() {
     return async (request: Request & { user?: User }, response: Response) => {

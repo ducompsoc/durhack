@@ -41,8 +41,8 @@ export const mailgunOptionsSchema = z.object({
 
 export const configSchema = z.object({
   listen: listenOptionsSchema,
-  hostname: z.string().url(),
-  frontendHostname: z.string().url(),
+  origin: z.string().url(),
+  frontendOrigin: z.string().url(),
   session: sessionOptionsSchema,
   cookieSigning: cookieSigningOptionsSchema,
   keycloak: keycloakOptionsSchema,
