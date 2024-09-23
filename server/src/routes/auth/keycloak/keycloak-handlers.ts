@@ -3,7 +3,7 @@ import { ClientError } from "@otterhttp/errors"
 import { type Client, generators } from "openid-client"
 
 import { frontendOrigin, origin } from "@/config"
-import { type User, prisma } from "@/database"
+import { prisma } from "@/database"
 import { adaptTokenSetToDatabase } from "@/lib/adapt-token-set"
 import { keycloakClient } from "@/lib/keycloak-client"
 import { getSession } from "@/lib/session"

@@ -1,5 +1,3 @@
-import { NextFunction } from "@otterhttp/app"
-
 import { frontendOrigin } from "@/config"
 import type { User } from "@/database"
 import { getSession } from "@/lib/session"
