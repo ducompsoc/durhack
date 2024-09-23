@@ -18,6 +18,8 @@ export default function About() {
           alt="an abstract rendering of ocean waves"
           className="w-full"
           id="waves"
+          width={1440} 
+          height={850}
         />
       </div>
 

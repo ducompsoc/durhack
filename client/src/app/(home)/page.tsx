@@ -11,6 +11,7 @@ import Sponsors from "@/components/sponsors"
 import "@/styles/background.css"
 import "@/styles/navbar.css"
 import "@/styles/splash.css"
+import "@/styles/footer.css"
 
 export default function HomePage() {
   return (

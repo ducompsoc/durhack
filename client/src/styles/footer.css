@@ -1,0 +1,9 @@
+footer {
+  #outer-ring {
+    border-radius: 92.125rem;
+    background: radial-gradient(#e39f75 5%, #7AA6BB 50%);
+    box-shadow: 0px 0px 200px 50px #e5ad8a;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+}
