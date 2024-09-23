@@ -43,7 +43,16 @@ CREATE TABLE "UserFlag" (
     "user_id" UUID NOT NULL,
     "flagName" TEXT NOT NULL,
 
-    CONSTRAINT "user_id_and_flag_name" PRIMARY KEY ("user_id","flagName")
+    CONSTRAINT "user_flag:user_id_and_flag_name" PRIMARY KEY ("user_id","flagName")
+);
+
+-- CreateTable
+CREATE TABLE "UserConsent" (
+    "user_id" UUID NOT NULL,
+    "consentName" TEXT NOT NULL,
+    "choice" BOOLEAN NOT NULL,
+
+    CONSTRAINT "user_consent:user_id_and_consent_name" PRIMARY KEY ("user_id","consentName")
 );
 
 -- CreateTable
@@ -83,6 +92,9 @@ ALTER TABLE "UserInfo" ADD CONSTRAINT "UserInfo_user_id_fkey" FOREIGN KEY ("user
 
 -- AddForeignKey
 ALTER TABLE "UserFlag" ADD CONSTRAINT "UserFlag_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("keycloak_user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserConsent" ADD CONSTRAINT "UserConsent_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("keycloak_user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "TokenSet" ADD CONSTRAINT "TokenSet_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("keycloak_user_id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -28,6 +28,7 @@ model User {
     userCv         UserCV?
     userInfo       UserInfo?
     userFlags      UserFlag[]
+    userConsents   UserConsent[]
 }
 
 model UserCV {
@@ -56,7 +57,16 @@ model UserFlag {
     user     User   @relation(fields: [userId], references: [keycloakUserId])
     flagName String
 
-    @@id(fields: [userId, flagName], name: "id", map: "user_id_and_flag_name")
+    @@id(fields: [userId, flagName], name: "id", map: "user_flag:user_id_and_flag_name")
+}
+
+model UserConsent {
+    userId      String  @map("user_id") @db.Uuid
+    user        User    @relation(fields: [userId], references: [keycloakUserId])
+    consentName String
+    choice      Boolean
+
+    @@id(fields: [userId, consentName], name: "id", map: "user_consent:user_id_and_consent_name")
 }
 
 model TokenSet {
