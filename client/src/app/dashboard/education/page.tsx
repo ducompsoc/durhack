@@ -193,6 +193,7 @@ export default function EducationPage() {
             render={({ field: { onChange, value, ...field } }) => (
               <FormItem>
                 <FormLabel>Country of Residence</FormLabel>
+                { /* TODO: this is supposed to be a combobox. why isn't it a combobox? */ }
                 <Select onValueChange={onChange} value={value}>
                   <FormControl>
                     <SelectTrigger>
