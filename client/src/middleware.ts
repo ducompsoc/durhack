@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site"
 type User = {
   id: string
   email: string
-  preferred_name: string
+  preferred_names: string
   roles: string[]
   points: number
 }

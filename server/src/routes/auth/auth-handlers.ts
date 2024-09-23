@@ -1,9 +1,9 @@
 import { NextFunction } from "@otterhttp/app"
 
+import { frontendOrigin } from "@/config"
 import type { User } from "@/database"
 import { getSession } from "@/lib/session"
 import type { Request, Response } from "@/types"
-import { frontendOrigin } from "@/config"
 
 export class AuthHandlers {
   static redirectUri = new URL("/details", frontendOrigin).toString()

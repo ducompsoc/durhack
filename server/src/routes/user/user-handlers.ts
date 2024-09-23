@@ -11,7 +11,7 @@ class UserHandlers {
       const payload = {
         id: request.user.keycloakUserId,
         email: request.userProfile.email,
-        preferred_name: request.userProfile.preferred_name,
+        preferred_names: request.userProfile.preferred_names ?? request.userProfile.first_names,
         roles: request.userProfile.groups,
       }
 

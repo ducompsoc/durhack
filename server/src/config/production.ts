@@ -25,5 +25,5 @@ export default {
   },
   keycloak: {
     realm: "durhack",
-  }
+  },
 } satisfies DeepPartial<ConfigIn>

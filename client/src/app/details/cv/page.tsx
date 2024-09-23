@@ -12,6 +12,7 @@ import {
   FileUploadDropzoneBasket,
   FileUploadDropzoneInput,
   FileUploadDropzoneRoot,
+  FileUploadErrorMessage,
   FileUploadFileList,
 } from "@durhack/web-components/ui/file-upload"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
@@ -22,73 +23,71 @@ import { useApplicationContext } from "@/hooks/use-application-context"
 import { updateApplication } from "@/lib/updateApplication"
 
 type CvFormFields = {
-  cv: string
+  cvUploadChoice: "indeterminate" | "upload" | "remind" | "noUpload"
+  cvFiles: File[]
 }
 
-const cvFormSchema = z.object({
-  cv: z.enum(["true", "false"], { invalid_type_error: "Please choose yes or no!" }),
-})
+const cvFormSchema = z.discriminatedUnion("cvUploadChoice", [
+  z.object({
+    cvUploadChoice: z.literal("remind"),
+  }),
+  z.object({
+    cvUploadChoice: z.literal("noUpload"),
+  }),
+  z.object({
+    cvUploadChoice: z.literal("upload"),
+    cvFiles: z.array(
+      z.custom<File>((value) => value instanceof File, "How on earth did you manage this?")
+        .refine((value) => value.size <= 10485760, "Maximum file size is 10MB!")
+        .refine((value) => {
+          if (!([
+            "application/pdf",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/msword",
+          ].includes(value.type))) return false
+
+          const split = value.name.split(".")
+          const extension = split[split.length - 1]
+          return ["doc", "docx", "pdf"].includes(extension)
+        }, "Please upload a PDF or Word doc!")
+    ).length(1, "Please provide exactly one CV file!"),
+  })
+])
 
 export default function CvPage() {
   const router = useRouter()
   const { application, applicationIsLoading } = useApplicationContext()
-  const [files, setFiles] = React.useState<File[]>([])
   const [showForm, setShowForm] = React.useState(false)
 
   React.useEffect(() => {
     if (applicationIsLoading || !application) return
     form.reset({
-      cv: application?.cv?.toString() ?? "",
+      cvUploadChoice: application.cvUploadChoice,
     })
-    setShowForm(application.cv ?? false)
+    setShowForm(application.cvUploadChoice === "upload")
   }, [applicationIsLoading, application])
 
   const form = useForm<CvFormFields, unknown, z.infer<typeof cvFormSchema>>({
     resolver: zodResolver(cvFormSchema),
     defaultValues: {
-      cv: "",
+      cvUploadChoice: "indeterminate",
+      cvFiles: [],
     },
   })
 
   async function onSubmit(values: z.infer<typeof cvFormSchema>): Promise<void> {
     const formData = new FormData()
-    formData.append("cv", values.cv)
+    formData.append("cvUploadChoice", values.cvUploadChoice)
 
-    if (values.cv === "true") {
-      if (files.length !== 1) {
-        form.setError("cv", { message: "Please provide one CV!" })
-        return
-      }
-      if (files[0].size > 10 * 1024 * 1024) {
-        form.setError("cv", { message: "Maximum file size is 10MB!" })
-        return
-      }
-
-      const split = files[0].name.split(".")
-      const extension = split[split.length - 1]
-
-      if (!["doc", "docx", "pdf"].includes(extension)) {
-        form.setError("cv", { message: "Please upload a PDF or Word doc!" })
-        return
-      }
-
-      formData.append("file", files[0])
+    if (values.cvUploadChoice === "upload") {
+      formData.append("cvFile", values.cvFiles[0])
     }
 
     try {
       await updateApplication("cv", formData)
       router.push("/details/submit")
     } catch {
-      form.setError("cv", { message: "CV file was rejected (try uploading a PDF)!" })
-    }
-  }
-
-  function cvChange(onChange: (str: string) => void) {
-    return (value: string) => {
-      if (value !== "") {
-        onChange(value)
-        setShowForm(value === "true")
-      }
+      form.setError("cvUploadChoice", { message: "CV file was rejected (try uploading a PDF)!" })
     }
   }
 
@@ -98,19 +97,24 @@ export default function CvPage() {
         <div className="mb-4">
           <FormField
             control={form.control}
-            name="cv"
-            render={({ field: { onChange, value, ...field } }) => (
+            name="cvUploadChoice"
+            render={({ field: { onChange, ...field } }) => (
               <FormItem>
                 <FormLabel>Would you like to submit a CV (shared with our sponsors)?</FormLabel>
-                <Select onValueChange={cvChange(onChange)} value={value}>
+                <Select
+                  onValueChange={(value) => { onChange(value); setShowForm(value === "upload") }}
+                  {...field}
+                >
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue className="" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="true">Yes</SelectItem>
-                    <SelectItem value="false">No (remind me later)</SelectItem>
+                    <SelectItem value="indeterminate" hidden>Choose...</SelectItem>
+                    <SelectItem value="upload">Yes</SelectItem>
+                    <SelectItem value="remind">No (remind me later)</SelectItem>
+                    <SelectItem value="noUpload">No (don't remind me later)</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -120,13 +124,35 @@ export default function CvPage() {
         </div>
         <div className="mb-4">
           {showForm && (
-            <FileUpload multiDropBehaviour="replace" onChange={setFiles}>
-              <FileUploadDropzoneRoot>
-                <FileUploadDropzoneBasket />
-                <FileUploadDropzoneInput />
-              </FileUploadDropzoneRoot>
-              <FileUploadFileList />
-            </FileUpload>
+            <FormField
+              control={form.control}
+              name="cvFiles"
+              render={({ field: { value, ...field } }) => (
+                <FormItem>
+                  <FileUpload
+                    multiDropBehaviour="replace"
+                    dropzoneOptions={{
+                      maxFiles: 1,
+                      maxSize: 10485760,
+                      accept: {
+                        "application/pdf": [".pdf"],
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"],
+                        "application/msword": [".doc"],
+                      }
+                    }}
+                    files={value}
+                    {...field}
+                  >
+                    <FileUploadDropzoneRoot>
+                      <FileUploadDropzoneBasket />
+                      <FileUploadDropzoneInput />
+                    </FileUploadDropzoneRoot>
+                    <FileUploadErrorMessage />
+                    <FileUploadFileList />
+                  </FileUpload>
+                </FormItem>
+              )}
+            />
           )}
         </div>
         <div className="mt-16 flex justify-center">

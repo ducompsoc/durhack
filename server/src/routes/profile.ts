@@ -1,10 +1,10 @@
 import { App } from "@otterhttp/app"
 import { ClientError, HttpStatus } from "@otterhttp/errors"
-import { json } from "@otterhttp/parsec"
 import { cors } from "corstisol"
 import { z } from "zod"
 
 import { prisma } from "@/database"
+import { json } from "@/lib/body-parsers"
 import { methodNotAllowed } from "@/middleware/method-not-allowed"
 import type { Request, Response } from "@/types"
 
@@ -15,7 +15,6 @@ const userFlagSchema = z.object({
 const legalFlagNames = new Set(["attendance", "mlhCodeOfConduct", "mlhPolicies", "mlhMarketing"])
 
 export const profileApp = new App<Request, Response>()
-profileApp.use(json())
 
 profileApp
   .route("/:user_id")
@@ -25,7 +24,7 @@ profileApp
     const userId = req.params.user_id as string
     const userInfo = await prisma.userInfo.findUnique({
       where: {
-        userId: userId,
+        userId,
       },
     })
     if (userInfo == null) throw new ClientError("", { statusCode: HttpStatus.NotFound })
@@ -37,7 +36,8 @@ profileApp
   .all(methodNotAllowed(["OPTIONS", "GET", "PATCH"]))
   .options(cors())
   .patch(async (req, res): Promise<void> => {
-    const validatedPayload = userFlagSchema.parse(req.body)
+    const body = await json(req, res)
+    const validatedPayload = userFlagSchema.parse(body)
     const flags = validatedPayload.userFlags
 
     const userId = req.params.user_id
@@ -45,8 +45,8 @@ profileApp
     const removeFlagQuery = (flagName: string) => {
       return prisma.userFlag.deleteMany({
         where: {
-          userId: userId,
-          name: flagName,
+          userId,
+          flagName,
         },
       })
     }
@@ -55,13 +55,13 @@ profileApp
       return prisma.userFlag.upsert({
         where: {
           id: {
-            userId: userId,
-            name: flagName,
+            userId,
+            flagName,
           },
         },
         create: {
-          userId: userId,
-          name: flagName,
+          userId,
+          flagName,
         },
         update: {},
       })

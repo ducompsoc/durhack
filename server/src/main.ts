@@ -9,7 +9,7 @@ import { routesApp } from "@/routes"
 import { apiErrorHandler } from "@/routes/error-handling"
 
 const app = new App<Request, Response>({
-  onError: apiErrorHandler
+  onError: apiErrorHandler,
 })
 
 app

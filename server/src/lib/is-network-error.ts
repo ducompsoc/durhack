@@ -1,4 +1,4 @@
-import { hasCode, isString } from "@/common/type-guards"
+import { hasCode, isString } from "@/lib/type-guards"
 
 const networkErrorCodes = new Set(["ETIMEDOUT", "ENETUNREACH", "ENETDOWN", "ENETRESET", "ECONNREFUSED", "ECONNRESET"])
 

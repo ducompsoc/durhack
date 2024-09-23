@@ -12,7 +12,7 @@ export default {
       name: "durhack-session",
       domain: ".durhack-dev.com",
       secure: false,
-      path: '/',
+      path: "/",
       sameSite: "lax",
     },
   },

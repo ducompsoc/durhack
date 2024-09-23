@@ -18,7 +18,7 @@ export type Application = {
   mlhCode: boolean
   mlhTerms: boolean
   mlhMarketing: boolean
-  cv?: boolean
+  cvUploadChoice: "indeterminate" | "upload" | "remind" | "noUpload"
 }
 
 async function applicationFetcher(path: string): Promise<Application | null> {

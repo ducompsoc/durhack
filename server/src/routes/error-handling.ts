@@ -3,8 +3,8 @@ import { ClientError, HttpError, HttpStatus, ServerError } from "@otterhttp/erro
 import { Prisma } from "@prisma/client"
 import { ZodError } from "zod"
 
-import { NullError, ValueError } from "@/common/errors"
-import { sendHttpErrorResponse, sendZodErrorResponse } from "@/common/response"
+import { NullError, ValueError } from "@/lib/errors"
+import { sendHttpErrorResponse, sendZodErrorResponse } from "@/lib/response"
 import type { Request, Response } from "@/types"
 
 export function apiErrorHandler(error: Error, _request: Request, response: Response, next: NextFunction) {

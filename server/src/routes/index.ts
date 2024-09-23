@@ -1,25 +1,22 @@
 import assert from "node:assert/strict"
 import { App } from "@otterhttp/app"
 import { ClientError, HttpStatus, ServerError } from "@otterhttp/errors"
-import { json, multipartFormData } from "@otterhttp/parsec"
 import type { UserinfoResponse } from "openid-client"
 
-import { isNetworkError } from "@/common/is-network-error"
+import { prisma } from "@/database"
 import { adaptTokenSetToClient, adaptTokenSetToDatabase } from "@/lib/adapt-token-set"
+import { isNetworkError } from "@/lib/is-network-error"
 import { keycloakClient } from "@/lib/keycloak-client"
 import type { KeycloakUserInfo } from "@/lib/keycloak-client"
 import { getSession } from "@/lib/session"
-import { prisma } from "@/database"
+import { applicationApp } from "@/routes/application"
 import { authApp } from "@/routes/auth"
 import { profileApp } from "@/routes/profile"
 import { userApp } from "@/routes/user"
-import { applicationApp } from "@/routes/application"
 import type { Request, Response } from "@/types"
 
 export const routesApp = new App<Request, Response>()
 
-routesApp.use(json())
-routesApp.use(multipartFormData())
 routesApp.use(async (request, response, next) => {
   const session = await getSession(request, response)
   if (session.userId == null) return next()
