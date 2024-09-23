@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import Skeleton from "@/components/details/skeleton"
+import { Skeleton } from "@/components/dashboard/skeleton"
 import { useApplicationContext } from "@/hooks/use-application-context"
 
 export default function EducationPage() {

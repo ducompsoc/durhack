@@ -353,7 +353,7 @@ class ApplicationHandlers {
           `<p>Hi ${request.userProfile.preferred_names ?? request.userProfile.first_names}</p>,`,
           "<br/>",
           "<p>Thanks for applying to attend DurHack! Your application has been submitted successfully.</p>",
-          '<p>You can view and update your responses at <a href="https://durhack.com/details">durhack.com</a>.</p',
+          '<p>You can view and update your responses at <a href="https://durhack.com/dashboard">durhack.com</a>.</p',
           "<br/>",
           '<p>If you have any questions, please reach out to <a href="mailto:hello@durhack.com">hello@durhack.com</a>.</p>',
           "<br/>",

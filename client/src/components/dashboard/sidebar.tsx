@@ -1,10 +1,10 @@
 "use client"
 
-import { SidebarContext } from "@/app/details/layout"
+import { SidebarContext } from "@/app/dashboard/layout"
 import Link from "next/link"
 import * as React from "react"
 
-export default function Sidebar() {
+export function Sidebar() {
   const { isOpen, setIsOpen } = React.useContext(SidebarContext)
 
   interface menuItem {
@@ -31,7 +31,7 @@ export default function Sidebar() {
         {menuItems.map((item) => {
           return (
             <Link
-              href={`/details/${item.link}`}
+              href={`/dashboard/${item.link}`}
               className="py-1 mt-1 px-2 border-x-2 rounded-lg hover:border-white  bg-white bg-opacity-5 hover:bg-opacity-15 hover:cursor-pointer transition-all duration-300"
               key={item.id}
               onClick={() => setIsOpen(false)}

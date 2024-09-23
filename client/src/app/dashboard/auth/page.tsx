@@ -1,7 +1,8 @@
 "use client"
 
-import { siteConfig } from "@/config/site"
 import * as React from "react"
+
+import { siteConfig } from "@/config/site"
 
 export default function AuthPage() {
   const signOutUri = new URL("/auth/keycloak/logout", siteConfig.apiUrl).toString()

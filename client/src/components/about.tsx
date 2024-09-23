@@ -6,7 +6,7 @@ import * as React from "react"
 
 import { MountainGraphic } from "@/components/graphics"
 
-export default function About() {
+export function About() {
   const ref = React.useRef(null)
   const isInView = useInView(ref, { once: true })
 

@@ -1,13 +1,11 @@
 "use client"
 
-import { BackgroundContext } from "@/app/details/layout"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import * as React from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import "@/lib/zod-phone-extension"
 
 import { Button } from "@durhack/web-components/ui/button"
 import { Checkbox } from "@durhack/web-components/ui/checkbox"
@@ -21,8 +19,10 @@ import {
   FormMessage,
 } from "@durhack/web-components/ui/form"
 
+import { BackgroundContext } from "@/app/dashboard/layout"
 import { useApplicationContext } from "@/hooks/use-application-context"
-import { updateApplication } from "@/lib/updateApplication"
+import { updateApplication } from "@/lib/update-application"
+import "@/lib/zod-phone-extension"
 
 type SubmitFormFields = {
   mlhCode: boolean | "indeterminate"
@@ -64,7 +64,7 @@ export default function SubmitPage() {
     try {
       await updateApplication("submit", values)
       await mutateApplication()
-      router.push("/details")
+      router.push("/dashboard")
     } catch (e: unknown) {
       form.setError("mlhMarketing", {
         message: "Application is incomplete or already submitted!",

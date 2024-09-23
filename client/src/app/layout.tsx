@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next"
 
 import "@/styles/globals.css"
-import { Footer } from "@/components/footer"
-import { MLHBanner } from "@/components/mlh-banner"
-import Navbar from "@/components/navbar"
 import { siteConfig } from "@/config/site"
 import { spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
@@ -43,16 +40,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-GB">
       <body className={cn(spaceGrotesk.className, "dark antialiased")}>
-        <div className="fixed top-0 overflow-visible w-[100%] z-50">
-          <MLHBanner variant="white" />
-          <Navbar />
-        </div>
-        <div className="relative bg-background">
-          {children}
-          <Footer />
-        </div>
+        {children}
       </body>
     </html>
   )

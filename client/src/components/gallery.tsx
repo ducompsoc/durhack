@@ -9,7 +9,7 @@ import Image from "next/image"
 
 import { SectionHeader } from "@/components/section-header"
 
-export default function Gallery() {
+export function Gallery() {
   return (
     <div className="w-full px-4">
       <SectionHeader>Gallery</SectionHeader>

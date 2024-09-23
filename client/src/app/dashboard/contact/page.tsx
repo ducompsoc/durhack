@@ -12,9 +12,9 @@ import { Input } from "@durhack/web-components/ui/input"
 import { PhoneInput } from "@durhack/web-components/ui/phone-number-input"
 
 import "@/lib/zod-phone-extension"
-import Skeleton from "@/components/details/skeleton"
+import { Skeleton } from "@/components/dashboard/skeleton"
 import { useApplicationContext } from "@/hooks/use-application-context"
-import { updateApplication } from "@/lib/updateApplication"
+import { updateApplication } from "@/lib/update-application"
 
 type ContactFormFields = {
   phone: string
@@ -47,7 +47,7 @@ export default function ContactPage() {
 
   async function onSubmit(values: z.infer<typeof contactFormSchema>): Promise<void> {
     await updateApplication("contact", values)
-    router.push("/details/education")
+    router.push("/dashboard/education")
   }
 
   function getForm() {

@@ -18,9 +18,9 @@ import {
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select"
 
-import Skeleton from "@/components/details/skeleton"
+import { Skeleton } from "@/components/dashboard/skeleton"
 import { useApplicationContext } from "@/hooks/use-application-context"
-import { updateApplication } from "@/lib/updateApplication"
+import { updateApplication } from "@/lib/update-application"
 
 type CvFormFields = {
   cvUploadChoice: "indeterminate" | "upload" | "remind" | "noUpload"
@@ -85,7 +85,7 @@ export default function CvPage() {
 
     try {
       await updateApplication("cv", formData)
-      router.push("/details/submit")
+      router.push("/dashboard/submit")
     } catch {
       form.setError("cvUploadChoice", { message: "CV file was rejected (try uploading a PDF)!" })
     }

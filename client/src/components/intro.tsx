@@ -5,7 +5,7 @@ import * as React from "react"
 
 import { Cloud4Graphic, Cloud5Graphic } from "@/components/graphics"
 
-export default function Intro() {
+export function Intro() {
   const ref = React.useRef(null)
 
   const { scrollYProgress } = useScroll({

@@ -9,7 +9,7 @@ import { MoonGraphic } from "@/components/graphics/moon"
 import { audiowide } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 
-export default function Splash() {
+export function Splash() {
   const ref = React.useRef(null)
 
   const { scrollYProgress } = useScroll({

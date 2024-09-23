@@ -5,16 +5,16 @@ import { useRouter } from "next/navigation"
 import * as React from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import "@/lib/zod-phone-extension"
 
 import { Button } from "@durhack/web-components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Input } from "@durhack/web-components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select"
 
-import Skeleton from "@/components/details/skeleton"
+import { Skeleton } from "@/components/dashboard/skeleton"
 import { useApplicationContext } from "@/hooks/use-application-context"
-import { updateApplication } from "@/lib/updateApplication"
+import { updateApplication } from "@/lib/update-application"
+import "@/lib/zod-phone-extension"
 
 type PersonalFormFields = {
   firstNames: string
@@ -65,7 +65,7 @@ export default function PersonalPage() {
 
   async function onSubmit(values: z.infer<typeof personalFormSchema>): Promise<void> {
     await updateApplication("personal", values)
-    router.push("/details/contact")
+    router.push("/dashboard/contact")
   }
 
   function pronounsChange(onChange: (str: string) => void) {

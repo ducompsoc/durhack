@@ -4,7 +4,7 @@ import { getSession } from "@/lib/session"
 import type { Request, Response } from "@/types"
 
 export class AuthHandlers {
-  static redirectUri = new URL("/details", frontendOrigin).toString()
+  static redirectUri = new URL("/dashboard", frontendOrigin).toString()
 
   handleLoginSuccess() {
     return async (request: Request & { user?: User }, response: Response) => {

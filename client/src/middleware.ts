@@ -28,7 +28,7 @@ function redirectToLogin(request: NextRequest) {
 }
 
 export async function middleware(request: NextRequest) {
-  if (request.nextUrl.pathname.startsWith("/details")) {
+  if (request.nextUrl.pathname.startsWith("/dashboard")) {
     const userProfile = await getUserProfile(request)
     // if the user is not logged in, go back to root
     if (!userProfile) return redirectToLogin(request)

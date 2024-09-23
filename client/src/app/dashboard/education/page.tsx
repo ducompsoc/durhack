@@ -12,9 +12,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@durhack/web-components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select"
 
-import Skeleton from "@/components/details/skeleton"
+import { Skeleton } from "@/components/dashboard/skeleton"
 import { useApplicationContext } from "@/hooks/use-application-context"
-import { updateApplication } from "@/lib/updateApplication"
+import { updateApplication } from "@/lib/update-application"
 import "@/lib/zod-iso3-extension"
 
 type EducationFormFields = {
@@ -105,7 +105,7 @@ export default function EducationPage() {
 
   async function onSubmit(values: z.infer<typeof educationFormSchema>): Promise<void> {
     await updateApplication("education", values)
-    router.push("/details/cv")
+    router.push("/dashboard/cv")
   }
 
   function getForm() {

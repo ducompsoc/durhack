@@ -2,9 +2,9 @@
 
 import * as React from "react"
 
-import { ApplicationContextProvider } from "@/components/details/application-context-provider"
-import Header from "@/components/details/header"
-import Sidebar from "@/components/details/sidebar"
+import { ApplicationContextProvider } from "@/components/dashboard/application-context-provider"
+import { Header } from "@/components/dashboard/header"
+import { Sidebar } from "@/components/dashboard/sidebar"
 
 export const BackgroundContext = React.createContext({
   isFinalSubmitHovering: false,
@@ -17,7 +17,7 @@ export const SidebarContext = React.createContext({
   toggleSidebar: () => {},
 })
 
-export default function RootLayout({
+export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode

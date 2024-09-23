@@ -1,3 +1,3 @@
-export default function Sponsors() {
+export function Sponsors() {
   return <></>
 }
