@@ -7,8 +7,8 @@ import { SunGraphic } from "@/components/graphics/sun";
 export function Footer() {
   return (
     <footer className="text-white overflow-clip relative">
-      <div className="pb-[16rem] pt-[40rem] w-[100rem] relative mx-auto z-10">
-        <p className="text-center text-lg sm:text-1xl md:text-2xl lg:text-4xl pb-10">
+      <div className="pb-[10rem] sm:pb-[14rem] md:pb-[16rem] pt-[40rem] w-[90%] 2xl:w-[98rem] relative mx-auto z-10">
+        <p className="text-center text-lg sm:text-2xl lg:text-4xl pb-10">
           <Link href="mailto:hello@durhack.com">hello@durhack.com</Link>
         </p>
 
@@ -22,7 +22,7 @@ export function Footer() {
 
         <div className="text-center justify-center pb-24 w-full px-8 sm:px-16 md:px-24 lg:px-20 xl:34">
           <div className="flex flex-col w-fill">
-            <p className="text-xs text-start sm:text-sm md:text-md lg:text-lg xl:text-xl">
+            <p className="text-xs text-start sm:text-sm md:text-lg xl:text-xl">
               DurHack follows the{" "}
               <Link href="https://hackp.ac/coc" className="underline">
                 MLH Code of Conduct
@@ -46,9 +46,9 @@ export function Footer() {
         </div>
       </div>
 
-      <div id="outer-ring" className="rounded-[50%] absolute h-[124rem] w-[124rem] bottom-[-65rem] md:bottom-[-65rem]" />
+      <div id="outer-ring" className="rounded-[50%] absolute h-[124rem] w-[124rem] bottom-[-75rem] sm:bottom-[-65rem]" />
 
-      <SunGraphic className="h-[38rem] w-[38rem] bottom-[-24rem] md:bottom-[-24rem] translate-x-[-50%] left-1/2 z-20 absolute" />
+      <SunGraphic className="h-[38rem] w-[38rem] bottom-[-28rem] md:bottom-[-24rem] translate-x-[-50%] left-1/2 z-20 absolute" />
     </footer>
   );
 }
