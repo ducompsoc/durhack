@@ -9,6 +9,7 @@ import { isNetworkError } from "@/lib/is-network-error"
 import { keycloakClient } from "@/lib/keycloak-client"
 import type { KeycloakUserInfo } from "@/lib/keycloak-client"
 import { getSession } from "@/lib/session"
+import { methodNotAllowed } from "@/middleware/method-not-allowed"
 import { applicationApp } from "@/routes/application"
 import { authApp } from "@/routes/auth"
 import { profileApp } from "@/routes/profile"
@@ -87,6 +88,16 @@ routesApp.use(async (request, response, next) => {
   request.user = user
   next()
 })
+
+routesApp
+  .route("/")
+  .all(methodNotAllowed(["GET"]))
+  .get((request, response) => {
+    response.json({
+      status: 200,
+      message: "OK",
+    })
+  })
 
 routesApp.use("/auth", authApp)
 
