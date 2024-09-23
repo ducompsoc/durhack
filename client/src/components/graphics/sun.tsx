@@ -11,16 +11,16 @@ type SunGraphicProps = Omit<React.HTMLAttributes<HTMLDivElement>, "children"> & 
 export function SunGraphic({ className, priority, ...props }: SunGraphicProps): React.ReactElement {
   return (
     <div className={cn("relative aspect-square isolate", className)} {...props}>
-      <div className="moon-backdrop clip-circle w-full h-full" />
-      <div className="moon absolute w-full h-full">
+      <div className="sun-backdrop clip-circle w-full h-full" />
+      <div className="sun absolute w-full h-full">
         {/* biome-ignore lint/a11y/useSemanticElements: https://github.com/biomejs/biome/issues/3994 */}
-        <div className="clip-circle moon-shadow" role="img" aria-label="the sun">
+        <div className="clip-circle" role="img" aria-label="the sun">
           <Image
             src="/assets/graphics/magma.png"
             width={4096}
             height={4096}
-            alt="photograph of moon"
-            className="moon-image"
+            alt="photograph of sun"
+            className="sun-image"
             priority={priority}
           />
         </div>
