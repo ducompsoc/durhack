@@ -2,7 +2,7 @@ import { createServer } from "node:http"
 import { App } from "@otterhttp/app"
 import { cors } from "corstisol"
 
-import { frontendOrigin, listenConfig } from "@/config"
+import { frontendOrigin, listenConfig, origin } from "@/config"
 import { Request } from "@/request"
 import { Response } from "@/response"
 import { routesApp } from "@/routes"
@@ -29,5 +29,5 @@ const server = createServer<typeof Request, typeof Response>({
 server.on("request", app.attach)
 
 server.listen(listenConfig.port, listenConfig.host, () =>
-  console.log(`Listening on http://${listenConfig.host}:${listenConfig.port}`),
+  console.log(`Listening on http://${listenConfig.host}:${listenConfig.port}, access via ${origin}`),
 )
