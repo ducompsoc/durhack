@@ -3,21 +3,27 @@ import type * as React from "react";
 
 import { siteConfig } from "@/config/site";
 import { SunGraphic } from "@/components/graphics/sun";
+import { LeftStarsGraphic, RightStarsGraphic } from "@/components/graphics/small-stars";
 
 export function Footer() {
   return (
     <footer className="text-white overflow-clip relative">
       <div className="pb-[10rem] sm:pb-[14rem] md:pb-[16rem] pt-[40rem] w-[90%] 2xl:w-[98rem] relative mx-auto z-10">
-        <p className="text-center text-lg sm:text-2xl lg:text-4xl pb-10">
-          <Link href="mailto:hello@durhack.com">hello@durhack.com</Link>
-        </p>
+        <div className="relative">
+          <p className="text-center text-lg sm:text-2xl lg:text-4xl pb-10">
+            <Link href="mailto:hello@durhack.com">hello@durhack.com</Link>
+          </p>
 
-        <div className="flex justify-center w-full max-w-screen-lg mx-auto gap-x-6 pb-20">
-          {siteConfig.socials.map(({ key, href, icon: Icon }) => (
-            <Link key={key} href={href} className="w-[8%] max-w-[55px] h-auto object-cover">
-              <Icon />
-            </Link>
-          ))}
+          <div className="flex justify-center w-full max-w-screen-lg mx-auto gap-x-6 pb-20">
+            {siteConfig.socials.map(({ key, href, icon: Icon }) => (
+              <Link key={key} href={href} className="w-[8%] max-w-[55px] h-auto object-cover">
+                <Icon />
+              </Link>
+            ))}
+          </div>
+
+          <LeftStarsGraphic className="hidden md:block absolute bottom-[-2rem] md:left-[8vw] lg:left-[10vw] xl:left-[14vw] 2xl:left-[27%] w-[10rem] xl:w-[14rem] z-30" />
+          <RightStarsGraphic className="hidden md:block absolute bottom-[2rem] md:right-[0vw] lg:right-[2vw] xl:right-[6vw] 2xl:right-[18%] w-[12rem] xl:w-[16rem] z-30" />
         </div>
 
         <div className="text-center justify-center pb-24 w-full px-8 sm:px-16 md:px-24 lg:px-20 xl:34">
@@ -46,7 +52,10 @@ export function Footer() {
         </div>
       </div>
 
-      <div id="outer-ring" className="rounded-[50%] absolute h-[124rem] w-[124rem] bottom-[-75rem] sm:bottom-[-65rem]" />
+      <div
+        id="outer-ring"
+        className="rounded-[50%] absolute h-[124rem] w-[124rem] bottom-[-75rem] sm:bottom-[-65rem]"
+      />
 
       <SunGraphic className="h-[38rem] w-[38rem] bottom-[-28rem] md:bottom-[-24rem] translate-x-[-50%] left-1/2 z-20 absolute" />
     </footer>
