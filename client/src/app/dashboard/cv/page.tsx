@@ -36,22 +36,28 @@ const cvFormSchema = z.discriminatedUnion("cvUploadChoice", [
   }),
   z.object({
     cvUploadChoice: z.literal("upload"),
-    cvFiles: z.array(
-      z.custom<File>((value) => value instanceof File, "How on earth did you manage this?")
-        .refine((value) => value.size <= 10485760, "Maximum file size is 10MB!")
-        .refine((value) => {
-          if (!([
-            "application/pdf",
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            "application/msword",
-          ].includes(value.type))) return false
+    cvFiles: z
+      .array(
+        z
+          .custom<File>((value) => value instanceof File, "How on earth did you manage this?")
+          .refine((value) => value.size <= 10485760, "Maximum file size is 10MB!")
+          .refine((value) => {
+            if (
+              ![
+                "application/pdf",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                "application/msword",
+              ].includes(value.type)
+            )
+              return false
 
-          const split = value.name.split(".")
-          const extension = split[split.length - 1]
-          return ["doc", "docx", "pdf"].includes(extension)
-        }, "Please upload a PDF or Word doc!")
-    ).length(1, "Please provide exactly one CV file!"),
-  })
+            const split = value.name.split(".")
+            const extension = split[split.length - 1]
+            return ["doc", "docx", "pdf"].includes(extension)
+          }, "Please upload a PDF or Word doc!"),
+      )
+      .length(1, "Please provide exactly one CV file!"),
+  }),
 ])
 
 export default function CvPage() {
@@ -102,7 +108,10 @@ export default function CvPage() {
               <FormItem>
                 <FormLabel>Would you like to submit a CV (shared with our sponsors)?</FormLabel>
                 <Select
-                  onValueChange={(value) => { onChange(value); setShowForm(value === "upload") }}
+                  onValueChange={(value) => {
+                    onChange(value)
+                    setShowForm(value === "upload")
+                  }}
                   {...field}
                 >
                   <FormControl>
@@ -111,7 +120,9 @@ export default function CvPage() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="indeterminate" hidden>Choose...</SelectItem>
+                    <SelectItem value="indeterminate" hidden>
+                      Choose...
+                    </SelectItem>
                     <SelectItem value="upload">Yes</SelectItem>
                     <SelectItem value="remind">No (remind me later)</SelectItem>
                     <SelectItem value="noUpload">No (don't remind me later)</SelectItem>
@@ -138,7 +149,7 @@ export default function CvPage() {
                         "application/pdf": [".pdf"],
                         "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"],
                         "application/msword": [".doc"],
-                      }
+                      },
                     }}
                     files={value}
                     {...field}

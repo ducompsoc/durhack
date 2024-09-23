@@ -41,9 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-GB">
-      <body className={cn(spaceGrotesk.className, "dark antialiased")}>
-        {children}
-      </body>
+      <body className={cn(spaceGrotesk.className, "dark antialiased")}>{children}</body>
     </html>
   )
 }

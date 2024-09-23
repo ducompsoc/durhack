@@ -1,7 +1,6 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import Image from "next/image"
 import * as React from "react"
 
 import { MountainGraphic } from "@/components/graphics"
@@ -12,8 +11,7 @@ export function About() {
 
   return (
     <>
-      <div className="absolute w-full top-[-1rem] md:top-[-3rem]">
-      </div>
+      <div className="absolute w-full top-[-1rem] md:top-[-3rem]" />
 
       <div ref={ref} className="w-full h-full absolute">
         <motion.div
