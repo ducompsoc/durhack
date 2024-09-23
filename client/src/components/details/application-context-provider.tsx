@@ -3,7 +3,7 @@
 import * as React from "react"
 import type { KeyedMutator } from "swr"
 
-import { type Application, useApplication } from "@/hooks/useApplication"
+import { type Application, useApplication } from "@/hooks/use-application"
 import { useRouter } from "next/navigation"
 
 type ApplicationContextProps = {
