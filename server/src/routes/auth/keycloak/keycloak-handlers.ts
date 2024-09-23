@@ -138,7 +138,6 @@ export class KeycloakHandlers {
       session.userId = userId
       await session.commit()
       request.user = user
-      console.log(tokenSetClaims)
 
       next()
     }
