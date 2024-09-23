@@ -21,8 +21,8 @@ importers:
         specifier: ^0.2.1
         version: 0.2.1
       '@otterhttp/parsec':
-        specifier: ^0.1.3
-        version: 0.1.3
+        specifier: ^0.2.1
+        version: 0.2.1
       '@otterhttp/session':
         specifier: ^0.3.1
         version: 0.3.1
@@ -509,8 +509,8 @@ packages:
     resolution: {integrity: sha512-yhqvMwsEZNA5iSssRzcjxi+sDUWg1TUyvxe6P5EeMgHFprsLoqh1TJgQO6Vji0wciHgkZduNzKSrlPdjyV7qyA==}
     engines: {node: '>=20.16.0'}
 
-  '@otterhttp/parsec@0.1.3':
-    resolution: {integrity: sha512-YguzSqU9ebCvbSuLkm48h+p7e9Ie2mcLp5XMTWuto+D7b5AXwyK+y560QnrSI28pRPmCDW/CNox+mVSVUFN4cQ==}
+  '@otterhttp/parsec@0.2.1':
+    resolution: {integrity: sha512-843P1YYhjKRRXVJeRvWXdTRfpICUMXwMH0IgYdciRrthtK0/yt4nsYnybGcsLvLtYMhey0lZuAysURa6tgKbDg==}
     engines: {node: '>=20.16'}
 
   '@otterhttp/proxy-address@3.0.0':
@@ -1782,7 +1782,7 @@ snapshots:
 
   '@otterhttp/parameters@0.1.0': {}
 
-  '@otterhttp/parsec@0.1.3':
+  '@otterhttp/parsec@0.2.1':
     dependencies:
       '@otterhttp/content-disposition': 3.1.0
       '@otterhttp/content-type': 0.4.0
