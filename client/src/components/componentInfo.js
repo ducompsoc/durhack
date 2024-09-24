@@ -1,4 +1,5 @@
-[
+const componentConfig = {
+    "faqs": [
     {
         "question": "Should I attend DurHack?",
         "answers": [
@@ -88,4 +89,88 @@
             "If you're still not sure about something, drop us a line at \n\n<a href=\"mailto:hello@durhack.com\">hello@durhack.com</a>\n\n and we'll be very happy to help!"
         ]
     }
-]
+    ],
+    "sponsors": {
+        "platinum": [
+            {
+                "image": "marshall_wace.svg",
+                "link": "https://www.mwam.com/"
+            },
+            {
+                "image": "BidFX.svg",
+                "link": "https://www.bidfx.com/"
+            },
+            {
+                "image": "qrt-stacked-dark.svg",
+                "link": "https://www.qube-rt.com/"
+            }
+        ],
+        "gold": [
+            {
+                "image": "bede.svg",
+                "link": "https://bedegaming.com/"
+            },
+            {
+                "image": "netcraft.svg",
+                "link": "https://www.netcraft.com/"
+            },
+            {
+                "image": "THG.svg",
+                "link": "https://www.thg.com/"
+            },
+            {
+                "image": "waterstons.svg",
+                "link": "https://www.waterstons.com/"
+            },
+            {
+                "image": "atom.svg",
+                "link": "https://www.atombank.co.uk/"
+            },
+            {
+                "image": "du-dark.svg",
+                "link": "https://www.durham.ac.uk/"
+            },
+            {
+                "image": "digital-durham.svg",
+                "link": "https://digitaldurham.org/"
+            },
+            {
+                "image": "durham-city-council.svg",
+                "link": "https://www.durham.gov.uk/"
+            }
+        ],
+        "silver": [
+            {
+                "image": "createc.svg",
+                "link": "https://createc.co.uk/"
+            }
+        ],
+        "partners": [
+            {
+                "image": "hackathonsuk.svg",
+                "link": "https://www.hackathons.org.uk/"
+            },
+            {
+                "image": "mlh-logo-color.svg",
+                "link": "https://mlh.io/"
+            },
+            {
+                "image": "Dueg_transparent.png",
+                "link": "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/"
+            },
+            {
+                "image": "compsoc.png",
+                "link": "https://compsoc.tech/"
+            },
+            {
+                "image": "KeyboardCo.png",
+                "link": "https://www.keyboardco.com/"
+            },
+            {
+                "image": "durham_su.png",
+                "link": "https://www.durhamsu.com/"
+            }
+    ]}
+}
+
+export default componentConfig;

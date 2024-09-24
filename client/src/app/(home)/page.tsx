@@ -2,6 +2,7 @@ import Splash from "@/components/splash";
 import Intro from "@/components/intro";
 import About from "@/components/about";
 import Sponsors from "@/components/sponsors";
+import Faqs from "@/components/FAQs";
 import Guilds from "@/components/guilds";
 import Gallery from "@/components/gallery";
 import End from "@/components/end";
@@ -22,6 +23,10 @@ export default function HomePage() {
 
       <section id="about">
         <About />
+      </section>
+
+      <section id="faqs">
+        <Faqs />
       </section>
 
       <section id="sponsors">

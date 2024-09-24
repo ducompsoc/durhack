@@ -1,7 +1,9 @@
 "use client"
 
-import questions from '@/components/faqQuestions.json';
+import configJson from "@/components/componentInfo";
 import React, { useEffect } from "react";
+
+const faqs = configJson.faqs;
 
 type Question = {
     question: string,
@@ -65,7 +67,7 @@ function QuestionTemplate({question, qIndex, isVisible, onClick}:QuestionProps){
         </li>
     )
 }
-export function Faqs(){
+export default function Faqs(){
     const [selectedQuestionIndex, setSelectedQuestionIndex] = React.useState<number | null>(null);
 
     const handleQuestionClick = (index: number) => {
@@ -82,7 +84,7 @@ export function Faqs(){
             </div>
 
             <ul className="list-none mb-5 py-1">
-                {questions.map((question, qIndex)=>(
+                {faqs.map((question, qIndex)=>(
                     <QuestionTemplate question={question} qIndex={qIndex} key={qIndex} isVisible={selectedQuestionIndex === qIndex} onClick={()=>handleQuestionClick(qIndex)}/>
                 ))}
             </ul>

@@ -39,13 +39,23 @@ import Link from "next/link"
 type RegisterFormFields = {
   firstNames: string
   lastNames: string
+  preferredName: string
+  pronouns: string
+  gender: string
   age: string
   phoneNumber: string
   email: string
   school: string
+  course: string
   graduationYear: string
   levelOfStudy: string
   countryOfResidence: string
+  ethnicity: string
+  cvConsent: boolean | 'indeterminate'
+  photoConsent: boolean | 'indeterminate'
+  dsuPrivacyAcceptance: boolean | 'indeterminate'
+  hackathonsUKPrivacyAcceptance: boolean | 'indeterminate'
+  hackathonsUKMarketingAcceptance: boolean | 'indeterminate'
   mlhCodeOfConductAcceptance: boolean | 'indeterminate'
   mlhPoliciesAcceptance: boolean | 'indeterminate'
   mlhMarketingAcceptance: boolean | 'indeterminate'
@@ -54,6 +64,14 @@ type RegisterFormFields = {
 const registerFormSchema = z.object({
   firstNames: z.string().trim().min(1).max(256),
   lastNames: z.string().trim().min(1).max(256),
+  preferredName: z.string().trim().min(1).max(256),
+  pronouns: z.string().trim().min(1).max(30),
+  gender: z.enum([
+    "male",
+    "female",
+    "non-binary",
+    "other"
+  ]),
   age: z.coerce.number({ invalid_type_error: "Please provide a valid age." })
     .positive("Please provide a valid age.")
     .min(16, { message: "Age must be >= 16" })
@@ -62,6 +80,7 @@ const registerFormSchema = z.object({
   phoneNumber: z.string().phone(),
   email: z.string().email(),
   school: z.string(),
+  course: z.string().trim(),
   graduationYear: z.coerce.number({ invalid_type_error: "Please provide a valid year." })
     .positive("Please provide a valid year.")
     .int("Oh, come on. Really?")
@@ -80,6 +99,27 @@ const registerFormSchema = z.object({
     "prefer-not-to-answer",
   ]),
   countryOfResidence: z.string().iso3(),
+  ethnicity: z.enum([
+    "indian",
+    "pakistani",
+    "bangladeshi",
+    "chinese",
+    "asianOther",
+    "caribbean",
+    "african",
+    "blackOther",
+    "mixedCaribbean",
+    "mixedAfrican",
+    "mixedAsian",
+    "mixedOther",
+    "uk",
+    "irish",
+    "gypsyTraveller",
+    "roma",
+    "whiteOther",
+    "arab",
+    "other",
+  ]),
   mlhCodeOfConductAcceptance: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
   mlhPoliciesAcceptance: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
   mlhMarketingAcceptance: z.boolean(),
@@ -96,13 +136,23 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
     defaultValues: {
       firstNames: "",
       lastNames: "",
+      preferredName:"",
+      pronouns:"",
+      gender: undefined,
       age: "",
       phoneNumber: "",
       email: "",
       school: undefined,
+      course: "",
       graduationYear: "",
       levelOfStudy: undefined,
       countryOfResidence: undefined,
+      ethnicity: undefined,
+      cvConsent: false,
+      photoConsent: false,
+      dsuPrivacyAcceptance: false,
+      hackathonsUKPrivacyAcceptance: false,
+      hackathonsUKMarketingAcceptance: false,
       mlhCodeOfConductAcceptance: false,
       mlhPoliciesAcceptance: false,
       mlhMarketingAcceptance: false,
@@ -116,6 +166,7 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
   return (
     <Form {...form} >
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-1" {...props}>
+        <h1 className="text-xl"> Personal Details </h1>
         <FormField
           control={form.control}
           name="firstNames"
@@ -138,6 +189,55 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
               <FormControl>
                 <Input placeholder="Doe" {...field} />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="preferredName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Preferred name</FormLabel>
+              <FormControl>
+                <Input placeholder="Jon" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="pronouns"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Pronouns</FormLabel>
+              <FormControl>
+                <Input placeholder="They/Them" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="gender"
+          render={({ field: {onChange, value, ...field} }) => (
+            <FormItem>
+              <FormLabel>Gender</FormLabel>
+              <Select onValueChange={onChange} defaultValue={value} >
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select gender..." className="" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="male">Male</SelectItem>
+                  <SelectItem value="female">Female</SelectItem>
+                  <SelectItem value="non-binary">Non-binary</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}
@@ -211,6 +311,19 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
         />
         <FormField
           control={form.control}
+          name="course"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Course</FormLabel>
+              <FormControl>
+                <Input placeholder="Computer Science" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
           name="graduationYear"
           render={({ field }) => (
             <FormItem>
@@ -271,6 +384,203 @@ export function RegisterForm({schoolOptions, countryOptions, ...props}: React.HT
                 </ComboBoxTrigger>
                 <ComboBoxContent />
               </ComboBox>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+<FormField
+          control={form.control}
+          name="ethnicity"
+          render={({ field: {onChange, value, ...field} }) => (
+            <FormItem>
+              <FormLabel>Ethnicity</FormLabel>
+              <Select onValueChange={onChange} defaultValue={value} >
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select ethnicity..." className="" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="indian">Asian (Indian)</SelectItem>
+                  <SelectItem value="pakistani">Asian (Pakistani)</SelectItem>
+                  <SelectItem value="bangladeshi">Asian (Bangladeshi)</SelectItem>
+                  <SelectItem value="chinese">Asian (Chinese)</SelectItem>
+                  <SelectItem value="asianOther">Any other Asian background</SelectItem>
+                  
+                  <SelectItem value="caribbean">Black (Caribbean)</SelectItem>
+                  <SelectItem value="african">Black (African)</SelectItem>
+                  <SelectItem value="blackOther">Any other Black, Black British, or Caribbean background</SelectItem>
+                  
+                  <SelectItem value="mixedCaribbean">Mixed (White and Black Caribbean)</SelectItem>
+                  <SelectItem value="mixedAfrican">Mixed (White and Black African)</SelectItem>
+                  <SelectItem value="mixedAsian">Mixed (White and Asian)</SelectItem>
+                  <SelectItem value="mixedOther">Any other Mixed or multiple ethnic background</SelectItem>
+
+                  <SelectItem value="uk">English, Welsh, Scottish, Northern Irish or British</SelectItem>
+                  <SelectItem value="irish">Irish</SelectItem>
+                  <SelectItem value="gypsyTraveller">Gypsy or Irish Traveller</SelectItem>
+                  <SelectItem value="roma">Roma</SelectItem>
+                  <SelectItem value="whiteOther">Any other White background</SelectItem>
+
+                  <SelectItem value="arab">Arab</SelectItem>
+                  <SelectItem value="other">Any other ethnic group</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <br></br>
+        <h1 className="text-xl">DurHack Details</h1>
+
+        <br></br>
+        <h1 className="text-xl">Consent/Permissions</h1>
+
+        <FormField
+          control={form.control}
+          name="cvConsent"
+          render={({ field }) => (
+            <FormItem>
+              <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormControl>
+                  <Checkbox
+                    className="mt-[0.2em] lg:mt-0"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    required
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>
+                  CV Sharing
+                  </FormLabel>
+                  <FormDescription>
+                  We pass CVs on to our sponsors, and its a great way to get career opportunities such as internships. We also provide an extra piece of stash as a reward for all our attendees who submit their CV.
+                  </FormDescription>
+                </div>
+              </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="photoConsent"
+          render={({ field }) => (
+            <FormItem>
+              <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormControl>
+                  <Checkbox
+                    className="mt-[0.2em] lg:mt-0"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    required
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>
+                  Photography Consent
+                  </FormLabel>
+                  <FormDescription>
+                  These images may be used for promotional purposes including on our website/socials, as well as shared with our sponsors and partners.
+                  I consent to the use of photographs and/or videos in which I appear for promotional purposes related to the event.
+                  </FormDescription>
+                </div>
+              </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="dsuPrivacyAcceptance"
+          render={({ field }) => (
+            <FormItem>
+              <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormControl>
+                  <Checkbox
+                    className="mt-[0.2em] lg:mt-0"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    required
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>
+                  Durham Students Union Privacy Notice
+                  </FormLabel>
+                  <FormDescription>
+                  I have read the {""}
+                  <Link className="underline" href="#">Durham Students Union (DSU) Privacy notice</Link>
+                  {" "}and consent to sharing information with Durham University Computing Society and the DSU.
+                  </FormDescription>
+                </div>
+              </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="hackathonsUKPrivacyAcceptance"
+          render={({ field }) => (
+            <FormItem>
+              <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormControl>
+                  <Checkbox
+                    className="mt-[0.2em] lg:mt-0"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    required
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>
+                  Hackathons UK Privacy Policy
+                  </FormLabel>
+                  <FormDescription>
+                  I have read the {""}
+                  <Link className="underline" href="#">Hackathons UK Privacy Policy</Link>
+                  {" "}and authorise you to share my application/registration information with Hackathons UK Limited for event administration, Hackathons UK Limited administration, and with my authorisation email in-line with the Hackathons UK Limited Privacy Policy.
+                  </FormDescription>
+                  <FormDescription>
+                  I understand that this event is a {""}
+                  <Link className="underline" href="#">Hackathons UK</Link>
+                  {" "}partner event.
+                  </FormDescription>
+                </div>
+              </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="hackathonsUKMarketingAcceptance"
+          render={({field}) => (
+            <FormItem>
+              <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormControl>
+                  <Checkbox
+                    className="mt-[0.2em] lg:mt-0"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>
+                    Hackathons UK Marketing
+                  </FormLabel>
+                  <FormDescription>
+                  I authorise Hackathons UK Limited to send me occasional messages about hackathons and their activities.
+                  </FormDescription>
+                </div>
+              </div>
               <FormMessage />
             </FormItem>
           )}
