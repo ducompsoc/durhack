@@ -1,8 +1,10 @@
-import type { Handler, NextFunction, Request, Response } from "@tinyhttp/app"
+import type { NextFunction } from "@otterhttp/app"
+
+import type { Middleware, Request, Response } from "@/types"
 
 type HttpVerb = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH"
 
-export function methodNotAllowed(allowedMethods: Iterable<HttpVerb>): Handler {
+export function methodNotAllowed(allowedMethods: Iterable<HttpVerb>): Middleware {
   const allowHeaderValue = Array.from(allowedMethods).join(", ")
   const allowedMethodSet: Set<string> = new Set(allowedMethods)
 
