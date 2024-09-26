@@ -309,14 +309,10 @@ class ApplicationHandlers {
    * application belonging to the user that initiated <code>request</code> is incomplete.
    *
    * If this method does not throw, the user's application can be considered complete, and the user
-   * should be permitted to submit their application.
+   * should be permitted to submit their application (provided they have not already submitted it).
    */
-  async validateApplicationComplete(request: Request): Promise<void> {
-    const application = await this.loadApplication(request)
-
+  async validateApplicationComplete(application: Awaited<ReturnType<typeof this.loadApplication>>): Promise<void> {
     const errors: Error[] = []
-    if (application.applicationStatus !== "unsubmitted")
-      errors.push(new Error("Application has already been submitted"))
 
     // TODO: implement application completeness checking
     errors.push(new Error("Application completeness checking has not been fully implemented"))
@@ -332,7 +328,17 @@ class ApplicationHandlers {
       const body = await json(request, response)
       const payload = submitFormSchema.parse(body)
 
-      await this.validateApplicationComplete(request)
+      const application = await this.loadApplication(request)
+
+      if (application.applicationStatus !== "unsubmitted")
+        throw new ClientError("Application has already been submitted", {
+          statusCode: 400,
+          code: "ERR_APPLICATION_ALREADY_SUBMITTED",
+          exposeMessage: true,
+          expected: true,
+        })
+
+      await this.validateApplicationComplete(application)
 
       // TODO: Create appropriate UserConsent records (in a transaction with the following query)
 
