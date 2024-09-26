@@ -1,21 +1,23 @@
 "use client"
 
-import { SidebarContext } from "@/app/dashboard/layout"
 import Link from "next/link"
 import * as React from "react"
+
+import { SidebarContext } from "@/app/dashboard/layout"
+import { cn } from "@/lib/utils"
 
 // Todo: rewrite this using shadcn Sheet component https://ui.shadcn.com/docs/components/sheet.
 // Example at https://github.com/shadcn-ui/ui/blob/main/apps/www/components/mobile-nav.tsx
 export function Sidebar() {
   const { isOpen, setIsOpen } = React.useContext(SidebarContext)
 
-  interface menuItem {
+  type MenuItem = {
     id: number
     name: string
     link: string
   }
 
-  const menuItems: menuItem[] = [
+  const menuItems: MenuItem[] = [
     { id: 1, name: "Status", link: "" },
     { id: 2, name: "Authentication", link: "/auth" },
     { id: 3, name: "Personal", link: "/personal" },
@@ -27,7 +29,7 @@ export function Sidebar() {
 
   return (
     <div
-      className={`px-2 py-2 md:w-64 md:block absolute bg-white bg-opacity-5 h-[calc(100%-8rem)] ${isOpen ? "w-full" : "hidden"}`}
+      className={cn("px-2 py-2 md:w-64 md:block absolute bg-white bg-opacity-5 h-[calc(100%-8rem)]", isOpen ? "w-full" : "hidden")}
     >
       <div className="flex flex-col">
         {menuItems.map((item) => {

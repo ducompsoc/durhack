@@ -1,9 +1,11 @@
 "use client"
 
-import { SidebarContext } from "@/app/dashboard/layout"
-import { Button } from "@durhack/web-components/ui/button"
 import { HamburgerMenuIcon } from "@radix-ui/react-icons"
 import * as React from "react"
+
+import { Button } from "@durhack/web-components/ui/button"
+
+import { SidebarContext } from "@/app/dashboard/layout"
 
 export function Header() {
   const { toggleSidebar } = React.useContext(SidebarContext)
