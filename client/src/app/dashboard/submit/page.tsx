@@ -32,7 +32,7 @@ type SubmitFormFields = {
 const submitFormSchema = z.object({
   mlhCodeOfConduct: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
   mlhTerms: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
-  mlhMarketing: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  mlhMarketing: z.boolean(),
 })
 
 export default function SubmitPage() {
