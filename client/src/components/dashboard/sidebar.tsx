@@ -3,13 +3,13 @@
 import Link from "next/link"
 import * as React from "react"
 
-import { SidebarContext } from "@/app/dashboard/layout"
+import { useSidebarContext } from "@/app/dashboard/sidebar-context"
 import { cn } from "@/lib/utils"
 
 // Todo: rewrite this using shadcn Sheet component https://ui.shadcn.com/docs/components/sheet.
 // Example at https://github.com/shadcn-ui/ui/blob/main/apps/www/components/mobile-nav.tsx
 export function Sidebar() {
-  const { isOpen, setIsOpen } = React.useContext(SidebarContext)
+  const { isOpen, setIsOpen } = useSidebarContext()
 
   type MenuItem = {
     id: number

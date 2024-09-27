@@ -5,10 +5,10 @@ import * as React from "react"
 
 import { Button } from "@durhack/web-components/ui/button"
 
-import { SidebarContext } from "@/app/dashboard/layout"
+import { useSidebarContext } from "@/app/dashboard/sidebar-context";
 
 export function Header() {
-  const { toggleSidebar } = React.useContext(SidebarContext)
+  const { toggleIsOpen: toggleSidebar } = useSidebarContext()
 
   return (
     <div className="px-8 py-8 border-b-2 h-32 flex row">

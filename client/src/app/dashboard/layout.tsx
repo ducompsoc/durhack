@@ -7,16 +7,8 @@ import { ApplicationContextProvider } from "@/components/dashboard/application-c
 import { Header } from "@/components/dashboard/header"
 import { Sidebar } from "@/components/dashboard/sidebar"
 
-export const BackgroundContext = React.createContext({
-  isFinalSubmitHovering: false,
-  setIsFinalSubmitHovering: (hovering: boolean) => {},
-})
-
-export const SidebarContext = React.createContext({
-  isOpen: false,
-  setIsOpen: (open: boolean) => {},
-  toggleSidebar: () => {},
-})
+import { BackgroundContext} from "./background-context"
+import { SidebarContext } from "./sidebar-context";
 
 export default function DashboardLayout({
   children,
@@ -26,14 +18,14 @@ export default function DashboardLayout({
   const [isFinalSubmitHovering, setIsFinalSubmitHovering] = React.useState(false)
   const [isOpen, setIsOpen] = React.useState(false)
 
-  function toggleSidebar() {
+  function toggleIsOpen() {
     setIsOpen((prevOpen) => !prevOpen)
   }
 
   return (
     <ApplicationContextProvider>
       <BackgroundContext.Provider value={{ isFinalSubmitHovering, setIsFinalSubmitHovering }}>
-        <SidebarContext.Provider value={{ isOpen, setIsOpen, toggleSidebar }}>
+        <SidebarContext.Provider value={{ isOpen, setIsOpen, toggleIsOpen }}>
           <main className="min-h-[100vh] relative">
             <div
               className={cn(

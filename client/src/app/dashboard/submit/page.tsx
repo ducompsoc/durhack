@@ -19,7 +19,7 @@ import {
   FormMessage,
 } from "@durhack/web-components/ui/form"
 
-import { BackgroundContext } from "@/app/dashboard/layout"
+import { useBackgroundContext } from "@/app/dashboard/background-context"
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { updateApplication } from "@/lib/update-application"
 import "@/lib/zod-phone-extension"
@@ -37,7 +37,7 @@ const submitFormSchema = z.object({
 })
 
 export default function SubmitPage() {
-  const { setIsFinalSubmitHovering } = React.useContext(BackgroundContext)
+  const { setIsFinalSubmitHovering } = useBackgroundContext()
 
   const router = useRouter()
   const { application, applicationIsLoading, mutateApplication } = useApplicationContext()
