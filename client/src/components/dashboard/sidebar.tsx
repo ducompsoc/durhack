@@ -6,26 +6,27 @@ import * as React from "react"
 import { useSidebarContext } from "@/app/dashboard/sidebar-context"
 import { cn } from "@/lib/utils"
 
+type MenuItem = {
+  id: number
+  name: string
+  link: string
+}
+
+const menuItems = [
+  { id: 1, name: "Status", link: "" },
+  { id: 2, name: "Authentication", link: "/auth" },
+  { id: 3, name: "Personal", link: "/personal" },
+  { id: 4, name: "Contact", link: "/contact" },
+  { id: 5, name: "Education", link: "/education" },
+  { id: 6, name: "CV", link: "/cv" },
+  { id: 7, name: "Submit", link: "/submit" },
+] as const satisfies readonly MenuItem[]
+
+
 // Todo: rewrite this using shadcn Sheet component https://ui.shadcn.com/docs/components/sheet.
 // Example at https://github.com/shadcn-ui/ui/blob/main/apps/www/components/mobile-nav.tsx
 export function Sidebar() {
   const { isOpen, setIsOpen } = useSidebarContext()
-
-  type MenuItem = {
-    id: number
-    name: string
-    link: string
-  }
-
-  const menuItems: MenuItem[] = [
-    { id: 1, name: "Status", link: "" },
-    { id: 2, name: "Authentication", link: "/auth" },
-    { id: 3, name: "Personal", link: "/personal" },
-    { id: 4, name: "Contact", link: "/contact" },
-    { id: 5, name: "Education", link: "/education" },
-    { id: 6, name: "CV", link: "/cv" },
-    { id: 7, name: "Submit", link: "/submit" },
-  ]
 
   return (
     <div
