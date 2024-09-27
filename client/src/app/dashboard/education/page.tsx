@@ -21,7 +21,7 @@ import "@/lib/zod-iso3-extension"
 
 type EducationFormFields = {
   university: string
-  graduation: string
+  graduationYear: string
   levelOfStudy: string
   countryOfResidence: string
 }
@@ -39,7 +39,7 @@ export type CountryOption = {
 
 const educationFormSchema = z.object({
   university: z.string().trim().min(1, { message: "Please select your institution." }),
-  graduation: z.coerce
+  graduationYear: z.coerce
     .number({ invalid_type_error: "Please provide a valid year." })
     .positive("Please provide a valid year.")
     .int("Oh, come on. Really?")
@@ -79,7 +79,7 @@ export default function EducationPage() {
     if (applicationIsLoading || !application) return
     form.reset({
       university: application.university ?? "",
-      graduation: application.graduation ?? "",
+      graduationYear: application.graduationYear ?? "",
       levelOfStudy: application.levelOfStudy ?? "",
       countryOfResidence: application.countryOfResidence ?? "",
     })
@@ -89,7 +89,7 @@ export default function EducationPage() {
     resolver: zodResolver(educationFormSchema),
     defaultValues: {
       university: "",
-      graduation: "",
+      graduationYear: "",
       levelOfStudy: "",
       countryOfResidence: "",
     },
@@ -134,7 +134,7 @@ export default function EducationPage() {
         <div className="mb-4">
           <FormField
             control={form.control}
-            name="graduation"
+            name="graduationYear"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Graduation Year</FormLabel>

@@ -34,8 +34,7 @@ const contactFormSchema = z.object({
 
 const educationFormSchema = z.object({
   university: z.string(),
-  graduation: z.coerce
-    .number({ invalid_type_error: "Please provide a valid year." })
+  graduationYear: z.number()
     .positive("Please provide a valid year.")
     .int("Oh, come on. Really?")
     .min(1900, { message: "Be serious. You didn't graduate before 1900." }),
@@ -52,7 +51,7 @@ const educationFormSchema = z.object({
     "not-a-student",
     "prefer-not-to-answer",
   ]),
-  country: z.string().iso3(),
+  countryOfResidence: z.string().iso3(),
 })
 
 const submitFormSchema = z.object({
@@ -115,7 +114,7 @@ class ApplicationHandlers {
       university: userDetails?.university ?? null,
       graduationYear: userDetails?.graduationYear ?? null,
       levelOfStudy: userDetails?.levelOfStudy ?? null,
-      countryOfResidence: userDetails?.country ?? null,
+      countryOfResidence: userDetails?.countryOfResidence ?? null,
     }
   }
 

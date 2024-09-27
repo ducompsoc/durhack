@@ -12,7 +12,7 @@ export type Application = {
   applicationStatus?: string
   age?: string
   university?: string
-  graduation?: string
+  graduationYear?: string
   levelOfStudy?: string
   countryOfResidence?: string
   mlhCode: boolean
