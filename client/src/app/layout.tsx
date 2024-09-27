@@ -28,9 +28,10 @@ export const metadata = {
       },
     ],
   },
+  themeColor: siteConfig.themeColor,
+  colorScheme: "dark light",
   other: {
     "msapplication-TileColor": "#008987",
-    "theme-color": siteConfig.themeColor,
   },
 } satisfies Metadata
 
