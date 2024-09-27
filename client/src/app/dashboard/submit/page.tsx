@@ -24,13 +24,13 @@ import { useApplicationContext } from "@/hooks/use-application-context"
 import { updateApplication } from "@/lib/update-application"
 
 type SubmitFormFields = {
-  mlhCode: boolean | "indeterminate"
+  mlhCodeOfConduct: boolean | "indeterminate"
   mlhTerms: boolean | "indeterminate"
   mlhMarketing: boolean | "indeterminate"
 }
 
 const submitFormSchema = z.object({
-  mlhCode: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  mlhCodeOfConduct: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
   mlhTerms: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
   mlhMarketing: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
 })
