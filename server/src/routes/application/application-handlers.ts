@@ -159,9 +159,16 @@ class ApplicationHandlers {
         },
       )
 
-      await prisma.userInfo.update({
-        where: { userId: request.user.keycloakUserId },
-        data: { age: payload.age },
+      await prisma.user.update({
+        where: { keycloakUserId: request.user.keycloakUserId },
+        data: {
+          userInfo: {
+            upsert: {
+              create: payload,
+              update: payload,
+            },
+          },
+        },
       })
 
       response.sendStatus(200)
@@ -207,9 +214,15 @@ class ApplicationHandlers {
 
       await prisma.user.update({
         where: { keycloakUserId: request.user.keycloakUserId },
-        data: payload,
+        data: {
+          userInfo: {
+            upsert: {
+              create: payload,
+              update: payload,
+            },
+          },
+        },
       })
-
       response.sendStatus(200)
     }
   }
@@ -262,9 +275,16 @@ class ApplicationHandlers {
 
       if (cvUploadChoice !== "upload") {
         await prisma.$transaction([
-          prisma.userInfo.update({
-            where: { userId },
-            data: { cvUploadChoice },
+          prisma.user.update({
+            where: { keycloakUserId: userId },
+            data: {
+              userInfo: {
+                upsert: {
+                  create: { cvUploadChoice },
+                  update: { cvUploadChoice },
+                },
+              },
+            },
           }),
           prisma.userCV.deleteMany({
             where: { userId },
@@ -288,8 +308,9 @@ class ApplicationHandlers {
         where: { keycloakUserId: userId },
         data: {
           userInfo: {
-            update: {
-              cvUploadChoice,
+            upsert: {
+              create: { cvUploadChoice },
+              update: { cvUploadChoice },
             },
           },
           userCv: {
