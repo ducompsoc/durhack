@@ -1,5 +1,5 @@
 {
-  "name": "durhack-server",
+  "name": "@durhack/durhack-server",
   "private": true,
   "scripts": {
     "start": "node dist/index.cjs",
