@@ -21,7 +21,7 @@ import { verifiedInstitutionsSet } from "./institution-options";
 const personalFormSchema = z.object({
   firstNames: z.string().trim().min(1).max(256),
   lastNames: z.string().trim().min(1).max(256),
-  preferredNames: z.string().trim().min(1).max(256).optional(),
+  preferredNames: z.string().trim().max(256),
   pronouns: z.enum(["prefer-not-to-answer", "he/him", "she/her", "they/them", "xe/xem", "other"]),
   age: z.number({ invalid_type_error: "Please provide a valid age." })
     .positive("Please provide a valid age.")
@@ -155,12 +155,13 @@ class ApplicationHandlers {
         if (pronouns === "other") return "Please Ask"
         return pronouns
       }
+      const keycloakPronouns = adaptPronouns(payload.pronouns)
 
-      const attributes = {
+      const attributes: Record<string, [string] | []> = {
         firstNames: [payload.firstNames],
         lastNames: [payload.lastNames],
-        preferredNames: [payload.preferredNames],
-        pronouns: [adaptPronouns(payload.pronouns) satisfies KeycloakUserInfo["pronouns"]],
+        preferredNames: payload.preferredNames ? [payload.preferredNames] : [],
+        pronouns: keycloakPronouns ? [keycloakPronouns] : [],
       }
 
       const adminClient = await getKeycloakAdminClient()
