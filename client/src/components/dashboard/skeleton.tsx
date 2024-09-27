@@ -7,7 +7,7 @@ function SkeletonBase({ className, ...props }: React.HTMLAttributes<HTMLDivEleme
 export function Skeleton({ rows, className }: React.HTMLAttributes<HTMLDivElement> & { rows: number }) {
   return (
     <div className={cn("flex gap-10 flex-col items-center", className)}>
-      {[...Array(rows)].map((_, i) => (
+      {Array.from({length: rows}).map((_, i) => (
         // biome-ignore lint/suspicious/noArrayIndexKey: elements are not distinct
         <SkeletonBase key={i} className="h-12 w-full" />
       ))}
