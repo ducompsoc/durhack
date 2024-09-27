@@ -38,7 +38,7 @@ export type CountryOption = {
 }
 
 const educationFormSchema = z.object({
-  university: z.string(),
+  university: z.string().trim().min(1, { message: "Please select your institution." }),
   graduation: z.coerce
     .number({ invalid_type_error: "Please provide a valid year." })
     .positive("Please provide a valid year.")
@@ -56,7 +56,7 @@ const educationFormSchema = z.object({
     "other",
     "not-a-student",
     "prefer-not-to-answer",
-  ]),
+  ], { message: "Please select your level of study." }),
   countryOfResidence: z.string().iso3(),
 })
 
