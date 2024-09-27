@@ -20,6 +20,7 @@ CREATE TABLE "UserCV" (
     "filename" TEXT NOT NULL,
     "content_type" TEXT NOT NULL,
     "content" BYTEA NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "UserCV_pkey" PRIMARY KEY ("user_id")
 );
@@ -34,6 +35,7 @@ CREATE TABLE "UserInfo" (
     "graduation_year" INTEGER,
     "level_of_study" VARCHAR(50),
     "country_of_residence" CHAR(3),
+    "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "UserInfo_pkey" PRIMARY KEY ("user_id")
 );

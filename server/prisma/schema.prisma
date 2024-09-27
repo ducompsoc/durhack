@@ -37,6 +37,8 @@ model UserCV {
     filename    String
     contentType String @map("content_type")
     content     Bytes
+
+    updatedAt DateTime @updatedAt @map("updated_at")
 }
 
 model UserInfo {
@@ -50,6 +52,8 @@ model UserInfo {
     graduationYear     Int?                  @map("graduation_year")
     levelOfStudy       String?               @map("level_of_study") @db.VarChar(50)
     countryOfResidence String?               @map("country_of_residence") @db.Char(3)
+
+    updatedAt DateTime @updatedAt @map("updated_at")
 }
 
 model UserFlag {
