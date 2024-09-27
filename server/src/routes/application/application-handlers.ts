@@ -15,13 +15,14 @@ import type { Middleware, Request } from "@/types"
 import "@/lib/zod-phone-extension"
 import "@/lib/zod-iso3-extension"
 
+import { verifiedInstitutionsSet } from "./institution-options";
+
 const personalFormSchema = z.object({
   firstNames: z.string().trim().min(1).max(256),
   lastNames: z.string().trim().min(1).max(256),
   preferredNames: z.string().trim().min(1).max(256).optional(),
   pronouns: z.enum(["pnts", "he/him", "she/her", "they/them", "xe/xem", "other"]),
-  age: z
-    .number({ invalid_type_error: "Please provide a valid age." })
+  age: z.number({ invalid_type_error: "Please provide a valid age." })
     .positive("Please provide a valid age.")
     .min(16, { message: "Age must be >= 16" })
     .max(256, { message: "Ain't no way you're that old." })
@@ -33,7 +34,7 @@ const contactFormSchema = z.object({
 })
 
 const educationFormSchema = z.object({
-  university: z.string(),
+  university: z.string().refine((value) => verifiedInstitutionsSet.has(value)),
   graduationYear: z.number()
     .positive("Please provide a valid year.")
     .int("Oh, come on. Really?")
@@ -57,7 +58,7 @@ const educationFormSchema = z.object({
 const submitFormSchema = z.object({
   mlhCode: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
   mlhTerms: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
-  mlhMarketing: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  mlhMarketing: z.boolean(),
 })
 
 const cvUploadSchema = z.object({
