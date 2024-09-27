@@ -1,5 +1,4 @@
 import { frontendOrigin } from "@/config"
-import type { User } from "@/database"
 import { getSession } from "@/lib/session"
 import type { Request, Response } from "@/types"
 
@@ -7,7 +6,7 @@ export class AuthHandlers {
   static redirectUri = new URL("/dashboard", frontendOrigin).toString()
 
   handleLoginSuccess() {
-    return async (request: Request & { user?: User }, response: Response) => {
+    return async (request: Request, response: Response) => {
       if (request.user == null) {
         return response.redirect("/auth/keycloak/login")
       }
