@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import * as React from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import useSWRImmutable from "swr/immutable"
 
 import { Button } from "@durhack/web-components/ui/button"
 import { ComboBox, ComboBoxButton, ComboBoxContent, ComboBoxTrigger } from "@durhack/web-components/ui/combobox"
@@ -13,6 +14,7 @@ import { Input } from "@durhack/web-components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select"
 
 import { Skeleton } from "@/components/dashboard/skeleton"
+import { siteConfig } from "@/config/site";
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { updateApplication } from "@/lib/update-application"
 import "@/lib/zod-iso3-extension"
@@ -58,16 +60,23 @@ const educationFormSchema = z.object({
   country: z.string().iso3(),
 })
 
-export default function EducationPage() {
-  const [schoolOptions, setSchoolOptions] = React.useState<SchoolOption[]>([])
-  const [countryOptions, setCountryOptions] = React.useState<CountryOption[]>([])
+async function optionsFetcher<OptionType>(path: string): Promise<OptionType[]> {
+  const url = new URL(path, siteConfig.apiUrl).toString()
+  const response = await fetch(url)
 
+  if (!response.ok) throw new Error("Couldn't fetch options")
+
+  return (await response.json()).data as OptionType[]
+}
+
+export default function EducationPage() {
   const router = useRouter()
+  const { data: schoolOptions, isLoading: schoolOptionsLoading, error: schoolOptionsError } = useSWRImmutable("/application/education/institution-options", optionsFetcher<SchoolOption>)
+  const { data: countryOptions, isLoading: countryOptionsLoading, error: countryOptionsError } = useSWRImmutable("/application/education/country-options", optionsFetcher<CountryOption>)
   const { application, applicationIsLoading } = useApplicationContext()
 
   React.useEffect(() => {
     if (applicationIsLoading || !application) return
-    if (schoolOptions.length === 0 || countryOptions.length === 0) return
     form.reset({
       university: application.university ?? "",
       graduation: application.graduation ?? "",
@@ -75,23 +84,6 @@ export default function EducationPage() {
       country: application.country ?? "",
     })
   }, [applicationIsLoading, application, schoolOptions, countryOptions])
-
-  React.useEffect(() => {
-    async function fetchSchoolOptions() {
-      const response = await fetch("/api/fetchSchools")
-      const data = await response.json()
-      setSchoolOptions(data.schoolOptions)
-    }
-
-    async function fetchCountryOptions() {
-      const response = await fetch("/api/fetchCountries")
-      const data = await response.json()
-      setCountryOptions(data.countryOptions)
-    }
-
-    fetchSchoolOptions()
-    fetchCountryOptions()
-  }, [])
 
   const form = useForm<EducationFormFields, unknown, z.infer<typeof educationFormSchema>>({
     resolver: zodResolver(educationFormSchema),
@@ -109,6 +101,8 @@ export default function EducationPage() {
   }
 
   function getForm() {
+    if (schoolOptions == null || countryOptions == null) throw new Error()
+
     return (
       <>
         <div className="mb-4">
@@ -231,7 +225,7 @@ export default function EducationPage() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <h2 className="text-2xl">Education & Location Information</h2>
-        {applicationIsLoading || schoolOptions.length === 0 || countryOptions.length === 0 ? (
+        {applicationIsLoading || schoolOptionsLoading || countryOptionsLoading ? (
           <Skeleton rows={4} className="mt-4" />
         ) : (
           getForm()
