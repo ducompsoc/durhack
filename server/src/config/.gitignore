@@ -1,0 +1,2 @@
+# ignore all local config files (they may contain sensitive credentials, machine-specific configuration, etc.)
+local*
