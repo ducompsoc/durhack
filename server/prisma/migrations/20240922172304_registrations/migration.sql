@@ -31,7 +31,7 @@ CREATE TABLE "UserInfo" (
     "cv_upload_choice" "CvUploadChoice" NOT NULL DEFAULT 'indeterminate',
     "age" SMALLINT,
     "university" VARCHAR(50),
-    "graduation_year" DATE,
+    "graduation_year" INTEGER,
     "level_of_study" VARCHAR(50),
     "country_of_residence" CHAR(3),
 
