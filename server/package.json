@@ -13,6 +13,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@durhack/durhack-common": "workspace:*",
     "@keycloak/keycloak-admin-client": "^25.0.5",
     "@otterhttp/app": "^3.4.4",
     "@otterhttp/cookie-signature": "^3.0.0",
