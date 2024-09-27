@@ -183,25 +183,23 @@ export default function EducationPage() {
         <div className="mb-4">
           <FormField
             control={form.control}
-            render={({ field: { onChange, value, ...field } }) => (
             name="countryOfResidence"
+            render={({ field: {ref, ...field} } ) => (
               <FormItem>
                 <FormLabel>Country of Residence</FormLabel>
-                { /* TODO: this is supposed to be a combobox. why isn't it a combobox? */ }
-                <Select onValueChange={onChange} value={value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue className="" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {countryOptions.map((country) => (
-                      <SelectItem key={country.value} value={country.value}>
-                        {country.emoji} {country.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <ComboBox<string>
+                  placeholder="Select country..."
+                  options={countryOptions}
+                  prominentOptions={new Set(["GBR"])}
+                  {...field}
+                >
+                  <ComboBoxTrigger>
+                    <FormControl>
+                      <ComboBoxButton size="form" />
+                    </FormControl>
+                  </ComboBoxTrigger>
+                  <ComboBoxContent />
+                </ComboBox>
                 <FormMessage />
               </FormItem>
             )}
