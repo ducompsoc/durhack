@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 
 export const viewport = {
   themeColor: siteConfig.themeColor,
+  colorScheme: "dark light",
 } satisfies Viewport
 
 export const metadata = {
@@ -28,8 +29,6 @@ export const metadata = {
       },
     ],
   },
-  themeColor: siteConfig.themeColor,
-  colorScheme: "dark light",
   other: {
     "msapplication-TileColor": "#008987",
   },
