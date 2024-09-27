@@ -22,7 +22,6 @@ import {
 import { useBackgroundContext } from "@/app/dashboard/background-context"
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { updateApplication } from "@/lib/update-application"
-import "@/lib/zod-phone-extension"
 
 type SubmitFormFields = {
   mlhCode: boolean | "indeterminate"
