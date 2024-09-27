@@ -25,10 +25,10 @@ type PersonalFormFields = {
 }
 
 const personalFormSchema = z.object({
-  firstNames: z.string().trim().min(1).max(256),
-  lastNames: z.string().trim().min(1).max(256),
-  preferredNames: z.string().trim().min(1).max(256),
-  pronouns: z.enum(["pnts", "he/him", "she/her", "they/them", "xe/xem", "other"]),
+  firstNames: z.string().trim().min(1, { message: "Please provide your first name(s)" }).max(256),
+  lastNames: z.string().trim().min(1, { message: "Please provide your last name(s)" }).max(256),
+  preferredNames: z.string().trim().max(256),
+  pronouns: z.enum(["prefer-not-to-answer", "he/him", "she/her", "they/them", "xe/xem", "other"]),
   age: z.coerce
     .number({ invalid_type_error: "Please provide a valid age." })
     .positive("Please provide a valid age.")
