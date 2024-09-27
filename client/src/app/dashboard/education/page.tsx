@@ -113,7 +113,7 @@ export default function EducationPage() {
               <FormItem>
                 <FormLabel>Educational Institution</FormLabel>
                 <ComboBox<string>
-                  placeholder={value || "Please select..."}
+                  placeholder="Select institution..."
                   options={schoolOptions}
                   prominentOptions={new Set(["Durham University"])}
                   value={value}
@@ -139,7 +139,7 @@ export default function EducationPage() {
               <FormItem>
                 <FormLabel>Graduation Year</FormLabel>
                 <FormControl>
-                  <Input type="number" {...field} />
+                  <Input type="number" inputMode="numeric" placeholder="2027" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -156,7 +156,7 @@ export default function EducationPage() {
                 <Select onValueChange={onChange} value={value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue className="" />
+                      <SelectValue placeholder="Select level of study..." />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
