@@ -33,7 +33,7 @@ CREATE TABLE "UserInfo" (
     "university" VARCHAR(50),
     "graduation_year" DATE,
     "level_of_study" VARCHAR(50),
-    "country" CHAR(3),
+    "country_of_residence" CHAR(3),
 
     CONSTRAINT "UserInfo_pkey" PRIMARY KEY ("user_id")
 );

@@ -115,7 +115,7 @@ class ApplicationHandlers {
       university: userDetails?.university ?? null,
       graduationYear: userDetails?.graduationYear ?? null,
       levelOfStudy: userDetails?.levelOfStudy ?? null,
-      country: userDetails?.country ?? null,
+      countryOfResidence: userDetails?.country ?? null,
     }
   }
 

@@ -23,7 +23,7 @@ type EducationFormFields = {
   university: string
   graduation: string
   levelOfStudy: string
-  country: string
+  countryOfResidence: string
 }
 
 export type SchoolOption = {
@@ -57,7 +57,7 @@ const educationFormSchema = z.object({
     "not-a-student",
     "prefer-not-to-answer",
   ]),
-  country: z.string().iso3(),
+  countryOfResidence: z.string().iso3(),
 })
 
 async function optionsFetcher<OptionType>(path: string): Promise<OptionType[]> {
@@ -81,7 +81,7 @@ export default function EducationPage() {
       university: application.university ?? "",
       graduation: application.graduation ?? "",
       levelOfStudy: application.levelOfStudy ?? "",
-      country: application.country ?? "",
+      countryOfResidence: application.countryOfResidence ?? "",
     })
   }, [applicationIsLoading, application, schoolOptions, countryOptions])
 
@@ -91,7 +91,7 @@ export default function EducationPage() {
       university: "",
       graduation: "",
       levelOfStudy: "",
-      country: "",
+      countryOfResidence: "",
     },
   })
 
@@ -183,8 +183,8 @@ export default function EducationPage() {
         <div className="mb-4">
           <FormField
             control={form.control}
-            name="country"
             render={({ field: { onChange, value, ...field } }) => (
+            name="countryOfResidence"
               <FormItem>
                 <FormLabel>Country of Residence</FormLabel>
                 { /* TODO: this is supposed to be a combobox. why isn't it a combobox? */ }

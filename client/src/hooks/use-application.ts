@@ -14,7 +14,7 @@ export type Application = {
   university?: string
   graduation?: string
   levelOfStudy?: string
-  country?: string
+  countryOfResidence?: string
   mlhCode: boolean
   mlhTerms: boolean
   mlhMarketing: boolean
