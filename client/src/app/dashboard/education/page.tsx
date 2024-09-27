@@ -75,16 +75,6 @@ export default function EducationPage() {
   const { data: countryOptions, isLoading: countryOptionsLoading, error: countryOptionsError } = useSWRImmutable("/application/education/country-options", optionsFetcher<CountryOption>)
   const { application, applicationIsLoading } = useApplicationContext()
 
-  React.useEffect(() => {
-    if (applicationIsLoading || !application) return
-    form.reset({
-      university: application.university ?? "",
-      graduationYear: application.graduationYear ?? "",
-      levelOfStudy: application.levelOfStudy ?? "",
-      countryOfResidence: application.countryOfResidence ?? "",
-    })
-  }, [applicationIsLoading, application, schoolOptions, countryOptions])
-
   const form = useForm<EducationFormFields, unknown, z.infer<typeof educationFormSchema>>({
     resolver: zodResolver(educationFormSchema),
     defaultValues: {
@@ -94,6 +84,17 @@ export default function EducationPage() {
       countryOfResidence: "",
     },
   })
+
+  React.useEffect(() => {
+    console.log("resetting")
+    if (applicationIsLoading || !application) return
+    form.reset({
+      university: application.university ?? "",
+      graduationYear: application.graduationYear?.toString() ?? "",
+      levelOfStudy: application.levelOfStudy ?? "",
+      countryOfResidence: application.countryOfResidence ?? "",
+    })
+  }, [applicationIsLoading, application, form])
 
   async function onSubmit(values: z.infer<typeof educationFormSchema>): Promise<void> {
     await updateApplication("education", values)
@@ -139,7 +140,7 @@ export default function EducationPage() {
               <FormItem>
                 <FormLabel>Graduation Year</FormLabel>
                 <FormControl>
-                  <Input type="number" inputMode="numeric" placeholder="2027" {...field} />
+                  <Input type="number" inputMode="numeric" placeholder="Enter graduation year..." {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

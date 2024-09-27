@@ -29,14 +29,6 @@ export default function ContactPage() {
   const router = useRouter()
   const { application, applicationIsLoading } = useApplicationContext()
 
-  React.useEffect(() => {
-    if (applicationIsLoading || !application) return
-    form.reset({
-      phone: application.phone ?? "",
-      email: application.email ?? "",
-    })
-  }, [applicationIsLoading, application])
-
   const form = useForm<ContactFormFields, unknown, z.infer<typeof contactFormSchema>>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -44,6 +36,14 @@ export default function ContactPage() {
       email: "",
     },
   })
+
+  React.useEffect(() => {
+    if (applicationIsLoading || !application) return
+    form.reset({
+      phone: application.phone ?? "",
+      email: application.email ?? "",
+    })
+  }, [applicationIsLoading, application, form])
 
   async function onSubmit(values: z.infer<typeof contactFormSchema>): Promise<void> {
     await updateApplication("contact", values)

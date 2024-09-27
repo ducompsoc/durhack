@@ -24,10 +24,9 @@ export function ApplicationContextProvider({ children }: { children?: React.Reac
     isLoading: applicationIsLoading,
   } = useApplication()
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies(router.push): useRouter() is stable across renders
   React.useEffect(() => {
     if (!applicationIsLoading && !application) router.push("/")
-  }, [applicationIsLoading, application])
+  }, [applicationIsLoading, application, router])
 
   return (
     <ApplicationContextContext.Provider

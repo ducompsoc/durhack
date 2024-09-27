@@ -41,23 +41,23 @@ export default function SubmitPage() {
   const router = useRouter()
   const { application, applicationIsLoading, mutateApplication } = useApplicationContext()
 
-  React.useEffect(() => {
-    if (applicationIsLoading || !application) return
-    form.reset({
-      mlhCode: application.mlhCode,
-      mlhTerms: application.mlhTerms,
-      mlhMarketing: application.mlhMarketing,
-    })
-  }, [applicationIsLoading, application])
-
   const form = useForm<SubmitFormFields, unknown, z.infer<typeof submitFormSchema>>({
     resolver: zodResolver(submitFormSchema),
     defaultValues: {
-      mlhCode: false,
+      mlhCodeOfConduct: false,
       mlhTerms: false,
       mlhMarketing: false,
     },
   })
+
+  React.useEffect(() => {
+    if (applicationIsLoading || !application) return
+    form.reset({
+      mlhCodeOfConduct: application.consents.find((consent) => consent.name === "mlhCodeOfConduct")?.choice ?? "indeterminate",
+      mlhTerms: application.consents.find((consent) => consent.name === "mlhTerms")?.choice ?? "indeterminate",
+      mlhMarketing: application.consents.find((consent) => consent.name === "mlhMarketing")?.choice ?? "indeterminate",
+    })
+  }, [applicationIsLoading, application, form])
 
   async function onSubmit(values: z.infer<typeof submitFormSchema>): Promise<void> {
     try {
@@ -79,7 +79,7 @@ export default function SubmitPage() {
         <div className="mb-4">
           <FormField
             control={form.control}
-            name="mlhCode"
+            name="mlhCodeOfConduct"
             render={({ field }) => (
               <FormItem>
                 <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">

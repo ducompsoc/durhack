@@ -41,21 +41,10 @@ export default function PersonalPage() {
   const router = useRouter()
   const { application, applicationIsLoading } = useApplicationContext()
 
-  React.useEffect(() => {
-    if (applicationIsLoading || !application) return
-    form.reset({
-      pronouns: application.pronouns ?? "pnts",
-      firstNames: application.firstNames ?? "",
-      lastNames: application.lastNames ?? "",
-      preferredNames: application.preferredNames ?? "",
-      age: application.age ?? "",
-    })
-  }, [applicationIsLoading, application])
-
   const form = useForm<PersonalFormFields, unknown, z.infer<typeof personalFormSchema>>({
     resolver: zodResolver(personalFormSchema),
     defaultValues: {
-      pronouns: "pnts",
+      pronouns: "prefer-not-to-say",
       firstNames: "",
       lastNames: "",
       preferredNames: "",
@@ -63,15 +52,20 @@ export default function PersonalPage() {
     },
   })
 
+  React.useEffect(() => {
+    if (applicationIsLoading || !application) return
+    form.reset({
+      pronouns: application.pronouns ?? "prefer-not-to-say",
+      firstNames: application.firstNames ?? "",
+      lastNames: application.lastNames ?? "",
+      preferredNames: application.preferredNames ?? "",
+      age: application.age?.toString() ?? "",
+    })
+  }, [applicationIsLoading, application, form])
+
   async function onSubmit(values: z.infer<typeof personalFormSchema>): Promise<void> {
     await updateApplication("personal", values)
     router.push("/dashboard/contact")
-  }
-
-  function pronounsChange(onChange: (str: string) => void) {
-    return (value: string) => {
-      if (value !== "") onChange(value)
-    }
   }
 
   function getForm() {
@@ -133,10 +127,10 @@ export default function PersonalPage() {
                 <FormItem>
                   <FormLabel>Pronouns</FormLabel>
                   <div className="flex">
-                    <Select onValueChange={pronounsChange(onChange)} value={value}>
+                    <Select onValueChange={onChange} value={value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue className="" />
+                          <SelectValue />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -164,7 +158,7 @@ export default function PersonalPage() {
               <FormItem>
                 <FormLabel>Age as of 2nd November 2024</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input placeholder="Enter age..." {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

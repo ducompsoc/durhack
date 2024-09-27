@@ -65,14 +65,6 @@ export default function CvPage() {
   const { application, applicationIsLoading } = useApplicationContext()
   const [showForm, setShowForm] = React.useState(false)
 
-  React.useEffect(() => {
-    if (applicationIsLoading || !application) return
-    form.reset({
-      cvUploadChoice: application.cvUploadChoice,
-    })
-    setShowForm(application.cvUploadChoice === "upload")
-  }, [applicationIsLoading, application])
-
   const form = useForm<CvFormFields, unknown, z.infer<typeof cvFormSchema>>({
     resolver: zodResolver(cvFormSchema),
     defaultValues: {
@@ -80,6 +72,14 @@ export default function CvPage() {
       cvFiles: [],
     },
   })
+
+  React.useEffect(() => {
+    if (applicationIsLoading || !application) return
+    form.reset({
+      cvUploadChoice: application.cvUploadChoice,
+    })
+    setShowForm(application.cvUploadChoice === "upload")
+  }, [applicationIsLoading, application, form])
 
   async function onSubmit(values: z.infer<typeof cvFormSchema>): Promise<void> {
     const formData = new FormData()
@@ -125,7 +125,7 @@ export default function CvPage() {
                     </SelectItem>
                     <SelectItem value="upload">Yes</SelectItem>
                     <SelectItem value="remind">No (remind me later)</SelectItem>
-                    <SelectItem value="noUpload">No (don't remind me later)</SelectItem>
+                    <SelectItem value="noUpload">No (don&apos;t remind me later)</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
