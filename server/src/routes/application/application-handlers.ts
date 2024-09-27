@@ -90,10 +90,15 @@ class ApplicationHandlers {
   private async loadApplication(request: Request): Promise<Application> {
     assert(request.userProfile)
 
-    const userDetails = await prisma.userInfo.findUnique({
-      where: { userId: request.userProfile.sub },
+    const user = await prisma.user.findUnique({
+      where: { keycloakUserId: request.userProfile.sub },
+      include: {
+        userInfo: true,
+        userConsents: true,
+      }
     })
-    assert(userDetails)
+    assert(user)
+    const { userInfo, userConsents } = user
 
     const {
       phone_number,
@@ -118,14 +123,14 @@ class ApplicationHandlers {
       phone: phone_number ?? null,
       firstNames: firstNames,
       lastNames: lastNames,
-      applicationStatus: userDetails?.applicationStatus ?? "unsubmitted",
-      cvUploadChoice: userDetails?.cvUploadChoice ?? "indeterminate",
-      age: userDetails?.age ?? null,
-      university: userDetails?.university ?? null,
-      graduationYear: userDetails?.graduationYear ?? null,
-      levelOfStudy: (userDetails?.levelOfStudy as Application["levelOfStudy"] | undefined) ?? null,
-      countryOfResidence: userDetails?.countryOfResidence ?? null,
-      consents: [], // todo: load consents from UserConsents model
+      applicationStatus: userInfo?.applicationStatus ?? "unsubmitted",
+      cvUploadChoice: userInfo?.cvUploadChoice ?? "indeterminate",
+      age: userInfo?.age ?? null,
+      university: userInfo?.university ?? null,
+      graduationYear: userInfo?.graduationYear ?? null,
+      levelOfStudy: (userInfo?.levelOfStudy as Application["levelOfStudy"] | undefined) ?? null,
+      countryOfResidence: userInfo?.countryOfResidence ?? null,
+      consents: userConsents.map((consent) => ({ name: consent.consentName, choice: consent.choice }))
     } satisfies Application
   }
 
