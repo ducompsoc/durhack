@@ -1,5 +1,6 @@
 import assert from "node:assert/strict"
 import { parse as parsePath } from "node:path/posix"
+import type { Application } from "@durhack/durhack-common/types/application"
 import { ClientError } from "@otterhttp/errors"
 import type { ContentType, ParsedFormFieldFile } from "@otterhttp/parsec"
 import { fileTypeFromBuffer } from "file-type"
@@ -86,12 +87,13 @@ const cvUploadSchema = z.object({
 })
 
 class ApplicationHandlers {
-  private async loadApplication(request: Request) {
+  private async loadApplication(request: Request): Promise<Application> {
     assert(request.userProfile)
 
     const userDetails = await prisma.userInfo.findUnique({
       where: { userId: request.userProfile.sub },
     })
+    assert(userDetails)
 
     const {
       phone_number,
@@ -102,21 +104,22 @@ class ApplicationHandlers {
     } = request.userProfile
 
     return {
-      keycloakUserId: request.userProfile.sub satisfies string,
-      email: request.userProfile.email satisfies string,
+      keycloakUserId: request.userProfile.sub,
+      email: request.userProfile.email,
       preferredNames: preferredNames ?? null,
-      pronouns: pronouns ?? (null satisfies string | null),
-      phone: phone_number ?? (null satisfies string | null),
-      firstNames: firstNames satisfies string,
-      lastNames: lastNames satisfies string,
+      pronouns: pronouns ?? null,
+      phone: phone_number ?? null,
+      firstNames: firstNames,
+      lastNames: lastNames,
       applicationStatus: userDetails?.applicationStatus ?? "unsubmitted",
       cvUploadChoice: userDetails?.cvUploadChoice ?? "indeterminate",
       age: userDetails?.age ?? null,
       university: userDetails?.university ?? null,
       graduationYear: userDetails?.graduationYear ?? null,
-      levelOfStudy: userDetails?.levelOfStudy ?? null,
+      levelOfStudy: (userDetails?.levelOfStudy as Application["levelOfStudy"] | undefined) ?? null,
       countryOfResidence: userDetails?.countryOfResidence ?? null,
-    }
+      consents: [], // todo: load consents from UserConsents model
+    } satisfies Application
   }
 
   @onlyKnownUsers()
@@ -334,7 +337,7 @@ class ApplicationHandlers {
    * should be permitted to submit their application (provided they have not already submitted it).
    */
   private async validateApplicationComplete(
-    application: Awaited<ReturnType<typeof this.loadApplication>>,
+    application: Application,
   ): Promise<void> {
     const errors: Error[] = []
 
