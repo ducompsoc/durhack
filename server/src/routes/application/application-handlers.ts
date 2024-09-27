@@ -7,6 +7,7 @@ import { z } from "zod"
 
 import { mailgunConfig } from "@/config"
 import { prisma } from "@/database"
+import { onlyKnownUsers } from "@/decorators/authorise"
 import { json, multipartFormData } from "@/lib/body-parsers"
 import { getKeycloakAdminClient } from "@/lib/keycloak-client"
 import MailgunClient from "@/lib/mailgun"
@@ -17,9 +18,9 @@ import "@/lib/zod-iso3-extension"
 const personalFormSchema = z.object({
   firstNames: z.string().trim().min(1).max(256),
   lastNames: z.string().trim().min(1).max(256),
-  preferredNames: z.string().trim().min(1).max(256),
+  preferredNames: z.string().trim().min(1).max(256).optional(),
   pronouns: z.enum(["pnts", "he/him", "she/her", "they/them", "xe/xem", "other"]),
-  age: z.coerce
+  age: z
     .number({ invalid_type_error: "Please provide a valid age." })
     .positive("Please provide a valid age.")
     .min(16, { message: "Age must be >= 16" })
@@ -85,7 +86,7 @@ const cvUploadSchema = z.object({
 })
 
 class ApplicationHandlers {
-  async loadApplication(request: Request) {
+  private async loadApplication(request: Request) {
     assert(request.userProfile)
 
     const userDetails = await prisma.userInfo.findUnique({
@@ -118,6 +119,7 @@ class ApplicationHandlers {
     }
   }
 
+  @onlyKnownUsers()
   getApplication(): Middleware {
     return async (request, response) => {
       assert(request.user)
@@ -125,10 +127,11 @@ class ApplicationHandlers {
       const payload = await this.loadApplication(request)
 
       response.status(200)
-      response.json({ status: response.statusCode, message: "OK", data: payload })
+      response.json({ data: payload })
     }
   }
 
+  @onlyKnownUsers()
   patchPersonal(): Middleware {
     return async (request, response) => {
       assert(request.user)
@@ -161,11 +164,11 @@ class ApplicationHandlers {
         data: { age: payload.age },
       })
 
-      response.status(200)
-      response.json({ status: response.statusCode, message: "OK" })
+      response.sendStatus(200)
     }
   }
 
+  @onlyKnownUsers()
   patchContact(): Middleware {
     return async (request, response) => {
       assert(request.user)
@@ -190,11 +193,11 @@ class ApplicationHandlers {
         },
       )
 
-      response.status(200)
-      response.json({ status: response.statusCode, message: "OK" })
+      response.sendStatus(200)
     }
   }
 
+  @onlyKnownUsers()
   patchEducation(): Middleware {
     return async (request, response) => {
       assert(request.user)
@@ -207,15 +210,14 @@ class ApplicationHandlers {
         data: payload,
       })
 
-      response.status(200)
-      response.json({ status: response.statusCode, message: "OK" })
+      response.sendStatus(200)
     }
   }
 
   readonly cvFileMaximumBytes = 10 * 1024 * 1024
   readonly cvAllowedFilenameExtensions = [".doc", ".docx", ".pdf"]
 
-  async validateCvFile(file: ParsedFormFieldFile): Promise<void> {
+  private async validateCvFile(file: ParsedFormFieldFile): Promise<void> {
     if (file.content.byteLength > this.cvFileMaximumBytes)
       throw new ClientError(`File's size exceeds the allowed maximum size (10MB)`)
 
@@ -238,6 +240,7 @@ class ApplicationHandlers {
       throw new ClientError(`File's content does not match the claimed type ${mime}. Expected type ${fileType?.mime}`)
   }
 
+  @onlyKnownUsers()
   patchCv(): Middleware {
     return async (request, response) => {
       assert(request.user)
@@ -267,8 +270,7 @@ class ApplicationHandlers {
             where: { userId },
           }),
         ])
-        response.status(200)
-        response.json({ status: response.statusCode, message: "OK" })
+        response.sendStatus(200)
         return
       }
 
@@ -299,8 +301,7 @@ class ApplicationHandlers {
         },
       })
 
-      response.status(200)
-      response.json({ status: response.statusCode, message: "OK" })
+      response.sendStatus(200)
     }
   }
 
@@ -311,7 +312,9 @@ class ApplicationHandlers {
    * If this method does not throw, the user's application can be considered complete, and the user
    * should be permitted to submit their application (provided they have not already submitted it).
    */
-  async validateApplicationComplete(application: Awaited<ReturnType<typeof this.loadApplication>>): Promise<void> {
+  private async validateApplicationComplete(
+    application: Awaited<ReturnType<typeof this.loadApplication>>,
+  ): Promise<void> {
     const errors: Error[] = []
 
     // TODO: implement application completeness checking
@@ -321,6 +324,7 @@ class ApplicationHandlers {
     throw new AggregateError(errors, "Application is incomplete")
   }
 
+  @onlyKnownUsers()
   submit(): Middleware {
     return async (request, response) => {
       assert(request.userProfile)
@@ -370,8 +374,7 @@ class ApplicationHandlers {
         ].join("\n"),
       })
 
-      response.status(200)
-      response.json({ status: response.statusCode, message: "OK" })
+      response.sendStatus(200)
     }
   }
 }

@@ -1,8 +1,10 @@
 import assert from "node:assert/strict"
 
+import { onlyKnownUsers } from "@/decorators/authorise"
 import type { Middleware } from "@/types"
 
 class UserHandlers {
+  @onlyKnownUsers()
   getUser(): Middleware {
     return async (request, response) => {
       assert(request.user)
@@ -16,7 +18,7 @@ class UserHandlers {
       }
 
       response.status(200)
-      response.json({ status: response.statusCode, message: "OK", data: payload })
+      response.json({ data: payload })
     }
   }
 }
