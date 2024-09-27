@@ -51,5 +51,10 @@ export type KeycloakUserInfo = {
   last_names: string
   email: string
   phone_number?: string | undefined
-  pronouns?: string | undefined
+  pronouns?: undefined
+    | "he/him"
+    | "she/her"
+    | "they/them"
+    | "xe/xem"
+    | "Please Ask"
 }

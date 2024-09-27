@@ -10,7 +10,7 @@ import { mailgunConfig } from "@/config"
 import { prisma } from "@/database"
 import { onlyKnownUsers } from "@/decorators/authorise"
 import { json, multipartFormData } from "@/lib/body-parsers"
-import { getKeycloakAdminClient } from "@/lib/keycloak-client"
+import { getKeycloakAdminClient, type KeycloakUserInfo } from "@/lib/keycloak-client"
 import MailgunClient from "@/lib/mailgun"
 import type { Middleware, Request } from "@/types"
 import "@/lib/zod-phone-extension"
@@ -22,7 +22,7 @@ const personalFormSchema = z.object({
   firstNames: z.string().trim().min(1).max(256),
   lastNames: z.string().trim().min(1).max(256),
   preferredNames: z.string().trim().min(1).max(256).optional(),
-  pronouns: z.enum(["pnts", "he/him", "she/her", "they/them", "xe/xem", "other"]),
+  pronouns: z.enum(["prefer-not-to-answer", "he/him", "she/her", "they/them", "xe/xem", "other"]),
   age: z.number({ invalid_type_error: "Please provide a valid age." })
     .positive("Please provide a valid age.")
     .min(16, { message: "Age must be >= 16" })
@@ -98,10 +98,17 @@ class ApplicationHandlers {
     const {
       phone_number,
       preferred_names: preferredNames,
-      pronouns,
+      pronouns: keycloakPronouns,
       first_names: firstNames,
       last_names: lastNames,
     } = request.userProfile
+
+    function adaptKeycloakPronouns(keycloakPronouns: KeycloakUserInfo["pronouns"]): Application["pronouns"] {
+      if (keycloakPronouns === undefined) return "prefer-not-to-answer"
+      if (keycloakPronouns === "Please Ask") return "other"
+      return keycloakPronouns
+    }
+    const pronouns = adaptKeycloakPronouns(keycloakPronouns)
 
     return {
       keycloakUserId: request.userProfile.sub,
@@ -143,11 +150,17 @@ class ApplicationHandlers {
       const body = await json(request, response)
       const payload = personalFormSchema.parse(body)
 
+      function adaptPronouns(pronouns: NonNullable<Application["pronouns"]>): KeycloakUserInfo["pronouns"]  {
+        if (pronouns === "prefer-not-to-answer") return undefined
+        if (pronouns === "other") return "Please Ask"
+        return pronouns
+      }
+
       const attributes = {
         firstNames: [payload.firstNames],
         lastNames: [payload.lastNames],
         preferredNames: [payload.preferredNames],
-        pronouns: [payload.pronouns],
+        pronouns: [adaptPronouns(payload.pronouns) satisfies KeycloakUserInfo["pronouns"]],
       }
 
       const adminClient = await getKeycloakAdminClient()
