@@ -43,7 +43,8 @@ const educationFormSchema = z.object({
     .number({ invalid_type_error: "Please provide a valid year." })
     .positive("Please provide a valid year.")
     .int("Oh, come on. Really?")
-    .min(1900, { message: "Be serious. You didn't graduate before 1900." }),
+    .min(1900, { message: "Be serious. You didn't graduate before 1900." })
+    .max(2100, { message: "What on earth are you studying?!?" }),
   levelOfStudy: z.enum([
     "less-than-secondary",
     "secondary",
