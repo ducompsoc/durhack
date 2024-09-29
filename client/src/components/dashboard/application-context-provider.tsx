@@ -2,14 +2,14 @@
 
 import * as React from "react"
 import type { KeyedMutator } from "swr"
+import ModuleError from "module-error"
 
 import { type Application, useApplication } from "@/hooks/use-application"
 import { useRouter } from "next/navigation"
 
-type ApplicationContextProps = {
-  application: Application | null | undefined
-  applicationError: unknown | undefined
-  mutateApplication: KeyedMutator<Application | null>
+export type ApplicationContextProps = {
+  application: Application | undefined
+  mutateApplication: KeyedMutator<Application>
   applicationIsLoading: boolean
 }
 
@@ -24,20 +24,35 @@ export function ApplicationContextProvider({ children }: { children?: React.Reac
     isLoading: applicationIsLoading,
   } = useApplication()
 
-  React.useEffect(() => {
-    if (!applicationIsLoading && !application) router.push("/")
-  }, [applicationIsLoading, application, router])
+  if (applicationIsLoading) return (
+    <ApplicationContextContext.Provider
+      value={{
+        application,
+        mutateApplication,
+        applicationIsLoading,
+      }}
+      children={children}
+    />
+  )
+
+  if (applicationError != null && applicationError instanceof ModuleError) {
+    if (applicationError.code === "ERR_UNAUTHENTICATED") {
+      router.push("/")
+      return <></>
+    }
+  }
+
+  // throw the error to the nearest error boundary (error.tsx in app directory)
+  if (applicationError != null) throw applicationError
 
   return (
     <ApplicationContextContext.Provider
       value={{
         application,
-        applicationError,
         mutateApplication,
         applicationIsLoading,
       }}
-    >
-      {children}
-    </ApplicationContextContext.Provider>
+      children={children}
+    />
   )
 }

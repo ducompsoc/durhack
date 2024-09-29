@@ -6,15 +6,16 @@ import * as React from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { Button } from "@durhack/web-components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Input } from "@durhack/web-components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select"
 
-import { Skeleton } from "@/components/dashboard/skeleton"
+import { FormSkeleton } from "@/components/dashboard/form-skeleton"
+import { FormSubmitButton } from "@/components/dashboard/form-submit-button";
 import { useApplicationContext } from "@/hooks/use-application-context"
+import type { Application } from "@/hooks/use-application"
 import { updateApplication } from "@/lib/update-application"
-import "@/lib/zod-phone-extension"
+import { isLoaded } from "@/lib/is-loaded"
 
 type PersonalFormFields = {
   firstNames: string
@@ -37,52 +38,46 @@ const personalFormSchema = z.object({
     .int("Please provide your age rounded down to the nearest integer."),
 })
 
-export default function PersonalPage() {
+/**
+ * This component accepts <code>application</code> via props, rather than via
+ * <code>useApplicationContext</code>, because it requires the application to already be loaded before being rendered.
+ */
+function PersonalForm({ application }: { application: Application }) {
   const router = useRouter()
-  const { application, applicationIsLoading } = useApplicationContext()
+  const { mutateApplication } = useApplicationContext()
 
   const form = useForm<PersonalFormFields, unknown, z.infer<typeof personalFormSchema>>({
     resolver: zodResolver(personalFormSchema),
     defaultValues: {
-      pronouns: "prefer-not-to-say",
-      firstNames: "",
-      lastNames: "",
-      preferredNames: "",
-      age: "",
-    },
-  })
-
-  React.useEffect(() => {
-    if (applicationIsLoading || !application) return
-    form.reset({
-      pronouns: application.pronouns ?? "prefer-not-to-say",
+      pronouns: application.pronouns ?? "prefer-not-to-answer",
       firstNames: application.firstNames ?? "",
       lastNames: application.lastNames ?? "",
       preferredNames: application.preferredNames ?? "",
       age: application.age?.toString() ?? "",
-    })
-  }, [applicationIsLoading, application, form])
+    },
+  })
 
   async function onSubmit(values: z.infer<typeof personalFormSchema>): Promise<void> {
     await updateApplication("personal", values)
-    router.push("/dashboard/contact")
+    await mutateApplication({ ...application, ...values })
+    if (application.age == null) router.push("/dashboard/contact")
   }
 
-  function getForm() {
-    return (
-      <>
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="lg:columns-2">
           <div className="mb-4">
             <FormField
               control={form.control}
               name="firstNames"
-              render={({ field }) => (
+              render={({field}) => (
                 <FormItem>
                   <FormLabel>First name(s)</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage/>
                 </FormItem>
               )}
             />
@@ -91,13 +86,13 @@ export default function PersonalPage() {
             <FormField
               control={form.control}
               name="lastNames"
-              render={({ field }) => (
+              render={({field}) => (
                 <FormItem>
                   <FormLabel>Last name(s)</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage/>
                 </FormItem>
               )}
             />
@@ -108,13 +103,13 @@ export default function PersonalPage() {
             <FormField
               control={form.control}
               name="preferredNames"
-              render={({ field }) => (
+              render={({field}) => (
                 <FormItem>
                   <FormLabel>Preferred name</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage/>
                 </FormItem>
               )}
             />
@@ -123,18 +118,18 @@ export default function PersonalPage() {
             <FormField
               control={form.control}
               name="pronouns"
-              render={({ field: { onChange, value } }) => (
+              render={({field: { onChange, value, ref, ...field }}) => (
                 <FormItem>
                   <FormLabel>Pronouns</FormLabel>
                   <div className="flex">
-                    <Select onValueChange={onChange} value={value}>
+                    <Select onValueChange={onChange} value={value} {...field}>
                       <FormControl>
-                        <SelectTrigger>
-                          <SelectValue />
+                        <SelectTrigger ref={ref}>
+                          <SelectValue/>
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="pnts">Prefer Not To Say</SelectItem>
+                        <SelectItem value="prefer-not-to-answer">Prefer Not To Say</SelectItem>
                         <SelectItem value="she/her">She/Her</SelectItem>
                         <SelectItem value="he/him">He/Him</SelectItem>
                         <SelectItem value="they/them">They/Them</SelectItem>
@@ -142,9 +137,9 @@ export default function PersonalPage() {
                         <SelectItem value="other">Other</SelectItem>
                       </SelectContent>
                     </Select>
-                    {value === "other" && <Input placeholder="Pronouns..." />}
+                    {value === "other" && <Input className="ml-4" placeholder="Pronouns..."/>}
                   </div>
-                  <FormMessage />
+                  <FormMessage/>
                 </FormItem>
               )}
             />
@@ -154,37 +149,36 @@ export default function PersonalPage() {
           <FormField
             control={form.control}
             name="age"
-            render={({ field }) => (
+            render={({field}) => (
               <FormItem>
                 <FormLabel>Age as of 2nd November 2024</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter age..." {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage/>
               </FormItem>
             )}
           />
         </div>
 
         <div className="mt-16 flex justify-center">
-          <Button
-            variant="default"
-            className="py-2 px-4 text-center rounded-sm text-white bg-white bg-opacity-15 hover:bg-green-500 hover:cursor-pointer hover:shadow-[0_0px_50px_0px_rgba(34,197,94,0.8)] transition-all"
-            type="submit"
-          >
-            Save Progress
-          </Button>
+          <FormSubmitButton type="submit">Save Progress</FormSubmitButton>
         </div>
-      </>
-    )
-  }
-
-  return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <h2 className="text-2xl">Personal Details</h2>
-        {applicationIsLoading ? <Skeleton rows={3} className="mt-4" /> : getForm()}
       </form>
     </Form>
   )
+}
+
+function PersonalFormSkeleton() {
+  return <FormSkeleton rows={3} className="mt-2"/>
+}
+
+export default function PersonalPage() {
+  const { application, applicationIsLoading } = useApplicationContext()
+
+  if (!isLoaded(application, applicationIsLoading)) {
+    return <PersonalFormSkeleton />
+  }
+
+  return <PersonalForm application={application} />
 }

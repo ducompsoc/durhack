@@ -3,46 +3,33 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
-import { ApplicationContextProvider } from "@/components/dashboard/application-context-provider"
-import { Header } from "@/components/dashboard/header"
-import { Sidebar } from "@/components/dashboard/sidebar"
-
-import { BackgroundContext} from "./background-context"
-import { SidebarContext } from "./sidebar-context";
+import { BackgroundContext } from "./background-context"
 
 export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isFinalSubmitHovering, setIsFinalSubmitHovering] = React.useState(false)
-  const [isOpen, setIsOpen] = React.useState(false)
+  const wasFinalSubmitHoveredRef = React.useRef<boolean>(false)
+  const [isFinalSubmitHovering, setIsFinalSubmitHovering] = React.useState<boolean>(false)
 
-  function toggleIsOpen() {
-    setIsOpen((prevOpen) => !prevOpen)
-  }
+  React.useEffect(() => {
+    if (!isFinalSubmitHovering) return
+    wasFinalSubmitHoveredRef.current = true
+  }, [isFinalSubmitHovering])
 
   return (
-    <ApplicationContextProvider>
-      <BackgroundContext.Provider value={{ isFinalSubmitHovering, setIsFinalSubmitHovering }}>
-        <SidebarContext.Provider value={{ isOpen, setIsOpen, toggleIsOpen }}>
-          <main className="min-h-[100vh] relative">
-            <div
-              className={cn(
-                "absolute top-0 bottom-0 left-0 right-0 h-full transition-all duration-1000 ease-in-out bg-gradient-to-t from-green-500/40 to-transparent to-50% z-0",
-                isFinalSubmitHovering ? "opacity-100" : "opacity-0"
-              )}
-            />
-            <div className="min-h-[100vh] relative z-10">
-              <Header />
-              <Sidebar />
-              <div className={cn("md:ml-64 py-16 pl-16 pr-16 2xl:pr-64", isOpen ? "hidden md:block" : "")}>
-                {children}
-              </div>
-            </div>
-          </main>
-        </SidebarContext.Provider>
-      </BackgroundContext.Provider>
-    </ApplicationContextProvider>
+    <BackgroundContext.Provider value={{ isFinalSubmitHovering, setIsFinalSubmitHovering }}>
+      <main className="min-h-[100vh] relative">
+        <div
+          className={cn(
+            "absolute top-0 bottom-0 left-0 right-0 h-full bg-gradient-to-t from-green-500/40 to-transparent to-50% z-0",
+            isFinalSubmitHovering ? "opacity-100" : "opacity-0",
+            isFinalSubmitHovering || wasFinalSubmitHoveredRef.current ? "transition-all duration-1000 ease-in-out" : "",
+          )}
+        />
+        {children}
+      </main>
+    </BackgroundContext.Provider>
   )
 }

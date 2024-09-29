@@ -7,16 +7,18 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import useSWRImmutable from "swr/immutable"
 
-import { Button } from "@durhack/web-components/ui/button"
 import { ComboBox, ComboBoxButton, ComboBoxContent, ComboBoxTrigger } from "@durhack/web-components/ui/combobox"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Input } from "@durhack/web-components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select"
 
-import { Skeleton } from "@/components/dashboard/skeleton"
+import { FormSkeleton } from "@/components/dashboard/form-skeleton"
+import { FormSubmitButton } from "@/components/dashboard/form-submit-button";
 import { siteConfig } from "@/config/site";
 import { useApplicationContext } from "@/hooks/use-application-context"
+import { Application } from "@/hooks/use-application"
 import { updateApplication } from "@/lib/update-application"
+import { isLoaded } from "@/lib/is-loaded";
 import "@/lib/zod-iso3-extension"
 
 type EducationFormFields = {
@@ -70,58 +72,53 @@ async function optionsFetcher<OptionType>(path: string): Promise<OptionType[]> {
   return (await response.json()).data as OptionType[]
 }
 
-export default function EducationPage() {
+type EducationFormProps = {
+  schoolOptions: SchoolOption[]
+  countryOptions: CountryOption[]
+  application: Application
+}
+
+/**
+ * This component accepts <code>application</code> via props, rather than via
+ * <code>useApplicationContext</code>, because it requires the application to already be loaded before being rendered.
+ */
+function EducationForm({ schoolOptions, countryOptions, application }: EducationFormProps) {
   const router = useRouter()
-  const { data: schoolOptions, isLoading: schoolOptionsLoading, error: schoolOptionsError } = useSWRImmutable("/application/education/institution-options", optionsFetcher<SchoolOption>)
-  const { data: countryOptions, isLoading: countryOptionsLoading, error: countryOptionsError } = useSWRImmutable("/application/education/country-options", optionsFetcher<CountryOption>)
-  const { application, applicationIsLoading } = useApplicationContext()
+  const { mutateApplication } = useApplicationContext()
 
   const form = useForm<EducationFormFields, unknown, z.infer<typeof educationFormSchema>>({
     resolver: zodResolver(educationFormSchema),
     defaultValues: {
-      university: "",
-      graduationYear: "",
-      levelOfStudy: "",
-      countryOfResidence: "",
-    },
-  })
-
-  React.useEffect(() => {
-    console.log("resetting")
-    if (applicationIsLoading || !application) return
-    form.reset({
       university: application.university ?? "",
       graduationYear: application.graduationYear?.toString() ?? "",
       levelOfStudy: application.levelOfStudy ?? "",
       countryOfResidence: application.countryOfResidence ?? "",
-    })
-  }, [applicationIsLoading, application, form])
+    },
+  })
 
   async function onSubmit(values: z.infer<typeof educationFormSchema>): Promise<void> {
     await updateApplication("education", values)
-    router.push("/dashboard/cv")
+    await mutateApplication({ ...application, ...values })
+    if (application.university == null) router.push("/dashboard/cv")
   }
 
-  function getForm() {
-    if (schoolOptions == null || countryOptions == null) throw new Error()
-
-    return (
-      <>
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="mb-4">
           <FormField
             control={form.control}
             name="university"
-            render={({ field: { ref, value, ...field } }) => (
+            render={({ field: { ref, ...field } }) => (
               <FormItem>
                 <FormLabel>Educational Institution</FormLabel>
                 <ComboBox<string>
                   placeholder="Select institution..."
                   options={schoolOptions}
                   prominentOptions={new Set(["Durham University"])}
-                  value={value}
                   {...field}
                 >
-                  <ComboBoxTrigger>
+                  <ComboBoxTrigger ref={ref}>
                     <FormControl>
                       <ComboBoxButton size="form" />
                     </FormControl>
@@ -152,12 +149,12 @@ export default function EducationPage() {
           <FormField
             control={form.control}
             name="levelOfStudy"
-            render={({ field: { onChange, value, ...field } }) => (
+            render={({ field: { onChange, ref, ...field } }) => (
               <FormItem>
                 <FormLabel>Level of Study</FormLabel>
-                <Select onValueChange={onChange} value={value}>
+                <Select onValueChange={onChange} {...field}>
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger ref={ref}>
                       <SelectValue placeholder="Select level of study..." />
                     </SelectTrigger>
                   </FormControl>
@@ -195,7 +192,7 @@ export default function EducationPage() {
                   prominentOptions={new Set(["GBR"])}
                   {...field}
                 >
-                  <ComboBoxTrigger>
+                  <ComboBoxTrigger ref={ref}>
                     <FormControl>
                       <ComboBoxButton size="form" />
                     </FormControl>
@@ -207,30 +204,34 @@ export default function EducationPage() {
             )}
           />
         </div>
-
         <div className="mt-16 flex justify-center">
-          <Button
-            variant="default"
-            className="py-2 px-4 text-center rounded-sm text-white bg-white bg-opacity-15 hover:bg-green-500 hover:cursor-pointer hover:shadow-[0_0px_50px_0px_rgba(34,197,94,0.8)] transition-all"
-            type="submit"
-          >
-            Save Progress
-          </Button>
+          <FormSubmitButton type="submit">Save Progress</FormSubmitButton>
         </div>
-      </>
-    )
-  }
-
-  return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <h2 className="text-2xl">Education & Location Information</h2>
-        {applicationIsLoading || schoolOptionsLoading || countryOptionsLoading ? (
-          <Skeleton rows={4} className="mt-4" />
-        ) : (
-          getForm()
-        )}
       </form>
     </Form>
   )
+}
+
+function EducationFormSkeleton() {
+  return <FormSkeleton rows={4} className="mt-2" />
+}
+
+export default function EducationPage() {
+  const { data: schoolOptions, isLoading: schoolOptionsLoading, error: schoolOptionsError } = useSWRImmutable<SchoolOption[], unknown>("/application/education/institution-options", optionsFetcher<SchoolOption>)
+  const { data: countryOptions, isLoading: countryOptionsLoading, error: countryOptionsError } = useSWRImmutable<CountryOption[], unknown>("/application/education/country-options", optionsFetcher<CountryOption>)
+  const { application, applicationIsLoading } = useApplicationContext()
+
+  if (
+    !isLoaded(application, applicationIsLoading)
+    || !isLoaded(schoolOptions, schoolOptionsLoading, schoolOptionsError)
+    || !isLoaded(countryOptions, countryOptionsLoading, countryOptionsError)
+  ) {
+    return <EducationFormSkeleton />
+  }
+
+  return <EducationForm
+    schoolOptions={schoolOptions}
+    countryOptions={countryOptions}
+    application={application}
+  />
 }

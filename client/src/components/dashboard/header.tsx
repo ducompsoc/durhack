@@ -5,7 +5,7 @@ import * as React from "react"
 
 import { Button } from "@durhack/web-components/ui/button"
 
-import { useSidebarContext } from "@/app/dashboard/sidebar-context";
+import { useSidebarContext } from "@/app/dashboard/(application)/sidebar-context";
 
 export function Header() {
   const { toggleIsOpen: toggleSidebar } = useSidebarContext()

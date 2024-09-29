@@ -6,7 +6,6 @@ import * as React from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { Button } from "@durhack/web-components/ui/button"
 import {
   FileUpload,
   FileUploadDropzoneBasket,
@@ -18,9 +17,12 @@ import {
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select"
 
-import { Skeleton } from "@/components/dashboard/skeleton"
+import { FormSkeleton } from "@/components/dashboard/form-skeleton"
+import { FormSubmitButton } from "@/components/dashboard/form-submit-button";
+import { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { updateApplication } from "@/lib/update-application"
+import { isLoaded } from "@/lib/is-loaded";
 
 type CvFormFields = {
   cvUploadChoice: "indeterminate" | "upload" | "remind" | "noUpload"
@@ -60,26 +62,22 @@ const cvFormSchema = z.discriminatedUnion("cvUploadChoice", [
   }),
 ])
 
-export default function CvPage() {
+/**
+ * This component accepts <code>application</code> via props, rather than via
+ * <code>useApplicationContext</code>, because it requires the application to already be loaded before being rendered.
+ */
+function CvForm({ application }: { application: Application }) {
   const router = useRouter()
-  const { application, applicationIsLoading } = useApplicationContext()
-  const [showForm, setShowForm] = React.useState(false)
+  const { mutateApplication } = useApplicationContext()
+  const [showForm, setShowForm] = React.useState<boolean>(() => application?.cvUploadChoice === "upload")
 
   const form = useForm<CvFormFields, unknown, z.infer<typeof cvFormSchema>>({
     resolver: zodResolver(cvFormSchema),
     defaultValues: {
-      cvUploadChoice: "indeterminate",
+      cvUploadChoice: application.cvUploadChoice ?? "indeterminate",
       cvFiles: [],
     },
   })
-
-  React.useEffect(() => {
-    if (applicationIsLoading || !application) return
-    form.reset({
-      cvUploadChoice: application.cvUploadChoice,
-    })
-    setShowForm(application.cvUploadChoice === "upload")
-  }, [applicationIsLoading, application, form])
 
   async function onSubmit(values: z.infer<typeof cvFormSchema>): Promise<void> {
     const formData = new FormData()
@@ -91,32 +89,38 @@ export default function CvPage() {
 
     try {
       await updateApplication("cv", formData)
-      router.push("/dashboard/submit")
     } catch {
+      // todo: what about network errors? this handles too broadly
       form.setError("cvUploadChoice", { message: "CV file was rejected (try uploading a PDF)!" })
+      return
     }
+
+    await mutateApplication({ ...application, cvUploadChoice: values.cvUploadChoice })
+    if (application.cvUploadChoice === "indeterminate") router.push("/dashboard/submit")
   }
 
-  function getForm() {
-    return (
-      <>
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="mb-4">
           <FormField
             control={form.control}
             name="cvUploadChoice"
-            render={({ field: { onChange, ...field } }) => (
+            render={({field: {onChange, ref, ...field}}) => (
               <FormItem>
                 <FormLabel>Would you like to submit a CV (shared with our sponsors)?</FormLabel>
                 <Select
-                  onValueChange={(value) => {
+                  onValueChange={function (value: string) {
+                    console.log(onChange)
+                    console.log(value)
                     onChange(value)
                     setShowForm(value === "upload")
                   }}
                   {...field}
                 >
                   <FormControl>
-                    <SelectTrigger>
-                      <SelectValue className="" />
+                    <SelectTrigger ref={ref}>
+                      <SelectValue/>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -128,7 +132,7 @@ export default function CvPage() {
                     <SelectItem value="noUpload">No (don&apos;t remind me later)</SelectItem>
                   </SelectContent>
                 </Select>
-                <FormMessage />
+                <FormMessage/>
               </FormItem>
             )}
           />
@@ -138,7 +142,7 @@ export default function CvPage() {
             <FormField
               control={form.control}
               name="cvFiles"
-              render={({ field: { value, ...field } }) => (
+              render={({field: {value, ...field}}) => (
                 <FormItem>
                   <FileUpload
                     multiDropBehaviour="replace"
@@ -155,36 +159,36 @@ export default function CvPage() {
                     {...field}
                   >
                     <FileUploadDropzoneRoot>
-                      <FileUploadDropzoneBasket />
-                      <FileUploadDropzoneInput />
+                      <FileUploadDropzoneBasket/>
+                      <FileUploadDropzoneInput/>
                     </FileUploadDropzoneRoot>
-                    <FileUploadErrorMessage />
-                    <FileUploadFileList />
+                    <FileUploadErrorMessage/>
+                    <FileUploadFileList/>
                   </FileUpload>
+                  <FormMessage/>
                 </FormItem>
               )}
             />
           )}
         </div>
         <div className="mt-16 flex justify-center">
-          <Button
-            variant="default"
-            className="py-2 px-4 text-center rounded-sm text-white bg-white bg-opacity-15 hover:bg-green-500 hover:cursor-pointer hover:shadow-[0_0px_50px_0px_rgba(34,197,94,0.8)] transition-all"
-            type="submit"
-          >
-            Save Progress
-          </Button>
+          <FormSubmitButton type="submit">Save Progress</FormSubmitButton>
         </div>
-      </>
-    )
-  }
-
-  return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <h2 className="text-2xl">CV Submission</h2>
-        {applicationIsLoading ? <Skeleton rows={1} className="mt-4" /> : getForm()}
       </form>
     </Form>
   )
+}
+
+function CvFormSkeleton() {
+  return <FormSkeleton rows={1} className="mt-2"/>
+}
+
+export default function CvPage() {
+  const { application, applicationIsLoading } = useApplicationContext()
+
+  if (!isLoaded(application, applicationIsLoading)) {
+    return <CvFormSkeleton />
+  }
+
+  return <CvForm application={application} />
 }
