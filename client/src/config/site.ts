@@ -13,6 +13,7 @@ export const siteConfig = {
   themeColor: "#1d1934",
   description:
     "DurHack is an annual hackathon event hosted by Durham University Computing Society (compsoc.tech), which is a student society affiliated with Durham Students' Union.",
+  openGraphImage: "/branding/opengraph-image.png",
   socials: [
     { key: "github", href: "https://github.com/ducompsoc", icon: GitHubIcon },
     { key: "instagram", href: "https://www.instagram.com/durhackevent/", icon: InstagramIcon },

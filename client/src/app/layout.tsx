@@ -32,6 +32,17 @@ export const metadata = {
   other: {
     "msapplication-TileColor": "#008987",
   },
+   openGraph: {
+    type: "website",
+    locale: "en-GB",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      { url: siteConfig.openGraphImage, },
+    ],
+  },
 } satisfies Metadata
 
 export default function RootLayout({
