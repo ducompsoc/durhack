@@ -135,8 +135,7 @@ function SubmitForm({ application }: { application: Application }) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <h2 className="text-2xl">Submit Application</h2>
-        <div className="mb-4">
+        <div className="mt-2 mb-4">
           <FormField
             control={form.control}
             name="mlhCodeOfConduct"
