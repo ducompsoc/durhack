@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import * as React from "react"
 import { Button } from "@durhack/web-components/ui/button"
 
 export function FormLoadingError({
@@ -10,7 +10,7 @@ export function FormLoadingError({
   error: Error & { digest?: string }
   reset: () => void
 }) {
-  useEffect(() => {
+  React.useEffect(() => {
     console.error(error)
   }, [error])
 
