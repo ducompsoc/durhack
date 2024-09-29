@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@durhack/durhack-common": "workspace:*",
-    "@durhack/web-components": "^0.6.1",
+    "@durhack/web-components": "^0.8.0",
     "@hookform/resolvers": "^3.6.0",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
     "@radix-ui/react-icons": "^1.3.0",
@@ -20,6 +20,7 @@
     "countries-list": "^3.1.0",
     "framer-motion": "^11.5.0",
     "libphonenumber-js": "^1.11.4",
+    "module-error": "^1.0.2",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
