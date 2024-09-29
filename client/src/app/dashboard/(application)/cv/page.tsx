@@ -23,6 +23,7 @@ import { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { updateApplication } from "@/lib/update-application"
 import { isLoaded } from "@/lib/is-loaded";
+import { cn } from "@/lib/utils"
 
 type CvFormFields = {
   cvUploadChoice: "indeterminate" | "upload" | "remind" | "noUpload"
@@ -124,8 +125,8 @@ function CvForm({ application }: { application: Application }) {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="indeterminate" hidden>
-                      Choose...
+                    <SelectItem value="indeterminate" className="hidden" disabled hidden>
+                      <span className="text-muted-foreground">Choose...</span>
                     </SelectItem>
                     <SelectItem value="upload">Yes</SelectItem>
                     <SelectItem value="remind">No (remind me later)</SelectItem>
@@ -137,39 +138,37 @@ function CvForm({ application }: { application: Application }) {
             )}
           />
         </div>
-        <div className="mb-4">
-          {showForm && (
-            <FormField
-              control={form.control}
-              name="cvFiles"
-              render={({field: {value, ...field}}) => (
-                <FormItem>
-                  <FileUpload
-                    multiDropBehaviour="replace"
-                    dropzoneOptions={{
-                      maxFiles: 1,
-                      maxSize: 10485760,
-                      accept: {
-                        "application/pdf": [".pdf"],
-                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"],
-                        "application/msword": [".doc"],
-                      },
-                    }}
-                    files={value}
-                    {...field}
-                  >
-                    <FileUploadDropzoneRoot>
-                      <FileUploadDropzoneBasket/>
-                      <FileUploadDropzoneInput/>
-                    </FileUploadDropzoneRoot>
-                    <FileUploadErrorMessage/>
-                    <FileUploadFileList/>
-                  </FileUpload>
-                  <FormMessage/>
-                </FormItem>
-              )}
-            />
-          )}
+        <div className={cn("mb-4", showForm ? "" : "hidden")}>
+          <FormField
+            control={form.control}
+            name="cvFiles"
+            render={({field: {value, ref, ...field}}) => (
+              <FormItem>
+                <FileUpload
+                  multiDropBehaviour="replace"
+                  dropzoneOptions={{
+                    maxFiles: 1,
+                    maxSize: 10485760,
+                    accept: {
+                      "application/pdf": [".pdf"],
+                      "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"],
+                      "application/msword": [".doc"],
+                    },
+                  }}
+                  files={value}
+                  {...field}
+                >
+                  <FileUploadDropzoneRoot>
+                    <FileUploadDropzoneBasket/>
+                    <FileUploadDropzoneInput/>
+                  </FileUploadDropzoneRoot>
+                  <FileUploadErrorMessage/>
+                  <FileUploadFileList/>
+                </FileUpload>
+                <FormMessage/>
+              </FormItem>
+            )}
+          />
         </div>
         <div className="mt-16 flex justify-center">
           <FormSubmitButton type="submit">Save Progress</FormSubmitButton>
