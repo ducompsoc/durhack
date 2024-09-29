@@ -182,13 +182,15 @@ class ApplicationHandlers {
         },
       )
 
+      const prismaUserInfo = { age: payload.age }
+
       await prisma.user.update({
         where: { keycloakUserId: request.user.keycloakUserId },
         data: {
           userInfo: {
             upsert: {
-              create: payload,
-              update: payload,
+              create: prismaUserInfo,
+              update: prismaUserInfo,
             },
           },
         },
