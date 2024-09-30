@@ -18,6 +18,15 @@ const nextConfig = {
       },
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: "/code-of-conduct",
+        destination: "https://hackp.ac/coc",
+        permanent: false,
+      },
+    ]
+  }
 }
 
 export default nextConfig

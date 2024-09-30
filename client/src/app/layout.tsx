@@ -34,6 +34,17 @@ export const metadata = {
     "msapplication-TileColor": "#008987",
     "theme-color": siteConfig.themeColor,
   },
+   openGraph: {
+    type: "website",
+    locale: "en-GB",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      { url: siteConfig.openGraphImage, },
+    ],
+  },
 } satisfies Metadata
 
 export default function RootLayout({
@@ -42,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-GB">
       <body className={cn(spaceGrotesk.className, "dark antialiased")}>
         <div className="fixed top-0 overflow-visible w-[100%] z-50">
           <MLHBanner variant="white" />
