@@ -29,7 +29,7 @@ export default function Navbar() {
           <a href="#intro">About</a>
         </li>
         <li>
-          <a href="#sponsors">FAQs</a>
+          <a href="#faqs">FAQs</a>
         </li>
         <li>
           <a href="#sponsors">Sponsors</a>

@@ -1,4 +1,4 @@
-import Faqs from "@/components/FAQs"
+import Faqs from "@/components/faqs"
 import About from "@/components/about"
 import End from "@/components/end"
 import Gallery from "@/components/gallery"
