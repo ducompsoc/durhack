@@ -26,8 +26,12 @@ export default function Splash() {
   return (
     <>
       <div ref={ref} className="overflow-hidden relative">
-        <div id="stars" className="absolute h-full w-full z-20">
-          <StarsGraphic className="h-full max-w-[none] xl:w-full absolute" />
+        <div id="stars" className="absolute h-full w-full z-20 flex justify-center">
+          <StarsGraphic className="h-full max-w-[none] xl:w-full 2xl:w-[1536px] relative hidden 2xl:block flex-shrink-0" />
+          <StarsGraphic className="h-full max-w-[none] xl:w-full 2xl:w-[1536px] relative hidden 2xl:block flex-shrink-0" />
+          <StarsGraphic className="h-full max-w-[none] xl:w-full 2xl:w-[1536px] relative flex-shrink-0" />
+          <StarsGraphic className="h-full max-w-[none] xl:w-full 2xl:w-[1536px] relative hidden 2xl:block flex-shrink-0" />
+          <StarsGraphic className="h-full max-w-[none] xl:w-full 2xl:w-[1536px] relative hidden 2xl:block flex-shrink-0" />
         </div>
 
         <div id="outer-ring" className="rounded-[50%] absolute h-[94rem] w-[94rem] top-[-55rem] md:top-[-35rem] z-10" />
