@@ -48,7 +48,7 @@ export default function Splash() {
 
         <motion.div
           id="cloud-2"
-          className="absolute left-[-39rem] sm:left-[-29rem] xl:left-[-0rem] top-[9rem] sm:top-[5rem] md:top-[13rem] z-30 pointer-events-none"
+          className="absolute left-[-39rem] sm:left-[-29rem] xl:left-[-19rem] top-[9rem] sm:top-[5rem] md:top-[13rem] z-30 pointer-events-none"
           style={{ x: cloud2X }}
         >
           <Cloud2Graphic className="h-[10rem] sm:h-[15rem] xl:h-[25rem]" />
@@ -56,7 +56,7 @@ export default function Splash() {
 
         <motion.div
           id="cloud-3"
-          className="absolute left-[-27rem] sm:left-[-19rem] xl:left-[-9rem] top-[15rem] sm:top-[11rem] md:top-[23rem] z-30 pointer-events-none"
+          className="absolute left-[-27rem] sm:left-[-19rem] xl:left-[-13rem] top-[15rem] sm:top-[11rem] md:top-[23rem] z-30 pointer-events-none"
           style={{ x: cloud3X }}
         >
           <Cloud3Graphic className="h-[7rem] sm:h-[11rem] xl:h-[21rem]" />
