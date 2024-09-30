@@ -35,7 +35,9 @@ export default function About() {
         </motion.div>
       </div>
 
-      <section id="faqs" className="pt-[30rem] z-30 relative">
+      <div className="pt-[30rem]"></div>
+
+      <section id="faqs" className="z-30 relative">
         <Faqs />
       </section>
     </>

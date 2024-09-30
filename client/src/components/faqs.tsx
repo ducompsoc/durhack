@@ -80,7 +80,13 @@ export default function Faqs() {
 
   return (
     <div>
-      <SectionHeader>FREQUENTLY ASKED QUESTIONS</SectionHeader>
+      <div className="block lg:hidden">
+        <SectionHeader>FAQs</SectionHeader>
+      </div>
+
+      <div className="hidden lg:block">
+        <SectionHeader>FREQUENTLY ASKED QUESTIONS</SectionHeader>
+      </div>
 
       <ul className="list-none mb-5 py-1">
         {faqs.map((question, qIndex) => (
