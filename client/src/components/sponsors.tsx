@@ -1,3 +1,3 @@
 export default function Sponsors() {
-  return <></>
+  return <div className="h-[32rem]"></div>;
 }

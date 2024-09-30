@@ -34,7 +34,7 @@ section#intro {
 }
 
 section#about {
-  --height: 100rem;
+  --height: 40rem;
   margin-top: calc(-0.1 * var(--height));
   height: var(--height);
   position: relative;
