@@ -3,9 +3,10 @@
 import * as React from "react"
 import type { KeyedMutator } from "swr"
 import ModuleError from "module-error"
+import { useRouter } from "next/navigation"
 
 import { type Application, useApplication } from "@/hooks/use-application"
-import { useRouter } from "next/navigation"
+import { isLoaded } from "@/lib/is-loaded"
 
 export type ApplicationContextProps = {
   application: Application | undefined
@@ -25,7 +26,7 @@ export function ApplicationContextProvider({ children }: { children?: React.Reac
     isLoading: applicationIsLoading,
   } = useApplication()
 
-  if (applicationIsLoading) return (
+  if (!isLoaded(application, applicationIsLoading)) return (
     <ApplicationContextContext.Provider
       value={{
         application,
@@ -44,8 +45,12 @@ export function ApplicationContextProvider({ children }: { children?: React.Reac
     }
   }
 
-  // todo: implement client-side completeness computation
-  const applicationIsComplete = false
+  let applicationIsComplete = true
+  if (application.age == null) applicationIsComplete = false  // personal section
+  if (application.phone == null) applicationIsComplete = false  // contact section
+  if (application.tShirtSize == null) applicationIsComplete = false  // extra section
+  if (application.graduationYear == null) applicationIsComplete = false  // extra section
+  if (application.cvUploadChoice == null) applicationIsComplete = false  // CV section
 
   // throw the error to the nearest error boundary (error.tsx in app directory)
   if (applicationError != null) throw applicationError
