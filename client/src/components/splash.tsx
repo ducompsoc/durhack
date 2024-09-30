@@ -61,7 +61,7 @@ export default function Splash() {
           <Cloud3Graphic className="h-[11rem] xl:h-[21rem]" />
         </motion.div>
 
-        <div className="relative top-[-10rem] md:top-[10rem]">
+        <div className="relative top-[-10rem] md:top-[6rem]">
           <div className="pb-8">
             <h2
               id="title"
