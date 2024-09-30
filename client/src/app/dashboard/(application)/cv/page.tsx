@@ -14,7 +14,7 @@ import {
   FileUploadErrorMessage,
   FileUploadFileList,
 } from "@durhack/web-components/ui/file-upload"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectValueClipper } from "@durhack/web-components/ui/select"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
@@ -109,11 +109,17 @@ function CvForm({ application }: { application: Application }) {
             name="cvUploadChoice"
             render={({field: {onChange, ref, ...field}}) => (
               <FormItem>
-                <FormLabel>Would you like to submit a CV (shared with our sponsors)?</FormLabel>
+                <FormLabel>Would you like to submit your CV?</FormLabel>
+                <FormDescription>
+                  <p>By submitting your CV, you agree to provide it to our sponsors, and therefore agree to their privacy policies.</p>
+                  <ul style={{listStyleType: "\"- \""}} className="ml-4">
+                    <li>
+                      <a className="underline" href="https://www.mwam.com/regulatory-disclosures/privacy-policy/">Marshall Wace Privacy Policy</a>
+                    </li>
+                  </ul>
+                </FormDescription>
                 <Select
                   onValueChange={function (value: string) {
-                    console.log(onChange)
-                    console.log(value)
                     onChange(value)
                     setShowForm(value === "upload")
                   }}
@@ -131,7 +137,7 @@ function CvForm({ application }: { application: Application }) {
                       <span className="text-muted-foreground">Choose...</span>
                     </SelectItem>
                     <SelectItem value="upload">Yes</SelectItem>
-                    <SelectItem value="remind">No (remind me later)</SelectItem>
+                    <SelectItem value="remind">Not right now (remind me later)</SelectItem>
                     <SelectItem value="noUpload">No (don&apos;t remind me later)</SelectItem>
                   </SelectContent>
                 </Select>

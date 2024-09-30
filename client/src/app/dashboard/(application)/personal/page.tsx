@@ -23,6 +23,8 @@ type PersonalFormFields = {
   preferredNames: string
   pronouns: string
   age: string
+  gender: string
+  ethnicity: string
 }
 
 const personalFormSchema = z.object({
@@ -36,6 +38,8 @@ const personalFormSchema = z.object({
     .min(16, { message: "Age must be >= 16" })
     .max(256, { message: "Ain't no way you're that old." })
     .int("Please provide your age rounded down to the nearest integer."),
+  gender: z.enum(["prefer-not-to-answer", "male", "female", "non-binary", "other"], { message: "Please select the gender you identify as" }),
+  ethnicity: z.enum(["prefer-not-to-answer", "american", "asian", "black", "hispanic", "white", "other"], { message: "Please select an ethnicity"})
 })
 
 /**
@@ -54,6 +58,8 @@ function PersonalForm({ application }: { application: Application }) {
       lastNames: application.lastNames ?? "",
       preferredNames: application.preferredNames ?? "",
       age: application.age?.toString() ?? "",
+      gender: application.gender?.toString() ?? "",
+      ethnicity: application.ethnicity?.toString() ?? "",
     },
   })
 
@@ -75,7 +81,7 @@ function PersonalForm({ application }: { application: Application }) {
                 <FormItem>
                   <FormLabel>First name(s)</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Enter first name(s)..." />
+                    <Input {...field} placeholder="Enter first name(s)..."/>
                   </FormControl>
                   <FormMessage/>
                 </FormItem>
@@ -90,7 +96,7 @@ function PersonalForm({ application }: { application: Application }) {
                 <FormItem>
                   <FormLabel>Last name(s)</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Enter last name(s)..." />
+                    <Input {...field} placeholder="Enter last name(s)..."/>
                   </FormControl>
                   <FormMessage/>
                 </FormItem>
@@ -107,7 +113,7 @@ function PersonalForm({ application }: { application: Application }) {
                 <FormItem>
                   <FormLabel>Preferred name(s)</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Enter preferred name(s)..." />
+                    <Input {...field} placeholder="Enter preferred name(s)..."/>
                   </FormControl>
                   <FormMessage/>
                 </FormItem>
@@ -118,7 +124,7 @@ function PersonalForm({ application }: { application: Application }) {
             <FormField
               control={form.control}
               name="pronouns"
-              render={({field: { onChange, value, ref, ...field }}) => (
+              render={({field: {onChange, value, ref, ...field}}) => (
                 <FormItem>
                   <FormLabel>Pronouns</FormLabel>
                   <div className="flex">
@@ -163,6 +169,66 @@ function PersonalForm({ application }: { application: Application }) {
           />
         </div>
 
+        <div className="mb-4">
+          <FormField
+            control={form.control}
+            name="gender"
+            render={({field: {onChange, value, ref, ...field}}) => (
+              <FormItem>
+                <FormLabel>Gender</FormLabel>
+                <Select onValueChange={onChange} value={value} {...field}>
+                  <FormControl>
+                    <SelectTrigger ref={ref}>
+                      <SelectValueClipper>
+                        <SelectValue placeholder="Select gender identity..."/>
+                      </SelectValueClipper>
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="prefer-not-to-answer">Prefer Not To Say</SelectItem>
+                    <SelectItem value="male">Male</SelectItem>
+                    <SelectItem value="female">Female</SelectItem>
+                    <SelectItem value="non-binary">Non-binary</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              <FormMessage/>
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="mb-4">
+          <FormField
+            control={form.control}
+            name="ethnicity"
+            render={({field: {onChange, value, ref, ...field}}) => (
+              <FormItem>
+                <FormLabel>Race/Ethnicity</FormLabel>
+                <Select onValueChange={onChange} value={value} {...field}>
+                  <FormControl>
+                    <SelectTrigger ref={ref}>
+                      <SelectValueClipper>
+                        <SelectValue placeholder="Select race/ethnicity..."/>
+                      </SelectValueClipper>
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="prefer-not-to-answer">Prefer Not To Say</SelectItem>
+                    <SelectItem value="white">White / Caucasian</SelectItem>
+                    <SelectItem value="american">American Indian or Alaskan Native</SelectItem>
+                    <SelectItem value="asian">Asian / Pacific Islander</SelectItem>
+                    <SelectItem value="black">Black or African American</SelectItem>
+                    <SelectItem value="hispanic">Hispanic</SelectItem>
+                    <SelectItem value="other">Multiple ethnicity / Other</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage/>
+              </FormItem>
+            )}
+          />
+        </div>
+
         <div className="mt-16 flex justify-center">
           <FormSubmitButton type="submit">Save Progress</FormSubmitButton>
         </div>
@@ -176,11 +242,11 @@ function PersonalFormSkeleton() {
 }
 
 export default function PersonalPage() {
-  const { application, applicationIsLoading } = useApplicationContext()
+  const {application, applicationIsLoading} = useApplicationContext()
 
   if (!isLoaded(application, applicationIsLoading)) {
-    return <PersonalFormSkeleton />
+    return <PersonalFormSkeleton/>
   }
 
-  return <PersonalForm application={application} />
+  return <PersonalForm application={application}/>
 }

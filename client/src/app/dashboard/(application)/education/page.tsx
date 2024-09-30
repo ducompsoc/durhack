@@ -11,6 +11,7 @@ import { ComboBox, ComboBoxButton, ComboBoxContent, ComboBoxTrigger } from "@dur
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Input } from "@durhack/web-components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectValueClipper } from "@durhack/web-components/ui/select"
+import { MultiSelect } from "@durhack/web-components/ui/multi-select"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button";
@@ -25,6 +26,7 @@ type EducationFormFields = {
   university: string
   graduationYear: string
   levelOfStudy: string
+  disciplinesOfStudy: string[]
   countryOfResidence: string
 }
 
@@ -47,6 +49,23 @@ const educationFormSchema = z.object({
     .int("Oh, come on. Really?")
     .min(1900, { message: "Be serious. You didn't graduate before 1900." })
     .max(2100, { message: "What on earth are you studying?!?" }),
+  disciplinesOfStudy: z.array(z.enum([
+    "biology",
+    "anthropology",
+    "sport",
+    "chemistry",
+    "business",
+    "education",
+    "computer-science",
+    "economics",
+    "earth-sciences",
+    "geography",
+    "mathematics",
+    "philosophy",
+    "physics",
+    "psychology",
+    "other",
+  ])).min(1, { message: "Please select your discipline(s) of study." }),
   levelOfStudy: z.enum([
     "secondary",
     "undergraduate-first-year",
@@ -90,6 +109,7 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
     defaultValues: {
       university: application.university ?? "",
       graduationYear: application.graduationYear?.toString() ?? "",
+      disciplinesOfStudy: application.disciplinesOfStudy ?? [],
       levelOfStudy: application.levelOfStudy ?? "",
       countryOfResidence: application.countryOfResidence ?? "",
     },
@@ -182,6 +202,45 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
             )}
           />
         </div>
+
+        <div className="mb-4">
+          <FormField
+            control={form.control}
+            name="disciplinesOfStudy"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Discipline(s) of Study</FormLabel>
+                <FormControl>
+                  <MultiSelect
+                    {...field}
+                    options={[
+                      { label: "Biology", value: "biology" },
+                      { label: "Anthropology", value: "anthropology" },
+                      { label: "Sport", value: "sport"},
+                      { label: "Chemistry", value: "chemistry"},
+                      { label: "Business", value: "business"},
+                      { label: "Education", value: "education"},
+                      { label: "Computer Science", value: "computer-science"},
+                      { label: "Economics", value: "economics"},
+                      { label: "Earth Sciences", value: "earth-sciences"},
+                      { label: "Geography", value: "geography"},
+                      { label: "Mathematics", value: "mathematics"},
+                      { label: "Philosophy", value: "philosophy"},
+                      { label: "Physics", value: "physics"},
+                      { label: "Psychology", value: "psychology"},
+                      { label: "Other", value: "other"}
+                    ]}
+                    hidePlaceholderWhenSelected
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+            >
+
+          </FormField>
+        </div>
+
         <div className="mb-4">
           <FormField
             control={form.control}
