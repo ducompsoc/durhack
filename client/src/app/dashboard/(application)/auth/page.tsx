@@ -1,6 +1,6 @@
-"use client"
-
 import * as React from "react"
+import { Button } from "@durhack/web-components/ui/button"
+import { ExternalLinkIcon } from "@radix-ui/react-icons"
 
 import { siteConfig } from "@/config/site"
 
@@ -10,19 +10,24 @@ export default function AuthPage() {
   return (
     <div>
       <h2 className="text-2xl">Authentication</h2>
+      <div className="bg-secondary/10 py-8 px-32 rounded-md mb-8 mt-2 flex flex-col justify-center items-center gap-4">
+        <Button className="p-4 bg-success hover:bg-success/90 text-success-foreground min-w-fit" asChild>
+          <a
+            href={siteConfig.authUrl}
+            className="underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>DurHack Auth</span> <ExternalLinkIcon className="ml-1"/>
+          </a>
+        </Button>
 
-      <div className="bg-white bg-opacity-10 py-8 px-32 rounded-md mb-8 mt-2 text-center flex flex-col gap-4">
-        <a
-          className={"rounded-sm p-4 my-4 cursor-pointer bg-green-400 bg-opacity-90"}
-          href={siteConfig.authUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
-          DurHack Auth
-        </a>
-        <a className={"block rounded-sm p-4 cursor-pointer bg-white bg-opacity-10"} href={signOutUri}>
-          Sign Out
-        </a>
+        <Button className="p-4 min-w-fit" asChild>
+          <a href={signOutUri}>
+            Sign Out
+          </a>
+        </Button>
+
       </div>
     </div>
   )
