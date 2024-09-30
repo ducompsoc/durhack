@@ -1,5 +1,7 @@
 "use client"
+
 import configJson from "@/components/componentInfo"
+import { SectionHeader } from "./section-header"
 
 const sponsors = configJson.sponsors
 
@@ -19,17 +21,11 @@ export default function Sponsors() {
   return (
     <section className="section sponsors">
       <div>
-        <div className="text-center">
-          <h1>Sponsors</h1>
-        </div>
+        <SectionHeader>SPONSORS</SectionHeader>
 
         {Object.entries(sponsors).map(([tier, sponsorList]) => (
           <div key={tier} className="text-center">
-            {tier === "partners" && sponsorList.length > 0 && (
-              <div className="text-center">
-                <h3>Partners</h3>
-              </div>
-            )}
+            {tier === "partners" && sponsorList.length > 0 && <SectionHeader>PARTNERS</SectionHeader>}
 
             <div className={`${tier} flex flex-wrap justify-center gap-6`} key={tier}>
               {sponsorList.map((sponsor, index) => (

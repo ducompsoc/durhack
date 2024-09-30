@@ -1,7 +1,9 @@
 "use client"
 
-import configJson from "@/components/componentInfo"
 import React, { useEffect } from "react"
+
+import configJson from "@/components/componentInfo"
+import { SectionHeader } from "@/components/section-header"
 
 const faqs = configJson.faqs
 
@@ -78,9 +80,7 @@ export default function Faqs() {
 
   return (
     <div>
-      <div className="text-center">
-        <h1>FREQUENTLY ASKED QUESTIONS</h1>
-      </div>
+      <SectionHeader>FREQUENTLY ASKED QUESTIONS</SectionHeader>
 
       <ul className="list-none mb-5 py-1">
         {faqs.map((question, qIndex) => (
