@@ -4,6 +4,15 @@ CREATE TYPE "UserApplicationStatus" AS ENUM ('unsubmitted', 'submitted', 'accept
 -- CreateEnum
 CREATE TYPE "CvUploadChoice" AS ENUM ('indeterminate', 'upload', 'remind', 'noUpload');
 
+-- CreateEnum
+CREATE TYPE "Gender" AS ENUM ('male', 'female', 'non_binary', 'other', 'prefer_not_to_answer');
+
+-- CreateEnum
+CREATE TYPE "Ethnicity" AS ENUM ('american', 'asian', 'black', 'hispanic', 'white', 'other', 'prefer_not_to_answer');
+
+-- CreateEnum
+CREATE TYPE "HackathonExperience" AS ENUM ('zero', 'up_to_two', 'three_to_seven', 'eight_or_more');
+
 -- AlterTable
 ALTER TABLE "Interest" ADD COLUMN     "year" INTEGER NOT NULL DEFAULT 2024;
 
@@ -35,6 +44,11 @@ CREATE TABLE "UserInfo" (
     "graduation_year" INTEGER,
     "level_of_study" VARCHAR(50),
     "country_of_residence" CHAR(3),
+    "access_requirements" TEXT,
+    "ethnicity" "Ethnicity",
+    "gender" "Gender",
+    "hackathon_experience" "HackathonExperience",
+    "tshirt_size" CHAR(3),
     "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "UserInfo_pkey" PRIMARY KEY ("user_id")
@@ -82,6 +96,9 @@ CREATE TABLE "SessionRecord" (
 
     CONSTRAINT "SessionRecord_pkey" PRIMARY KEY ("session_record_id")
 );
+
+-- CreateIndex
+CREATE INDEX "UserFlag_flagName_idx" ON "UserFlag"("flagName");
 
 -- CreateIndex
 CREATE INDEX "SessionRecord_user_id_idx" ON "SessionRecord"("user_id");

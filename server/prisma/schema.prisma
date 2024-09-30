@@ -45,13 +45,18 @@ model UserInfo {
     userId String @id @map("user_id") @db.Uuid
     user   User   @relation(fields: [userId], references: [keycloakUserId])
 
-    applicationStatus  UserApplicationStatus @default(unsubmitted) @map("application_status")
-    cvUploadChoice     CvUploadChoice        @default(indeterminate) @map("cv_upload_choice")
-    age                Int?                  @db.SmallInt
-    university         String?               @db.VarChar(50)
-    graduationYear     Int?                  @map("graduation_year")
-    levelOfStudy       String?               @map("level_of_study") @db.VarChar(50)
-    countryOfResidence String?               @map("country_of_residence") @db.Char(3)
+    applicationStatus   UserApplicationStatus @default(unsubmitted) @map("application_status")
+    cvUploadChoice      CvUploadChoice        @default(indeterminate) @map("cv_upload_choice")
+    age                 Int?                  @db.SmallInt
+    university          String?               @db.VarChar(50)
+    graduationYear      Int?                  @map("graduation_year")
+    levelOfStudy        String?               @map("level_of_study") @db.VarChar(50)
+    countryOfResidence  String?               @map("country_of_residence") @db.Char(3)
+    tShirtSize          String?               @map("tshirt_size") @db.Char(3)
+    gender              Gender?
+    ethnicity           Ethnicity?
+    hackathonExperience HackathonExperience?  @map("hackathon_experience")
+    accessRequirements  String?               @map("access_requirements") @db.Text()
 
     updatedAt DateTime @updatedAt @map("updated_at")
 }
@@ -62,6 +67,7 @@ model UserFlag {
     flagName String
 
     @@id(fields: [userId, flagName], name: "id", map: "user_flag:user_id_and_flag_name")
+    @@index(fields: [flagName])
 }
 
 model UserConsent {
@@ -110,4 +116,29 @@ enum CvUploadChoice {
     upload
     remind
     noUpload
+}
+
+enum Gender {
+    male
+    female
+    nonBinary         @map("non_binary")
+    other
+    preferNotToAnswer @map("prefer_not_to_answer")
+}
+
+enum Ethnicity {
+    american // "American Indian or Alaskan Native"
+    asian // "Asian / Pacific Islander"
+    black // "Black or African American"
+    hispanic //"Hispanic"
+    white // "White / Caucasian"
+    other // "Multiple ethnicity / Other"
+    preferNotToAnswer @map("prefer_not_to_answer") // "Prefer not to answer"
+}
+
+enum HackathonExperience {
+    zero // "hacka-novice"
+    upToTwo      @map("up_to_two") // "hack-tastic tourist"
+    threeToSeven @map("three_to_seven") // "hack wizard"
+    eightOrMore  @map("eight_or_more") // "hackathon guru"
 }
