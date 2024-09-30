@@ -42,7 +42,7 @@ export type Application = {
   phone: string | null
   firstNames: string
   lastNames: string
-  applicationStatus: "unsubmitted" | "submitted" | "accepted" | "waitingList"
+  applicationStatus: "unsubmitted" | "submitted" | "accepted" | "waiting-list"
   age: number | null
   gender: "male" | "female" | "non-binary" | "other" | "prefer-not-to-answer" | null
   ethnicity: "american" | "asian" | "black" | "hispanic" | "white" | "other" | "prefer-not-to-answer" | null

@@ -23,6 +23,7 @@ import "@/lib/zod-phone-extension"
 import "@/lib/zod-iso3-extension"
 
 import { verifiedInstitutionsSet } from "./institution-options";
+import {adaptApplicationStatusFromDatabase} from "@/database/adapt-application-status";
 
 const personalFormSchema = z.object({
   firstNames: z.string().trim().min(1).max(256),
@@ -178,7 +179,7 @@ class ApplicationHandlers {
       phone: phone_number ?? null,
       firstNames: firstNames,
       lastNames: lastNames,
-      applicationStatus: userInfo?.applicationStatus ?? "unsubmitted",
+      applicationStatus: adaptApplicationStatusFromDatabase(userInfo?.applicationStatus),
       cvUploadChoice: userInfo?.cvUploadChoice ?? "indeterminate",
       age: userInfo?.age ?? null,
       gender: adaptGenderFromDatabase(userInfo?.gender),
