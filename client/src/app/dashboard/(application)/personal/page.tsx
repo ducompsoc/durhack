@@ -8,7 +8,7 @@ import { z } from "zod"
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Input } from "@durhack/web-components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectValueClipper } from "@durhack/web-components/ui/select"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button";
@@ -75,7 +75,7 @@ function PersonalForm({ application }: { application: Application }) {
                 <FormItem>
                   <FormLabel>First name(s)</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} placeholder="Enter first name(s)..." />
                   </FormControl>
                   <FormMessage/>
                 </FormItem>
@@ -90,7 +90,7 @@ function PersonalForm({ application }: { application: Application }) {
                 <FormItem>
                   <FormLabel>Last name(s)</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} placeholder="Enter last name(s)..." />
                   </FormControl>
                   <FormMessage/>
                 </FormItem>
@@ -105,9 +105,9 @@ function PersonalForm({ application }: { application: Application }) {
               name="preferredNames"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Preferred name</FormLabel>
+                  <FormLabel>Preferred name(s)</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} placeholder="Enter preferred name(s)..." />
                   </FormControl>
                   <FormMessage/>
                 </FormItem>
@@ -125,7 +125,9 @@ function PersonalForm({ application }: { application: Application }) {
                     <Select onValueChange={onChange} value={value} {...field}>
                       <FormControl>
                         <SelectTrigger ref={ref}>
-                          <SelectValue/>
+                          <SelectValueClipper>
+                            <SelectValue/>
+                          </SelectValueClipper>
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>

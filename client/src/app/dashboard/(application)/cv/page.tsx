@@ -15,7 +15,7 @@ import {
   FileUploadFileList,
 } from "@durhack/web-components/ui/file-upload"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectValueClipper } from "@durhack/web-components/ui/select"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button";
@@ -121,7 +121,9 @@ function CvForm({ application }: { application: Application }) {
                 >
                   <FormControl>
                     <SelectTrigger ref={ref}>
-                      <SelectValue/>
+                      <SelectValueClipper>
+                        <SelectValue/>
+                      </SelectValueClipper>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>

@@ -10,7 +10,7 @@ import useSWRImmutable from "swr/immutable"
 import { ComboBox, ComboBoxButton, ComboBoxContent, ComboBoxTrigger } from "@durhack/web-components/ui/combobox"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Input } from "@durhack/web-components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@durhack/web-components/ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectValueClipper } from "@durhack/web-components/ui/select"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button";
@@ -155,7 +155,9 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                 <Select onValueChange={onChange} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
-                      <SelectValue placeholder="Select level of study..." />
+                      <SelectValueClipper>
+                        <SelectValue placeholder="Select level of study..." />
+                      </SelectValueClipper>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -163,7 +165,7 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                     <SelectItem value="secondary">Secondary/High School</SelectItem>
                     <SelectItem value="undergraduate-2-year">Undergraduate University (2 year)</SelectItem>
                     <SelectItem value="undergraduate-3-or-more-years">Undergraduate University (3+ years)</SelectItem>
-                    <SelectItem value="graduate">Graduate University (Masters&apos, etc)</SelectItem>
+                    <SelectItem value="graduate">Graduate University (Masters&apos;, etc)</SelectItem>
                     <SelectItem value="bootcamp">Code School/Bootcamp</SelectItem>
                     <SelectItem value="vocational-or-apprenticeship">
                       Vocational/Trade Program or Apprenticeship
