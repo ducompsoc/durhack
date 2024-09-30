@@ -34,16 +34,14 @@ export const metadata = {
     "msapplication-TileColor": "#008987",
     "theme-color": siteConfig.themeColor,
   },
-   openGraph: {
+  openGraph: {
     type: "website",
     locale: "en-GB",
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
-    images: [
-      { url: siteConfig.openGraphImage, },
-    ],
+    images: [{ url: siteConfig.openGraphImage }],
   },
 } satisfies Metadata
 
