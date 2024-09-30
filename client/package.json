@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@durhack/durhack-common": "workspace:*",
-    "@durhack/web-components": "^0.8.1",
+    "@durhack/web-components": "^0.8.2",
     "@hookform/resolvers": "^3.6.0",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
     "@radix-ui/react-icons": "^1.3.0",
