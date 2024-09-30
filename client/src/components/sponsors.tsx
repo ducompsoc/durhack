@@ -71,6 +71,7 @@ export default function Sponsors() {
                   >
                     <img
                       src={`/assets/sponsors/${sponsor.image}`}
+                      alt="logo"
                       style={{
                         width:
                           tier === "partners"
@@ -85,6 +86,7 @@ export default function Sponsors() {
                     />
                     <img
                       src={`/assets/sponsors/tiles/${tier}.svg`}
+                      alt="logo"
                       style={{
                         width: tier === "partners" ? `${partnerWidth}px` : `${tierWidths[tier as Tier]}px`,
                         height: tier === "partners" ? `${partnerWidth}px` : "auto",
