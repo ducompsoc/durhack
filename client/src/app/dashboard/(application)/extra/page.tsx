@@ -35,6 +35,7 @@ const extraDetailsFormSchema = z.object({
     "halal",
     "kosher",
     "gluten-free",
+    "dairy-free",
     "nut-allergy",
   ]))
     .refine((list) => {
