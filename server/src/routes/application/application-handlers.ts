@@ -1,6 +1,6 @@
 import assert from "node:assert/strict"
 import { parse as parsePath } from "node:path/posix"
-import type { Application } from "@durhack/durhack-common/types/application"
+import type { Application, DisciplineOfStudy, DietaryRequirement } from "@durhack/durhack-common/types/application"
 import { ClientError } from "@otterhttp/errors"
 import type { ContentType, ParsedFormFieldFile } from "@otterhttp/parsec"
 import { fileTypeFromBuffer } from "file-type"
@@ -8,6 +8,12 @@ import { z } from "zod"
 
 import { mailgunConfig } from "@/config"
 import { prisma } from "@/database"
+import { adaptEthnicityFromDatabase, adaptEthnicityToDatabase } from "@/database/adapt-ethnicity";
+import { adaptGenderFromDatabase, adaptGenderToDatabase } from "@/database/adapt-gender";
+import {
+  adaptHackathonExperienceFromDatabase,
+  adaptHackathonExperienceToDatabase
+} from "@/database/adapt-hackathon-experience";
 import { onlyKnownUsers } from "@/decorators/authorise"
 import { json, multipartFormData } from "@/lib/body-parsers"
 import { getKeycloakAdminClient, type KeycloakUserInfo } from "@/lib/keycloak-client"
@@ -28,6 +34,10 @@ const personalFormSchema = z.object({
     .min(16, { message: "Age must be >= 16" })
     .max(256, { message: "Ain't no way you're that old." })
     .int("Please provide your age rounded down to the nearest integer."),
+  gender: z.enum(["prefer-not-to-answer", "male", "female", "non-binary", "other"], { message: "Please select the gender you identify as" })
+    .transform(adaptGenderToDatabase),
+  ethnicity: z.enum(["prefer-not-to-answer", "american", "asian", "black", "hispanic", "white", "other"], { message: "Please select an ethnicity" })
+    .transform(adaptEthnicityToDatabase),
 })
 
 const contactFormSchema = z.object({
@@ -53,7 +63,44 @@ const educationFormSchema = z.object({
     "not-a-student",
     "prefer-not-to-answer",
   ]),
+  disciplinesOfStudy: z.array(z.enum([
+    "biology",
+    "anthropology",
+    "sport",
+    "chemistry",
+    "business",
+    "education",
+    "computer-science",
+    "economics",
+    "earth-sciences",
+    "geography",
+    "mathematics",
+    "philosophy",
+    "physics",
+    "psychology",
+    "other",
+  ])).min(1, { message: "Please select your discipline(s) of study." }),
   countryOfResidence: z.string().iso3(),
+})
+
+const extraDetailsFormSchema = z.object({
+  tShirtSize: z.enum(["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "prefer-not-to-answer"], { message: "Please select a t-shirt size." }),
+  hackathonExperience: z.enum(["zero", "up-to-two", "three-to-seven", "eight-or-more"], { message: "Please provide your hackathon experience." })
+    .transform(adaptHackathonExperienceToDatabase),
+  dietaryRequirements: z.array(z.enum([
+    "vegan",
+    "vegetarian",
+    "pescatarian",
+    "halal",
+    "kosher",
+    "gluten-free",
+    "nut-allergy",
+  ]))
+    .refine((list) => {
+      const mutuallyExclusivePreferences = list.filter((item) => item === "vegan" || item === "vegetarian" || item === "pescatarian")
+      return mutuallyExclusivePreferences.length <= 1
+    }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
+  accessRequirements: z.string().trim()
 })
 
 const submitFormSchema = z.object({
@@ -95,10 +142,18 @@ class ApplicationHandlers {
       include: {
         userInfo: true,
         userConsents: true,
+        userFlags: true,
       }
     })
     assert(user)
-    const { userInfo, userConsents } = user
+    const { userInfo, userConsents, userFlags } = user
+
+    const disciplinesOfStudy = userFlags
+      .filter((flag) => flag.flagName.startsWith("discipline-of-study:"))
+      .map((flag) => flag.flagName.slice(20) as DisciplineOfStudy)
+    const dietaryRequirements = userFlags
+      .filter((flag) => flag.flagName.startsWith("dietary-requirement:"))
+      .map((flag) => flag.flagName.slice(20) as DietaryRequirement)
 
     const {
       phone_number,
@@ -126,9 +181,16 @@ class ApplicationHandlers {
       applicationStatus: userInfo?.applicationStatus ?? "unsubmitted",
       cvUploadChoice: userInfo?.cvUploadChoice ?? "indeterminate",
       age: userInfo?.age ?? null,
+      gender: adaptGenderFromDatabase(userInfo?.gender),
+      ethnicity: adaptEthnicityFromDatabase(userInfo?.ethnicity),
+      hackathonExperience: adaptHackathonExperienceFromDatabase(userInfo?.hackathonExperience),
       university: userInfo?.university ?? null,
       graduationYear: userInfo?.graduationYear ?? null,
-      levelOfStudy: (userInfo?.levelOfStudy as Application["levelOfStudy"] | undefined) ?? null,
+      levelOfStudy: (userInfo?.levelOfStudy as Application["levelOfStudy"] | null | undefined) ?? null,
+      disciplinesOfStudy: disciplinesOfStudy,
+      tShirtSize: (userInfo?.tShirtSize?.trimEnd() as Application["tShirtSize"] | null | undefined) ?? null,
+      dietaryRequirements: dietaryRequirements,
+      accessRequirements: userInfo?.accessRequirements ?? null,
       countryOfResidence: userInfo?.countryOfResidence ?? null,
       consents: userConsents.map((consent) => ({ name: consent.consentName, choice: consent.choice }))
     } satisfies Application
@@ -181,7 +243,11 @@ class ApplicationHandlers {
         },
       )
 
-      const prismaUserInfo = { age: payload.age }
+      const prismaUserInfo = {
+        age: payload.age,
+        gender: payload.gender,
+        ethnicity: payload.ethnicity,
+      }
 
       await prisma.user.update({
         where: { keycloakUserId: request.user.keycloakUserId },
@@ -229,24 +295,94 @@ class ApplicationHandlers {
   }
 
   @onlyKnownUsers()
+  patchExtraDetails(): Middleware {
+    return async (request, response) => {
+      const { user } = request
+      assert(user)
+
+      const body = await json(request, response)
+      let payload = extraDetailsFormSchema.parse(body)
+
+      const prismaUserInfoFields = {
+        tShirtSize: payload.tShirtSize,
+        hackathonExperience: payload.hackathonExperience,
+        accessRequirements: payload.accessRequirements || undefined
+      }
+
+      await prisma.$transaction([
+        prisma.userFlag.deleteMany({
+          where: {
+            userId: user.keycloakUserId,
+            flagName: {
+              startsWith: "dietary-requirement:"
+            }
+          }
+        }),
+        prisma.user.update({
+          where: { keycloakUserId: user.keycloakUserId },
+          data: {
+            userInfo: {
+              upsert: {
+                create: prismaUserInfoFields,
+                update: prismaUserInfoFields,
+              }
+            }
+          }
+        }),
+        ...payload.dietaryRequirements.map((item) => prisma.userFlag.create({
+          data: {
+            userId: user.keycloakUserId,
+            flagName: `dietary-requirement:${item}`,
+          }
+        }))
+      ])
+      response.sendStatus(200)
+    }
+  }
+
+  @onlyKnownUsers()
   patchEducation(): Middleware {
     return async (request, response) => {
-      assert(request.user)
+      const { user } = request
+      assert(user)
 
       const body = await json(request, response)
       const payload = educationFormSchema.parse(body)
 
-      await prisma.user.update({
-        where: { keycloakUserId: request.user.keycloakUserId },
-        data: {
-          userInfo: {
-            upsert: {
-              create: payload,
-              update: payload,
+      const prismaUserInfoFields = {
+        university: payload.university,
+        graduationYear: payload.graduationYear,
+        levelOfStudy: payload.levelOfStudy,
+        countryOfResidence: payload.countryOfResidence,
+      }
+
+      await prisma.$transaction([
+        prisma.userFlag.deleteMany({
+          where: {
+            userId: user.keycloakUserId,
+            flagName: {
+              startsWith: "discipline-of-study:",
             },
           },
-        },
-      })
+        }),
+        prisma.user.update({
+          where: { keycloakUserId: user.keycloakUserId },
+          data: {
+            userInfo: {
+              upsert: {
+                create: prismaUserInfoFields,
+                update: prismaUserInfoFields,
+              },
+            },
+          },
+        }),
+        ...payload.disciplinesOfStudy.map((item) => prisma.userFlag.create({
+          data: {
+            userId: user.keycloakUserId,
+            flagName: `discipline-of-study:${item}`
+          }
+        }))
+      ])
       response.sendStatus(200)
     }
   }

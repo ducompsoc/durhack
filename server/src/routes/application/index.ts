@@ -33,6 +33,13 @@ applicationApp
   .all(forbiddenOrUnauthorised())
 
 applicationApp
+  .route("/extra")
+  .all(methodNotAllowed(["PATCH"]))
+  .all(authenticate())
+  .patch(applicationHandlers.patchExtraDetails())
+  .all(forbiddenOrUnauthorised())
+
+applicationApp
   .route("/education")
   .all(methodNotAllowed(["PATCH"]))
   .all(authenticate())
