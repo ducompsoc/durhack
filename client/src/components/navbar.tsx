@@ -3,6 +3,7 @@ import * as React from "react"
 
 import { audiowide } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
+import "@/styles/navbar.css"
 
 export default function Navbar() {
   return (

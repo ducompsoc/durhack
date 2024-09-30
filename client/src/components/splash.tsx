@@ -8,6 +8,7 @@ import { Cloud1Graphic, Cloud2Graphic, Cloud3Graphic, StarsGraphic } from "@/com
 import { MoonGraphic } from "@/components/graphics/moon"
 import { audiowide } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
+import "@/styles/splash.css"
 
 export default function Splash() {
   const ref = React.useRef(null)

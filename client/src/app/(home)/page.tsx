@@ -6,11 +6,7 @@ import Guilds from "@/components/guilds"
 import Intro from "@/components/intro"
 import Splash from "@/components/splash"
 import Sponsors from "@/components/sponsors"
-
 import "@/styles/background.css"
-import "@/styles/navbar.css"
-import "@/styles/splash.css"
-import "@/styles/footer.css"
 
 export default function HomePage() {
   return (

@@ -4,6 +4,7 @@ import type * as React from "react"
 import { LeftStarsGraphic, RightStarsGraphic } from "@/components/graphics/small-stars"
 import { SunGraphic } from "@/components/graphics/sun"
 import { siteConfig } from "@/config/site"
+import "@/styles/footer.css"
 
 export function Footer() {
   return (
@@ -52,10 +53,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div
-        id="outer-ring"
-        className="rounded-[50%] absolute h-[124rem] w-[124rem] bottom-[-75rem] sm:bottom-[-65rem]"
-      />
+      <div id="outer-ring" className="rounded-full absolute h-[124rem] w-[124rem] bottom-[-75rem] sm:bottom-[-65rem]" />
 
       <SunGraphic className="h-[38rem] w-[38rem] bottom-[-28rem] md:bottom-[-24rem] translate-x-[-50%] left-1/2 z-20 absolute" />
     </footer>
