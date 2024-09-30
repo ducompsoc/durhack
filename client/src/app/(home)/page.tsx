@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import About from "@/components/about"
+import End from "@/components/end"
 import Gallery from "@/components/gallery"
 import Guilds from "@/components/guilds"
 import Intro from "@/components/intro"
@@ -34,6 +35,10 @@ export default function HomePage() {
 
       <section id="gallery">
         <Gallery />
+      </section>
+
+      <section id="end">
+        <End />
       </section>
     </main>
   )
