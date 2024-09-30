@@ -30,7 +30,7 @@ export default function Gallery() {
               <CarouselItem className="h-[inherit] max-h-[inherit]">
                 <Image
                   src="/assets/photos/hacking_1.jpg"
-                  alt="opening ceremony"
+                  alt="hacking"
                   width={1000}
                   height={667}
                   className="h-full object-cover"
@@ -39,7 +39,7 @@ export default function Gallery() {
               <CarouselItem className="h-[inherit] max-h-[inherit]">
                 <Image
                   src="/assets/photos/hacking_2.jpg"
-                  alt="opening ceremony"
+                  alt="hacking"
                   width={1000}
                   height={667}
                   className="h-full object-cover"
@@ -48,7 +48,7 @@ export default function Gallery() {
               <CarouselItem className="h-[inherit] max-h-[inherit]">
                 <Image
                   src="/assets/photos/hacking_3.jpg"
-                  alt="opening ceremony"
+                  alt="hacking"
                   width={1000}
                   height={667}
                   className="h-full object-cover"
