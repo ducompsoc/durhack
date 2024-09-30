@@ -1,6 +1,5 @@
 import About from "@/components/about"
 import End from "@/components/end"
-import Faqs from "@/components/faqs"
 import Gallery from "@/components/gallery"
 import Guilds from "@/components/guilds"
 import Intro from "@/components/intro"
@@ -24,10 +23,6 @@ export default function HomePage() {
       <section id="about">
         <div id="background" className="ellipse" />
         <About />
-      </section>
-
-      <section id="faqs">
-        <Faqs />
       </section>
 
       <section id="sponsors">

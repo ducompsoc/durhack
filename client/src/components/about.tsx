@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion"
 import Image from "next/image"
 import * as React from "react"
 
+import Faqs from "@/components/faqs"
 import { MountainGraphic } from "@/components/graphics"
 
 export default function About() {
@@ -33,6 +34,10 @@ export default function About() {
           <MountainGraphic className="relative h-[12rem] md:h-[16rem] lg:h-[20rem]" />
         </motion.div>
       </div>
+
+      <section id="faqs" className="pt-[30rem] z-30 relative">
+        <Faqs />
+      </section>
     </>
   )
 }
