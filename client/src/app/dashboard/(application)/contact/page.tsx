@@ -62,6 +62,7 @@ function ContactForm({ application }: { application: Application }) {
                 <FormControl>
                   <PhoneInput
                     countrySelectProps={{prominentCountries: new Set(["GB"])}}
+                    placeholder="Enter phone number..."
                     defaultCountry="GB"
                     {...field}
                   />
