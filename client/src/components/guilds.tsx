@@ -12,7 +12,8 @@ export default function Guilds() {
       <SectionHeader>Guilds</SectionHeader>
 
       <div className="text-center pt-8 pb-24 text-lg md:text-2xl px-4 sm:px-8 md:px-12 lg:px-24">
-        These will put each of the hacking teams into larger groups, where they all can collect points for their guild towards a small prize.
+        These will put each of the hacking teams into larger groups, where they all can collect points for their guild
+        towards a small prize.
       </div>
 
       <div className="container mx-auto">

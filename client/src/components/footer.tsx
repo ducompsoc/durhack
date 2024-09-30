@@ -1,9 +1,9 @@
-import Link from "next/link";
-import type * as React from "react";
+import Link from "next/link"
+import type * as React from "react"
 
-import { siteConfig } from "@/config/site";
-import { SunGraphic } from "@/components/graphics/sun";
-import { LeftStarsGraphic, RightStarsGraphic } from "@/components/graphics/small-stars";
+import { LeftStarsGraphic, RightStarsGraphic } from "@/components/graphics/small-stars"
+import { SunGraphic } from "@/components/graphics/sun"
+import { siteConfig } from "@/config/site"
 
 export function Footer() {
   return (
@@ -59,5 +59,5 @@ export function Footer() {
 
       <SunGraphic className="h-[38rem] w-[38rem] bottom-[-28rem] md:bottom-[-24rem] translate-x-[-50%] left-1/2 z-20 absolute" />
     </footer>
-  );
+  )
 }
