@@ -42,14 +42,13 @@ const educationFormSchema = z.object({
     .min(1900, { message: "Be serious. You didn't graduate before 1900." })
     .max(2100, { message: "What on earth are you studying?!?" }),
   levelOfStudy: z.enum([
-    "less-than-secondary",
     "secondary",
-    "undergraduate-2-year",
-    "undergraduate-3-or-more-years",
+    "undergraduate-first-year",
+    "undergraduate-second-year",
+    "undergraduate-third-year-or-higher",
     "graduate",
     "bootcamp",
     "vocational-or-apprenticeship",
-    "post-doctorate",
     "other",
     "not-a-student",
     "prefer-not-to-answer",

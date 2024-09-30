@@ -22,14 +22,13 @@ export type Application = {
   university: string | null
   graduationYear: number | null
   levelOfStudy: null
-    | "less-than-secondary"
     | "secondary"
-    | "undergraduate-2-year"
-    | "undergraduate-3-or-more-years"
+    | "undergraduate-first-year"
+    | "undergraduate-second-year"
+    | "undergraduate-third-year-or-higher"
     | "graduate"
     | "bootcamp"
     | "vocational-or-apprenticeship"
-    | "post-doctorate"
     | "other"
     | "not-a-student"
     | "prefer-not-to-answer"

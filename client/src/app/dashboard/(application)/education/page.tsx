@@ -8,7 +8,7 @@ import { z } from "zod"
 import useSWRImmutable from "swr/immutable"
 
 import { ComboBox, ComboBoxButton, ComboBoxContent, ComboBoxTrigger } from "@durhack/web-components/ui/combobox"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Input } from "@durhack/web-components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectValueClipper } from "@durhack/web-components/ui/select"
 
@@ -48,14 +48,13 @@ const educationFormSchema = z.object({
     .min(1900, { message: "Be serious. You didn't graduate before 1900." })
     .max(2100, { message: "What on earth are you studying?!?" }),
   levelOfStudy: z.enum([
-    "less-than-secondary",
     "secondary",
-    "undergraduate-2-year",
-    "undergraduate-3-or-more-years",
+    "undergraduate-first-year",
+    "undergraduate-second-year",
+    "undergraduate-third-year-or-higher",
     "graduate",
     "bootcamp",
     "vocational-or-apprenticeship",
-    "post-doctorate",
     "other",
     "not-a-student",
     "prefer-not-to-answer",
@@ -152,6 +151,9 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
             render={({ field: { onChange, ref, ...field } }) => (
               <FormItem>
                 <FormLabel>Level of Study</FormLabel>
+                <FormDescription>
+                  Select the level of formal education you are currently working towards.
+                </FormDescription>
                 <Select onValueChange={onChange} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
@@ -161,16 +163,15 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="less-than-secondary">Less than Secondary/High School</SelectItem>
                     <SelectItem value="secondary">Secondary/High School</SelectItem>
-                    <SelectItem value="undergraduate-2-year">Undergraduate University (2 year)</SelectItem>
-                    <SelectItem value="undergraduate-3-or-more-years">Undergraduate University (3+ years)</SelectItem>
-                    <SelectItem value="graduate">Graduate University (Masters&apos;, etc)</SelectItem>
+                    <SelectItem value="undergraduate-first-year">Undergraduate Degree (1<sup>st</sup> year)</SelectItem>
+                    <SelectItem value="undergraduate-second-year">Undergraduate Degree (2<sup>nd</sup> year)</SelectItem>
+                    <SelectItem value="undergraduate-third-year-or-higher">Undergraduate Degree (3<sup>rd</sup> year or higher)</SelectItem>
+                    <SelectItem value="graduate">Graduate Degree (Masters&apos;, etc)</SelectItem>
                     <SelectItem value="bootcamp">Code School/Bootcamp</SelectItem>
                     <SelectItem value="vocational-or-apprenticeship">
                       Vocational/Trade Program or Apprenticeship
                     </SelectItem>
-                    <SelectItem value="post-doctorate">Post Doctorate</SelectItem>
                     <SelectItem value="other">Other</SelectItem>
                     <SelectItem value="not-a-student">I’m not currently a student</SelectItem>
                     <SelectItem value="prefer-not-to-answer">Prefer not to answer</SelectItem>
