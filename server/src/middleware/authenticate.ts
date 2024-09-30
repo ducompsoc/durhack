@@ -57,8 +57,6 @@ export function authenticate(): Middleware {
             cause: error,
           })
         }
-        assert(error instanceof Error)
-        console.error(`Failed to refresh access token for ${tokenSet.claims().email}: ${error.stack}`)
       }
     }
 
