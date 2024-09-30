@@ -3,6 +3,31 @@ export type Consent = {
   choice: boolean,
 }
 
+export type DisciplineOfStudy = "biology"
+  | "anthropology"
+  | "sport"
+  | "chemistry"
+  | "business"
+  | "education"
+  | "computer-science"
+  | "economics"
+  | "earth-sciences"
+  | "geography"
+  | "mathematics"
+  | "philosophy"
+  | "physics"
+  | "psychology"
+  | "other"
+
+export type DietaryRequirement = "vegan"
+  | "vegetarian"
+  | "pescatarian"
+  | "halal"
+  | "kosher"
+  | "gluten-free"
+  | "dairy-free"
+  | "nut-allergy"
+
 export type Application = {
   keycloakUserId: string
   email: string
@@ -19,8 +44,11 @@ export type Application = {
   lastNames: string
   applicationStatus: "unsubmitted" | "submitted" | "accepted" | "waitingList"
   age: number | null
+  gender: "male" | "female" | "non-binary" | "other" | "prefer-not-to-answer" | null
+  ethnicity: "american" | "asian" | "black" | "hispanic" | "white" | "other" | "prefer-not-to-answer" | null
   university: string | null
   graduationYear: number | null
+  disciplinesOfStudy: null | DisciplineOfStudy[]
   levelOfStudy: null
     | "secondary"
     | "undergraduate-first-year"
@@ -35,4 +63,8 @@ export type Application = {
   countryOfResidence: string | null
   consents: Consent[]
   cvUploadChoice: "indeterminate" | "upload" | "remind" | "noUpload"
+  tShirtSize: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "prefer-not-to-answer" | null
+  hackathonExperience: "zero" | "up-to-two" | "three-to-seven" | "eight-or-more" | null
+  dietaryRequirements: null | DietaryRequirement[]
+  accessRequirements: string | null
 }
