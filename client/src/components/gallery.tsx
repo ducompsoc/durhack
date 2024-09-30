@@ -12,7 +12,7 @@ import { SectionHeader } from "@/components/section-header"
 export default function Gallery() {
   return (
     <div className="w-full px-16 lg:pb-[32rem]">
-      <SectionHeader>Gallery</SectionHeader>
+      <SectionHeader>GALLERY</SectionHeader>
 
       <div className="flex flex-row justify-center">
         <div className="w-full max-w-[60rem]">

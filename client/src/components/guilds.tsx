@@ -9,7 +9,7 @@ import { SectionHeader } from "@/components/section-header"
 export default function Guilds() {
   return (
     <div className="text-center px-8 sm:px-16 py-[24rem]">
-      <SectionHeader>Guilds</SectionHeader>
+      <SectionHeader>GUILDS</SectionHeader>
 
       <div className="text-center pt-8 pb-24 text-lg md:text-2xl px-4 sm:px-8 md:px-12 lg:px-24">
         These will put each of the hacking teams into larger groups, where they all can collect points for their guild
