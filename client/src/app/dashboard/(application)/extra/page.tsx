@@ -21,7 +21,7 @@ import { isLoaded } from "@/lib/is-loaded"
 type ExtraDetailsFormFields = {
   tShirtSize: string
   hackathonExperience: string
-  dietaryRequirements: string
+  dietaryRequirements: string[]
   accessRequirements: string
 }
 
