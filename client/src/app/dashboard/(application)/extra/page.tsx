@@ -175,8 +175,9 @@ function ExtraDetailsForm({ application }: { application: Application }) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Access Requirements</FormLabel>
+                <FormDescription>Is there anything else we need to know to make sure you're comfortable at DurHack?</FormDescription>
                 <FormControl>
-                  <Textarea placeholder="Enter... (Please leave blank if you have no specific requests)" {...field} />
+                  <Textarea className="min-h-[150px]" placeholder="Enter... (Please leave blank if you have no specific requests)" {...field} />
                 </FormControl>
                 <FormMessage/>
               </FormItem>
