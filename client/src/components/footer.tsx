@@ -16,14 +16,14 @@ export function Footer() {
 
           <div className="flex justify-center w-full max-w-screen-lg mx-auto gap-x-6 pb-20">
             {siteConfig.socials.map(({ key, href, icon: Icon }) => (
-              <Link key={key} href={href} className="w-[8%] max-w-[55px] h-auto object-cover">
+              <Link key={key} href={href} className="w-[8%] max-w-[55px] h-auto object-cover z-10">
                 <Icon />
               </Link>
             ))}
           </div>
 
-          <LeftStarsGraphic className="hidden md:block absolute bottom-[-2rem] md:left-[8vw] lg:left-[10vw] xl:left-[14vw] 2xl:left-[27%] w-[10rem] xl:w-[14rem] z-30" />
-          <RightStarsGraphic className="hidden md:block absolute bottom-[2rem] md:right-[0vw] lg:right-[2vw] xl:right-[6vw] 2xl:right-[18%] w-[12rem] xl:w-[16rem] z-30" />
+          <LeftStarsGraphic className="hidden md:block absolute bottom-[-2rem] md:left-[8vw] lg:left-[10vw] xl:left-[14vw] 2xl:left-[27%] w-[10rem] xl:w-[14rem]" />
+          <RightStarsGraphic className="hidden md:block absolute bottom-[2rem] md:right-[0vw] lg:right-[2vw] xl:right-[6vw] 2xl:right-[18%] w-[12rem] xl:w-[16rem]" />
         </div>
 
         <div className="text-center justify-center pb-24 w-full px-8 sm:px-16 md:px-24 lg:px-20 xl:34">
