@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation"
 
 export type ApplicationContextProps = {
   application: Application | undefined
+  applicationIsComplete: boolean
   mutateApplication: KeyedMutator<Application>
   applicationIsLoading: boolean
 }
@@ -28,6 +29,7 @@ export function ApplicationContextProvider({ children }: { children?: React.Reac
     <ApplicationContextContext.Provider
       value={{
         application,
+        applicationIsComplete: false,
         mutateApplication,
         applicationIsLoading,
       }}
@@ -42,6 +44,9 @@ export function ApplicationContextProvider({ children }: { children?: React.Reac
     }
   }
 
+  // todo: implement client-side completeness computation
+  const applicationIsComplete = false
+
   // throw the error to the nearest error boundary (error.tsx in app directory)
   if (applicationError != null) throw applicationError
 
@@ -49,6 +54,7 @@ export function ApplicationContextProvider({ children }: { children?: React.Reac
     <ApplicationContextContext.Provider
       value={{
         application,
+        applicationIsComplete,
         mutateApplication,
         applicationIsLoading,
       }}
