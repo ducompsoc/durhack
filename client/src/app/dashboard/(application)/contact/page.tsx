@@ -74,7 +74,7 @@ function ContactForm({ application }: { application: Application }) {
         </div>
         <div className="mb-4">
           <FormField
-            disabled={true}
+            disabled
             control={form.control}
             name="email"
             render={({field}) => (
