@@ -4,6 +4,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 import { BackgroundContext } from "./background-context"
+import {Footer} from "@/components/footer";
 
 export default function DashboardLayout({
   children,
@@ -30,6 +31,7 @@ export default function DashboardLayout({
         />
         {children}
       </main>
+      <Footer />
     </BackgroundContext.Provider>
   )
 }
