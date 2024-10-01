@@ -58,7 +58,6 @@ export default function RootLayout({
         </div>
         <div className="relative bg-background">
           {children}
-          <Footer />
         </div>
       </body>
     </html>
