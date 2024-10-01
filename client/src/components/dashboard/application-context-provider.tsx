@@ -34,8 +34,9 @@ export function ApplicationContextProvider({ children }: { children?: React.Reac
         mutateApplication,
         applicationIsLoading,
       }}
-      children={children}
-    />
+    >
+      {children}
+    </ApplicationContextContext.Provider>
   )
 
   if (applicationError != null && applicationError instanceof ModuleError) {
@@ -63,7 +64,8 @@ export function ApplicationContextProvider({ children }: { children?: React.Reac
         mutateApplication,
         applicationIsLoading,
       }}
-      children={children}
-    />
+    >
+      {children}
+    </ApplicationContextContext.Provider>
   )
 }

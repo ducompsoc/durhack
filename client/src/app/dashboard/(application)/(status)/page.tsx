@@ -42,7 +42,7 @@ function Instructions({ application }: { application: Application | undefined })
   if (filledOutCount === 0) {
     // provide 'get started' link
     return <article className="flex flex-col w-full justify-center items-center">
-      <p>You haven't started to fill out your application yet!</p>
+      <p>You haven&apos;t started to fill out your application yet!</p>
       <div>
         <Button variant="link" className='bg-secondary mt-2' asChild>
           <Link href="/dashboard/personal">Get started</Link>

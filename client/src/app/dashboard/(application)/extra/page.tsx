@@ -81,7 +81,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
                 <FormLabel>T-Shirt Size</FormLabel>
                 <FormDescription>
                   We need this to be able to order t-shirts in appropriate sizes.
-                  If you respond 'prefer not to say', we can't guarantee a shirt in your size for you.
+                  If you respond &lsquo;prefer not to say&rsquo;, we can&apos;t guarantee a shirt in your size for you.
                 </FormDescription>
                 <Select onValueChange={onChange} {...field}>
                   <FormControl>
@@ -145,7 +145,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
                 <FormLabel>Dietary Requirements</FormLabel>
                 <FormDescription>
                   If your requirement is not listed, please identify it clearly in your response
-                  to the following query regarding 'access requirements'.
+                  to the following query regarding &lsquo;access requirements&rsquo;.
                 </FormDescription>
                 <FormControl>
                   <MultiSelect
@@ -176,7 +176,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Access Requirements</FormLabel>
-                <FormDescription>Is there anything else we need to know to make sure you're comfortable at DurHack?</FormDescription>
+                <FormDescription>Is there anything else we need to know to make sure you&apos;re comfortable at DurHack?</FormDescription>
                 <FormControl>
                   <Textarea className="min-h-[150px]" placeholder="Enter... (Please leave blank if you have no specific requests)" {...field} />
                 </FormControl>

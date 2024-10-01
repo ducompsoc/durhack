@@ -82,6 +82,7 @@ const FormRootMessage = React.forwardRef<
     {body}
   </p>
 })
+FormRootMessage.displayName = "FormRootMessage"
 
 /**
  * This component accepts <code>application</code> via props, rather than via
