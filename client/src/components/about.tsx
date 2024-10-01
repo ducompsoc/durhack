@@ -13,17 +13,6 @@ export default function About() {
 
   return (
     <div>
-      <div className="absolute w-full top-[-1rem] md:top-[-3rem]">
-        <Image
-          src="/assets/graphics/waves.svg"
-          alt="an abstract rendering of ocean waves"
-          className="w-full"
-          id="waves"
-          width={1440}
-          height={850}
-        />
-      </div>
-
       <div ref={ref} className="w-full h-full absolute">
         <motion.div
           className="absolute flex justify-center top-[-7rem] md:top-[-10rem] lg:top-[-13rem] z-30 pointer-events-none w-full"
