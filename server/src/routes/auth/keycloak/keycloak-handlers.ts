@@ -6,7 +6,7 @@ import { frontendOrigin, origin } from "@/config"
 import { prisma } from "@/database"
 import { adaptTokenSetToDatabase } from "@/lib/adapt-token-set"
 import { keycloakClient } from "@/lib/keycloak-client"
-import { getSession } from "@/lib/session"
+import { type DurHackSession, getSession } from "@/lib/session"
 import type { Middleware, Request, Response } from "@/types"
 
 export class KeycloakHandlers {
@@ -23,34 +23,31 @@ export class KeycloakHandlers {
    * It's important we do this before initiating the keycloak login flow because we downgrade the session cookie to
    * SameSite 'Lax' during the OAuth flow (not implemented yet -
    * requires https://github.com/OtterJS/otterhttp-session/issues/1).
-   *
-   * @param request
-   * @param response
    */
-  async lazyLogout(request: Request, response: Response): Promise<void> {
-    const session = await getSession(request, response)
+  lazyLogout(response: Response, session: DurHackSession): void {
     if (session.userId == null) return
 
     session.userId = undefined
-    await session.commit()
+    response.sessionDirty = true
   }
 
-  async getOrGenerateCodeVerifier(request: Request, response: Response): Promise<string> {
-    const session = await getSession(request, response)
+  getOrGenerateCodeVerifier(response: Response, session: DurHackSession): string {
     if (typeof session.keycloakOAuth2FlowCodeVerifier === "string") return session.keycloakOAuth2FlowCodeVerifier
 
     const codeVerifier = generators.codeVerifier()
     session.keycloakOAuth2FlowCodeVerifier = codeVerifier
-    await session.commit()
+    response.sessionDirty = true
     return codeVerifier
   }
 
   beginOAuth2Flow(): Middleware {
     return async (request: Request, response: Response) => {
-      const [codeVerifier] = await Promise.all([
-        this.getOrGenerateCodeVerifier(request, response),
-        this.lazyLogout(request, response),
-      ])
+      const session = await getSession(request, response)
+
+      this.lazyLogout(response, session)
+      const codeVerifier = this.getOrGenerateCodeVerifier(response, session)
+      if (response.sessionDirty) await session.commit()
+
       const codeChallenge = generators.codeChallenge(codeVerifier)
 
       const url = this.client.authorizationUrl({

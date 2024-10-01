@@ -5,6 +5,13 @@ import { isObject } from "@/lib/type-guards"
 import type { JSONLiteral, Request } from "@/types"
 
 export class Response<Req extends Request = Request> extends OtterResponse<Req> {
+  sessionDirty: boolean
+
+  constructor(request: Req) {
+    super(request)
+    this.sessionDirty = false
+  }
+
   override sendStatus(statusCode: number): this {
     this.statusCode = statusCode
 

@@ -1,4 +1,4 @@
-import session, { type SessionStore, type SessionData } from "@otterhttp/session"
+import session, { type Session, type SessionStore, type SessionData } from "@otterhttp/session"
 import { Prisma } from "@prisma/client"
 
 import { signCookie, unsignCookieOrThrow } from "@/lib/cookies"
@@ -69,6 +69,9 @@ export type DurHackSessionRecord = Record<string, unknown> & {
   userId?: string | undefined
   redirectTo?: string | undefined
 }
+
+export type { Session }
+export type DurHackSession = Session<DurHackSessionRecord>
 
 export const getSession = session<DurHackSessionRecord>({
   store: new PrismaSessionStore(),
