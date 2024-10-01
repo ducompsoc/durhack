@@ -50,7 +50,7 @@ export function ApplicationContextProvider({ children }: { children?: React.Reac
   if (application.phone == null) applicationIsComplete = false  // contact section
   if (application.tShirtSize == null) applicationIsComplete = false  // extra section
   if (application.graduationYear == null) applicationIsComplete = false  // extra section
-  if (application.cvUploadChoice == null) applicationIsComplete = false  // CV section
+  if (application.cvUploadChoice === "indeterminate") applicationIsComplete = false  // CV section
 
   // throw the error to the nearest error boundary (error.tsx in app directory)
   if (applicationError != null) throw applicationError
