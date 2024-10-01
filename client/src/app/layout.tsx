@@ -3,7 +3,6 @@ import type { Metadata, Viewport } from "next"
 import "@/styles/globals.css"
 import { Footer } from "@/components/footer"
 import { MLHBanner } from "@/components/mlh-banner"
-import Navbar from "@/components/navbar"
 import { siteConfig } from "@/config/site"
 import { spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
@@ -35,16 +34,14 @@ export const metadata = {
     "msapplication-TileColor": "#008987",
     "theme-color": siteConfig.themeColor,
   },
-   openGraph: {
+  openGraph: {
     type: "website",
     locale: "en-GB",
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
-    images: [
-      { url: siteConfig.openGraphImage, },
-    ],
+    images: [{ url: siteConfig.openGraphImage }],
   },
 } satisfies Metadata
 
@@ -58,11 +55,9 @@ export default function RootLayout({
       <body className={cn(spaceGrotesk.className, "dark antialiased")}>
         <div className="fixed top-0 overflow-visible w-[100%] z-50">
           <MLHBanner variant="white" />
-          <Navbar />
         </div>
         <div className="relative bg-background">
           {children}
-          <Footer />
         </div>
       </body>
     </html>

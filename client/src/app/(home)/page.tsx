@@ -1,5 +1,3 @@
-import * as React from "react"
-
 import About from "@/components/about"
 import End from "@/components/end"
 import Gallery from "@/components/gallery"
@@ -9,7 +7,6 @@ import Splash from "@/components/splash"
 import Sponsors from "@/components/sponsors"
 
 import "@/styles/background.css"
-import "@/styles/navbar.css"
 import "@/styles/splash.css"
 
 export default function HomePage() {
@@ -28,9 +25,7 @@ export default function HomePage() {
         <About />
       </section>
 
-      <section id="sponsors">
-        <Sponsors />
-      </section>
+      <section id="sponsors" className="h-[5rem]" />
 
       <section id="guilds">
         <Guilds />

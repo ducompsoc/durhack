@@ -8,6 +8,7 @@ import { Cloud1Graphic, Cloud2Graphic, Cloud3Graphic, StarsGraphic } from "@/com
 import { MoonGraphic } from "@/components/graphics/moon"
 import { audiowide } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
+import "@/styles/splash.css"
 
 export default function Splash() {
   const ref = React.useRef(null)
@@ -25,8 +26,12 @@ export default function Splash() {
   return (
     <>
       <div ref={ref} className="overflow-hidden relative">
-        <div id="stars" className="absolute h-full w-full z-20">
-          <StarsGraphic className="h-full max-w-[none] xl:w-full absolute" />
+        <div id="stars" className="absolute h-full w-full z-20 flex justify-center">
+          <StarsGraphic className="h-full max-w-[none] xl:w-full 2xl:w-[1536px] relative hidden 2xl:block flex-shrink-0" />
+          <StarsGraphic className="h-full max-w-[none] xl:w-full 2xl:w-[1536px] relative hidden 2xl:block flex-shrink-0" />
+          <StarsGraphic className="h-full max-w-[none] xl:w-full 2xl:w-[1536px] relative flex-shrink-0" />
+          <StarsGraphic className="h-full max-w-[none] xl:w-full 2xl:w-[1536px] relative hidden 2xl:block flex-shrink-0" />
+          <StarsGraphic className="h-full max-w-[none] xl:w-full 2xl:w-[1536px] relative hidden 2xl:block flex-shrink-0" />
         </div>
 
         <div id="outer-ring" className="rounded-[50%] absolute h-[94rem] w-[94rem] top-[-55rem] md:top-[-35rem] z-10" />
@@ -39,29 +44,29 @@ export default function Splash() {
 
         <motion.div
           id="cloud-1"
-          className="absolute right-[-6rem] xl:right-[-2rem] top-[8rem] md:top-[16rem] z-30 pointer-events-none"
+          className="absolute right-[-18rem] sm:right-[-12rem] xl:right-[-2rem] top-[12rem] sm:top-[8rem] md:top-[16rem] z-30 pointer-events-none"
           style={{ x: cloud1X }}
         >
-          <Cloud1Graphic className="h-[6rem] xl:h-64" />
+          <Cloud1Graphic className="h-[4rem] sm:h-[6rem] xl:h-64" />
         </motion.div>
 
         <motion.div
           id="cloud-2"
-          className="absolute left-[-29rem] xl:left-[-24rem] top-[5rem] md:top-[13rem] z-30 pointer-events-none"
+          className="absolute left-[-39rem] sm:left-[-29rem] xl:left-[-19rem] top-[9rem] sm:top-[5rem] md:top-[13rem] z-30 pointer-events-none"
           style={{ x: cloud2X }}
         >
-          <Cloud2Graphic className="h-[15rem] xl:h-[25rem]" />
+          <Cloud2Graphic className="h-[10rem] sm:h-[15rem] xl:h-[25rem]" />
         </motion.div>
 
         <motion.div
           id="cloud-3"
-          className="absolute left-[-19rem] xl:left-[-9rem] top-[11rem] md:top-[23rem] z-30 pointer-events-none"
+          className="absolute left-[-27rem] sm:left-[-19rem] xl:left-[-13rem] top-[15rem] sm:top-[11rem] md:top-[23rem] z-30 pointer-events-none"
           style={{ x: cloud3X }}
         >
-          <Cloud3Graphic className="h-[11rem] xl:h-[21rem]" />
+          <Cloud3Graphic className="h-[7rem] sm:h-[11rem] xl:h-[21rem]" />
         </motion.div>
 
-        <div className="relative top-[-10rem] md:top-[10rem]">
+        <div className="relative top-[-10rem] md:top-[6rem]">
           <div className="pb-8">
             <h2
               id="title"
