@@ -2,7 +2,7 @@ import type { ConfigIn } from "./schema"
 
 export default {
   listen: {
-    host: "localhost",
+    host: "127.0.0.1",
     port: 3001, // DurHack project has ports 3000-3099
   },
   origin: "http://api.durhack-dev.com",
