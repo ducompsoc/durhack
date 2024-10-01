@@ -109,6 +109,10 @@ const submitFormSchema = z.object({
   mlhCodeOfConduct: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
   mlhTerms: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
   mlhMarketing: z.boolean(),
+  dsuPrivacy: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  hukPrivacy: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  hukMarketing: z.boolean(),
+  media: z.boolean(),
 })
 
 const cvUploadSchema = z.object({
@@ -571,6 +575,26 @@ class ApplicationHandlers {
           where: { id: { userId: request.userProfile.sub, consentName: "mlhMarketing" } },
           create: { userId: request.userProfile.sub, consentName: "mlhMarketing", choice: payload.mlhMarketing },
           update: { choice: payload.mlhMarketing }
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: request.userProfile.sub, consentName: "dsuPrivacy" } },
+          create: { userId: request.userProfile.sub, consentName: "dsuPrivacy", choice: payload.dsuPrivacy },
+          update: { choice: payload.dsuPrivacy }
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: request.userProfile.sub, consentName: "hukPrivacy" } },
+          create: { userId: request.userProfile.sub, consentName: "hukPrivacy", choice: payload.hukPrivacy },
+          update: { choice: payload.hukPrivacy }
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: request.userProfile.sub, consentName: "hukMarketing" } },
+          create: { userId: request.userProfile.sub, consentName: "hukMarketing", choice: payload.hukMarketing },
+          update: { choice: payload.hukMarketing }
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: request.userProfile.sub, consentName: "media" } },
+          create: { userId: request.userProfile.sub, consentName: "media", choice: payload.media },
+          update: { choice: payload.media }
         })
       ])
 

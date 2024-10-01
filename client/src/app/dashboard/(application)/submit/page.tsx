@@ -31,12 +31,20 @@ type SubmitFormFields = {
   mlhCodeOfConduct: boolean | "indeterminate"
   mlhTerms: boolean | "indeterminate"
   mlhMarketing: boolean | "indeterminate"
+  dsuPrivacy :boolean | "indeterminate"
+  hukPrivacy: boolean | "indeterminate"
+  hukMarketing: boolean | "indeterminate"
+  media: boolean | "indeterminate"
 }
 
 const submitFormSchema = z.object({
   mlhCodeOfConduct: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
   mlhTerms: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
   mlhMarketing: z.boolean(),
+  dsuPrivacy: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  hukPrivacy: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  hukMarketing: z.boolean(),
+  media: z.boolean(),
 })
 
 function ConsentCard({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
@@ -90,6 +98,10 @@ function SubmitForm({ application }: { application: Application }) {
       mlhCodeOfConduct: application.consents.find((consent) => consent.name === "mlhCodeOfConduct")?.choice ?? false,
       mlhTerms: application.consents.find((consent) => consent.name === "mlhTerms")?.choice ?? false,
       mlhMarketing: application.consents.find((consent) => consent.name === "mlhMarketing")?.choice ?? false,
+      dsuPrivacy: application.consents.find((consent) => consent.name === "dsuPrivacy")?.choice ?? false,
+      hukPrivacy: application.consents.find((consent) => consent.name === "hukPrivacy")?.choice ?? false,
+      hukMarketing: application.consents.find((consent) => consent.name === "hukMarketing")?.choice ?? false,
+      media: application.consents.find((consent) => consent.name === "media")?.choice ?? false,
     },
   })
 
@@ -112,6 +124,10 @@ function SubmitForm({ application }: { application: Application }) {
           if (consent.name === "mlhCodeOfConduct") return false
           if (consent.name === "mlhTerms") return false
           if (consent.name === "mlhMarketing") return false
+          if (consent.name === "dsuPrivacy") return false
+          if (consent.name === "hukPrivacy") return false
+          if (consent.name === "hukMarketing") return false
+          if (consent.name === "media") return false
           return true
         })
         .splice(
@@ -120,6 +136,10 @@ function SubmitForm({ application }: { application: Application }) {
           { name: "mlhCodeOfConduct", choice: values.mlhCodeOfConduct },
           { name: "mlhTerms", choice: values.mlhTerms },
           { name: "mlhMarketing", choice: values.mlhMarketing },
+          { name: "dsuPrivacy", choice: values.dsuPrivacy },
+          { name: "hukPrivacy", choice: values.hukPrivacy },
+          { name: "hukMarketing", choice: values.hukMarketing },
+          { name: "media", choice: values.media },
         )
 
       return {
@@ -139,7 +159,7 @@ function SubmitForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="mlhCodeOfConduct"
-            render={({ field: { value, onChange, ...field } }) => (
+            render={({field: {value, onChange, ...field}}) => (
               <FormItem>
                 <ConsentCard>
                   <FormControl>
@@ -164,7 +184,7 @@ function SubmitForm({ application }: { application: Application }) {
                     </FormDescription>
                   </ConsentCardContent>
                 </ConsentCard>
-                <FormMessage />
+                <FormMessage/>
               </FormItem>
             )}
           />
@@ -173,7 +193,7 @@ function SubmitForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="mlhTerms"
-            render={({ field: { value, onChange, ...field } }) => (
+            render={({field: {value, onChange, ...field}}) => (
               <FormItem>
                 <ConsentCard>
                   <FormControl>
@@ -213,7 +233,7 @@ function SubmitForm({ application }: { application: Application }) {
                     </FormDescription>
                   </ConsentCardContent>
                 </ConsentCard>
-                <FormMessage />
+                <FormMessage/>
               </FormItem>
             )}
           />
@@ -222,7 +242,7 @@ function SubmitForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="mlhMarketing"
-            render={({ field: { value, onChange, ...field }  }) => (
+            render={({field: {value, onChange, ...field}}) => (
               <FormItem>
                 <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
@@ -244,7 +264,153 @@ function SubmitForm({ application }: { application: Application }) {
                     </FormDescription>
                   </div>
                 </div>
-                <FormMessage />
+                <FormMessage/>
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="mb-4">
+          <FormField
+            control={form.control}
+            name="dsuPrivacy"
+            render={({field: {value, onChange, ...field}}) => (
+              <FormItem>
+                <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      required
+                      className="mt-[0.2em] lg:mt-0"
+                      checked={value}
+                      onCheckedChange={onChange}
+                      {...field}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>
+                      <span>DSU Privacy Policy</span>
+                    </FormLabel>
+                    <FormDescription>
+                      I have read and accept the{" "}
+                      <Link
+                        className="underline"
+                        href="https://www.durhamsu.com/privacy-policy"
+                      >
+                        Durham Students&apos; Union Student Privacy Policy
+                      </Link>.
+                      I consent to sharing information with Durham University Computing Society and Durham
+                      Students&apos;
+                      Union.
+                    </FormDescription>
+                  </div>
+                </div>
+                <FormMessage/>
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="mb-4">
+          <FormField
+            control={form.control}
+            name="hukPrivacy"
+            render={({field: {value, onChange, ...field}}) => (
+              <FormItem>
+                <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      required
+                      className="mt-[0.2em] lg:mt-0"
+                      checked={value}
+                      onCheckedChange={onChange}
+                      {...field}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>
+                      <span>Hackathons UK Privacy Policy</span>
+                    </FormLabel>
+                    <FormDescription>
+                      I authorise DU Computing Society to share my application/registration information with{" "}
+                      <Link
+                        className="underline"
+                        href="https://hackathons.org.uk"
+                      >
+                        Hackathons UK Ltd.
+                      </Link>{" "}
+                      for administrative purposes and, with my authorisation, email, in-line with the{" "}
+                      <Link
+                        className="underline"
+                        href="https://hackuk.org/privacy"
+                      >
+                        Hackathons UK Limited Privacy Policy
+                      </Link>.
+                    </FormDescription>
+                  </div>
+                </div>
+                <FormMessage/>
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="mb-4">
+          <FormField
+            control={form.control}
+            name="hukMarketing"
+            render={({field: {value, onChange, ...field}}) => (
+              <FormItem>
+                <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      className="mt-[0.2em] lg:mt-0"
+                      checked={value}
+                      onCheckedChange={onChange}
+                      {...field}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>
+                      <span>Hackathons UK Marketing{" "}</span>
+                      <span className="text-xs">(optional)</span>
+                    </FormLabel>
+                    <FormDescription>
+                      I authorise Hackathons UK Limited to send me occasional messages about hackathons and their activities.
+                    </FormDescription>
+                  </div>
+                </div>
+                <FormMessage/>
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="mb-4">
+          <FormField
+            control={form.control}
+            name="media"
+            render={({field: {value, onChange, ...field}}) => (
+              <FormItem>
+                <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      className="mt-[0.2em] lg:mt-0"
+                      checked={value}
+                      onCheckedChange={onChange}
+                      {...field}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>
+                      <span>Photography/Videography{" "}</span>
+                      <span className="text-xs">(optional)</span>
+                    </FormLabel>
+                    <FormDescription>
+                      I consent to the use of photographs and/or videos in which I appear for promotional purposes related to the event.
+                    </FormDescription>
+                  </div>
+                </div>
+                <FormMessage/>
               </FormItem>
             )}
           />
@@ -268,7 +434,7 @@ function SubmitForm({ application }: { application: Application }) {
 }
 
 function SubmitFormSkeleton() {
-  return <FormSkeleton rows={3} className="mt-2" />
+  return <FormSkeleton rows={3} className="mt-2"/>
 }
 
 /*
@@ -277,11 +443,11 @@ todo: conditionally render based on application status
  - ensure the user can still view their responses to the various consent questions, with checkboxes disabled
  */
 export default function SubmitPage() {
-  const { application, applicationIsLoading} = useApplicationContext()
+  const {application, applicationIsLoading} = useApplicationContext()
 
   if (!isLoaded(application, applicationIsLoading)) {
-    return <SubmitFormSkeleton />
+    return <SubmitFormSkeleton/>
   }
 
-  return <SubmitForm application={application} />
+  return <SubmitForm application={application}/>
 }
