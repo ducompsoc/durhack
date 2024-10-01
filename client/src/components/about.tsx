@@ -12,7 +12,7 @@ export default function About() {
   const isInView = useInView(ref, { once: true })
 
   return (
-    <>
+    <div>
       <div className="absolute w-full top-[-1rem] md:top-[-3rem]">
         <Image
           src="/assets/graphics/waves.svg"
@@ -40,6 +40,6 @@ export default function About() {
       <section id="faqs" className="z-30 relative">
         <Faqs />
       </section>
-    </>
+    </div>
   )
 }

@@ -11,25 +11,22 @@ const componentConfig = {
       question: "Will I be able to get my travel costs reimbursed?",
       answers: [
         "DurHack will be offering partial-to-full travel reimbursement (depending on your region). Please keep your receipt(s): we will release a form shortly after 5th November for you to put in your details and upload the receipt(s). Reimbursement should come through by 17th December.",
-        "We have the following regional caps:",
-        "<ul></ul>",
-        "<ul><li>&lt;20 miles (e.g. Newcastle) - £10</li><li>20-100 miles (e.g. Leeds, Lancaster) - £40</li><li>100+ miles (e.g. London, Oxford) - £65</li></ul>",
-        "<span></span>",
+        "We have the following regional caps: ",
+        "20 miles (e.g. Newcastle) - £10, 20-100 miles (e.g. Leeds, Lancaster) - £40, 100+ miles (e.g. London, Oxford) - £65 ",
         "(These should cover most standard train tickets - if you need to travel in an alternative way that may be more expensive, or your train is more than the price above and you need extra support in paying for it, please reach out to us providing more information).",
       ],
     },
     {
       question: "What time does DurHack start and end?",
       answers: [
-        "Check-in for DurHack is 9:30-10:30am on Saturday 4th November, and we're expecting to finish our closing ceremony at 16:30 on Sunday.",
+        "Check-in for DurHack is 9:30-10:30am on 2nd November, and we're expecting to finish our closing ceremony at 16:30 on Sunday.",
       ],
     },
     {
       question: "Do I need to be able to code to attend DurHack?",
       answers: [
         "The most important thing when attending a hackathon is your enthusiasm for technology. DurHack is passionate about being very welcoming and beginner-friendly, and you'll learn loads at the event!",
-        'If you want to learn to code but don\'t know where to start, you should definitely \n\n<a href="https://medium.com/on-coding/you-can-already-code-you-just-dont-know-it-yet-862044601a5a" target="_blank">read this blogpost</a>\n\n.',
-        'We\'ll also be running several lead-up workshops with \n\n<a href="https://compsoc.tech/" target="_blank">CompSoc</a>\n\n to prepare people for DurHack.',
+        'We\'ll also be running several lead-up workshops with CompSoc to prepare people for DurHack.',
       ],
     },
     {
@@ -71,20 +68,20 @@ const componentConfig = {
       question: "What can I build and who owns the IP?",
       answers: [
         "Web apps, mobile apps, hardware, anything! Projects will be judged based on their creativity, technical accomplishments, polish and usefulness by our judges.",
-        "<strong>The IP of your work remains with you, the attendees.</strong>",
+        "The IP of your work remains with you, the attendees.",
       ],
     },
     {
       question: "Do you have a code of conduct?",
       answers: [
-        'Everybody at DurHack will be expected to abide by the \n\n<a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH Code of Conduct</a>\n\n.',
+        'Everybody at DurHack will be expected to abide by the MLH Code of Conduct.',
         "TL;DR: be respectful to each other.",
       ],
     },
     {
       question: "What if I have other questions?",
       answers: [
-        "If you're still not sure about something, drop us a line at \n\n<a href=\"mailto:hello@durhack.com\">hello@durhack.com</a>\n\n and we'll be very happy to help!",
+        "If you're still not sure about something, drop us a line at hello@durhack.com and we'll be very happy to help!",
       ],
     },
   ],
