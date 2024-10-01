@@ -25,5 +25,6 @@ export default {
   },
   keycloak: {
     realm: "durhack",
+    redirectUris: ["https://api.durhack.com/auth/keycloak/callback"]
   },
 } satisfies DeepPartial<ConfigIn>
