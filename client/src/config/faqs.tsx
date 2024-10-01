@@ -11,7 +11,7 @@ export const faqs = [
     slug: "should-i-attend",
     question: "Should I attend DurHack?",
     answer: <>
-      <p>If you've thought at all about attending DurHack, yes! DurHack is welcoming to people of all abilities, all that's important is a willingness to get stuck in with your team. DurHack is designed to have an inclusive and encouraging environment, so don't be afraid to ask anyone for help at the event!</p>
+      <p>If you&apos;ve thought at all about attending DurHack, yes! DurHack is welcoming to people of all abilities, all that&apos;s important is a willingness to get stuck in with your team. DurHack is designed to have an inclusive and encouraging environment, so don&apos;t be afraid to ask anyone for help at the event!</p>
       <p>DurHack is completely free to attend, and could not run without the generosity of our sponsors. We provide the space, WiFi, meals, snacks, and free swag.</p>
     </>
   },
@@ -29,29 +29,29 @@ export const faqs = [
     slug: "timings",
     question: "What time does DurHack start and end?",
     answer: <>
-      <p>Check-in for DurHack is 9:30-10:30am on 2nd November, and we're expecting to finish our closing ceremony at 16:30 on Sunday.</p>
+      <p>Check-in for DurHack is 9:30-10:30am on 2nd November, and we&apos;re expecting to finish our closing ceremony at 16:30 on Sunday.</p>
     </>
   },
   {
     slug: "coding-experience",
     question: "Do I need to be able to code to attend DurHack?",
     answer: <>
-      <p>The most important thing when attending a hackathon is your enthusiasm for technology. DurHack is passionate about being very welcoming and beginner-friendly, and you'll learn loads at the event!</p>
-      <p>We\'ll also be running several lead-up workshops with CompSoc to prepare people for DurHack.</p>
+      <p>The most important thing when attending a hackathon is your enthusiasm for technology. DurHack is passionate about being very welcoming and beginner-friendly, and you&apos;ll learn loads at the event!</p>
+      <p>We&apos;ll also be running several lead-up workshops with CompSoc to prepare people for DurHack.</p>
     </>
   },
   {
     slug: "food",
     question: "What can I eat?",
     answer: <>
-      <p>We'll provide you with meals, snacks and drinks throughout the weekend, leaving you to concentrate on your projects. If you have special dietary requirements, please let us know when you register.</p>
+      <p>We&apos;ll provide you with meals, snacks and drinks throughout the weekend, leaving you to concentrate on your projects. If you have special dietary requirements, please let us know when you register.</p>
     </>
   },
   {
     slug: "what-to-bring",
     question: "What should I bring?",
     answer: <>
-      <p>All attendees will need to show valid student ID (other photo ID is acceptable for graduates) at registration. You'll also need a laptop and a charger, and you might want to bring toiletries.</p>
+      <p>All attendees will need to show valid student ID (other photo ID is acceptable for graduates) at registration. You&apos;ll also need a laptop and a charger, and you might want to bring toiletries.</p>
     </>
   },
   {
@@ -63,14 +63,14 @@ export const faqs = [
     slug: "i-have-no-team",
     question: "What if I don't have a team?",
     answer: <>
-      <p>Don't worry! Part of the fun of a hackathon is meeting new people. We'll have a team-forming event before hacking begins for those who want to meet and form new teams.</p>
+      <p>Don&apos;t worry! Part of the fun of a hackathon is meeting new people. We&apos;ll have a team-forming event before hacking begins for those who want to meet and form new teams.</p>
     </>
   },
   {
     slug: "team-sizes",
     question: "How large can my team be?",
     answer: <>
-      <p>There's absolutely no obligation for you to come to DurHack with a pre-made team. Many attendees won't, and we'll run team-forming exercises at the start to make sure everyone is part of an awesome team</p>
+      <p>There&apos;s absolutely no obligation for you to come to DurHack with a pre-made team. Many attendees won&apos;t, and we&apos;ll run team-forming exercises at the start to make sure everyone is part of an awesome team</p>
       <p>However, if you are already looking for teammates, there is a maximum of 4 people allowed per team. Remember that, of course, each member of your team needs to have their own DurHack ticket.</p>
     </>
   },
@@ -78,7 +78,7 @@ export const faqs = [
     slug: "rest-overnight",
     question: "Can I take a break overnight?",
     answer: <>
-      <p>You'll have 24 hours to create your project. It's important to take regular breaks, and that's why we'll be providing a relaxation room for attendees to have a rest if they want. Part of the fun of the hackathon is coding through the night!</p>
+      <p>You&apos;ll have 24 hours to create your project. It&apos;s important to take regular breaks, and that&apos;s why we&apos;ll be providing a relaxation room for attendees to have a rest if they want. Part of the fun of the hackathon is coding through the night!</p>
     </>
   },
   {
@@ -101,7 +101,7 @@ export const faqs = [
     slug: "other-questions",
     question: "What if I have other questions?",
     answer: <>
-      <p>If you're still not sure about something, drop us a line at hello@durhack.com and we'll be very happy to help!</p>
+      <p>If you&apos;re still not sure about something, drop us a line at hello@durhack.com and we&apos;ll be very happy to help!</p>
     </>
   },
 ] satisfies FAQ[]
