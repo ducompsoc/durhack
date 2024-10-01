@@ -583,7 +583,7 @@ class ApplicationHandlers {
           '<html lang="en-GB">',
           '<head><meta charset="utf-8"></head>',
           "<body>",
-          `<p>Hi ${request.userProfile.preferred_names ?? request.userProfile.first_names}</p>,`,
+          `<p>Hi ${request.userProfile.preferred_names ?? request.userProfile.first_names},</p>`,
           "<br/>",
           "<p>Thanks for applying to attend DurHack! Your application has been submitted successfully.</p>",
           '<p>You can view and update your responses at <a href="https://durhack.com/dashboard">durhack.com</a>.</p',
