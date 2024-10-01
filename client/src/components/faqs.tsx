@@ -4,6 +4,7 @@ import React, { useEffect } from "react"
 
 import configJson from "@/components/componentInfo"
 import { SectionHeader } from "@/components/section-header"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const faqs = configJson.faqs
 
@@ -88,17 +89,20 @@ export default function Faqs() {
         <SectionHeader>FREQUENTLY ASKED QUESTIONS</SectionHeader>
       </div>
 
-      <ul className="list-none mb-5 py-1">
-        {faqs.map((question, qIndex) => (
-          <QuestionTemplate
-            question={question}
-            qIndex={qIndex}
-            key={qIndex}
-            isVisible={selectedQuestionIndex === qIndex}
-            onClick={() => handleQuestionClick(qIndex)}
-          />
-        ))}
-      </ul>
+      <div className="flex justify-center">
+        <div className="w-[90%] max-w-[50rem]">
+          <ul className="list-none mb-5 py-1">
+            {faqs.map((question, qIndex) => (
+              <Accordion type="single" collapsible>
+                <AccordionItem value="item">
+                  <AccordionTrigger>{question.question}</AccordionTrigger>
+                  <AccordionContent>{question.answers} </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   )
 }

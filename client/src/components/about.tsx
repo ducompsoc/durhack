@@ -35,7 +35,7 @@ export default function About() {
         </motion.div>
       </div>
 
-      <div className="pt-[30rem]"></div>
+      <div className="pt-[30rem]" />
 
       <section id="faqs" className="z-30 relative">
         <Faqs />
