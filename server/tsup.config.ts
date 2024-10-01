@@ -16,7 +16,7 @@ export default defineConfig([
       main: "src/main.ts",
       ...configFileEntries,
     },
-    target: "esnext",
+    target: "es2023",
     format: "esm",
     splitting: true,
     clean: true,
