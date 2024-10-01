@@ -1,15 +1,16 @@
 import assert from "node:assert/strict"
 import { parse as parsePath } from "node:path/posix"
 import type { Application, DisciplineOfStudy, DietaryRequirement } from "@durhack/durhack-common/types/application"
-import { ClientError } from "@otterhttp/errors"
+import { ClientError, HttpStatus } from "@otterhttp/errors"
 import type { ContentType, ParsedFormFieldFile } from "@otterhttp/parsec"
 import { fileTypeFromBuffer } from "file-type"
 import { z } from "zod"
 
 import { mailgunConfig } from "@/config"
 import { prisma } from "@/database"
-import { adaptEthnicityFromDatabase, adaptEthnicityToDatabase } from "@/database/adapt-ethnicity";
-import { adaptGenderFromDatabase, adaptGenderToDatabase } from "@/database/adapt-gender";
+import { adaptApplicationStatusFromDatabase } from "@/database/adapt-application-status"
+import { adaptEthnicityFromDatabase, adaptEthnicityToDatabase } from "@/database/adapt-ethnicity"
+import { adaptGenderFromDatabase, adaptGenderToDatabase } from "@/database/adapt-gender"
 import {
   adaptHackathonExperienceFromDatabase,
   adaptHackathonExperienceToDatabase
@@ -23,7 +24,6 @@ import "@/lib/zod-phone-extension"
 import "@/lib/zod-iso3-extension"
 
 import { verifiedInstitutionsSet } from "./institution-options";
-import {adaptApplicationStatusFromDatabase} from "@/database/adapt-application-status";
 
 const personalFormSchema = z.object({
   firstNames: z.string().trim().min(1).max(256),
@@ -106,7 +106,7 @@ const extraDetailsFormSchema = z.object({
 })
 
 const submitFormSchema = z.object({
-  mlhCode: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  mlhCodeOfConduct: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
   mlhTerms: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
   mlhMarketing: z.boolean(),
 })
@@ -500,11 +500,34 @@ class ApplicationHandlers {
   ): Promise<void> {
     const errors: Error[] = []
 
-    // TODO: implement application completeness checking
-    errors.push(new Error("Application completeness checking has not been fully implemented"))
+    if (application.age == null) {
+      errors.push(new Error("'Personal' section has not been completed"))
+    }
+
+    if (application.phone == null) {
+      errors.push(new Error("'Contact' section has not been completed"))
+    }
+
+    if (application.tShirtSize == null) {
+      errors.push(new Error("'Extra Details' section has not been completed"))
+    }
+
+    if (application.graduationYear == null) {
+      errors.push(new Error("'Education' section has not been completed"))
+    }
+
+    if (application.cvUploadChoice === "indeterminate") {
+      errors.push(new Error("'CV' section has not been completed"))
+    }
 
     if (errors.length === 0) return
-    throw new AggregateError(errors, "Application is incomplete")
+    throw new ClientError("Application cannot be submitted as it is incomplete", {
+      statusCode: HttpStatus.Conflict,
+      code: "ERR_APPLICATION_INCOMPLETE",
+      cause: new AggregateError(errors),
+      exposeMessage: true,
+      expected: true,
+    })
   }
 
   @onlyKnownUsers()
@@ -527,12 +550,29 @@ class ApplicationHandlers {
 
       await this.validateApplicationComplete(application)
 
-      // TODO: Create appropriate UserConsent records (in a transaction with the following query)
-
-      await prisma.user.update({
-        where: { keycloakUserId: request.userProfile.sub },
-        data: { ...payload, userInfo: { update: { applicationStatus: "submitted" } } },
-      })
+      await prisma.$transaction([
+        prisma.user.update({
+          where: { keycloakUserId: request.userProfile.sub },
+          data: {
+            userInfo: { update: { applicationStatus: "submitted" } },
+          },
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: request.userProfile.sub, consentName: "mlhCodeOfConduct" } },
+          create: { userId: request.userProfile.sub, consentName: "mlhCodeOfConduct", choice: payload.mlhCodeOfConduct },
+          update: { choice: payload.mlhCodeOfConduct }
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: request.userProfile.sub, consentName: "mlhTerms" } },
+          create: { userId: request.userProfile.sub, consentName: "mlhTerms", choice: payload.mlhTerms },
+          update: { choice: payload.mlhTerms }
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: request.userProfile.sub, consentName: "mlhMarketing" } },
+          create: { userId: request.userProfile.sub, consentName: "mlhMarketing", choice: payload.mlhMarketing },
+          update: { choice: payload.mlhMarketing }
+        })
+      ])
 
       await MailgunClient.messages.create(mailgunConfig.domain, {
         from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
