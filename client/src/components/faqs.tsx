@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@durhack/web-components/ui/accordion"
 
@@ -14,7 +12,7 @@ export default function Faqs() {
       </div>
 
       <div className="hidden lg:block">
-        <SectionHeader>FREQUENTLY ASKED QUESTIONS</SectionHeader>
+        <SectionHeader>Frequently Asked Questions</SectionHeader>
       </div>
 
       <div className="flex justify-center">
