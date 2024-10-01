@@ -6,7 +6,7 @@ import { SunGraphic } from "@/components/graphics/sun"
 import { siteConfig } from "@/config/site"
 import "@/styles/footer.css"
 
-export default function End() {
+export function End() {
   return (
     <footer className="text-white overflow-clip relative">
       <div className="pb-[10rem] sm:pb-[14rem] md:pb-[16rem] pt-[40rem] w-[90%] 2xl:w-[98rem] relative mx-auto z-10">

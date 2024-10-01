@@ -5,7 +5,7 @@ import { audiowide } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 import "@/styles/navbar.css"
 
-export default function Navbar() {
+export function Navbar() {
   return (
     <nav className={cn(audiowide.className, "hidden md:flex px-16 py-5 mx-auto relative")}>
       <a href="#splash" className="flex pr-32 space-x-4 hover:cursor-pointer absolute">

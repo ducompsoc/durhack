@@ -23,20 +23,31 @@ export const sessionOptionsSchema = z.object({
 })
 
 export const keycloakOptionsSchema = z.object({
-  url: z.string().url(),
+  realm: z.string(),
+  baseUrl: z.string().url(),
+  adminBaseUrl: z.string().url(),
   clientId: z.string(),
   clientSecret: z.string(),
   redirectUris: z.array(z.string()),
   responseTypes: z.array(z.union([z.literal("code"), z.literal("token"), z.literal("id_token"), z.literal("none")])),
 })
 
+export const mailgunOptionsSchema = z.object({
+  username: z.string(),
+  key: z.string(),
+  domain: z.string(),
+  sendAsDomain: z.string(),
+  url: z.string(),
+})
+
 export const configSchema = z.object({
   listen: listenOptionsSchema,
-  hostname: z.string().url(),
-  frontendHostname: z.string().url(),
+  origin: z.string().url(),
+  frontendOrigin: z.string().url(),
   session: sessionOptionsSchema,
   cookieSigning: cookieSigningOptionsSchema,
   keycloak: keycloakOptionsSchema,
+  mailgun: mailgunOptionsSchema,
 })
 
 export type Config = z.infer<typeof configSchema>

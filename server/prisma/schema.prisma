@@ -18,33 +18,65 @@ model Interest {
     firstNames String @db.VarChar(256)
     lastNames  String @db.VarChar(256)
     email      String @unique @db.VarChar(256)
+    year       Int    @default(2024)
 }
 
 model User {
     keycloakUserId String          @id @map("keycloak_user_id") @db.Uuid
     tokenSet       TokenSet?
     sessions       SessionRecord[]
+    userCv         UserCV?
     userInfo       UserInfo?
     userFlags      UserFlag[]
+    userConsents   UserConsent[]
 }
 
-model UserInfo{ // stores extra data not covered by keycloak
-    userId              String    @id @map("user_id") @db.Uuid
-    user                User      @relation(fields: [userId], references: [keycloakUserId])
+model UserCV {
+    userId      String @id() @map("user_id") @db.Uuid()
+    user        User   @relation(fields: [userId], references: [keycloakUserId])
+    filename    String
+    contentType String @map("content_type")
+    content     Bytes
 
-    age                 Int       @db.SmallInt
-    university          String    @db.VarChar(50)
-    graduationYear            DateTime  @db.Date         @map("graduation_year")
-    levelOfStudy        String    @db.VarChar(50)  @map("level_of_study")
-    country             String    @db.VarChar(256)
+    updatedAt DateTime @updatedAt @map("updated_at")
 }
 
-model UserFlag{
-    userId              String    @map("user_id") @db.Uuid
-    user                User      @relation(fields: [userId], references: [keycloakUserId])
-    name                String    @map("flag_name")
+model UserInfo {
+    userId String @id @map("user_id") @db.Uuid
+    user   User   @relation(fields: [userId], references: [keycloakUserId])
 
-    @@id(fields: [userId, name], name:"id", map:"user_id_and_name")
+    applicationStatus   UserApplicationStatus @default(unsubmitted) @map("application_status")
+    cvUploadChoice      CvUploadChoice        @default(indeterminate) @map("cv_upload_choice")
+    age                 Int?                  @db.SmallInt
+    university          String?               @db.VarChar(50)
+    graduationYear      Int?                  @map("graduation_year")
+    levelOfStudy        String?               @map("level_of_study") @db.VarChar(50)
+    countryOfResidence  String?               @map("country_of_residence") @db.Char(3)
+    tShirtSize          String?               @map("tshirt_size") @db.Char(3)
+    gender              Gender?
+    ethnicity           Ethnicity?
+    hackathonExperience HackathonExperience?  @map("hackathon_experience")
+    accessRequirements  String?               @map("access_requirements") @db.Text()
+
+    updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+model UserFlag {
+    userId   String @map("user_id") @db.Uuid
+    user     User   @relation(fields: [userId], references: [keycloakUserId])
+    flagName String
+
+    @@id(fields: [userId, flagName], name: "id", map: "user_flag:user_id_and_flag_name")
+    @@index(fields: [flagName])
+}
+
+model UserConsent {
+    userId      String  @map("user_id") @db.Uuid
+    user        User    @relation(fields: [userId], references: [keycloakUserId])
+    consentName String
+    choice      Boolean
+
+    @@id(fields: [userId, consentName], name: "id", map: "user_consent:user_id_and_consent_name")
 }
 
 model TokenSet {
@@ -56,8 +88,8 @@ model TokenSet {
     idToken      String?   @map("id_token")
     refreshToken String?   @map("refresh_token")
     scope        String?
-    accessExpiry DateTime? @db.Timestamp(0)
-    sessionState String?
+    accessExpiry DateTime? @map("access_expiry") @db.Timestamp(0)
+    sessionState String?   @map("session_state")
 }
 
 model SessionRecord {
@@ -65,9 +97,48 @@ model SessionRecord {
     userId          String?   @map("user_id") @db.Uuid
     user            User?     @relation(fields: [userId], references: [keycloakUserId])
     data            Json
-    expiresAt       DateTime?
+    expiresAt       DateTime? @map("expires_at")
     createdAt       DateTime  @default(now()) @map("created_at")
     updatedAt       DateTime  @updatedAt @map("updated_at")
 
     @@index([userId])
+}
+
+enum UserApplicationStatus {
+    unsubmitted
+    submitted
+    accepted
+    waitingList @map("waiting_list")
+}
+
+enum CvUploadChoice {
+    indeterminate
+    upload
+    remind
+    noUpload
+}
+
+enum Gender {
+    male
+    female
+    nonBinary         @map("non_binary")
+    other
+    preferNotToAnswer @map("prefer_not_to_answer")
+}
+
+enum Ethnicity {
+    american // "American Indian or Alaskan Native"
+    asian // "Asian / Pacific Islander"
+    black // "Black or African American"
+    hispanic //"Hispanic"
+    white // "White / Caucasian"
+    other // "Multiple ethnicity / Other"
+    preferNotToAnswer @map("prefer_not_to_answer") // "Prefer not to answer"
+}
+
+enum HackathonExperience {
+    zero // "hacka-novice"
+    upToTwo      @map("up_to_two") // "hack-tastic tourist"
+    threeToSeven @map("three_to_seven") // "hack wizard"
+    eightOrMore  @map("eight_or_more") // "hackathon guru"
 }

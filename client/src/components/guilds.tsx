@@ -6,7 +6,7 @@ import {
 } from "@/components/graphics/guild-icons"
 import { SectionHeader } from "@/components/section-header"
 
-export default function Guilds() {
+export function Guilds() {
   return (
     <div className="text-center px-8 sm:px-16 py-[24rem]">
       <SectionHeader>Guilds</SectionHeader>

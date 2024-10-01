@@ -1,9 +1,8 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "@durhack/durhack-client",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -11,7 +10,8 @@
     "check:fix": "biome check --write ."
   },
   "dependencies": {
-    "@durhack/web-components": "^0.6.0",
+    "@durhack/durhack-common": "workspace:*",
+    "@durhack/web-components": "^0.11.1",
     "@hookform/resolvers": "^3.6.0",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
@@ -22,6 +22,7 @@
     "countries-list": "^3.1.0",
     "framer-motion": "^11.5.0",
     "libphonenumber-js": "^1.11.4",
+    "module-error": "^1.0.2",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",

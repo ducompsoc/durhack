@@ -3,24 +3,36 @@ import type { ConfigIn } from "./schema"
 export default {
   listen: {
     host: "localhost",
-    port: 3021,
+    port: 3001, // DurHack project has ports 3000-3099
   },
-  hostname: "https://api.durhack.com",
-  frontendHostname: "https://durhack.com",
+  origin: "http://api.durhack-dev.com",
+  frontendOrigin: "http://durhack-dev.com",
   session: {
     cookie: {
       name: "durhack-session",
+      domain: ".durhack-dev.com",
       secure: false,
+      path: "/",
+      sameSite: "lax",
     },
   },
   cookieSigning: {
     secret: "cookie_signing_secret",
   },
   keycloak: {
-    url: "https://auth.durhack.com/realms/durhack",
+    realm: "durhack-dev",
+    baseUrl: "https://auth.durhack.com",
+    adminBaseUrl: "https://admin.auth.durhack.com",
     clientId: "not-a-real-client-id",
     clientSecret: "not-a-real-client-secret",
     responseTypes: ["code"],
-    redirectUris: ["https://api.durhack.com/auth/keycloak/callback"],
+    redirectUris: ["http://api.durhack-dev.com/auth/keycloak/callback"],
+  },
+  mailgun: {
+    username: "api",
+    key: "not-a-real-api-key",
+    domain: "mailgun.compsoc.tech",
+    sendAsDomain: "compsoc.tech",
+    url: "https://api.eu.mailgun.net",
   },
 } satisfies ConfigIn

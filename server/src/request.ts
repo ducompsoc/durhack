@@ -1,6 +1,14 @@
 import { Request as OtterRequest } from "@otterhttp/app"
+import type { Prisma } from "@prisma/client"
+import type { TokenSet as ClientTokenSet, UserinfoResponse } from "openid-client"
 
-export class Request extends OtterRequest {
+import type { KeycloakUserInfo } from "@/lib/keycloak-client"
+
+export class Request extends OtterRequest<never> {
+  user?: Prisma.UserGetPayload<{ include: { tokenSet: true } }>
+  userTokenSet?: ClientTokenSet
+  userProfile?: UserinfoResponse<KeycloakUserInfo>
+
   get origin() {
     return `${this.protocol}://${this.host}`
   }

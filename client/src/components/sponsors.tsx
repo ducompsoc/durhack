@@ -148,7 +148,7 @@ function Partner({partner, ...props}: PartnerProps) {
   )
 }
 
-export default function Sponsors() {
+export function Sponsors() {
   return (
     <section className="section sponsors">
       <div>
@@ -157,7 +157,7 @@ export default function Sponsors() {
         <div className="text-center">
           <div className="platinum flex flex-wrap justify-center gap-6">
             {platinumSponsors.map((sponsor, index) => (
-              <PlatinumSponsor sponsor={sponsor} renderTierTitle={index === 0}/>
+              <PlatinumSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0}/>
             ))}
           </div>
         </div>
@@ -165,7 +165,7 @@ export default function Sponsors() {
         <div className="text-center">
           <div className="platinum flex flex-wrap justify-center gap-6">
             {goldSponsors.map((sponsor, index) => (
-              <GoldSponsor sponsor={sponsor} renderTierTitle={index === 0}/>
+              <GoldSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0}/>
             ))}
           </div>
         </div>
@@ -173,7 +173,7 @@ export default function Sponsors() {
         <div className="text-center">
           <div className="platinum flex flex-wrap justify-center gap-6">
             {silverSponsors.map((sponsor, index) => (
-              <SilverSponsor sponsor={sponsor} renderTierTitle={index === 0}/>
+              <SilverSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0}/>
             ))}
           </div>
         </div>
@@ -183,7 +183,7 @@ export default function Sponsors() {
 
           <div className="platinum flex flex-wrap justify-center gap-6">
             {partners.map((partner) => (
-              <Partner partner={partner}/>
+              <Partner key={partner.slug} partner={partner}/>
             ))}
           </div>
         </div>

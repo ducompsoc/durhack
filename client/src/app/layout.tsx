@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 
 export const viewport = {
   themeColor: siteConfig.themeColor,
+  colorScheme: "dark light",
 } satisfies Viewport
 
 export const metadata = {
@@ -19,8 +20,8 @@ export const metadata = {
   metadataBase: new URL(siteConfig.url),
   description: siteConfig.description,
   icons: {
-    icon: ["icon/favicon.svg", "/icon/favicon.ico", "/icon/favicon-16x16.png", "./icon/favicon-32x32.png"],
-    shortcut: ["/icon/favicon-16x16.png", "./icon/favicon-32x32.png"],
+    icon: ["/icon/favicon.svg", "/icon/favicon.ico", "/icon/favicon-16x16.png", "/icon/favicon-32x32.png"],
+    shortcut: ["/icon/favicon-16x16.png", "/icon/favicon-32x32.png"],
     apple: "/icon/apple-touch-icon.png",
     other: [
       {
@@ -32,7 +33,6 @@ export const metadata = {
   },
   other: {
     "msapplication-TileColor": "#008987",
-    "theme-color": siteConfig.themeColor,
   },
   openGraph: {
     type: "website",
@@ -52,14 +52,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-GB">
-      <body className={cn(spaceGrotesk.className, "dark antialiased")}>
-        <div className="fixed top-0 overflow-visible w-[100%] z-50">
-          <MLHBanner variant="white" />
-        </div>
-        <div className="relative bg-background">
-          {children}
-        </div>
-      </body>
+      <body className={cn(spaceGrotesk.className, "dark antialiased")}>{children}</body>
     </html>
   )
 }

@@ -1,4 +1,5 @@
 export type Sponsor = {
+  slug: string,
   image: string,
   link: string,
   tier: "platinum" | "gold" | "silver"
@@ -11,6 +12,7 @@ export const goldSponsors = sponsors.filter((sponsor) => sponsor.tier === "gold"
 export const silverSponsors = sponsors.filter((sponsor) => sponsor.tier === "silver")
 
 export type Partner = {
+  slug: string,
   image: string,
   link: string,
 }

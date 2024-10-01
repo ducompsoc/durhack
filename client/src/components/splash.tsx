@@ -10,7 +10,7 @@ import { audiowide } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 import "@/styles/splash.css"
 
-export default function Splash() {
+export function Splash() {
   const ref = React.useRef(null)
 
   const { scrollYProgress } = useScroll({
