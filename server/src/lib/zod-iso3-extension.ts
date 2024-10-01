@@ -1,4 +1,4 @@
-import countries3to2 from "countries-list/minimal/countries.3to2.min.json"
+import countries3to2 from "countries-list/minimal/countries.3to2.min.json" with { type: "json" }
 import { type ZodEffects, ZodString, type ZodType } from "zod"
 
 declare module "zod" {

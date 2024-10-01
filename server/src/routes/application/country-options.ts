@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto"
 import { getCountryDataList } from "countries-list"
-import countriesEmoji from "countries-list/minimal/countries.emoji.min.json"
+import countriesEmoji from "countries-list/minimal/countries.emoji.min.json" with { type: "json" }
 
 import type { Middleware } from "@/types"
 
