@@ -1,4 +1,3 @@
-import Image from "next/image"
 import type * as React from "react"
 
 import { cn } from "@/lib/utils"
@@ -20,8 +19,8 @@ export function LeftStarsGraphic({ className, priority, ...props }: StarsGraphic
           d="M83.8523 126.251C92.3523 126.251 92.6023 125.331 92.6023 114.981C92.6023 125.331 92.6023 126.251 101.352 126.251C92.6023 126.251 92.6023 127.171 92.6023 137.521C92.6023 127.171 92.3523 126.251 83.8523 126.251Z"
           fill="white"
           stroke="white"
-          stroke-width="2"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinejoin="round"
         />
       </svg>
     </div>
@@ -41,8 +40,8 @@ export function RightStarsGraphic({ className, priority, ...props }: StarsGraphi
           d="M83.8523 126.251C92.3523 126.251 92.6023 125.331 92.6023 114.981C92.6023 125.331 92.6023 126.251 101.352 126.251C92.6023 126.251 92.6023 127.171 92.6023 137.521C92.6023 127.171 92.3523 126.251 83.8523 126.251Z"
           fill="white"
           stroke="white"
-          stroke-width="2"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinejoin="round"
         />
       </svg>
     </div>
