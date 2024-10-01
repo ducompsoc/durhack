@@ -31,13 +31,13 @@ export default function Navbar() {
         <li>
           <a href="#faqs">FAQs</a>
         </li>
-        <li>
+        <li className="hidden">
           <a href="#sponsors">Sponsors</a>
         </li>
         <li>
           <a href="#gallery">Gallery</a>
         </li>
-        <li>
+        <li className="hidden">
           <a href="#end">Team</a>
         </li>
       </ul>
