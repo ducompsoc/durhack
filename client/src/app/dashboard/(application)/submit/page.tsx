@@ -274,7 +274,7 @@ function SubmitFormSkeleton() {
 /*
 todo: conditionally render based on application status
  - don't allow the user to think submission is possible when already submitted
- - ensure the user can still view their responses to the various consent questions
+ - ensure the user can still view their responses to the various consent questions, with checkboxes disabled
  */
 export default function SubmitPage() {
   const { application, applicationIsLoading} = useApplicationContext()
