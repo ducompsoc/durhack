@@ -61,7 +61,7 @@ const cvFormSchema = z.discriminatedUnion("cvUploadChoice", [
       )
       .length(1, "Please provide exactly one CV file!"),
   }),
-])
+], { errorMap: () => ({ message: "Please select an option." }) })
 
 /**
  * This component accepts <code>application</code> via props, rather than via
