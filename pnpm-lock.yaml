@@ -14,8 +14,8 @@ importers:
         specifier: workspace:*
         version: link:../common
       '@durhack/web-components':
-        specifier: ^0.11.0
-        version: 0.11.0(@types/react-dom@18.3.0)(@types/react@18.3.10)(next@14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.79.4))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.13)
+        specifier: ^0.11.1
+        version: 0.11.1(@types/react-dom@18.3.0)(@types/react@18.3.10)(next@14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.79.4))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.13)
       '@hookform/resolvers':
         specifier: ^3.6.0
         version: 3.9.0(react-hook-form@7.53.0(react@18.3.1))
@@ -268,8 +268,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@durhack/web-components@0.11.0':
-    resolution: {integrity: sha512-MiftMWKNfcHwNYDS7IMjnAekmI6jLq5eh4KfS1+heVq7arCRB5KmZPu5PLKnZp/fnBBUp2jTuDnVSDkKU2Mkiw==}
+  '@durhack/web-components@0.11.1':
+    resolution: {integrity: sha512-YC0eP1jVi2If3BTUiZLyXDc6Y3UGXpU020wnPsECxHwQoxBT7mcJtXsEMMRlrlacMSwD/lu3L+WSWLgvQlwbJg==}
     peerDependencies:
       next: ^14
       react: ^18
@@ -3639,7 +3639,7 @@ snapshots:
   '@biomejs/cli-win32-x64@1.9.2':
     optional: true
 
-  '@durhack/web-components@0.11.0(@types/react-dom@18.3.0)(@types/react@18.3.10)(next@14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.79.4))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.13)':
+  '@durhack/web-components@0.11.1(@types/react-dom@18.3.0)(@types/react@18.3.10)(next@14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.79.4))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.13)':
     dependencies:
       '@hookform/resolvers': 3.9.0(react-hook-form@7.53.0(react@18.3.1))
       '@radix-ui/react-accordion': 1.2.0(@types/react-dom@18.3.0)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -5375,7 +5375,7 @@ snapshots:
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.6.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.30.0(eslint@8.57.1))(eslint@8.57.1)
-      eslint-plugin-import: 2.30.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.6.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.30.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-plugin-import: 2.30.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.10.0(eslint@8.57.1)
       eslint-plugin-react: 7.37.0(eslint@8.57.1)
       eslint-plugin-react-hooks: 4.6.2(eslint@8.57.1)
@@ -5406,7 +5406,7 @@ snapshots:
       is-bun-module: 1.2.1
       is-glob: 4.0.3
     optionalDependencies:
-      eslint-plugin-import: 2.30.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.6.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.30.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-plugin-import: 2.30.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
       - eslint-import-resolver-node
@@ -5424,7 +5424,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.30.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.6.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.30.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
+  eslint-plugin-import@2.30.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.8
