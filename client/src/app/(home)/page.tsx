@@ -25,7 +25,7 @@ export default function HomePage() {
         <About />
       </section>
 
-      <section id="sponsors" className="h-[1rem]" />
+      <section id="sponsors" className="h-[5rem]" />
 
       <section id="guilds">
         <Guilds />
