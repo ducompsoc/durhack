@@ -24,6 +24,7 @@ export const siteConfig = {
   ] as const satisfies readonly socialLink[],
 }
 
+/* needed in development but is breaking production
 if (PHASE_DEVELOPMENT_SERVER) {
   Object.assign(siteConfig, {
     url: "http://durhack-dev.com",
@@ -31,3 +32,4 @@ if (PHASE_DEVELOPMENT_SERVER) {
     authUrl: "https://auth.durhack.com/dev",
   })
 }
+*/
