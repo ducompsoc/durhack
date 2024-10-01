@@ -1,12 +1,10 @@
 "use client"
 
 import * as React from "react"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@durhack/web-components/ui/accordion"
 
-import configJson from "@/components/componentInfo"
+import { faqs } from "@/config/faqs"
 import { SectionHeader } from "@/components/section-header"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-
-const faqs = configJson.faqs
 
 export default function Faqs() {
   return (
@@ -21,16 +19,14 @@ export default function Faqs() {
 
       <div className="flex justify-center">
         <div className="w-[90%] max-w-[50rem]">
-          <ul className="list-none mb-5 py-1">
-            {faqs.map((question) => (
-              <Accordion type="single" collapsible>
-                <AccordionItem value="item">
-                  <AccordionTrigger>{question.question}</AccordionTrigger>
-                  <AccordionContent>{question.answers} </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+          <Accordion type="single" collapsible>
+            {faqs.map((question, index) => (
+              <AccordionItem className="border-white" value={`item-${index}`} key={index}>
+                <AccordionTrigger>{question.question}</AccordionTrigger>
+                <AccordionContent>{question.answer} </AccordionContent>
+              </AccordionItem>
             ))}
-          </ul>
+          </Accordion>
         </div>
       </div>
     </div>

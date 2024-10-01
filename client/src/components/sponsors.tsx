@@ -1,6 +1,6 @@
 "use client"
 
-import configJson from "@/components/componentInfo"
+import configJson from "@/config/faqs"
 import { SectionHeader } from "./section-header"
 
 const sponsors = configJson.sponsors
