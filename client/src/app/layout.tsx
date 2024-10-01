@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next"
 
 import "@/styles/globals.css"
+import { Footer } from "@/components/footer"
+import { MLHBanner } from "@/components/mlh-banner"
 import { siteConfig } from "@/config/site"
 import { spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
@@ -32,16 +34,14 @@ export const metadata = {
   other: {
     "msapplication-TileColor": "#008987",
   },
-   openGraph: {
+  openGraph: {
     type: "website",
     locale: "en-GB",
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
-    images: [
-      { url: siteConfig.openGraphImage, },
-    ],
+    images: [{ url: siteConfig.openGraphImage }],
   },
 } satisfies Metadata
 
