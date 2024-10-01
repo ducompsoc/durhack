@@ -23,7 +23,7 @@
     "framer-motion": "^11.5.0",
     "libphonenumber-js": "^1.11.4",
     "module-error": "^1.0.2",
-    "next": "14.2.3",
+    "next": "14.2.13",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.0",
