@@ -1,7 +1,7 @@
-import { PHASE_DEVELOPMENT_SERVER } from "next/constants"
 import type * as React from "react"
 
 import { FacebookIcon, GitHubIcon, InstagramIcon, LinkedInIcon, TikTokIcon, XIcon } from "@/components/icons"
+import { isDevelopment } from "@/lib/environment"
 
 type socialLink = { key: string; href: string; icon: React.FC }
 
@@ -24,12 +24,10 @@ export const siteConfig = {
   ] as const satisfies readonly socialLink[],
 }
 
-/* needed in development but is breaking production
-if (PHASE_DEVELOPMENT_SERVER) {
+if (isDevelopment) {
   Object.assign(siteConfig, {
     url: "http://durhack-dev.com",
     apiUrl: "http://api.durhack-dev.com",
     authUrl: "https://auth.durhack.com/dev",
   })
 }
-*/
