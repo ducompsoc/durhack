@@ -15,8 +15,6 @@
     "strict": true,
     "skipLibCheck": true,
     "newLine": "lf",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "paths": {
       "@/*": ["./src/*"]
     }

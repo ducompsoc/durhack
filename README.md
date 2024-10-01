@@ -1,34 +1,17 @@
 # DurHack 2023 Website
 This repository is the latest website for DurHack.
 
-We're hosting this using Netlify at [durhack.com](https://durhack.com).
+We're hosting the `client` project using Netlify at [durhack.com](https://durhack.com).
+Any changes to the `main` branch are deployed automatically. 
 
-## Quick Start
-1. Clone this repo:
-    ```
-    git clone https://github.com/ducompsoc/durhack
-    ```
+The `archive/xyz` branches are also deployed using Netlify.
 
-2. Install dependencies:
-    ```
-    npm install
-    ```
+We're hosting the `server` project on an IONOS VPS at [api.durhack.com](https://api.durhack.com).
+Changes to the `main` branch are **not** deployed automatically.
 
-3. Build static site:
-    ```
-    npm run build
-    ```
+## Setup for Contributors
 
-4. Install `netlify-cli` globally if you haven't already:
-    ```
-    npm install -g netlify-cli
-    ```
-    https://docs.netlify.com/cli/get-started/
-
-5. Start local development server:
-    ```
-    netlify dev
-    ```
+- Todo (@Lordfirespeed)
 
 ## Questions, Comments and Concerns
 Drop us a line at [hello@durhack.com](mailto:hello@durhack.com)!

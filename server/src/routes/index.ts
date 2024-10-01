@@ -1,7 +1,22 @@
-import { App } from "@tinyhttp/app"
+import { App } from "@otterhttp/app"
 
-import { registerInterestRoutesApp } from "@/routes/register-interest"
+import { methodNotAllowed } from "@/middleware/method-not-allowed"
+import { applicationApp } from "@/routes/application"
+import { authApp } from "@/routes/auth"
+import { userApp } from "@/routes/user"
+import { profilesApp } from "@/routes/profiles"
+import type { Request, Response } from "@/types"
 
-export const routesApp = new App()
+export const routesApp = new App<Request, Response>()
 
-routesApp.use("register-interest", registerInterestRoutesApp)
+routesApp
+  .route("/")
+  .all(methodNotAllowed(["GET"]))
+  .get((request, response) => {
+    response.sendStatus(200)
+  })
+
+routesApp.use("/auth", authApp)
+routesApp.use("/user", userApp)
+routesApp.use("/application", applicationApp)
+routesApp.use("/profiles/:userId", profilesApp)

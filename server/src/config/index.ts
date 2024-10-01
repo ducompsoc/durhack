@@ -21,6 +21,14 @@ const config = await loadConfig({
   }),
 })
 
-export const { listen: listenConfig, url, siteUrl } = config
+export const {
+  listen: listenConfig,
+  origin,
+  frontendOrigin,
+  session: sessionConfig,
+  cookieSigning: cookieSigningConfig,
+  keycloak: keycloakConfig,
+  mailgun: mailgunConfig,
+} = config
 
 export { config }

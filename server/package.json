@@ -1,5 +1,5 @@
 {
-  "name": "durhack-server",
+  "name": "@durhack/durhack-server",
   "private": true,
   "scripts": {
     "start": "node dist/index.cjs",
@@ -13,23 +13,34 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@prisma/client": "^5.15.1",
-    "@tinyhttp/app": "^2.2.3",
-    "@tinyhttp/logger": "^2.0.0",
+    "@durhack/durhack-common": "workspace:*",
+    "@keycloak/keycloak-admin-client": "^25.0.5",
+    "@otterhttp/app": "^3.4.4",
+    "@otterhttp/cookie-signature": "^3.0.0",
+    "@otterhttp/errors": "^0.2.1",
+    "@otterhttp/parsec": "^0.2.1",
+    "@otterhttp/session": "^0.3.1",
+    "@prisma/client": "^5.19.1",
     "corstisol": "^1.0.0",
-    "milliparsec": "^2.3.0",
+    "countries-list": "^3.1.0",
+    "file-type": "^19.5.0",
+    "form-data": "^4.0.0",
+    "libphonenumber-js": "^1.11.4",
+    "mailgun.js": "^10.2.3",
+    "openid-client": "^5.6.5",
     "zod": "^3.23.8",
     "zod-config": "^0.0.5"
   },
   "type": "module",
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@types/node": "^20.14.6",
+    "@types/node": "^22.5.3",
     "glob": "^11.0.0",
-    "prisma": "^5.15.1",
+    "prisma": "^5.19.1",
     "tsup": "^8.2.3",
     "tsx": "^4.15.6",
-    "typescript": "^5.4.5",
+    "typescript": "^5.5.4",
     "vitest": "^2.0.5"
-  }
+  },
+  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c"
 }
