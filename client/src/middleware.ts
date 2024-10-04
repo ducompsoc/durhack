@@ -12,7 +12,7 @@ type User = {
 
 async function getUserProfile(request: NextRequest): Promise<User | null> {
   let userProfile: { data: User } | undefined
-  const sessionCookie = request.cookies.get("durhack-session")
+  const sessionCookie = request.cookies.get(siteConfig.sessionCookieName)
   if (sessionCookie != null) {
     const userProfileResponse = await fetch(new URL("/user", siteConfig.apiUrl), {
       // biome-ignore lint/style/noNonNullAssertion: we know the 'cookie' header is set because we asserted the session cookie is non-null
