@@ -31,9 +31,6 @@ importers:
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.13
-      autoprefixer:
-        specifier: ^10.4.19
-        version: 10.4.20(postcss@8.4.47)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -92,6 +89,9 @@ importers:
       '@types/react-dom':
         specifier: ^18
         version: 18.3.0
+      autoprefixer:
+        specifier: ^10.4.19
+        version: 10.4.20(postcss@8.4.47)
       eslint:
         specifier: ^8
         version: 8.57.1
