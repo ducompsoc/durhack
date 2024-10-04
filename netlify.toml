@@ -1,5 +1,5 @@
 [build]
-  command = "pnpm --filter \"{client}...\" install && pnpm --filter \"{client}...\" build"
+  command = "pnpm --filter \"{client}...\" install --prod=false && pnpm --filter \"{client}...\" build"
   publish = "client/.next/"
 
 [build.environment]
