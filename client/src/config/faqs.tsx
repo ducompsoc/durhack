@@ -16,6 +16,15 @@ export const faqs = [
     </>
   },
   {
+    slug: "venue",
+    question: "Where is DurHack happening?",
+    answer: <>
+      <p>DurHack will be hosted at Durham University's Teaching and Learning Centre, South Road, Durham, DH1 3LS, England.</p>
+      <p>Google Maps: <a className="underline" href="https://maps.app.goo.gl/LCoCEsoYP45S6rVDA">Teaching and Learning Centre • Durham University</a></p>
+      <p>what3words: <a className="underline" href="https://what3words.com/thank.shop.merit"><code>thank.shop.merit</code></a></p>
+    </>
+  },
+  {
     slug: "travel-costs",
     question: "Will I be able to get my travel costs reimbursed?",
     answer: <>
