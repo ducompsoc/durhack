@@ -22,6 +22,7 @@ export const siteConfig = {
     { key: "linkedin", href: "https://www.linkedin.com/company/durhack/mycompany/", icon: LinkedInIcon },
     { key: "x", href: "https://x.com/durhackevent", icon: XIcon },
   ] as const satisfies readonly socialLink[],
+  sessionCookieName: "__Secure-durhack-session",
 }
 
 if (isDevelopment) {
@@ -29,6 +30,7 @@ if (isDevelopment) {
     url: "http://durhack-dev.com",
     apiUrl: "http://api.durhack-dev.com",
     authUrl: "https://auth.durhack.com/dev",
+    sessionCookieName: "durhack-session",
   })
 }
 
