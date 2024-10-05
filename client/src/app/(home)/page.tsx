@@ -25,7 +25,9 @@ export default function HomePage() {
       </section>
 
       <section id="faqs">
-        <div id="background" className="ellipse" />
+        <div className="absolute overflow-hidden w-full h-full">
+          <div id="background" className="ellipse" />
+        </div>
         <AnimatedMountain />
         <Faqs className="z-30 relative pt-16 lg:pt-32"/>
       </section>

@@ -41,8 +41,8 @@ section#faqs {
   #background {
     background: linear-gradient(180deg, #216782, #306379);
     position: absolute;
-    overflow: hidden;
-    height: 100%;
+    height: 75rem;
+    min-height: 100%;
     width: 100%;
   }
 }
