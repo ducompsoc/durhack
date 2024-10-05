@@ -148,71 +148,115 @@ export const partners: Partner[] = [
   {
     slug: "major-league-hacking",
     image: (props) => (
-      <></>
+      <Image
+        src="/assets/sponsors/mlh-logo-color.svg"
+        alt="Major League Hacking"
+        width={310.59}
+        height={130.78}
+        {...props}
+      />
     ),
     link: "https://mlh.io/"
   },
   {
     slug: "durham-uni-computing-society",
     image: (props) => (
-      <></>
+      <Image
+        src="/assets/sponsors/compsoc-v5-with-text.svg"
+        alt="Durham University Computing Society"
+        width={534.81}
+        height={169.33}
+        {...props}
+      />
     ),
     link: "https://compsoc.tech"
   },
   {
     slug: "overleaf",
     image: (props) => (
-      <></>
+      <Image
+        src="/assets/sponsors/overleaf.svg"
+        alt="Overleaf"
+        width={130}
+        height={38}
+        {...props}
+      />
     ),
     link: "https://www.overleaf.com/"
   },
   {
     slug: "keyboard-co",
     image: (props) => (
-      <></>
+      <Image
+        src="/assets/sponsors/keyboard-company.svg"
+        alt="The Keyboard Company"
+        width={566.9}
+        height={198.4}
+        {...props}
+      />
     ),
     link: "https://www.keyboardco.com/"
   },
   {
     slug: "rs-components",
     image: (props) => (
-      <></>
+      <Image
+        src="/assets/sponsors/rs-components.svg"
+        alt="RS Components"
+        width={24}
+        height={24}
+        {...props}
+      />
     ),
     link: "https://uk.rs-online.com/web/"
   },
   {
-    slug: "pragmatic",
+    slug: "pragmatic-semi",
     image: (props) => (
-      <></>
+      <Image
+        src="/assets/sponsors/pragmatic-semi.svg"
+        alt="Pragmatic Semiconductor"
+        width={703.7}
+        height={258.4}
+        {...props}
+      />
     ),
     link: "https://www.pragmaticsemi.com/"
   },
   {
     slug: "durham-uni-computer-science",
     image: (props) => (
-      <></>
+      <Image
+        src="/assets/sponsors/durham-uni.svg"
+        alt="Durham University Computer Science"
+        width={703.7}
+        height={258.4}
+        {...props}
+      />
     ),
     link: "https://www.durham.ac.uk/departments/academic/computer-science/"
   },
   {
-    slug: "venture-lab",
+    slug: "durham-uni-venture-lab",
     image: (props) => (
-      <></>
+      <Image
+        src="/assets/sponsors/venture-lab.svg"
+        alt="Durham University Venture Lab"
+        width={120}
+        height={120}
+        {...props}
+      />
     ),
     link: "https://www.durham.ac.uk/venturelab"
   },
   {
     slug: "durham-uni-esports-and-gaming",
-    image: (props) => (
-      <></>
-    ),
+    image: (props) => null,
     link: "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/"
   },
   {
     slug: "durham-uni-student-union",
-    image: (props) => (
-      <></>
-    ),
+    image: (props) => null,
     link: "https://www.durhamsu.com/"
   }
 ]
