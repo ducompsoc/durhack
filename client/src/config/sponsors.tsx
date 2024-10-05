@@ -106,8 +106,8 @@ export const sponsors: Sponsor[] = [
       <Image
         src="/assets/sponsors/accenture.svg"
         alt="Accenture"
-        width={0}
-        height={0}
+        width={909}
+        height={240}
         {...props}
       />
     ),
