@@ -8,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function ErrorPage() {
-  return <ErrorPageClient />
+  return (
+    <React.Suspense fallback={null}>
+      <ErrorPageClient />
+    </React.Suspense>
+  )
 }
