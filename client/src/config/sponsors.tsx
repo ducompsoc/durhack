@@ -140,7 +140,7 @@ export const silverSponsors = signedSponsors.filter((sponsor) => sponsor.tier ==
 
 export type Partner = {
   slug: string,
-  image: React.FC<React.HTMLAttributes<HTMLElement>>,
+  image: React.FC<React.HTMLAttributes<HTMLElement>> | null,
   link: string,
 }
 
@@ -251,12 +251,12 @@ export const partners: Partner[] = [
   },
   {
     slug: "durham-uni-esports-and-gaming",
-    image: (props) => null,
+    image: null,
     link: "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/"
   },
   {
     slug: "durham-uni-student-union",
-    image: (props) => null,
+    image: null,
     link: "https://www.durhamsu.com/"
   },
   {

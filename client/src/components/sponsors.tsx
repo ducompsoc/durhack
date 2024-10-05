@@ -141,7 +141,9 @@ type PartnerProps = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 function Partner({partner, ...props}: PartnerProps) {
+  if (partner.image == null) return null
   const PartnerImage = partner.image
+
   return (
     <div className="sponsor biggest" {...props}>
       <a
