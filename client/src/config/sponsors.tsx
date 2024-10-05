@@ -144,4 +144,75 @@ export type Partner = {
   link: string,
 }
 
-export const partners: Partner[] = []
+export const partners: Partner[] = [
+  {
+    slug: "major-league-hacking",
+    image: (props) => (
+      <></>
+    ),
+    link: "https://mlh.io/"
+  },
+  {
+    slug: "durham-uni-computing-society",
+    image: (props) => (
+      <></>
+    ),
+    link: "https://compsoc.tech"
+  },
+  {
+    slug: "overleaf",
+    image: (props) => (
+      <></>
+    ),
+    link: "https://www.overleaf.com/"
+  },
+  {
+    slug: "keyboard-co",
+    image: (props) => (
+      <></>
+    ),
+    link: "https://www.keyboardco.com/"
+  },
+  {
+    slug: "rs-components",
+    image: (props) => (
+      <></>
+    ),
+    link: "https://uk.rs-online.com/web/"
+  },
+  {
+    slug: "pragmatic",
+    image: (props) => (
+      <></>
+    ),
+    link: "https://www.pragmaticsemi.com/"
+  },
+  {
+    slug: "durham-uni-computer-science",
+    image: (props) => (
+      <></>
+    ),
+    link: "https://www.durham.ac.uk/departments/academic/computer-science/"
+  },
+  {
+    slug: "venture-lab",
+    image: (props) => (
+      <></>
+    ),
+    link: "https://www.durham.ac.uk/venturelab"
+  },
+  {
+    slug: "durham-uni-esports-and-gaming",
+    image: (props) => (
+      <></>
+    ),
+    link: "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/"
+  },
+  {
+    slug: "durham-uni-student-union",
+    image: (props) => (
+      <></>
+    ),
+    link: "https://www.durhamsu.com/"
+  }
+]
