@@ -11,7 +11,7 @@ import {
 } from "@/config/sponsors"
 import { SectionHeader } from "@/components/section-header"
 
-const sponsorScale = 0.7
+const sponsorScale = 0.581
 const tierWidths = {
   platinum: 200,
   gold: 150,
@@ -48,6 +48,7 @@ const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<type
   ),
 }
 
+const partnerScale = 0.75
 const partnerWidth = 200
 
 type SponsorProps = {
@@ -71,8 +72,8 @@ function SponsorContent({ sponsor }: { sponsor: Sponsor }) {
     >
       <SponsorImage
         style={{
-          width: `${Math.round((tierWidths[sponsor.tier] * 0.83) * sponsorScale)}px`,
-          maxHeight: `${Math.round((tierWidths[sponsor.tier] * 0.83) * sponsorScale)}px`,
+          width: `${Math.round(tierWidths[sponsor.tier] * sponsorScale)}px`,
+          maxHeight: `${Math.round(tierWidths[sponsor.tier] * sponsorScale)}px`,
         }}
         className="relative z-40"
       />
@@ -154,6 +155,10 @@ function Partner({partner, ...props}: PartnerProps) {
         rel="noreferrer"
       >
         <PartnerImage
+          style={{
+            width: `${Math.round(partnerWidth * partnerScale)}px`,
+            maxHeight: `${Math.round(partnerWidth * partnerScale / 2)}px`,
+          }}
           className="relative z-40"
         />
         <Image
