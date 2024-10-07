@@ -250,6 +250,19 @@ export const partners: Partner[] = [
     link: "https://www.durham.ac.uk/venturelab"
   },
   {
+    slug: "stand-out-stickers",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/stand-out-stickers.svg"
+        alt="StandOut Stickers"
+        width={230}
+        height={122.55}
+        {...props}
+      />
+    ),
+    link: "hackp.ac/mlh-standoutstickers-hackathons"
+  },
+  {
     slug: "durham-uni-esports-and-gaming",
     image: null,
     link: "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/"
