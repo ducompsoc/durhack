@@ -260,7 +260,7 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "hackp.ac/mlh-standoutstickers-hackathons"
+    link: "https://hackp.ac/mlh-standoutstickers-hackathons"
   },
   {
     slug: "durham-uni-esports-and-gaming",
