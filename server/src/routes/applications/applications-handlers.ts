@@ -31,7 +31,8 @@ class ApplicationsHandlers {
   /**
    * Returns a middleware that handles a GET request by responding with a JSON payload containing a list of
    * institutions and their application counts.
-   * Only institutions with applications are included; omission of an institution means it has zero applications.
+   * Only institutions with applications are included; omission of an institution means there are zero submitted
+   * applications from students attending that institution.
    */
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsByInstitution(): Middleware {
@@ -62,7 +63,8 @@ class ApplicationsHandlers {
   /**
    * Returns a middleware that handles a GET request by responding with a JSON payload containing a list of
    * levels of study and their application counts.
-   * Only levels of study with applications are included; omission of a level of study means it has zero applications.
+   * Only levels of study with applications are included; omission of a level of study means there are zero submitted
+   * applications from students at that level of study.
    */
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsByLevelOfStudy(): Middleware {
@@ -93,7 +95,8 @@ class ApplicationsHandlers {
   /**
    * Returns a middleware that handles a GET request by responding with a JSON payload containing a list of
    * disciplines of study and their application counts.
-   * Only disciplines of study with applications are included; omission of a discipline of study means it has zero applications.
+   * Only disciplines of study with applications are included; omission of a discipline of study means there are
+   * zero submitted applications which list that discipline of study.
    */
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsByDisciplineOfStudy(): Middleware {
