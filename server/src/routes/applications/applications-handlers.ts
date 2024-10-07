@@ -1,4 +1,7 @@
-import { getApplicationsGroupedByDisciplineOfStudy } from "@prisma/client/sql"
+import {
+  getApplicationsGroupedByDisciplineOfStudy,
+  getApplicationsGroupedByDietaryRequirement,
+} from "@prisma/client/sql"
 
 import { Group, onlyGroups } from "@/decorators/authorise"
 import type { Middleware } from "@/types"
@@ -104,6 +107,26 @@ class ApplicationsHandlers {
       const result = await prisma.$queryRawTyped(getApplicationsGroupedByDisciplineOfStudy())
       const rows = result.map((resultItem) => ({
         discipline_of_study: resultItem.disciplineOfStudy,
+        application_count: Number(resultItem.count)
+      }))
+      response.json({
+        data: rows
+      })
+    }
+  }
+
+  /**
+   * Returns a middleware that handles a GET request by responding with a JSON payload containing a list of
+   * dietary requirements and their application counts.
+   * Only dietary requirements with applications are included; omission of a dietary requirement means there are zero
+   * applications which list that requirement.
+   */
+  @onlyGroups([Group.organisers, Group.admins])
+  getApplicationsByDietaryRequirement(): Middleware {
+    return async (request, response) => {
+      const result = await prisma.$queryRawTyped(getApplicationsGroupedByDietaryRequirement())
+      const rows = result.map((resultItem) => ({
+        dietary_requirement: resultItem.dietaryRequirement,
         application_count: Number(resultItem.count)
       }))
       response.json({
