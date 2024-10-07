@@ -307,7 +307,7 @@ class ApplicationHandlers {
       assert(user)
 
       const body = await json(request, response)
-      let payload = extraDetailsFormSchema.parse(body)
+      const payload = extraDetailsFormSchema.parse(body)
 
       const prismaUserInfoFields = {
         tShirtSize: payload.tShirtSize,
