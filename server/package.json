@@ -9,6 +9,7 @@
     "check:fix": "biome check --write .",
     "dev": "tsx src/main.ts",
     "dev:watch": "tsx watch src/main.ts",
+    "generate": "prisma generate && prisma generate --sql",
     "test": "vitest run --silent",
     "type-check": "tsc --noEmit"
   },
