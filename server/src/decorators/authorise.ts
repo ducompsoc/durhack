@@ -67,6 +67,7 @@ export function onlyGroups(groups: Group[]) {
 
 export enum Group {
   admins = "/admins",
+  organisers = "/organisers",
   volunteers = "/volunteers",
   hackers = "/hackers",
 }
