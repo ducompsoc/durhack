@@ -6,8 +6,11 @@ import { authenticate } from "@/middleware/authenticate";
 import { forbiddenOrUnauthorised } from "@/middleware/forbidden-or-unauthorised";
 
 import { applicationsHandlers } from "./applications-handlers";
+import { applicationsDataExportApp } from "./data-export"
 
 export const applicationsApp = new App<Request, Response>()
+
+applicationsApp.use("/data-export", applicationsDataExportApp)
 
 applicationsApp.route("/")
   .all(methodNotAllowed(["GET"]))
