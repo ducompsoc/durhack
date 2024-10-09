@@ -44,7 +44,7 @@ const submitFormSchema = z.object({
   dsuPrivacy: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
   hukPrivacy: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
   hukMarketing: z.boolean(),
-  media: z.boolean(),
+  media: z.boolean({ message: "Please specify" }),
 })
 
 function ConsentCard({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
@@ -102,7 +102,7 @@ function SubmitForm({ application }: { application: Application }) {
       dsuPrivacy: application.consents.find((consent) => consent.name === "dsuPrivacy")?.choice ?? false,
       hukPrivacy: application.consents.find((consent) => consent.name === "hukPrivacy")?.choice ?? false,
       hukMarketing: application.consents.find((consent) => consent.name === "hukMarketing")?.choice ?? false,
-      media: application.consents.find((consent) => consent.name === "media")?.choice ?? false,
+      media: application.consents.find((consent) => consent.name === "media")?.choice ?? "indeterminate",
     },
   })
 
