@@ -98,7 +98,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://assured-dp.com/",
     tier: "silver",
-    signed: false,
+    signed: true,
   },
   {
     slug: "accenture",
