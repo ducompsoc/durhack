@@ -34,7 +34,7 @@ const nextConfig = {
         source: "/tickets",
         destination: "/",
         permanent: false,
-      }
+      },
     ]
   },
 }
