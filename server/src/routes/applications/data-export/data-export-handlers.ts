@@ -27,7 +27,7 @@ class DataExportHandlers {
         await pipeline(
           Readable.from(generateUserInfo()), // this source yields 'chunks' of 10 `UserInfo` as `UserInfo[]`s
           new ExtractIdFromUserInfoTransform(), // this transform consumes `UserInfo[]`s and yields a single string for each
-          createWriteStream(fileDestination), // this transform consumes single strings / Buffers at a time
+          createWriteStream(fileDestination), // this sink consumes single strings / Buffers at a time
         )
 
         await response.download(fileDestination, "major-league-hacking-data-export.txt")
