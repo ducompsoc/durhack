@@ -1,33 +1,15 @@
 import { ServerError } from "@otterhttp/errors"
+import { Readable } from "node:stream"
+import { pipeline } from "node:stream/promises"
+import { createWriteStream } from "node:fs"
+import { resolve as pathResolve } from "node:path"
 
 import { Group, onlyGroups } from "@/decorators/authorise"
-import { prisma, type UserInfo } from "@/database"
+import { dirname } from "@/dirname"
 import type { Middleware } from "@/types"
 
-async function* generateUserInfo(): AsyncGenerator<UserInfo[], undefined> {
-  let cursor: string | undefined
-  do {
-    const results = await prisma.userInfo.findMany({
-      take: 10,
-      skip: cursor == null ? 0 : 1,
-      cursor: {
-        userId: cursor
-      },
-      where: {
-        applicationStatus: {
-          equals: "submitted"
-        }
-      },
-      orderBy: {
-        userId: 'asc',
-      },
-    })
-
-    cursor = results[9]?.userId
-    yield results
-  }
-  while (cursor != undefined)
-}
+import { generateUserInfo } from "./user-info-async-generator"
+import { ExtractIdFromUserInfoTransform } from "./extract-id-from-user-info-transform"
 
 class DataExportHandlers {
   /**
@@ -37,10 +19,15 @@ class DataExportHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getMajorLeagueHacking(): Middleware {
     return async (request, response) => {
-      throw new ServerError("Hackathons UK data export is not implemented", {
-        statusCode: 501,
-        exposeMessage: true,
-      })
+      const fileDestination = pathResolve(dirname, "..", "tmp", "user_ids.txt")
+
+      await pipeline(
+        Readable.from(generateUserInfo()), // this source yields 'chunks' of 10 `UserInfo` as `UserInfo[]`s
+        new ExtractIdFromUserInfoTransform(), // this transform consumes `UserInfo[]`s and yields a single string for each
+        createWriteStream(fileDestination), // this transform consumes single strings / Buffers at a time
+      )
+
+      response.download(fileDestination)
     }
   }
 
