@@ -26,7 +26,7 @@ class DataExportHandlers {
 
         await pipeline(
           Readable.from(generateUserInfo()), // this source yields 'chunks' of 10 `UserInfo` as `UserInfo[]`s
-          new ExtractIdFromUserInfoTransform(), // this transform consumes `UserInfo[]`s and yields a single string for each
+          new ExtractIdFromUserInfoTransform(), // this transform consumes `UserInfo` chunks and yields a single string for each chunk
           createWriteStream(fileDestination), // this sink consumes single strings / Buffers at a time
         )
 
