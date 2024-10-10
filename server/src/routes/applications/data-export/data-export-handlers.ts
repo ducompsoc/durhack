@@ -4,7 +4,7 @@ import { Group, onlyGroups } from "@/decorators/authorise"
 import { prisma, type UserInfo } from "@/database"
 import type { Middleware } from "@/types"
 
-async function* generateUserInfo(): AsyncGenerator<UserInfo, undefined> {
+async function* generateUserInfo(): AsyncGenerator<UserInfo[], undefined> {
   let cursor: string | undefined
   do {
     const results = await prisma.userInfo.findMany({
@@ -24,9 +24,7 @@ async function* generateUserInfo(): AsyncGenerator<UserInfo, undefined> {
     })
 
     cursor = results[9]?.userId
-    for (const userInfo of results) {
-      yield userInfo
-    }
+    yield results
   }
   while (cursor != undefined)
 }
