@@ -264,7 +264,15 @@ export const partners: Partner[] = [
   },
   {
     slug: "durham-uni-esports-and-gaming",
-    image: null,
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/dueg.svg"
+        alt="Durham University Esports & Gaming"
+        width={24}
+        height={24}
+        {...props}
+      />
+    ),
     link: "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/"
   },
   {
