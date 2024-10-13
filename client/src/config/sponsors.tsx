@@ -277,7 +277,15 @@ export const partners: Partner[] = [
   },
   {
     slug: "durham-uni-student-union",
-    image: null,
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/durham-student-union.svg"
+        alt="Durham Student Union"
+        width={1920}
+        height={1080}
+        {...props}
+      />
+    ),
     link: "https://www.durhamsu.com/"
   }
 ]
