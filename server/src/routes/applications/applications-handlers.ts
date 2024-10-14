@@ -19,6 +19,35 @@ class ApplicationsHandlers {
   }
 
   /**
+   * Format a proportion (a real number within the interval <code>[0,1]</code>) as a
+   * percentage string.
+   *
+   * @example
+   * formatAsPercentage(0.25) // "25.00%"
+   *
+   * @example
+   * formatAsPercentage(0.0052) // "0.52%"
+   */
+  private formatAsPercentage(value: number): string {
+    return value.toLocaleString(undefined, { style: "percent", minimumFractionDigits: 2 })
+  }
+
+  /**
+   * Rounding factor used for {@link roundProportion}. The exponent (<code>4</code>) controls
+   * the number of decimal places values will be rounded to.
+   */
+  private static roundProportionRoundingFactor = Math.pow(10, 4)
+
+  /**
+   * Round a proportion (a real number within the interval <code>[0,1]</code>) according to {@link roundProportionRoundingFactor}.
+   * Useful for keeping behaviour consistent across all routes.
+   */
+  private roundProportion(value: number): number {
+    const roundingFactor = ApplicationsHandlers.roundProportionRoundingFactor
+    return Math.round((value + Number.EPSILON) * roundingFactor) / roundingFactor
+  }
+
+  /**
    * Returns a middleware that handles a GET request by responding with a JSON payload containing summary statistics
    * relating to DurHack applications.
    */
@@ -59,11 +88,16 @@ class ApplicationsHandlers {
         this.getTotalApplicationCount(),
       ])
 
-      const rows = result.map((resultItem) => ({
-        institution: resultItem.university,
-        application_count: resultItem._count.userId,
-        application_proportion: resultItem._count.userId / totalApplicationCount,
-      }))
+      const rows = result.map((resultItem) => {
+        const proportion = this.roundProportion(resultItem._count.userId / totalApplicationCount)
+
+        return ({
+          institution: resultItem.university,
+          application_count: resultItem._count.userId,
+          application_proportion: proportion,
+          application_percentage: this.formatAsPercentage(proportion),
+        });
+      })
 
       response.json({
         data: rows
@@ -95,11 +129,16 @@ class ApplicationsHandlers {
         this.getTotalApplicationCount(),
       ])
 
-      const rows = result.map((resultItem) => ({
-        level_of_study: resultItem.levelOfStudy,
-        application_count: resultItem._count.userId,
-        application_proportion: resultItem._count.userId / totalApplicationCount,
-      }))
+      const rows = result.map((resultItem) => {
+        const proportion = this.roundProportion(resultItem._count.userId / totalApplicationCount)
+
+        return ({
+          level_of_study: resultItem.levelOfStudy,
+          application_count: resultItem._count.userId,
+          application_proportion: proportion,
+          application_percentage: this.formatAsPercentage(proportion),
+        });
+      })
 
       response.json({
         data: rows
@@ -124,10 +163,13 @@ class ApplicationsHandlers {
       const rows = result.map((resultItem) => {
         // counts from postgres $queryRawTyped are `bigint`, which JSON.stringify() doesn't play nice with
         const count = Number(resultItem.count)
+        const proportion = this.roundProportion(count / totalApplicationCount)
+
         return ({
           discipline_of_study: resultItem.disciplineOfStudy,
           application_count: count,
-          application_proportion: count / totalApplicationCount,
+          application_proportion: proportion,
+          application_percentage: this.formatAsPercentage(proportion),
         });
       })
       response.json({
@@ -149,13 +191,17 @@ class ApplicationsHandlers {
         prisma.$queryRawTyped(getApplicationsGroupedByDietaryRequirement()),
         this.getTotalApplicationCount(),
       ])
+
       const rows = result.map((resultItem) => {
         // counts coming from postgres $queryRawTyped are `bigint`, which JSON.stringify() doesn't play nice with
         const count = Number(resultItem.count)
+        const proportion = this.roundProportion(count / totalApplicationCount)
+
         return ({
           dietary_requirement: resultItem.dietaryRequirement,
           application_count: count,
-          application_proportion: count / totalApplicationCount,
+          application_proportion: proportion,
+          application_percentage: this.formatAsPercentage(proportion),
         });
       })
       response.json({
@@ -188,11 +234,16 @@ class ApplicationsHandlers {
         this.getTotalApplicationCount(),
       ])
 
-      const rows = result.map((resultItem) => ({
-        gender_identity: resultItem.gender,
-        application_count: resultItem._count.userId,
-        application_proportion: resultItem._count.userId / totalApplicationCount,
-      }))
+      const rows = result.map((resultItem) => {
+        const proportion = this.roundProportion(resultItem._count.userId / totalApplicationCount)
+
+        return ({
+          gender_identity: resultItem.gender,
+          application_count: resultItem._count.userId,
+          application_proportion: proportion,
+          application_percentage: this.formatAsPercentage(proportion),
+        });
+      })
 
       response.json({
         data: rows
