@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "start": "node dist/index.cjs",
-    "prebuild": "pnpm run type-check",
+    "prebuild": "pnpm run generate && pnpm run type-check",
     "build": "tsup",
     "check": "biome check .",
     "check:fix": "biome check --write .",
