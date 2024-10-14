@@ -8,6 +8,16 @@ import type { Middleware } from "@/types"
 import { prisma } from "@/database"
 
 class ApplicationsHandlers {
+  private async getTotalApplicationCount(): Promise<number> {
+    return await prisma.userInfo.count({
+      where: {
+        applicationStatus: {
+          equals: "submitted",
+        },
+      },
+    })
+  }
+
   /**
    * Returns a middleware that handles a GET request by responding with a JSON payload containing summary statistics
    * relating to DurHack applications.
@@ -15,18 +25,12 @@ class ApplicationsHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsSummary(): Middleware {
     return async (request, response) => {
-      const result = await prisma.userInfo.count({
-        where: {
-          applicationStatus: {
-            equals: "submitted",
-          },
-        },
-      })
+      const result = await this.getTotalApplicationCount()
 
       response.json({
         data: {
-          total_application_count: result
-        }
+          total_application_count: result,
+        },
       })
     }
   }
@@ -40,21 +44,25 @@ class ApplicationsHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsByInstitution(): Middleware {
     return async (request, response) => {
-      const result = await prisma.userInfo.groupBy({
-        by: ['university'],
-        where: {
-          applicationStatus: {
-            equals: "submitted",
+      const [result, totalApplicationCount] = await Promise.all([
+        prisma.userInfo.groupBy({
+          by: ['university'],
+          where: {
+            applicationStatus: {
+              equals: "submitted",
+            },
           },
-        },
-        _count: {
-          userId: true,
-        }
-      })
+          _count: {
+            userId: true,
+          }
+        }),
+        this.getTotalApplicationCount(),
+      ])
 
       const rows = result.map((resultItem) => ({
         institution: resultItem.university,
         application_count: resultItem._count.userId,
+        application_proportion: resultItem._count.userId / totalApplicationCount,
       }))
 
       response.json({
@@ -72,21 +80,25 @@ class ApplicationsHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsByLevelOfStudy(): Middleware {
     return async (request, response) => {
-      const result = await prisma.userInfo.groupBy({
-        by: ['levelOfStudy'],
-        where: {
-          applicationStatus: {
-            equals: "submitted",
+      const [result, totalApplicationCount] = await Promise.all([
+        prisma.userInfo.groupBy({
+          by: ['levelOfStudy'],
+          where: {
+            applicationStatus: {
+              equals: "submitted",
+            },
           },
-        },
-        _count: {
-          userId: true,
-        }
-      })
+          _count: {
+            userId: true,
+          }
+        }),
+        this.getTotalApplicationCount(),
+      ])
 
       const rows = result.map((resultItem) => ({
         level_of_study: resultItem.levelOfStudy,
         application_count: resultItem._count.userId,
+        application_proportion: resultItem._count.userId / totalApplicationCount,
       }))
 
       response.json({
@@ -104,11 +116,20 @@ class ApplicationsHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsByDisciplineOfStudy(): Middleware {
     return async (request, response) => {
-      const result = await prisma.$queryRawTyped(getApplicationsGroupedByDisciplineOfStudy())
-      const rows = result.map((resultItem) => ({
-        discipline_of_study: resultItem.disciplineOfStudy,
-        application_count: Number(resultItem.count)
-      }))
+      const [result, totalApplicationCount] = await Promise.all([
+        prisma.$queryRawTyped(getApplicationsGroupedByDisciplineOfStudy()),
+        this.getTotalApplicationCount(),
+      ])
+
+      const rows = result.map((resultItem) => {
+        // counts from postgres $queryRawTyped are `bigint`, which JSON.stringify() doesn't play nice with
+        const count = Number(resultItem.count)
+        return ({
+          discipline_of_study: resultItem.disciplineOfStudy,
+          application_count: count,
+          application_proportion: count / totalApplicationCount,
+        });
+      })
       response.json({
         data: rows
       })
@@ -124,11 +145,19 @@ class ApplicationsHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsByDietaryRequirement(): Middleware {
     return async (request, response) => {
-      const result = await prisma.$queryRawTyped(getApplicationsGroupedByDietaryRequirement())
-      const rows = result.map((resultItem) => ({
-        dietary_requirement: resultItem.dietaryRequirement,
-        application_count: Number(resultItem.count)
-      }))
+      const [result, totalApplicationCount] = await Promise.all([
+        prisma.$queryRawTyped(getApplicationsGroupedByDietaryRequirement()),
+        this.getTotalApplicationCount(),
+      ])
+      const rows = result.map((resultItem) => {
+        // counts coming from postgres $queryRawTyped are `bigint`, which JSON.stringify() doesn't play nice with
+        const count = Number(resultItem.count)
+        return ({
+          dietary_requirement: resultItem.dietaryRequirement,
+          application_count: count,
+          application_proportion: count / totalApplicationCount,
+        });
+      })
       response.json({
         data: rows
       })
@@ -144,21 +173,25 @@ class ApplicationsHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsByGenderIdentity(): Middleware {
     return async (request, response) => {
-      const result = await prisma.userInfo.groupBy({
-        by: ['gender'],
-        where: {
-          applicationStatus: {
-            equals: "submitted",
+      const [result, totalApplicationCount] = await Promise.all([
+        prisma.userInfo.groupBy({
+          by: ['gender'],
+          where: {
+            applicationStatus: {
+              equals: "submitted",
+            },
           },
-        },
-        _count: {
-          userId: true,
-        }
-      })
+          _count: {
+            userId: true,
+          }
+        }),
+        this.getTotalApplicationCount(),
+      ])
 
       const rows = result.map((resultItem) => ({
         gender_identity: resultItem.gender,
         application_count: resultItem._count.userId,
+        application_proportion: resultItem._count.userId / totalApplicationCount,
       }))
 
       response.json({
