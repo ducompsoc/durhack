@@ -134,6 +134,38 @@ class ApplicationsHandlers {
       })
     }
   }
+
+  /**
+   * Returns a middleware that handles a GET request by responding with a JSON payload containing a list of
+   * gender identities and their application counts.
+   * Only gender identities with applications are included; omission of a gender identity means there are zero
+   * applications which list that gender identity.
+   */
+  @onlyGroups([Group.organisers, Group.admins])
+  getApplicationsByGenderIdentity(): Middleware {
+    return async (request, response) => {
+      const result = await prisma.userInfo.groupBy({
+        by: ['gender'],
+        where: {
+          applicationStatus: {
+            equals: "submitted",
+          },
+        },
+        _count: {
+          userId: true,
+        }
+      })
+
+      const rows = result.map((resultItem) => ({
+        gender_identity: resultItem.gender,
+        application_count: resultItem._count.userId,
+      }))
+
+      response.json({
+        data: rows
+      })
+    }
+  }
 }
 
 const applicationsHandlers = new ApplicationsHandlers()
