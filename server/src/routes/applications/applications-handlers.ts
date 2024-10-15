@@ -66,10 +66,14 @@ class ApplicationsHandlers {
         this.getTotalCvCount(),
       ])
 
+      const totalCvProportion = this.roundProportion(totalCvCount / totalApplicationCount)
+
       response.json({
         data: {
           total_application_count: totalApplicationCount,
           total_cv_count: totalCvCount,
+          total_cv_proportion: totalCvProportion,
+          total_cv_percentage: this.formatAsPercentage(totalCvProportion),
         },
       })
     }
