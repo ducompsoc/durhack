@@ -18,6 +18,10 @@ class ApplicationsHandlers {
     })
   }
 
+  private async getTotalCvCount(): Promise<number> {
+    return await prisma.userCV.count()
+  }
+
   /**
    * Format a proportion (a real number within the interval <code>[0,1]</code>) as a
    * percentage string.
@@ -54,11 +58,18 @@ class ApplicationsHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsSummary(): Middleware {
     return async (request, response) => {
-      const result = await this.getTotalApplicationCount()
+      const [
+        totalApplicationCount,
+        totalCvCount,
+      ] = await Promise.all([
+        this.getTotalApplicationCount(),
+        this.getTotalCvCount(),
+      ])
 
       response.json({
         data: {
-          total_application_count: result,
+          total_application_count: totalApplicationCount,
+          total_cv_count: totalCvCount,
         },
       })
     }
