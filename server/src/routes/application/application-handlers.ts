@@ -571,7 +571,7 @@ class ApplicationHandlers {
         })
 
       await this.validateApplicationComplete(application)
-      const now = new Date();
+      const now = new Date()
 
       await prisma.$transaction([
         prisma.user.update({
