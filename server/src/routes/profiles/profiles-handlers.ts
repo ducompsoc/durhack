@@ -5,7 +5,7 @@ import { z } from "zod"
 import { prisma } from "@/database"
 import { Group, onlyGroups } from "@/decorators/authorise"
 import { json } from "@/lib/body-parsers"
-import { getKeycloakAdminClient } from "@/lib/keycloak-client"
+import { getKeycloakAdminClient, unpackAttribute } from "@/lib/keycloak-client"
 import type { Middleware } from "@/types"
 
 class ProfileHandlers {
@@ -38,12 +38,26 @@ class ProfileHandlers {
       const profile = await adminClient.users.findOne({ id: userId })
       if (profile == null) throw new ClientError("", { statusCode: HttpStatus.NotFound })
 
-      console.log(profile)
+      const databaseProfile = await prisma.user.findUnique({
+        where: { keycloakUserId: userId },
+        include: {
+          userInfo: true,
+          userCv: { select: { userId: true } },
+        }
+      })
 
       response.status(200).json({
         status: response.statusCode,
         message: response.statusMessage,
-        data: {},
+        data: {
+          userId,
+          preferredNames: unpackAttribute(profile, "preferredNames"),
+          firstNames: unpackAttribute(profile, "firstNames"),
+          lastNames: unpackAttribute(profile, "lastNames"),
+          pronouns: unpackAttribute<"he/him" | "she/her" | "they/them" | "xe/xem" | "Please Ask" | "Unspecified">(profile, "pronouns", "Unspecified"),
+          hasAttendeeTicket: databaseProfile?.userInfo?.applicationStatus === "accepted",
+          uploadedCv: databaseProfile?.userCv != null,
+        },
       })
     }
   }
