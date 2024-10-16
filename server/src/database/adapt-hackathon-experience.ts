@@ -8,7 +8,9 @@ const toDatabaseMapping = new Map<Application["hackathonExperience"], HackathonE
   ["eight-or-more", "eightOrMore"],
 ])
 
-export function adaptHackathonExperienceToDatabase(experience: Application["hackathonExperience"]): HackathonExperience {
+export function adaptHackathonExperienceToDatabase(
+  experience: Application["hackathonExperience"],
+): HackathonExperience {
   // biome-ignore: lint/suspicious/noNonNullAssertion: we know it's not null because the map is fully populated
   return toDatabaseMapping.get(experience)!
 }
@@ -20,7 +22,9 @@ const fromDatabaseMapping = new Map<HackathonExperience, Application["hackathonE
   ["eightOrMore", "eight-or-more"],
 ])
 
-export function adaptHackathonExperienceFromDatabase(experience: HackathonExperience | null | undefined): Application["hackathonExperience"] | null {
+export function adaptHackathonExperienceFromDatabase(
+  experience: HackathonExperience | null | undefined,
+): Application["hackathonExperience"] | null {
   if (experience == null) return null
   // biome-ignore: lint/suspicious/noNonNullAssertion: we know it's not null because the map is fully populated
   return fromDatabaseMapping.get(experience)!

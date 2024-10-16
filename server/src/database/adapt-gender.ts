@@ -6,7 +6,7 @@ const toDatabaseMapping = new Map<Application["gender"], Gender>([
   ["female", "female"],
   ["non-binary", "nonBinary"],
   ["other", "other"],
-  ["prefer-not-to-answer", "preferNotToAnswer"]
+  ["prefer-not-to-answer", "preferNotToAnswer"],
 ])
 
 export function adaptGenderToDatabase(gender: Application["gender"]): Gender {
@@ -19,10 +19,10 @@ const fromDatabaseMapping = new Map<Gender, Application["gender"]>([
   ["female", "female"],
   ["nonBinary", "non-binary"],
   ["other", "other"],
-  ["preferNotToAnswer", "prefer-not-to-answer"]
+  ["preferNotToAnswer", "prefer-not-to-answer"],
 ])
 
-export function adaptGenderFromDatabase(gender: Gender | null | undefined): Application["gender"] | null{
+export function adaptGenderFromDatabase(gender: Gender | null | undefined): Application["gender"] | null {
   if (gender == null) return null
   // biome-ignore: lint/suspicious/noNonNullAssertion: we know it's not null because the map is fully populated
   return fromDatabaseMapping.get(gender)!

@@ -8,7 +8,7 @@ const toDatabaseMapping = new Map<Application["ethnicity"], Ethnicity>([
   ["hispanic", "hispanic"],
   ["white", "white"],
   ["other", "other"],
-  ["prefer-not-to-answer", "preferNotToAnswer"]
+  ["prefer-not-to-answer", "preferNotToAnswer"],
 ])
 
 export function adaptEthnicityToDatabase(ethnicity: Application["ethnicity"]): Ethnicity {
@@ -23,7 +23,7 @@ const fromDatabaseMapping = new Map<Ethnicity, Application["ethnicity"]>([
   ["hispanic", "hispanic"],
   ["white", "white"],
   ["other", "other"],
-  ["preferNotToAnswer", "prefer-not-to-answer"]
+  ["preferNotToAnswer", "prefer-not-to-answer"],
 ])
 
 export function adaptEthnicityFromDatabase(ethnicity: Ethnicity | null | undefined): Application["ethnicity"] | null {

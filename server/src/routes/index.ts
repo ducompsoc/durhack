@@ -4,8 +4,8 @@ import { methodNotAllowed } from "@/middleware/method-not-allowed"
 import { applicationApp } from "@/routes/application"
 import { applicationsApp } from "@/routes/applications"
 import { authApp } from "@/routes/auth"
-import { userApp } from "@/routes/user"
 import { profilesApp } from "@/routes/profiles"
+import { userApp } from "@/routes/user"
 import type { Request, Response } from "@/types"
 
 export const routesApp = new App<Request, Response>()

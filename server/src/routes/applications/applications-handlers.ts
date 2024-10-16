@@ -1,11 +1,11 @@
 import {
-  getApplicationsGroupedByDisciplineOfStudy,
   getApplicationsGroupedByDietaryRequirement,
+  getApplicationsGroupedByDisciplineOfStudy,
 } from "@prisma/client/sql"
 
+import { prisma } from "@/database"
 import { Group, onlyGroups } from "@/decorators/authorise"
 import type { Middleware } from "@/types"
-import { prisma } from "@/database"
 
 class ApplicationsHandlers {
   private async getTotalApplicationCount(): Promise<number> {
@@ -58,10 +58,7 @@ class ApplicationsHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsSummary(): Middleware {
     return async (request, response) => {
-      const [
-        totalApplicationCount,
-        totalCvCount,
-      ] = await Promise.all([
+      const [totalApplicationCount, totalCvCount] = await Promise.all([
         this.getTotalApplicationCount(),
         this.getTotalCvCount(),
       ])
@@ -90,7 +87,7 @@ class ApplicationsHandlers {
     return async (request, response) => {
       const [result, totalApplicationCount] = await Promise.all([
         prisma.userInfo.groupBy({
-          by: ['university'],
+          by: ["university"],
           where: {
             applicationStatus: {
               equals: "submitted",
@@ -98,7 +95,7 @@ class ApplicationsHandlers {
           },
           _count: {
             userId: true,
-          }
+          },
         }),
         this.getTotalApplicationCount(),
       ])
@@ -106,16 +103,16 @@ class ApplicationsHandlers {
       const rows = result.map((resultItem) => {
         const proportion = this.roundProportion(resultItem._count.userId / totalApplicationCount)
 
-        return ({
+        return {
           institution: resultItem.university,
           application_count: resultItem._count.userId,
           application_proportion: proportion,
           application_percentage: this.formatAsPercentage(proportion),
-        });
+        }
       })
 
       response.json({
-        data: rows
+        data: rows,
       })
     }
   }
@@ -131,7 +128,7 @@ class ApplicationsHandlers {
     return async (request, response) => {
       const [result, totalApplicationCount] = await Promise.all([
         prisma.userInfo.groupBy({
-          by: ['levelOfStudy'],
+          by: ["levelOfStudy"],
           where: {
             applicationStatus: {
               equals: "submitted",
@@ -139,7 +136,7 @@ class ApplicationsHandlers {
           },
           _count: {
             userId: true,
-          }
+          },
         }),
         this.getTotalApplicationCount(),
       ])
@@ -147,16 +144,16 @@ class ApplicationsHandlers {
       const rows = result.map((resultItem) => {
         const proportion = this.roundProportion(resultItem._count.userId / totalApplicationCount)
 
-        return ({
+        return {
           level_of_study: resultItem.levelOfStudy,
           application_count: resultItem._count.userId,
           application_proportion: proportion,
           application_percentage: this.formatAsPercentage(proportion),
-        });
+        }
       })
 
       response.json({
-        data: rows
+        data: rows,
       })
     }
   }
@@ -180,15 +177,15 @@ class ApplicationsHandlers {
         const count = Number(resultItem.count)
         const proportion = this.roundProportion(count / totalApplicationCount)
 
-        return ({
+        return {
           discipline_of_study: resultItem.disciplineOfStudy,
           application_count: count,
           application_proportion: proportion,
           application_percentage: this.formatAsPercentage(proportion),
-        });
+        }
       })
       response.json({
-        data: rows
+        data: rows,
       })
     }
   }
@@ -212,15 +209,15 @@ class ApplicationsHandlers {
         const count = Number(resultItem.count)
         const proportion = this.roundProportion(count / totalApplicationCount)
 
-        return ({
+        return {
           dietary_requirement: resultItem.dietaryRequirement,
           application_count: count,
           application_proportion: proportion,
           application_percentage: this.formatAsPercentage(proportion),
-        });
+        }
       })
       response.json({
-        data: rows
+        data: rows,
       })
     }
   }
@@ -236,7 +233,7 @@ class ApplicationsHandlers {
     return async (request, response) => {
       const [result, totalApplicationCount] = await Promise.all([
         prisma.userInfo.groupBy({
-          by: ['gender'],
+          by: ["gender"],
           where: {
             applicationStatus: {
               equals: "submitted",
@@ -244,7 +241,7 @@ class ApplicationsHandlers {
           },
           _count: {
             userId: true,
-          }
+          },
         }),
         this.getTotalApplicationCount(),
       ])
@@ -252,16 +249,16 @@ class ApplicationsHandlers {
       const rows = result.map((resultItem) => {
         const proportion = this.roundProportion(resultItem._count.userId / totalApplicationCount)
 
-        return ({
+        return {
           gender_identity: resultItem.gender,
           application_count: resultItem._count.userId,
           application_proportion: proportion,
           application_percentage: this.formatAsPercentage(proportion),
-        });
+        }
       })
 
       response.json({
-        data: rows
+        data: rows,
       })
     }
   }
