@@ -19,7 +19,7 @@ import {
 import { onlyKnownUsers } from "@/decorators/authorise"
 import { json, multipartFormData } from "@/lib/body-parsers"
 import { type KeycloakUserInfo, getKeycloakAdminClient } from "@/lib/keycloak-client"
-import MailgunClient from "@/lib/mailgun"
+import { mailgunClient } from "@/lib/mailgun"
 import type { Middleware, Request } from "@/types"
 import "@/lib/zod-phone-extension"
 import "@/lib/zod-iso3-extension"
@@ -627,7 +627,7 @@ class ApplicationHandlers {
         }),
       ])
 
-      await MailgunClient.messages.create(mailgunConfig.domain, {
+      await mailgunClient.messages.create(mailgunConfig.domain, {
         from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
         "h:Reply-To": "hello@durhack.com",
         to: request.userProfile?.email,
