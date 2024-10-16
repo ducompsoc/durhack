@@ -6,8 +6,7 @@ export default {
   frontendOrigin: "https://durhack.com",
   session: {
     cookie: {
-      // joe: removed __Secure- prefix because it was breaking production
-      name: "durhack-session",
+      name: "__Secure-durhack-session",
       secure: true,
       /**
        * We have to use 'lax' because OAuth2 flow doesn't work with 'strict', it relies on
