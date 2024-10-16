@@ -26,12 +26,12 @@ export function Navbar() {
           <a href="#splash">Home</a>
         </li>
         <li>
-          <a href="#intro">About</a>
+          <a href="#about">About</a>
         </li>
         <li>
           <a href="#faqs">FAQs</a>
         </li>
-        <li className="hidden">
+        <li>
           <a href="#sponsors">Sponsors</a>
         </li>
         <li>

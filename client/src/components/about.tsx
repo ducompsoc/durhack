@@ -1,33 +1,47 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
+import { motion, useScroll, useSpring, useTransform } from "framer-motion"
 import * as React from "react"
 
-import Faqs from "@/components/faqs"
-import { MountainGraphic } from "@/components/graphics"
+import { Cloud4Graphic, Cloud5Graphic } from "@/components/graphics"
 
 export function About() {
   const ref = React.useRef(null)
-  const isInView = useInView(ref, { once: true })
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 0.9", "end start"],
+  })
+
+  const springProgress = useSpring(scrollYProgress, { stiffness: 400, damping: 90 })
+
+  const cloud4X = useTransform(springProgress, [0, 1], ["-15rem", "15rem"])
+  const cloud5X = useTransform(springProgress, [0, 1], ["15rem", "-15rem"])
 
   return (
-    <div>
-      <div ref={ref} className="w-full h-full absolute">
-        <motion.div
-          className="absolute flex justify-center top-[-7rem] md:top-[-10rem] lg:top-[-13rem] z-30 pointer-events-none w-full"
-          style={{ transformOrigin: "50% 500rem" }}
-          animate={{ rotate: isInView ? 0 : -30 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
+    <>
+      <div className="absolute w-full h-[50%]">
+        <motion.div ref={ref}
+          id="cloud-4"
+          className="absolute left-[-10rem] top-[10rem] z-30 pointer-events-none"
+          style={{ x: cloud4X }}
         >
-          <MountainGraphic className="relative h-[12rem] md:h-[16rem] lg:h-[20rem]" />
+          <Cloud4Graphic className="h-[12rem] lg:h-[20rem]" />
+        </motion.div>
+
+        <motion.div
+          id="cloud-5"
+          className="absolute right-[-7rem] top-[45rem] lg:top-[40rem] z-30 pointer-events-none"
+          style={{ x: cloud5X }}
+        >
+          <Cloud5Graphic className="h-[12rem] lg:h-[20rem]" />
         </motion.div>
       </div>
 
-      <div className="pt-[30rem]" />
-
-      <section id="faqs" className="z-30 relative">
-        <Faqs />
-      </section>
-    </div>
+      <div className="absolute top-[24rem] lg:top-[28rem] mx-[12.5vw] text-3xl md:text-4xl w-[75vw] md:w-[40rem]">
+        We welcome you to join us for the ninth iteration of DurHack, Durham University Computing Society&apos;s annual
+        flagship hackathon.
+      </div>
+    </>
   )
 }

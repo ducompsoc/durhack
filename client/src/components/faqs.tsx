@@ -4,9 +4,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@d
 import { faqs } from "@/config/faqs"
 import { SectionHeader } from "@/components/section-header"
 
-export default function Faqs() {
+export function Faqs(props: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div>
+    <div {...props}>
       <div className="block lg:hidden">
         <SectionHeader>FAQs</SectionHeader>
       </div>

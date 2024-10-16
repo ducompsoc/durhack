@@ -24,32 +24,26 @@ section#splash {
   }
 }
 
-section#intro {
-  --height: 100rem;
+section#about {
   position: relative;
   overflow: hidden;
-  margin-top: calc(-0.1 * var(--height));
-  height: var(--height);
+  margin-top: -15rem;
+  min-height: 80rem;
+  padding-bottom: 15rem;
   background: linear-gradient(180deg, #3a7ea0 38%, #968b69);
 }
 
-section#about {
-  --height: 100rem;
-  margin-top: calc(-0.1 * var(--height));
-  height: var(--height);
+section#faqs {
+  margin-top: -15rem;
+  padding-bottom: 5rem;
   position: relative;
 
   #background {
     background: linear-gradient(180deg, #216782, #306379);
     position: absolute;
-    overflow: hidden;
-    height: 100%;
+    height: 75rem;
+    min-height: 100%;
     width: 100%;
-  }
-
-  #waves {
-    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   }
 }
 

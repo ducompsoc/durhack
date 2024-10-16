@@ -11,11 +11,41 @@ import {
 } from "@/config/sponsors"
 import { SectionHeader } from "@/components/section-header"
 
-const sponsorScale = 0.7
+const sponsorScale = 0.581
 const tierWidths = {
   platinum: 200,
   gold: 150,
   silver: 100,
+}
+
+const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<typeof Image>, "src" | "alt">>> = {
+  platinum: (props) => (
+    <Image
+      src="/assets/sponsors/tiles/platinum.svg"
+      alt="platinum sponsor tile"
+      width={400}
+      height={432}
+      {...props}
+    />
+  ),
+  gold: (props) => (
+    <Image
+      src="/assets/sponsors/tiles/gold.svg"
+      alt="gold sponsor tile"
+      width={271}
+      height={312}
+      {...props}
+    />
+  ),
+  silver: (props) => (
+    <Image
+      src="/assets/sponsors/tiles/silver.svg"
+      alt="silver sponsor tile"
+      width={194}
+      height={224}
+      {...props}
+    />
+  ),
 }
 
 const partnerScale = 0.75
@@ -27,6 +57,8 @@ type SponsorProps = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 function SponsorContent({ sponsor }: { sponsor: Sponsor }) {
+  const TierTile = tierTiles[sponsor.tier]
+  const SponsorImage = sponsor.image
   return <>
     <a
       href={sponsor.link}
@@ -35,21 +67,17 @@ function SponsorContent({ sponsor }: { sponsor: Sponsor }) {
         width: `${Math.round(tierWidths[sponsor.tier] * 1.1)}px`,
         height: `${Math.round(tierWidths[sponsor.tier] * 1.3)}px`,
       }}
-      className={"relative flex flex-col items-center justify-center border-b-0 m-[10px] mx-[5px]"}
+      className="relative flex flex-col items-center justify-center border-b-0 m-[10px] mx-[5px]"
       rel="noreferrer"
     >
-      <Image
-        src={`/assets/sponsors/${sponsor.image}`}
-        alt="logo"
+      <SponsorImage
         style={{
-          width: `${Math.round((tierWidths[sponsor.tier] * 0.83) * sponsorScale)}px`,
-          maxHeight: `${Math.round((tierWidths[sponsor.tier] * 0.83) * sponsorScale)}px`,
+          width: `${Math.round(tierWidths[sponsor.tier] * sponsorScale)}px`,
+          maxHeight: `${Math.round(tierWidths[sponsor.tier] * sponsorScale)}px`,
         }}
         className="relative z-40"
       />
-      <Image
-        src={`/assets/sponsors/tiles/${sponsor.tier}.svg`}
-        alt="platinum sponsor tile"
+      <TierTile
         style={{
           width: `${tierWidths[sponsor.tier]}px`,
           height: "auto",
@@ -113,34 +141,33 @@ type PartnerProps = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 function Partner({partner, ...props}: PartnerProps) {
+  if (partner.image == null) return null
+  const PartnerImage = partner.image
+
   return (
-    <div className="sponsor biggest mb-5" {...props}>
+    <div className="sponsor biggest" {...props}>
       <a
         href={partner.link}
         target="_blank"
         style={{
           width: `${partnerWidth}px`,
-          height: `${Math.round(partnerWidth * partnerScale)}px`
+          height: `${partnerWidth / 2}px`
         }}
-        className={"relative flex flex-col items-center justify-center border-b-0 m-[10px] mx-[5px]"}
+        className="relative flex flex-col items-center justify-center"
         rel="noreferrer"
       >
-        <img
-          src={`/assets/sponsors/${partner.image}`}
-          alt="logo"
+        <PartnerImage
           style={{
             width: `${Math.round(partnerWidth * partnerScale)}px`,
-            maxHeight: `${Math.round(partnerWidth * partnerScale)}px`
+            maxHeight: `${Math.round(partnerWidth * partnerScale / 2)}px`,
           }}
           className="relative z-40"
         />
-        <img
+        <Image
           src={`/assets/sponsors/tiles/partner.svg`}
-          alt="logo"
-          style={{
-            width: `${partnerWidth}px`,
-            height: `${partnerWidth}px`
-          }}
+          alt="partner tile"
+          width={240}
+          height={98}
           className="absolute z-30"
         />
       </a>
@@ -150,44 +177,42 @@ function Partner({partner, ...props}: PartnerProps) {
 
 export function Sponsors() {
   return (
-    <section className="section sponsors">
+    <div className="max-w-[60rem] m-auto">
+      <SectionHeader className="mb-4">Sponsors</SectionHeader>
+
       <div>
-        <SectionHeader>Sponsors</SectionHeader>
-
-        <div className="text-center">
-          <div className="platinum flex flex-wrap justify-center gap-6">
-            {platinumSponsors.map((sponsor, index) => (
-              <PlatinumSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0}/>
-            ))}
-          </div>
-        </div>
-
-        <div className="text-center">
-          <div className="platinum flex flex-wrap justify-center gap-6">
-            {goldSponsors.map((sponsor, index) => (
-              <GoldSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0}/>
-            ))}
-          </div>
-        </div>
-
-        <div className="text-center">
-          <div className="platinum flex flex-wrap justify-center gap-6">
-            {silverSponsors.map((sponsor, index) => (
-              <SilverSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0}/>
-            ))}
-          </div>
-        </div>
-
-        <div className="text-center">
-          <SectionHeader>Partners</SectionHeader>
-
-          <div className="platinum flex flex-wrap justify-center gap-6">
-            {partners.map((partner) => (
-              <Partner key={partner.slug} partner={partner}/>
-            ))}
-          </div>
+        <div className="platinum flex flex-wrap justify-center gap-6">
+          {platinumSponsors.map((sponsor, index) => (
+            <PlatinumSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0}/>
+          ))}
         </div>
       </div>
-    </section>
+
+      <div>
+        <div className="platinum flex flex-wrap justify-center gap-6">
+          {goldSponsors.map((sponsor, index) => (
+            <GoldSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0}/>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <div className="platinum flex flex-wrap justify-center gap-6">
+          {silverSponsors.map((sponsor, index) => (
+            <SilverSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0}/>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <SectionHeader className="mb-4">Partners</SectionHeader>
+
+        <div className="partners flex flex-wrap justify-evenly">
+          {partners.map((partner) => (
+            <Partner key={partner.slug} partner={partner}/>
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }

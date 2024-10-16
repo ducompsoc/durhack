@@ -40,6 +40,10 @@ export const mailgunOptionsSchema = z.object({
   url: z.string(),
 })
 
+export const durhackOptionsSchema = z.object({
+  maximumTicketAssignment: z.number().nonnegative(),
+})
+
 export const configSchema = z.object({
   listen: listenOptionsSchema,
   origin: z.string().url(),
@@ -48,6 +52,7 @@ export const configSchema = z.object({
   cookieSigning: cookieSigningOptionsSchema,
   keycloak: keycloakOptionsSchema,
   mailgun: mailgunOptionsSchema,
+  durhack: durhackOptionsSchema,
 })
 
 export type Config = z.infer<typeof configSchema>

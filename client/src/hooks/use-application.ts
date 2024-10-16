@@ -7,7 +7,7 @@ import { siteConfig } from "@/config/site"
 export type { Application }
 
 async function applicationFetcher(path: string): Promise<Application> {
-  const url = new URL(path, siteConfig.apiUrl).toString()
+  const url = new URL(path, siteConfig.apiUrl)
   const response = await fetch(url, { credentials: "include" })
 
   if (response.status === 401) throw new ModuleError("Couldn't fetch user registration details because user is not logged in", { code: "ERR_UNAUTHENTICATED" })

@@ -1,15 +1,17 @@
 import * as React from "react"
 
+import "@/styles/background.css"
+import "@/styles/splash.css"
+
 import { About } from "@/components/about"
 import { End } from "@/components/end"
+import { Faqs } from "@/components/faqs";
 import { Gallery } from "@/components/gallery"
 import { Guilds } from "@/components/guilds"
-import { Intro } from "@/components/intro"
 import { Splash } from "@/components/splash"
 import { Sponsors } from "@/components/sponsors"
 
-import "@/styles/background.css"
-import "@/styles/splash.css"
+import { AnimatedMountain } from "./animated-mountain";
 
 export default function HomePage() {
   return (
@@ -18,16 +20,21 @@ export default function HomePage() {
         <Splash />
       </section>
 
-      <section id="intro" className="ellipse">
-        <Intro />
-      </section>
-
-      <section id="about">
-        <div id="background" className="ellipse" />
+      <section id="about" className="ellipse">
         <About />
       </section>
 
-      <section id="sponsors" className="h-[5rem]" />
+      <section id="faqs">
+        <div className="absolute overflow-hidden w-full h-full">
+          <div id="background" className="ellipse" />
+        </div>
+        <AnimatedMountain />
+        <Faqs className="z-30 relative pt-16 lg:pt-32"/>
+      </section>
+
+      <section id="sponsors">
+        <Sponsors/>
+      </section>
 
       <section id="guilds">
         <Guilds />

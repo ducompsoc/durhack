@@ -17,7 +17,7 @@ export class Response<Req extends Request = Request> extends OtterResponse<Req> 
 
     // Object.hasOwn(..., "data") -> true, but JSON.stringify() will omit properties with 'undefined' values
     this.json({
-      data: undefined
+      data: undefined,
     })
 
     return this

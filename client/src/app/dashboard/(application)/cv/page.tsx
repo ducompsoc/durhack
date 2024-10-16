@@ -26,7 +26,7 @@ import { isLoaded } from "@/lib/is-loaded";
 import { cn } from "@/lib/utils"
 
 type CvFormFields = {
-  cvUploadChoice: "indeterminate" | "upload" | "remind" | "noUpload"
+  cvUploadChoice: "indeterminate" | "upload" | "remind" | "no-upload"
   cvFiles: File[]
 }
 
@@ -35,7 +35,7 @@ const cvFormSchema = z.discriminatedUnion("cvUploadChoice", [
     cvUploadChoice: z.literal("remind"),
   }),
   z.object({
-    cvUploadChoice: z.literal("noUpload"),
+    cvUploadChoice: z.literal("no-upload"),
   }),
   z.object({
     cvUploadChoice: z.literal("upload"),
@@ -138,7 +138,7 @@ function CvForm({ application }: { application: Application }) {
                     </SelectItem>
                     <SelectItem value="upload">Yes</SelectItem>
                     <SelectItem value="remind">Not right now (remind me later)</SelectItem>
-                    <SelectItem value="noUpload">No (don&apos;t remind me later)</SelectItem>
+                    <SelectItem value="no-upload">No (don&apos;t remind me later)</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage/>

@@ -1,8 +1,8 @@
 [build]
-  command = "pnpm --filter \"{client}...\" install && pnpm --filter \"{client}...\" build"
+  command = "pnpm --filter \"{client}...\" install --prod=false && pnpm --filter \"{client}...\" build"
   publish = "client/.next/"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
   NETLIFY_NEXT_PLUGIN_SKIP = "false"
   PNPM_FLAGS = "--shamefully-hoist"  # https://docs.netlify.com/frameworks/next-js/overview/#pnpm-support
