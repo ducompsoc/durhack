@@ -10,7 +10,7 @@ const toDatabaseMapping = new Map<Application["gender"], Gender>([
 ])
 
 export function adaptGenderToDatabase(gender: Application["gender"]): Gender {
-  // biome-ignore: lint/suspicious/noNonNullAssertion: we know it's not null because the map is fully populated
+  // biome-ignore lint/style/noNonNullAssertion: we know it's not null because the map is fully populated
   return toDatabaseMapping.get(gender)!
 }
 
@@ -24,6 +24,6 @@ const fromDatabaseMapping = new Map<Gender, Application["gender"]>([
 
 export function adaptGenderFromDatabase(gender: Gender | null | undefined): Application["gender"] | null {
   if (gender == null) return null
-  // biome-ignore: lint/suspicious/noNonNullAssertion: we know it's not null because the map is fully populated
+  // biome-ignore lint/style/noNonNullAssertion: we know it's not null because the map is fully populated
   return fromDatabaseMapping.get(gender)!
 }

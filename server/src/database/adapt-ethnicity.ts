@@ -12,7 +12,7 @@ const toDatabaseMapping = new Map<Application["ethnicity"], Ethnicity>([
 ])
 
 export function adaptEthnicityToDatabase(ethnicity: Application["ethnicity"]): Ethnicity {
-  // biome-ignore: lint/suspicious/noNonNullAssertion: we know it's not null because the map is fully populated
+  // biome-ignore lint/style/noNonNullAssertion: we know it's not null because the map is fully populated
   return toDatabaseMapping.get(ethnicity)!
 }
 
@@ -28,6 +28,6 @@ const fromDatabaseMapping = new Map<Ethnicity, Application["ethnicity"]>([
 
 export function adaptEthnicityFromDatabase(ethnicity: Ethnicity | null | undefined): Application["ethnicity"] | null {
   if (ethnicity == null) return null
-  // biome-ignore: lint/suspicious/noNonNullAssertion: we know it's not null because the map is fully populated
+  // biome-ignore lint/style/noNonNullAssertion: we know it's not null because the map is fully populated
   return fromDatabaseMapping.get(ethnicity)!
 }
