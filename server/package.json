@@ -2,7 +2,7 @@
   "name": "@durhack/durhack-server",
   "private": true,
   "scripts": {
-    "start": "node dist/index.cjs",
+    "start": "node dist/main.js",
     "prebuild": "pnpm run generate && pnpm run type-check",
     "build": "tsup",
     "check": "biome check .",
