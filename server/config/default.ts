@@ -1,4 +1,4 @@
-import type { ConfigIn } from "./schema"
+import type { ConfigIn } from "@/config/schema"
 
 export default {
   listen: {
