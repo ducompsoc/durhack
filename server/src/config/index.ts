@@ -1,7 +1,8 @@
 import path from "node:path"
 import { loadConfig } from "zod-config"
 import { directoryAdapter } from "zod-config/directory-adapter"
-import { scriptAdapter } from "zod-config/script-adapter"
+
+import { typescriptAdapter } from "./typescript-adapter"
 
 import { dirname } from "@/dirname"
 
@@ -15,7 +16,7 @@ const config = await loadConfig({
     adapters: [
       {
         extensions: [".ts", ".js"],
-        adapterFactory: (filePath: string) => scriptAdapter({ path: filePath }),
+        adapterFactory: (filePath: string) => typescriptAdapter({ path: filePath }),
       },
     ],
   }),
