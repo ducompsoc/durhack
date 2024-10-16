@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "rootDir": "./src",
+    "rootDir": "./",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
