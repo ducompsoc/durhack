@@ -40,7 +40,7 @@ class ApplicationsHandlers {
    * Rounding factor used for {@link roundProportion}. The exponent (<code>4</code>) controls
    * the number of decimal places values will be rounded to.
    */
-  private static roundProportionRoundingFactor = Math.pow(10, 4)
+  private static roundProportionRoundingFactor = 10 ** 4
 
   /**
    * Round a proportion (a real number within the interval <code>[0,1]</code>) according to {@link roundProportionRoundingFactor}.
