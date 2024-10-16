@@ -2,12 +2,11 @@ import path from "node:path"
 import { loadConfig } from "zod-config"
 import { directoryAdapter } from "zod-config/directory-adapter"
 
-import { typescriptAdapter } from "./typescript-adapter"
-
 import { dirname } from "@/dirname"
 
 import { configSchema } from "./schema"
 export type * from "./schema"
+import { typescriptAdapter } from "./typescript-adapter"
 
 const config = await loadConfig({
   schema: configSchema,
