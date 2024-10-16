@@ -35,4 +35,7 @@ export default {
     sendAsDomain: "compsoc.tech",
     url: "https://api.eu.mailgun.net",
   },
+  durhack: {
+    maximumTicketAssignment: 900,
+  },
 } satisfies ConfigIn

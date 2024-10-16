@@ -29,6 +29,7 @@ export const {
   cookieSigning: cookieSigningConfig,
   keycloak: keycloakConfig,
   mailgun: mailgunConfig,
+  durhack: durhackConfig,
 } = config
 
 export { config }
