@@ -4,7 +4,7 @@ export default defineConfig([
   {
     entry: {
       main: "src/main.ts",
-      "assign-tickets": "src/assign-tickets.ts",
+      "ticket-assigner": "src/ticket-assigner/main.ts",
     },
     target: "node22",
     format: "esm",
