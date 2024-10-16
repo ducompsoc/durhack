@@ -571,12 +571,19 @@ class ApplicationHandlers {
         })
 
       await this.validateApplicationComplete(application)
+      const now = new Date();
 
       await prisma.$transaction([
         prisma.user.update({
           where: { keycloakUserId: request.userProfile.sub },
           data: {
-            userInfo: { update: { applicationStatus: "submitted" } },
+            userInfo: {
+              update: {
+                applicationStatus: "submitted",
+                applicationSubmittedAt: now,
+                applicationStatusUpdatedAt: now,
+              },
+            },
           },
         }),
         prisma.userConsent.upsert({
