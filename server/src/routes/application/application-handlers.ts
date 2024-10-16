@@ -9,6 +9,7 @@ import { z } from "zod"
 import { mailgunConfig } from "@/config"
 import { prisma } from "@/database"
 import { adaptApplicationStatusFromDatabase } from "@/database/adapt-application-status"
+import { adaptCvUploadChoiceFromDatabase, adaptCvUploadChoiceToDatabase } from "@/database/adapt-cv-upload-choice"
 import { adaptEthnicityFromDatabase, adaptEthnicityToDatabase } from "@/database/adapt-ethnicity"
 import { adaptGenderFromDatabase, adaptGenderToDatabase } from "@/database/adapt-gender"
 import {
@@ -141,7 +142,7 @@ const cvUploadSchema = z.object({
       content: z
         .instanceof(Buffer)
         .transform((value) => value.toString())
-        .pipe(z.enum(["upload", "noUpload", "remind"])),
+        .pipe(z.enum(["upload", "no-upload", "remind"])),
     }),
   }),
   cvFile: z
@@ -198,7 +199,7 @@ class ApplicationHandlers {
       firstNames: firstNames,
       lastNames: lastNames,
       applicationStatus: adaptApplicationStatusFromDatabase(userInfo?.applicationStatus),
-      cvUploadChoice: userInfo?.cvUploadChoice ?? "indeterminate",
+      cvUploadChoice: adaptCvUploadChoiceFromDatabase(userInfo?.cvUploadChoice),
       age: userInfo?.age ?? null,
       gender: adaptGenderFromDatabase(userInfo?.gender),
       ethnicity: adaptEthnicityFromDatabase(userInfo?.ethnicity),
@@ -456,6 +457,8 @@ class ApplicationHandlers {
       const cvFile = payload.cvFile?.files[0]
       const userId = request.user.keycloakUserId
 
+      const prismaUserInfoPayload = { cvUploadChoice: adaptCvUploadChoiceToDatabase(cvUploadChoice) }
+
       if (cvUploadChoice !== "upload") {
         await prisma.$transaction([
           prisma.user.update({
@@ -463,8 +466,8 @@ class ApplicationHandlers {
             data: {
               userInfo: {
                 upsert: {
-                  create: { cvUploadChoice },
-                  update: { cvUploadChoice },
+                  create: prismaUserInfoPayload,
+                  update: prismaUserInfoPayload,
                 },
               },
             },
