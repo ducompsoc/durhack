@@ -1,11 +1,10 @@
 import stream from 'node:stream'
 
-import { durhackConfig } from "@/config"
+import { durhackConfig, mailgunConfig, frontendOrigin } from "@/config"
 import { prisma, type UserInfo } from "@/database"
 import { isString } from "@/lib/type-guards"
 import { mailgunClient } from "@/lib/mailgun"
-import {getKeycloakAdminClient} from "@/lib/keycloak-client";
-import {ClientError, HttpStatus} from "@otterhttp/errors";
+import { getKeycloakAdminClient, unpackAttribute } from "@/lib/keycloak-client"
 
 export class TicketAssigningWritable extends stream.Writable {
   totalAssignedTicketCount: number
@@ -44,6 +43,44 @@ export class TicketAssigningWritable extends stream.Writable {
       this.totalAssignedTicketCount -= 1
       throw e
     }
+
+    // biome-ignore lint/style/noNonNullAssertion: it is impossible to create a keycloak account without first names
+    const preferredNames = unpackAttribute(profile, "preferredNames") ?? unpackAttribute(profile, "firstNames")!
+    const profileUrl = new URL(`/profile/${profile.id}`, frontendOrigin)
+    const profileQrCodeSearchParams = new URLSearchParams({
+      format: "svg",
+      data: profileUrl.href,
+    })
+    const profileQrCodeUrl = new URL(`/v1/create-qr-code/?${profileQrCodeSearchParams}`, "https://api.qrserver.com")
+
+    await mailgunClient.messages.create(mailgunConfig.domain, {
+      from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
+      "h:Reply-To": "hello@durhack.com",
+      to: profile.email,
+      subject: "🎟️ Your DurHack Ticket",
+      html: [
+        '<html lang="en-GB">',
+        '<head><meta charset="utf-8"></head>',
+        "<body>",
+        `<p>Hey ${preferredNames},</p>`,
+        "<br/>",
+        "<p>Congratulations; Your place at DurHack 2024 has been confirmed! 🎉</p>",
+        "<p>If you have any questions regarding the venue or event timings, please check",
+        "   <a href=\"https://durhack.com#faqs\">our FAQs</a> or reply to this email.</p>",
+        "<br/>",
+        "<p>Keep this email handy - you will need the following QR code to check in to DurHack.</p>",
+        "<p>Don't worry too much, though; your QR code can also be viewed at <a href=\"https://durhack.com/dashboard\">durhack.com</a>.</p>",
+        "<br/>",
+        `<img src="${profileQrCodeUrl}" alt="DurHack check in QR code" />`,
+        "<br/>",
+        "<p>We look forward to seeing you at DurHack! 💜</p>",
+        "<br/>",
+        "<p>Thanks,</p>",
+        "<p>The DurHack Team</p>",
+        "</body>",
+        "</html>",
+      ].join("\n"),
+    })
   }
 
   /**
@@ -66,6 +103,32 @@ export class TicketAssigningWritable extends stream.Writable {
           applicationStatusUpdatedAt: now,
         },
       })
+
+    // biome-ignore lint/style/noNonNullAssertion: it is impossible to create a keycloak account without first names
+    const preferredNames = unpackAttribute(profile, "preferredNames") ?? unpackAttribute(profile, "firstNames")!
+
+    await mailgunClient.messages.create(mailgunConfig.domain, {
+      from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
+      "h:Reply-To": "hello@durhack.com",
+      to: profile.email,
+      subject: "⏳😭 DurHack at capacity... ",
+      html: [
+        '<html lang="en-GB">',
+        '<head><meta charset="utf-8"></head>',
+        "<body>",
+        `<p>Hey ${preferredNames},</p>`,
+        "<br/>",
+        "<p>You're on the waiting list for a place at DurHack 2024 ⏰.</p>",
+        "<p>We assign places on a first-come, first-served basis, so if our capacity increases",
+        "or someone with a ticket lets us know they can't attend, you may be assigned a place.</p>",
+        "<p>We will notify you by email if so! 😎</p>",
+        "<br/>",
+        "<p>Thanks,</p>",
+        "<p>The DurHack Team</p>",
+        "</body>",
+        "</html>",
+      ].join("\n"),
+    })
   }
 
   /**
