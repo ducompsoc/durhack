@@ -78,8 +78,7 @@ export class TicketAssigningWritable extends stream.Writable {
 
   _writev(chunks: Array<{ chunk: UserInfo[]; encoding: never }>, callback: (error?: (Error | null)) => void) {
     const combined_chunk = chunks
-      .map((chunk) => chunk.chunk)
-      .flat()
+      .flatMap((chunk) => chunk.chunk)
     this.updateManyApplicationStatus(combined_chunk)
       .then(() => callback())
       .catch((error: unknown) => {
