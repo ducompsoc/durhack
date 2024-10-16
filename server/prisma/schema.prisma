@@ -16,8 +16,8 @@ datasource db {
 
 model Interest {
     id         Int    @id @default(autoincrement())
-    firstNames String @db.VarChar(256)
-    lastNames  String @db.VarChar(256)
+    firstNames String @map("first_names") @db.VarChar(256)
+    lastNames  String @map("last_names") @db.VarChar(256)
     email      String @unique @db.VarChar(256)
     year       Int    @default(2024)
 }
@@ -46,22 +46,22 @@ model UserInfo {
     userId String @id @map("user_id") @db.Uuid
     user   User   @relation(fields: [userId], references: [keycloakUserId])
 
-    cvUploadChoice      CvUploadChoice        @default(indeterminate) @map("cv_upload_choice")
-    age                 Int?                  @db.SmallInt
-    university          String?               @db.VarChar(50)
-    graduationYear      Int?                  @map("graduation_year")
-    levelOfStudy        String?               @map("level_of_study") @db.VarChar(50)
-    countryOfResidence  String?               @map("country_of_residence") @db.Char(3)
-    tShirtSize          String?               @map("tshirt_size") @db.Char(3)
     applicationStatus          UserApplicationStatus @default(unsubmitted) @map("application_status")
     applicationSubmittedAt     DateTime?             @map("application_submitted_at")
     applicationAcceptedAt      DateTime?             @map("application_accepted_at")
     applicationStatusUpdatedAt DateTime?             @map("application_status_updated_at")
 
+    cvUploadChoice      CvUploadChoice       @default(indeterminate) @map("cv_upload_choice")
+    age                 Int?                 @db.SmallInt
+    university          String?              @db.VarChar(50)
+    graduationYear      Int?                 @map("graduation_year")
+    levelOfStudy        String?              @map("level_of_study") @db.VarChar(50)
+    countryOfResidence  String?              @map("country_of_residence") @db.Char(3)
+    tShirtSize          String?              @map("tshirt_size") @db.Char(3)
     gender              Gender?
     ethnicity           Ethnicity?
-    hackathonExperience HackathonExperience?  @map("hackathon_experience")
-    accessRequirements  String?               @map("access_requirements") @db.Text()
+    hackathonExperience HackathonExperience? @map("hackathon_experience")
+    accessRequirements  String?              @map("access_requirements") @db.Text()
 
     updatedAt DateTime @updatedAt @map("updated_at")
 }
@@ -69,7 +69,7 @@ model UserInfo {
 model UserFlag {
     userId   String @map("user_id") @db.Uuid
     user     User   @relation(fields: [userId], references: [keycloakUserId])
-    flagName String
+    flagName String @map("flag_name")
 
     @@id(fields: [userId, flagName], name: "id", map: "user_flag:user_id_and_flag_name")
     @@index(fields: [flagName])
@@ -78,7 +78,7 @@ model UserFlag {
 model UserConsent {
     userId      String  @map("user_id") @db.Uuid
     user        User    @relation(fields: [userId], references: [keycloakUserId])
-    consentName String
+    consentName String  @map("consent_name")
     choice      Boolean
 
     @@id(fields: [userId, consentName], name: "id", map: "user_consent:user_id_and_consent_name")
@@ -120,7 +120,7 @@ enum CvUploadChoice {
     indeterminate
     upload
     remind
-    noUpload
+    noUpload      @map("no_upload")
 }
 
 enum Gender {
