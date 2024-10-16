@@ -11,7 +11,7 @@ export type * from "./schema"
 const config = await loadConfig({
   schema: configSchema,
   adapters: directoryAdapter({
-    paths: path.join(dirname, "config"),
+    paths: path.resolve(dirname, "..", "config"),
     adapters: [
       {
         extensions: [".ts", ".js"],
