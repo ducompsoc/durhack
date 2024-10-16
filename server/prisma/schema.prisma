@@ -46,7 +46,6 @@ model UserInfo {
     userId String @id @map("user_id") @db.Uuid
     user   User   @relation(fields: [userId], references: [keycloakUserId])
 
-    applicationStatus   UserApplicationStatus @default(unsubmitted) @map("application_status")
     cvUploadChoice      CvUploadChoice        @default(indeterminate) @map("cv_upload_choice")
     age                 Int?                  @db.SmallInt
     university          String?               @db.VarChar(50)
@@ -54,6 +53,11 @@ model UserInfo {
     levelOfStudy        String?               @map("level_of_study") @db.VarChar(50)
     countryOfResidence  String?               @map("country_of_residence") @db.Char(3)
     tShirtSize          String?               @map("tshirt_size") @db.Char(3)
+    applicationStatus          UserApplicationStatus @default(unsubmitted) @map("application_status")
+    applicationSubmittedAt     DateTime?             @map("application_submitted_at")
+    applicationAcceptedAt      DateTime?             @map("application_accepted_at")
+    applicationStatusUpdatedAt DateTime?             @map("application_status_updated_at")
+
     gender              Gender?
     ethnicity           Ethnicity?
     hackathonExperience HackathonExperience?  @map("hackathon_experience")
