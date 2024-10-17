@@ -168,7 +168,7 @@ class ApplicationsHandlers {
   getApplicationsByDisciplineOfStudy(): Middleware {
     return async (request, response) => {
       const [result, totalApplicationCount] = await Promise.all([
-        prisma.$queryRawTyped(getApplicationsGroupedByDisciplineOfStudy(["submitted", "accepted", "waiting_list"])),
+        prisma.$queryRawTyped(getApplicationsGroupedByDisciplineOfStudy(["submitted", "accepted", "waiting_list"], false)),
         this.getTotalApplicationCount(),
       ])
 
@@ -200,7 +200,7 @@ class ApplicationsHandlers {
   getApplicationsByDietaryRequirement(): Middleware {
     return async (request, response) => {
       const [result, totalApplicationCount] = await Promise.all([
-        prisma.$queryRawTyped(getApplicationsGroupedByDietaryRequirement(["submitted", "accepted", "waiting_list"])),
+        prisma.$queryRawTyped(getApplicationsGroupedByDietaryRequirement(["submitted", "accepted", "waiting_list"], false)),
         this.getTotalApplicationCount(),
       ])
 
