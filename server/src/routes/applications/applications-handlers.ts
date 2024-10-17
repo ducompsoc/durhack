@@ -19,7 +19,16 @@ class ApplicationsHandlers {
   }
 
   private async getTotalCvCount(): Promise<number> {
-    return await prisma.userCV.count()
+    return await prisma.user.count({
+      where: {
+        userInfo: {
+          applicationStatus: {
+            in: ["submitted", "accepted", "waitingList"],
+          },
+        },
+        userCv: { isNot: null }
+      },
+    })
   }
 
   /**
