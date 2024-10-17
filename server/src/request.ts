@@ -31,4 +31,9 @@ export class Request extends OtterRequest<never> {
     if (queryString !== "") queryString = `?${queryString}`
     return this._queryString = queryString
   }
+
+  get pathnameWithoutTrailingSlash(): string {
+    if (!this.pathname.endsWith("/")) return this.pathname
+    return this.pathname.slice(0, -1)
+  }
 }
