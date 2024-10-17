@@ -1,4 +1,4 @@
-function groupPromiseSettledResultsByStatus<T>(results: PromiseSettledResult<T>[]) {
+export function groupPromiseSettledResultsByStatus<T>(results: PromiseSettledResult<T>[]) {
   const grouped = Object.groupBy<"fulfilled" | "rejected", PromiseSettledResult<T>>(results, (result) => result.status)
   grouped.fulfilled ??= []
   grouped.rejected ??= []
