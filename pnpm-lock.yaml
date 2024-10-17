@@ -173,6 +173,9 @@ importers:
       mailgun.js:
         specifier: ^10.2.3
         version: 10.2.3
+      module-error:
+        specifier: ^1.0.2
+        version: 1.0.2
       openid-client:
         specifier: ^5.6.5
         version: 5.7.0
@@ -2117,6 +2120,7 @@ packages:
   eslint@8.57.1:
     resolution: {integrity: sha512-ypowyDxpVSYpkXr9WPv2PAZCtNip1Mv5KTW0SCurXv/9iOpcrH9PaqUElksqEB6pChqHGDRCFTyrZlGhnLNGiA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:

@@ -29,6 +29,7 @@
     "ics": "^3.8.1",
     "libphonenumber-js": "^1.11.4",
     "mailgun.js": "^10.2.3",
+    "module-error": "^1.0.2",
     "openid-client": "^5.6.5",
     "tsx": "^4.15.6",
     "zod": "^3.23.8",
