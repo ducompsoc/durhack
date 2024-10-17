@@ -1,13 +1,13 @@
-import { Transform, type TransformCallback } from 'node:stream'
+import { Transform, type TransformCallback } from "node:stream"
 
 import type { UserInfo } from "@/database"
-import { isString } from "@/lib/type-guards";
+import { isString } from "@/lib/type-guards"
 
 export class AttendeeCheckingTransform extends Transform {
   constructor() {
     super({
       writableObjectMode: true, // the stream expects to receive objects, not a string/binary data
-      readableObjectMode: true // the stream expects its _transform implementation to push objects, not a string/binary data
+      readableObjectMode: true, // the stream expects its _transform implementation to push objects, not a string/binary data
     })
   }
 

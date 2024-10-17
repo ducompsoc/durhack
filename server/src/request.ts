@@ -1,7 +1,7 @@
+import { stringify } from "node:querystring"
 import { Request as OtterRequest } from "@otterhttp/app"
 import type { Prisma } from "@prisma/client"
 import type { TokenSet as ClientTokenSet, UserinfoResponse } from "openid-client"
-import { stringify } from "node:querystring";
 
 import type { KeycloakUserInfo } from "@/lib/keycloak-client"
 
@@ -29,7 +29,8 @@ export class Request extends OtterRequest<never> {
     if (this._queryString != null) return this._queryString
     let queryString = stringify(this.query)
     if (queryString !== "") queryString = `?${queryString}`
-    return this._queryString = queryString
+    this._queryString = queryString
+    return this._queryString
   }
 
   get pathnameWithoutTrailingSlash(): string {

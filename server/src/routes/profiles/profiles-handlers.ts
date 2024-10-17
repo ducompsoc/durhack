@@ -43,7 +43,7 @@ class ProfileHandlers {
         include: {
           userInfo: true,
           userCv: { select: { userId: true } },
-        }
+        },
       })
 
       response.status(200).json({
@@ -54,7 +54,11 @@ class ProfileHandlers {
           preferredNames: unpackAttribute(profile, "preferredNames"),
           firstNames: unpackAttribute(profile, "firstNames"),
           lastNames: unpackAttribute(profile, "lastNames"),
-          pronouns: unpackAttribute<"he/him" | "she/her" | "they/them" | "xe/xem" | "Please Ask" | "Unspecified">(profile, "pronouns", "Unspecified"),
+          pronouns: unpackAttribute<"he/him" | "she/her" | "they/them" | "xe/xem" | "Please Ask" | "Unspecified">(
+            profile,
+            "pronouns",
+            "Unspecified",
+          ),
           hasAttendeeTicket: databaseProfile?.userInfo?.applicationStatus === "accepted",
           uploadedCv: databaseProfile?.userCv != null,
         },

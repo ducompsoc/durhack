@@ -2,26 +2,25 @@ import { Transform, type TransformCallback } from "node:stream"
 import ModuleError from "module-error"
 
 import type { UserInfo } from "@/database"
-import { isString } from "@/lib/type-guards"
-import { getKeycloakAdminClient, unpackAttribute } from "@/lib/keycloak-client"
-import { isNetworkError } from "@/lib/is-network-error"
 import { groupPromiseSettledResultsByStatus } from "@/lib/group-promise-settled-results-by-status"
-
+import { isNetworkError } from "@/lib/is-network-error"
+import { getKeycloakAdminClient, unpackAttribute } from "@/lib/keycloak-client"
+import { isString } from "@/lib/type-guards"
 
 export type KeycloakAugmentedUserInfo = UserInfo & {
-  firstNames: string,
-  lastNames: string,
-  preferredNames: string | undefined,
-  pronouns: "he/him" | "she/her" | "they/them" | "xe/xem" | "Please Ask" | "Unspecified",
-  email: string,
-  phone: string | undefined,
+  firstNames: string
+  lastNames: string
+  preferredNames: string | undefined
+  pronouns: "he/him" | "she/her" | "they/them" | "xe/xem" | "Please Ask" | "Unspecified"
+  email: string
+  phone: string | undefined
 }
 
 export class KeycloakAugmentingTransform extends Transform {
   constructor() {
     super({
       writableObjectMode: true, // the stream expects to receive objects, not a string/binary data
-      readableObjectMode: true // the stream expects its _transform implementation to push objects, not a string/binary data
+      readableObjectMode: true, // the stream expects its _transform implementation to push objects, not a string/binary data
     })
   }
 
@@ -37,9 +36,12 @@ export class KeycloakAugmentingTransform extends Transform {
     const email = profile.email
     const phone = unpackAttribute(profile, "phone")
 
-    if (firstNames == null) throw new ModuleError("Keycloak user missing first names", { code: "ERR_KEYCLOAK_USER_MISSING_REQUIRED_FIELD" })
-    if (lastNames == null) throw new ModuleError("Keycloak user missing last names", { code: "ERR_KEYCLOAK_USER_MISSING_REQUIRED_FIELD" })
-    if (email == null) throw new ModuleError("Keycloak user missing email address", { code: "ERR_KEYCLOAK_USER_MISSING_REQUIRED_FIELD" })
+    if (firstNames == null)
+      throw new ModuleError("Keycloak user missing first names", { code: "ERR_KEYCLOAK_USER_MISSING_REQUIRED_FIELD" })
+    if (lastNames == null)
+      throw new ModuleError("Keycloak user missing last names", { code: "ERR_KEYCLOAK_USER_MISSING_REQUIRED_FIELD" })
+    if (email == null)
+      throw new ModuleError("Keycloak user missing email address", { code: "ERR_KEYCLOAK_USER_MISSING_REQUIRED_FIELD" })
 
     return {
       ...userInfo,
@@ -57,8 +59,7 @@ export class KeycloakAugmentingTransform extends Transform {
     for (let i = 0; i < 3; i++) {
       try {
         return await this.augmentUserInfo(userInfo)
-      }
-      catch (error) {
+      } catch (error) {
         if (!isNetworkError(error)) throw error
         errors.push(error)
       }
@@ -68,7 +69,7 @@ export class KeycloakAugmentingTransform extends Transform {
 
   async augmentChunk(chunk: UserInfo[]): Promise<KeycloakAugmentedUserInfo[]> {
     const results = await Promise.allSettled(chunk.map((userInfo) => this.augmentUserInfoWithRetry(userInfo)))
-    const {fulfilled, rejected} = groupPromiseSettledResultsByStatus(results)
+    const { fulfilled, rejected } = groupPromiseSettledResultsByStatus(results)
     if (rejected.length === 0) return fulfilled.map((result) => result.value)
 
     const rejectedGroupedBySeverity = Object.groupBy(rejected, (result) => {

@@ -4,6 +4,6 @@ export function groupPromiseSettledResultsByStatus<T>(results: PromiseSettledRes
   grouped.rejected ??= []
   return grouped as {
     fulfilled: PromiseFulfilledResult<T>[]
-    rejected: { status: "rejected", reason: unknown }[]
+    rejected: { status: "rejected"; reason: unknown }[]
   }
 }

@@ -1,21 +1,24 @@
 import { ClientError, HttpStatus } from "@otterhttp/errors"
+import type { Prisma, UserApplicationStatus } from "@prisma/client"
 import {
   getApplicationsGroupedByDietaryRequirement,
   getApplicationsGroupedByDisciplineOfStudy,
 } from "@prisma/client/sql"
-import type { UserApplicationStatus, Prisma } from "@prisma/client";
 
-import { origin } from "@/config";
+import { origin } from "@/config"
 import { prisma } from "@/database"
 import { Group, onlyGroups } from "@/decorators/authorise"
-import { Middleware, Request, Response } from "@/types"
+import type { Middleware, Request, Response } from "@/types"
 
 class ApplicationsHandlers {
   hasAttendanceFlag(): Prisma.UserWhereInput["userFlags"] {
     return { some: { flagName: "attendance" } }
   }
 
-  private async getTotalApplicationCount(applicationStatusFilter: UserApplicationStatus[], whereOnlyCheckedIn: boolean): Promise<number> {
+  private async getTotalApplicationCount(
+    applicationStatusFilter: UserApplicationStatus[],
+    whereOnlyCheckedIn: boolean,
+  ): Promise<number> {
     return await prisma.user.count({
       where: {
         userInfo: {
@@ -28,7 +31,10 @@ class ApplicationsHandlers {
     })
   }
 
-  private async getTotalCvCount(applicationStatusFilter: UserApplicationStatus[], whereOnlyCheckedIn: boolean): Promise<number> {
+  private async getTotalCvCount(
+    applicationStatusFilter: UserApplicationStatus[],
+    whereOnlyCheckedIn: boolean,
+  ): Promise<number> {
     return await prisma.user.count({
       where: {
         userInfo: {
@@ -53,7 +59,8 @@ class ApplicationsHandlers {
 
   private getFilterDescription(response: Response): string {
     if (response.locals.includeAll === true) return "`all`: All completed applications are considered"
-    if (response.locals.whereOnlyCheckedIn === true) return "`attendees`: Only completed applications for checked-in attendees are considered"
+    if (response.locals.whereOnlyCheckedIn === true)
+      return "`attendees`: Only completed applications for checked-in attendees are considered"
     return "`accepted`: only completed applications which have been assigned tickets are considered"
   }
 
@@ -166,9 +173,7 @@ class ApplicationsHandlers {
             applicationStatus: {
               in: applicationStatusFilter,
             },
-            user: response.locals.whereOnlyCheckedIn === true
-              ? { userFlags: this.hasAttendanceFlag() }
-              : undefined,
+            user: response.locals.whereOnlyCheckedIn === true ? { userFlags: this.hasAttendanceFlag() } : undefined,
           },
           _count: {
             userId: true,
@@ -214,9 +219,7 @@ class ApplicationsHandlers {
             applicationStatus: {
               in: applicationStatusFilter,
             },
-            user: response.locals.whereOnlyCheckedIn === true
-              ? { userFlags: this.hasAttendanceFlag() }
-              : undefined,
+            user: response.locals.whereOnlyCheckedIn === true ? { userFlags: this.hasAttendanceFlag() } : undefined,
           },
           _count: {
             userId: true,
@@ -256,10 +259,12 @@ class ApplicationsHandlers {
     return async (request, response) => {
       const applicationStatusFilter = this.getApplicationStatusFilter(response)
       const [result, totalApplicationCount] = await Promise.all([
-        prisma.$queryRawTyped(getApplicationsGroupedByDisciplineOfStudy(
-          applicationStatusFilter,
-          response.locals.whereOnlyCheckedIn === true
-        )),
+        prisma.$queryRawTyped(
+          getApplicationsGroupedByDisciplineOfStudy(
+            applicationStatusFilter,
+            response.locals.whereOnlyCheckedIn === true,
+          ),
+        ),
         this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
       ])
 
@@ -295,10 +300,12 @@ class ApplicationsHandlers {
     return async (request, response) => {
       const applicationStatusFilter = this.getApplicationStatusFilter(response)
       const [result, totalApplicationCount] = await Promise.all([
-        prisma.$queryRawTyped(getApplicationsGroupedByDietaryRequirement(
-          applicationStatusFilter,
-          response.locals.whereOnlyCheckedIn === true
-        )),
+        prisma.$queryRawTyped(
+          getApplicationsGroupedByDietaryRequirement(
+            applicationStatusFilter,
+            response.locals.whereOnlyCheckedIn === true,
+          ),
+        ),
         this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
       ])
 
@@ -340,9 +347,7 @@ class ApplicationsHandlers {
             applicationStatus: {
               in: applicationStatusFilter,
             },
-            user: response.locals.whereOnlyCheckedIn === true
-              ? { userFlags: this.hasAttendanceFlag() }
-              : undefined,
+            user: response.locals.whereOnlyCheckedIn === true ? { userFlags: this.hasAttendanceFlag() } : undefined,
           },
           _count: {
             userId: true,

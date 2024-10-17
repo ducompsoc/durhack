@@ -1,20 +1,17 @@
-import stream from 'node:stream'
+import stream from "node:stream"
 
-import { durhackConfig, mailgunConfig, frontendOrigin } from "@/config"
+import { durhackConfig, frontendOrigin, mailgunConfig } from "@/config"
 import { prisma } from "@/database"
 import { isString } from "@/lib/type-guards"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
+import type { KeycloakAugmentedUserInfo } from "@/ticket-assigner/keycloak-augmenting-transform"
 import type { Mailer } from "@/ticket-assigner/mailer"
-import type { KeycloakAugmentedUserInfo } from "@/ticket-assigner/keycloak-augmenting-transform";
 
 export class TicketAssigningWritable extends stream.Writable {
   totalAssignedTicketCount: number
   private mailer: Mailer
 
-  constructor(
-    mailer: Mailer,
-    totalAssignedTicketCount: number
-  ) {
+  constructor(mailer: Mailer, totalAssignedTicketCount: number) {
     super({
       objectMode: true, // the stream expects to receive objects, not a string/binary data
     })
@@ -29,14 +26,20 @@ export class TicketAssigningWritable extends stream.Writable {
       format: "svg",
       data: profileUrl.href,
     })
-    const svgProfileQrCodeUrl = new URL(`/v1/create-qr-code/?${svgProfileQrCodeSearchParams}`, "https://api.qrserver.com")
+    const svgProfileQrCodeUrl = new URL(
+      `/v1/create-qr-code/?${svgProfileQrCodeSearchParams}`,
+      "https://api.qrserver.com",
+    )
 
     const pngProfileQrCodeSearchParams = new URLSearchParams({
       format: "png",
       size: "600x600",
       data: profileUrl.href,
     })
-    const pngProfileQrCodeUrl = new URL(`/v1/create-qr-code/?${pngProfileQrCodeSearchParams}`, "https://api.qrserver.com")
+    const pngProfileQrCodeUrl = new URL(
+      `/v1/create-qr-code/?${pngProfileQrCodeSearchParams}`,
+      "https://api.qrserver.com",
+    )
 
     return `<img src="${pngProfileQrCodeUrl}" srcset="${svgProfileQrCodeUrl}" alt="DurHack check in QR code" style="max-width: 20rem;" />`
   }
@@ -46,7 +49,8 @@ export class TicketAssigningWritable extends stream.Writable {
    */
   async assignTicket(userInfo: KeycloakAugmentedUserInfo): Promise<void> {
     if (userInfo.applicationStatus === "accepted") return
-    if (userInfo.applicationStatus === "unsubmitted") throw new Error(`Can't assign ticket to ${userInfo.userId} as their application is unsubmitted`)
+    if (userInfo.applicationStatus === "unsubmitted")
+      throw new Error(`Can't assign ticket to ${userInfo.userId} as their application is unsubmitted`)
 
     try {
       this.totalAssignedTicketCount += 1
@@ -59,8 +63,7 @@ export class TicketAssigningWritable extends stream.Writable {
           applicationStatusUpdatedAt: now,
         },
       })
-    }
-    catch (e) {
+    } catch (e) {
       this.totalAssignedTicketCount -= 1
       throw e
     }
@@ -72,8 +75,8 @@ export class TicketAssigningWritable extends stream.Writable {
       to: userInfo.email,
       subject: "🎟️ Your DurHack Ticket",
       html: [
-        "<html lang=\"en-GB\">",
-        "<head><meta charset=\"utf-8\"></head>",
+        '<html lang="en-GB">',
+        '<head><meta charset="utf-8"></head>',
         "<body>",
         `<p>Hey ${preferredNames},</p>`,
         "<br/>",
@@ -85,11 +88,11 @@ export class TicketAssigningWritable extends stream.Writable {
         "</p>",
         "<p>",
         "If you have any questions regarding the venue or event timings, please check",
-        "<a href=\"https://durhack.com#faqs\">our FAQs</a> or reply to this email.</p>",
+        '<a href="https://durhack.com#faqs">our FAQs</a> or reply to this email.</p>',
         "<br/>",
         "<p>",
         "Keep this email handy - you will need the following QR code to check in to DurHack.",
-        "It can also be viewed at <a href=\"https://durhack.com/dashboard\">durhack.com</a>.",
+        'It can also be viewed at <a href="https://durhack.com/dashboard">durhack.com</a>.',
         "</p>",
         "<br/>",
         this.profileQrCodeImgTag(userInfo.userId),
@@ -101,7 +104,7 @@ export class TicketAssigningWritable extends stream.Writable {
         "</body>",
         "</html>",
       ].join("\n"),
-      attachment: [{ filename: "invite.ics", data: durhackInvite }]
+      attachment: [{ filename: "invite.ics", data: durhackInvite }],
     })
   }
 
@@ -110,17 +113,19 @@ export class TicketAssigningWritable extends stream.Writable {
    */
   async waitingList(userInfo: KeycloakAugmentedUserInfo): Promise<void> {
     if (userInfo.applicationStatus === "waitingList") return
-    if (userInfo.applicationStatus === "unsubmitted") throw new Error(`Can't waiting list ${userInfo.userId} as their application is unsubmitted`)
-    if (userInfo.applicationStatus === "accepted") throw new Error(`Can't waiting list ${userInfo.userId} as their application has been accepted`)
+    if (userInfo.applicationStatus === "unsubmitted")
+      throw new Error(`Can't waiting list ${userInfo.userId} as their application is unsubmitted`)
+    if (userInfo.applicationStatus === "accepted")
+      throw new Error(`Can't waiting list ${userInfo.userId} as their application has been accepted`)
 
     const now = new Date()
-      await prisma.userInfo.update({
-        where: { userId: userInfo.userId },
-        data: {
-          applicationStatus: "waitingList",
-          applicationStatusUpdatedAt: now,
-        },
-      })
+    await prisma.userInfo.update({
+      where: { userId: userInfo.userId },
+      data: {
+        applicationStatus: "waitingList",
+        applicationStatusUpdatedAt: now,
+      },
+    })
 
     const preferredNames = userInfo.preferredNames ?? userInfo.firstNames
     await this.mailer.createMessage({
@@ -129,8 +134,8 @@ export class TicketAssigningWritable extends stream.Writable {
       to: userInfo.email,
       subject: "⏳😭 DurHack at capacity...",
       html: [
-        "<html lang=\"en-GB\">",
-        "<head><meta charset=\"utf-8\"></head>",
+        '<html lang="en-GB">',
+        '<head><meta charset="utf-8"></head>',
         "<body>",
         `<p>Hey ${preferredNames},</p>`,
         "<br/>",
@@ -161,13 +166,11 @@ export class TicketAssigningWritable extends stream.Writable {
   }
 
   async updateManyApplicationStatus(users: KeycloakAugmentedUserInfo[]): Promise<void> {
-    const applicationStatusUpdatePromises = users.map(
-      (user) => this.updateApplicationStatus(user)
-    )
+    const applicationStatusUpdatePromises = users.map((user) => this.updateApplicationStatus(user))
     await Promise.all(applicationStatusUpdatePromises)
   }
 
-  _write(chunk: KeycloakAugmentedUserInfo[], encoding: never, callback: (error?: (Error | null)) => void) {
+  _write(chunk: KeycloakAugmentedUserInfo[], encoding: never, callback: (error?: Error | null) => void) {
     this.updateManyApplicationStatus(chunk)
       .then(() => callback())
       .catch((error: unknown) => {

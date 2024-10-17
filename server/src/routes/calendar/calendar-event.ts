@@ -1,18 +1,18 @@
-import { createEvent as _createEvent, type EventAttributes } from "ics"
 import { createHash } from "node:crypto"
 import { promisify } from "node:util"
+import { type EventAttributes, createEvent as _createEvent } from "ics"
 
 import { frontendOrigin } from "@/config"
-import { Middleware } from "@/types"
+import type { Middleware } from "@/types"
 
 const createEvent = promisify<EventAttributes, string>(_createEvent)
 
 export const durhackInvite = await createEvent({
-  start: [2024, 11, 2, 9, 30],  // "2024-11-2T09:30" in UTC time
+  start: [2024, 11, 2, 9, 30], // "2024-11-2T09:30" in UTC time
   startInputType: "utc",
   startOutputType: "utc",
 
-  end: [2024, 11, 3, 16, 30],  // "2024-11-3T16:30" in UTC time
+  end: [2024, 11, 3, 16, 30], // "2024-11-3T16:30" in UTC time
   endInputType: "utc",
   endOutputType: "utc",
 

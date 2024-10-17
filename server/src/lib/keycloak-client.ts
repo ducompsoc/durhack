@@ -57,8 +57,19 @@ export type KeycloakUserInfo = {
 
 export type { AdminClientUserRepresentation }
 
-export function unpackAttribute<T extends string = string>(userRepresentation: AdminClientUserRepresentation, attributeName: string): T | undefined
-export function unpackAttribute<T = string>(userRepresentation: AdminClientUserRepresentation, attributeName: string, defaultValue: T): T
-export function unpackAttribute<T = string>(userRepresentation: AdminClientUserRepresentation, attributeName: string, defaultValue: T | undefined = undefined): T | undefined {
+export function unpackAttribute<T extends string = string>(
+  userRepresentation: AdminClientUserRepresentation,
+  attributeName: string,
+): T | undefined
+export function unpackAttribute<T = string>(
+  userRepresentation: AdminClientUserRepresentation,
+  attributeName: string,
+  defaultValue: T,
+): T
+export function unpackAttribute<T = string>(
+  userRepresentation: AdminClientUserRepresentation,
+  attributeName: string,
+  defaultValue: T | undefined = undefined,
+): T | undefined {
   return userRepresentation.attributes?.[attributeName]?.[0] ?? defaultValue
 }
