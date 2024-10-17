@@ -2,6 +2,9 @@ import type { ConfigIn } from "@/config/schema"
 import type { DeepPartial } from "@/types/deep-partial"
 
 export default {
+  listen: {
+    port: 3011,
+  },
   origin: "https://api.durhack-staging.com",
   frontendOrigin: "https://durhack-staging.com",
   session: {

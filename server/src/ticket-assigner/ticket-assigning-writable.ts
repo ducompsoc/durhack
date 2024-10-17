@@ -5,6 +5,7 @@ import { prisma, type UserInfo } from "@/database"
 import { isString } from "@/lib/type-guards"
 import { mailgunClient } from "@/lib/mailgun"
 import { getKeycloakAdminClient, unpackAttribute } from "@/lib/keycloak-client"
+import { durhackInvite } from "@/routes/calendar/calendar-event"
 
 export class TicketAssigningWritable extends stream.Writable {
   totalAssignedTicketCount: number
@@ -14,6 +15,25 @@ export class TicketAssigningWritable extends stream.Writable {
       objectMode: true, // the stream expects to receive objects, not a string/binary data
     })
     this.totalAssignedTicketCount = totalAssignedTicketCount
+  }
+
+  private profileQrCodeImgTag(userId: string): string {
+    const profileUrl = new URL(`/profile/${userId}`, frontendOrigin)
+
+    const svgProfileQrCodeSearchParams = new URLSearchParams({
+      format: "svg",
+      data: profileUrl.href,
+    })
+    const svgProfileQrCodeUrl = new URL(`/v1/create-qr-code/?${svgProfileQrCodeSearchParams}`, "https://api.qrserver.com")
+
+    const pngProfileQrCodeSearchParams = new URLSearchParams({
+      format: "png",
+      size: "600x600",
+      data: profileUrl.href,
+    })
+    const pngProfileQrCodeUrl = new URL(`/v1/create-qr-code/?${pngProfileQrCodeSearchParams}`, "https://api.qrserver.com")
+
+    return `<img src="${pngProfileQrCodeUrl}" srcset="${svgProfileQrCodeUrl}" alt="DurHack check in QR code" style="max-width: 20rem;" />`
   }
 
   /**
@@ -46,40 +66,42 @@ export class TicketAssigningWritable extends stream.Writable {
 
     // biome-ignore lint/style/noNonNullAssertion: it is impossible to create a keycloak account without first names
     const preferredNames = unpackAttribute(profile, "preferredNames") ?? unpackAttribute(profile, "firstNames")!
-    const profileUrl = new URL(`/profile/${profile.id}`, frontendOrigin)
-    const profileQrCodeSearchParams = new URLSearchParams({
-      format: "svg",
-      data: profileUrl.href,
-    })
-    const profileQrCodeUrl = new URL(`/v1/create-qr-code/?${profileQrCodeSearchParams}`, "https://api.qrserver.com")
-
     await mailgunClient.messages.create(mailgunConfig.domain, {
       from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
       "h:Reply-To": "hello@durhack.com",
       to: profile.email,
       subject: "🎟️ Your DurHack Ticket",
       html: [
-        '<html lang="en-GB">',
-        '<head><meta charset="utf-8"></head>',
+        "<html lang=\"en-GB\">",
+        "<head><meta charset=\"utf-8\"></head>",
         "<body>",
         `<p>Hey ${preferredNames},</p>`,
         "<br/>",
         "<p>Congratulations; Your place at DurHack 2024 has been confirmed! 🎉</p>",
-        "<p>If you have any questions regarding the venue or event timings, please check",
-        "   <a href=\"https://durhack.com#faqs\">our FAQs</a> or reply to this email.</p>",
+        "<p>",
+        "DurHack is taking place at <strong>Durham University's Teaching and Learning Centre</strong>.",
+        "Check-in is from 09:30-10:30 (AM) Saturday 2<sup>nd</sup> November;",
+        "DurHack is expected to wrap up by around 16:30 on Sunday 3<sup>rd</sup> November.",
+        "</p>",
+        "<p>",
+        "If you have any questions regarding the venue or event timings, please check",
+        "<a href=\"https://durhack.com#faqs\">our FAQs</a> or reply to this email.</p>",
         "<br/>",
-        "<p>Keep this email handy - you will need the following QR code to check in to DurHack.</p>",
-        "<p>Don't worry too much, though; your QR code can also be viewed at <a href=\"https://durhack.com/dashboard\">durhack.com</a>.</p>",
+        "<p>",
+        "Keep this email handy - you will need the following QR code to check in to DurHack.",
+        "It can also be viewed at <a href=\"https://durhack.com/dashboard\">durhack.com</a>.",
+        "</p>",
         "<br/>",
-        `<img src="${profileQrCodeUrl}" alt="DurHack check in QR code" />`,
+        this.profileQrCodeImgTag(userInfo.userId),
         "<br/>",
         "<p>We look forward to seeing you at DurHack! 💜</p>",
         "<br/>",
-        "<p>Thanks,</p>",
+        "<p>Happy Hacking,</p>",
         "<p>The DurHack Team</p>",
         "</body>",
         "</html>",
       ].join("\n"),
+      attachment: [{ filename: "invite.ics", data: durhackInvite }]
     })
   }
 
@@ -111,10 +133,10 @@ export class TicketAssigningWritable extends stream.Writable {
       from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
       "h:Reply-To": "hello@durhack.com",
       to: profile.email,
-      subject: "⏳😭 DurHack at capacity... ",
+      subject: "⏳😭 DurHack at capacity...",
       html: [
-        '<html lang="en-GB">',
-        '<head><meta charset="utf-8"></head>',
+        "<html lang=\"en-GB\">",
+        "<head><meta charset=\"utf-8\"></head>",
         "<body>",
         `<p>Hey ${preferredNames},</p>`,
         "<br/>",
