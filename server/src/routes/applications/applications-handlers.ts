@@ -5,9 +5,10 @@ import {
 } from "@prisma/client/sql"
 import type { UserApplicationStatus, Prisma } from "@prisma/client";
 
+import { origin } from "@/config";
 import { prisma } from "@/database"
 import { Group, onlyGroups } from "@/decorators/authorise"
-import type { Middleware, Response } from "@/types"
+import { Middleware, Request, Response } from "@/types"
 
 class ApplicationsHandlers {
   hasAttendanceFlag(): Prisma.UserWhereInput["userFlags"] {
@@ -48,6 +49,20 @@ class ApplicationsHandlers {
     if (response.locals.whereOnlyCheckedIn === true) return ["submitted", "accepted", "waitingList"]
     // with no query parameters, only include people that have been assigned tickets
     return ["accepted"]
+  }
+
+  private getFilterDescription(response: Response): string {
+    if (response.locals.includeAll === true) return "All completed applications are considered"
+    if (response.locals.whereOnlyCheckedIn === true) return "Only completed applications for checked-in attendees are considered"
+    return "Only completed applications which have been assigned tickets are considered"
+  }
+
+  private getFilteredUrls(request: Request, response: Response): Record<string, URL> {
+    return {
+      filter_accepted_url: new URL(`${request.pathnameWithoutTrailingSlash}`, origin),
+      filter_all_url: new URL(`${request.pathnameWithoutTrailingSlash}?all=`, origin),
+      filter_attendees_url: new URL(`${request.pathnameWithoutTrailingSlash}?attendees=`, origin),
+    }
   }
 
   /**
@@ -123,6 +138,13 @@ class ApplicationsHandlers {
           total_cv_proportion: totalCvProportion,
           total_cv_percentage: this.formatAsPercentage(totalCvProportion),
         },
+        filter_description: this.getFilterDescription(response),
+        ...this.getFilteredUrls(request, response),
+        by_institution_url: new URL(`/applications/by-institution${request.queryString}`, origin),
+        by_level_of_study_url: new URL(`/applications/by-level-of-study${request.queryString}`, origin),
+        by_discipline_of_study_url: new URL(`/applications/by-discipline-of-study${request.queryString}`, origin),
+        by_dietary_requirement_url: new URL(`/applications/by-dietary-requirement${request.queryString}`, origin),
+        by_gender_identity_url: new URL(`/applications/by-gender-identity${request.queryString}`, origin),
       })
     }
   }
@@ -168,6 +190,9 @@ class ApplicationsHandlers {
 
       response.json({
         data: rows,
+        filter_description: this.getFilterDescription(response),
+        ...this.getFilteredUrls(request, response),
+        summary_url: new URL(`/applications${request.queryString}`, origin),
       })
     }
   }
@@ -213,6 +238,9 @@ class ApplicationsHandlers {
 
       response.json({
         data: rows,
+        filter_description: this.getFilterDescription(response),
+        ...this.getFilteredUrls(request, response),
+        summary_url: new URL(`/applications${request.queryString}`, origin),
       })
     }
   }
@@ -249,6 +277,9 @@ class ApplicationsHandlers {
       })
       response.json({
         data: rows,
+        filter_description: this.getFilterDescription(response),
+        ...this.getFilteredUrls(request, response),
+        summary_url: new URL(`/applications${request.queryString}`, origin),
       })
     }
   }
@@ -285,6 +316,9 @@ class ApplicationsHandlers {
       })
       response.json({
         data: rows,
+        filter_description: this.getFilterDescription(response),
+        ...this.getFilteredUrls(request, response),
+        summary_url: new URL(`/applications${request.queryString}`, origin),
       })
     }
   }
@@ -330,6 +364,9 @@ class ApplicationsHandlers {
 
       response.json({
         data: rows,
+        filter_description: this.getFilterDescription(response),
+        ...this.getFilteredUrls(request, response),
+        summary_url: new URL(`/applications${request.queryString}`, origin),
       })
     }
   }
