@@ -87,7 +87,7 @@ export class TicketAssigningWritable extends stream.Writable {
         "<br/>",
         "<p>We look forward to seeing you at DurHack! 💜</p>",
         "<br/>",
-        "<p>Thanks,</p>",
+        "<p>Happy Hacking,</p>",
         "<p>The DurHack Team</p>",
         "</body>",
         "</html>",
