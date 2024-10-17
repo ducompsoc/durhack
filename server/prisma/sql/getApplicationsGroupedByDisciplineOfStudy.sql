@@ -4,7 +4,7 @@ SELECT
 FROM "UserInfo" userInfo
 LEFT JOIN "UserFlag" userFlag on userInfo.user_id = userFlag.user_id
 WHERE true
-    AND application_status='submitted'
+    AND application_status in ('submitted', 'accepted', 'waiting_list')
     AND userFlag.flag_name like 'discipline-of-study:%'
 GROUP BY
     userFlag.flag_name

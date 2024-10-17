@@ -12,7 +12,7 @@ class ApplicationsHandlers {
     return await prisma.userInfo.count({
       where: {
         applicationStatus: {
-          equals: "submitted",
+          in: ["submitted", "accepted", "waitingList"],
         },
       },
     })
@@ -90,7 +90,7 @@ class ApplicationsHandlers {
           by: ["university"],
           where: {
             applicationStatus: {
-              equals: "submitted",
+              in: ["submitted", "accepted", "waitingList"],
             },
           },
           _count: {
@@ -131,7 +131,7 @@ class ApplicationsHandlers {
           by: ["levelOfStudy"],
           where: {
             applicationStatus: {
-              equals: "submitted",
+              in: ["submitted", "accepted", "waitingList"],
             },
           },
           _count: {
@@ -236,7 +236,7 @@ class ApplicationsHandlers {
           by: ["gender"],
           where: {
             applicationStatus: {
-              equals: "submitted",
+              in: ["submitted", "accepted", "waitingList"],
             },
           },
           _count: {
