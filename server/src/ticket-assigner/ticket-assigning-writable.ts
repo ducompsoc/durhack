@@ -16,6 +16,25 @@ export class TicketAssigningWritable extends stream.Writable {
     this.totalAssignedTicketCount = totalAssignedTicketCount
   }
 
+  private profileQrCodeImgTag(userId: string): string {
+    const profileUrl = new URL(`/profile/${userId}`, frontendOrigin)
+
+    const svgProfileQrCodeSearchParams = new URLSearchParams({
+      format: "svg",
+      data: profileUrl.href,
+    })
+    const svgProfileQrCodeUrl = new URL(`/v1/create-qr-code/?${svgProfileQrCodeSearchParams}`, "https://api.qrserver.com")
+
+    const pngProfileQrCodeSearchParams = new URLSearchParams({
+      format: "png",
+      size: "600x600",
+      data: profileUrl.href,
+    })
+    const pngProfileQrCodeUrl = new URL(`/v1/create-qr-code/?${pngProfileQrCodeSearchParams}`, "https://api.qrserver.com")
+
+    return `<img src="${pngProfileQrCodeUrl}" srcset="${svgProfileQrCodeUrl}" alt="DurHack check in QR code" />`
+  }
+
   /**
    * Assign a user a ticket to attend DurHack, and send an email notification.
    */
@@ -46,13 +65,6 @@ export class TicketAssigningWritable extends stream.Writable {
 
     // biome-ignore lint/style/noNonNullAssertion: it is impossible to create a keycloak account without first names
     const preferredNames = unpackAttribute(profile, "preferredNames") ?? unpackAttribute(profile, "firstNames")!
-    const profileUrl = new URL(`/profile/${profile.id}`, frontendOrigin)
-    const profileQrCodeSearchParams = new URLSearchParams({
-      format: "svg",
-      data: profileUrl.href,
-    })
-    const profileQrCodeUrl = new URL(`/v1/create-qr-code/?${profileQrCodeSearchParams}`, "https://api.qrserver.com")
-
     await mailgunClient.messages.create(mailgunConfig.domain, {
       from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
       "h:Reply-To": "hello@durhack.com",
@@ -71,7 +83,7 @@ export class TicketAssigningWritable extends stream.Writable {
         "<p>Keep this email handy - you will need the following QR code to check in to DurHack.</p>",
         "<p>Don't worry too much, though; your QR code can also be viewed at <a href=\"https://durhack.com/dashboard\">durhack.com</a>.</p>",
         "<br/>",
-        `<img src="${profileQrCodeUrl}" alt="DurHack check in QR code" />`,
+        this.profileQrCodeImgTag(userInfo.userId),
         "<br/>",
         "<p>We look forward to seeing you at DurHack! 💜</p>",
         "<br/>",
