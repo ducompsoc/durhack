@@ -198,16 +198,4 @@ export class TicketAssigningWritable extends stream.Writable {
         callback(new Error(`Something really strange happened. Error object: ${error}`))
       })
   }
-
-  _writev(chunks: Array<{ chunk: UserInfo[]; encoding: never }>, callback: (error?: (Error | null)) => void) {
-    const combined_chunk = chunks
-      .flatMap((chunk) => chunk.chunk)
-    this.updateManyApplicationStatus(combined_chunk)
-      .then(() => callback())
-      .catch((error: unknown) => {
-        if (error instanceof Error) callback(error)
-        if (isString(error)) callback(new Error(error))
-        callback(new Error(`Something really strange happened. Error object: ${error}`))
-      })
-  }
 }
