@@ -1,11 +1,11 @@
 import stream from 'node:stream'
 
 import { durhackConfig, mailgunConfig, frontendOrigin } from "@/config"
-import { prisma, type UserInfo } from "@/database"
+import { prisma } from "@/database"
 import { isString } from "@/lib/type-guards"
-import { getKeycloakAdminClient, unpackAttribute } from "@/lib/keycloak-client"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
 import type { Mailer } from "@/ticket-assigner/mailer"
+import type { KeycloakAugmentedUserInfo } from "@/ticket-assigner/keycloak-augmenting-transform";
 
 export class TicketAssigningWritable extends stream.Writable {
   totalAssignedTicketCount: number
@@ -44,13 +44,9 @@ export class TicketAssigningWritable extends stream.Writable {
   /**
    * Assign a user a ticket to attend DurHack, and send an email notification.
    */
-  async assignTicket(userInfo: UserInfo): Promise<void> {
+  async assignTicket(userInfo: KeycloakAugmentedUserInfo): Promise<void> {
     if (userInfo.applicationStatus === "accepted") return
     if (userInfo.applicationStatus === "unsubmitted") throw new Error(`Can't assign ticket to ${userInfo.userId} as their application is unsubmitted`)
-
-    const adminClient = await getKeycloakAdminClient()
-    const profile = await adminClient.users.findOne({ id: userInfo.userId })
-    if (profile == null) return  // the user account does not exist - so do nothing
 
     try {
       this.totalAssignedTicketCount += 1
@@ -69,12 +65,11 @@ export class TicketAssigningWritable extends stream.Writable {
       throw e
     }
 
-    // biome-ignore lint/style/noNonNullAssertion: it is impossible to create a keycloak account without first names
-    const preferredNames = unpackAttribute(profile, "preferredNames") ?? unpackAttribute(profile, "firstNames")!
+    const preferredNames = userInfo.preferredNames ?? userInfo.firstNames
     await this.mailer.createMessage({
       from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
       "h:Reply-To": "hello@durhack.com",
-      to: profile.email,
+      to: userInfo.email,
       subject: "🎟️ Your DurHack Ticket",
       html: [
         "<html lang=\"en-GB\">",
@@ -113,14 +108,10 @@ export class TicketAssigningWritable extends stream.Writable {
   /**
    * Move a user's application to the waiting list for a DurHack ticket, and send an email notification for the event.
    */
-  async waitingList(userInfo: UserInfo): Promise<void> {
+  async waitingList(userInfo: KeycloakAugmentedUserInfo): Promise<void> {
     if (userInfo.applicationStatus === "waitingList") return
     if (userInfo.applicationStatus === "unsubmitted") throw new Error(`Can't waiting list ${userInfo.userId} as their application is unsubmitted`)
     if (userInfo.applicationStatus === "accepted") throw new Error(`Can't waiting list ${userInfo.userId} as their application has been accepted`)
-
-    const adminClient = await getKeycloakAdminClient()
-    const profile = await adminClient.users.findOne({ id: userInfo.userId })
-    if (profile == null) return  // the user account does not exist - so do nothing
 
     const now = new Date()
       await prisma.userInfo.update({
@@ -131,13 +122,11 @@ export class TicketAssigningWritable extends stream.Writable {
         },
       })
 
-    // biome-ignore lint/style/noNonNullAssertion: it is impossible to create a keycloak account without first names
-    const preferredNames = unpackAttribute(profile, "preferredNames") ?? unpackAttribute(profile, "firstNames")!
-
+    const preferredNames = userInfo.preferredNames ?? userInfo.firstNames
     await this.mailer.createMessage({
       from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
       "h:Reply-To": "hello@durhack.com",
-      to: profile.email,
+      to: userInfo.email,
       subject: "⏳😭 DurHack at capacity...",
       html: [
         "<html lang=\"en-GB\">",
@@ -161,19 +150,8 @@ export class TicketAssigningWritable extends stream.Writable {
   /**
    * If DurHack still has ticket capacity to allocate, assign an attendee ticket to the provided user.
    * Otherwise, move the user to the ticket waiting list.
-   *
-   * Note that, because of asynchronous IO in {@link assignTicket} (namely, the HTTP request that fetches
-   * the user profile from Keycloak), {@link totalAssignedTicketCount} is not incremented before this comparison
-   * is evaluated for concurrent executions of this function.
-   *
-   * In practise, this means that all users in a 'chunk' of {@link UserInfo} consumed by a {@link TicketAssigningWritable} will
-   * be assigned a ticket if {@link totalAssignedTicketCount} is below capacity when the chunk is received, even if
-   * such an assignment exceeds the configured ticket capacity.
-   *
-   * At time of writing, chunks are always of size <= 10, so if the configured maximum ticket assignment is 900, it is
-   * actually possible that this program will assign 909 tickets.
    */
-  async updateApplicationStatus(userInfo: UserInfo): Promise<void> {
+  async updateApplicationStatus(userInfo: KeycloakAugmentedUserInfo): Promise<void> {
     if (this.totalAssignedTicketCount < durhackConfig.maximumTicketAssignment) {
       await this.assignTicket(userInfo)
       return
@@ -182,14 +160,14 @@ export class TicketAssigningWritable extends stream.Writable {
     await this.waitingList(userInfo)
   }
 
-  async updateManyApplicationStatus(users: UserInfo[]): Promise<void> {
+  async updateManyApplicationStatus(users: KeycloakAugmentedUserInfo[]): Promise<void> {
     const applicationStatusUpdatePromises = users.map(
       (user) => this.updateApplicationStatus(user)
     )
     await Promise.all(applicationStatusUpdatePromises)
   }
 
-  _write(chunk: UserInfo[], encoding: never, callback: (error?: (Error | null)) => void) {
+  _write(chunk: KeycloakAugmentedUserInfo[], encoding: never, callback: (error?: (Error | null)) => void) {
     this.updateManyApplicationStatus(chunk)
       .then(() => callback())
       .catch((error: unknown) => {
