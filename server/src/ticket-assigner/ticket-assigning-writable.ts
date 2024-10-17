@@ -71,8 +71,8 @@ export class TicketAssigningWritable extends stream.Writable {
       to: profile.email,
       subject: "🎟️ Your DurHack Ticket",
       html: [
-        '<html lang="en-GB">',
-        '<head><meta charset="utf-8"></head>',
+        "<html lang=\"en-GB\">",
+        "<head><meta charset=\"utf-8\"></head>",
         "<body>",
         `<p>Hey ${preferredNames},</p>`,
         "<br/>",
@@ -125,8 +125,8 @@ export class TicketAssigningWritable extends stream.Writable {
       to: profile.email,
       subject: "⏳😭 DurHack at capacity... ",
       html: [
-        '<html lang="en-GB">',
-        '<head><meta charset="utf-8"></head>',
+        "<html lang=\"en-GB\">",
+        "<head><meta charset=\"utf-8\"></head>",
         "<body>",
         `<p>Hey ${preferredNames},</p>`,
         "<br/>",
