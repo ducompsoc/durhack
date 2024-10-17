@@ -31,6 +31,6 @@ FROM "User";
 UPDATE "UserInfo" userInfo
 SET age = 17
 FROM (SELECT user_id, age FROM "UserInfo" TABLESAMPLE BERNOULLI(3)) AS sample
-WHERE userInfo.user_id = sample.user_id
+WHERE userInfo.user_id = sample.user_id;
 
 -- Now test the `ticket-assigner`: `pnpm exec tsx src/ticket-assigner/main.ts`
