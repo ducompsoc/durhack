@@ -32,7 +32,7 @@ export class TicketAssigningWritable extends stream.Writable {
     })
     const pngProfileQrCodeUrl = new URL(`/v1/create-qr-code/?${pngProfileQrCodeSearchParams}`, "https://api.qrserver.com")
 
-    return `<img src="${pngProfileQrCodeUrl}" srcset="${svgProfileQrCodeUrl}" alt="DurHack check in QR code" />`
+    return `<img src="${pngProfileQrCodeUrl}" srcset="${svgProfileQrCodeUrl}" alt="DurHack check in QR code" style="max-width: 20rem;" />`
   }
 
   /**
