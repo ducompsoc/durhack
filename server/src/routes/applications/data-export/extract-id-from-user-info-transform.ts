@@ -1,6 +1,6 @@
 import stream from 'node:stream'
 
-import type { UserInfo } from "@/database";
+import type { UserInfo } from "@/database"
 
 export class ExtractIdFromUserInfoTransform extends stream.Transform {
   constructor() {

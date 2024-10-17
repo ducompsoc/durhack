@@ -150,7 +150,7 @@ importers:
         specifier: ^0.3.1
         version: 0.3.1
       '@prisma/client':
-        specifier: ^5.19.1
+        specifier: ^5.20.0
         version: 5.20.0(prisma@5.20.0)
       corstisol:
         specifier: ^1.0.0
@@ -158,6 +158,9 @@ importers:
       countries-list:
         specifier: ^3.1.0
         version: 3.1.1
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
       file-type:
         specifier: ^19.5.0
         version: 19.5.0
@@ -181,7 +184,7 @@ importers:
         version: 3.23.8
       zod-config:
         specifier: ^0.0.5
-        version: 0.0.5(zod@3.23.8)
+        version: 0.0.5(dotenv@16.4.5)(zod@3.23.8)
     devDependencies:
       '@biomejs/biome':
         specifier: ^1.8.3
@@ -193,7 +196,7 @@ importers:
         specifier: ^11.0.0
         version: 11.0.0
       prisma:
-        specifier: ^5.19.1
+        specifier: ^5.20.0
         version: 5.20.0
       tsup:
         specifier: ^8.2.3
@@ -1947,6 +1950,10 @@ packages:
     resolution: {integrity: sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==}
     engines: {node: '>=6.0.0'}
 
+  dotenv@16.4.5:
+    resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
+    engines: {node: '>=12'}
+
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
@@ -2117,6 +2124,7 @@ packages:
   eslint@8.57.1:
     resolution: {integrity: sha512-ypowyDxpVSYpkXr9WPv2PAZCtNip1Mv5KTW0SCurXv/9iOpcrH9PaqUElksqEB6pChqHGDRCFTyrZlGhnLNGiA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:
@@ -5218,6 +5226,8 @@ snapshots:
     dependencies:
       esutils: 2.0.3
 
+  dotenv@16.4.5: {}
+
   eastasianwidth@0.2.0: {}
 
   electron-to-chromium@1.5.29: {}
@@ -7107,8 +7117,10 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod-config@0.0.5(zod@3.23.8):
+  zod-config@0.0.5(dotenv@16.4.5)(zod@3.23.8):
     dependencies:
       zod: 3.23.8
+    optionalDependencies:
+      dotenv: 16.4.5
 
   zod@3.23.8: {}
