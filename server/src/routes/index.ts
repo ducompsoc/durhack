@@ -4,6 +4,7 @@ import { methodNotAllowed } from "@/middleware/method-not-allowed"
 import { applicationApp } from "@/routes/application"
 import { applicationsApp } from "@/routes/applications"
 import { authApp } from "@/routes/auth"
+import { calendarApp } from "src/routes/calendar"
 import { profilesApp } from "@/routes/profiles"
 import { userApp } from "@/routes/user"
 import type { Request, Response } from "@/types"
@@ -17,6 +18,7 @@ routesApp
     response.sendStatus(200)
   })
 
+routesApp.use("/calendar", calendarApp)
 routesApp.use("/auth", authApp)
 routesApp.use("/user", userApp)
 routesApp.use("/application", applicationApp)
