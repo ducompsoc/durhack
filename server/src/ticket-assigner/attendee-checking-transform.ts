@@ -11,7 +11,7 @@ export class AttendeeCheckingTransform extends Transform {
     })
   }
 
-  async isPermittedAttendee(userInfo: UserInfo): Promise<boolean> {
+  isPermittedAttendee(userInfo: UserInfo): boolean {
     if (userInfo.applicationStatus === "unsubmitted") return false
     if (userInfo.age == null || userInfo.age < 18) return false
     return true
