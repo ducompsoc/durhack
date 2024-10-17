@@ -52,9 +52,9 @@ class ApplicationsHandlers {
   }
 
   private getFilterDescription(response: Response): string {
-    if (response.locals.includeAll === true) return "All completed applications are considered"
-    if (response.locals.whereOnlyCheckedIn === true) return "Only completed applications for checked-in attendees are considered"
-    return "Only completed applications which have been assigned tickets are considered"
+    if (response.locals.includeAll === true) return "`all`: All completed applications are considered"
+    if (response.locals.whereOnlyCheckedIn === true) return "`attendees`: Only completed applications for checked-in attendees are considered"
+    return "`accepted`: only completed applications which have been assigned tickets are considered"
   }
 
   private getFilteredUrls(request: Request, response: Response): Record<string, URL> {
