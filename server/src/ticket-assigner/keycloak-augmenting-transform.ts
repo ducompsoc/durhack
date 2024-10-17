@@ -5,6 +5,7 @@ import type { UserInfo } from "@/database"
 import { isString } from "@/lib/type-guards"
 import { getKeycloakAdminClient, unpackAttribute } from "@/lib/keycloak-client"
 import { isNetworkError } from "@/lib/is-network-error"
+import { groupPromiseSettledResultsByStatus } from "@/lib/group-promise-settled-results-by-status"
 
 
 export type KeycloakAugmentedUserInfo = UserInfo & {
