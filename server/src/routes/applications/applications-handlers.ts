@@ -140,11 +140,11 @@ class ApplicationsHandlers {
         },
         filter_description: this.getFilterDescription(response),
         ...this.getFilteredUrls(request, response),
-        by_institution_url: new URL(`/applications/by-institution${request.queryString}`, origin),
-        by_level_of_study_url: new URL(`/applications/by-level-of-study${request.queryString}`, origin),
-        by_discipline_of_study_url: new URL(`/applications/by-discipline-of-study${request.queryString}`, origin),
-        by_dietary_requirement_url: new URL(`/applications/by-dietary-requirement${request.queryString}`, origin),
-        by_gender_identity_url: new URL(`/applications/by-gender-identity${request.queryString}`, origin),
+        group_by_institution_url: new URL(`/applications/by-institution${request.queryString}`, origin),
+        group_by_level_of_study_url: new URL(`/applications/by-level-of-study${request.queryString}`, origin),
+        group_by_discipline_of_study_url: new URL(`/applications/by-discipline-of-study${request.queryString}`, origin),
+        group_by_dietary_requirement_url: new URL(`/applications/by-dietary-requirement${request.queryString}`, origin),
+        group_by_gender_identity_url: new URL(`/applications/by-gender-identity${request.queryString}`, origin),
       })
     }
   }
