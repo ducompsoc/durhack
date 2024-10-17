@@ -5,6 +5,7 @@ import { prisma, type UserInfo } from "@/database"
 import { isString } from "@/lib/type-guards"
 import { mailgunClient } from "@/lib/mailgun"
 import { getKeycloakAdminClient, unpackAttribute } from "@/lib/keycloak-client"
+import { durhackInvite } from "@/routes/calendar/calendar-event"
 
 export class TicketAssigningWritable extends stream.Writable {
   totalAssignedTicketCount: number
@@ -77,11 +78,19 @@ export class TicketAssigningWritable extends stream.Writable {
         `<p>Hey ${preferredNames},</p>`,
         "<br/>",
         "<p>Congratulations; Your place at DurHack 2024 has been confirmed! 🎉</p>",
-        "<p>If you have any questions regarding the venue or event timings, please check",
-        "   <a href=\"https://durhack.com#faqs\">our FAQs</a> or reply to this email.</p>",
+        "<p>",
+        "DurHack is taking place at <strong>Durham University's Teaching and Learning Centre</strong>.",
+        "Check-in is from 09:30-10:30 (AM) Saturday 2<sup>nd</sup> November;",
+        "DurHack is expected to wrap up by around 16:30 on Sunday 3<sup>rd</sup> November.",
+        "</p>",
+        "<p>",
+        "If you have any questions regarding the venue or event timings, please check",
+        "<a href=\"https://durhack.com#faqs\">our FAQs</a> or reply to this email.</p>",
         "<br/>",
-        "<p>Keep this email handy - you will need the following QR code to check in to DurHack.</p>",
-        "<p>Don't worry too much, though; your QR code can also be viewed at <a href=\"https://durhack.com/dashboard\">durhack.com</a>.</p>",
+        "<p>",
+        "Keep this email handy - you will need the following QR code to check in to DurHack.",
+        "It can also be viewed at <a href=\"https://durhack.com/dashboard\">durhack.com</a>.",
+        "</p>",
         "<br/>",
         this.profileQrCodeImgTag(userInfo.userId),
         "<br/>",
@@ -92,6 +101,7 @@ export class TicketAssigningWritable extends stream.Writable {
         "</body>",
         "</html>",
       ].join("\n"),
+      attachment: [{ filename: "invite.ics", data: durhackInvite }]
     })
   }
 
