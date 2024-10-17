@@ -6,14 +6,20 @@ import { isString } from "@/lib/type-guards"
 import { mailgunClient } from "@/lib/mailgun"
 import { getKeycloakAdminClient, unpackAttribute } from "@/lib/keycloak-client"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
+import type { Mailer } from "@/ticket-assigner/mailer"
 
 export class TicketAssigningWritable extends stream.Writable {
   totalAssignedTicketCount: number
+  private mailer: Mailer
 
-  constructor(totalAssignedTicketCount: number) {
+  constructor(
+    mailer: Mailer,
+    totalAssignedTicketCount: number
+  ) {
     super({
       objectMode: true, // the stream expects to receive objects, not a string/binary data
     })
+    this.mailer = mailer
     this.totalAssignedTicketCount = totalAssignedTicketCount
   }
 
@@ -66,7 +72,7 @@ export class TicketAssigningWritable extends stream.Writable {
 
     // biome-ignore lint/style/noNonNullAssertion: it is impossible to create a keycloak account without first names
     const preferredNames = unpackAttribute(profile, "preferredNames") ?? unpackAttribute(profile, "firstNames")!
-    await mailgunClient.messages.create(mailgunConfig.domain, {
+    await this.mailer.createMessage({
       from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
       "h:Reply-To": "hello@durhack.com",
       to: profile.email,
@@ -129,7 +135,7 @@ export class TicketAssigningWritable extends stream.Writable {
     // biome-ignore lint/style/noNonNullAssertion: it is impossible to create a keycloak account without first names
     const preferredNames = unpackAttribute(profile, "preferredNames") ?? unpackAttribute(profile, "firstNames")!
 
-    await mailgunClient.messages.create(mailgunConfig.domain, {
+    await this.mailer.createMessage({
       from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
       "h:Reply-To": "hello@durhack.com",
       to: profile.email,
