@@ -3,7 +3,6 @@ import stream from 'node:stream'
 import { durhackConfig, mailgunConfig, frontendOrigin } from "@/config"
 import { prisma, type UserInfo } from "@/database"
 import { isString } from "@/lib/type-guards"
-import { mailgunClient } from "@/lib/mailgun"
 import { getKeycloakAdminClient, unpackAttribute } from "@/lib/keycloak-client"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
 import type { Mailer } from "@/ticket-assigner/mailer"
