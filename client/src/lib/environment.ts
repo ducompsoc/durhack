@@ -1,7 +1,14 @@
-type Environment = "staging" | "production" | "development" | "test"
+const environments = ["staging", "production", "development", "test"] as const
+const environmentsSet = new Set<string>(environments)
+type Environment = typeof environments[number]
+
+function isEnvironment(value: string | undefined): value is Environment {
+  if (value == null) return false
+  return environmentsSet.has(value)
+}
 
 function resolveEnvironment(): Environment {
-  if (process.env.APP_ENV === "staging") return "staging"
+  if (isEnvironment(process.env.NEXT_PUBLIC_APP_ENV)) return process.env.NEXT_PUBLIC_APP_ENV
   return process.env.NODE_ENV
 }
 
