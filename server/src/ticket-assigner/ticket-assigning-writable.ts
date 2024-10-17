@@ -123,7 +123,7 @@ export class TicketAssigningWritable extends stream.Writable {
       from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
       "h:Reply-To": "hello@durhack.com",
       to: profile.email,
-      subject: "⏳😭 DurHack at capacity... ",
+      subject: "⏳😭 DurHack at capacity...",
       html: [
         "<html lang=\"en-GB\">",
         "<head><meta charset=\"utf-8\"></head>",
