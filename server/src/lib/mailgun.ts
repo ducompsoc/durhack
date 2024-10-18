@@ -5,5 +5,5 @@ import { mailgunConfig } from "@/config"
 
 const mailgun = new Mailgun(FormData)
 
-const client = mailgun.client(mailgunConfig)
-export default client
+const mailgunClient = mailgun.client(mailgunConfig)
+export { mailgunClient }

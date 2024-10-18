@@ -8,9 +8,11 @@ import Link from "next/link"
 import { ApplicationStatusBadge } from "@/components/dashboard/application-status-indicator";
 import { useApplicationContext } from "@/hooks/use-application-context"
 import type { Application } from "@/hooks/use-application"
+import {ProfileQrCode} from "@/components/profile-qr-code";
+import {isLoaded} from "@/lib/is-loaded";
 
-function Instructions({ application }: { application: Application | undefined }) {
-  if (!application) return <Skeleton className="w-full h-[100px]" />
+function InstructionsArticle({ application, applicationIsLoading }: { application: Application | undefined, applicationIsLoading: boolean }) {
+  if (!isLoaded(application, applicationIsLoading)) return <Skeleton className="w-full h-[100px]" />
 
   const filledOutCount = [
     application.age != null,
@@ -76,17 +78,30 @@ function Instructions({ application }: { application: Application | undefined })
   </article>
 }
 
+function ProfileQrCodeArticle({ application, applicationIsLoading }: { application: Application | undefined, applicationIsLoading: boolean }) {
+  if (!isLoaded(application, applicationIsLoading)) return <Skeleton className="w-full h-[20rem] mt-4" />
+  if (application.applicationStatus === "unsubmitted") return
+
+  return <>
+    <h2 className="text-2xl mt-4">Your Profile QR Code</h2>
+    <article className="bg-secondary/10 py-8 mt-2 rounded-md w-full flex flex-col justify-center items-center">
+      <ProfileQrCode userId={application.keycloakUserId} className="max-w-[20rem]"/>
+    </article>
+  </>
+}
+
 export default function StatusPage() {
-  const { application, applicationIsLoading } = useApplicationContext()
+  const {application, applicationIsLoading} = useApplicationContext()
 
   return (
     <>
       <article className="bg-secondary/10 py-8 mt-2 rounded-md w-full flex flex-col justify-center items-center mb-4">
         <ApplicationStatusBadge size="xl">
-          <Skeleton className="w-48 h-12" />
+          <Skeleton className="w-48 h-12"/>
         </ApplicationStatusBadge>
       </article>
-      <Instructions application={application} />
+      <InstructionsArticle application={application} applicationIsLoading={applicationIsLoading}/>
+      <ProfileQrCodeArticle application={application} applicationIsLoading={applicationIsLoading}/>
     </>
   )
 }
