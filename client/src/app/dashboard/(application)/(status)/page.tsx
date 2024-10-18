@@ -6,10 +6,10 @@ import { Skeleton } from "@durhack/web-components/ui/skeleton"
 import Link from "next/link"
 
 import { ApplicationStatusBadge } from "@/components/dashboard/application-status-indicator";
+import { ProfileQrCode } from "@/components/profile-qr-code";
 import { useApplicationContext } from "@/hooks/use-application-context"
 import type { Application } from "@/hooks/use-application"
-import {ProfileQrCode} from "@/components/profile-qr-code";
-import {isLoaded} from "@/lib/is-loaded";
+import { isLoaded } from "@/lib/is-loaded";
 
 function InstructionsArticle({ application, applicationIsLoading }: { application: Application | undefined, applicationIsLoading: boolean }) {
   if (!isLoaded(application, applicationIsLoading)) return <Skeleton className="w-full h-[100px]" />
