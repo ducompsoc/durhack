@@ -1,25 +1,75 @@
+import { ClientError, HttpStatus } from "@otterhttp/errors"
+import type { Prisma, UserApplicationStatus } from "@prisma/client"
 import {
   getApplicationsGroupedByDietaryRequirement,
   getApplicationsGroupedByDisciplineOfStudy,
 } from "@prisma/client/sql"
 
+import { origin } from "@/config"
 import { prisma } from "@/database"
 import { Group, onlyGroups } from "@/decorators/authorise"
-import type { Middleware } from "@/types"
+import type { Middleware, Request, Response } from "@/types"
 
 class ApplicationsHandlers {
-  private async getTotalApplicationCount(): Promise<number> {
-    return await prisma.userInfo.count({
+  hasAttendanceFlag(): Prisma.UserWhereInput["userFlags"] {
+    return { some: { flagName: "attendance" } }
+  }
+
+  private async getTotalApplicationCount(
+    applicationStatusFilter: UserApplicationStatus[],
+    whereOnlyCheckedIn: boolean,
+  ): Promise<number> {
+    return await prisma.user.count({
       where: {
-        applicationStatus: {
-          equals: "submitted",
+        userInfo: {
+          applicationStatus: {
+            in: applicationStatusFilter,
+          },
         },
+        userFlags: whereOnlyCheckedIn ? this.hasAttendanceFlag() : undefined,
       },
     })
   }
 
-  private async getTotalCvCount(): Promise<number> {
-    return await prisma.userCV.count()
+  private async getTotalCvCount(
+    applicationStatusFilter: UserApplicationStatus[],
+    whereOnlyCheckedIn: boolean,
+  ): Promise<number> {
+    return await prisma.user.count({
+      where: {
+        userInfo: {
+          applicationStatus: {
+            in: applicationStatusFilter,
+          },
+        },
+        userCv: { isNot: null },
+        userFlags: whereOnlyCheckedIn ? this.hasAttendanceFlag() : undefined,
+      },
+    })
+  }
+
+  private getApplicationStatusFilter(response: Response): UserApplicationStatus[] {
+    // with query parameter "all", include everyone that was at one point 'submitted'
+    if (response.locals.includeAll === true) return ["submitted", "accepted", "waitingList"]
+    // with query parameter "attendees", include everyone that was at one point 'submitted'
+    if (response.locals.whereOnlyCheckedIn === true) return ["submitted", "accepted", "waitingList"]
+    // with no query parameters, only include people that have been assigned tickets
+    return ["accepted"]
+  }
+
+  private getFilterDescription(response: Response): string {
+    if (response.locals.includeAll === true) return "`all`: All completed applications are considered"
+    if (response.locals.whereOnlyCheckedIn === true)
+      return "`attendees`: Only completed applications for checked-in attendees are considered"
+    return "`accepted`: only completed applications which have been assigned tickets are considered"
+  }
+
+  private getFilteredUrls(request: Request, response: Response): Record<string, URL> {
+    return {
+      filter_accepted_url: new URL(`${request.pathnameWithoutTrailingSlash}`, origin),
+      filter_all_url: new URL(`${request.pathnameWithoutTrailingSlash}?all=`, origin),
+      filter_attendees_url: new URL(`${request.pathnameWithoutTrailingSlash}?attendees=`, origin),
+    }
   }
 
   /**
@@ -52,15 +102,38 @@ class ApplicationsHandlers {
   }
 
   /**
+   * Returns a middleware which parses query parameters for `/applications` routes and saves the parsed results in
+   * <code>response.locals</code>.
+   */
+  parseQueryParameters(): Middleware {
+    return (request, response, next) => {
+      response.locals.whereOnlyCheckedIn = Object.hasOwn(request.query, "attendees")
+      response.locals.includeAll = Object.hasOwn(request.query, "all")
+
+      if (response.locals.whereOnlyCheckedIn && response.locals.includeAll) {
+        throw new ClientError("Cannot simultaneously filter by 'all' and 'attendees'", {
+          statusCode: HttpStatus.BadRequest,
+          exposeMessage: true,
+          expected: true,
+          code: "ERR_QUERY_PARAMETER_CONFLICT",
+        })
+      }
+
+      next()
+    }
+  }
+
+  /**
    * Returns a middleware that handles a GET request by responding with a JSON payload containing summary statistics
    * relating to DurHack applications.
    */
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsSummary(): Middleware {
     return async (request, response) => {
+      const applicationStatusFilter = this.getApplicationStatusFilter(response)
       const [totalApplicationCount, totalCvCount] = await Promise.all([
-        this.getTotalApplicationCount(),
-        this.getTotalCvCount(),
+        this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
+        this.getTotalCvCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
       ])
 
       const totalCvProportion = this.roundProportion(totalCvCount / totalApplicationCount)
@@ -72,6 +145,13 @@ class ApplicationsHandlers {
           total_cv_proportion: totalCvProportion,
           total_cv_percentage: this.formatAsPercentage(totalCvProportion),
         },
+        filter_description: this.getFilterDescription(response),
+        ...this.getFilteredUrls(request, response),
+        group_by_institution_url: new URL(`/applications/by-institution${request.queryString}`, origin),
+        group_by_level_of_study_url: new URL(`/applications/by-level-of-study${request.queryString}`, origin),
+        group_by_discipline_of_study_url: new URL(`/applications/by-discipline-of-study${request.queryString}`, origin),
+        group_by_dietary_requirement_url: new URL(`/applications/by-dietary-requirement${request.queryString}`, origin),
+        group_by_gender_identity_url: new URL(`/applications/by-gender-identity${request.queryString}`, origin),
       })
     }
   }
@@ -85,19 +165,21 @@ class ApplicationsHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsByInstitution(): Middleware {
     return async (request, response) => {
+      const applicationStatusFilter = this.getApplicationStatusFilter(response)
       const [result, totalApplicationCount] = await Promise.all([
         prisma.userInfo.groupBy({
           by: ["university"],
           where: {
             applicationStatus: {
-              equals: "submitted",
+              in: applicationStatusFilter,
             },
+            user: response.locals.whereOnlyCheckedIn === true ? { userFlags: this.hasAttendanceFlag() } : undefined,
           },
           _count: {
             userId: true,
           },
         }),
-        this.getTotalApplicationCount(),
+        this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
       ])
 
       const rows = result.map((resultItem) => {
@@ -113,6 +195,9 @@ class ApplicationsHandlers {
 
       response.json({
         data: rows,
+        filter_description: this.getFilterDescription(response),
+        ...this.getFilteredUrls(request, response),
+        summary_url: new URL(`/applications${request.queryString}`, origin),
       })
     }
   }
@@ -126,19 +211,21 @@ class ApplicationsHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsByLevelOfStudy(): Middleware {
     return async (request, response) => {
+      const applicationStatusFilter = this.getApplicationStatusFilter(response)
       const [result, totalApplicationCount] = await Promise.all([
         prisma.userInfo.groupBy({
           by: ["levelOfStudy"],
           where: {
             applicationStatus: {
-              equals: "submitted",
+              in: applicationStatusFilter,
             },
+            user: response.locals.whereOnlyCheckedIn === true ? { userFlags: this.hasAttendanceFlag() } : undefined,
           },
           _count: {
             userId: true,
           },
         }),
-        this.getTotalApplicationCount(),
+        this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
       ])
 
       const rows = result.map((resultItem) => {
@@ -154,6 +241,9 @@ class ApplicationsHandlers {
 
       response.json({
         data: rows,
+        filter_description: this.getFilterDescription(response),
+        ...this.getFilteredUrls(request, response),
+        summary_url: new URL(`/applications${request.queryString}`, origin),
       })
     }
   }
@@ -167,9 +257,15 @@ class ApplicationsHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsByDisciplineOfStudy(): Middleware {
     return async (request, response) => {
+      const applicationStatusFilter = this.getApplicationStatusFilter(response)
       const [result, totalApplicationCount] = await Promise.all([
-        prisma.$queryRawTyped(getApplicationsGroupedByDisciplineOfStudy()),
-        this.getTotalApplicationCount(),
+        prisma.$queryRawTyped(
+          getApplicationsGroupedByDisciplineOfStudy(
+            applicationStatusFilter,
+            response.locals.whereOnlyCheckedIn === true,
+          ),
+        ),
+        this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
       ])
 
       const rows = result.map((resultItem) => {
@@ -186,6 +282,9 @@ class ApplicationsHandlers {
       })
       response.json({
         data: rows,
+        filter_description: this.getFilterDescription(response),
+        ...this.getFilteredUrls(request, response),
+        summary_url: new URL(`/applications${request.queryString}`, origin),
       })
     }
   }
@@ -199,9 +298,15 @@ class ApplicationsHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsByDietaryRequirement(): Middleware {
     return async (request, response) => {
+      const applicationStatusFilter = this.getApplicationStatusFilter(response)
       const [result, totalApplicationCount] = await Promise.all([
-        prisma.$queryRawTyped(getApplicationsGroupedByDietaryRequirement()),
-        this.getTotalApplicationCount(),
+        prisma.$queryRawTyped(
+          getApplicationsGroupedByDietaryRequirement(
+            applicationStatusFilter,
+            response.locals.whereOnlyCheckedIn === true,
+          ),
+        ),
+        this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
       ])
 
       const rows = result.map((resultItem) => {
@@ -218,6 +323,9 @@ class ApplicationsHandlers {
       })
       response.json({
         data: rows,
+        filter_description: this.getFilterDescription(response),
+        ...this.getFilteredUrls(request, response),
+        summary_url: new URL(`/applications${request.queryString}`, origin),
       })
     }
   }
@@ -231,19 +339,21 @@ class ApplicationsHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsByGenderIdentity(): Middleware {
     return async (request, response) => {
+      const applicationStatusFilter = this.getApplicationStatusFilter(response)
       const [result, totalApplicationCount] = await Promise.all([
         prisma.userInfo.groupBy({
           by: ["gender"],
           where: {
             applicationStatus: {
-              equals: "submitted",
+              in: applicationStatusFilter,
             },
+            user: response.locals.whereOnlyCheckedIn === true ? { userFlags: this.hasAttendanceFlag() } : undefined,
           },
           _count: {
             userId: true,
           },
         }),
-        this.getTotalApplicationCount(),
+        this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
       ])
 
       const rows = result.map((resultItem) => {
@@ -259,6 +369,9 @@ class ApplicationsHandlers {
 
       response.json({
         data: rows,
+        filter_description: this.getFilterDescription(response),
+        ...this.getFilteredUrls(request, response),
+        summary_url: new URL(`/applications${request.queryString}`, origin),
       })
     }
   }
