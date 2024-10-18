@@ -37,5 +37,6 @@ export default {
   },
   durhack: {
     maximumTicketAssignment: 900,
+    currentEventYear: 2024,
   },
 } satisfies ConfigIn
