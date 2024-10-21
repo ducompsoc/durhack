@@ -289,5 +289,18 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://www.durhamsu.com/"
+  },
+  {
+    slug: "intel",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/intel.svg"
+        alt="Intel"
+        width={395.4}
+        height={155.9}
+        {...props}
+      />
+    ),
+    link: "https://www.intel.com"
   }
 ]
