@@ -38,7 +38,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.mwam.com/",
     tier: "platinum",
-    signed: false,
+    signed: true,
   },
   {
     slug: "rewriting-the-code",
@@ -128,7 +128,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.atombank.co.uk/",
     tier: "platinum",
-    signed: false,
+    signed: true,
   }
 ]
 
