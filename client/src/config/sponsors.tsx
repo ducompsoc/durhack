@@ -316,3 +316,5 @@ export const partners: Partner[] = [
     active: true,
   }
 ]
+
+export const activePartners = partners.filter(partner => partner.active)

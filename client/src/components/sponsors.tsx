@@ -7,7 +7,7 @@ import {
   platinumSponsors,
   goldSponsors,
   silverSponsors,
-  partners,
+  activePartners,
 } from "@/config/sponsors"
 import { SectionHeader } from "@/components/section-header"
 
@@ -208,7 +208,7 @@ export function Sponsors() {
         <SectionHeader className="mb-4">Partners</SectionHeader>
 
         <div className="partners flex flex-wrap justify-evenly">
-          {partners.map((partner) => (
+          {activePartners.map((partner) => (
             <Partner key={partner.slug} partner={partner}/>
           ))}
         </div>
