@@ -157,6 +157,7 @@ export type Partner = {
   slug: string,
   image: React.FC<React.HTMLAttributes<HTMLElement>> | null,
   link: string,
+  active: boolean
 }
 
 export const partners: Partner[] = [
@@ -171,7 +172,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://mlh.io/"
+    link: "https://mlh.io/",
+    active: true,
   },
   {
     slug: "durham-uni-computing-society",
@@ -184,7 +186,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://compsoc.tech"
+    link: "https://compsoc.tech",
+    active: true,
   },
   {
     slug: "overleaf",
@@ -197,7 +200,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://www.overleaf.com/"
+    link: "https://www.overleaf.com/",
+    active: true,
   },
   {
     slug: "keyboard-co",
@@ -210,7 +214,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://www.keyboardco.com/"
+    link: "https://www.keyboardco.com/",
+    active: true,
   },
   {
     slug: "rs-components",
@@ -223,7 +228,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://uk.rs-online.com/web/"
+    link: "https://uk.rs-online.com/web/",
+    active: true,
   },
   {
     slug: "pragmatic-semi",
@@ -236,7 +242,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://www.pragmaticsemi.com/"
+    link: "https://www.pragmaticsemi.com/",
+    active: true,
   },
   {
     slug: "durham-uni-computer-science",
@@ -249,7 +256,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://www.durham.ac.uk/departments/academic/computer-science/"
+    link: "https://www.durham.ac.uk/departments/academic/computer-science/",
+    active: true,
   },
   {
     slug: "stand-out-stickers",
@@ -262,7 +270,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://hackp.ac/mlh-standoutstickers-hackathons"
+    link: "https://hackp.ac/mlh-standoutstickers-hackathons",
+    active: true,
   },
   {
     slug: "durham-uni-esports-and-gaming",
@@ -275,7 +284,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/"
+    link: "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/",
+    active: true,
   },
   {
     slug: "durham-uni-student-union",
@@ -288,7 +298,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://www.durhamsu.com/"
+    link: "https://www.durhamsu.com/",
+    active: true,
   },
   {
     slug: "intel",
@@ -301,6 +312,7 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://www.intel.com"
+    link: "https://www.intel.com",
+    active: true,
   }
 ]
