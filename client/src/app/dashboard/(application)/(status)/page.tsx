@@ -27,7 +27,7 @@ function InstructionsArticle({ application, applicationIsLoading }: { applicatio
   if (application.applicationStatus === "submitted") return <article>
     <p>Your application has been submitted! Feel free to continue to update your details, should you like.</p>
     <p>We will send you ticket assignment / waiting-list notifications via email.</p>
-    <p>If your application does not show as "accepted" after 24 hours, please email <a className="underline" href="mailto:hello@durhack.com">hello@durhack.com</a></p>
+    <p>If your application does not show as &quot;accepted&quot; after 24 hours, please email <a className="underline" href="mailto:hello@durhack.com">hello@durhack.com</a></p>
   </article>
 
   if (application.applicationStatus === "waiting-list") return <article>
