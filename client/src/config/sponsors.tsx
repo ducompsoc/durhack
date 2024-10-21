@@ -271,7 +271,7 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://hackp.ac/mlh-standoutstickers-hackathons",
-    active: true,
+    active: false,
   },
   {
     slug: "durham-uni-esports-and-gaming",
