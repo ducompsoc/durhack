@@ -129,7 +129,22 @@ export const sponsors: Sponsor[] = [
     link: "https://www.atombank.co.uk/",
     tier: "platinum",
     signed: true,
-  }
+  },
+  {
+    slug: "durham-uni-venture-lab",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/venture-lab.svg"
+        alt="Durham University Venture Lab"
+        width={120}
+        height={120}
+        {...props}
+      />
+    ),
+    link: "https://www.durham.ac.uk/venturelab",
+    tier: "gold",
+    signed: true,
+  },
 ]
 
 export const signedSponsors = sponsors.filter((sponsor) => sponsor.signed)
@@ -235,19 +250,6 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://www.durham.ac.uk/departments/academic/computer-science/"
-  },
-  {
-    slug: "durham-uni-venture-lab",
-    image: (props) => (
-      <Image
-        src="/assets/sponsors/venture-lab.svg"
-        alt="Durham University Venture Lab"
-        width={120}
-        height={120}
-        {...props}
-      />
-    ),
-    link: "https://www.durham.ac.uk/venturelab"
   },
   {
     slug: "stand-out-stickers",
