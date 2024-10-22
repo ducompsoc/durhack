@@ -82,6 +82,7 @@ const educationFormSchema = z.object({
         "chemistry",
         "business",
         "education",
+        "engineering",
         "computer-science",
         "economics",
         "earth-sciences",
