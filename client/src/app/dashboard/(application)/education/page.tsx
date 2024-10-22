@@ -221,6 +221,7 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                       { label: "Chemistry", value: "chemistry"},
                       { label: "Business", value: "business"},
                       { label: "Education", value: "education"},
+                      { label: "Engineering", value: "engineering"},
                       { label: "Computer Science", value: "computer-science"},
                       { label: "Economics", value: "economics"},
                       { label: "Earth Sciences", value: "earth-sciences"},
