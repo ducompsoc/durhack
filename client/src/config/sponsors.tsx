@@ -314,7 +314,21 @@ export const partners: Partner[] = [
     ),
     link: "https://www.intel.com",
     active: true,
-  }
+  },
+  {
+    slug: "hackathons-uk",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/hackathonsuk.svg"
+        alt="Hackathons UK"
+        width={282.43}
+        height={77.11}
+        {...props}
+      />
+    ),
+    link: "https://www.hackathons.org.uk/",
+    active: true,
+  },
 ]
 
 export const activePartners = partners.filter(partner => partner.active)
