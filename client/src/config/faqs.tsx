@@ -54,7 +54,7 @@ export const faqs = [
     question: "What can I eat?",
     answer: <>
       <p>We&apos;ll provide you with meals, snacks and drinks throughout the weekend, leaving you to concentrate on your projects. If you have special dietary requirements, please let us know when you register.</p>
-      <p>For allegery reasons, please don&apos;t bring any products containing nuts (including peanuts) into the venue.</p>
+      <p>For allergy reasons, please don&apos;t bring any products containing nuts (including peanuts) into the venue.</p>
     </>
   },
   {
