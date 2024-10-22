@@ -313,7 +313,7 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://www.intel.com",
-    active: true,
+    active: false,
   },
   {
     slug: "hackathons-uk",
