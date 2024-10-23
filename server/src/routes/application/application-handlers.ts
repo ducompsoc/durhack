@@ -1,6 +1,7 @@
 import assert from "node:assert/strict"
 import { parse as parsePath } from "node:path/posix"
-import type { Application, DietaryRequirement, DisciplineOfStudy } from "@durhack/durhack-common/types/application"
+import { disciplineOfStudySchema, type DisciplineOfStudy } from "@durhack/durhack-common/input/discipline-of-study"
+import type { Application, DietaryRequirement } from "@durhack/durhack-common/types/application"
 import { ClientError, HttpStatus } from "@otterhttp/errors"
 import type { ContentType, ParsedFormFieldFile } from "@otterhttp/parsec"
 import { fileTypeFromBuffer } from "file-type"
@@ -74,25 +75,7 @@ const educationFormSchema = z.object({
     "prefer-not-to-answer",
   ]),
   disciplinesOfStudy: z
-    .array(
-      z.enum([
-        "biology",
-        "anthropology",
-        "sport",
-        "chemistry",
-        "business",
-        "education",
-        "computer-science",
-        "economics",
-        "earth-sciences",
-        "geography",
-        "mathematics",
-        "philosophy",
-        "physics",
-        "psychology",
-        "other",
-      ]),
-    )
+    .array(disciplineOfStudySchema)
     .min(1, { message: "Please select your discipline(s) of study." }),
   countryOfResidence: z.string().iso3(),
 })
