@@ -1,25 +1,12 @@
+import type { DisciplineOfStudy } from "@/input/discipline-of-study"
+
 export type Consent = {
-  name: string,
-  choice: boolean,
+  name: string
+  choice: boolean
 }
 
-export type DisciplineOfStudy = "biology"
-  | "anthropology"
-  | "sport"
-  | "chemistry"
-  | "business"
-  | "education"
-  | "computer-science"
-  | "economics"
-  | "earth-sciences"
-  | "geography"
-  | "mathematics"
-  | "philosophy"
-  | "physics"
-  | "psychology"
-  | "other"
-
-export type DietaryRequirement = "vegan"
+export type DietaryRequirement =
+  | "vegan"
   | "vegetarian"
   | "pescatarian"
   | "halal"
@@ -32,13 +19,7 @@ export type Application = {
   keycloakUserId: string
   email: string
   preferredNames: string | null
-  pronouns: null
-    | "he/him"
-    | "she/her"
-    | "they/them"
-    | "xe/xem"
-    | "other"
-    | "prefer-not-to-answer"
+  pronouns: null | "he/him" | "she/her" | "they/them" | "xe/xem" | "other" | "prefer-not-to-answer"
   phone: string | null
   firstNames: string
   lastNames: string
@@ -49,7 +30,8 @@ export type Application = {
   university: string | null
   graduationYear: number | null
   disciplinesOfStudy: null | DisciplineOfStudy[]
-  levelOfStudy: null
+  levelOfStudy:
+    | null
     | "secondary"
     | "undergraduate-first-year"
     | "undergraduate-second-year"
