@@ -2,7 +2,6 @@
 import { prisma, type UserInfo} from "@/database"
 
 export async function* generateUserInfo(): AsyncGenerator<UserInfo[], undefined> {
-  console.log("DATABASE_URL:", process.env.DATABASE_URL);
   let cursor: string | undefined
   do {
     const results = await prisma.userInfo.findMany({
