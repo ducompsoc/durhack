@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@durhack/durhack-common": "workspace:*",
-    "@keycloak/keycloak-admin-client": "^25.0.5",
+    "@keycloak/keycloak-admin-client": "^26.0.2",
     "@otterhttp/app": "^3.4.4",
     "@otterhttp/cookie-signature": "^3.0.0",
     "@otterhttp/errors": "^0.2.1",
