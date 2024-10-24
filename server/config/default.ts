@@ -36,7 +36,7 @@ export default {
     url: "https://api.eu.mailgun.net",
   },
   durhack: {
-    maximumTicketAssignment: 900,
+    maximumTicketAssignment: 860,
     currentEventYear: 2024,
   },
 } satisfies ConfigIn
