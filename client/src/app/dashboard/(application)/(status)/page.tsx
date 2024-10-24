@@ -81,12 +81,12 @@ function InstructionsArticle({ application, applicationIsLoading }: { applicatio
 
 function ProfileQrCodeArticle({ application, applicationIsLoading }: { application: Application | undefined, applicationIsLoading: boolean }) {
   if (!isLoaded(application, applicationIsLoading)) return <Skeleton className="w-full h-[20rem] mt-4" />
-  if (application.applicationStatus === "unsubmitted") return
+  //if (application.applicationStatus === "unsubmitted") return
 
   return <>
     <h2 className="text-2xl mt-4">Your Profile QR Code</h2>
     <article className="bg-secondary/10 py-8 mt-2 rounded-md w-full flex flex-col justify-center items-center">
-      <ProfileQrCode userId={application.keycloakUserId} className="max-w-[20rem]"/>
+      <ProfileQrCode userId={application.keycloakUserId} className="w-full h-auto max-w-[24rem]"/>
     </article>
   </>
 }
