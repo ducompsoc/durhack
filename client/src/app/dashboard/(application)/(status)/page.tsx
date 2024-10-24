@@ -81,7 +81,7 @@ function InstructionsArticle({ application, applicationIsLoading }: { applicatio
 
 function ProfileQrCodeArticle({ application, applicationIsLoading }: { application: Application | undefined, applicationIsLoading: boolean }) {
   if (!isLoaded(application, applicationIsLoading)) return <Skeleton className="w-full h-[20rem] mt-4" />
-  //if (application.applicationStatus === "unsubmitted") return
+  if (application.applicationStatus === "unsubmitted") return
 
   return <>
     <h2 className="text-2xl mt-4">Your Profile QR Code</h2>
