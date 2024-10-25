@@ -32,7 +32,7 @@ export function Teams() {
                                             className="h-full w-auto object-cover p-4"
                                         />
                                         <div className="text-sm md:text-base lg:text-lg xl:text-xl md:px-4 md:text-end text-center">
-                                            We do tech and stuff. I think... we do cool stuff, and here's a random amount of text to fill in this section.
+                                            We do tech and stuff. I think... we do cool stuff, and here a random amount of text to fill in this section.
                                         </div>
                                     </div>
 
