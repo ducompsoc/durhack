@@ -17,9 +17,12 @@ import { AnimatedMountain } from "./animated-mountain";
 export default function HomePage() {
   return (
     <main>
+
+
       <section id="splash">
         <Splash />
       </section>
+
 
       <section id="about" className="ellipse">
         <About />
