@@ -1,3 +1,4 @@
+
 import { prisma, type UserInfo} from "@/database"
 
 export async function* generateUserInfo(): AsyncGenerator<UserInfo[], undefined> {
