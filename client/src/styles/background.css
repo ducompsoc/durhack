@@ -46,7 +46,6 @@ section#faqs {
     width: 100%;
   }
 }
-
 section#sponsors {
   background: linear-gradient(180deg, #306379, #175a82 50%, #196798);
 }
@@ -59,6 +58,10 @@ section#gallery {
   background: linear-gradient(180deg, #3983ab, #73afc5);
 }
 
+section#teams {
+  background: linear-gradient(180deg, #73afc5, #89c4d9);
+}
+
 footer {
-  background: #73afc5;
+  background: #89c4d9;
 }
