@@ -10,7 +10,7 @@ import Image from "next/image"
 import { SectionHeader } from "@/components/section-header"
 
 export function Teams() {
-    
+
     return (
         <div className="w-full px-8 ">
             <SectionHeader>Teams</SectionHeader>
@@ -46,42 +46,42 @@ export function Teams() {
                                                 alt="hacking"
                                                 width={1000}
                                                 height={667}
-                                                className="flex-1 h-auto max-w-[30%] xl:max-w-[15%] object-cover"
+                                                className="flex-1 h-auto max-w-[25%] xl:max-w-[15%] object-cover"
                                             />
                                             <Image
                                                 src="/assets/photos/hacking_1.jpg"
                                                 alt="hacking"
                                                 width={1000}
                                                 height={667}
-                                                className="flex-1 h-auto max-w-[30%] xl:max-w-[15%] object-cover"
+                                                className="flex-1 h-auto max-w-[25%] xl:max-w-[15%] object-cover"
                                             />
                                             <Image
                                                 src="/assets/photos/hacking_1.jpg"
                                                 alt="hacking"
                                                 width={1000}
                                                 height={667}
-                                                className="flex-1 h-auto max-w-[30%] xl:max-w-[15%] object-cover"
+                                                className="flex-1 h-auto max-w-[25%] xl:max-w-[15%] object-cover"
                                             />
                                             <Image
                                                 src="/assets/photos/hacking_1.jpg"
                                                 alt="hacking"
                                                 width={1000}
                                                 height={667}
-                                                className="flex-1 h-auto max-w-[30%] xl:max-w-[15%] object-cover"
+                                                className="flex-1 h-auto max-w-[25%] xl:max-w-[15%] object-cover"
                                             />
                                             <Image
                                                 src="/assets/photos/hacking_1.jpg"
                                                 alt="hacking"
                                                 width={1000}
                                                 height={667}
-                                                className="flex-1 h-auto max-w-[30%] xl:max-w-[15%] object-cover"
+                                                className="flex-1 h-auto max-w-[25%] xl:max-w-[15%] object-cover"
                                             />
                                             <Image
                                                 src="/assets/photos/hacking_1.jpg"
                                                 alt="hacking"
                                                 width={1000}
                                                 height={667}
-                                                className="flex-1 h-auto max-w-[30%] xl:max-w-[15%] object-cover"
+                                                className="flex-1 h-auto max-w-[25%] xl:max-w-[15%] object-cover"
                                             />
                                         </div>
                                     </div>
