@@ -2,13 +2,11 @@ import stream from "node:stream"
 
 import { isNumber, isString } from "@/lib/type-guards"
 
-type Attribute<Source extends Record<string, unknown>> = { name: keyof Source, label: string }
+type Attribute<Source extends Record<string, unknown>> = { name: keyof Source; label: string }
 
 const nullSentry = "NULL"
 
-export class PickAttributesToCsvTransform<
-  Source extends Record<string, unknown>
-> extends stream.Transform {
+export class PickAttributesToCsvTransform<Source extends Record<string, unknown>> extends stream.Transform {
   attributes: Attribute<Source>[]
   headerLinePrepended: boolean
 

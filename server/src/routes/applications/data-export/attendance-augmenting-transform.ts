@@ -1,6 +1,6 @@
 import stream from "node:stream"
 
-import { prisma, type UserInfo } from "@/database"
+import { type UserInfo, prisma } from "@/database"
 import { isString } from "@/lib/type-guards"
 
 export type AttendanceAugments = {

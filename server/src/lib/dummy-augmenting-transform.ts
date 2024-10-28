@@ -1,8 +1,8 @@
 import { Transform, type TransformCallback } from "node:stream"
 
 import type { UserInfo } from "@/database"
-import { isString } from "@/lib/type-guards"
 import type { KeycloakAugmentedUserInfo } from "@/lib/keycloak-augmenting-transform"
+import { isString } from "@/lib/type-guards"
 
 export class DummyAugmentingTransform extends Transform {
   constructor() {

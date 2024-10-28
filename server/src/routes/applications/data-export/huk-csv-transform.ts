@@ -3,9 +3,7 @@ import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 
 import { PickAttributesToCsvTransform } from "./pick-attributes-to-csv-transform"
 
-export class HukCsvTransform extends PickAttributesToCsvTransform<
-  UserInfo & KeycloakAugments
-> {
+export class HukCsvTransform extends PickAttributesToCsvTransform<UserInfo & KeycloakAugments> {
   constructor() {
     super({
       attributes: [
