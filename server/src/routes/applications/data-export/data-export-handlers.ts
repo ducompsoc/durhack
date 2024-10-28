@@ -1,5 +1,6 @@
+import { exec } from "node:child_process"
 import { createWriteStream } from "node:fs"
-import { rm } from "node:fs/promises"
+import { rm, mkdir } from "node:fs/promises"
 import { join as pathJoin } from "node:path"
 import { Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
@@ -12,6 +13,10 @@ import type { Middleware } from "@/types"
 import { HukCsvTransform } from "./huk-csv-transform"
 import { MlhCsvTransform } from "./mlh-csv-transform"
 import { generateUserInfo } from "./user-info-async-generator"
+import { generateUserCv } from "./user-cv-async-generator"
+import { CvExportingWritable } from "./cv-exporting-writable"
+import {waitForExit} from "@/lib/wait-for-exit";
+import {ServerError} from "@otterhttp/errors";
 
 class DataExportHandlers {
   /**
@@ -59,6 +64,41 @@ class DataExportHandlers {
 
         await response.download(fileDestination, "hackathons-uk-data-export.csv")
       } finally {
+        await rm(tempDir, { recursive: true, force: true })
+      }
+    }
+  }
+
+  /**
+   * Returns a middleware that handles a GET request by responding with a `.zip` payload containing
+   * applicant CVs.
+   */
+  @onlyGroups([Group.organisers, Group.admins])
+  getCVArchive(): Middleware {
+    return async (request, response) => {
+      const tempDir = await getTempDir()
+      try {
+        const archiveDir = pathJoin(tempDir, "durhack-cvs")
+        await mkdir(archiveDir)
+
+        await pipeline([
+          Readable.from(generateUserCv()),
+          new KeycloakAugmentingTransform(),
+          new CvExportingWritable(archiveDir),
+        ])
+
+        const archivePath = pathJoin(tempDir, "durhack-cvs.zip")
+        const zipProcess = exec(
+          `zip -r '${archivePath}' .`,
+          { cwd: archiveDir },
+        )
+        await waitForExit(zipProcess)
+        if (zipProcess.exitCode === 12) throw new ServerError("There are no CVs to include", { code: "ERR_NO_ARCHIVE_ENTRIES" })
+        if (zipProcess.exitCode != 0) throw new ServerError("Something went wrong during the `zip` operation", { code: "ERR_ZIP_FAILED" })
+
+        await response.download(archivePath, "durhack-cvs.zip")
+      }
+      finally {
         await rm(tempDir, { recursive: true, force: true })
       }
     }

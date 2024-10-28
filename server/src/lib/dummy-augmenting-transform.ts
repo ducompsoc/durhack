@@ -1,8 +1,10 @@
 import { Transform, type TransformCallback } from "node:stream"
 
 import type { UserInfo } from "@/database"
-import type { KeycloakAugmentedUserInfo } from "@/lib/keycloak-augmenting-transform"
+import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import { isString } from "@/lib/type-guards"
+
+type AugmentedUserInfo = UserInfo & KeycloakAugments
 
 export class DummyAugmentingTransform extends Transform {
   constructor() {
@@ -12,7 +14,7 @@ export class DummyAugmentingTransform extends Transform {
     })
   }
 
-  augmentUserInfo(userInfo: UserInfo): KeycloakAugmentedUserInfo {
+  augmentUserInfo(userInfo: UserInfo): AugmentedUserInfo {
     return {
       ...userInfo,
       firstNames: "John",
@@ -24,13 +26,13 @@ export class DummyAugmentingTransform extends Transform {
     }
   }
 
-  async augmentChunk(chunk: UserInfo[]): Promise<KeycloakAugmentedUserInfo[]> {
+  async augmentChunk(chunk: UserInfo[]): Promise<AugmentedUserInfo[]> {
     return chunk.map((userInfo) => this.augmentUserInfo(userInfo))
   }
 
   _transform(chunk: UserInfo[], encoding: never, callback: TransformCallback): void {
     this.augmentChunk(chunk)
-      .then((filteredChunk) => callback(null, filteredChunk satisfies KeycloakAugmentedUserInfo[]))
+      .then((filteredChunk) => callback(null, filteredChunk satisfies AugmentedUserInfo[]))
       .catch((error: unknown) => {
         if (error instanceof Error) callback(error)
         if (isString(error)) callback(new Error(error))

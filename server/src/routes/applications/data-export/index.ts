@@ -22,3 +22,10 @@ applicationsDataExportApp
   .all(authenticate())
   .get(dataExportHandlers.getHackathonsUk())
   .all(forbiddenOrUnauthorised())
+
+applicationsDataExportApp
+  .route("/cv-archive")
+  .all(methodNotAllowed(["GET"]))
+  .all(authenticate())
+  .get(dataExportHandlers.getCVArchive())
+  .all(forbiddenOrUnauthorised())

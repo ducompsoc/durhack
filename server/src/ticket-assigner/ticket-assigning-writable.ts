@@ -1,11 +1,13 @@
 import stream from "node:stream"
 
 import { durhackConfig, frontendOrigin, mailgunConfig } from "@/config"
-import { prisma } from "@/database"
-import type { KeycloakAugmentedUserInfo } from "@/lib/keycloak-augmenting-transform"
+import { prisma, UserInfo } from "@/database"
 import { isString } from "@/lib/type-guards"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
 import type { Mailer } from "@/ticket-assigner/mailer"
+import { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
+
+type AugmentedUserInfo = UserInfo & KeycloakAugments
 
 export class TicketAssigningWritable extends stream.Writable {
   totalAssignedTicketCount: number
@@ -47,7 +49,7 @@ export class TicketAssigningWritable extends stream.Writable {
   /**
    * Assign a user a ticket to attend DurHack, and send an email notification.
    */
-  async assignTicket(userInfo: KeycloakAugmentedUserInfo): Promise<void> {
+  async assignTicket(userInfo: AugmentedUserInfo): Promise<void> {
     if (userInfo.applicationStatus === "accepted") return
     if (userInfo.applicationStatus === "unsubmitted")
       throw new Error(`Can't assign ticket to ${userInfo.userId} as their application is unsubmitted`)
@@ -111,7 +113,7 @@ export class TicketAssigningWritable extends stream.Writable {
   /**
    * Move a user's application to the waiting list for a DurHack ticket, and send an email notification for the event.
    */
-  async waitingList(userInfo: KeycloakAugmentedUserInfo): Promise<void> {
+  async waitingList(userInfo: AugmentedUserInfo): Promise<void> {
     if (userInfo.applicationStatus === "waitingList") return
     if (userInfo.applicationStatus === "unsubmitted")
       throw new Error(`Can't waiting list ${userInfo.userId} as their application is unsubmitted`)
@@ -156,7 +158,7 @@ export class TicketAssigningWritable extends stream.Writable {
    * If DurHack still has ticket capacity to allocate, assign an attendee ticket to the provided user.
    * Otherwise, move the user to the ticket waiting list.
    */
-  async updateApplicationStatus(userInfo: KeycloakAugmentedUserInfo): Promise<void> {
+  async updateApplicationStatus(userInfo: AugmentedUserInfo): Promise<void> {
     if (this.totalAssignedTicketCount < durhackConfig.maximumTicketAssignment) {
       await this.assignTicket(userInfo)
       return
@@ -165,12 +167,12 @@ export class TicketAssigningWritable extends stream.Writable {
     await this.waitingList(userInfo)
   }
 
-  async updateManyApplicationStatus(users: KeycloakAugmentedUserInfo[]): Promise<void> {
+  async updateManyApplicationStatus(users: AugmentedUserInfo[]): Promise<void> {
     const applicationStatusUpdatePromises = users.map((user) => this.updateApplicationStatus(user))
     await Promise.all(applicationStatusUpdatePromises)
   }
 
-  _write(chunk: KeycloakAugmentedUserInfo[], encoding: never, callback: (error?: Error | null) => void) {
+  _write(chunk: AugmentedUserInfo[], encoding: never, callback: (error?: Error | null) => void) {
     this.updateManyApplicationStatus(chunk)
       .then(() => callback())
       .catch((error: unknown) => {

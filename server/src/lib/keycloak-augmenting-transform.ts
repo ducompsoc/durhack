@@ -16,7 +16,7 @@ export type KeycloakAugments = {
   phone: string | undefined
 }
 
-export type KeycloakAugmentedUserInfo = UserInfo & KeycloakAugments
+type KeycloakAugmentedUserInfo = { userId: string } & KeycloakAugments
 
 export class KeycloakAugmentingTransform extends Transform {
   constructor() {
