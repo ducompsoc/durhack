@@ -1,6 +1,6 @@
 import assert from "node:assert/strict"
 import { parse as parsePath } from "node:path/posix"
-import { disciplineOfStudySchema, type DisciplineOfStudy } from "@durhack/durhack-common/input/discipline-of-study"
+import { type DisciplineOfStudy, disciplineOfStudySchema } from "@durhack/durhack-common/input/discipline-of-study"
 import type { Application, DietaryRequirement } from "@durhack/durhack-common/types/application"
 import { ClientError, HttpStatus } from "@otterhttp/errors"
 import type { ContentType, ParsedFormFieldFile } from "@otterhttp/parsec"

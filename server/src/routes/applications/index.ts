@@ -12,7 +12,8 @@ export const applicationsApp = new App<Request, Response>()
 
 applicationsApp.use("/data-export", applicationsDataExportApp)
 
-applicationsApp.route("/")
+applicationsApp
+  .route("/")
   .all(methodNotAllowed(["GET"]))
   .all(authenticate())
   .all(applicationsHandlers.parseQueryParameters())

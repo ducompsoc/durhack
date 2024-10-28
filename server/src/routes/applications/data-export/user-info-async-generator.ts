@@ -19,5 +19,5 @@ export async function* generateUserInfo(): AsyncGenerator<UserInfo[], undefined>
 
     cursor = results[9]?.userId
     yield results
-  } while (cursor != undefined)
+  } while (cursor != null)
 }

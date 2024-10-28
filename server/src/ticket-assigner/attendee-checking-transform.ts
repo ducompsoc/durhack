@@ -1,6 +1,6 @@
 import { Transform, type TransformCallback } from "node:stream"
 
-import { durhackConfig } from "@/config";
+import { durhackConfig } from "@/config"
 import type { UserInfo } from "@/database"
 import { isString } from "@/lib/type-guards"
 
