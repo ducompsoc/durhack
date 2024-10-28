@@ -7,7 +7,7 @@ import { isNetworkError } from "@/lib/is-network-error"
 import { getKeycloakAdminClient, unpackAttribute } from "@/lib/keycloak-client"
 import { isString } from "@/lib/type-guards"
 
-export type KeycloakAugmentedUserInfo = UserInfo & {
+export type KeycloakAugments = {
   firstNames: string
   lastNames: string
   preferredNames: string | undefined
@@ -15,6 +15,8 @@ export type KeycloakAugmentedUserInfo = UserInfo & {
   email: string
   phone: string | undefined
 }
+
+type KeycloakAugmentedUserInfo = { userId: string } & KeycloakAugments
 
 export class KeycloakAugmentingTransform extends Transform {
   constructor() {

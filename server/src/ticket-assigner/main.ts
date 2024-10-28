@@ -2,9 +2,9 @@ import { Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
 
 import { prisma } from "@/database"
+import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 
 import { AttendeeCheckingTransform } from "./attendee-checking-transform"
-import { KeycloakAugmentingTransform } from "./keycloak-augmenting-transform"
 import { MailgunMailer } from "./mailer"
 import { TicketAssigningWritable } from "./ticket-assigning-writable"
 import { generateUserInfoByTicketAssignmentOrder } from "./ticket-order-user-info-async-generator"

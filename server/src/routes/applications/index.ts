@@ -6,8 +6,11 @@ import { methodNotAllowed } from "@/middleware/method-not-allowed"
 import type { Request, Response } from "@/types"
 
 import { applicationsHandlers } from "./applications-handlers"
+import { applicationsDataExportApp } from "./data-export"
 
 export const applicationsApp = new App<Request, Response>()
+
+applicationsApp.use("/data-export", applicationsDataExportApp)
 
 applicationsApp
   .route("/")
