@@ -1,6 +1,6 @@
-import stream from "node:stream";
+import stream from "node:stream"
 
-import { isString } from "@/lib/type-guards";
+import { isString } from "@/lib/type-guards"
 
 export class FilteringTransform<Item> extends stream.Transform {
   filterPredicate: (item: Item) => boolean
@@ -17,8 +17,7 @@ export class FilteringTransform<Item> extends stream.Transform {
     try {
       const filteredChunk = chunk.filter((item) => this.filterPredicate(item))
       callback(null, filteredChunk satisfies Item[])
-    }
-    catch (error) {
+    } catch (error) {
       if (error instanceof Error) callback(error)
       if (isString(error)) callback(new Error(error))
       callback(new Error(`Something really strange happened. Error object: ${error}`))

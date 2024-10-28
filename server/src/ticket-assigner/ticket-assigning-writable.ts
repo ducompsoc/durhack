@@ -1,11 +1,11 @@
 import stream from "node:stream"
 
 import { durhackConfig, frontendOrigin, mailgunConfig } from "@/config"
-import { prisma, UserInfo } from "@/database"
+import { type UserInfo, prisma } from "@/database"
+import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import { isString } from "@/lib/type-guards"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
 import type { Mailer } from "@/ticket-assigner/mailer"
-import { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 

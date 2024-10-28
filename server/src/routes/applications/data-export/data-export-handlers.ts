@@ -1,25 +1,25 @@
 import { exec } from "node:child_process"
 import { createWriteStream } from "node:fs"
-import { rm, mkdir } from "node:fs/promises"
+import { mkdir, rm } from "node:fs/promises"
 import { join as pathJoin } from "node:path"
 import { Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
 import { ServerError } from "@otterhttp/errors"
 
+import type { UserInfo } from "@/database"
 import { Group, onlyGroups } from "@/decorators/authorise"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { getTempDir } from "@/lib/temp-dir"
 import { waitForExit } from "@/lib/wait-for-exit"
 import type { Middleware } from "@/types"
-import { UserInfo } from "@/database";
 
-import { AttendanceAugmentingTransform, type AttendanceAugments } from "./attendance-augmenting-transform";
-import { HukCsvTransform } from "./huk-csv-transform"
-import { MlhCsvTransform } from "./mlh-csv-transform"
-import { generateUserInfo } from "./user-info-async-generator"
-import { generateUserCv } from "./user-cv-async-generator"
+import { AttendanceAugmentingTransform, type AttendanceAugments } from "./attendance-augmenting-transform"
 import { CvExportingWritable } from "./cv-exporting-writable"
 import { FilteringTransform } from "./filtering-transform"
+import { HukCsvTransform } from "./huk-csv-transform"
+import { MlhCsvTransform } from "./mlh-csv-transform"
+import { generateUserCv } from "./user-cv-async-generator"
+import { generateUserInfo } from "./user-info-async-generator"
 
 class DataExportHandlers {
   /**
@@ -32,9 +32,7 @@ class DataExportHandlers {
       const attendeesOnly = request.query.attendees != null
       const tempDir = await getTempDir()
       try {
-        const fileName = attendeesOnly
-          ? "major-league-hacking-attendees.csv"
-          : "major-league-hacking-applicants.csv"
+        const fileName = attendeesOnly ? "major-league-hacking-attendees.csv" : "major-league-hacking-applicants.csv"
         const fileDestination = pathJoin(tempDir, fileName) // the name of the temporary file doesn't actually matter
 
         const filterTransform = attendeesOnly
@@ -67,9 +65,7 @@ class DataExportHandlers {
       const attendeesOnly = request.query.attendees != null
       const tempDir = await getTempDir()
       try {
-        const fileName = attendeesOnly
-          ? "hackathons-uk-attendees.csv"
-          : "hackathons-uk-applicants.csv"
+        const fileName = attendeesOnly ? "hackathons-uk-attendees.csv" : "hackathons-uk-applicants.csv"
         const fileDestination = pathJoin(tempDir, fileName) // the name of the temporary file doesn't actually matter
 
         const filterTransform = attendeesOnly
@@ -111,17 +107,15 @@ class DataExportHandlers {
         )
 
         const archivePath = pathJoin(tempDir, "durhack-cvs.zip")
-        const zipProcess = exec(
-          `zip -r '${archivePath}' .`,
-          { cwd: archiveDir },
-        )
+        const zipProcess = exec(`zip -r '${archivePath}' .`, { cwd: archiveDir })
         await waitForExit(zipProcess)
-        if (zipProcess.exitCode === 12) throw new ServerError("There are no CVs to include", { code: "ERR_NO_ARCHIVE_ENTRIES" })
-        if (zipProcess.exitCode != 0) throw new ServerError("Something went wrong during the `zip` operation", { code: "ERR_ZIP_FAILED" })
+        if (zipProcess.exitCode === 12)
+          throw new ServerError("There are no CVs to include", { code: "ERR_NO_ARCHIVE_ENTRIES" })
+        if (zipProcess.exitCode !== 0)
+          throw new ServerError("Something went wrong during the `zip` operation", { code: "ERR_ZIP_FAILED" })
 
         await response.download(archivePath, "durhack-cvs.zip")
-      }
-      finally {
+      } finally {
         await rm(tempDir, { recursive: true, force: true })
       }
     }

@@ -1,10 +1,10 @@
-import stream from "node:stream"
-import path from "node:path"
 import { writeFile } from "node:fs/promises"
+import path from "node:path"
+import stream from "node:stream"
 
-import { hasCode, isString } from "@/lib/type-guards"
 import type { UserCV } from "@/database"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
+import { hasCode, isString } from "@/lib/type-guards"
 
 type AugmentedUserCV = UserCV & KeycloakAugments
 
@@ -48,13 +48,8 @@ export class CvExportingWritable extends stream.Writable {
       const filename = `${filepathStem}${discriminator}${filepathExtension}`
 
       try {
-        await writeFile(
-          path.join(this.directoryPath, filename),
-          cv.content,
-          { flag: "wx" },
-        )
-      }
-      catch (error) {
+        await writeFile(path.join(this.directoryPath, filename), cv.content, { flag: "wx" })
+      } catch (error) {
         if (!hasCode(error) || error.code !== "EEXIST") throw error
         attemptIndex += 1
         continue
