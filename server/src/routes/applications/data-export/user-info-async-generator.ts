@@ -9,7 +9,7 @@ export async function* generateUserInfo(): AsyncGenerator<UserInfo[], undefined>
       cursor: cursor == null ? undefined : { userId: cursor },
       where: {
         applicationStatus: {
-          equals: "submitted",
+          not: "unsubmitted",
         },
       },
       orderBy: {
