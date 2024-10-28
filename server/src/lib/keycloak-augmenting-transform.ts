@@ -1,25 +1,28 @@
-import stream from "node:stream"
+import { Transform, type TransformCallback } from "node:stream"
 import ModuleError from "module-error"
 
+import type { UserInfo } from "@/database"
 import { groupPromiseSettledResultsByStatus } from "@/lib/group-promise-settled-results-by-status"
 import { isNetworkError } from "@/lib/is-network-error"
 import { getKeycloakAdminClient, unpackAttribute } from "@/lib/keycloak-client"
 import { isString } from "@/lib/type-guards"
 
-import type { UserInfo } from "@prisma/client"
-
-export type KeycloakAugmentedUserInfo = UserInfo & {
+export type KeycloakAugments = {
   firstNames: string
   lastNames: string
+  preferredNames: string | undefined
+  pronouns: "he/him" | "she/her" | "they/them" | "xe/xem" | "Please Ask" | "Unspecified"
   email: string
   phone: string | undefined
 }
 
-export class KeycloakAugmentingTransform extends stream.Transform {
+export type KeycloakAugmentedUserInfo = UserInfo & KeycloakAugments
+
+export class KeycloakAugmentingTransform extends Transform {
   constructor() {
     super({
       writableObjectMode: true, // the stream expects to receive objects, not a string/binary data
-      readableObjectMode: true, // the stream expects its _transform implementation to push an object (array)
+      readableObjectMode: true, // the stream expects its _transform implementation to push objects, not a string/binary data
     })
   }
 
@@ -30,6 +33,8 @@ export class KeycloakAugmentingTransform extends stream.Transform {
 
     const firstNames = unpackAttribute(profile, "firstNames")
     const lastNames = unpackAttribute(profile, "lastNames")
+    const preferredNames = unpackAttribute(profile, "preferredNames")
+    const pronouns = unpackAttribute<KeycloakAugmentedUserInfo["pronouns"]>(profile, "pronouns", "Unspecified")
     const email = profile.email
     const phone = unpackAttribute(profile, "phone")
 
@@ -41,11 +46,13 @@ export class KeycloakAugmentingTransform extends stream.Transform {
       throw new ModuleError("Keycloak user missing email address", { code: "ERR_KEYCLOAK_USER_MISSING_REQUIRED_FIELD" })
 
     return {
+      ...userInfo,
       firstNames,
       lastNames,
+      preferredNames,
+      pronouns,
       email,
       phone,
-      ...userInfo,
     }
   }
 
@@ -83,11 +90,9 @@ export class KeycloakAugmentingTransform extends stream.Transform {
     return fulfilled.map((result) => result.value)
   }
 
-  _transform(chunk: UserInfo[], encoding: never, callback: stream.TransformCallback): void {
+  _transform(chunk: UserInfo[], encoding: never, callback: TransformCallback): void {
     this.augmentChunk(chunk)
-      .then((filteredChunk) => {
-        callback(null, filteredChunk satisfies KeycloakAugmentedUserInfo[])
-      })
+      .then((filteredChunk) => callback(null, filteredChunk satisfies KeycloakAugmentedUserInfo[]))
       .catch((error: unknown) => {
         if (error instanceof Error) callback(error)
         if (isString(error)) callback(new Error(error))

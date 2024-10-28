@@ -2,7 +2,7 @@ import { Transform, type TransformCallback } from "node:stream"
 
 import type { UserInfo } from "@/database"
 import { isString } from "@/lib/type-guards"
-import type { KeycloakAugmentedUserInfo } from "@/ticket-assigner/keycloak-augmenting-transform"
+import type { KeycloakAugmentedUserInfo } from "@/lib/keycloak-augmenting-transform"
 
 export class DummyAugmentingTransform extends Transform {
   constructor() {

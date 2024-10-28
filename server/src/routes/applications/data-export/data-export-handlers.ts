@@ -3,58 +3,15 @@ import { rm } from "node:fs/promises"
 import { join as pathJoin } from "node:path"
 import { Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
-import { ServerError } from "@otterhttp/errors"
 
 import { Group, onlyGroups } from "@/decorators/authorise"
 import { getTempDir } from "@/lib/temp-dir"
 import type { Middleware } from "@/types"
+import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 
-import { ExtractPrismaHUKTransform } from "./extract-prisma-huk-transform"
-import { ExtractPrismaMLHTransform } from "./extract-prisma-mlh-transform"
-import { KeycloakAugmentingTransform } from "./keycloak-augmenting-transform"
+import { HukCsvTransform } from "./huk-csv-transform"
+import { MlhCsvTransform } from "./mlh-csv-transform"
 import { generateUserInfo } from "./user-info-async-generator"
-
-import { profilesHandlers } from "@/routes/profiles/profiles-handlers"
-import { CreateHUKHeaderTransform, CreateMLHHeaderTransform } from "./create-header-transform"
-
-export type ethnicityEnum =
-  | "american"
-  | "asian"
-  | "black"
-  | "hispanic"
-  | "white"
-  | "other"
-  | "prefer_not_to_answer"
-  | undefined
-export type genderEnum = "male" | "female" | "non_binary" | "other" | "prefer_not_to_answer" | undefined
-
-export type MLHDataExportBase = {
-  firstNames: string
-  lastNames: string
-  email: string
-  phone: string | undefined
-
-  userId: string
-  age: number | null
-  university: string | null
-  countryOfResidence: string | null
-  levelOfStudy: string | null
-  isCheckedIn: boolean
-}
-
-export type HUKDataExportBase = {
-  firstNames: string
-  lastNames: string
-  email: string
-  phone: string | undefined
-
-  userId: string
-  university: string | null
-  graduationYear: number | null
-  ethnicity: ethnicityEnum | null
-  gender: genderEnum
-  isCheckedIn: boolean
-}
 
 class DataExportHandlers {
   /**
@@ -71,8 +28,7 @@ class DataExportHandlers {
         await pipeline(
           Readable.from(generateUserInfo()), // this source yields 'chunks' of 10 `UserInfo` as `UserInfo[]`s
           new KeycloakAugmentingTransform(), // this transform consumes 'UserInfo's, then augments them with Keycloak data and yields the new object
-          new ExtractPrismaMLHTransform(), // this transform consumes the augmented 'UserInfo's, picking out required fields for the MLH data
-          new CreateMLHHeaderTransform(), // this transform adds a header to the start of the csv file
+          new MlhCsvTransform(), // this transform consumes the augmented 'UserInfo's, picking out required fields for the MLH data
           createWriteStream(fileDestination), // this sink consumes single strings / Buffers at a time
         )
 
@@ -97,8 +53,7 @@ class DataExportHandlers {
         await pipeline(
           Readable.from(generateUserInfo()), // this source yields 'chunks' of 10 `UserInfo` as `UserInfo[]`s
           new KeycloakAugmentingTransform(), // this transform consumes 'UserInfo's, then augments them with Keycloak data and yields the new object
-          new ExtractPrismaHUKTransform(), // this transform consumes the augmented 'UserInfo's, picking out required fields for the HUK data
-          new CreateHUKHeaderTransform(), // this transform adds a header to the start of the csv file
+          new HukCsvTransform(), // this transform consumes the augmented 'UserInfo's, picking out required fields for the HUK data
           createWriteStream(fileDestination), // this sink consumes single strings / Buffers at a time
         )
 

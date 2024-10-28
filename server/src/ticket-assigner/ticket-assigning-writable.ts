@@ -4,7 +4,7 @@ import { durhackConfig, frontendOrigin, mailgunConfig } from "@/config"
 import { prisma } from "@/database"
 import { isString } from "@/lib/type-guards"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
-import type { KeycloakAugmentedUserInfo } from "@/ticket-assigner/keycloak-augmenting-transform"
+import type { KeycloakAugmentedUserInfo } from "@/lib/keycloak-augmenting-transform"
 import type { Mailer } from "@/ticket-assigner/mailer"
 
 export class TicketAssigningWritable extends stream.Writable {
