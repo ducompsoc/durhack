@@ -1,24 +1,30 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    // emitted code / module resolution settings
     "target": "esnext",
     "module": "esnext",
-    "rootDir": "./src",
     "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
+    "rootDir": "./",
     "baseUrl": "./",
     "sourceMap": true,
-    "outDir": "./dist",
-    "noImplicitAny": true,
+    "newLine": "lf",
     "esModuleInterop": true,
+
+    // typescript language settings (what is allowed and what is not)
+    "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+
+    // miscellaneous settings
     "skipLibCheck": true,
-    "newLine": "lf",
+
+    // path aliases
     "paths": {
       "@/*": ["./src/*"]
     }
   },
   "exclude": ["./dist", "./node_modules", "./__tests__"],
-  "include": ["src"]
+  "include": ["src", "config"]
 }

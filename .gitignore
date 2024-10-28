@@ -58,6 +58,7 @@
 
 ## Sources
 !src
+!config
 !public
 !prisma
 

@@ -38,7 +38,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.mwam.com/",
     tier: "platinum",
-    signed: false,
+    signed: true,
   },
   {
     slug: "rewriting-the-code",
@@ -128,8 +128,23 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.atombank.co.uk/",
     tier: "platinum",
-    signed: false,
-  }
+    signed: true,
+  },
+  {
+    slug: "durham-uni-venture-lab",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/venture-lab.svg"
+        alt="Durham University Venture Lab"
+        width={120}
+        height={120}
+        {...props}
+      />
+    ),
+    link: "https://www.durham.ac.uk/venturelab",
+    tier: "gold",
+    signed: true,
+  },
 ]
 
 export const signedSponsors = sponsors.filter((sponsor) => sponsor.signed)
@@ -142,6 +157,7 @@ export type Partner = {
   slug: string,
   image: React.FC<React.HTMLAttributes<HTMLElement>> | null,
   link: string,
+  active: boolean
 }
 
 export const partners: Partner[] = [
@@ -156,7 +172,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://mlh.io/"
+    link: "https://mlh.io/",
+    active: true,
   },
   {
     slug: "durham-uni-computing-society",
@@ -169,7 +186,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://compsoc.tech"
+    link: "https://compsoc.tech",
+    active: true,
   },
   {
     slug: "overleaf",
@@ -182,7 +200,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://www.overleaf.com/"
+    link: "https://www.overleaf.com/",
+    active: true,
   },
   {
     slug: "keyboard-co",
@@ -195,7 +214,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://www.keyboardco.com/"
+    link: "https://www.keyboardco.com/",
+    active: true,
   },
   {
     slug: "rs-components",
@@ -208,7 +228,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://uk.rs-online.com/web/"
+    link: "https://uk.rs-online.com/web/",
+    active: true,
   },
   {
     slug: "pragmatic-semi",
@@ -221,7 +242,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://www.pragmaticsemi.com/"
+    link: "https://www.pragmaticsemi.com/",
+    active: true,
   },
   {
     slug: "durham-uni-computer-science",
@@ -234,20 +256,8 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://www.durham.ac.uk/departments/academic/computer-science/"
-  },
-  {
-    slug: "durham-uni-venture-lab",
-    image: (props) => (
-      <Image
-        src="/assets/sponsors/venture-lab.svg"
-        alt="Durham University Venture Lab"
-        width={120}
-        height={120}
-        {...props}
-      />
-    ),
-    link: "https://www.durham.ac.uk/venturelab"
+    link: "https://www.durham.ac.uk/departments/academic/computer-science/",
+    active: true,
   },
   {
     slug: "stand-out-stickers",
@@ -260,16 +270,65 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://hackp.ac/mlh-standoutstickers-hackathons"
+    link: "https://hackp.ac/mlh-standoutstickers-hackathons",
+    active: false,
   },
   {
     slug: "durham-uni-esports-and-gaming",
-    image: null,
-    link: "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/"
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/dueg.svg"
+        alt="Durham University Esports & Gaming"
+        width={24}
+        height={24}
+        {...props}
+      />
+    ),
+    link: "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/",
+    active: true,
   },
   {
     slug: "durham-uni-student-union",
-    image: null,
-    link: "https://www.durhamsu.com/"
-  }
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/durham-student-union.svg"
+        alt="Durham Student Union"
+        width={1920}
+        height={1080}
+        {...props}
+      />
+    ),
+    link: "https://www.durhamsu.com/",
+    active: true,
+  },
+  {
+    slug: "intel",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/intel.svg"
+        alt="Intel"
+        width={395.4}
+        height={155.9}
+        {...props}
+      />
+    ),
+    link: "https://www.intel.com",
+    active: false,
+  },
+  {
+    slug: "hackathons-uk",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/hackathonsuk.svg"
+        alt="Hackathons UK"
+        width={282.43}
+        height={77.11}
+        {...props}
+      />
+    ),
+    link: "https://www.hackathons.org.uk/",
+    active: true,
+  },
 ]
+
+export const activePartners = partners.filter(partner => partner.active)

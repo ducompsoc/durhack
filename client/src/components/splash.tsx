@@ -85,7 +85,7 @@ export function Splash() {
             <Link
               href="/dashboard"
               id="book"
-              className="relative px-12 sm:px-16 py-4 sm:py-6 rounded-[4.8rem] text-xl sm:text-4xl text-center backdrop-blur-lg bg-white bg-opacity-40 hover:scale-110 z-50 transition-all uppercase cursor-pointer"
+              className="relative px-12 sm:px-16 py-4 sm:py-6 rounded-[4.8rem] text-xl sm:text-4xl text-center backdrop-blur-lg bg-white bg-opacity-40 hover:scale-110 z-40 transition-all uppercase cursor-pointer"
             >
               Book Tickets
             </Link>

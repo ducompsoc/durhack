@@ -1,4 +1,4 @@
-import type { ConfigIn } from "./schema"
+import type { ConfigIn } from "@/config/schema"
 
 export default {
   listen: {
@@ -34,5 +34,9 @@ export default {
     domain: "mailgun.compsoc.tech",
     sendAsDomain: "compsoc.tech",
     url: "https://api.eu.mailgun.net",
+  },
+  durhack: {
+    maximumTicketAssignment: 860,
+    currentEventYear: 2024,
   },
 } satisfies ConfigIn
