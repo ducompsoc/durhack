@@ -7,7 +7,7 @@ export type AttendanceAugments = {
   isCheckedIn: boolean
 }
 
-type AttendanceAugmentedUserInfo = AttendanceAugments & UserInfo
+type AttendanceAugmentedUserInfo = AttendanceAugments & { userId: string }
 
 export class AttendanceAugmentingTransform extends stream.Transform {
   constructor() {
