@@ -1,30 +1,29 @@
-import stream from 'node:stream'
-import ModuleError from 'module-error'
+import stream from "node:stream"
+import ModuleError from "module-error"
 
 import { groupPromiseSettledResultsByStatus } from "@/lib/group-promise-settled-results-by-status"
 import { isNetworkError } from "@/lib/is-network-error"
 import { getKeycloakAdminClient, unpackAttribute } from "@/lib/keycloak-client"
 import { isString } from "@/lib/type-guards"
 
-import { UserInfo } from '@prisma/client'
+import type { UserInfo } from "@prisma/client"
 
-export type KeycloakInfo = UserInfo & {
+export type KeycloakAugmentedUserInfo = UserInfo & {
   firstNames: string
   lastNames: string
   email: string
   phone: string | undefined
 }
 
-
-export class KeycloakDataTransform extends stream.Transform {
+export class KeycloakAugmentingTransform extends stream.Transform {
   constructor() {
     super({
       writableObjectMode: true, // the stream expects to receive objects, not a string/binary data
-      readableObjectMode: true // the stream expects its _transform implementation to push an object (array)
+      readableObjectMode: true, // the stream expects its _transform implementation to push an object (array)
     })
   }
 
-  async augmentUserInfo(userInfo: UserInfo): Promise<KeycloakInfo> {
+  async augmentUserInfo(userInfo: UserInfo): Promise<KeycloakAugmentedUserInfo> {
     const adminClient = await getKeycloakAdminClient()
     const profile = await adminClient.users.findOne({ id: userInfo.userId })
     if (profile == null) throw new ModuleError("Keycloak user does not exist", { code: "ERR_KEYCLOAK_USER_NOT_FOUND" })
@@ -50,7 +49,7 @@ export class KeycloakDataTransform extends stream.Transform {
     }
   }
 
-  async augmentUserInfoWithRetry(userInfo: UserInfo): Promise<KeycloakInfo> {
+  async augmentUserInfoWithRetry(userInfo: UserInfo): Promise<KeycloakAugmentedUserInfo> {
     const errors: Error[] = []
     for (let i = 0; i < 3; i++) {
       try {
@@ -63,7 +62,7 @@ export class KeycloakDataTransform extends stream.Transform {
     throw new AggregateError(errors)
   }
 
-  async augmentChunk(chunk: UserInfo[]): Promise<KeycloakInfo[]> {
+  async augmentChunk(chunk: UserInfo[]): Promise<KeycloakAugmentedUserInfo[]> {
     const results = await Promise.allSettled(chunk.map((userInfo) => this.augmentUserInfoWithRetry(userInfo)))
     const { fulfilled, rejected } = groupPromiseSettledResultsByStatus(results)
     if (rejected.length === 0) return fulfilled.map((result) => result.value)
@@ -87,7 +86,7 @@ export class KeycloakDataTransform extends stream.Transform {
   _transform(chunk: UserInfo[], encoding: never, callback: stream.TransformCallback): void {
     this.augmentChunk(chunk)
       .then((filteredChunk) => {
-        callback(null, filteredChunk satisfies KeycloakInfo[])
+        callback(null, filteredChunk satisfies KeycloakAugmentedUserInfo[])
       })
       .catch((error: unknown) => {
         if (error instanceof Error) callback(error)

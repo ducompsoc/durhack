@@ -1,23 +1,31 @@
-import { ServerError } from "@otterhttp/errors"
-import { Readable } from "node:stream"
-import { pipeline } from "node:stream/promises"
 import { createWriteStream } from "node:fs"
 import { rm } from "node:fs/promises"
 import { join as pathJoin } from "node:path"
+import { Readable } from "node:stream"
+import { pipeline } from "node:stream/promises"
+import { ServerError } from "@otterhttp/errors"
 
 import { Group, onlyGroups } from "@/decorators/authorise"
 import { getTempDir } from "@/lib/temp-dir"
 import type { Middleware } from "@/types"
 
-import { generateUserInfo } from "./user-info-async-generator"
-import { KeycloakDataTransform } from "./keycloak-data-transform"
-import { ExtractPrismaMLHTransform } from "./extract-prisma-mlh-transform"
 import { ExtractPrismaHUKTransform } from "./extract-prisma-huk-transform"
+import { ExtractPrismaMLHTransform } from "./extract-prisma-mlh-transform"
+import { KeycloakAugmentingTransform } from "./keycloak-augmenting-transform"
+import { generateUserInfo } from "./user-info-async-generator"
 
 import { profilesHandlers } from "@/routes/profiles/profiles-handlers"
-import { CreateMLHHeaderTransform, CreateHUKHeaderTransform } from "./create-header-transform"
+import { CreateHUKHeaderTransform, CreateMLHHeaderTransform } from "./create-header-transform"
 
-export type ethnicityEnum = "american" | "asian" | "black" | "hispanic" | "white" | "other" | "prefer_not_to_answer" | undefined
+export type ethnicityEnum =
+  | "american"
+  | "asian"
+  | "black"
+  | "hispanic"
+  | "white"
+  | "other"
+  | "prefer_not_to_answer"
+  | undefined
 export type genderEnum = "male" | "female" | "non_binary" | "other" | "prefer_not_to_answer" | undefined
 
 export type MLHDataExportBase = {
@@ -25,7 +33,7 @@ export type MLHDataExportBase = {
   lastNames: string
   email: string
   phone: string | undefined
-  
+
   userId: string
   age: number | null
   university: string | null
@@ -62,15 +70,14 @@ class DataExportHandlers {
 
         await pipeline(
           Readable.from(generateUserInfo()), // this source yields 'chunks' of 10 `UserInfo` as `UserInfo[]`s
-          new KeycloakDataTransform(), // this transform consumes 'UserInfo's, then augments them with Keycloak data and yields the new object
+          new KeycloakAugmentingTransform(), // this transform consumes 'UserInfo's, then augments them with Keycloak data and yields the new object
           new ExtractPrismaMLHTransform(), // this transform consumes the augmented 'UserInfo's, picking out required fields for the MLH data
           new CreateMLHHeaderTransform(), // this transform adds a header to the start of the csv file
           createWriteStream(fileDestination), // this sink consumes single strings / Buffers at a time
         )
 
         await response.download(fileDestination, "major-league-hacking-data-export.csv")
-      }
-      finally {
+      } finally {
         await rm(tempDir, { recursive: true, force: true })
       }
     }
@@ -89,15 +96,14 @@ class DataExportHandlers {
 
         await pipeline(
           Readable.from(generateUserInfo()), // this source yields 'chunks' of 10 `UserInfo` as `UserInfo[]`s
-          new KeycloakDataTransform(), // this transform consumes 'UserInfo's, then augments them with Keycloak data and yields the new object
+          new KeycloakAugmentingTransform(), // this transform consumes 'UserInfo's, then augments them with Keycloak data and yields the new object
           new ExtractPrismaHUKTransform(), // this transform consumes the augmented 'UserInfo's, picking out required fields for the HUK data
           new CreateHUKHeaderTransform(), // this transform adds a header to the start of the csv file
           createWriteStream(fileDestination), // this sink consumes single strings / Buffers at a time
         )
 
         await response.download(fileDestination, "hackathons-uk-data-export.csv")
-      }
-      finally {
+      } finally {
         await rm(tempDir, { recursive: true, force: true })
       }
     }
