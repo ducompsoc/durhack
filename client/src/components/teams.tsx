@@ -15,10 +15,10 @@ import "@/styles/section-header.css"
 export function Teams() {
     const teamContainer = " min-h-full flex flex-col h-full justify-between py-4 bg-gradient-to-b from-blue-700 via-cyan-500 to-orange-700 bg-opacity-25 rounded-3xl p-4 "
 
-    const titleText = `${audiowide.className} xl:text-5xl lg:text-4xl sm:text-3xl text-2xl font-bold md:text-end text-center px-4 pt-8`
-    const teamText = "text-sm sm:text-lg xl:text-xl md:px-4 md:text-end text-center "
-    const teamHeadContainer = "flex flex-col md:flex-row items-center lg:h-[30vh] md:h-[25vh]  h-[20vh] w-auto xl:mt-[-10rem] md:mt-[-5rem]"
-    const teamHeadImage = "h-full w-auto p-1 bg-gradient-to-r from-yellow-600 via-orange-500 to-amber-500"
+    const titleText = `${audiowide.className} xl:text-5xl lg:text-4xl sm:text-3xl text-2xl font-bold md:text-end text-center px-4 sm:pt-8`
+    const teamText = "text-xs sm:text-lg xl:text-xl md:px-4 md:text-end text-center "
+    const teamHeadContainer = "flex flex-col justify-center md:flex-row items-center lg:h-[30vh] md:h-[25vh]  h-[20vh] w-auto xl:mt-[-10rem] md:mt-[-5rem]"
+    const teamHeadImage = " sm:max-h-[100%] max-h-[70%] w-auto p-1 bg-gradient-to-r from-yellow-600 via-orange-500 to-amber-500"
 
     const memberImageContainer = "flex justify-center items-center align-center w-full "
     const memberImageWrapper = "flex flex-wrap justify-center gap-2 w-4/5 py-2 "
