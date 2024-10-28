@@ -1,7 +1,7 @@
 import { App } from "@otterhttp/app"
 
-import { methodNotAllowed } from "@/middleware/method-not-allowed"
 import { authenticate } from "@/middleware/authenticate"
+import { methodNotAllowed } from "@/middleware/method-not-allowed"
 import { authHandlers } from "@/routes/auth/auth-handlers"
 import type { Request, Response } from "@/types"
 

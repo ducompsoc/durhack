@@ -6,11 +6,13 @@ import { Skeleton } from "@durhack/web-components/ui/skeleton"
 import Link from "next/link"
 
 import { ApplicationStatusBadge } from "@/components/dashboard/application-status-indicator";
+import { ProfileQrCode } from "@/components/profile-qr-code";
 import { useApplicationContext } from "@/hooks/use-application-context"
 import type { Application } from "@/hooks/use-application"
+import { isLoaded } from "@/lib/is-loaded";
 
-function Instructions({ application }: { application: Application | undefined }) {
-  if (!application) return <Skeleton className="w-full h-[100px]" />
+function InstructionsArticle({ application, applicationIsLoading }: { application: Application | undefined, applicationIsLoading: boolean }) {
+  if (!isLoaded(application, applicationIsLoading)) return <Skeleton className="w-full h-[100px]" />
 
   const filledOutCount = [
     application.age != null,
@@ -25,6 +27,7 @@ function Instructions({ application }: { application: Application | undefined })
   if (application.applicationStatus === "submitted") return <article>
     <p>Your application has been submitted! Feel free to continue to update your details, should you like.</p>
     <p>We will send you ticket assignment / waiting-list notifications via email.</p>
+    <p>If your application does not show as &quot;accepted&quot; after 24 hours, please email <a className="underline" href="mailto:hello@durhack.com">hello@durhack.com</a></p>
   </article>
 
   if (application.applicationStatus === "waiting-list") return <article>
@@ -76,17 +79,30 @@ function Instructions({ application }: { application: Application | undefined })
   </article>
 }
 
+function ProfileQrCodeArticle({ application, applicationIsLoading }: { application: Application | undefined, applicationIsLoading: boolean }) {
+  if (!isLoaded(application, applicationIsLoading)) return <Skeleton className="w-full h-[20rem] mt-4" />
+  if (application.applicationStatus === "unsubmitted") return
+
+  return <>
+    <h2 className="text-2xl mt-4">Your Profile QR Code</h2>
+    <article className="bg-secondary/10 py-8 mt-2 rounded-md w-full flex flex-col justify-center items-center">
+      <ProfileQrCode userId={application.keycloakUserId} className="w-full h-auto max-w-[24rem]"/>
+    </article>
+  </>
+}
+
 export default function StatusPage() {
-  const { application, applicationIsLoading } = useApplicationContext()
+  const {application, applicationIsLoading} = useApplicationContext()
 
   return (
     <>
       <article className="bg-secondary/10 py-8 mt-2 rounded-md w-full flex flex-col justify-center items-center mb-4">
         <ApplicationStatusBadge size="xl">
-          <Skeleton className="w-48 h-12" />
+          <Skeleton className="w-48 h-12"/>
         </ApplicationStatusBadge>
       </article>
-      <Instructions application={application} />
+      <InstructionsArticle application={application} applicationIsLoading={applicationIsLoading}/>
+      <ProfileQrCodeArticle application={application} applicationIsLoading={applicationIsLoading}/>
     </>
   )
 }

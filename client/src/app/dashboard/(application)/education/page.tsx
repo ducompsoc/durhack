@@ -1,5 +1,6 @@
 "use client"
 
+import { disciplineOfStudyOptions, disciplineOfStudySchema, type DisciplineOfStudy } from "@durhack/durhack-common/input/discipline-of-study"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import * as React from "react"
@@ -26,7 +27,7 @@ type EducationFormFields = {
   university: string
   graduationYear: string
   levelOfStudy: string
-  disciplinesOfStudy: string[]
+  disciplinesOfStudy: DisciplineOfStudy[]
   countryOfResidence: string
 }
 
@@ -49,23 +50,7 @@ const educationFormSchema = z.object({
     .int("Oh, come on. Really?")
     .min(1900, { message: "Be serious. You didn't graduate before 1900." })
     .max(2100, { message: "What on earth are you studying?!?" }),
-  disciplinesOfStudy: z.array(z.enum([
-    "biology",
-    "anthropology",
-    "sport",
-    "chemistry",
-    "business",
-    "education",
-    "computer-science",
-    "economics",
-    "earth-sciences",
-    "geography",
-    "mathematics",
-    "philosophy",
-    "physics",
-    "psychology",
-    "other",
-  ])).min(1, { message: "Please select your discipline(s) of study." }),
+  disciplinesOfStudy: z.array(disciplineOfStudySchema).min(1, { message: "Please select your discipline(s) of study." }),
   levelOfStudy: z.enum([
     "secondary",
     "undergraduate-first-year",
@@ -213,23 +198,7 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                 <FormControl>
                   <MultiSelect
                     {...field}
-                    options={[
-                      { label: "Biology", value: "biology" },
-                      { label: "Anthropology", value: "anthropology" },
-                      { label: "Sport", value: "sport"},
-                      { label: "Chemistry", value: "chemistry"},
-                      { label: "Business", value: "business"},
-                      { label: "Education", value: "education"},
-                      { label: "Computer Science", value: "computer-science"},
-                      { label: "Economics", value: "economics"},
-                      { label: "Earth Sciences", value: "earth-sciences"},
-                      { label: "Geography", value: "geography"},
-                      { label: "Mathematics", value: "mathematics"},
-                      { label: "Philosophy", value: "philosophy"},
-                      { label: "Physics", value: "physics"},
-                      { label: "Psychology", value: "psychology"},
-                      { label: "Other", value: "other"}
-                    ]}
+                    options={disciplineOfStudyOptions}
                     hidePlaceholderWhenSelected
                   />
                 </FormControl>

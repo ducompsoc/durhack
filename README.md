@@ -1,4 +1,5 @@
-# DurHack 2023 Website
+# DurHack 2024 Website
+
 This repository is the latest website for DurHack.
 
 We're hosting the `client` project using Netlify at [durhack.com](https://durhack.com).

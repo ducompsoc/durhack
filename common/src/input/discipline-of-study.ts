@@ -1,0 +1,91 @@
+import { z } from "zod"
+
+import { recordEntries } from "@/util/record-entries"
+
+export const disciplineOfStudySchema = z.enum([
+  "biology",
+  "anthropology",
+  "sport",
+  "chemistry",
+  "business",
+  "education",
+  "computer-science",
+  "economics",
+  "earth-sciences",
+  "geography",
+  "mathematics",
+  "philosophy",
+  "physics",
+  "psychology",
+  "engineering",
+  "law",
+  "biosciences",
+  "data-science",
+  "business-or-management",
+  "marketing",
+  "finance",
+  "accounting",
+  "classics",
+  "ancient-history-or-civilisation",
+  "english-studies",
+  "history",
+  "music",
+  "theology",
+  "religion",
+  "modern-languages",
+  "modern-cultures",
+  "archaeology",
+  "politics",
+  "international-relations",
+  "sociology",
+  "other",
+])
+
+export type DisciplineOfStudy = z.output<typeof disciplineOfStudySchema>
+
+const disciplineOfStudyMetadata: Record<DisciplineOfStudy, { label: string }> = {
+  biology: { label: "Biology" },
+  anthropology: { label: "Anthropology" },
+  sport: { label: "Sport" },
+  chemistry: { label: "Chemistry" },
+  business: { label: "Business" },
+  education: { label: "Education" },
+  "computer-science": { label: "Computer Science" },
+  economics: { label: "Economics" },
+  "earth-sciences": { label: "Earth Sciences" },
+  geography: { label: "Geography" },
+  mathematics: { label: "Mathematics" },
+  philosophy: { label: "Philosophy" },
+  physics: { label: "Physics" },
+  psychology: { label: "Psychology" },
+  engineering: { label: "Engineering" },
+  law: { label: "Law" },
+  biosciences: { label: "Biosciences" },
+  "data-science": { label: "Data Science" },
+  "business-or-management": { label: "Business/Management" },
+  marketing: { label: "Marketing" },
+  finance: { label: "Finance" },
+  accounting: { label: "Accounting" },
+  classics: { label: "Classics" },
+  "ancient-history-or-civilisation": { label: "Ancient History/Civilisation" },
+  "english-studies": { label: "English Studies" },
+  history: { label: "History" },
+  music: { label: "Music" },
+  theology: { label: "Theology" },
+  religion: { label: "Religion" },
+  "modern-languages": { label: "Modern Languages" },
+  "modern-cultures": { label: "Modern Cultures" },
+  archaeology: { label: "Archaeology" },
+  politics: { label: "Politics" },
+  "international-relations": { label: "International Relations" },
+  sociology: { label: "Sociology" },
+  other: { label: "Other" },
+}
+
+export const disciplineOfStudyOptions = recordEntries(disciplineOfStudyMetadata).map(([value, metadata]) => ({
+  value,
+  label: metadata.label,
+})) satisfies Array<{
+  value: DisciplineOfStudy
+  label: string
+}>

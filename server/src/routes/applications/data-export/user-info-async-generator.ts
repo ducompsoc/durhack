@@ -1,4 +1,4 @@
-import { prisma, type UserInfo} from "@/database"
+import { type UserInfo, prisma } from "@/database"
 
 export async function* generateUserInfo(): AsyncGenerator<UserInfo[], undefined> {
   let cursor: string | undefined
@@ -6,21 +6,18 @@ export async function* generateUserInfo(): AsyncGenerator<UserInfo[], undefined>
     const results = await prisma.userInfo.findMany({
       take: 10,
       skip: cursor == null ? 0 : 1,
-      cursor: cursor == null
-        ? undefined
-        : { userId: cursor },
+      cursor: cursor == null ? undefined : { userId: cursor },
       where: {
         applicationStatus: {
-          equals: "submitted"
-        }
+          not: "unsubmitted",
+        },
       },
       orderBy: {
-        userId: 'asc',
+        userId: "asc",
       },
     })
 
     cursor = results[9]?.userId
     yield results
-  }
-  while (cursor != undefined)
+  } while (cursor != null)
 }
