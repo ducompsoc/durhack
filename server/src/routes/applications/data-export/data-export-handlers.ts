@@ -107,7 +107,7 @@ class DataExportHandlers {
         )
 
         const archivePath = pathJoin(tempDir, "durhack-cvs.zip")
-        const zipProcess = exec(`zip -r '${archivePath}' .`, { cwd: archiveDir })
+        const zipProcess = exec(`zip -qr '${archivePath}' .`, { cwd: archiveDir })
         await waitForExit(zipProcess)
         if (zipProcess.exitCode === 12)
           throw new ServerError("There are no CVs to include", { code: "ERR_NO_ARCHIVE_ENTRIES" })
