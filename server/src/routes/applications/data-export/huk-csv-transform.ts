@@ -15,6 +15,7 @@ export class HukCsvTransform extends PickAttributesToCsvTransform<UserInfo & Key
         { name: "graduationYear", label: "graduation_year" },
         { name: "ethnicity", label: "ethnicity" },
         { name: "gender", label: "gender" },
+        { name: "applicationStatus", label: "application_status" },
       ],
     })
   }

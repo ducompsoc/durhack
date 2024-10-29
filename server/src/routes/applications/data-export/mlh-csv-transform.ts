@@ -15,6 +15,7 @@ export class MlhCsvTransform extends PickAttributesToCsvTransform<UserInfo & Key
         { name: "university", label: "university" },
         { name: "countryOfResidence", label: "country_of_residence" },
         { name: "levelOfStudy", label: "level_of_study" },
+        { name: "applicationStatus", label: "application_status" },
       ],
     })
   }
