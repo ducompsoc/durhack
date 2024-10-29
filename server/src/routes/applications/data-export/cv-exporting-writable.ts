@@ -67,9 +67,9 @@ export class CvExportingWritable extends stream.Writable {
     this.writeManyCVs(chunk)
       .then(() => callback())
       .catch((error: unknown) => {
-        if (error instanceof Error) callback(error)
-        if (isString(error)) callback(new Error(error))
-        callback(new Error(`Something really strange happened. Error object: ${error}`))
+        if (error instanceof Error) return callback(error)
+        if (isString(error)) return callback(new Error(error))
+        return callback(new Error(`Something really strange happened. Error object: ${error}`))
       })
   }
 }

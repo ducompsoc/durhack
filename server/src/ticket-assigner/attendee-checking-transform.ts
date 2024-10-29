@@ -34,9 +34,9 @@ export class AttendeeCheckingTransform extends Transform {
     this.filterChunkForPermittedAttendees(chunk)
       .then((filteredChunk) => callback(null, filteredChunk satisfies UserInfo[]))
       .catch((error: unknown) => {
-        if (error instanceof Error) callback(error)
-        if (isString(error)) callback(new Error(error))
-        callback(new Error(`Something really strange happened. Error object: ${error}`))
+        if (error instanceof Error) return callback(error)
+        if (isString(error)) return callback(new Error(error))
+        return callback(new Error(`Something really strange happened. Error object: ${error}`))
       })
   }
 }

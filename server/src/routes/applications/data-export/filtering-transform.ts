@@ -18,9 +18,9 @@ export class FilteringTransform<Item> extends stream.Transform {
       const filteredChunk = chunk.filter((item) => this.filterPredicate(item))
       callback(null, filteredChunk satisfies Item[])
     } catch (error) {
-      if (error instanceof Error) callback(error)
-      if (isString(error)) callback(new Error(error))
-      callback(new Error(`Something really strange happened. Error object: ${error}`))
+      if (error instanceof Error) return callback(error)
+      if (isString(error)) return callback(new Error(error))
+      return callback(new Error(`Something really strange happened. Error object: ${error}`))
     }
   }
 }
