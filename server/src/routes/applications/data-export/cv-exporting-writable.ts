@@ -19,7 +19,7 @@ export class CvExportingWritable extends stream.Writable {
   }
 
   escapeName(name: string): string {
-    return name.replace(/\s+/g, "_")
+    return encodeURIComponent(name.replace(/\s+/g, "_").normalize())
   }
 
   contentTypeExtension(cvContentType: string): string {
