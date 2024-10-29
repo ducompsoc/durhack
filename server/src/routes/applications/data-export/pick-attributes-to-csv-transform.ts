@@ -59,6 +59,7 @@ export class PickAttributesToCsvTransform<Source extends Record<string, unknown>
         transformedChunk.unshift(headerLine)
         this.headerLinePrepended = true
       }
+      transformedChunk.push("")  // hack to ensure trailing newline
       callback(null, transformedChunk.join("\n"))
     } catch (error) {
       if (error instanceof Error) callback(error)
