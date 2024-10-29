@@ -1,4 +1,5 @@
-import { exec } from "node:child_process"
+import assert from "node:assert/strict"
+import { type ChildProcess, type ExecException, exec } from "node:child_process"
 import { createWriteStream } from "node:fs"
 import { mkdir, rm } from "node:fs/promises"
 import { join as pathJoin } from "node:path"
@@ -10,7 +11,6 @@ import type { UserInfo } from "@/database"
 import { Group, onlyGroups } from "@/decorators/authorise"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { getTempDir } from "@/lib/temp-dir"
-import { waitForExit } from "@/lib/wait-for-exit"
 import type { Middleware } from "@/types"
 
 import { AttendanceAugmentingTransform, type AttendanceAugments } from "./attendance-augmenting-transform"
@@ -20,6 +20,7 @@ import { HukCsvTransform } from "./huk-csv-transform"
 import { MlhCsvTransform } from "./mlh-csv-transform"
 import { generateUserCv } from "./user-cv-async-generator"
 import { generateUserInfo } from "./user-info-async-generator"
+import {hasCode} from "@/lib/type-guards";
 
 class DataExportHandlers {
   /**
@@ -107,12 +108,27 @@ class DataExportHandlers {
         )
 
         const archivePath = pathJoin(tempDir, "durhack-cvs.zip")
-        const zipProcess = exec(`zip -qr '${archivePath}' .`, { cwd: archiveDir })
-        await waitForExit(zipProcess)
-        if (zipProcess.exitCode === 12)
-          throw new ServerError("There are no CVs to include", { code: "ERR_NO_ARCHIVE_ENTRIES" })
-        if (zipProcess.exitCode !== 0)
-          throw new ServerError(`Something went wrong during the \`zip\` operation; exit code ${zipProcess.exitCode}`, { code: "ERR_ZIP_FAILED" })
+        let zipProcess: ChildProcess | undefined
+        try {
+          await new Promise<void>((resolve, reject) => {
+            function cb(error: ExecException | null) {
+              if (error) return reject(error)
+              resolve()
+            }
+            zipProcess = exec(`zip -qr '${archivePath}' .`, { cwd: archiveDir }, cb)
+          })
+          assert(zipProcess)
+        }
+        catch (error: unknown) {
+          if (!(error instanceof Error)) throw new Error("Something seriously strange happened")
+          console.log(error)
+          if (hasCode(error)) {
+            if (error.code === 12)
+              throw new ServerError("There are no CVs to include", { code: "ERR_NO_ARCHIVE_ENTRIES", cause: error })
+            if (error.code !== 0)
+              throw new ServerError(`Something went wrong during the \`zip\` operation; exit code ${error.code}`, { code: "ERR_ZIP_FAILED", cause: error })
+          }
+        }
 
         await response.download(archivePath, "durhack-cvs.zip")
       } finally {
