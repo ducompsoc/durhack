@@ -1,6 +1,6 @@
 import stream from "node:stream"
 
-import { isNumber, isString } from "@/lib/type-guards"
+import {isBoolean, isNumber, isString} from "@/lib/type-guards"
 
 type Attribute<Source extends Record<string, unknown>> = { name: keyof Source; label: string }
 
@@ -36,6 +36,11 @@ export class PickAttributesToCsvTransform<Source extends Record<string, unknown>
       }
 
       if (isNumber(attributeValue)) {
+        values.push(String(attributeValue))
+        continue
+      }
+
+      if (isBoolean(attributeValue)) {
         values.push(String(attributeValue))
         continue
       }
