@@ -13,6 +13,8 @@ import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform
 import { getTempDir } from "@/lib/temp-dir"
 import type { Middleware } from "@/types"
 
+import { hasCode } from "@/lib/type-guards"
+import { ConsentAugmentingTransform } from "@/routes/applications/data-export/consent-augmenting-transform"
 import { AttendanceAugmentingTransform, type AttendanceAugments } from "./attendance-augmenting-transform"
 import { CvExportingWritable } from "./cv-exporting-writable"
 import { FilteringTransform } from "./filtering-transform"
@@ -20,7 +22,6 @@ import { HukCsvTransform } from "./huk-csv-transform"
 import { MlhCsvTransform } from "./mlh-csv-transform"
 import { generateUserCv } from "./user-cv-async-generator"
 import { generateUserInfo } from "./user-info-async-generator"
-import {hasCode} from "@/lib/type-guards";
 
 class DataExportHandlers {
   /**
@@ -45,6 +46,7 @@ class DataExportHandlers {
           new AttendanceAugmentingTransform(),
           filterTransform,
           new KeycloakAugmentingTransform(), // this transform consumes 'UserInfo's, then augments them with Keycloak data and yields the new object
+          new ConsentAugmentingTransform({ mlhCodeOfConduct: true, mlhTerms: true, mlhMarketing: true }),
           new MlhCsvTransform(), // this transform consumes the augmented 'UserInfo's, picking out required fields for the MLH data
           createWriteStream(fileDestination), // this sink consumes single strings / Buffers at a time
         )
@@ -78,6 +80,7 @@ class DataExportHandlers {
           new AttendanceAugmentingTransform(),
           filterTransform,
           new KeycloakAugmentingTransform(), // this transform consumes 'UserInfo's, then augments them with Keycloak data and yields the new object
+          new ConsentAugmentingTransform({ hukMarketing: true, hukPrivacy: true }),
           new HukCsvTransform(), // this transform consumes the augmented 'UserInfo's, picking out required fields for the HUK data
           createWriteStream(fileDestination), // this sink consumes single strings / Buffers at a time
         )
@@ -118,15 +121,17 @@ class DataExportHandlers {
             zipProcess = exec(`zip -qr '${archivePath}' .`, { cwd: archiveDir }, cb)
           })
           assert(zipProcess)
-        }
-        catch (error: unknown) {
+        } catch (error: unknown) {
           if (!(error instanceof Error)) throw new Error("Something seriously strange happened")
           console.log(error)
           if (hasCode(error)) {
             if (error.code === 12)
               throw new ServerError("There are no CVs to include", { code: "ERR_NO_ARCHIVE_ENTRIES", cause: error })
             if (error.code !== 0)
-              throw new ServerError(`Something went wrong during the \`zip\` operation; exit code ${error.code}`, { code: "ERR_ZIP_FAILED", cause: error })
+              throw new ServerError(`Something went wrong during the \`zip\` operation; exit code ${error.code}`, {
+                code: "ERR_ZIP_FAILED",
+                cause: error,
+              })
           }
         }
 

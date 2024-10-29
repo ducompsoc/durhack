@@ -1,9 +1,12 @@
 import type { UserInfo } from "@/database"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 
+import type { ConsentAugments } from "./consent-augmenting-transform"
 import { PickAttributesToCsvTransform } from "./pick-attributes-to-csv-transform"
 
-export class HukCsvTransform extends PickAttributesToCsvTransform<UserInfo & KeycloakAugments> {
+export class HukCsvTransform extends PickAttributesToCsvTransform<
+  UserInfo & KeycloakAugments & ConsentAugments<"hukMarketing" | "hukPrivacy">
+> {
   constructor() {
     super({
       attributes: [
@@ -16,6 +19,8 @@ export class HukCsvTransform extends PickAttributesToCsvTransform<UserInfo & Key
         { name: "ethnicity", label: "ethnicity" },
         { name: "gender", label: "gender" },
         { name: "applicationStatus", label: "application_status" },
+        { name: "hukMarketing", label: "huk_marketing_consent" },
+        { name: "hukPrivacy", label: "huk_privacy_consent" },
       ],
     })
   }
