@@ -113,7 +113,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.accenture.com/gb-en",
     tier: "gold",
-    signed: false,
+    signed: true,
   },
   {
     slug: "atom-bank",
