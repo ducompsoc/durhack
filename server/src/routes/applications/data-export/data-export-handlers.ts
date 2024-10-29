@@ -112,7 +112,7 @@ class DataExportHandlers {
         if (zipProcess.exitCode === 12)
           throw new ServerError("There are no CVs to include", { code: "ERR_NO_ARCHIVE_ENTRIES" })
         if (zipProcess.exitCode !== 0)
-          throw new ServerError("Something went wrong during the `zip` operation", { code: "ERR_ZIP_FAILED" })
+          throw new ServerError(`Something went wrong during the \`zip\` operation; exit code ${zipProcess.exitCode}`, { code: "ERR_ZIP_FAILED" })
 
         await response.download(archivePath, "durhack-cvs.zip")
       } finally {
