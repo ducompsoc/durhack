@@ -1,5 +1,3 @@
-import type { Prisma } from "@prisma/client"
-
 import { type UserInfo, prisma } from "@/database"
 
 export async function* generateUserInfoByTicketAssignmentOrder(): AsyncGenerator<UserInfo[], undefined> {
