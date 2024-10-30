@@ -13,7 +13,7 @@ import { generateUserInfo } from "./user-info-async-generator"
 
 const mailer = new MailgunMailer()
 
-const messageTemplateSource = await readFile(path.resolve(dirname, "..", "templates", "upload-cv-reminder.hbs"))
+const messageTemplateSource = await readFile(path.resolve(dirname, "..", "templates", "event-reminder.hbs"))
 const messageTemplate = compile(messageTemplateSource)
 
 const userInfoReadable = Readable.from(generateUserInfo({}))
