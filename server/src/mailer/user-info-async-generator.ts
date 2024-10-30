@@ -1,6 +1,6 @@
 import type { Prisma } from "@prisma/client"
 
-import { type UserInfo, prisma } from "@/database";
+import { type UserInfo, prisma } from "@/database"
 
 /**
  * Generate UserInfo using the provided Prisma query, with the intent to email each.
@@ -8,7 +8,9 @@ import { type UserInfo, prisma } from "@/database";
  * for that purpose, an implementation would need to iterate through the Keycloak admin API's 'list users'
  * endpoint.
  */
-export async function* generateUserInfo({ where }: Pick<Prisma.UserInfoFindManyArgs, "where"> = {}): AsyncGenerator<UserInfo[], undefined> {
+export async function* generateUserInfo({
+  where,
+}: Pick<Prisma.UserInfoFindManyArgs, "where"> = {}): AsyncGenerator<UserInfo[], undefined> {
   let cursor: string | undefined
 
   do {
@@ -17,10 +19,7 @@ export async function* generateUserInfo({ where }: Pick<Prisma.UserInfoFindManyA
       skip: cursor == null ? 0 : 1,
       cursor: cursor == null ? undefined : { userId: cursor },
       where: {
-        OR: [
-          { userId: cursor },
-          { AND: [where ?? {}, { applicationStatus: { not: "unsubmitted" } }] },
-        ],
+        OR: [{ userId: cursor }, { AND: [where ?? {}, { applicationStatus: { not: "unsubmitted" } }] }],
       },
       orderBy: [{ userId: "asc" }],
     })

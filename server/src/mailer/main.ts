@@ -1,15 +1,15 @@
-import { compile } from "handlebars"
-import { Readable } from "node:stream"
-import { pipeline } from "node:stream/promises"
 import { readFile } from "node:fs/promises"
 import path from "node:path"
+import { Readable } from "node:stream"
+import { pipeline } from "node:stream/promises"
+import { compile } from "handlebars"
 
-import {dirname} from "@/dirname"
+import { dirname } from "@/dirname"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { MailgunMailer } from "@/lib/mailer"
 
-import { generateUserInfo } from "./user-info-async-generator"
 import { MailingWritable } from "./mailing-writable"
+import { generateUserInfo } from "./user-info-async-generator"
 
 const mailer = new MailgunMailer()
 

@@ -2,7 +2,7 @@ import stream from "node:stream"
 import type { TemplateDelegate } from "handlebars"
 
 import { mailgunConfig } from "@/config"
-import { type UserInfo } from "@/database"
+import type { UserInfo } from "@/database"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import type { Mailer } from "@/lib/mailer"
 import { isString } from "@/lib/type-guards"

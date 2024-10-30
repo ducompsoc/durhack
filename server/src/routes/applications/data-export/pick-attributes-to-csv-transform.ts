@@ -1,6 +1,6 @@
 import stream from "node:stream"
 
-import {isBoolean, isNumber, isString} from "@/lib/type-guards"
+import { isBoolean, isNumber, isString } from "@/lib/type-guards"
 
 type Attribute<Source extends Record<string, unknown>> = { name: keyof Source; label: string }
 
@@ -56,7 +56,7 @@ export class PickAttributesToCsvTransform<Source extends Record<string, unknown>
     return labels.join(";")
   }
 
-  _transform(chunk: Source[], encoding: never, callback: stream.TransformCallback): void {
+  _transform(chunk: Source[], encoding: never, callback: stream.TransformCallback) {
     try {
       const transformedChunk = chunk.map((item) => this.pickAttributesToCsv(item))
       if (!this.headerLinePrepended) {
