@@ -16,7 +16,11 @@ const mailer = new MailgunMailer()
 const messageTemplateSource = await readFile(path.resolve(dirname, "..", "templates", "event-reminder.hbs"))
 const messageTemplate = compile(messageTemplateSource)
 
-const userInfoReadable = Readable.from(generateUserInfo({}))
+const userInfoReadable = Readable.from(generateUserInfo({
+  where: {
+    applicationStatus: "accepted",
+  },
+}))
 const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
 const mailingWritable = new MailingWritable(mailer, messageTemplate)
 
