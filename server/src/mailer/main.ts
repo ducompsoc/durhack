@@ -1,22 +1,25 @@
+import { compile } from "handlebars"
 import { Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
+import { readFile } from "node:fs/promises"
+import path from "node:path"
 
-import { prisma } from "@/database"
+import {dirname} from "@/dirname"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
+import { MailgunMailer } from "@/lib/mailer"
 
-import { MailgunMailer } from "./mailer"
-
-const totalAssignedTicketCount = await prisma.userInfo.count({
-  where: { applicationStatus: { equals: "accepted" } },
-})
+import { generateUserInfo } from "./user-info-async-generator"
+import { MailingWritable } from "./mailing-writable"
 
 const mailer = new MailgunMailer()
 
-const userInfoReadable = Readable.from(generateUserInfoByTicketAssignmentOrder())
-const attendeeCheckingTransform = new AttendeeCheckingTransform()
-const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
-const ticketAssigningWritable = new TicketAssigningWritable(mailer, totalAssignedTicketCount)
+const messageTemplateSource = await readFile(path.resolve(dirname, "..", "templates", "upload-cv-reminder.hbs"))
+const messageTemplate = compile(messageTemplateSource)
 
-await pipeline(userInfoReadable, attendeeCheckingTransform, userInfoAugmentingTransform, ticketAssigningWritable)
-const newlyAssignedTicketCount = ticketAssigningWritable.totalAssignedTicketCount - totalAssignedTicketCount
-console.log(`Assigned ${newlyAssignedTicketCount} tickets`)
+const userInfoReadable = Readable.from(generateUserInfo({}))
+const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
+const mailingWritable = new MailingWritable(mailer, messageTemplate)
+
+await pipeline(userInfoReadable, userInfoAugmentingTransform, mailingWritable)
+const mailedCount = mailingWritable.sentMailCount
+console.log(`Sent ${mailedCount} emails`)
