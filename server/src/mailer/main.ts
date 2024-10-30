@@ -25,7 +25,7 @@ const userInfoReadable = Readable.from(generateUserInfo({
   },
 }))
 const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
-const mailingWritable = new MailingWritable(mailer, messageTemplate)
+const mailingWritable = new MailingWritable(mailer, "🕺 Ready for DurHack? 💻", messageTemplate)
 
 await pipeline(userInfoReadable, userInfoAugmentingTransform, mailingWritable)
 const mailedCount = mailingWritable.sentMailCount

@@ -11,14 +11,16 @@ type AugmentedUserInfo = UserInfo & KeycloakAugments
 
 export class MailingWritable extends stream.Writable {
   private readonly mailer: Mailer
+  private readonly messageTitle: string
   private readonly messageTemplate: TemplateDelegate<AugmentedUserInfo>
   sentMailCount: number
 
-  constructor(mailer: Mailer, message: TemplateDelegate<AugmentedUserInfo>) {
+  constructor(mailer: Mailer, messageTitle: string, message: TemplateDelegate<AugmentedUserInfo>) {
     super({
       objectMode: true, // the stream expects to receive objects, not a string/binary data
     })
     this.mailer = mailer
+    this.messageTitle = messageTitle
     this.messageTemplate = message
     this.sentMailCount = 0
   }
@@ -32,7 +34,7 @@ export class MailingWritable extends stream.Writable {
       from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
       "h:Reply-To": "hello@durhack.com",
       to: userInfo.email,
-      subject: "🎟️ Your DurHack Ticket",
+      subject: this.messageTitle,
       html: this.messageTemplate(userInfo),
     })
     this.sentMailCount++
