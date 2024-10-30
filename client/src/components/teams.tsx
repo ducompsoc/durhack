@@ -13,16 +13,16 @@ import { audiowide } from "@/lib/google-fonts"
 import "@/styles/section-header.css"
 
 export function Teams() {
-    const teamContainer = " min-h-full flex flex-col h-full justify-between py-4 bg-gradient-to-b from-blue-700 via-cyan-500 to-orange-700 bg-opacity-25 rounded-3xl p-4 "
+    const teamContainer = "min-h-full flex flex-col h-full justify-between py-4 bg-gradient-to-b from-blue-700 via-cyan-500 to-orange-700 bg-opacity-25 rounded-3xl p-4 "
 
     const titleText = `${audiowide.className} xl:text-5xl lg:text-4xl sm:text-3xl text-2xl font-bold md:text-end text-center px-4 sm:pt-8`
     const teamText = "text-xs sm:text-lg xl:text-xl md:px-4 md:text-end text-center "
-    const teamHeadContainer = "flex flex-col justify-center md:flex-row items-center lg:h-[30vh] md:h-[25vh]  h-[20vh] w-auto xl:mt-[-10rem] md:mt-[-5rem]"
-    const teamHeadImage = " sm:max-h-[100%] max-h-[70%] w-auto p-1 bg-gradient-to-r from-yellow-600 via-orange-500 to-amber-500"
+    const teamHeadContainer = "flex flex-col justify-center md:flex-row items-center lg:h-[30vh] md:h-[25vh]  h-[20vh]  w-auto xl:mt-[-10rem] md:mt-[-5rem] xl:px-32"
+    const teamHeadImage = " inset-0 max-h-[90%] w-auto p-1 bg-gradient-to-r from-yellow-600 via-orange-500 to-amber-500 "
 
     const memberImageContainer = "flex justify-center items-center align-center w-full "
     const memberImageWrapper = "flex flex-wrap justify-center gap-2 w-4/5 py-2 "
-    const memberImage = "flex-1 h-auto xl:max-w-[16%] md:max-w-[23%] sm:max-w-[25%] max-w-[35%] object-cover p-1 bg-gradient-to-b from-yellow-400 via-orange-400 to-amber-400"
+    const memberImage = "  flex-1 xl:max-w-[16%] md:max-w-[23%] sm:max-w-[25%] max-w-[35%] object-cover p-1 bg-gradient-to-b from-yellow-400 via-orange-400 to-amber-400 lg:h-[10rem] sm:h-[8rem] md:h-[7rem] h-[6rem]"
 
     return (
         <div className="w-full px-8 ">
@@ -34,11 +34,11 @@ export function Teams() {
                             <CarouselItem className="h-[inherit] max-h-[inherit] ">
                                 <div className={teamContainer}>
                                     <div className={titleText}>
-                                        Tech Team
+                                        Tech Team (Software)
                                     </div>
                                     <div className={teamHeadContainer}>
                                         <Image
-                                            src="/assets/photos/ceremony.jpg"
+                                            src="/assets/photos/teams/joe_clack.png"
                                             alt="Opening Ceremony"
                                             width={1000}
                                             height={1500}
@@ -50,48 +50,41 @@ export function Teams() {
                                     </div>
                                     <div className={memberImageContainer}>
                                         <div className={memberImageWrapper}>
-                                                <Image
-                                                    src="/assets/photos/hacking_1.jpg"
-                                                    alt="hacking"
-                                                    width={1000}
-                                                    height={667}
-                                                    className={memberImage}
-                                                />
-                                                <Image
-                                                    src="/assets/photos/hacking_1.jpg"
-                                                    alt="hacking"
-                                                    width={1000}
-                                                    height={667}
-                                                    className={memberImage}
-                                                />
-                                                <Image
-                                                    src="/assets/photos/hacking_1.jpg"
-                                                    alt="hacking"
-                                                    width={1000}
-                                                    height={667}
-                                                    className={memberImage}
-                                                />
-                                                <Image
-                                                    src="/assets/photos/hacking_1.jpg"
-                                                    alt="hacking"
-                                                    width={1000}
-                                                    height={667}
-                                                    className={memberImage}
-                                                />
-                                                <Image
-                                                    src="/assets/photos/hacking_1.jpg"
-                                                    alt="hacking"
-                                                    width={1000}
-                                                    height={667}
-                                                    className={memberImage}
-                                                />
-                                                <Image
-                                                    src="/assets/photos/hacking_1.jpg"
-                                                    alt="hacking"
-                                                    width={1000}
-                                                    height={667}
-                                                    className={memberImage}
-                                                />
+                                            <Image
+                                                src="/assets/photos/teams/jacob_wrenn.png"
+                                                alt="hacking"
+                                                width={1000}
+                                                height={667}
+                                                className={memberImage}
+                                            />
+                                            <Image
+                                                src="/assets/photos/teams/will_woodward.jpg"
+                                                alt="hacking"
+                                                width={1000}
+                                                height={667}
+                                                className={memberImage}
+                                            />
+                                            <Image
+                                                src="/assets/photos/teams/kun_satapas_tanachotpaisit.jpg"
+                                                alt="hacking"
+                                                width={1000}
+                                                height={667}
+                                                className={memberImage}
+                                            />
+                                            <Image
+                                                src="/assets/photos/teams/luka_mihajlovic.jpg"
+                                                alt="hacking"
+                                                width={1000}
+                                                height={667}
+                                                className={memberImage}
+                                            />
+                                            <Image
+                                                src="/assets/photos/teams/maks_nowak.jpg"
+                                                alt="hacking"
+                                                width={1000}
+                                                height={667}
+                                                className={memberImage}
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -99,11 +92,11 @@ export function Teams() {
                             <CarouselItem className="h-[inherit] max-h-[inherit]">
                                 <div className={teamContainer}>
                                     <div className={titleText}>
-                                        Not Tech Team
+                                        Tech Team (Hardware)
                                     </div>
                                     <div className={teamHeadContainer}>
                                         <Image
-                                            src="/assets/photos/ceremony.jpg"
+                                            src="/assets/photos/teams/jacob_wrenn.png"
                                             alt="Opening Ceremony"
                                             width={1000}
                                             height={1500}
@@ -115,35 +108,35 @@ export function Teams() {
                                     </div>
                                     <div className={memberImageContainer}>
                                         <div className={memberImageWrapper}>
-                                        <Image
-                                                    src="/assets/photos/hacking_1.jpg"
-                                                    alt="hacking"
-                                                    width={1000}
-                                                    height={667}
-                                                    className={memberImage}
-                                                />
-                                                <Image
-                                                    src="/assets/photos/hacking_1.jpg"
-                                                    alt="hacking"
-                                                    width={1000}
-                                                    height={667}
-                                                    className={memberImage}
-                                                />
-                                                <Image
-                                                    src="/assets/photos/hacking_1.jpg"
-                                                    alt="hacking"
-                                                    width={1000}
-                                                    height={667}
-                                                    className={memberImage}
-                                                />
-                                                <Image
-                                                    src="/assets/photos/hacking_1.jpg"
-                                                    alt="hacking"
-                                                    width={1000}
-                                                    height={667}
-                                                    className={memberImage}
-                                                />
-                                                
+                                            <Image
+                                                src="/assets/photos/hacking_1.jpg"
+                                                alt="hacking"
+                                                width={1000}
+                                                height={667}
+                                                className={memberImage}
+                                            />
+                                            <Image
+                                                src="/assets/photos/hacking_1.jpg"
+                                                alt="hacking"
+                                                width={1000}
+                                                height={667}
+                                                className={memberImage}
+                                            />
+                                            <Image
+                                                src="/assets/photos/hacking_1.jpg"
+                                                alt="hacking"
+                                                width={1000}
+                                                height={667}
+                                                className={memberImage}
+                                            />
+                                            <Image
+                                                src="/assets/photos/hacking_1.jpg"
+                                                alt="hacking"
+                                                width={1000}
+                                                height={667}
+                                                className={memberImage}
+                                            />
+
                                         </div>
                                     </div>
                                 </div>
