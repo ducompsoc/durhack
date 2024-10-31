@@ -90,8 +90,11 @@ class ProfileHandlers {
   }
 
   static patchProfileFlagsPayloadSchema = z.record(z.string(), z.boolean())
-  static legalFlagNames = new Set(["attendance"])
+  static legalFlagNames = new Set()
 
+  /**
+   * Unused.
+   */
   @onlyGroups([Group.admins, Group.volunteers])
   patchProfileFlags(): Middleware {
     return async (request, response) => {
@@ -139,5 +142,5 @@ class ProfileHandlers {
   }
 }
 
-const profilesHandlers = new ProfileHandlers()
-export { profilesHandlers }
+const profileHandlers = new ProfileHandlers()
+export { profileHandlers }

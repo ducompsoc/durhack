@@ -5,23 +5,22 @@ import { forbiddenOrUnauthorised } from "@/middleware/forbidden-or-unauthorised"
 import { methodNotAllowed } from "@/middleware/method-not-allowed"
 import type { Request, Response } from "@/types"
 
-import { profilesHandlers } from "./profiles-handlers"
+import { profileHandlers } from "./profile-handlers"
 
 export const profileApp = new App<Request, Response>()
 
-profileApp.use(profilesHandlers.validateUserId())
+profileApp.use(profileHandlers.validateUserId())
 
 profileApp
   .route("/")
   .all(methodNotAllowed(["GET"]))
   .all(authenticate())
-  .get(profilesHandlers.getProfile())
+  .get(profileHandlers.getProfile())
   .all(forbiddenOrUnauthorised())
 
 profileApp
   .route("/flags")
-  .all(methodNotAllowed(["GET", "PATCH"]))
+  .all(methodNotAllowed(["GET"]))
   .all(authenticate())
-  .get(profilesHandlers.getProfileFlags())
-  .patch(profilesHandlers.patchProfileFlags())
+  .get(profileHandlers.getProfileFlags())
   .all(forbiddenOrUnauthorised())
