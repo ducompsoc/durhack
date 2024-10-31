@@ -24,3 +24,16 @@ profileApp
   .all(authenticate())
   .get(profileHandlers.getProfileFlags())
   .all(forbiddenOrUnauthorised())
+
+profileApp
+  .route("/check-in")
+  .all(methodNotAllowed(["POST"]))
+  .all(authenticate())
+  .post(profileHandlers.checkInAttendee())
+  .all(forbiddenOrUnauthorised())
+
+profileApp
+  .route("/guilds")
+  .all(methodNotAllowed(["GET"]))
+  .all(authenticate())
+  .get(profileHandlers.getGuildsProfile())

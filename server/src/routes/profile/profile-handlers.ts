@@ -1,5 +1,5 @@
 import assert from "node:assert/strict"
-import { ClientError, HttpStatus } from "@otterhttp/errors"
+import {ClientError, HttpStatus, ServerError} from "@otterhttp/errors"
 import { z } from "zod"
 
 import { prisma } from "@/database"
@@ -138,6 +138,20 @@ class ProfileHandlers {
 
       await prisma.$transaction(operations)
       response.sendStatus(200)
+    }
+  }
+
+  @onlyGroups([Group.admins, Group.organisers, Group.volunteers])
+  checkInAttendee(): Middleware {
+    return async (request, response) => {
+      throw new ServerError("Not implemented", { statusCode: HttpStatus.NotImplemented })
+    }
+  }
+
+  @onlyGroups([Group.admins, Group.organisers, Group.volunteers])
+  getGuildsProfile(): Middleware {
+    return async (request, response) => {
+      throw new ServerError("Not Implemented", { statusCode: HttpStatus.NotImplemented })
     }
   }
 }
