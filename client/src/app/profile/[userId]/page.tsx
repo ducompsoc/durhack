@@ -28,6 +28,33 @@ const defaultFlags = {
 
 type FlagName = keyof typeof defaultFlags
 
+const profileFetcher = async (url: string): Promise<UserProfile> => {
+  const response = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+    },
+  })
+
+  if (!response.ok) throw new Error("Failed to fetch data")
+  return response.json()
+}
+
+const flagsFetcher = async (url: string): Promise<Required<Flags>> => {
+  const response = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+    },
+  })
+
+  if (!response.ok) throw new Error("Failed to fetch data")
+  const json: FlagName[] = await response.json()
+  const dummyFlags = Object.assign({}, defaultFlags)
+  for (const flag of json) {
+    dummyFlags[flag] = true
+  }
+  return dummyFlags
+}
+
 const ProfilePage = React.memo(
   ({
     params,
@@ -35,33 +62,6 @@ const ProfilePage = React.memo(
     params: { userId: string }
   }): React.ReactNode => {
     const { toast } = useToast()
-
-    const profileFetcher = async (url: string): Promise<UserProfile> => {
-      const response = await fetch(url, {
-        headers: {
-          Accept: "application/json",
-        },
-      })
-
-      if (!response.ok) throw new Error("Failed to fetch data")
-      return response.json()
-    }
-
-    const flagsFetcher = async (url: string): Promise<Required<Flags>> => {
-      const response = await fetch(url, {
-        headers: {
-          Accept: "application/json",
-        },
-      })
-
-      if (!response.ok) throw new Error("Failed to fetch data")
-      const json: FlagName[] = await response.json()
-      const dummyFlags = Object.assign({}, defaultFlags)
-      for (const flag of json) {
-        dummyFlags[flag] = true
-      }
-      return dummyFlags
-    }
 
     const {
       data: profileData,
