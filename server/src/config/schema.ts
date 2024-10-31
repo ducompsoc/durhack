@@ -40,6 +40,20 @@ export const mailgunOptionsSchema = z.object({
   url: z.string(),
 })
 
+export const stashEligibilityConditionSchema = z.discriminatedUnion("type", [
+  z.object({
+    type: z.literal("points-threshold"),
+    thresholdQuantity: z.number().int().nonnegative(),
+  }),
+  z.object({
+    type: z.literal("quest-completion"),
+    questId: z.number().int().nonnegative(),
+  }),
+  z.object({
+    type: z.literal("cv-upload"),
+  }),
+])
+
 export const durhackOptionsSchema = z.object({
   maximumTicketAssignment: z.number().nonnegative(),
   currentEventYear: z.number().positive(),
@@ -47,6 +61,13 @@ export const durhackOptionsSchema = z.object({
     clientCertificateFile: z.string(),
     clientCertificateKeyFile: z.string(),
   }),
+  stashItems: z.map(
+    z.string(), // 'slug'
+    z.object({
+      name: z.string(),
+      eligibilityCondition: stashEligibilityConditionSchema,
+    })
+  )
 })
 
 export const configSchema = z.object({

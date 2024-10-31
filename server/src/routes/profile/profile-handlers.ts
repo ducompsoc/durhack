@@ -3,6 +3,7 @@ import { ClientError, HttpStatus, ServerError } from "@otterhttp/errors"
 import type { Prisma } from "@prisma/client"
 import { z } from "zod"
 
+import { durhackConfig } from "@/config"
 import { type UserFlag, prisma } from "@/database"
 import { Group, onlyGroups } from "@/decorators/authorise"
 import { json } from "@/lib/body-parsers"
@@ -87,11 +88,12 @@ class ProfileHandlers {
   }
 
   @onlyGroups([Group.admins, Group.organisers, Group.volunteers])
-  getProfileFlags(): Middleware {
+  getStashClaims(): Middleware {
     return async (request, response) => {
       const userId = request.params.userId
       assert(userId)
-      const specificUserFlags = await prisma.user
+
+      const stashItemFlags = await prisma.user
         .findUnique({
           where: {
             keycloakUserId: userId,
@@ -99,73 +101,76 @@ class ProfileHandlers {
         })
         .userFlags({
           where: {
-            NOT: {
-              OR: [
-                { flagName: { startsWith: "discipline-of-study:" } },
-                { flagName: { startsWith: "dietary-requirement:" } },
-                { flagName: "attendance" },
-              ]
-            }
-          }
+            flagName: { startsWith: "stash:" },
+          },
         })
 
-      if (specificUserFlags == null) throw new ClientError("", { statusCode: HttpStatus.NotFound })
+      if (stashItemFlags == null) throw new ClientError("", { statusCode: HttpStatus.NotFound })
 
-      const userFlagArray: string[] = specificUserFlags.map((flag) => flag.flagName)
+      const stashItems: Array<{
+        name: string,
+        slug: string,
+        claimed: boolean,
+      }> = Array.from(durhackConfig.stashItems.entries())
+        .map(([slug, item]) => ({
+          slug,
+          name: item.name,
+          claimed: stashItemFlags.some((flag) => flag.flagName === `stash:${slug}`)
+        }))
+
       response.status(200).json({
         status: response.statusCode,
         message: response.statusMessage,
-        data: userFlagArray,
+        data: stashItems,
       })
     }
   }
 
-  static patchProfileFlagsPayloadSchema = z.record(z.string(), z.boolean())
-  static legalFlagNames = new Set()
+  static patchStashClaimsPayloadSchema = z.record(z.string(), z.boolean())
 
-  @onlyGroups([Group.admins, Group.volunteers])
-  patchProfileFlags(): Middleware {
+  @onlyGroups([Group.admins, Group.organisers, Group.volunteers])
+  patchStashClaims(): Middleware {
     return async (request, response) => {
       const userId = request.params.userId
       assert(userId)
 
       const body = await json(request, response)
-      const flags = ProfileHandlers.patchProfileFlagsPayloadSchema.parse(body)
+      const stashItems = ProfileHandlers.patchStashClaimsPayloadSchema.parse(body)
 
-      const removeFlagQuery = (flagName: string) => {
+      const setUnclaimedQuery = (stashSlug: string) => {
         return prisma.userFlag.deleteMany({
           where: {
             userId,
-            flagName,
+            flagName: `stash:${stashSlug}`,
           },
         })
       }
 
-      const setFlagQuery = (flagName: string) => {
+      const setClaimedQuery = (stashSlug: string) => {
         return prisma.userFlag.upsert({
           where: {
             id: {
               userId,
-              flagName,
+              flagName: `stash:${stashSlug}`,
             },
           },
           create: {
             userId,
-            flagName,
+            flagName: `stash:${stashSlug}`,
           },
           update: {},
         })
       }
 
-      const operations = Object.keys(flags).map((flagName) => {
-        if (!ProfileHandlers.legalFlagNames.has(flagName))
-          throw new ClientError(`Unrecognised flag name '${flagName}'`, { statusCode: HttpStatus.BadRequest })
+      const operations = Object.keys(stashItems).map((stashItemSlug) => {
+        if (!durhackConfig.stashItems.has(stashItemSlug))
+          throw new ClientError(`Unrecognised stash item slug '${stashItemSlug}'`, { statusCode: HttpStatus.BadRequest })
 
-        if (flags[flagName]) return setFlagQuery(flagName)
-        return removeFlagQuery(flagName)
+        if (stashItems[stashItemSlug]) return setClaimedQuery(stashItemSlug)
+        return setUnclaimedQuery(stashItemSlug)
       })
 
-      await prisma.$transaction(operations)
+      await Promise.all(operations)
       response.sendStatus(200)
     }
   }

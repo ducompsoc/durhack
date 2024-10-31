@@ -19,10 +19,11 @@ profileApp
   .all(forbiddenOrUnauthorised())
 
 profileApp
-  .route("/flags")
-  .all(methodNotAllowed(["GET"]))
+  .route("/stash")
+  .all(methodNotAllowed(["GET", "PATCH"]))
   .all(authenticate())
-  .get(profileHandlers.getProfileFlags())
+  .get(profileHandlers.getStashClaims())
+  .patch(profileHandlers.patchStashClaims())
   .all(forbiddenOrUnauthorised())
 
 profileApp
