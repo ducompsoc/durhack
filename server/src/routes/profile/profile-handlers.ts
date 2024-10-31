@@ -14,6 +14,8 @@ class ProfileHandlers {
   validateUserId(): Middleware {
     return async (request, response, next) => {
       const userId = request.params.userId
+      assert(userId)
+
       try {
         ProfileHandlers.userIdSchema.parse(userId)
       } catch (error) {
@@ -33,6 +35,7 @@ class ProfileHandlers {
   getProfile(): Middleware {
     return async (request, response) => {
       const userId = request.params.userId
+      assert(userId)
 
       const adminClient = await getKeycloakAdminClient()
       const profile = await adminClient.users.findOne({ id: userId })
