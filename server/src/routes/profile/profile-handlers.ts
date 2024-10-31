@@ -60,14 +60,17 @@ class ProfileHandlers {
         include: {
           userInfo: true,
           userCv: { select: { userId: true } },
+          userFlags: { where: { flagName: "attendance" } },
         },
       })
+      assert(databaseProfile)
 
       response.status(200).json({
         status: response.statusCode,
         message: response.statusMessage,
         data: {
           userId,
+          checkedIn: this.isCheckedIn(databaseProfile),
           preferredNames: unpackAttribute(profile, "preferredNames"),
           firstNames: unpackAttribute(profile, "firstNames"),
           lastNames: unpackAttribute(profile, "lastNames"),
@@ -160,11 +163,11 @@ class ProfileHandlers {
     }
   }
 
-  private isCheckedIn(attendee: Attendee): boolean {
+  private isCheckedIn(attendee: { userFlags: UserFlag[] }): boolean {
     return this.findAttendanceFlag(attendee) != null
   }
 
-  private findAttendanceFlag(attendee: Attendee): UserFlag | undefined {
+  private findAttendanceFlag(attendee: { userFlags: UserFlag[] }): UserFlag | undefined {
     return attendee.userFlags.find((flag) => flag.flagName === "attendance")
   }
 
