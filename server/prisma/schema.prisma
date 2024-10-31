@@ -71,6 +71,8 @@ model UserFlag {
     user     User   @relation(fields: [userId], references: [keycloakUserId])
     flagName String @map("flag_name")
 
+    createdAt DateTime @default(now()) @map("created_at")
+
     @@id(fields: [userId, flagName], name: "id", map: "user_flag:user_id_and_flag_name")
     @@index(fields: [flagName])
 }
@@ -80,6 +82,8 @@ model UserConsent {
     user        User    @relation(fields: [userId], references: [keycloakUserId])
     consentName String  @map("consent_name")
     choice      Boolean
+
+    createdAt DateTime @default(now()) @map("created_at")
 
     @@id(fields: [userId, consentName], name: "id", map: "user_consent:user_id_and_consent_name")
 }
