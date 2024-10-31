@@ -13,17 +13,18 @@ import { generateUserInfo } from "./user-info-async-generator"
 
 const mailer = new MailgunMailer()
 
-const messageTemplateSource = await readFile(
-  path.resolve(dirname, "..", "templates", "event-reminder.hbs"),
-  { encoding: "utf-8" },
-)
+const messageTemplateSource = await readFile(path.resolve(dirname, "..", "templates", "event-reminder.hbs"), {
+  encoding: "utf-8",
+})
 const messageTemplate = handlebars.compile(messageTemplateSource)
 
-const userInfoReadable = Readable.from(generateUserInfo({
-  where: {
-    applicationStatus: "accepted",
-  },
-}))
+const userInfoReadable = Readable.from(
+  generateUserInfo({
+    where: {
+      applicationStatus: "accepted",
+    },
+  }),
+)
 const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
 const mailingWritable = new MailingWritable(mailer, "🕺 Ready for DurHack? 💻", messageTemplate)
 

@@ -69,5 +69,6 @@ export enum Group {
   admins = "/admins",
   organisers = "/organisers",
   volunteers = "/volunteers",
+  sponsors = "/sponsors",
   hackers = "/hackers",
 }

@@ -23,7 +23,7 @@ export class Response<Req extends Request = Request> extends OtterResponse<Req> 
     return this
   }
 
-  override json(body: JSONLiteral | undefined): this {
+  override json(body?: JSONLiteral | undefined): this {
     if (isValidStatusCode(this.statusCode)) {
       this.statusMessage ??= statusMessages[this.statusCode]
     }

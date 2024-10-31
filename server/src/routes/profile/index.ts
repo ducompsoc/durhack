@@ -29,7 +29,7 @@ profileApp
   .route("/check-in")
   .all(methodNotAllowed(["POST"]))
   .all(authenticate())
-  .post(profileHandlers.checkInAttendee())
+  .post(profileHandlers.postCheckIn())
   .all(forbiddenOrUnauthorised())
 
 profileApp
@@ -37,3 +37,4 @@ profileApp
   .all(methodNotAllowed(["GET"]))
   .all(authenticate())
   .get(profileHandlers.getGuildsProfile())
+  .all(forbiddenOrUnauthorised())

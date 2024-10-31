@@ -33,26 +33,11 @@ const profileFetcher = async (url: string): Promise<UserProfile> => {
     headers: {
       Accept: "application/json",
     },
+    credentials: "include",
   })
 
   if (!response.ok) throw new Error("Failed to fetch data")
   return response.json()
-}
-
-const flagsFetcher = async (url: string): Promise<Required<Flags>> => {
-  const response = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-    },
-  })
-
-  if (!response.ok) throw new Error("Failed to fetch data")
-  const json: FlagName[] = await response.json()
-  const dummyFlags = Object.assign({}, defaultFlags)
-  for (const flag of json) {
-    dummyFlags[flag] = true
-  }
-  return dummyFlags
 }
 
 const ProfilePage = React.memo(
@@ -68,17 +53,8 @@ const ProfilePage = React.memo(
       error: profileError,
       isLoading: profileIsLoading,
     } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}`, profileFetcher)
-    const {
-      data: flagsData,
-      error: flagError,
-      isLoading: flagsAreLoading,
-    } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}/flags`, flagsFetcher)
 
-    if (profileError || flagError) {
-      return <div>Failed to load profile data.</div>
-    }
-
-    if (profileIsLoading || flagsAreLoading) {
+    if (profileIsLoading) {
       return <div>Loading profile data...</div>
     }
 
@@ -125,7 +101,7 @@ const ProfilePage = React.memo(
                 </p>
                 <Checkbox
                   className="ml-2"
-                  defaultChecked={flagsData?.attendance != null}
+                  defaultChecked={false}
                   onCheckedChange={(checked) => void setAttendance(checked)}
                 >
                   {" "}
