@@ -29,7 +29,7 @@ class ProfileHandlers {
     }
   }
 
-  @onlyGroups([Group.admins, Group.volunteers])
+  @onlyGroups([Group.admins, Group.organisers, Group.volunteers])
   getProfile(): Middleware {
     return async (request, response) => {
       const userId = request.params.userId
@@ -66,7 +66,7 @@ class ProfileHandlers {
     }
   }
 
-  @onlyGroups([Group.admins, Group.volunteers])
+  @onlyGroups([Group.admins, Group.organisers, Group.volunteers])
   getProfileFlags(): Middleware {
     return async (request, response) => {
       const userId = request.params.user_id
