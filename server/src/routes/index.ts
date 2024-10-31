@@ -4,7 +4,7 @@ import { methodNotAllowed } from "@/middleware/method-not-allowed"
 import { applicationApp } from "@/routes/application"
 import { applicationsApp } from "@/routes/applications"
 import { authApp } from "@/routes/auth"
-import { profilesApp } from "@/routes/profiles"
+import { profileApp } from "src/routes/profile"
 import { userApp } from "@/routes/user"
 import type { Request, Response } from "@/types"
 import { calendarApp } from "src/routes/calendar"
@@ -23,4 +23,4 @@ routesApp.use("/auth", authApp)
 routesApp.use("/user", userApp)
 routesApp.use("/application", applicationApp)
 routesApp.use("/applications", applicationsApp)
-routesApp.use("/profiles/:userId", profilesApp)
+routesApp.use("/profile/:userId", profileApp)

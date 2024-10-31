@@ -7,18 +7,18 @@ import type { Request, Response } from "@/types"
 
 import { profilesHandlers } from "./profiles-handlers"
 
-export const profilesApp = new App<Request, Response>()
+export const profileApp = new App<Request, Response>()
 
-profilesApp.use(profilesHandlers.validateUserId())
+profileApp.use(profilesHandlers.validateUserId())
 
-profilesApp
+profileApp
   .route("/")
   .all(methodNotAllowed(["GET"]))
   .all(authenticate())
   .get(profilesHandlers.getProfile())
   .all(forbiddenOrUnauthorised())
 
-profilesApp
+profileApp
   .route("/flags")
   .all(methodNotAllowed(["GET", "PATCH"]))
   .all(authenticate())
