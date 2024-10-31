@@ -97,7 +97,17 @@ class ProfileHandlers {
             keycloakUserId: userId,
           },
         })
-        .userFlags()
+        .userFlags({
+          where: {
+            NOT: {
+              OR: [
+                { flagName: { startsWith: "discipline-of-study:" } },
+                { flagName: { startsWith: "dietary-requirement:" } },
+                { flagName: "attendance" },
+              ]
+            }
+          }
+        })
 
       if (specificUserFlags == null) throw new ClientError("", { statusCode: HttpStatus.NotFound })
 
@@ -113,9 +123,6 @@ class ProfileHandlers {
   static patchProfileFlagsPayloadSchema = z.record(z.string(), z.boolean())
   static legalFlagNames = new Set()
 
-  /**
-   * Unused.
-   */
   @onlyGroups([Group.admins, Group.volunteers])
   patchProfileFlags(): Middleware {
     return async (request, response) => {
