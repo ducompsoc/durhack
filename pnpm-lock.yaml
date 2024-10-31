@@ -138,8 +138,8 @@ importers:
         specifier: ^25.0.5
         version: 25.0.6
       '@otterhttp/app':
-        specifier: ^3.4.4
-        version: 3.4.4
+        specifier: ^3.4.7
+        version: 3.4.7
       '@otterhttp/cookie-signature':
         specifier: ^3.0.0
         version: 3.0.0
@@ -732,8 +732,8 @@ packages:
     resolution: {integrity: sha512-8G9vqGrmEarsIPI0jyPyuPRxnRQMvQpbAUuoXPZNIz569ypy0qGBs3YPTxtQiRy4Q2KDTNMa8PRLMQhkz4I8Gw==}
     engines: {node: '>=20.16.0'}
 
-  '@otterhttp/app@3.4.4':
-    resolution: {integrity: sha512-isJofGBu4rMCZABLzWyZkuosFaqZbm5Jxz9OsT6IImJP5EPcYnS1Bc5wAewjkzTbEu8C7RSClih1Mr0Pvuh3Mg==}
+  '@otterhttp/app@3.4.7':
+    resolution: {integrity: sha512-+osqqH1r1KFnLz6ozfuGtevw/1iVeEioFnrsvo2C4CNm4fQ6kFWba7mdoP0JPh6GqCSJh5IT5jvhLkECVU1yMg==}
     engines: {node: '>=20.16.0'}
 
   '@otterhttp/content-disposition@3.1.0':
@@ -788,8 +788,8 @@ packages:
     resolution: {integrity: sha512-z39mtm3LNHYoUnH2CHiQltLLtUMcLAjyBHWGY71nfGi4NHDDohtmJrFalPdZY3/lhmg9uU3g+0EDdBkq1XzDHg==}
     engines: {node: '>=20.16.0'}
 
-  '@otterhttp/response@3.4.2':
-    resolution: {integrity: sha512-4bet874/qrW/p8ESl/uAOlTAiQzXNfkYYElrRG7yOfOGrHd/VCWWLxdhVDlsF9acBaq3SDw1pZh29a+aXyMJjg==}
+  '@otterhttp/response@3.5.2':
+    resolution: {integrity: sha512-lB7UP3lC0ulgHh6LY2jZrUynLipK1/jKzMSClXtd5+ZCE6t/yKIytd0AOI+5fsj6xXa9npij0huw9ASfSmeBGw==}
     engines: {node: '>=20.16.0'}
 
   '@otterhttp/router@3.0.0':
@@ -4044,13 +4044,13 @@ snapshots:
       mime: 4.0.4
       negotiator: 0.6.3
 
-  '@otterhttp/app@3.4.4':
+  '@otterhttp/app@3.4.7':
     dependencies:
       '@otterhttp/cookie': 3.0.2
       '@otterhttp/errors': 0.2.1
       '@otterhttp/proxy-address': 3.0.0
       '@otterhttp/request': 3.4.2
-      '@otterhttp/response': 3.4.2
+      '@otterhttp/response': 3.5.2
       '@otterhttp/router': 3.0.0
       '@otterhttp/url': 3.0.0
       header-range-parser: 1.1.3
@@ -4109,7 +4109,7 @@ snapshots:
       '@otterhttp/url': 3.0.0
       header-range-parser: 1.1.3
 
-  '@otterhttp/response@3.4.2':
+  '@otterhttp/response@3.5.2':
     dependencies:
       '@otterhttp/content-disposition': 3.1.0
       '@otterhttp/content-type': 0.5.0
