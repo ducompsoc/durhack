@@ -43,6 +43,10 @@ export const mailgunOptionsSchema = z.object({
 export const durhackOptionsSchema = z.object({
   maximumTicketAssignment: z.number().nonnegative(),
   currentEventYear: z.number().positive(),
+  interopMutualTls: z.object({
+    clientCertificateFile: z.string(),
+    clientCertificateKeyFile: z.string(),
+  }),
 })
 
 export const configSchema = z.object({

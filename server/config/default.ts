@@ -36,6 +36,10 @@ export default {
     url: "https://api.eu.mailgun.net",
   },
   durhack: {
+    interopMutualTls: {
+      clientCertificateFile: "/dev/null",
+      clientCertificateKeyFile: "/dev/null",
+    },
     maximumTicketAssignment: 860,
     currentEventYear: 2024,
   },
