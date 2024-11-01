@@ -61,7 +61,7 @@ export const durhackOptionsSchema = z.object({
     clientCertificateFile: z.string(),
     clientCertificateKeyFile: z.string(),
   }),
-  stashItems: z.map(
+  stashItems: z.record(
     z.string(), // 'slug'
     z.object({
       name: z.string(),

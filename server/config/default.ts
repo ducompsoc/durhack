@@ -42,28 +42,19 @@ export default {
     },
     maximumTicketAssignment: 860,
     currentEventYear: 2024,
-    stashItems: new Map([
-      [
-        "gilded-sticker",
-        {
-          name: "Gilded Sticker",
-          eligibilityCondition: { type: "points-threshold", thresholdQuantity: 50 },
-        },
-      ],
-      [
-        "drawstring-bag",
-        {
-          name: "Drawstring Bag",
-          eligibilityCondition: { type: "points-threshold", thresholdQuantity: 100 },
-        },
-      ],
-      [
-        "card-holder",
-        {
-          name: "Phone Wallet",
-          eligibilityCondition: { type: "points-threshold", thresholdQuantity: 150 },
-        },
-      ]
-    ])
+    stashItems: {
+      "gilded-sticker": {
+        name: "Gilded Sticker",
+        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 50 },
+      },
+      "drawstring-bag": {
+        name: "Drawstring Bag",
+        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 100 },
+      },
+      "card-holder": {
+        name: "Phone Wallet",
+        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 150 },
+      },
+    },
   },
 } satisfies ConfigIn

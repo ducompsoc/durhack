@@ -111,7 +111,7 @@ class ProfileHandlers {
         name: string,
         slug: string,
         claimed: boolean,
-      }> = Array.from(durhackConfig.stashItems.entries())
+      }> = Object.entries(durhackConfig.stashItems)
         .map(([slug, item]) => ({
           slug,
           name: item.name,
@@ -163,7 +163,7 @@ class ProfileHandlers {
       }
 
       const operations = Object.keys(stashItems).map((stashItemSlug) => {
-        if (!durhackConfig.stashItems.has(stashItemSlug))
+        if (!Object.hasOwn(durhackConfig.stashItems, stashItemSlug))
           throw new ClientError(`Unrecognised stash item slug '${stashItemSlug}'`, { statusCode: HttpStatus.BadRequest })
 
         if (stashItems[stashItemSlug]) return setClaimedQuery(stashItemSlug)
