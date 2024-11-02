@@ -14,6 +14,7 @@ import { isLoaded } from "@/lib/is-loaded"
 import { cn } from "@/lib/utils"
 
 import { ProfileCheckInButton } from "./check-in-button"
+import { CvUploadBadge } from "./cv-upload-badge"
 import { StashClaimsDisplay } from "./stash-claims"
 
 const profileFetcher = async (url: string): Promise<UserProfile> => {
@@ -68,6 +69,7 @@ const ProfilePage = React.memo(
       <main className="w-full min-h-[100vh] m-0 flex flex-col space-y-1.5 items-center justify-center">
         <h1 className="text-4xl font-bold">{profile.preferredNames ?? profile.firstNames} {profile.lastNames}</h1>
         <ApplicationStatusBadge applicationStatus={profile.applicationStatus}/>
+        <CvUploadBadge uploadedCv={profile.uploadedCv} />
         <UserAttribute>
           <Label htmlFor="uuid">ID</Label>
           <div id="uuid"><code>{profile.userId}</code></div>
