@@ -11,6 +11,7 @@ import type { UserProfile } from "@durhack/durhack-common/types/user-profile"
 import { siteConfig } from "@/config/site"
 import { ApplicationStatusBadge } from "@/components/dashboard/application-status-indicator"
 import { isLoaded } from "@/lib/is-loaded"
+import { cn } from "@/lib/utils"
 
 import { ProfileCheckInButton } from "./check-in-button"
 import { StashClaimsDisplay } from "./stash-claims"
@@ -29,6 +30,17 @@ const profileFetcher = async (url: string): Promise<UserProfile> => {
   if (payload === null) throw new Error("Unexpected null response")
   if (!Object.hasOwn(payload, "data")) throw new Error("Response missing expected member `data`")
   return payload.data as UserProfile
+}
+
+function UserAttribute({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.ReactNode {
+  return (
+    <div
+      className={cn("flex space-x-3 items-center text-muted-foreground text-xs", className)}
+      {...props}
+    >
+      {children}
+    </div>
+  )
 }
 
 const ProfilePage = React.memo(
@@ -56,14 +68,18 @@ const ProfilePage = React.memo(
       <main className="w-full min-h-[100vh] m-0 flex flex-col space-y-1.5 items-center justify-center">
         <h1 className="text-4xl font-bold">{profile.preferredNames ?? profile.firstNames} {profile.lastNames}</h1>
         <ApplicationStatusBadge applicationStatus={profile.applicationStatus}/>
-        <div className="flex space-x-3 items-center text-muted-foreground text-xs">
+        <UserAttribute>
           <Label htmlFor="uuid">ID</Label>
           <div id="uuid"><code>{profile.userId}</code></div>
-        </div>
-        <div className="flex space-x-3 items-center text-muted-foreground text-xs">
+        </UserAttribute>
+        <UserAttribute>
           <Label htmlFor="email">Email</Label>
           <div id="email">{profile.email}</div>
-        </div>
+        </UserAttribute>
+        <UserAttribute>
+          <Label htmlFor="pronouns">Pronouns</Label>
+          <div id="pronouns">{profile.pronouns}</div>
+        </UserAttribute>
         <div>
           <ProfileCheckInButton
             profile={profile}
