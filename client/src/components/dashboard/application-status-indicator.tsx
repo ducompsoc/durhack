@@ -2,6 +2,7 @@ import { UpdateIcon } from "@radix-ui/react-icons"
 import * as React from "react"
 import { Badge } from "@durhack/web-components/ui/badge"
 import { cva, type VariantProps } from "class-variance-authority"
+import type { Application } from "@durhack/durhack-common/types/application"
 
 import { useApplicationContext } from "@/hooks/use-application-context";
 import { isLoaded } from "@/lib/is-loaded";
@@ -26,35 +27,41 @@ const applicationStatusBadgeVariants = cva("capitalize", {
 })
 type ApplicationStatusBadgeVariantProps = VariantProps<typeof applicationStatusBadgeVariants>
 
-type ApplicationStatusBadgeProps = {
+type AutoApplicationStatusBadgeProps = {
   size?: ApplicationStatusBadgeVariantProps["size"]
 } & React.ComponentProps<typeof Badge>
 
-export function ApplicationStatusBadge({ children, size, className, ...props }: ApplicationStatusBadgeProps) {
+type ApplicationStatusBadgeProps = {
+  applicationStatus: Application["applicationStatus"] | "incomplete"
+} & AutoApplicationStatusBadgeProps
+
+export function ApplicationStatusBadge({ applicationStatus, children, size, className, ...props }: ApplicationStatusBadgeProps) {
+  return (
+    <Badge variant="outline" className={applicationStatusBadgeVariants({ className, size, applicationStatus })} {...props}>
+      {applicationStatus}
+    </Badge>
+  )
+}
+
+export function AutoApplicationStatusBadge({ children, ...props }: AutoApplicationStatusBadgeProps) {
   const { application, applicationIsLoading, applicationIsComplete } = useApplicationContext()
 
   if (!isLoaded(application, applicationIsLoading)) return children
 
   if (application.applicationStatus === "unsubmitted" && !applicationIsComplete) return (
-    <Badge variant="outline" className={applicationStatusBadgeVariants({ className, size, applicationStatus: "incomplete" })} {...props}>
-      incomplete
-    </Badge>
+    <ApplicationStatusBadge applicationStatus="incomplete" {...props} />
   )
 
-  return (
-    <Badge variant="outline" className={applicationStatusBadgeVariants({ className, size, applicationStatus: application.applicationStatus })} {...props}>
-      {application.applicationStatus}
-    </Badge>
-  )
+  return <ApplicationStatusBadge applicationStatus={application.applicationStatus} {...props} />
 }
 
-export function ApplicationStatusIndicator() {
+export function AutoApplicationStatusIndicator() {
   return <article>
     <div className="min-w-[8rem] flex flex-col items-center">
       <span className="text-nowrap">your application is</span>
-      <ApplicationStatusBadge className="mt-1">
+      <AutoApplicationStatusBadge className="mt-1">
         <UpdateIcon className="animate-spin h-6 w-6 m-2"/>
-      </ApplicationStatusBadge>
+      </AutoApplicationStatusBadge>
     </div>
   </article>
 }

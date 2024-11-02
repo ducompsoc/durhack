@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next"
 
+import { Toaster } from "@durhack/web-components/ui/toaster"
+
 import "@/styles/globals.css"
-import { Footer } from "@/components/footer"
-import { MLHBanner } from "@/components/mlh-banner"
 import { siteConfig } from "@/config/site"
 import { spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
@@ -52,7 +52,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-GB">
-      <body className={cn(spaceGrotesk.className, "dark antialiased")}>{children}</body>
+      <body className={cn(spaceGrotesk.className, "dark antialiased")}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   )
 }

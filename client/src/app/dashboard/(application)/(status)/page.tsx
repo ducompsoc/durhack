@@ -5,7 +5,7 @@ import { Button } from "@durhack/web-components/ui/button"
 import { Skeleton } from "@durhack/web-components/ui/skeleton"
 import Link from "next/link"
 
-import { ApplicationStatusBadge } from "@/components/dashboard/application-status-indicator";
+import { AutoApplicationStatusBadge } from "@/components/dashboard/application-status-indicator";
 import { ProfileQrCode } from "@/components/profile-qr-code";
 import { useApplicationContext } from "@/hooks/use-application-context"
 import type { Application } from "@/hooks/use-application"
@@ -97,9 +97,9 @@ export default function StatusPage() {
   return (
     <>
       <article className="bg-secondary/10 py-8 mt-2 rounded-md w-full flex flex-col justify-center items-center mb-4">
-        <ApplicationStatusBadge size="xl">
+        <AutoApplicationStatusBadge size="xl">
           <Skeleton className="w-48 h-12"/>
-        </ApplicationStatusBadge>
+        </AutoApplicationStatusBadge>
       </article>
       <InstructionsArticle application={application} applicationIsLoading={applicationIsLoading}/>
       <ProfileQrCodeArticle application={application} applicationIsLoading={applicationIsLoading}/>

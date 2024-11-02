@@ -1,10 +1,12 @@
 import assert from "node:assert/strict"
+import type { UserProfile } from "@durhack/durhack-common/types/user-profile"
 import { ClientError, HttpStatus, ServerError } from "@otterhttp/errors"
 import type { Prisma } from "@prisma/client"
 import { z } from "zod"
 
 import { durhackConfig } from "@/config"
 import { type UserFlag, prisma } from "@/database"
+import { adaptApplicationStatusFromDatabase } from "@/database/adapt-application-status"
 import { Group, onlyGroups } from "@/decorators/authorise"
 import { json } from "@/lib/body-parsers"
 import { getKeycloakAdminClient, getKeycloakGroupId, unpackAttribute } from "@/lib/keycloak-client"
@@ -66,23 +68,27 @@ class ProfileHandlers {
       })
       assert(databaseProfile)
 
+      const attendanceFlag = this.findAttendanceFlag(databaseProfile)
+
       response.status(200).json({
         status: response.statusCode,
         message: response.statusMessage,
         data: {
           userId,
-          checkedIn: this.isCheckedIn(databaseProfile),
+          email: profile.email as string,
           preferredNames: unpackAttribute(profile, "preferredNames"),
-          firstNames: unpackAttribute(profile, "firstNames"),
-          lastNames: unpackAttribute(profile, "lastNames"),
+          firstNames: unpackAttribute(profile, "firstNames") as string,
+          lastNames: unpackAttribute(profile, "lastNames") as string,
           pronouns: unpackAttribute<"he/him" | "she/her" | "they/them" | "xe/xem" | "Please Ask" | "Unspecified">(
             profile,
             "pronouns",
             "Unspecified",
           ),
-          hasAttendeeTicket: databaseProfile?.userInfo?.applicationStatus === "accepted",
+          checkedIn: attendanceFlag != null,
+          checkedInAt: attendanceFlag?.createdAt?.getTime() ?? null,
+          applicationStatus: adaptApplicationStatusFromDatabase(databaseProfile?.userInfo?.applicationStatus),
           uploadedCv: databaseProfile?.userCv != null,
-        },
+        } satisfies UserProfile,
       })
     }
   }
@@ -108,15 +114,14 @@ class ProfileHandlers {
       if (stashItemFlags == null) throw new ClientError("", { statusCode: HttpStatus.NotFound })
 
       const stashItems: Array<{
-        name: string,
-        slug: string,
-        claimed: boolean,
-      }> = Object.entries(durhackConfig.stashItems)
-        .map(([slug, item]) => ({
-          slug,
-          name: item.name,
-          claimed: stashItemFlags.some((flag) => flag.flagName === `stash:${slug}`)
-        }))
+        name: string
+        slug: string
+        claimed: boolean
+      }> = Object.entries(durhackConfig.stashItems).map(([slug, item]) => ({
+        slug,
+        name: item.name,
+        claimed: stashItemFlags.some((flag) => flag.flagName === `stash:${slug}`),
+      }))
 
       response.status(200).json({
         status: response.statusCode,
@@ -164,7 +169,9 @@ class ProfileHandlers {
 
       const operations = Object.keys(stashItems).map((stashItemSlug) => {
         if (!Object.hasOwn(durhackConfig.stashItems, stashItemSlug))
-          throw new ClientError(`Unrecognised stash item slug '${stashItemSlug}'`, { statusCode: HttpStatus.BadRequest })
+          throw new ClientError(`Unrecognised stash item slug '${stashItemSlug}'`, {
+            statusCode: HttpStatus.BadRequest,
+          })
 
         if (stashItems[stashItemSlug]) return setClaimedQuery(stashItemSlug)
         return setUnclaimedQuery(stashItemSlug)

@@ -16,6 +16,8 @@ app
   .use(
     cors({
       origin: frontendOrigin,
+      allowedHeaders: ["content-type", "if-match", "if-none-match", "if-modified", "if-unmodified"],
+      exposedHeaders: ["etag"],
       credentials: true,
     }),
   )

@@ -5,7 +5,7 @@ import * as React from "react"
 import { Button } from "@durhack/web-components/ui/button"
 
 import { useSidebarContext } from "@/app/dashboard/(application)/sidebar-context"
-import { ApplicationStatusIndicator } from "@/components/dashboard/application-status-indicator";
+import { AutoApplicationStatusIndicator } from "@/components/dashboard/application-status-indicator";
 
 export function Header() {
   const { toggleIsOpen: toggleSidebar } = useSidebarContext()
@@ -31,7 +31,7 @@ export function Header() {
 
       {/* right-aligned header items */}
       <div className="flex flex-row h-full items-center">
-        <ApplicationStatusIndicator/>
+        <AutoApplicationStatusIndicator/>
       </div>
     </div>
   )

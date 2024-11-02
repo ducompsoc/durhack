@@ -66,8 +66,8 @@ export const durhackOptionsSchema = z.object({
     z.object({
       name: z.string(),
       eligibilityCondition: stashEligibilityConditionSchema,
-    })
-  )
+    }),
+  ),
 })
 
 export const configSchema = z.object({
