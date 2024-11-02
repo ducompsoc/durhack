@@ -4,7 +4,6 @@ import React from "react"
 import useSWR from "swr"
 import { UpdateIcon } from "@radix-ui/react-icons"
 
-import { Checkbox } from "@durhack/web-components/ui/checkbox"
 import { Label } from "@durhack/web-components/ui/label"
 import { useToast } from "@durhack/web-components/hooks/use-toast"
 import type { UserProfile } from "@durhack/durhack-common/types/user-profile"
