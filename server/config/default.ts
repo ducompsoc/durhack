@@ -43,6 +43,10 @@ export default {
     maximumTicketAssignment: 860,
     currentEventYear: 2024,
     stashItems: {
+      "keyring": {
+        name: "CV Keyring",
+        eligibilityCondition: { type: "cv-upload" },
+      },
       "gilded-sticker": {
         name: "Gilded Sticker",
         eligibilityCondition: { type: "points-threshold", thresholdQuantity: 50 },
