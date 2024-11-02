@@ -5,7 +5,7 @@ import { type ClientMetadata, Issuer } from "openid-client"
 
 import { keycloakConfig } from "@/config"
 import { Group } from "@/decorators/authorise"
-import { enumKeys, enumValues } from "@/lib/enum-keys"
+import { enumValues } from "@/lib/enum-keys"
 
 function adaptClientConfig(clientConfig: typeof keycloakConfig): ClientMetadata {
   return {
