@@ -369,7 +369,37 @@ export const sponsors: Sponsor[] = [
     link: "https://www.github.com",
     tier: "partner",
     active: false,
-  }
+  },
+  {
+    slug: "barclays",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/barclays.svg"
+        alt="Barclays"
+        width={500}
+        height={90}
+        {...props}
+      />
+    ),
+    link: "https://home.barclays/",
+    tier: "partner",
+    active: false,
+  },
+  {
+    slug: "netcraft",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/netcraft.svg"
+        alt="Barclays"
+        width={253}
+        height={44}
+        {...props}
+      />
+    ),
+    link: "https://www.netcraft.com/",
+    tier: "partner",
+    active: false,
+  },
 ]
 
 export const signedSponsors = sponsors.filter((sponsor) => sponsor.active)
