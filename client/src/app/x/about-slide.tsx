@@ -13,8 +13,8 @@ export function AboutSlide({ className, ...props }: React.HTMLAttributes<HTMLDiv
         <div className={cn(spaceGrotesk.className)}>
           <p className="mb-2 italic">Make Hackathon History</p>
           <p className="mb-2">
-            DurHack is one of Europe’s largest & most recognised student hackathons.<br/>
-            DurHack is all about learning something new and we’re proud to be the UK’s leading student hackathon for
+            DurHack is one of Europe&apos;s largest &amp; most recognised student hackathons.<br/>
+            DurHack is all about learning something new and we&apos;re proud to be the UK&apos;s leading student hackathon for
             community, collaboration and innovation.
           </p>
           <p> Provisional dates: 1<sup>st</sup>-2<sup>nd</sup> November 2025</p>
@@ -22,7 +22,7 @@ export function AboutSlide({ className, ...props }: React.HTMLAttributes<HTMLDiv
           <h2 className={cn(electrolize.className, "text-3xl")}>Benefits</h2>
           <ul>
             <li>
-              <strong>Talent Recruitment:</strong> access the UK’s best students
+              <strong>Talent Recruitment:</strong> access the UK&apos;s best students
               (with CVs, challenges, workshops and more).
             </li>
             <li>
