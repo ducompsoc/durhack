@@ -5,8 +5,8 @@ export type Sponsor = {
   slug: string,
   image: React.FC<React.HTMLAttributes<HTMLElement>>,
   link: string,
-  tier: "platinum" | "gold" | "silver"
-  signed: boolean
+  tier: "platinum" | "gold" | "silver" | "partner"
+  active: boolean
 }
 
 export const sponsors: Sponsor[] = [
@@ -23,7 +23,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.tekgem.co.uk/",
     tier: "silver",
-    signed: true,
+    active: true,
   },
   {
     slug: "marshall-wace",
@@ -38,7 +38,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.mwam.com/",
     tier: "platinum",
-    signed: true,
+    active: true,
   },
   {
     slug: "rewriting-the-code",
@@ -53,7 +53,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://rewritingthecode.org/",
     tier: "gold",
-    signed: true,
+    active: true,
   },
   {
     slug: "waterstons",
@@ -68,7 +68,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://waterstons.com/",
     tier: "gold",
-    signed: true,
+    active: true,
   },
   {
     slug: "qube-research-and-tech",
@@ -83,7 +83,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.qube-rt.com/",
     tier: "platinum",
-    signed: true,
+    active: true,
   },
   {
     slug: "assured-data-protection",
@@ -98,7 +98,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://assured-dp.com/",
     tier: "silver",
-    signed: true,
+    active: true,
   },
   {
     slug: "accenture",
@@ -113,7 +113,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.accenture.com/gb-en",
     tier: "gold",
-    signed: true,
+    active: true,
   },
   {
     slug: "atom-bank",
@@ -128,7 +128,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.atombank.co.uk/",
     tier: "platinum",
-    signed: true,
+    active: true,
   },
   {
     slug: "durham-uni-venture-lab",
@@ -143,24 +143,8 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.durham.ac.uk/venturelab",
     tier: "gold",
-    signed: true,
+    active: true,
   },
-]
-
-export const signedSponsors = sponsors.filter((sponsor) => sponsor.signed)
-
-export const platinumSponsors = signedSponsors.filter((sponsor) => sponsor.tier === "platinum")
-export const goldSponsors = signedSponsors.filter((sponsor) => sponsor.tier === "gold")
-export const silverSponsors = signedSponsors.filter((sponsor) => sponsor.tier === "silver")
-
-export type Partner = {
-  slug: string,
-  image: React.FC<React.HTMLAttributes<HTMLElement>> | null,
-  link: string,
-  active: boolean
-}
-
-export const partners: Partner[] = [
   {
     slug: "major-league-hacking",
     image: (props) => (
@@ -173,6 +157,7 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://mlh.io/",
+    tier: "partner",
     active: true,
   },
   {
@@ -187,6 +172,7 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://compsoc.tech",
+    tier: "partner",
     active: true,
   },
   {
@@ -201,6 +187,7 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://www.overleaf.com/",
+    tier: "partner",
     active: true,
   },
   {
@@ -215,6 +202,7 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://www.keyboardco.com/",
+    tier: "partner",
     active: true,
   },
   {
@@ -229,6 +217,7 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://uk.rs-online.com/web/",
+    tier: "partner",
     active: true,
   },
   {
@@ -243,6 +232,7 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://www.pragmaticsemi.com/",
+    tier: "partner",
     active: true,
   },
   {
@@ -257,6 +247,7 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://www.durham.ac.uk/departments/academic/computer-science/",
+    tier: "partner",
     active: true,
   },
   {
@@ -271,7 +262,8 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://hackp.ac/mlh-standoutstickers-hackathons",
-    active: false,
+    tier: "partner",
+    active: true,
   },
   {
     slug: "durham-uni-esports-and-gaming",
@@ -285,6 +277,7 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/",
+    tier: "partner",
     active: true,
   },
   {
@@ -299,6 +292,7 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://www.durhamsu.com/",
+    tier: "partner",
     active: true,
   },
   {
@@ -313,7 +307,8 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://www.intel.com",
-    active: false,
+    tier: "partner",
+    active: true,
   },
   {
     slug: "hackathons-uk",
@@ -327,8 +322,24 @@ export const partners: Partner[] = [
       />
     ),
     link: "https://www.hackathons.org.uk/",
+    tier: "partner",
     active: true,
   },
 ]
+
+export const signedSponsors = sponsors.filter((sponsor) => sponsor.active)
+
+export const platinumSponsors = signedSponsors.filter((sponsor) => sponsor.tier === "platinum")
+export const goldSponsors = signedSponsors.filter((sponsor) => sponsor.tier === "gold")
+export const silverSponsors = signedSponsors.filter((sponsor) => sponsor.tier === "silver")
+
+export type Partner = {
+  slug: string,
+  image: React.FC<React.HTMLAttributes<HTMLElement>> | null,
+  link: string,
+  active: boolean
+}
+
+export const partners: Partner[] = sponsors.filter((sponsor) => sponsor.tier === "partner")
 
 export const activePartners = partners.filter(partner => partner.active)

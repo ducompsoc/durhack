@@ -16,6 +16,7 @@ const tierWidths = {
   platinum: 200,
   gold: 150,
   silver: 100,
+  partner: 0,
 }
 
 const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<typeof Image>, "src" | "alt">>> = {
@@ -46,6 +47,7 @@ const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<type
       {...props}
     />
   ),
+  partner: () => undefined,
 }
 
 const partnerScale = 0.75
