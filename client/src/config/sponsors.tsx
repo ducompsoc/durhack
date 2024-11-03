@@ -340,6 +340,36 @@ export const sponsors: Sponsor[] = [
     tier: "partner",
     active: true,
   },
+  {
+    slug: "amazon-web-services",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/amazon-web-services.svg"
+        alt="Amazon Web Services"
+        width={79}
+        height={48}
+        {...props}
+      />
+    ),
+    link: "https://aws.amazon.com/",
+    tier: "partner",
+    active: false,
+  },
+  {
+    slug: "github",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/github.svg"
+        alt="GitHub"
+        width={600}
+        height={200}
+        {...props}
+      />
+    ),
+    link: "https://www.github.com",
+    tier: "partner",
+    active: false,
+  }
 ]
 
 export const signedSponsors = sponsors.filter((sponsor) => sponsor.active)
