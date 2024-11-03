@@ -8,6 +8,7 @@ import {
   CarouselPrevious,
 } from "@durhack/web-components/ui/carousel"
 
+import { PastSponsorsSlide } from "./past-sponsors-slide"
 import { TitleSlide } from "./title-slide"
 
 export default function DurHackXPage() {
@@ -17,6 +18,9 @@ export default function DurHackXPage() {
         <CarouselContent className="w-full min-h-[100vh] m-0">
           <CarouselItem className="h-[inherit] max-h-[inherit] p-0">
             <TitleSlide className="size-full" />
+          </CarouselItem>
+          <CarouselItem className="h-[inherit] max-h-[inherit] p-0">
+            <PastSponsorsSlide className="size-full" />
           </CarouselItem>
         </CarouselContent>
         <CarouselPrevious className="left-4" />
