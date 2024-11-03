@@ -296,6 +296,21 @@ export const sponsors: Sponsor[] = [
     active: true,
   },
   {
+    slug: "durham-county-council",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/durham-county-council.svg"
+        alt="Durham County Council"
+        width={1002.6667}
+        height={426.66666}
+        {...props}
+      />
+    ),
+    link: "https://www.durham.gov.uk/",
+    tier: "partner",
+    active: false,
+  },
+  {
     slug: "intel",
     image: (props) => (
       <Image
