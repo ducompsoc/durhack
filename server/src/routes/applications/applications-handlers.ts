@@ -57,6 +57,15 @@ class ApplicationsHandlers {
     return ["accepted"]
   }
 
+  private getRawApplicationStatusFilter(response: Response): ("unsubmitted" | "submitted" | "accepted" | "waiting_list")[] {
+    // with query parameter "all", include everyone that was at one point 'submitted'
+    if (response.locals.includeAll === true) return ["submitted", "accepted", "waiting_list"]
+    // with query parameter "attendees", include everyone that was at one point 'submitted'
+    if (response.locals.whereOnlyCheckedIn === true) return ["submitted", "accepted", "waiting_list"]
+    // with no query parameters, only include people that have been assigned tickets
+    return ["accepted"]
+  }
+
   private getFilterDescription(response: Response): string {
     if (response.locals.includeAll === true) return "`all`: All completed applications are considered"
     if (response.locals.whereOnlyCheckedIn === true)
@@ -258,10 +267,11 @@ class ApplicationsHandlers {
   getApplicationsByDisciplineOfStudy(): Middleware {
     return async (request, response) => {
       const applicationStatusFilter = this.getApplicationStatusFilter(response)
+      const rawApplicationStatusFilter = this.getRawApplicationStatusFilter(response)
       const [result, totalApplicationCount] = await Promise.all([
         prisma.$queryRawTyped(
           getApplicationsGroupedByDisciplineOfStudy(
-            applicationStatusFilter,
+            rawApplicationStatusFilter,
             response.locals.whereOnlyCheckedIn === true,
           ),
         ),
@@ -299,10 +309,11 @@ class ApplicationsHandlers {
   getApplicationsByDietaryRequirement(): Middleware {
     return async (request, response) => {
       const applicationStatusFilter = this.getApplicationStatusFilter(response)
+      const rawApplicationStatusFilter = this.getRawApplicationStatusFilter(response)
       const [result, totalApplicationCount] = await Promise.all([
         prisma.$queryRawTyped(
           getApplicationsGroupedByDietaryRequirement(
-            applicationStatusFilter,
+            rawApplicationStatusFilter,
             response.locals.whereOnlyCheckedIn === true,
           ),
         ),
