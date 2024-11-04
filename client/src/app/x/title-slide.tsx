@@ -58,7 +58,6 @@ export function TitleSlide({ className, ...props }: React.HTMLAttributes<HTMLDiv
         <p className="lg:text-3xl"><SubHeadingText>Making DurHack History</SubHeadingText></p>
         <div className="pt-4"/>
         <p><BodyText><a className="hover:underline" href="mailto:sponsor@durhack.com">sponsor@durhack.com</a></BodyText></p>
-        <p><BodyText><a className="hover:underline" href="tel:+447775246553">+44 7775 246553</a></BodyText></p>
       </article>
     </>
   )
