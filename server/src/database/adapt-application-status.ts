@@ -1,6 +1,18 @@
 import type { Application } from "@durhack/durhack-common/types/application"
 import type { UserApplicationStatus } from "@prisma/client"
 
+const toDatabaseMapping = new Map<Application["applicationStatus"], UserApplicationStatus>([
+  ["unsubmitted", "unsubmitted"],
+  ["submitted", "submitted"],
+  ["accepted", "accepted"],
+  ["waiting-list", "waitingList"],
+])
+
+export function adaptApplicationStatusToDatabase(applicationStatus: Application["applicationStatus"]): UserApplicationStatus {
+  // biome-ignore lint/style/noNonNullAssertion: we know it's not null because the map is fully populated
+  return toDatabaseMapping.get(applicationStatus)!
+}
+
 const fromDatabaseMapping = new Map<UserApplicationStatus, Application["applicationStatus"]>([
   ["unsubmitted", "unsubmitted"],
   ["submitted", "submitted"],
