@@ -18,7 +18,7 @@
     "@keycloak/keycloak-admin-client": "^25.0.5",
     "@otterhttp/app": "^3.4.7",
     "@otterhttp/cookie-signature": "^3.0.0",
-    "@otterhttp/errors": "^0.2.1",
+    "@otterhttp/errors": "^0.3.0",
     "@otterhttp/parsec": "^0.2.1",
     "@otterhttp/session": "^0.3.1",
     "@prisma/client": "^5.20.0",

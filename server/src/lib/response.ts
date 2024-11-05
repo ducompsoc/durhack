@@ -16,6 +16,8 @@ function makeHttpErrorResponseBody(error: HttpError): ResponseBody {
     message: error.statusMessage,
   }
 
+  Object.assign(response_body, error.extra)
+
   if (error.exposeMessage && error.message && error.message !== response_body.message) {
     response_body.detail = error.message
   }

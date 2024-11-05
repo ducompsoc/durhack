@@ -144,8 +144,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       '@otterhttp/errors':
-        specifier: ^0.2.1
-        version: 0.2.1
+        specifier: ^0.3.0
+        version: 0.3.0
       '@otterhttp/parsec':
         specifier: ^0.2.1
         version: 0.2.1
@@ -758,6 +758,10 @@ packages:
 
   '@otterhttp/errors@0.2.1':
     resolution: {integrity: sha512-kMouZeP8w/1WnvPa5W28wn0uYT0mFSyOuEOo1iq+mTHMP1vigalKUMXq1TsuofEE6NL672IyStWO//UEqJIlCw==}
+    engines: {node: '>=20.16.0'}
+
+  '@otterhttp/errors@0.3.0':
+    resolution: {integrity: sha512-l79OnNu4MyrNAvLkEta6Ec+KmL92kwsK71jo1mI9ZdOo/2SI9/9P7Yk+nq5wra/iz1lma+mUO+4+A1FG83R1Aw==}
     engines: {node: '>=20.16.0'}
 
   '@otterhttp/etag@3.0.0':
@@ -3895,6 +3899,10 @@ snapshots:
   '@otterhttp/encode-url@3.0.0': {}
 
   '@otterhttp/errors@0.2.1':
+    dependencies:
+      module-error: 1.0.2
+
+  '@otterhttp/errors@0.3.0':
     dependencies:
       module-error: 1.0.2
 

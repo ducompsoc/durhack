@@ -1,5 +1,6 @@
 import { ClientError, HttpStatus } from "@otterhttp/errors"
 
+import { origin } from "@/config"
 import type { Middleware } from "@/types"
 
 /**
@@ -30,6 +31,9 @@ export function forbiddenOrUnauthorised(): Middleware {
       code: "ERR_UNAUTHORIZED",
       exposeMessage: true,
       expected: true,
+      extra: {
+        login_url: new URL(`/auth/keycloak/login?destination=${encodeURIComponent(request.href)}`, origin).href,
+      },
     })
   }
 }

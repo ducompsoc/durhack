@@ -15,8 +15,7 @@ export class AuthHandlers {
       if (session.redirectTo != null) {
         try {
           await response.redirect(session.redirectTo)
-        }
-        finally {
+        } finally {
           session.redirectTo = undefined
           await session.commit()
         }

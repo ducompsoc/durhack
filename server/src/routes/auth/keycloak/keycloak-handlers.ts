@@ -10,12 +10,12 @@ import { keycloakClient } from "@/lib/keycloak-client"
 import { type DurHackSession, getSession } from "@/lib/session"
 import type { Middleware, Request, Response } from "@/types"
 
-const destinationUrlSchema = z.string()
+const destinationUrlSchema = z
+  .string()
   .transform((value, ctx) => {
     try {
       return new URL(value)
-    }
-    catch (error) {
+    } catch (error) {
       ctx.addIssue({
         code: z.ZodIssueCode.invalid_string, // for some reason this always comes out as 'custom'
         validation: "url",
@@ -62,9 +62,8 @@ export class KeycloakHandlers {
 
   beginOAuth2Flow(): Middleware {
     return async (request: Request, response: Response) => {
-      const destination = request.query.destination != null
-        ? destinationUrlSchema.parse(request.query.destination)
-        : null
+      const destination =
+        request.query.destination != null ? destinationUrlSchema.parse(request.query.destination) : null
       const session = await getSession(request, response)
       session.redirectTo = destination?.href
 
