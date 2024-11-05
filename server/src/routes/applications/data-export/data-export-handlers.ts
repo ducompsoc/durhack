@@ -14,7 +14,10 @@ import { getTempDir } from "@/lib/temp-dir"
 import type { Middleware } from "@/types"
 
 import { hasCode } from "@/lib/type-guards"
-import { ConsentAugmentingTransform } from "@/routes/applications/data-export/consent-augmenting-transform"
+import {
+  ConsentAugmentingTransform,
+  ConsentAugments
+} from "@/routes/applications/data-export/consent-augmenting-transform"
 import { AttendanceAugmentingTransform, type AttendanceAugments } from "./attendance-augmenting-transform"
 import { CvExportingWritable } from "./cv-exporting-writable"
 import { FilteringTransform } from "./filtering-transform"
@@ -72,15 +75,15 @@ class DataExportHandlers {
         const fileDestination = pathJoin(tempDir, fileName) // the name of the temporary file doesn't actually matter
 
         const filterTransform = attendeesOnly
-          ? new FilteringTransform<UserInfo & AttendanceAugments>((item) => item.isCheckedIn)
-          : new FilteringTransform(() => true)
+          ? new FilteringTransform<UserInfo & AttendanceAugments & ConsentAugments<"hukPrivacy">>((item) => item.isCheckedIn && (item.hukPrivacy ?? false))
+          : new FilteringTransform<UserInfo & ConsentAugments<"hukPrivacy">>((item) => item.hukPrivacy ?? false)
 
         await pipeline(
           Readable.from(generateUserInfo()), // this source yields 'chunks' of 10 `UserInfo` as `UserInfo[]`s
           new AttendanceAugmentingTransform(),
+          new ConsentAugmentingTransform({ hukMarketing: true, hukPrivacy: true }),
           filterTransform,
           new KeycloakAugmentingTransform(), // this transform consumes 'UserInfo's, then augments them with Keycloak data and yields the new object
-          new ConsentAugmentingTransform({ hukMarketing: true, hukPrivacy: true }),
           new HukCsvTransform(), // this transform consumes the augmented 'UserInfo's, picking out required fields for the HUK data
           createWriteStream(fileDestination), // this sink consumes single strings / Buffers at a time
         )
