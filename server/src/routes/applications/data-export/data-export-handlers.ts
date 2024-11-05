@@ -12,6 +12,7 @@ import { Group, onlyGroups } from "@/decorators/authorise"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { getTempDir } from "@/lib/temp-dir"
 import type { Middleware } from "@/types"
+import { origin } from "@/config"
 
 import { hasCode } from "@/lib/type-guards"
 import {
@@ -27,6 +28,19 @@ import { generateUserCv } from "./user-cv-async-generator"
 import { generateUserInfo } from "./user-info-async-generator"
 
 class DataExportHandlers {
+  @onlyGroups([Group.organisers, Group.admins])
+  getRoot(): Middleware {
+    return async (request, response) => {
+      response.json({
+        data: undefined,
+        major_league_hacking_applications_url: new URL("/applications/data-export/major-league-hacking", origin),
+        major_league_hacking_attendees_url: new URL("/applications/data-export/major-league-hacking?attendees", origin),
+        hackathons_uk_applications_url: new URL("/applications/data-export/hackathons-uk", origin),
+        hackathons_uk_attendees_url: new URL("/applications/data-export/hackathons-uk?attendees", origin),
+      })
+    }
+  }
+
   /**
    * Returns a middleware that handles a GET request by responding with a `.csv` payload containing
    * exported application data for Major League Hacking with <code>Content-Disposition: attachment</code>.

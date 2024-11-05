@@ -10,6 +10,13 @@ import { dataExportHandlers } from "./data-export-handlers"
 export const applicationsDataExportApp = new App<Request, Response>()
 
 applicationsDataExportApp
+  .route("/")
+  .all(methodNotAllowed(["GET"]))
+  .all(authenticate())
+  .all(dataExportHandlers.getRoot())
+  .all(forbiddenOrUnauthorised())
+
+applicationsDataExportApp
   .route("/major-league-hacking")
   .all(methodNotAllowed(["GET"]))
   .all(authenticate())
