@@ -10,6 +10,9 @@ import { apiErrorHandler } from "@/routes/error-handling"
 
 const app = new App<Request, Response>({
   onError: apiErrorHandler,
+  settings: {
+    "trust proxy": ["loopback"],
+  },
 })
 
 app
