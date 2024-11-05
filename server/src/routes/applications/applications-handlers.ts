@@ -57,7 +57,9 @@ class ApplicationsHandlers {
     return ["accepted"]
   }
 
-  private getRawApplicationStatusFilter(response: Response): ("unsubmitted" | "submitted" | "accepted" | "waiting_list")[] {
+  private getRawApplicationStatusFilter(
+    response: Response,
+  ): ("unsubmitted" | "submitted" | "accepted" | "waiting_list")[] {
     // with query parameter "all", include everyone that was at one point 'submitted'
     if (response.locals.includeAll === true) return ["submitted", "accepted", "waiting_list"]
     // with query parameter "attendees", include everyone that was at one point 'submitted'

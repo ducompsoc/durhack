@@ -7,17 +7,17 @@ import { Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
 import { ServerError } from "@otterhttp/errors"
 
+import { origin } from "@/config"
 import type { UserInfo } from "@/database"
 import { Group, onlyGroups } from "@/decorators/authorise"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { getTempDir } from "@/lib/temp-dir"
 import type { Middleware } from "@/types"
-import { origin } from "@/config"
 
 import { hasCode } from "@/lib/type-guards"
 import {
   ConsentAugmentingTransform,
-  ConsentAugments
+  type ConsentAugments,
 } from "@/routes/applications/data-export/consent-augmenting-transform"
 import { AttendanceAugmentingTransform, type AttendanceAugments } from "./attendance-augmenting-transform"
 import { CvExportingWritable } from "./cv-exporting-writable"
@@ -89,7 +89,9 @@ class DataExportHandlers {
         const fileDestination = pathJoin(tempDir, fileName) // the name of the temporary file doesn't actually matter
 
         const filterTransform = attendeesOnly
-          ? new FilteringTransform<UserInfo & AttendanceAugments & ConsentAugments<"hukPrivacy">>((item) => item.isCheckedIn && (item.hukPrivacy ?? false))
+          ? new FilteringTransform<UserInfo & AttendanceAugments & ConsentAugments<"hukPrivacy">>(
+              (item) => item.isCheckedIn && (item.hukPrivacy ?? false),
+            )
           : new FilteringTransform<UserInfo & ConsentAugments<"hukPrivacy">>((item) => item.hukPrivacy ?? false)
 
         await pipeline(

@@ -43,7 +43,7 @@ export default {
     maximumTicketAssignment: 860,
     currentEventYear: 2024,
     stashItems: {
-      "keyring": {
+      keyring: {
         name: "CV Keyring",
         eligibilityCondition: { type: "cv-upload" },
       },

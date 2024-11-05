@@ -15,17 +15,21 @@ export function forbiddenOrUnauthorised(): Middleware {
     if (request.user != null) {
       // Re-authenticating will not allow access (i.e. you are not a high-enough privileged user):
       // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
-      throw new ClientError(
-        "Your identity is known, but you don't have permission to access this resource",
-        { statusCode: HttpStatus.Forbidden, code: "ERR_FORBIDDEN", exposeMessage: true, expected: true },
-      )
+      throw new ClientError("Your identity is known, but you don't have permission to access this resource", {
+        statusCode: HttpStatus.Forbidden,
+        code: "ERR_FORBIDDEN",
+        exposeMessage: true,
+        expected: true,
+      })
     }
 
     // Lacking any credentials at all:
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
-    throw new ClientError(
-      "Your identity is not known; please login to access this resource",
-      { statusCode: HttpStatus.Unauthorized, code: "ERR_UNAUTHORIZED", exposeMessage: true, expected: true },
-    )
+    throw new ClientError("Your identity is not known; please login to access this resource", {
+      statusCode: HttpStatus.Unauthorized,
+      code: "ERR_UNAUTHORIZED",
+      exposeMessage: true,
+      expected: true,
+    })
   }
 }
