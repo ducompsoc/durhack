@@ -1,6 +1,7 @@
 import type { NextFunction } from "@otterhttp/app"
 import { ClientError } from "@otterhttp/errors"
 import { type Client, generators } from "openid-client"
+import { z } from "zod"
 
 import { frontendOrigin, origin } from "@/config"
 import { prisma } from "@/database"
@@ -8,6 +9,25 @@ import { adaptTokenSetToDatabase } from "@/lib/adapt-token-set"
 import { keycloakClient } from "@/lib/keycloak-client"
 import { type DurHackSession, getSession } from "@/lib/session"
 import type { Middleware, Request, Response } from "@/types"
+
+const destinationUrlSchema = z.string()
+  .transform((value, ctx) => {
+    try {
+      return new URL(value)
+    }
+    catch (error) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.invalid_string, // for some reason this always comes out as 'custom'
+        validation: "url",
+        message: "Invalid url",
+      })
+      return z.NEVER
+    }
+  })
+  .refine(
+    (value) => value.origin === origin || value.origin === frontendOrigin,
+    (value) => ({ message: `Specified destination origin ${value.origin} is not trusted` }),
+  )
 
 export class KeycloakHandlers {
   client: Client
@@ -42,7 +62,11 @@ export class KeycloakHandlers {
 
   beginOAuth2Flow(): Middleware {
     return async (request: Request, response: Response) => {
+      const destination = request.query.destination != null
+        ? destinationUrlSchema.parse(request.query.destination)
+        : null
       const session = await getSession(request, response)
+      session.redirectTo = destination?.href
 
       this.lazyLogout(response, session)
       const codeVerifier = this.getOrGenerateCodeVerifier(response, session)
