@@ -138,8 +138,8 @@ importers:
         specifier: ^25.0.5
         version: 25.0.6
       '@otterhttp/app':
-        specifier: ^3.4.7
-        version: 3.4.7
+        specifier: ^3.4.8
+        version: 3.4.8
       '@otterhttp/cookie-signature':
         specifier: ^3.0.0
         version: 3.0.0
@@ -728,8 +728,8 @@ packages:
     resolution: {integrity: sha512-8G9vqGrmEarsIPI0jyPyuPRxnRQMvQpbAUuoXPZNIz569ypy0qGBs3YPTxtQiRy4Q2KDTNMa8PRLMQhkz4I8Gw==}
     engines: {node: '>=20.16.0'}
 
-  '@otterhttp/app@3.4.7':
-    resolution: {integrity: sha512-+osqqH1r1KFnLz6ozfuGtevw/1iVeEioFnrsvo2C4CNm4fQ6kFWba7mdoP0JPh6GqCSJh5IT5jvhLkECVU1yMg==}
+  '@otterhttp/app@3.4.8':
+    resolution: {integrity: sha512-jaDtR6zOU2HOST2RSJROfxHTECHENEg4XNLrIGjje7OpwV3Z9Tg7Lmj508jFmOAKzezcRB1b55siZHh6kBv9Jg==}
     engines: {node: '>=20.16.0'}
 
   '@otterhttp/content-disposition@3.1.0':
@@ -788,16 +788,16 @@ packages:
     resolution: {integrity: sha512-z39mtm3LNHYoUnH2CHiQltLLtUMcLAjyBHWGY71nfGi4NHDDohtmJrFalPdZY3/lhmg9uU3g+0EDdBkq1XzDHg==}
     engines: {node: '>=20.16.0'}
 
-  '@otterhttp/response@3.5.2':
-    resolution: {integrity: sha512-lB7UP3lC0ulgHh6LY2jZrUynLipK1/jKzMSClXtd5+ZCE6t/yKIytd0AOI+5fsj6xXa9npij0huw9ASfSmeBGw==}
+  '@otterhttp/response@3.5.3':
+    resolution: {integrity: sha512-V5a+QEJZDViICUFgVHTsxhKyFgpg1vRaXR8KcvaokZ6g3KdnZsmddok19E0qZiG1jnQ3prdEh5ixd/3Z5bJ04g==}
     engines: {node: '>=20.16.0'}
 
   '@otterhttp/router@3.0.0':
     resolution: {integrity: sha512-L+pUl5qvD8gmDY32XpAFmrGpFUX/jpI6Y2Feoos/0rvCyc7Znc7XN9I+1XcXzp6lSqmWwVF8Eoj7JEHPeMsGnQ==}
     engines: {node: '>=20.16.0'}
 
-  '@otterhttp/send@3.0.2':
-    resolution: {integrity: sha512-nPQBRUNUCV607NdcprueC8b41n4306yRGNkLZuxXX9VHwnOHRW1oh7BjrE3WMUuTgpCBl6BYhai3u7Qdjv4O4Q==}
+  '@otterhttp/send@3.0.3':
+    resolution: {integrity: sha512-ugQVtm05l23m1ZCDYMCaGflGstCaqO5FBhxgCZXVGhCZ+tM/KbXYDpr25dMLJBZmD+4Tw4GkAtB3UF9PrxoMzg==}
     engines: {node: '>=20.16.0'}
 
   '@otterhttp/session@0.3.1':
@@ -3868,13 +3868,13 @@ snapshots:
       mime: 4.0.4
       negotiator: 0.6.3
 
-  '@otterhttp/app@3.4.7':
+  '@otterhttp/app@3.4.8':
     dependencies:
       '@otterhttp/cookie': 3.0.2
-      '@otterhttp/errors': 0.2.1
+      '@otterhttp/errors': 0.3.0
       '@otterhttp/proxy-address': 3.0.0
       '@otterhttp/request': 3.4.2
-      '@otterhttp/response': 3.5.2
+      '@otterhttp/response': 3.5.3
       '@otterhttp/router': 3.0.0
       '@otterhttp/url': 3.0.0
       header-range-parser: 1.1.3
@@ -3937,24 +3937,24 @@ snapshots:
       '@otterhttp/url': 3.0.0
       header-range-parser: 1.1.3
 
-  '@otterhttp/response@3.5.2':
+  '@otterhttp/response@3.5.3':
     dependencies:
       '@otterhttp/content-disposition': 3.1.0
       '@otterhttp/content-type': 0.5.0
       '@otterhttp/cookie': 3.0.2
       '@otterhttp/encode-url': 3.0.0
-      '@otterhttp/errors': 0.2.1
+      '@otterhttp/errors': 0.3.0
       '@otterhttp/request': 3.4.2
-      '@otterhttp/send': 3.0.2
+      '@otterhttp/send': 3.0.3
       '@otterhttp/vary': 0.2.0
       es-escape-html: 0.1.1
       mime: 4.0.4
 
   '@otterhttp/router@3.0.0': {}
 
-  '@otterhttp/send@3.0.2':
+  '@otterhttp/send@3.0.3':
     dependencies:
-      '@otterhttp/errors': 0.2.1
+      '@otterhttp/errors': 0.3.0
       '@otterhttp/etag': 3.0.0
       mime: 4.0.4
 
