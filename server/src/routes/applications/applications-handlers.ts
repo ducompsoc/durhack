@@ -161,6 +161,7 @@ class ApplicationsHandlers {
         group_by_discipline_of_study_url: new URL(`/applications/by-discipline-of-study${request.queryString}`, origin),
         group_by_dietary_requirement_url: new URL(`/applications/by-dietary-requirement${request.queryString}`, origin),
         group_by_gender_identity_url: new URL(`/applications/by-gender-identity${request.queryString}`, origin),
+        data_export_url: new URL("/applications/data-export", origin),
       })
     }
   }
