@@ -13,9 +13,13 @@ export class AuthHandlers {
 
       const session = await getSession(request, response)
       if (session.redirectTo != null) {
-        const redirectTo = session.redirectTo
-        session.redirectTo = undefined
-        await response.redirect(redirectTo)
+        try {
+          await response.redirect(session.redirectTo)
+        }
+        finally {
+          session.redirectTo = undefined
+          await session.commit()
+        }
         return
       }
 
