@@ -10,6 +10,7 @@ export function isAdmin(profile: User) {
 export function isVolunteer(profile: User) {
   return profile.roles?.some((role) => {
     if (role === "/admins") return true
+    if (role === "/organisers") return true
     if (role === "/volunteers") return true
     return false
   })

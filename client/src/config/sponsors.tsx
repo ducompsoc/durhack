@@ -5,8 +5,8 @@ export type Sponsor = {
   slug: string,
   image: React.FC<React.HTMLAttributes<HTMLElement>>,
   link: string,
-  tier: "platinum" | "gold" | "silver"
-  signed: boolean
+  tier: "platinum" | "gold" | "silver" | "partner"
+  active: boolean
 }
 
 export const sponsors: Sponsor[] = [
@@ -23,7 +23,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.tekgem.co.uk/",
     tier: "silver",
-    signed: true,
+    active: true,
   },
   {
     slug: "marshall-wace",
@@ -38,7 +38,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.mwam.com/",
     tier: "platinum",
-    signed: false,
+    active: true,
   },
   {
     slug: "rewriting-the-code",
@@ -53,7 +53,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://rewritingthecode.org/",
     tier: "gold",
-    signed: true,
+    active: true,
   },
   {
     slug: "waterstons",
@@ -68,7 +68,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://waterstons.com/",
     tier: "gold",
-    signed: true,
+    active: true,
   },
   {
     slug: "qube-research-and-tech",
@@ -83,7 +83,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.qube-rt.com/",
     tier: "platinum",
-    signed: true,
+    active: true,
   },
   {
     slug: "assured-data-protection",
@@ -98,7 +98,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://assured-dp.com/",
     tier: "silver",
-    signed: true,
+    active: true,
   },
   {
     slug: "accenture",
@@ -113,7 +113,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.accenture.com/gb-en",
     tier: "gold",
-    signed: false,
+    active: true,
   },
   {
     slug: "atom-bank",
@@ -128,113 +128,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.atombank.co.uk/",
     tier: "platinum",
-    signed: false,
-  }
-]
-
-export const signedSponsors = sponsors.filter((sponsor) => sponsor.signed)
-
-export const platinumSponsors = signedSponsors.filter((sponsor) => sponsor.tier === "platinum")
-export const goldSponsors = signedSponsors.filter((sponsor) => sponsor.tier === "gold")
-export const silverSponsors = signedSponsors.filter((sponsor) => sponsor.tier === "silver")
-
-export type Partner = {
-  slug: string,
-  image: React.FC<React.HTMLAttributes<HTMLElement>> | null,
-  link: string,
-}
-
-export const partners: Partner[] = [
-  {
-    slug: "major-league-hacking",
-    image: (props) => (
-      <Image
-        src="/assets/sponsors/mlh-logo-color.svg"
-        alt="Major League Hacking"
-        width={310.59}
-        height={130.78}
-        {...props}
-      />
-    ),
-    link: "https://mlh.io/"
-  },
-  {
-    slug: "durham-uni-computing-society",
-    image: (props) => (
-      <Image
-        src="/assets/sponsors/compsoc-v5-with-text.svg"
-        alt="Durham University Computing Society"
-        width={534.81}
-        height={169.33}
-        {...props}
-      />
-    ),
-    link: "https://compsoc.tech"
-  },
-  {
-    slug: "overleaf",
-    image: (props) => (
-      <Image
-        src="/assets/sponsors/overleaf.svg"
-        alt="Overleaf"
-        width={130}
-        height={38}
-        {...props}
-      />
-    ),
-    link: "https://www.overleaf.com/"
-  },
-  {
-    slug: "keyboard-co",
-    image: (props) => (
-      <Image
-        src="/assets/sponsors/keyboard-company.svg"
-        alt="The Keyboard Company"
-        width={566.9}
-        height={198.4}
-        {...props}
-      />
-    ),
-    link: "https://www.keyboardco.com/"
-  },
-  {
-    slug: "rs-components",
-    image: (props) => (
-      <Image
-        src="/assets/sponsors/rs-components.svg"
-        alt="RS Components"
-        width={24}
-        height={24}
-        {...props}
-      />
-    ),
-    link: "https://uk.rs-online.com/web/"
-  },
-  {
-    slug: "pragmatic-semi",
-    image: (props) => (
-      <Image
-        src="/assets/sponsors/pragmatic-semi.svg"
-        alt="Pragmatic Semiconductor"
-        width={703.7}
-        height={258.4}
-        {...props}
-      />
-    ),
-    link: "https://www.pragmaticsemi.com/"
-  },
-  {
-    slug: "durham-uni-computer-science",
-    image: (props) => (
-      <Image
-        src="/assets/sponsors/durham-uni.svg"
-        alt="Durham University Computer Science"
-        width={703.7}
-        height={258.4}
-        {...props}
-      />
-    ),
-    link: "https://www.durham.ac.uk/departments/academic/computer-science/"
+    active: true,
   },
   {
     slug: "durham-uni-venture-lab",
@@ -247,7 +141,114 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://www.durham.ac.uk/venturelab"
+    link: "https://www.durham.ac.uk/venturelab",
+    tier: "gold",
+    active: true,
+  },
+  {
+    slug: "major-league-hacking",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/mlh-logo-color.svg"
+        alt="Major League Hacking"
+        width={310.59}
+        height={130.78}
+        {...props}
+      />
+    ),
+    link: "https://mlh.io/",
+    tier: "partner",
+    active: true,
+  },
+  {
+    slug: "durham-uni-computing-society",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/compsoc-v5-with-text.svg"
+        alt="Durham University Computing Society"
+        width={534.81}
+        height={169.33}
+        {...props}
+      />
+    ),
+    link: "https://compsoc.tech",
+    tier: "partner",
+    active: true,
+  },
+  {
+    slug: "overleaf",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/overleaf.svg"
+        alt="Overleaf"
+        width={130}
+        height={38}
+        {...props}
+      />
+    ),
+    link: "https://www.overleaf.com/",
+    tier: "partner",
+    active: true,
+  },
+  {
+    slug: "keyboard-co",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/keyboard-company.svg"
+        alt="The Keyboard Company"
+        width={566.9}
+        height={198.4}
+        {...props}
+      />
+    ),
+    link: "https://www.keyboardco.com/",
+    tier: "partner",
+    active: true,
+  },
+  {
+    slug: "rs-components",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/rs-components.svg"
+        alt="RS Components"
+        width={24}
+        height={24}
+        {...props}
+      />
+    ),
+    link: "https://uk.rs-online.com/web/",
+    tier: "partner",
+    active: true,
+  },
+  {
+    slug: "pragmatic-semi",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/pragmatic-semi.svg"
+        alt="Pragmatic Semiconductor"
+        width={703.7}
+        height={258.4}
+        {...props}
+      />
+    ),
+    link: "https://www.pragmaticsemi.com/",
+    tier: "partner",
+    active: true,
+  },
+  {
+    slug: "durham-uni-computer-science",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/durham-uni.svg"
+        alt="Durham University Computer Science"
+        width={703.7}
+        height={258.4}
+        {...props}
+      />
+    ),
+    link: "https://www.durham.ac.uk/departments/academic/computer-science/",
+    tier: "partner",
+    active: true,
   },
   {
     slug: "stand-out-stickers",
@@ -260,7 +261,9 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://hackp.ac/mlh-standoutstickers-hackathons"
+    link: "https://hackp.ac/mlh-standoutstickers-hackathons",
+    tier: "partner",
+    active: true,
   },
   {
     slug: "durham-uni-esports-and-gaming",
@@ -273,7 +276,9 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/"
+    link: "https://www.durham.ac.uk/colleges-and-student-experience/enrichment-activities/esports/dueg-info-page/",
+    tier: "partner",
+    active: true,
   },
   {
     slug: "durham-uni-student-union",
@@ -286,6 +291,130 @@ export const partners: Partner[] = [
         {...props}
       />
     ),
-    link: "https://www.durhamsu.com/"
-  }
+    link: "https://www.durhamsu.com/",
+    tier: "partner",
+    active: true,
+  },
+  {
+    slug: "durham-county-council",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/durham-county-council.svg"
+        alt="Durham County Council"
+        width={1002.6667}
+        height={426.66666}
+        {...props}
+      />
+    ),
+    link: "https://www.durham.gov.uk/",
+    tier: "partner",
+    active: false,
+  },
+  {
+    slug: "intel",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/intel.svg"
+        alt="Intel"
+        width={395.4}
+        height={155.9}
+        {...props}
+      />
+    ),
+    link: "https://www.intel.com",
+    tier: "partner",
+    active: true,
+  },
+  {
+    slug: "hackathons-uk",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/hackathonsuk.svg"
+        alt="Hackathons UK"
+        width={282.43}
+        height={77.11}
+        {...props}
+      />
+    ),
+    link: "https://www.hackathons.org.uk/",
+    tier: "partner",
+    active: true,
+  },
+  {
+    slug: "amazon-web-services",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/amazon-web-services.svg"
+        alt="Amazon Web Services"
+        width={79}
+        height={48}
+        {...props}
+      />
+    ),
+    link: "https://aws.amazon.com/",
+    tier: "partner",
+    active: false,
+  },
+  {
+    slug: "github",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/github.svg"
+        alt="GitHub"
+        width={600}
+        height={200}
+        {...props}
+      />
+    ),
+    link: "https://www.github.com",
+    tier: "partner",
+    active: false,
+  },
+  {
+    slug: "barclays",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/barclays.svg"
+        alt="Barclays"
+        width={500}
+        height={90}
+        {...props}
+      />
+    ),
+    link: "https://home.barclays/",
+    tier: "partner",
+    active: false,
+  },
+  {
+    slug: "netcraft",
+    image: (props) => (
+      <Image
+        src="/assets/sponsors/netcraft.svg"
+        alt="Barclays"
+        width={253}
+        height={44}
+        {...props}
+      />
+    ),
+    link: "https://www.netcraft.com/",
+    tier: "partner",
+    active: false,
+  },
 ]
+
+export const signedSponsors = sponsors.filter((sponsor) => sponsor.active)
+
+export const platinumSponsors = signedSponsors.filter((sponsor) => sponsor.tier === "platinum")
+export const goldSponsors = signedSponsors.filter((sponsor) => sponsor.tier === "gold")
+export const silverSponsors = signedSponsors.filter((sponsor) => sponsor.tier === "silver")
+
+export type Partner = {
+  slug: string,
+  image: React.FC<React.HTMLAttributes<HTMLElement>> | null,
+  link: string,
+  active: boolean
+}
+
+export const partners: Partner[] = sponsors.filter((sponsor) => sponsor.tier === "partner")
+
+export const activePartners = partners.filter(partner => partner.active)

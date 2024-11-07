@@ -4,6 +4,8 @@ import type AdminClientUserRepresentation from "@keycloak/keycloak-admin-client/
 import { type ClientMetadata, Issuer } from "openid-client"
 
 import { keycloakConfig } from "@/config"
+import { Group } from "@/decorators/authorise"
+import { enumValues } from "@/lib/enum-keys"
 
 function adaptClientConfig(clientConfig: typeof keycloakConfig): ClientMetadata {
   return {
@@ -19,7 +21,7 @@ export const keycloakIssuer = await Issuer.discover(keycloakIssuerUrl.toString()
 
 const keycloakClientConfig = adaptClientConfig(keycloakConfig)
 export const keycloakClient = new keycloakIssuer.Client(keycloakClientConfig)
-const keycloakAdminClient = new KeycloakAdminClient({
+let keycloakAdminClient = new KeycloakAdminClient({
   baseUrl: keycloakConfig.adminBaseUrl,
   realmName: keycloakConfig.realm,
 })
@@ -45,6 +47,24 @@ export async function getKeycloakAdminClient() {
   return keycloakAdminClient
 }
 
+keycloakAdminClient = await getKeycloakAdminClient()
+const rawGroupHierarchyResponse = await keycloakAdminClient.groups.find()
+const groupIds = new Map<Group, string>()
+for (const rawGroup of rawGroupHierarchyResponse) {
+  if (!rawGroup.path || !rawGroup.id) continue
+  groupIds.set(rawGroup.path as Group, rawGroup.id)
+}
+for (const group of enumValues(Group)) {
+  if (groupIds.has(group)) continue
+  throw new Error(`Didn't find a group ID for ${group}`)
+}
+
+export function getKeycloakGroupId(group: Group): string {
+  const id = groupIds.get(group)
+  if (id) return id
+  throw new Error(`Something has gone badly wrong, I don't know the group ID for ${group}`)
+}
+
 export type KeycloakUserInfo = {
   groups: string[]
   first_names: string
@@ -57,8 +77,19 @@ export type KeycloakUserInfo = {
 
 export type { AdminClientUserRepresentation }
 
-export function unpackAttribute<T extends string = string>(userRepresentation: AdminClientUserRepresentation, attributeName: string): T | undefined
-export function unpackAttribute<T = string>(userRepresentation: AdminClientUserRepresentation, attributeName: string, defaultValue: T): T
-export function unpackAttribute<T = string>(userRepresentation: AdminClientUserRepresentation, attributeName: string, defaultValue: T | undefined = undefined): T | undefined {
+export function unpackAttribute<T extends string = string>(
+  userRepresentation: AdminClientUserRepresentation,
+  attributeName: string,
+): T | undefined
+export function unpackAttribute<T = string>(
+  userRepresentation: AdminClientUserRepresentation,
+  attributeName: string,
+  defaultValue: T,
+): T
+export function unpackAttribute<T = string>(
+  userRepresentation: AdminClientUserRepresentation,
+  attributeName: string,
+  defaultValue: T | undefined = undefined,
+): T | undefined {
   return userRepresentation.attributes?.[attributeName]?.[0] ?? defaultValue
 }

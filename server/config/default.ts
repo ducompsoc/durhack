@@ -36,6 +36,29 @@ export default {
     url: "https://api.eu.mailgun.net",
   },
   durhack: {
-    maximumTicketAssignment: 900,
+    interopMutualTls: {
+      clientCertificateFile: "/dev/null",
+      clientCertificateKeyFile: "/dev/null",
+    },
+    maximumTicketAssignment: 860,
+    currentEventYear: 2024,
+    stashItems: {
+      keyring: {
+        name: "CV Keyring",
+        eligibilityCondition: { type: "cv-upload" },
+      },
+      "gilded-sticker": {
+        name: "Gilded Sticker",
+        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 50 },
+      },
+      "drawstring-bag": {
+        name: "Drawstring Bag",
+        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 100 },
+      },
+      "card-holder": {
+        name: "Phone Wallet",
+        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 150 },
+      },
+    },
   },
 } satisfies ConfigIn

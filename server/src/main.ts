@@ -10,12 +10,17 @@ import { apiErrorHandler } from "@/routes/error-handling"
 
 const app = new App<Request, Response>({
   onError: apiErrorHandler,
+  settings: {
+    "trust proxy": ["loopback"],
+  },
 })
 
 app
   .use(
     cors({
       origin: frontendOrigin,
+      allowedHeaders: ["content-type", "if-match", "if-none-match", "if-modified", "if-unmodified"],
+      exposedHeaders: ["etag"],
       credentials: true,
     }),
   )

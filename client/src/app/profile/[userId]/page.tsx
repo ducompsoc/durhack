@@ -1,32 +1,48 @@
 "use client"
 
-import { Checkbox } from "@durhack/web-components/ui/checkbox"
-import { useToast } from "@durhack/web-components/ui/use-toast"
 import React from "react"
 import useSWR from "swr"
+import { UpdateIcon } from "@radix-ui/react-icons"
+
+import { Label } from "@durhack/web-components/ui/label"
+import { useToast } from "@durhack/web-components/hooks/use-toast"
+import type { UserProfile } from "@durhack/durhack-common/types/user-profile"
 
 import { siteConfig } from "@/config/site"
+import { ApplicationStatusBadge } from "@/components/dashboard/application-status-indicator"
+import { isLoaded } from "@/lib/is-loaded"
+import { cn } from "@/lib/utils"
 
-export type UserProfile = {
-  age: number
-  university: string
-  gradYear: string
-  levelOfStudy: string
-  country: string
+import { ProfileCheckInButton } from "./check-in-button"
+import { CvUploadBadge } from "./cv-upload-badge"
+import { StashClaimsDisplay } from "./stash-claims"
+
+const profileFetcher = async (url: string): Promise<UserProfile> => {
+  const response = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+    },
+    credentials: "include",
+  })
+
+  if (!response.ok) throw new Error("Failed to fetch data")
+  const payload: unknown = await response.json()
+  if (typeof payload !== "object" || Array.isArray(payload)) throw new Error(`Expected response type 'object', got '${typeof payload}'`)
+  if (payload === null) throw new Error("Unexpected null response")
+  if (!Object.hasOwn(payload, "data")) throw new Error("Response missing expected member `data`")
+  return payload.data as UserProfile
 }
 
-type Flags = {
-  [T in FlagName]?: boolean | undefined
+function UserAttribute({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.ReactNode {
+  return (
+    <div
+      className={cn("flex space-x-3 items-center text-muted-foreground text-xs", className)}
+      {...props}
+    >
+      {children}
+    </div>
+  )
 }
-
-const defaultFlags = {
-  attendance: false,
-  mlhCodeOfConduct: false,
-  mlhPolicies: false,
-  mlhMarketing: false,
-}
-
-type FlagName = keyof typeof defaultFlags
 
 const ProfilePage = React.memo(
   ({
@@ -36,126 +52,44 @@ const ProfilePage = React.memo(
   }): React.ReactNode => {
     const { toast } = useToast()
 
-    const profileFetcher = async (url: string): Promise<UserProfile> => {
-      const response = await fetch(url, {
-        headers: {
-          Accept: "application/json",
-        },
-      })
-
-      if (!response.ok) throw new Error("Failed to fetch data")
-      return response.json()
-    }
-
-    const flagsFetcher = async (url: string): Promise<Required<Flags>> => {
-      const response = await fetch(url, {
-        headers: {
-          Accept: "application/json",
-        },
-      })
-
-      if (!response.ok) throw new Error("Failed to fetch data")
-      const json: FlagName[] = await response.json()
-      const dummyFlags = Object.assign({}, defaultFlags)
-      for (const flag of json) {
-        dummyFlags[flag] = true
-      }
-      return dummyFlags
-    }
-
     const {
-      data: profileData,
+      data: profile,
+      mutate: mutateProfile,
       error: profileError,
       isLoading: profileIsLoading,
     } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}`, profileFetcher)
-    const {
-      data: flagsData,
-      error: flagError,
-      isLoading: flagsAreLoading,
-    } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}/flags`, flagsFetcher)
 
-    if (profileError || flagError) {
-      return <div>Failed to load profile data.</div>
-    }
-
-    if (profileIsLoading || flagsAreLoading) {
-      return <div>Loading profile data...</div>
-    }
-
-    async function setAttendance(setValue: boolean | "indeterminate") {
-      if (setValue === "indeterminate") return
-      try {
-        const response = await fetch(`${siteConfig.apiUrl}/profile/${params.userId}/flags`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            userFlags: {
-              attendance: setValue,
-            },
-          }),
-        })
-        if (!response.ok) throw new Error("Something went wrong.")
-
-        toast({
-          description: "Successfully updated attendance!",
-          variant: "success",
-        })
-      } catch (error) {
-        toast({
-          description: "Failed to update attendance.",
-          variant: "destructive",
-        })
-        return
-      }
-    }
+    if (!isLoaded(profile, profileIsLoading, profileError)) return (
+      <main className="w-full min-h-[100vh] m-0 flex flex-col items-center justify-center">
+        <UpdateIcon className="animate-spin h-6 w-6 m-5"/>
+      </main>
+    )
 
     return (
-      <main className="flex justify-center">
-        <div className="bg-muted md:w-full lg:w-1/2 my-7">
-          <div className="grid space-y-6 my-5">
-            <div className="grid grid-rows-2 grid-flow-col flex justify-center">
-              <p className="lg:text-4xl md:text-2xl break-word">
-                <b>User #{params.userId}</b>
-              </p>
-              <div className="flex items-center">
-                <p>
-                  <b>Attendance:</b>
-                </p>
-                <Checkbox
-                  className="ml-2"
-                  defaultChecked={flagsData?.attendance != null}
-                  onCheckedChange={(checked) => void setAttendance(checked)}
-                >
-                  {" "}
-                </Checkbox>
-              </div>
-            </div>
-
-            <div className="ml-8 justify-center break-all">
-              <p>
-                <b>Role: </b>Hacker
-              </p>
-              <p className="mt-3">
-                <b>University:</b> {profileData?.university}{" "}
-              </p>
-              <p>
-                <b>Graduation year:</b> {profileData?.gradYear}{" "}
-              </p>
-              <p>
-                <b>Level of study:</b> {profileData?.levelOfStudy}{" "}
-              </p>
-              <p className="mt-3">
-                <b>Age:</b> {profileData?.age}{" "}
-              </p>
-              <p>
-                <b>Country:</b> {profileData?.country}{" "}
-              </p>
-              <p className="mt-3">Todo: keycloak attributes</p>
-            </div>
-          </div>
+      <main className="w-full min-h-[100vh] m-0 flex flex-col space-y-1.5 items-center justify-center">
+        <h1 className="text-4xl font-bold">{profile.preferredNames ?? profile.firstNames} {profile.lastNames}</h1>
+        <ApplicationStatusBadge applicationStatus={profile.applicationStatus}/>
+        <CvUploadBadge uploadedCv={profile.uploadedCv} />
+        <UserAttribute>
+          <Label htmlFor="uuid">ID</Label>
+          <div id="uuid"><code>{profile.userId}</code></div>
+        </UserAttribute>
+        <UserAttribute>
+          <Label htmlFor="email">Email</Label>
+          <div id="email">{profile.email}</div>
+        </UserAttribute>
+        <UserAttribute>
+          <Label htmlFor="pronouns">Pronouns</Label>
+          <div id="pronouns">{profile.pronouns}</div>
+        </UserAttribute>
+        <div>
+          <ProfileCheckInButton
+            profile={profile}
+            mutateProfile={mutateProfile}
+            toast={toast}
+          />
         </div>
+        <StashClaimsDisplay userId={profile.userId} />
       </main>
     )
   },

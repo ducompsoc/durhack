@@ -67,13 +67,13 @@ export function authenticate(): Middleware {
       return next()
     }
 
-    // use the token set to get the user profiles
+    // use the token set to get the user profile
     let profile: UserinfoResponse<KeycloakUserInfo> | undefined
     try {
       profile = await keycloakClient.userinfo<KeycloakUserInfo>(tokenSet.access_token)
     } catch (error) {
       if (isNetworkError(error)) {
-        throw new ServerError("Encountered network error while attempting to fetch profiles info", {
+        throw new ServerError("Encountered network error while attempting to fetch profile info", {
           statusCode: 500,
           exposeMessage: false,
           cause: error,

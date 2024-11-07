@@ -1,15 +1,17 @@
 import * as React from "react"
 
 import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
 
 type ProfileQrCodeProps = {
   userId: string,
 } & React.HTMLAttributes<HTMLImageElement>
 
-export function ProfileQrCode({ userId, ...props }: ProfileQrCodeProps): React.ReactNode {
+export function ProfileQrCode({ userId, className, ...props }: ProfileQrCodeProps): React.ReactNode {
   const profileUrl = new URL(`/profile/${userId}`, siteConfig.url)
   const svgProfileQrCodeSearchParams = new URLSearchParams({
     format: "svg",
+    qzone: "4",
     data: profileUrl.href,
   })
   const svgProfileQrCodeUrl = new URL(`/v1/create-qr-code/?${svgProfileQrCodeSearchParams}`, "https://api.qrserver.com")
@@ -17,8 +19,9 @@ export function ProfileQrCode({ userId, ...props }: ProfileQrCodeProps): React.R
   // this is intentionally not an `Image` from "next/image" as the `src` is dynamic
   return <img
     src={svgProfileQrCodeUrl.toString()}
-    width={600}
-    height={600}
+    className={cn("rounded-md", className)}
+    width={1000}
+    height={1000}
     alt="your DurHack profile QR code"
     {...props}
   />

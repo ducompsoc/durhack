@@ -7,7 +7,7 @@ import {
   platinumSponsors,
   goldSponsors,
   silverSponsors,
-  partners,
+  activePartners,
 } from "@/config/sponsors"
 import { SectionHeader } from "@/components/section-header"
 
@@ -16,6 +16,7 @@ const tierWidths = {
   platinum: 200,
   gold: 150,
   silver: 100,
+  partner: 0,
 }
 
 const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<typeof Image>, "src" | "alt">>> = {
@@ -46,6 +47,7 @@ const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<type
       {...props}
     />
   ),
+  partner: () => undefined,
 }
 
 const partnerScale = 0.75
@@ -208,7 +210,7 @@ export function Sponsors() {
         <SectionHeader className="mb-4">Partners</SectionHeader>
 
         <div className="partners flex flex-wrap justify-evenly">
-          {partners.map((partner) => (
+          {activePartners.map((partner) => (
             <Partner key={partner.slug} partner={partner}/>
           ))}
         </div>

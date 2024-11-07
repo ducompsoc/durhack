@@ -16,8 +16,14 @@ function makeHttpErrorResponseBody(error: HttpError): ResponseBody {
     message: error.statusMessage,
   }
 
-  if (error.message && error.message !== response_body.message) {
+  Object.assign(response_body, error.extra)
+
+  if (error.exposeMessage && error.message && error.message !== response_body.message) {
     response_body.detail = error.message
+  }
+
+  if (error.exposeMessage && error.code) {
+    response_body.error_code = error.code
   }
 
   return response_body
@@ -33,28 +39,11 @@ function makeZodErrorResponseBody(error: ZodError): ResponseBody {
     status: 400,
     message: STATUS_CODES[400] as string,
     detail: { issues: error.issues },
+    error_code: "ERR_VALIDATION_FAILED",
   }
 }
 
 export function sendZodErrorResponse(response: Response, error: ZodError): void {
   const response_body = makeZodErrorResponseBody(error)
   response.status(400).json(response_body)
-}
-
-export function makeStandardResponseBody(status: number, message?: string): ResponseBody {
-  const response_body: ResponseBody = {
-    status: status,
-    message: STATUS_CODES[status] || "Unknown status",
-  }
-
-  if (message !== undefined) {
-    response_body.detail = message
-  }
-
-  return response_body
-}
-
-export function sendStandardResponse(response: Response, status: number, message?: string): void {
-  const response_body = makeStandardResponseBody(status, message)
-  response.status(status).json(response_body)
 }

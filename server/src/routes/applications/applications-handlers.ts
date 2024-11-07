@@ -1,21 +1,24 @@
 import { ClientError, HttpStatus } from "@otterhttp/errors"
+import type { Prisma, UserApplicationStatus } from "@prisma/client"
 import {
   getApplicationsGroupedByDietaryRequirement,
   getApplicationsGroupedByDisciplineOfStudy,
 } from "@prisma/client/sql"
-import type { UserApplicationStatus, Prisma } from "@prisma/client";
 
-import { origin } from "@/config";
+import { origin } from "@/config"
 import { prisma } from "@/database"
 import { Group, onlyGroups } from "@/decorators/authorise"
-import { Middleware, Request, Response } from "@/types"
+import type { Middleware, Request, Response } from "@/types"
 
 class ApplicationsHandlers {
   hasAttendanceFlag(): Prisma.UserWhereInput["userFlags"] {
     return { some: { flagName: "attendance" } }
   }
 
-  private async getTotalApplicationCount(applicationStatusFilter: UserApplicationStatus[], whereOnlyCheckedIn: boolean): Promise<number> {
+  private async getTotalApplicationCount(
+    applicationStatusFilter: UserApplicationStatus[],
+    whereOnlyCheckedIn: boolean,
+  ): Promise<number> {
     return await prisma.user.count({
       where: {
         userInfo: {
@@ -28,7 +31,10 @@ class ApplicationsHandlers {
     })
   }
 
-  private async getTotalCvCount(applicationStatusFilter: UserApplicationStatus[], whereOnlyCheckedIn: boolean): Promise<number> {
+  private async getTotalCvCount(
+    applicationStatusFilter: UserApplicationStatus[],
+    whereOnlyCheckedIn: boolean,
+  ): Promise<number> {
     return await prisma.user.count({
       where: {
         userInfo: {
@@ -51,9 +57,21 @@ class ApplicationsHandlers {
     return ["accepted"]
   }
 
+  private getRawApplicationStatusFilter(
+    response: Response,
+  ): ("unsubmitted" | "submitted" | "accepted" | "waiting_list")[] {
+    // with query parameter "all", include everyone that was at one point 'submitted'
+    if (response.locals.includeAll === true) return ["submitted", "accepted", "waiting_list"]
+    // with query parameter "attendees", include everyone that was at one point 'submitted'
+    if (response.locals.whereOnlyCheckedIn === true) return ["submitted", "accepted", "waiting_list"]
+    // with no query parameters, only include people that have been assigned tickets
+    return ["accepted"]
+  }
+
   private getFilterDescription(response: Response): string {
     if (response.locals.includeAll === true) return "`all`: All completed applications are considered"
-    if (response.locals.whereOnlyCheckedIn === true) return "`attendees`: Only completed applications for checked-in attendees are considered"
+    if (response.locals.whereOnlyCheckedIn === true)
+      return "`attendees`: Only completed applications for checked-in attendees are considered"
     return "`accepted`: only completed applications which have been assigned tickets are considered"
   }
 
@@ -145,6 +163,7 @@ class ApplicationsHandlers {
         group_by_discipline_of_study_url: new URL(`/applications/by-discipline-of-study${request.queryString}`, origin),
         group_by_dietary_requirement_url: new URL(`/applications/by-dietary-requirement${request.queryString}`, origin),
         group_by_gender_identity_url: new URL(`/applications/by-gender-identity${request.queryString}`, origin),
+        data_export_url: new URL("/applications/data-export", origin),
       })
     }
   }
@@ -166,9 +185,7 @@ class ApplicationsHandlers {
             applicationStatus: {
               in: applicationStatusFilter,
             },
-            user: response.locals.whereOnlyCheckedIn === true
-              ? { userFlags: this.hasAttendanceFlag() }
-              : undefined,
+            user: response.locals.whereOnlyCheckedIn === true ? { userFlags: this.hasAttendanceFlag() } : undefined,
           },
           _count: {
             userId: true,
@@ -214,9 +231,7 @@ class ApplicationsHandlers {
             applicationStatus: {
               in: applicationStatusFilter,
             },
-            user: response.locals.whereOnlyCheckedIn === true
-              ? { userFlags: this.hasAttendanceFlag() }
-              : undefined,
+            user: response.locals.whereOnlyCheckedIn === true ? { userFlags: this.hasAttendanceFlag() } : undefined,
           },
           _count: {
             userId: true,
@@ -255,11 +270,14 @@ class ApplicationsHandlers {
   getApplicationsByDisciplineOfStudy(): Middleware {
     return async (request, response) => {
       const applicationStatusFilter = this.getApplicationStatusFilter(response)
+      const rawApplicationStatusFilter = this.getRawApplicationStatusFilter(response)
       const [result, totalApplicationCount] = await Promise.all([
-        prisma.$queryRawTyped(getApplicationsGroupedByDisciplineOfStudy(
-          applicationStatusFilter,
-          response.locals.whereOnlyCheckedIn === true
-        )),
+        prisma.$queryRawTyped(
+          getApplicationsGroupedByDisciplineOfStudy(
+            rawApplicationStatusFilter,
+            response.locals.whereOnlyCheckedIn === true,
+          ),
+        ),
         this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
       ])
 
@@ -294,11 +312,14 @@ class ApplicationsHandlers {
   getApplicationsByDietaryRequirement(): Middleware {
     return async (request, response) => {
       const applicationStatusFilter = this.getApplicationStatusFilter(response)
+      const rawApplicationStatusFilter = this.getRawApplicationStatusFilter(response)
       const [result, totalApplicationCount] = await Promise.all([
-        prisma.$queryRawTyped(getApplicationsGroupedByDietaryRequirement(
-          applicationStatusFilter,
-          response.locals.whereOnlyCheckedIn === true
-        )),
+        prisma.$queryRawTyped(
+          getApplicationsGroupedByDietaryRequirement(
+            rawApplicationStatusFilter,
+            response.locals.whereOnlyCheckedIn === true,
+          ),
+        ),
         this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
       ])
 
@@ -340,9 +361,7 @@ class ApplicationsHandlers {
             applicationStatus: {
               in: applicationStatusFilter,
             },
-            user: response.locals.whereOnlyCheckedIn === true
-              ? { userFlags: this.hasAttendanceFlag() }
-              : undefined,
+            user: response.locals.whereOnlyCheckedIn === true ? { userFlags: this.hasAttendanceFlag() } : undefined,
           },
           _count: {
             userId: true,
