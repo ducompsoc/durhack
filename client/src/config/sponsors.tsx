@@ -323,7 +323,7 @@ export const sponsors: Sponsor[] = [
     ),
     link: "https://www.intel.com",
     tier: "partner",
-    active: true,
+    active: false,
   },
   {
     slug: "hackathons-uk",
