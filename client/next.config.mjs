@@ -35,6 +35,11 @@ const nextConfig = {
         destination: "/",
         permanent: false,
       },
+      {
+        source: "/organise",
+        destination: "https://forms.gle/E6h8ri1JWFM1BBk57",
+        permanent: false,
+      },
     ]
   },
 }
