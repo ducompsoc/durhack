@@ -23,7 +23,7 @@ export default function HomePage() {
         </section>
         <section className="text-white py-3 border-b border-white 2xl:pt-0 2xl:pb-0 2xl:pl-5 2xl:border-b-0">
           <div className="flex flex-col h-full justify-center text-center 2xl:text-right">
-            <h2 className={cn(spaceGrotesk.className, "date text-4xl 2xl:text-6xl")}>
+            <h2 className={cn(spaceGrotesk.className, "date text-4xl 2xl:text-[4rem]")}>
               1<sup>st</sup>-2<sup>nd</sup> November 2025
             </h2>
           </div>
