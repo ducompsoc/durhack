@@ -2,15 +2,15 @@
 
 import * as React from "react"
 
-import { cn } from "@/lib/utils"
 import { Footer } from "@/components/footer"
+import { cn } from "@/lib/utils"
 
 import { BackgroundContext } from "./background-context"
 
 export function DashboardLayoutClient({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   const wasFinalSubmitHoveredRef = React.useRef<boolean>(false)
   const [isFinalSubmitHovering, setIsFinalSubmitHovering] = React.useState<boolean>(false)

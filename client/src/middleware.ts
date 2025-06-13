@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 
-import { isVolunteer } from "@/lib/is-role";
 import { siteConfig } from "@/config/site"
+import { isVolunteer } from "@/lib/is-role"
 
 type User = {
   id: string

@@ -1,4 +1,4 @@
-import * as React from "react"
+import type * as React from "react"
 
 export default function ContactPageLayout({ children }: { children: React.ReactNode }) {
   return (

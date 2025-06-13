@@ -1,4 +1,4 @@
-# DurHack 2024 Website
+# DurHack 2025 Website
 
 This repository is the latest website for DurHack.
 

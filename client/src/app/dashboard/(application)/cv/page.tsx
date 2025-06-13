@@ -14,15 +14,30 @@ import {
   FileUploadErrorMessage,
   FileUploadFileList,
 } from "@durhack/web-components/ui/file-upload"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectValueClipper } from "@durhack/web-components/ui/select"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@durhack/web-components/ui/form"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectValueClipper,
+} from "@durhack/web-components/ui/select"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
-import { FormSubmitButton } from "@/components/dashboard/form-submit-button";
-import { Application } from "@/hooks/use-application"
+import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
+import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
+import { isLoaded } from "@/lib/is-loaded"
 import { updateApplication } from "@/lib/update-application"
-import { isLoaded } from "@/lib/is-loaded";
 import { cn } from "@/lib/utils"
 
 type CvFormFields = {
@@ -30,38 +45,42 @@ type CvFormFields = {
   cvFiles: File[]
 }
 
-const cvFormSchema = z.discriminatedUnion("cvUploadChoice", [
-  z.object({
-    cvUploadChoice: z.literal("remind"),
-  }),
-  z.object({
-    cvUploadChoice: z.literal("no-upload"),
-  }),
-  z.object({
-    cvUploadChoice: z.literal("upload"),
-    cvFiles: z
-      .array(
-        z
-          .custom<File>((value) => value instanceof File, "How on earth did you manage this?")
-          .refine((value) => value.size <= 10485760, "Maximum file size is 10MB!")
-          .refine((value) => {
-            if (
-              ![
-                "application/pdf",
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                "application/msword",
-              ].includes(value.type)
-            )
-              return false
+const cvFormSchema = z.discriminatedUnion(
+  "cvUploadChoice",
+  [
+    z.object({
+      cvUploadChoice: z.literal("remind"),
+    }),
+    z.object({
+      cvUploadChoice: z.literal("no-upload"),
+    }),
+    z.object({
+      cvUploadChoice: z.literal("upload"),
+      cvFiles: z
+        .array(
+          z
+            .custom<File>((value) => value instanceof File, "How on earth did you manage this?")
+            .refine((value) => value.size <= 10485760, "Maximum file size is 10MB!")
+            .refine((value) => {
+              if (
+                ![
+                  "application/pdf",
+                  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                  "application/msword",
+                ].includes(value.type)
+              )
+                return false
 
-            const split = value.name.split(".")
-            const extension = split[split.length - 1]
-            return ["doc", "docx", "pdf"].includes(extension)
-          }, "Please upload a PDF or Word doc!"),
-      )
-      .length(1, "Please provide exactly one CV file!"),
-  }),
-], { errorMap: () => ({ message: "Please select an option." }) })
+              const split = value.name.split(".")
+              const extension = split[split.length - 1]
+              return ["doc", "docx", "pdf"].includes(extension)
+            }, "Please upload a PDF or Word doc!"),
+        )
+        .length(1, "Please provide exactly one CV file!"),
+    }),
+  ],
+  { errorMap: () => ({ message: "Please select an option." }) },
+)
 
 /**
  * This component accepts <code>application</code> via props, rather than via
@@ -107,19 +126,24 @@ function CvForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="cvUploadChoice"
-            render={({field: {onChange, ref, ...field}}) => (
+            render={({ field: { onChange, ref, ...field } }) => (
               <FormItem>
                 <FormLabel>Would you like to submit your CV?</FormLabel>
                 <FormDescription>
-                  <p>By submitting your CV, you agree to provide it to our sponsors, and therefore agree to their privacy policies.</p>
-                  <ul style={{listStyleType: "\"- \""}} className="ml-4">
+                  <p>
+                    By submitting your CV, you agree to provide it to our sponsors, and therefore agree to their privacy
+                    policies.
+                  </p>
+                  <ul style={{ listStyleType: '"- "' }} className="ml-4">
                     <li>
-                      <a className="underline" href="https://www.mwam.com/regulatory-disclosures/privacy-policy/">Marshall Wace Privacy Policy</a>
+                      <a className="underline" href="https://www.mwam.com/regulatory-disclosures/privacy-policy/">
+                        Marshall Wace Privacy Policy
+                      </a>
                     </li>
                   </ul>
                 </FormDescription>
                 <Select
-                  onValueChange={function (value: string) {
+                  onValueChange={(value: string) => {
                     onChange(value)
                     setShowForm(value === "upload")
                   }}
@@ -128,7 +152,7 @@ function CvForm({ application }: { application: Application }) {
                   <FormControl>
                     <SelectTrigger ref={ref}>
                       <SelectValueClipper>
-                        <SelectValue/>
+                        <SelectValue />
                       </SelectValueClipper>
                     </SelectTrigger>
                   </FormControl>
@@ -141,7 +165,7 @@ function CvForm({ application }: { application: Application }) {
                     <SelectItem value="no-upload">No (don&apos;t remind me later)</SelectItem>
                   </SelectContent>
                 </Select>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -150,7 +174,7 @@ function CvForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="cvFiles"
-            render={({field: {value, ref, ...field}}) => (
+            render={({ field: { value, ref, ...field } }) => (
               <FormItem>
                 <FileUpload
                   multiDropBehaviour="replace"
@@ -167,13 +191,13 @@ function CvForm({ application }: { application: Application }) {
                   {...field}
                 >
                   <FileUploadDropzoneRoot>
-                    <FileUploadDropzoneBasket/>
-                    <FileUploadDropzoneInput/>
+                    <FileUploadDropzoneBasket />
+                    <FileUploadDropzoneInput />
                   </FileUploadDropzoneRoot>
-                  <FileUploadErrorMessage/>
-                  <FileUploadFileList/>
+                  <FileUploadErrorMessage />
+                  <FileUploadFileList />
                 </FileUpload>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -187,7 +211,7 @@ function CvForm({ application }: { application: Application }) {
 }
 
 function CvFormSkeleton() {
-  return <FormSkeleton rows={1} className="mt-2"/>
+  return <FormSkeleton rows={1} className="mt-2" />
 }
 
 export default function CvPage() {

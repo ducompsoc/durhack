@@ -1,7 +1,7 @@
-'use client'
+"use client"
 
-import * as React from "react"
 import { Button } from "@durhack/web-components/ui/button"
+import * as React from "react"
 
 /**
  * Dashboard error boundary. This is usually only hit when an error is thrown by the
