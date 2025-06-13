@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { UserContextContext } from "@/components/user-context-provider"
+import { UserContextContext } from "@/components/dashboard/user-context-provider"
 
 export type { User } from "@/hooks/use-user"
 

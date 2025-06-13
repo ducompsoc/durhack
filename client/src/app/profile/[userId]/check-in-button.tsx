@@ -1,15 +1,14 @@
-import * as React from "react"
-import { cva } from "class-variance-authority"
-import type { KeyedMutator } from "swr"
 import { UpdateIcon } from "@radix-ui/react-icons"
+import { cva } from "class-variance-authority"
+import * as React from "react"
+import type { KeyedMutator } from "swr"
 
 import type { UserProfile } from "@durhack/durhack-common/types/user-profile"
-import { Button } from "@durhack/web-components/ui/button"
 import type { Toast, Toaster } from "@durhack/web-components/hooks/use-toast"
+import { Button } from "@durhack/web-components/ui/button"
 
 import { siteConfig } from "@/config/site"
-import { handleBadResponse } from "@/lib/handle-bad-fetch-response";
-
+import { handleBadResponse } from "@/lib/handle-bad-fetch-response"
 
 const checkInButtonVariants = cva("text-xl", {
   variants: {
@@ -20,8 +19,8 @@ const checkInButtonVariants = cva("text-xl", {
     },
   },
   defaultVariants: {
-    state: "default"
-  }
+    state: "default",
+  },
 })
 
 const checkInButtonText: Record<"undo" | "default" | "checked-in", string> = {
@@ -35,9 +34,11 @@ type CheckInButtonProps = {
 } & React.ComponentProps<typeof Button>
 
 export function CheckInButton({ className, state, ...props }: CheckInButtonProps): React.ReactNode {
-  return <Button variant="outline" className={checkInButtonVariants({ state, className })} {...props}>
-    {checkInButtonText[state]}
-  </Button>
+  return (
+    <Button variant="outline" className={checkInButtonVariants({ state, className })} {...props}>
+      {checkInButtonText[state]}
+    </Button>
+  )
 }
 
 type ProfileCheckInButtonProps = {
@@ -46,13 +47,17 @@ type ProfileCheckInButtonProps = {
   toast: Toaster
 } & React.ComponentProps<typeof Button>
 
-async function checkIn({ profile, mutateProfile, toast }: { profile: UserProfile, mutateProfile: KeyedMutator<UserProfile>, toast: Toaster }) {
+async function checkIn({
+  profile,
+  mutateProfile,
+  toast,
+}: { profile: UserProfile; mutateProfile: KeyedMutator<UserProfile>; toast: Toaster }) {
   const fallbackToast: Toast = {
     description: "Failed to check in",
     variant: "destructive",
   }
 
-  let response: Response;
+  let response: Response
   try {
     response = await fetch(`${siteConfig.apiUrl}/profile/${profile.userId}/check-in`, {
       method: "POST",
@@ -80,13 +85,17 @@ async function checkIn({ profile, mutateProfile, toast }: { profile: UserProfile
   })
 }
 
-async function undoCheckIn({ profile, mutateProfile, toast }: { profile: UserProfile, mutateProfile: KeyedMutator<UserProfile>, toast: Toaster }) {
+async function undoCheckIn({
+  profile,
+  mutateProfile,
+  toast,
+}: { profile: UserProfile; mutateProfile: KeyedMutator<UserProfile>; toast: Toaster }) {
   const fallbackToast: Toast = {
     description: "Failed to undo",
     variant: "destructive",
   }
 
-  let response: Response;
+  let response: Response
   try {
     response = await fetch(`${siteConfig.apiUrl}/profile/${profile.userId}/check-in?whoops`, {
       method: "POST",
@@ -115,17 +124,18 @@ async function undoCheckIn({ profile, mutateProfile, toast }: { profile: UserPro
 
 function inferState(profile: UserProfile): "undo" | "default" | "checked-in" {
   if (!profile.checkedIn || profile.checkedInAt == null) return "default"
-  if ((Date.now() - profile.checkedInAt) < (5 * 60 * 1000)) return "undo"
+  if (Date.now() - profile.checkedInAt < 5 * 60 * 1000) return "undo"
   return "checked-in"
 }
 
 export function ProfileCheckInButton({ profile, mutateProfile, toast, ...props }: ProfileCheckInButtonProps) {
   const [working, setWorking] = React.useState<boolean>(false)
-  if (working) return (
-    <div className="h-9 px-4 py-2 m-5">
-      <UpdateIcon className="animate-spin h-4 w-6"/>
-    </div>
-  )
+  if (working)
+    return (
+      <div className="h-9 px-4 py-2 m-5">
+        <UpdateIcon className="animate-spin h-4 w-6" />
+      </div>
+    )
 
   const state = inferState(profile)
 
@@ -140,11 +150,5 @@ export function ProfileCheckInButton({ profile, mutateProfile, toast, ...props }
     }
   }
 
-  return <CheckInButton
-    className="m-5"
-    state={state}
-    disabled={state === "checked-in"}
-    onClick={onClick}
-    {...props}
-  />
+  return <CheckInButton className="m-5" state={state} disabled={state === "checked-in"} onClick={onClick} {...props} />
 }

@@ -1,7 +1,7 @@
-import * as React from "react"
 import type { Metadata } from "next"
+import * as React from "react"
 
-import ErrorPageClient from "@/app/error/error-page-client";
+import ErrorPageClient from "@/app/error/error-page-client"
 
 export const metadata: Metadata = {
   title: "Error",

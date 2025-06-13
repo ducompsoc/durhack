@@ -1,26 +1,45 @@
 "use client"
 
-import { disciplineOfStudyOptions, disciplineOfStudySchema, type DisciplineOfStudy } from "@durhack/durhack-common/input/discipline-of-study"
+import {
+  type DisciplineOfStudy,
+  disciplineOfStudyOptions,
+  disciplineOfStudySchema,
+} from "@durhack/durhack-common/input/discipline-of-study"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import * as React from "react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import useSWRImmutable from "swr/immutable"
+import { z } from "zod"
 
 import { ComboBox, ComboBoxButton, ComboBoxContent, ComboBoxTrigger } from "@durhack/web-components/ui/combobox"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@durhack/web-components/ui/form"
 import { Input } from "@durhack/web-components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectValueClipper } from "@durhack/web-components/ui/select"
 import { MultiSelect } from "@durhack/web-components/ui/multi-select"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectValueClipper,
+} from "@durhack/web-components/ui/select"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
-import { FormSubmitButton } from "@/components/dashboard/form-submit-button";
-import { siteConfig } from "@/config/site";
+import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
+import { siteConfig } from "@/config/site"
+import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
-import { Application } from "@/hooks/use-application"
+import { isLoaded } from "@/lib/is-loaded"
 import { updateApplication } from "@/lib/update-application"
-import { isLoaded } from "@/lib/is-loaded";
 import "@/lib/zod-iso3-extension"
 
 type EducationFormFields = {
@@ -50,19 +69,24 @@ const educationFormSchema = z.object({
     .int("Oh, come on. Really?")
     .min(1900, { message: "Be serious. You didn't graduate before 1900." })
     .max(2100, { message: "What on earth are you studying?!?" }),
-  disciplinesOfStudy: z.array(disciplineOfStudySchema).min(1, { message: "Please select your discipline(s) of study." }),
-  levelOfStudy: z.enum([
-    "secondary",
-    "undergraduate-first-year",
-    "undergraduate-second-year",
-    "undergraduate-third-year-or-higher",
-    "graduate",
-    "bootcamp",
-    "vocational-or-apprenticeship",
-    "other",
-    "not-a-student",
-    "prefer-not-to-answer",
-  ], { message: "Please select your level of study." }),
+  disciplinesOfStudy: z
+    .array(disciplineOfStudySchema)
+    .min(1, { message: "Please select your discipline(s) of study." }),
+  levelOfStudy: z.enum(
+    [
+      "secondary",
+      "undergraduate-first-year",
+      "undergraduate-second-year",
+      "undergraduate-third-year-or-higher",
+      "graduate",
+      "bootcamp",
+      "vocational-or-apprenticeship",
+      "other",
+      "not-a-student",
+      "prefer-not-to-answer",
+    ],
+    { message: "Please select your level of study." },
+  ),
   countryOfResidence: z.string().iso3(),
 })
 
@@ -169,9 +193,15 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                   </FormControl>
                   <SelectContent>
                     <SelectItem value="secondary">Secondary/High School</SelectItem>
-                    <SelectItem value="undergraduate-first-year">Undergraduate Degree (1<sup>st</sup> year)</SelectItem>
-                    <SelectItem value="undergraduate-second-year">Undergraduate Degree (2<sup>nd</sup> year)</SelectItem>
-                    <SelectItem value="undergraduate-third-year-or-higher">Undergraduate Degree (3<sup>rd</sup> year or higher)</SelectItem>
+                    <SelectItem value="undergraduate-first-year">
+                      Undergraduate Degree (1<sup>st</sup> year)
+                    </SelectItem>
+                    <SelectItem value="undergraduate-second-year">
+                      Undergraduate Degree (2<sup>nd</sup> year)
+                    </SelectItem>
+                    <SelectItem value="undergraduate-third-year-or-higher">
+                      Undergraduate Degree (3<sup>rd</sup> year or higher)
+                    </SelectItem>
                     <SelectItem value="graduate">Graduate Degree (Masters&apos;, etc)</SelectItem>
                     <SelectItem value="bootcamp">Code School/Bootcamp</SelectItem>
                     <SelectItem value="vocational-or-apprenticeship">
@@ -196,25 +226,19 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
               <FormItem>
                 <FormLabel>Discipline(s) of Study</FormLabel>
                 <FormControl>
-                  <MultiSelect
-                    {...field}
-                    options={disciplineOfStudyOptions}
-                    hidePlaceholderWhenSelected
-                  />
+                  <MultiSelect {...field} options={disciplineOfStudyOptions} hidePlaceholderWhenSelected />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
-            >
-
-          </FormField>
+          />
         </div>
 
         <div className="mb-4">
           <FormField
             control={form.control}
             name="countryOfResidence"
-            render={({ field: {ref, ...field} } ) => (
+            render={({ field: { ref, ...field } }) => (
               <FormItem>
                 <FormLabel>Country of Residence</FormLabel>
                 <ComboBox<string>
@@ -248,21 +272,28 @@ function EducationFormSkeleton() {
 }
 
 export default function EducationPage() {
-  const { data: schoolOptions, isLoading: schoolOptionsLoading, error: schoolOptionsError } = useSWRImmutable<SchoolOption[], unknown>("/application/education/institution-options", optionsFetcher<SchoolOption>)
-  const { data: countryOptions, isLoading: countryOptionsLoading, error: countryOptionsError } = useSWRImmutable<CountryOption[], unknown>("/application/education/country-options", optionsFetcher<CountryOption>)
+  const {
+    data: schoolOptions,
+    isLoading: schoolOptionsLoading,
+    error: schoolOptionsError,
+  } = useSWRImmutable<SchoolOption[], unknown>(
+    "/application/education/institution-options",
+    optionsFetcher<SchoolOption>,
+  )
+  const {
+    data: countryOptions,
+    isLoading: countryOptionsLoading,
+    error: countryOptionsError,
+  } = useSWRImmutable<CountryOption[], unknown>("/application/education/country-options", optionsFetcher<CountryOption>)
   const { application, applicationIsLoading } = useApplicationContext()
 
   if (
-    !isLoaded(application, applicationIsLoading)
-    || !isLoaded(schoolOptions, schoolOptionsLoading, schoolOptionsError)
-    || !isLoaded(countryOptions, countryOptionsLoading, countryOptionsError)
+    !isLoaded(application, applicationIsLoading) ||
+    !isLoaded(schoolOptions, schoolOptionsLoading, schoolOptionsError) ||
+    !isLoaded(countryOptions, countryOptionsLoading, countryOptionsError)
   ) {
     return <EducationFormSkeleton />
   }
 
-  return <EducationForm
-    schoolOptions={schoolOptions}
-    countryOptions={countryOptions}
-    application={application}
-  />
+  return <EducationForm schoolOptions={schoolOptions} countryOptions={countryOptions} application={application} />
 }

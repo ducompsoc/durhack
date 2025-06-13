@@ -12,11 +12,11 @@ import { PhoneInput } from "@durhack/web-components/ui/phone-number-input"
 
 import "@/lib/zod-phone-extension"
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
-import { useApplicationContext } from "@/hooks/use-application-context"
-import { updateApplication } from "@/lib/update-application"
-import type { Application } from "@/hooks/use-application"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
-import { isLoaded } from "@/lib/is-loaded";
+import type { Application } from "@/hooks/use-application"
+import { useApplicationContext } from "@/hooks/use-application-context"
+import { isLoaded } from "@/lib/is-loaded"
+import { updateApplication } from "@/lib/update-application"
 
 type ContactFormFields = {
   phone: string
@@ -56,18 +56,18 @@ function ContactForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="phone"
-            render={({field}) => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Phone Number</FormLabel>
                 <FormControl>
                   <PhoneInput
-                    countrySelectProps={{prominentCountries: new Set(["GB"])}}
+                    countrySelectProps={{ prominentCountries: new Set(["GB"]) }}
                     placeholder="Enter phone number..."
                     defaultCountry="GB"
                     {...field}
                   />
                 </FormControl>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -77,13 +77,13 @@ function ContactForm({ application }: { application: Application }) {
             disabled
             control={form.control}
             name="email"
-            render={({field}) => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input type="email" {...field} />
                 </FormControl>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />

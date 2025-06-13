@@ -1,5 +1,5 @@
-import * as React from "react"
 import { Skeleton } from "@durhack/web-components/ui/skeleton"
+import type * as React from "react"
 
 import { cn } from "@/lib/utils"
 

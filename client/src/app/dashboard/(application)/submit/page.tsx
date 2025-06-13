@@ -19,19 +19,19 @@ import {
 } from "@durhack/web-components/ui/form"
 
 import { useBackgroundContext } from "@/app/dashboard/background-context"
-import { FormSkeleton } from "@/components/dashboard/form-skeleton";
-import { FormSubmitButton } from "@/components/dashboard/form-submit-button";
-import { useApplicationContext } from "@/hooks/use-application-context"
+import { FormSkeleton } from "@/components/dashboard/form-skeleton"
+import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
 import type { Application } from "@/hooks/use-application"
+import { useApplicationContext } from "@/hooks/use-application-context"
+import { isLoaded } from "@/lib/is-loaded"
 import { updateApplication } from "@/lib/update-application"
-import { isLoaded } from "@/lib/is-loaded";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
 type SubmitFormFields = {
   mlhCodeOfConduct: boolean | "indeterminate"
   mlhTerms: boolean | "indeterminate"
   mlhMarketing: boolean | "indeterminate"
-  dsuPrivacy :boolean | "indeterminate"
+  dsuPrivacy: boolean | "indeterminate"
   hukPrivacy: boolean | "indeterminate"
   hukMarketing: boolean | "indeterminate"
   media: boolean | "indeterminate"
@@ -48,39 +48,36 @@ const submitFormSchema = z.object({
 })
 
 function ConsentCard({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div
-    className={cn("flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4", className)}
-    {...props}
-  />
+  return (
+    <div className={cn("flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4", className)} {...props} />
+  )
 }
 
 function ConsentCardCheckbox({ className, ...props }: React.ComponentProps<typeof Checkbox>) {
-  return <Checkbox
-    className={cn("mt-[0.2em] lg:mt-0", className)}
-    {...props}
-  />
+  return <Checkbox className={cn("mt-[0.2em] lg:mt-0", className)} {...props} />
 }
 
 function ConsentCardContent({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div
-    className={cn("space-y-1 leading-none", className)}
-    {...props}
-  />
+  return <div className={cn("space-y-1 leading-none", className)} {...props} />
 }
 
 const FormRootMessage = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement> & { errorName: string }
 >(({ errorName, className, children, ...props }, ref) => {
-  const { formState: { errors } } = useFormContext()
+  const {
+    formState: { errors },
+  } = useFormContext()
 
   const error = errors.root?.[errorName]
   const body = error ? String(error.message) : children
   if (!body) return null
 
-  return <p ref={ref} className={cn("text-[0.8rem] font-medium text-destructive", className)} {...props}>
-    {body}
-  </p>
+  return (
+    <p ref={ref} className={cn("text-[0.8rem] font-medium text-destructive", className)} {...props}>
+      {body}
+    </p>
+  )
 })
 FormRootMessage.displayName = "FormRootMessage"
 
@@ -146,7 +143,7 @@ function SubmitForm({ application }: { application: Application }) {
       return {
         ...currentData,
         applicationStatus: "submitted",
-        consents: updatedConsents
+        consents: updatedConsents,
       } satisfies Application
     })
     setIsFinalSubmitHovering(false)
@@ -160,16 +157,11 @@ function SubmitForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="mlhCodeOfConduct"
-            render={({field: {value, onChange, ...field}}) => (
+            render={({ field: { value, onChange, ...field } }) => (
               <FormItem>
                 <ConsentCard>
                   <FormControl>
-                    <ConsentCardCheckbox
-                      checked={value}
-                      onCheckedChange={onChange}
-                      required
-                      {...field}
-                    />
+                    <ConsentCardCheckbox checked={value} onCheckedChange={onChange} required {...field} />
                   </FormControl>
                   <ConsentCardContent>
                     <FormLabel>MLH Code of Conduct</FormLabel>
@@ -185,7 +177,7 @@ function SubmitForm({ application }: { application: Application }) {
                     </FormDescription>
                   </ConsentCardContent>
                 </ConsentCard>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -194,16 +186,11 @@ function SubmitForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="mlhTerms"
-            render={({field: {value, onChange, ...field}}) => (
+            render={({ field: { value, onChange, ...field } }) => (
               <FormItem>
                 <ConsentCard>
                   <FormControl>
-                    <ConsentCardCheckbox
-                      checked={value}
-                      onCheckedChange={onChange}
-                      required
-                      {...field}
-                    />
+                    <ConsentCardCheckbox checked={value} onCheckedChange={onChange} required {...field} />
                   </FormControl>
                   <ConsentCardContent>
                     <FormLabel>MLH Policies, Terms & Conditions</FormLabel>
@@ -234,7 +221,7 @@ function SubmitForm({ application }: { application: Application }) {
                     </FormDescription>
                   </ConsentCardContent>
                 </ConsentCard>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -243,20 +230,15 @@ function SubmitForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="mlhMarketing"
-            render={({field: {value, onChange, ...field}}) => (
+            render={({ field: { value, onChange, ...field } }) => (
               <FormItem>
                 <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
-                    <Checkbox
-                      className="mt-[0.2em] lg:mt-0"
-                      checked={value}
-                      onCheckedChange={onChange}
-                      {...field}
-                    />
+                    <Checkbox className="mt-[0.2em] lg:mt-0" checked={value} onCheckedChange={onChange} {...field} />
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormLabel>
-                      <span>MLH Marketing{" "}</span>
+                      <span>MLH Marketing </span>
                       <span className="text-xs">(optional)</span>
                     </FormLabel>
                     <FormDescription>
@@ -265,7 +247,7 @@ function SubmitForm({ application }: { application: Application }) {
                     </FormDescription>
                   </div>
                 </div>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -275,7 +257,7 @@ function SubmitForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="dsuPrivacy"
-            render={({field: {value, onChange, ...field}}) => (
+            render={({ field: { value, onChange, ...field } }) => (
               <FormItem>
                 <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
@@ -293,19 +275,15 @@ function SubmitForm({ application }: { application: Application }) {
                     </FormLabel>
                     <FormDescription>
                       I have read and accept the{" "}
-                      <Link
-                        className="underline"
-                        href="https://www.durhamsu.com/privacy-policy"
-                      >
+                      <Link className="underline" href="https://www.durhamsu.com/privacy-policy">
                         Durham Students&apos; Union Student Privacy Policy
-                      </Link>.
-                      I consent to sharing information with Durham University Computing Society and Durham
-                      Students&apos;
-                      Union.
+                      </Link>
+                      . I consent to sharing information with Durham University Computing Society and Durham
+                      Students&apos; Union.
                     </FormDescription>
                   </div>
                 </div>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -315,7 +293,7 @@ function SubmitForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="hukPrivacy"
-            render={({field: {value, onChange, ...field}}) => (
+            render={({ field: { value, onChange, ...field } }) => (
               <FormItem>
                 <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
@@ -333,23 +311,18 @@ function SubmitForm({ application }: { application: Application }) {
                     </FormLabel>
                     <FormDescription>
                       I authorise DU Computing Society to share my application/registration information with{" "}
-                      <Link
-                        className="underline"
-                        href="https://hackathons.org.uk"
-                      >
+                      <Link className="underline" href="https://hackathons.org.uk">
                         Hackathons UK Ltd.
                       </Link>{" "}
                       for administrative purposes and, with my authorisation, email, in-line with the{" "}
-                      <Link
-                        className="underline"
-                        href="https://hackuk.org/privacy"
-                      >
+                      <Link className="underline" href="https://hackuk.org/privacy">
                         Hackathons UK Limited Privacy Policy
-                      </Link>.
+                      </Link>
+                      .
                     </FormDescription>
                   </div>
                 </div>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -359,28 +332,24 @@ function SubmitForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="hukMarketing"
-            render={({field: {value, onChange, ...field}}) => (
+            render={({ field: { value, onChange, ...field } }) => (
               <FormItem>
                 <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
-                    <Checkbox
-                      className="mt-[0.2em] lg:mt-0"
-                      checked={value}
-                      onCheckedChange={onChange}
-                      {...field}
-                    />
+                    <Checkbox className="mt-[0.2em] lg:mt-0" checked={value} onCheckedChange={onChange} {...field} />
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormLabel>
-                      <span>Hackathons UK Marketing{" "}</span>
+                      <span>Hackathons UK Marketing </span>
                       <span className="text-xs">(optional)</span>
                     </FormLabel>
                     <FormDescription>
-                      I authorise Hackathons UK Limited to send me occasional messages about hackathons and their activities.
+                      I authorise Hackathons UK Limited to send me occasional messages about hackathons and their
+                      activities.
                     </FormDescription>
                   </div>
                 </div>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -390,34 +359,30 @@ function SubmitForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="media"
-            render={({field: {value, onChange, ...field}}) => (
+            render={({ field: { value, onChange, ...field } }) => (
               <FormItem>
                 <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
-                    <Checkbox
-                      className="mt-[0.2em] lg:mt-0"
-                      checked={value}
-                      onCheckedChange={onChange}
-                      {...field}
-                    />
+                    <Checkbox className="mt-[0.2em] lg:mt-0" checked={value} onCheckedChange={onChange} {...field} />
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormLabel>
-                      <span>Photography/Videography{" "}</span>
+                      <span>Photography/Videography </span>
                       <span className="text-xs">(optional)</span>
                     </FormLabel>
                     <FormDescription>
-                      I consent to the use of photographs and/or videos in which I appear for promotional purposes related to the event.
+                      I consent to the use of photographs and/or videos in which I appear for promotional purposes
+                      related to the event.
                     </FormDescription>
                   </div>
                 </div>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
         </div>
 
-        <FormRootMessage errorName="serverError"/>
+        <FormRootMessage errorName="serverError" />
 
         <div className="mt-16 flex justify-center">
           <FormSubmitButton
@@ -435,7 +400,7 @@ function SubmitForm({ application }: { application: Application }) {
 }
 
 function SubmitFormSkeleton() {
-  return <FormSkeleton rows={3} className="mt-2"/>
+  return <FormSkeleton rows={3} className="mt-2" />
 }
 
 /*
@@ -444,11 +409,11 @@ todo: conditionally render based on application status
  - ensure the user can still view their responses to the various consent questions, with checkboxes disabled
  */
 export default function SubmitPage() {
-  const {application, applicationIsLoading} = useApplicationContext()
+  const { application, applicationIsLoading } = useApplicationContext()
 
   if (!isLoaded(application, applicationIsLoading)) {
-    return <SubmitFormSkeleton/>
+    return <SubmitFormSkeleton />
   }
 
-  return <SubmitForm application={application}/>
+  return <SubmitForm application={application} />
 }

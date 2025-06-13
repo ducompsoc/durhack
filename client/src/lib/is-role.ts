@@ -1,4 +1,4 @@
-import type { User } from "@/hooks/use-user";
+import type { User } from "@/hooks/use-user"
 
 export function isAdmin(profile: User) {
   return profile.roles?.some((role) => {
