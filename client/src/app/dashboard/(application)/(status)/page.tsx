@@ -50,7 +50,7 @@ function InstructionsArticle({
   if (application.applicationStatus === "accepted")
     return (
       <article>
-        <p>Congratulations, your place at DurHack 2024 is confirmed!</p>
+        <p>Congratulations, your place at DurHack X is confirmed!</p>
         <p>
           Check your inbox for a confirmation email - you will need the QR code inside to check-in on the day of the
           event.

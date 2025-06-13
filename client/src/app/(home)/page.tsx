@@ -18,7 +18,7 @@ export default function HomePage() {
               className={cn(audiowide.className, "text-6xl lg:text-8xl text-transparent")}
               style={{ WebkitTextStroke: ".04em white" }}
             >
-              2024
+              X
             </h1>
             <p className="lg:text-xl">The UK&apos;s Leading Student Hackathon</p>
           </div>

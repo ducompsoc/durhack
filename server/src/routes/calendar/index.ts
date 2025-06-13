@@ -8,6 +8,6 @@ import { getCalendarEvent } from "./calendar-event"
 export const calendarApp = new App<Request, Response>()
 
 calendarApp
-  .route("/durhack-2024")
+  .route("/durhack-2025")
   .all(methodNotAllowed(["GET"]))
   .get(getCalendarEvent())

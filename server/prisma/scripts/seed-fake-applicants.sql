@@ -1,7 +1,7 @@
 -- define a SQL function for generating a random timestamp
 CREATE OR REPLACE FUNCTION random_timestamp(
-    "from" timestamp = timestamp '2024-07-01 00:00:00',
-    "to" timestamp = timestamp '2024-10-28 00:00:00'
+    "from" timestamp = timestamp '2025-07-01 00:00:00',
+    "to" timestamp = timestamp '2025-10-28 00:00:00'
 ) RETURNS timestamp
     LANGUAGE SQL
     VOLATILE
@@ -24,7 +24,7 @@ SELECT
     20,
     'submitted',
     random_timestamp(),
-    timestamp '2024-07-01 00:00:00'
+    timestamp '2025-07-01 00:00:00'
 FROM "User";
 
 -- Select a random sample of users of size 3% and assign their age to less than 18

@@ -19,7 +19,7 @@ model Interest {
     firstNames String @map("first_names") @db.VarChar(256)
     lastNames  String @map("last_names") @db.VarChar(256)
     email      String @unique @db.VarChar(256)
-    year       Int    @default(2024)
+    year       Int    @default(2025)
 }
 
 model User {

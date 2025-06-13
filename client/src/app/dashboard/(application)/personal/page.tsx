@@ -170,7 +170,7 @@ function PersonalForm({ application }: { application: Application }) {
             name="age"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Age as of 2nd November 2024</FormLabel>
+                <FormLabel>Age as of 1st November 2025</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter age..." {...field} />
                 </FormControl>
