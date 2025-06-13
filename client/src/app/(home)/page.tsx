@@ -1,7 +1,10 @@
+import Link from "next/link"
+
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 
 import { RegisterInterestForm } from "./register-interest-form"
+import {Button} from "@durhack/web-components/ui/button";
 
 
 export default function HomePage() {
@@ -37,6 +40,10 @@ export default function HomePage() {
       </main>
 
       <div className="mt-16 text-xl mx-auto">Tickets and full details coming soon!</div>
+
+      <Button asChild={true} className="mt-16">
+        <Link href="https://archive-2024--durhack.netlify.app" >See last year&apos;s website</Link>
+      </Button>
     </>
   )
 }
