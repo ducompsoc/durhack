@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Interest" ALTER COLUMN "year" SET DEFAULT 2025;
