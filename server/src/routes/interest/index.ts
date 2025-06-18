@@ -8,5 +8,5 @@ export const registerInterestApp = new App<Request, Response>()
 
 registerInterestApp
   .route("/")
-  .all(methodNotAllowed(["GET"]))
+  .all(methodNotAllowed(["POST"]))
   .post(registerInterestHandlers.post())
