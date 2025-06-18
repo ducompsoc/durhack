@@ -8,14 +8,21 @@ import { z } from "zod"
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Input } from "@durhack/web-components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectValueClipper } from "@durhack/web-components/ui/select"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectValueClipper,
+} from "@durhack/web-components/ui/select"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
-import { FormSubmitButton } from "@/components/dashboard/form-submit-button";
-import { useApplicationContext } from "@/hooks/use-application-context"
+import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
 import type { Application } from "@/hooks/use-application"
-import { updateApplication } from "@/lib/update-application"
+import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
+import { updateApplication } from "@/lib/update-application"
 
 type PersonalFormFields = {
   firstNames: string
@@ -38,8 +45,12 @@ const personalFormSchema = z.object({
     .min(16, { message: "Age must be >= 16" })
     .max(256, { message: "Ain't no way you're that old." })
     .int("Please provide your age rounded down to the nearest integer."),
-  gender: z.enum(["prefer-not-to-answer", "male", "female", "non-binary", "other"], { message: "Please select the gender you identify as" }),
-  ethnicity: z.enum(["prefer-not-to-answer", "american", "asian", "black", "hispanic", "white", "other"], { message: "Please select an ethnicity"})
+  gender: z.enum(["prefer-not-to-answer", "male", "female", "non-binary", "other"], {
+    message: "Please select the gender you identify as",
+  }),
+  ethnicity: z.enum(["prefer-not-to-answer", "american", "asian", "black", "hispanic", "white", "other"], {
+    message: "Please select an ethnicity",
+  }),
 })
 
 /**
@@ -77,13 +88,13 @@ function PersonalForm({ application }: { application: Application }) {
             <FormField
               control={form.control}
               name="firstNames"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>First name(s)</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Enter first name(s)..."/>
+                    <Input {...field} placeholder="Enter first name(s)..." />
                   </FormControl>
-                  <FormMessage/>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -92,13 +103,13 @@ function PersonalForm({ application }: { application: Application }) {
             <FormField
               control={form.control}
               name="lastNames"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Last name(s)</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Enter last name(s)..."/>
+                    <Input {...field} placeholder="Enter last name(s)..." />
                   </FormControl>
-                  <FormMessage/>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -109,13 +120,13 @@ function PersonalForm({ application }: { application: Application }) {
             <FormField
               control={form.control}
               name="preferredNames"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Preferred name(s)</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Enter preferred name(s)..."/>
+                    <Input {...field} placeholder="Enter preferred name(s)..." />
                   </FormControl>
-                  <FormMessage/>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -124,7 +135,7 @@ function PersonalForm({ application }: { application: Application }) {
             <FormField
               control={form.control}
               name="pronouns"
-              render={({field: {onChange, value, ref, ...field}}) => (
+              render={({ field: { onChange, value, ref, ...field } }) => (
                 <FormItem>
                   <FormLabel>Pronouns</FormLabel>
                   <div className="flex">
@@ -132,7 +143,7 @@ function PersonalForm({ application }: { application: Application }) {
                       <FormControl>
                         <SelectTrigger ref={ref}>
                           <SelectValueClipper>
-                            <SelectValue/>
+                            <SelectValue />
                           </SelectValueClipper>
                         </SelectTrigger>
                       </FormControl>
@@ -145,9 +156,9 @@ function PersonalForm({ application }: { application: Application }) {
                         <SelectItem value="other">Other</SelectItem>
                       </SelectContent>
                     </Select>
-                    {value === "other" && <Input className="ml-4" placeholder="Pronouns..."/>}
+                    {value === "other" && <Input className="ml-4" placeholder="Pronouns..." />}
                   </div>
-                  <FormMessage/>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -157,13 +168,13 @@ function PersonalForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="age"
-            render={({field}) => (
+            render={({ field }) => (
               <FormItem>
-                <FormLabel>Age as of 2nd November 2024</FormLabel>
+                <FormLabel>Age as of 1st November 2025</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter age..." {...field} />
                 </FormControl>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -173,14 +184,14 @@ function PersonalForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="gender"
-            render={({field: {onChange, value, ref, ...field}}) => (
+            render={({ field: { onChange, value, ref, ...field } }) => (
               <FormItem>
                 <FormLabel>Gender</FormLabel>
                 <Select onValueChange={onChange} value={value} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
                       <SelectValueClipper>
-                        <SelectValue placeholder="Select gender identity..."/>
+                        <SelectValue placeholder="Select gender identity..." />
                       </SelectValueClipper>
                     </SelectTrigger>
                   </FormControl>
@@ -192,7 +203,7 @@ function PersonalForm({ application }: { application: Application }) {
                     <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>
-              <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -202,14 +213,14 @@ function PersonalForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="ethnicity"
-            render={({field: {onChange, value, ref, ...field}}) => (
+            render={({ field: { onChange, value, ref, ...field } }) => (
               <FormItem>
                 <FormLabel>Race/Ethnicity</FormLabel>
                 <Select onValueChange={onChange} value={value} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
                       <SelectValueClipper>
-                        <SelectValue placeholder="Select race/ethnicity..."/>
+                        <SelectValue placeholder="Select race/ethnicity..." />
                       </SelectValueClipper>
                     </SelectTrigger>
                   </FormControl>
@@ -223,7 +234,7 @@ function PersonalForm({ application }: { application: Application }) {
                     <SelectItem value="other">Multiple ethnicity / Other</SelectItem>
                   </SelectContent>
                 </Select>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -238,15 +249,15 @@ function PersonalForm({ application }: { application: Application }) {
 }
 
 function PersonalFormSkeleton() {
-  return <FormSkeleton rows={3} className="mt-2"/>
+  return <FormSkeleton rows={3} className="mt-2" />
 }
 
 export default function PersonalPage() {
-  const {application, applicationIsLoading} = useApplicationContext()
+  const { application, applicationIsLoading } = useApplicationContext()
 
   if (!isLoaded(application, applicationIsLoading)) {
-    return <PersonalFormSkeleton/>
+    return <PersonalFormSkeleton />
   }
 
-  return <PersonalForm application={application}/>
+  return <PersonalForm application={application} />
 }

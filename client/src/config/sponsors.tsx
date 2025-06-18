@@ -1,10 +1,10 @@
-import * as React from "react"
 import Image from "next/image"
+import type * as React from "react"
 
 export type Sponsor = {
-  slug: string,
-  image: React.FC<React.HTMLAttributes<HTMLElement>>,
-  link: string,
+  slug: string
+  image: React.FC<React.HTMLAttributes<HTMLElement>>
+  link: string
   tier: "platinum" | "gold" | "silver" | "partner"
   active: boolean
 }
@@ -28,13 +28,7 @@ export const sponsors: Sponsor[] = [
   {
     slug: "marshall-wace",
     image: (props) => (
-      <Image
-        src="/assets/sponsors/marshall-wace.svg"
-        alt="Marshall Wace"
-        width={1070}
-        height={389}
-        {...props}
-      />
+      <Image src="/assets/sponsors/marshall-wace.svg" alt="Marshall Wace" width={1070} height={389} {...props} />
     ),
     link: "https://www.mwam.com/",
     tier: "platinum",
@@ -58,13 +52,7 @@ export const sponsors: Sponsor[] = [
   {
     slug: "waterstons",
     image: (props) => (
-      <Image
-        src="/assets/sponsors/waterstons.svg"
-        alt="Waterstons"
-        width={567.04}
-        height={311.04}
-        {...props}
-      />
+      <Image src="/assets/sponsors/waterstons.svg" alt="Waterstons" width={567.04} height={311.04} {...props} />
     ),
     link: "https://waterstons.com/",
     tier: "gold",
@@ -103,13 +91,7 @@ export const sponsors: Sponsor[] = [
   {
     slug: "accenture",
     image: (props) => (
-      <Image
-        src="/assets/sponsors/accenture.svg"
-        alt="Accenture"
-        width={909}
-        height={240}
-        {...props}
-      />
+      <Image src="/assets/sponsors/accenture.svg" alt="Accenture" width={909} height={240} {...props} />
     ),
     link: "https://www.accenture.com/gb-en",
     tier: "gold",
@@ -118,13 +100,7 @@ export const sponsors: Sponsor[] = [
   {
     slug: "atom-bank",
     image: (props) => (
-      <Image
-        src="/assets/sponsors/atom-bank.svg"
-        alt="Atom Bank"
-        width={599.96}
-        height={243.2}
-        {...props}
-      />
+      <Image src="/assets/sponsors/atom-bank.svg" alt="Atom Bank" width={599.96} height={243.2} {...props} />
     ),
     link: "https://www.atombank.co.uk/",
     tier: "platinum",
@@ -177,15 +153,7 @@ export const sponsors: Sponsor[] = [
   },
   {
     slug: "overleaf",
-    image: (props) => (
-      <Image
-        src="/assets/sponsors/overleaf.svg"
-        alt="Overleaf"
-        width={130}
-        height={38}
-        {...props}
-      />
-    ),
+    image: (props) => <Image src="/assets/sponsors/overleaf.svg" alt="Overleaf" width={130} height={38} {...props} />,
     link: "https://www.overleaf.com/",
     tier: "partner",
     active: true,
@@ -208,13 +176,7 @@ export const sponsors: Sponsor[] = [
   {
     slug: "rs-components",
     image: (props) => (
-      <Image
-        src="/assets/sponsors/rs-components.svg"
-        alt="RS Components"
-        width={24}
-        height={24}
-        {...props}
-      />
+      <Image src="/assets/sponsors/rs-components.svg" alt="RS Components" width={24} height={24} {...props} />
     ),
     link: "https://uk.rs-online.com/web/",
     tier: "partner",
@@ -312,29 +274,15 @@ export const sponsors: Sponsor[] = [
   },
   {
     slug: "intel",
-    image: (props) => (
-      <Image
-        src="/assets/sponsors/intel.svg"
-        alt="Intel"
-        width={395.4}
-        height={155.9}
-        {...props}
-      />
-    ),
+    image: (props) => <Image src="/assets/sponsors/intel.svg" alt="Intel" width={395.4} height={155.9} {...props} />,
     link: "https://www.intel.com",
     tier: "partner",
-    active: true,
+    active: false,
   },
   {
     slug: "hackathons-uk",
     image: (props) => (
-      <Image
-        src="/assets/sponsors/hackathonsuk.svg"
-        alt="Hackathons UK"
-        width={282.43}
-        height={77.11}
-        {...props}
-      />
+      <Image src="/assets/sponsors/hackathonsuk.svg" alt="Hackathons UK" width={282.43} height={77.11} {...props} />
     ),
     link: "https://www.hackathons.org.uk/",
     tier: "partner",
@@ -357,45 +305,21 @@ export const sponsors: Sponsor[] = [
   },
   {
     slug: "github",
-    image: (props) => (
-      <Image
-        src="/assets/sponsors/github.svg"
-        alt="GitHub"
-        width={600}
-        height={200}
-        {...props}
-      />
-    ),
+    image: (props) => <Image src="/assets/sponsors/github.svg" alt="GitHub" width={600} height={200} {...props} />,
     link: "https://www.github.com",
     tier: "partner",
     active: false,
   },
   {
     slug: "barclays",
-    image: (props) => (
-      <Image
-        src="/assets/sponsors/barclays.svg"
-        alt="Barclays"
-        width={500}
-        height={90}
-        {...props}
-      />
-    ),
+    image: (props) => <Image src="/assets/sponsors/barclays.svg" alt="Barclays" width={500} height={90} {...props} />,
     link: "https://home.barclays/",
     tier: "partner",
     active: false,
   },
   {
     slug: "netcraft",
-    image: (props) => (
-      <Image
-        src="/assets/sponsors/netcraft.svg"
-        alt="Barclays"
-        width={253}
-        height={44}
-        {...props}
-      />
-    ),
+    image: (props) => <Image src="/assets/sponsors/netcraft.svg" alt="Barclays" width={253} height={44} {...props} />,
     link: "https://www.netcraft.com/",
     tier: "partner",
     active: false,
@@ -409,12 +333,12 @@ export const goldSponsors = signedSponsors.filter((sponsor) => sponsor.tier === 
 export const silverSponsors = signedSponsors.filter((sponsor) => sponsor.tier === "silver")
 
 export type Partner = {
-  slug: string,
-  image: React.FC<React.HTMLAttributes<HTMLElement>> | null,
-  link: string,
+  slug: string
+  image: React.FC<React.HTMLAttributes<HTMLElement>> | null
+  link: string
   active: boolean
 }
 
 export const partners: Partner[] = sponsors.filter((sponsor) => sponsor.tier === "partner")
 
-export const activePartners = partners.filter(partner => partner.active)
+export const activePartners = partners.filter((partner) => partner.active)

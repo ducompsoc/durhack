@@ -8,15 +8,15 @@ import type { Middleware } from "@/types"
 const createEvent = promisify<EventAttributes, string>(_createEvent)
 
 export const durhackInvite = await createEvent({
-  start: [2024, 11, 2, 9, 30], // "2024-11-2T09:30" in UTC time
+  start: [2025, 11, 1, 9, 30], // "2025-11-1T09:30" in UTC time
   startInputType: "utc",
   startOutputType: "utc",
 
-  end: [2024, 11, 3, 16, 30], // "2024-11-3T16:30" in UTC time
+  end: [2025, 11, 2, 16, 30], // "2025-11-2T16:30" in UTC time
   endInputType: "utc",
   endOutputType: "utc",
 
-  title: "DurHack 2024",
+  title: "DurHack X",
   description: "Durham University Computing Society's annual flagship hackathon",
   location: "Teaching and Learning Centre • Durham University",
   geo: { lat: 54.7672287, lon: -1.5757672 },

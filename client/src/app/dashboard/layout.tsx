@@ -1,7 +1,7 @@
-import * as React from "react"
-import type { Metadata } from "next";
+import type { Metadata } from "next"
+import type * as React from "react"
 
-import { DashboardLayoutClient } from "./layout-client";
+import { DashboardLayoutClient } from "./layout-client"
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -10,11 +10,7 @@ export const metadata: Metadata = {
 export default function DashboardLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
-  return (
-    <DashboardLayoutClient>
-      {children}
-    </DashboardLayoutClient>
-  )
+  return <DashboardLayoutClient>{children}</DashboardLayoutClient>
 }

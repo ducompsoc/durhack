@@ -23,11 +23,9 @@ export default function ApplicationLayout({
     <ApplicationContextProvider>
       <SidebarContext.Provider value={{ isOpen, setIsOpen, toggleIsOpen }}>
         <div className="min-h-[100vh] relative z-10">
-          <Header/>
-          <Sidebar/>
-          <div className={cn("md:ml-64 py-16 pl-16 pr-16 2xl:pr-64", isOpen ? "hidden md:block" : "")}>
-            {children}
-          </div>
+          <Header />
+          <Sidebar />
+          <div className={cn("md:ml-64 py-16 pl-16 pr-16 2xl:pr-64", isOpen ? "hidden md:block" : "")}>{children}</div>
         </div>
       </SidebarContext.Provider>
     </ApplicationContextProvider>

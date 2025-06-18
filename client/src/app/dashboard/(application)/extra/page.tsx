@@ -6,17 +6,32 @@ import * as React from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
-import { Textarea } from "@durhack/web-components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectValueClipper } from "@durhack/web-components/ui/select"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@durhack/web-components/ui/form"
 import { MultiSelect } from "@durhack/web-components/ui/multi-select"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectValueClipper,
+} from "@durhack/web-components/ui/select"
+import { Textarea } from "@durhack/web-components/ui/textarea"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
-import { FormSubmitButton } from "@/components/dashboard/form-submit-button";
-import { useApplicationContext } from "@/hooks/use-application-context"
+import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
 import type { Application } from "@/hooks/use-application"
-import { updateApplication } from "@/lib/update-application"
+import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
+import { updateApplication } from "@/lib/update-application"
 
 type ExtraDetailsFormFields = {
   tShirtSize: string
@@ -26,23 +41,23 @@ type ExtraDetailsFormFields = {
 }
 
 const extraDetailsFormSchema = z.object({
-  tShirtSize: z.enum(["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "prefer-not-to-answer"], { message: "Please select a t-shirt size." }),
-  hackathonExperience: z.enum(["zero", "up-to-two", "three-to-seven", "eight-or-more"], { message: "Please provide your hackathon experience." }),
-  dietaryRequirements: z.array(z.enum([
-    "vegan",
-    "vegetarian",
-    "pescatarian",
-    "halal",
-    "kosher",
-    "gluten-free",
-    "dairy-free",
-    "nut-allergy",
-  ]))
+  tShirtSize: z.enum(["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "prefer-not-to-answer"], {
+    message: "Please select a t-shirt size.",
+  }),
+  hackathonExperience: z.enum(["zero", "up-to-two", "three-to-seven", "eight-or-more"], {
+    message: "Please provide your hackathon experience.",
+  }),
+  dietaryRequirements: z
+    .array(
+      z.enum(["vegan", "vegetarian", "pescatarian", "halal", "kosher", "gluten-free", "dairy-free", "nut-allergy"]),
+    )
     .refine((list) => {
-      const mutuallyExclusivePreferences = list.filter((item) => item === "vegan" || item === "vegetarian" || item === "pescatarian")
+      const mutuallyExclusivePreferences = list.filter(
+        (item) => item === "vegan" || item === "vegetarian" || item === "pescatarian",
+      )
       return mutuallyExclusivePreferences.length <= 1
     }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
-  accessRequirements: z.string().trim()
+  accessRequirements: z.string().trim(),
 })
 
 /**
@@ -60,7 +75,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
       hackathonExperience: application.hackathonExperience ?? "",
       dietaryRequirements: application.dietaryRequirements ?? [],
       accessRequirements: application.accessRequirements ?? "",
-    }
+    },
   })
 
   async function onSubmit(values: z.infer<typeof extraDetailsFormSchema>): Promise<void> {
@@ -76,18 +91,18 @@ function ExtraDetailsForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="tShirtSize"
-            render={({field: {onChange, ref, ...field}}) => (
+            render={({ field: { onChange, ref, ...field } }) => (
               <FormItem>
                 <FormLabel>T-Shirt Size</FormLabel>
                 <FormDescription>
-                  We need this to be able to order t-shirts in appropriate sizes.
-                  If you respond &lsquo;prefer not to say&rsquo;, we can&apos;t guarantee a shirt in your size for you.
+                  We need this to be able to order t-shirts in appropriate sizes. If you respond &lsquo;prefer not to
+                  say&rsquo;, we can&apos;t guarantee a shirt in your size for you.
                 </FormDescription>
                 <Select onValueChange={onChange} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
                       <SelectValueClipper>
-                        <SelectValue placeholder="Select t-shirt size..."/>
+                        <SelectValue placeholder="Select t-shirt size..." />
                       </SelectValueClipper>
                     </SelectTrigger>
                   </FormControl>
@@ -102,7 +117,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
                     <SelectItem value="3xl">3 Extra Large</SelectItem>
                   </SelectContent>
                 </Select>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -112,14 +127,14 @@ function ExtraDetailsForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="hackathonExperience"
-            render={({field: {onChange, ref, ...field}}) => (
+            render={({ field: { onChange, ref, ...field } }) => (
               <FormItem>
                 <FormLabel>Hackathon Experience</FormLabel>
                 <Select onValueChange={onChange} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
                       <SelectValueClipper>
-                        <SelectValue placeholder="Select..."/>
+                        <SelectValue placeholder="Select..." />
                       </SelectValueClipper>
                     </SelectTrigger>
                   </FormControl>
@@ -130,7 +145,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
                     <SelectItem value="eight-or-more">Hackathon Guru: Attended 8+ hackathons</SelectItem>
                   </SelectContent>
                 </Select>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -140,12 +155,12 @@ function ExtraDetailsForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="dietaryRequirements"
-            render={({field}) => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Dietary Requirements</FormLabel>
                 <FormDescription>
-                  If your requirement is not listed, please identify it clearly in your response
-                  to the following query regarding &lsquo;access requirements&rsquo;.
+                  If your requirement is not listed, please identify it clearly in your response to the following query
+                  regarding &lsquo;access requirements&rsquo;.
                 </FormDescription>
                 <FormControl>
                   <MultiSelect
@@ -163,7 +178,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
                     hidePlaceholderWhenSelected
                   />
                 </FormControl>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -176,11 +191,17 @@ function ExtraDetailsForm({ application }: { application: Application }) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Access Requirements</FormLabel>
-                <FormDescription>Is there anything else we need to know to make sure you&apos;re comfortable at DurHack?</FormDescription>
+                <FormDescription>
+                  Is there anything else we need to know to make sure you&apos;re comfortable at DurHack?
+                </FormDescription>
                 <FormControl>
-                  <Textarea className="min-h-[150px]" placeholder="Enter... (Please leave blank if you have no specific requests)" {...field} />
+                  <Textarea
+                    className="min-h-[150px]"
+                    placeholder="Enter... (Please leave blank if you have no specific requests)"
+                    {...field}
+                  />
                 </FormControl>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -195,15 +216,15 @@ function ExtraDetailsForm({ application }: { application: Application }) {
 }
 
 function ExtraDetailsFormSkeleton() {
-  return <FormSkeleton rows={4} className="mt-2"/>
+  return <FormSkeleton rows={4} className="mt-2" />
 }
 
 export default function ExtraDetailsPage() {
-  const {application, applicationIsLoading} = useApplicationContext()
+  const { application, applicationIsLoading } = useApplicationContext()
 
   if (!isLoaded(application, applicationIsLoading)) {
-    return <ExtraDetailsFormSkeleton/>
+    return <ExtraDetailsFormSkeleton />
   }
 
-  return <ExtraDetailsForm application={application}/>
+  return <ExtraDetailsForm application={application} />
 }

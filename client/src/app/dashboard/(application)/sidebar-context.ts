@@ -1,7 +1,7 @@
 import * as React from "react"
 
 export type SidebarContextProps = {
-  isOpen: boolean,
+  isOpen: boolean
   setIsOpen: (open: boolean) => void
   toggleIsOpen: () => void
 }
