@@ -37,9 +37,9 @@ import { siteConfig } from "@/config/site"
 import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
+import { isString } from "@/lib/type-guards"
 import { updateApplication } from "@/lib/update-application"
 import { zodIso3 } from "@/lib/zod-iso3-validator"
-import {isString} from "@/lib/type-guards";
 
 type EducationFormFields = {
   university: string
@@ -62,18 +62,15 @@ export type CountryOption = {
 
 const educationFormSchema = z.object({
   university: z.string().trim().min(1, { message: "Please select your institution." }),
-  graduationYear: z.coerce.number({
-      error: (issue) => issue.input === undefined
-        ? "This field is required"
-        : "Please provide a valid year."
+  graduationYear: z.coerce
+    .number({
+      error: (issue) => (issue.input === undefined ? "This field is required" : "Please provide a valid year."),
     })
     .positive("Please provide a valid year.")
     .int("Oh, come on. Really?")
     .min(1900, { error: "Be serious. You didn't graduate before 1900." })
     .max(2100, { error: "What on earth are you studying?!?" }),
-  disciplinesOfStudy: z
-    .array(disciplineOfStudySchema)
-    .min(1, { error: "Please select your discipline(s) of study." }),
+  disciplinesOfStudy: z.array(disciplineOfStudySchema).min(1, { error: "Please select your discipline(s) of study." }),
   levelOfStudy: z.enum(
     [
       "secondary",

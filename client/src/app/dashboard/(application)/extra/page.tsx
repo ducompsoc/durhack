@@ -67,7 +67,9 @@ function ExtraDetailsForm({ application }: { application: Application }) {
   const { mutateApplication } = useApplicationContext()
 
   const form = useForm<ExtraDetailsFormFields, unknown, z.infer<typeof extraDetailsFormSchema>>({
-    resolver: zodResolver<ExtraDetailsFormFields, unknown, z.infer<typeof extraDetailsFormSchema>>(extraDetailsFormSchema),
+    resolver: zodResolver<ExtraDetailsFormFields, unknown, z.infer<typeof extraDetailsFormSchema>>(
+      extraDetailsFormSchema,
+    ),
     defaultValues: {
       tShirtSize: application.tShirtSize ?? "",
       hackathonExperience: application.hackathonExperience ?? "",

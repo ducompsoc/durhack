@@ -15,7 +15,7 @@ import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
 import { updateApplication } from "@/lib/update-application"
-import {zodPhoneNumberValidator} from "@/lib/zod-phone-validator";
+import { zodPhoneNumberValidator } from "@/lib/zod-phone-validator"
 
 type ContactFormFields = {
   phone: string
