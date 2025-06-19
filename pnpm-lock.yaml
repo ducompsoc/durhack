@@ -177,8 +177,8 @@ importers:
         specifier: ^3.25.67
         version: 3.25.67
       zod-config:
-        specifier: ^0.0.5
-        version: 0.0.5(zod@3.25.67)
+        specifier: ^1.0.2
+        version: 1.0.2(yaml@2.5.1)(zod@3.25.67)
     devDependencies:
       '@biomejs/biome':
         specifier: ^1.8.3
@@ -2939,14 +2939,20 @@ packages:
   yup@1.4.0:
     resolution: {integrity: sha512-wPbgkJRCqIf+OHyiTBQoJiP5PFuAXaWiJK6AmYkzQAh5/c2K9hzSApBZG5wV9KoKSePF7sAxmNSvh/13YHkFDg==}
 
-  zod-config@0.0.5:
-    resolution: {integrity: sha512-tW7J4bwVPYD0eYeaDzIjEpv188118H+uCbb+DaBRIGwuZNCSL0WyMmpeOmgMpbsGzrJ9YjtC5XFpyWlj27vd8g==}
+  zod-config@1.0.2:
+    resolution: {integrity: sha512-jGrpkW57MLMG9hEug2bz6YG1BYKTReP9UvYVV4ghE7qXfiU2RxERpu9eL4cG7U8EFm3whziQesgpOG9B+IBQOQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       dotenv: '>=15'
-      zod: ^3.x
+      smol-toml: ^1.x
+      yaml: ^2.x
+      zod: ^3.25.0
     peerDependenciesMeta:
       dotenv:
+        optional: true
+      smol-toml:
+        optional: true
+      yaml:
         optional: true
 
   zod@3.25.67:
@@ -5396,8 +5402,10 @@ snapshots:
       toposort: 2.0.2
       type-fest: 2.19.0
 
-  zod-config@0.0.5(zod@3.25.67):
+  zod-config@1.0.2(yaml@2.5.1)(zod@3.25.67):
     dependencies:
       zod: 3.25.67
+    optionalDependencies:
+      yaml: 2.5.1
 
   zod@3.25.67: {}
