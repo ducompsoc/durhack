@@ -2,7 +2,7 @@ import assert from "node:assert/strict"
 import type { UserProfile } from "@durhack/durhack-common/types/user-profile"
 import { ClientError, HttpStatus, ServerError } from "@otterhttp/errors"
 import type { Prisma } from "@prisma/client"
-import { z } from "zod"
+import { z } from "zod/v4"
 
 import { durhackConfig } from "@/config"
 import { type UserFlag, prisma } from "@/database"

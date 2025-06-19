@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod/v4"
 
 import { prisma } from "@/database"
 import { json } from "@/lib/body-parsers"
@@ -7,7 +7,7 @@ import type { Middleware } from "@/types"
 const registerInterestFormSchema = z.object({
   firstNames: z.string().trim().min(1),
   lastNames: z.string().trim().min(1),
-  email: z.string().email(),
+  email: z.email(),
 })
 
 class RegisterInterestHandlers {

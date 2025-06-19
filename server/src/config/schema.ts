@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod/v4"
 
 export const listenOptionsSchema = z.object({
   host: z.string(),
@@ -24,8 +24,8 @@ export const sessionOptionsSchema = z.object({
 
 export const keycloakOptionsSchema = z.object({
   realm: z.string(),
-  baseUrl: z.string().url(),
-  adminBaseUrl: z.string().url(),
+  baseUrl: z.url(),
+  adminBaseUrl: z.url(),
   clientId: z.string(),
   clientSecret: z.string(),
   redirectUris: z.array(z.string()),
@@ -72,8 +72,8 @@ export const durhackOptionsSchema = z.object({
 
 export const configSchema = z.object({
   listen: listenOptionsSchema,
-  origin: z.string().url(),
-  frontendOrigin: z.string().url(),
+  origin: z.url(),
+  frontendOrigin: z.url(),
   session: sessionOptionsSchema,
   cookieSigning: cookieSigningOptionsSchema,
   keycloak: keycloakOptionsSchema,
