@@ -4,10 +4,11 @@ import { methodNotAllowed } from "@/middleware/method-not-allowed"
 import { applicationApp } from "@/routes/application"
 import { applicationsApp } from "@/routes/applications"
 import { authApp } from "@/routes/auth"
+import { calendarApp } from "@/routes/calendar"
+import { registerInterestApp } from "@/routes/interest"
+import { profileApp } from "@/routes/profile"
 import { userApp } from "@/routes/user"
 import type { Request, Response } from "@/types"
-import { calendarApp } from "src/routes/calendar"
-import { profileApp } from "src/routes/profile"
 
 export const routesApp = new App<Request, Response>()
 
@@ -19,6 +20,7 @@ routesApp
   })
 
 routesApp.use("/calendar", calendarApp)
+routesApp.use("/register-interest", registerInterestApp)
 routesApp.use("/auth", authApp)
 routesApp.use("/user", userApp)
 routesApp.use("/application", applicationApp)
