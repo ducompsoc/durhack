@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 export function AboutSlide({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.ReactNode {
   return (
     <article className={cn("absolute size-full flex items-center justify-center", className)} {...props}>
-      <div className="max-w-[40rem] mx-16 flex flex-col space-y-1.5 items-center justify-center">
+      <div className="max-w-160 mx-16 flex flex-col space-y-1.5 items-center justify-center">
         <h1 className={cn(electrolize.className, "text-5xl pb-5")}>DurHack X</h1>
         <h2 className={cn(spaceGrotesk.className, "text-3xl")}>600 Attendees</h2>
         <h2 className={cn(spaceGrotesk.className, "text-3xl")}>150 Projects</h2>

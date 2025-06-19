@@ -67,7 +67,7 @@ export function AutoApplicationStatusBadge({ children, ...props }: AutoApplicati
 export function AutoApplicationStatusIndicator() {
   return (
     <article>
-      <div className="min-w-[8rem] flex flex-col items-center">
+      <div className="min-w-32 flex flex-col items-center">
         <span className="text-nowrap">your application is</span>
         <AutoApplicationStatusBadge className="mt-1">
           <UpdateIcon className="animate-spin h-6 w-6 m-2" />

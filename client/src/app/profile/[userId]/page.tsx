@@ -59,13 +59,13 @@ const ProfilePage = React.memo(
 
     if (!isLoaded(profile, profileIsLoading, profileError))
       return (
-        <main className="w-full min-h-[100vh] m-0 flex flex-col items-center justify-center">
+        <main className="w-full min-h-screen m-0 flex flex-col items-center justify-center">
           <UpdateIcon className="animate-spin h-6 w-6 m-5" />
         </main>
       )
 
     return (
-      <main className="w-full min-h-[100vh] m-0 flex flex-col space-y-1.5 items-center justify-center">
+      <main className="w-full min-h-screen m-0 flex flex-col space-y-1.5 items-center justify-center">
         <h1 className="text-4xl font-bold">
           {profile.preferredNames ?? profile.firstNames} {profile.lastNames}
         </h1>
