@@ -5,13 +5,6 @@ import {
   disciplineOfStudyOptions,
   disciplineOfStudySchema,
 } from "@durhack/durhack-common/input/discipline-of-study"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter } from "next/navigation"
-import * as React from "react"
-import { useForm } from "react-hook-form"
-import useSWRImmutable from "swr/immutable"
-import { z } from "zod"
-
 import { ComboBox, ComboBoxButton, ComboBoxContent, ComboBoxTrigger } from "@durhack/web-components/ui/combobox"
 import {
   Form,
@@ -30,8 +23,13 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectValueClipper,
+  SelectValueViewport,
 } from "@durhack/web-components/ui/select"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
+import useSWRImmutable from "swr/immutable"
+import { z } from "zod"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
@@ -186,9 +184,9 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                 <Select onValueChange={onChange} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
-                      <SelectValueClipper>
+                      <SelectValueViewport>
                         <SelectValue placeholder="Select level of study..." />
-                      </SelectValueClipper>
+                      </SelectValueViewport>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>

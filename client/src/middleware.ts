@@ -24,7 +24,7 @@ async function getUserProfile(request: NextRequest): Promise<User | null> {
   return userProfile?.data ?? null
 }
 
-function redirectUnauthenticated(request: NextRequest) {
+function redirectUnauthenticated(_request: NextRequest) {
   return NextResponse.redirect(new URL("/auth/keycloak/login", siteConfig.apiUrl))
 }
 

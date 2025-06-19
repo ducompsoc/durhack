@@ -1,12 +1,11 @@
 "use client"
 
-import { UpdateIcon } from "@radix-ui/react-icons"
-import * as React from "react"
-import useSWR, { type KeyedMutator } from "swr"
-
 import { type Toast, type Toaster, useToast } from "@durhack/web-components/hooks/use-toast"
 import { Checkbox } from "@durhack/web-components/ui/checkbox"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@durhack/web-components/ui/table"
+import { UpdateIcon } from "@radix-ui/react-icons"
+import * as React from "react"
+import useSWR, { type KeyedMutator } from "swr"
 
 import { siteConfig } from "@/config/site"
 import { handleBadResponse } from "@/lib/handle-bad-fetch-response"
@@ -41,7 +40,13 @@ async function patchStashItemClaims({
   toast,
   slug,
   claimState,
-}: { userId: string; mutateStashItems: KeyedMutator<StashItem[]>; toast: Toaster; slug: string; claimState: boolean }) {
+}: {
+  userId: string
+  mutateStashItems: KeyedMutator<StashItem[]>
+  toast: Toaster
+  slug: string
+  claimState: boolean
+}) {
   const fallbackToast: Toast = {
     description: "Failed to update stash claims",
     variant: "destructive",
@@ -82,7 +87,12 @@ function StashClaimDisplay({
   item,
   mutateStashItems,
   toast,
-}: { userId: string; item: StashItem; mutateStashItems: KeyedMutator<StashItem[]>; toast: Toaster }): React.ReactNode {
+}: {
+  userId: string
+  item: StashItem
+  mutateStashItems: KeyedMutator<StashItem[]>
+  toast: Toaster
+}): React.ReactNode {
   const [working, setWorking] = React.useState<boolean>(false)
 
   async function onCheckedChange(checked: boolean | "indeterminate") {

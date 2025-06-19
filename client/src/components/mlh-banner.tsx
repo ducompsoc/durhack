@@ -139,7 +139,7 @@ const mlhBannerLinkStyle: React.CSSProperties = {
 export function MLHBanner({ variant }: { variant: MLHBannerVariant }): React.ReactNode {
   return (
     <a
-      id="mlh-trust-badge"
+      data-slot="mlh-trust-badge"
       style={mlhBannerLinkStyle}
       href={`https://mlh.io/eu?utm_source=eu-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=${variant}`}
       target="_blank"

@@ -1,7 +1,6 @@
+import { Badge } from "@durhack/web-components/ui/badge"
 import { cva } from "class-variance-authority"
 import type * as React from "react"
-
-import { Badge } from "@durhack/web-components/ui/badge"
 
 const cvUploadBadgeVariants = cva("text-xl", {
   variants: {

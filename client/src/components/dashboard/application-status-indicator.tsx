@@ -1,7 +1,7 @@
 import type { Application } from "@durhack/durhack-common/types/application"
 import { Badge } from "@durhack/web-components/ui/badge"
 import { UpdateIcon } from "@radix-ui/react-icons"
-import { type VariantProps, cva } from "class-variance-authority"
+import { cva, type VariantProps } from "class-variance-authority"
 import type * as React from "react"
 
 import { useApplicationContext } from "@/hooks/use-application-context"

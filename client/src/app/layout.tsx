@@ -1,6 +1,5 @@
-import type { Metadata, Viewport } from "next"
-
 import { Toaster } from "@durhack/web-components/ui/toaster"
+import type { Metadata, Viewport } from "next"
 
 import "@/styles/globals.css"
 import { siteConfig } from "@/config/site"

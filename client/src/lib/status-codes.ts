@@ -137,5 +137,5 @@ export enum HttpStatus {
 export type StatusCode = keyof typeof statusMessages
 
 export function isValidStatusCode(statusCode: unknown): statusCode is StatusCode {
-  return typeof statusCode === "number" && Object.prototype.hasOwnProperty.call(statusMessages, statusCode)
+  return typeof statusCode === "number" && Object.hasOwn(statusMessages, statusCode)
 }

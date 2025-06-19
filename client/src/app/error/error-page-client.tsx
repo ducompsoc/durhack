@@ -1,7 +1,6 @@
 "use client"
 
 import { useSearchParams } from "next/navigation"
-import * as React from "react"
 
 import { ServerErrorPage } from "@/components/server-error"
 import { isValidStatusCode, statusMessages } from "@/lib/status-codes"
