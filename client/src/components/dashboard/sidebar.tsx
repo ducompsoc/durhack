@@ -13,13 +13,13 @@ type MenuItem = {
 
 const menuItems = [
   { id: 1, name: "Status", link: "" },
-  { id: 2, name: "Authentication", link: "/auth" },
-  { id: 3, name: "Personal", link: "/personal" },
-  { id: 4, name: "Contact", link: "/contact" },
-  { id: 5, name: "Extra", link: "/extra" },
-  { id: 6, name: "Education", link: "/education" },
-  { id: 7, name: "CV", link: "/cv" },
-  { id: 8, name: "Submit", link: "/submit" },
+  { id: 2, name: "Authentication", link: "auth" },
+  { id: 3, name: "Personal", link: "personal" },
+  { id: 4, name: "Contact", link: "contact" },
+  { id: 5, name: "Extra", link: "extra" },
+  { id: 6, name: "Education", link: "education" },
+  { id: 7, name: "CV", link: "cv" },
+  { id: 8, name: "Submit", link: "submit" },
 ] as const satisfies readonly MenuItem[]
 
 // Todo: rewrite this using shadcn Sheet component https://ui.shadcn.com/docs/components/sheet.
