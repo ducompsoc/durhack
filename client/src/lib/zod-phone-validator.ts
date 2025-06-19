@@ -1,5 +1,5 @@
 import { isValidPhoneNumber } from "libphonenumber-js"
-import { core, z } from "zod/v4"
+import { type core, z } from "zod/v4"
 
 export function zodPhoneNumberValidator(params?: string | core.$ZodCustomParams): z.ZodString {
   params ??= { error: "Invalid phone number" }

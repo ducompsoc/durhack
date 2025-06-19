@@ -20,8 +20,8 @@ import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
 import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
-import { updateApplication } from "@/lib/update-application"
 import { isString } from "@/lib/type-guards"
+import { updateApplication } from "@/lib/update-application"
 
 type PersonalFormFields = {
   firstNames: string
