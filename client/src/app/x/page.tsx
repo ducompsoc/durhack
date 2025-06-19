@@ -14,9 +14,9 @@ import { TitleSlide } from "./title-slide"
 
 export default function DurHackXPage() {
   return (
-    <main className="w-full min-h-[100vh] m-0 bg-black">
+    <main className="w-full min-h-screen m-0 bg-black">
       <Carousel opts={{ align: "start", direction: "ltr" }} orientation="horizontal">
-        <CarouselContent className="w-full min-h-[100vh] m-0">
+        <CarouselContent className="w-full min-h-screen m-0">
           <CarouselItem className="h-[inherit] max-h-[inherit] p-0">
             <TitleSlide className="size-full" />
           </CarouselItem>
