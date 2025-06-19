@@ -22,7 +22,7 @@ import { Textarea } from "@durhack/web-components/ui/textarea"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { z } from "zod/v4"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
@@ -67,7 +67,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
   const { mutateApplication } = useApplicationContext()
 
   const form = useForm<ExtraDetailsFormFields, unknown, z.infer<typeof extraDetailsFormSchema>>({
-    resolver: zodResolver(extraDetailsFormSchema),
+    resolver: zodResolver<ExtraDetailsFormFields, unknown, z.infer<typeof extraDetailsFormSchema>>(extraDetailsFormSchema),
     defaultValues: {
       tShirtSize: application.tShirtSize ?? "",
       hackathonExperience: application.hackathonExperience ?? "",

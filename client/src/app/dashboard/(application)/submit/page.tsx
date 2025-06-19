@@ -15,7 +15,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import type * as React from "react"
 import { useForm, useFormContext } from "react-hook-form"
-import { z } from "zod"
+import { z } from "zod/v4"
 
 import { useBackgroundContext } from "@/app/dashboard/background-context"
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
@@ -37,11 +37,11 @@ type SubmitFormFields = {
 }
 
 const submitFormSchema = z.object({
-  mlhCodeOfConduct: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
-  mlhTerms: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  mlhCodeOfConduct: z.literal(true, { error: () => ({ message: "Required" }) }),
+  mlhTerms: z.literal(true, { error: () => ({ message: "Required" }) }),
   mlhMarketing: z.boolean(),
-  dsuPrivacy: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
-  hukPrivacy: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  dsuPrivacy: z.literal(true, { error: () => ({ message: "Required" }) }),
+  hukPrivacy: z.literal(true, { error: () => ({ message: "Required" }) }),
   hukMarketing: z.boolean(),
   media: z.boolean({ message: "Please specify" }),
 })
@@ -91,7 +91,7 @@ function SubmitForm({ application }: { application: Application }) {
   const { mutateApplication } = useApplicationContext()
 
   const form = useForm<SubmitFormFields, unknown, z.infer<typeof submitFormSchema>>({
-    resolver: zodResolver(submitFormSchema),
+    resolver: zodResolver<SubmitFormFields, unknown, z.infer<typeof submitFormSchema>>(submitFormSchema),
     defaultValues: {
       mlhCodeOfConduct: application.consents.find((consent) => consent.name === "mlhCodeOfConduct")?.choice ?? false,
       mlhTerms: application.consents.find((consent) => consent.name === "mlhTerms")?.choice ?? false,

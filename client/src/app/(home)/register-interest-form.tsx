@@ -7,14 +7,14 @@ import { Input } from "@durhack/web-components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
 import type * as React from "react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { z } from "zod/v4"
 
 import { siteConfig } from "@/config/site"
 
 const registerInterestFormSchema = z.object({
   firstNames: z.string().trim().min(1),
   lastNames: z.string().trim().min(1),
-  email: z.string().email(),
+  email: z.email(),
 })
 
 export function RegisterInterestForm(props: React.HTMLAttributes<HTMLFormElement>) {
