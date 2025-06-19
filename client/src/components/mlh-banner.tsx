@@ -144,6 +144,7 @@ export function MLHBanner({ variant, season, region }: { variant: MLHBannerVaria
   return (
     <a
       id="mlh-trust-badge"
+      data-slot="mlh-trust-badge"
       style={{ ...mlhBannerLinkStyle, ...variants[variant] }}
       href={`https://mlh.io/${region}?utm_source=${region}-hackathon&utm_medium=TrustBadge&utm_campaign=${season}-season&utm_content=${variant}`}
       target="_blank"

@@ -4,7 +4,11 @@ export async function handleBadResponse({
   response,
   toast,
   fallbackToast,
-}: { response: Response; toast: Toaster; fallbackToast: Toast }) {
+}: {
+  response: Response
+  toast: Toaster
+  fallbackToast: Toast
+}) {
   const data: unknown = await response.json()
   if (typeof data !== "object" || data == null || Array.isArray(data)) {
     toast(fallbackToast)

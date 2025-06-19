@@ -1,9 +1,7 @@
+import { Button } from "@durhack/web-components/ui/button"
 import Link from "next/link"
-
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
-
-import { Button } from "@durhack/web-components/ui/button"
 import { RegisterInterestForm } from "./register-interest-form"
 
 export default function HomePage() {

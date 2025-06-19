@@ -1,12 +1,5 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import * as React from "react"
-import { useForm, useFormContext } from "react-hook-form"
-import { z } from "zod"
-
 import { Checkbox } from "@durhack/web-components/ui/checkbox"
 import {
   Form,
@@ -17,6 +10,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@durhack/web-components/ui/form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import type * as React from "react"
+import { useForm, useFormContext } from "react-hook-form"
+import { z } from "zod"
 
 import { useBackgroundContext } from "@/app/dashboard/background-context"
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
@@ -61,14 +60,12 @@ function ConsentCardContent({ className, ...props }: React.HTMLAttributes<HTMLDi
   return <div className={cn("space-y-1 leading-none", className)} {...props} />
 }
 
-function FormRootMessage(
-  {
-    errorName,
-    className,
-    children,
-    ...props
-  }: React.ComponentProps<"p"> & { errorName: string }
-) {
+function FormRootMessage({
+  errorName,
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"p"> & { errorName: string }) {
   const {
     formState: { errors },
   } = useFormContext()

@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import * as React from "react"
 
 import { useSidebarContext } from "@/app/dashboard/(application)/sidebar-context"
 import { cn } from "@/lib/utils"

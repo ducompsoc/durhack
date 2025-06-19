@@ -1,11 +1,5 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter } from "next/navigation"
-import * as React from "react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Input } from "@durhack/web-components/ui/input"
 import {
@@ -14,8 +8,12 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectValueClipper,
+  SelectValueViewport,
 } from "@durhack/web-components/ui/select"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
@@ -142,9 +140,9 @@ function PersonalForm({ application }: { application: Application }) {
                     <Select onValueChange={onChange} value={value} {...field}>
                       <FormControl>
                         <SelectTrigger ref={ref}>
-                          <SelectValueClipper>
+                          <SelectValueViewport>
                             <SelectValue />
-                          </SelectValueClipper>
+                          </SelectValueViewport>
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -190,9 +188,9 @@ function PersonalForm({ application }: { application: Application }) {
                 <Select onValueChange={onChange} value={value} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
-                      <SelectValueClipper>
+                      <SelectValueViewport>
                         <SelectValue placeholder="Select gender identity..." />
-                      </SelectValueClipper>
+                      </SelectValueViewport>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -219,9 +217,9 @@ function PersonalForm({ application }: { application: Application }) {
                 <Select onValueChange={onChange} value={value} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
-                      <SelectValueClipper>
+                      <SelectValueViewport>
                         <SelectValue placeholder="Select race/ethnicity..." />
-                      </SelectValueClipper>
+                      </SelectValueViewport>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
