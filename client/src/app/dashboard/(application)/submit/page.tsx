@@ -61,10 +61,14 @@ function ConsentCardContent({ className, ...props }: React.HTMLAttributes<HTMLDi
   return <div className={cn("space-y-1 leading-none", className)} {...props} />
 }
 
-const FormRootMessage = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement> & { errorName: string }
->(({ errorName, className, children, ...props }, ref) => {
+function FormRootMessage(
+  {
+    errorName,
+    className,
+    children,
+    ...props
+  }: React.ComponentProps<"p"> & { errorName: string }
+) {
   const {
     formState: { errors },
   } = useFormContext()
@@ -74,12 +78,11 @@ const FormRootMessage = React.forwardRef<
   if (!body) return null
 
   return (
-    <p ref={ref} className={cn("text-[0.8rem] font-medium text-destructive", className)} {...props}>
+    <p className={cn("text-[0.8rem] font-medium text-destructive", className)} {...props}>
       {body}
     </p>
   )
-})
-FormRootMessage.displayName = "FormRootMessage"
+}
 
 /**
  * This component accepts <code>application</code> via props, rather than via
