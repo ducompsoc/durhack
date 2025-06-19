@@ -17,7 +17,6 @@
     "@hookform/resolvers": "^3.6.0",
     "@radix-ui/react-aspect-ratio": "^1.1.7",
     "@radix-ui/react-icons": "^1.3.2",
-    "@types/prop-types": "^15.7.12",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "countries-list": "^3.1.1",
