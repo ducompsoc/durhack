@@ -79,7 +79,7 @@
   --color-foreground: var(--foreground);
 
   --color-primary: var(--primary);
-  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-foreground: var(--primary-foreground);
 
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
