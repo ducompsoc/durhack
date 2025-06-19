@@ -20,7 +20,6 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "countries-list": "^3.1.1",
-    "framer-motion": "^11.5.0",
     "libphonenumber-js": "^1.11.4",
     "module-error": "^1.0.2",
     "next": "14.2.14",
