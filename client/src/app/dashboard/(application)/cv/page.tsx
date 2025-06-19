@@ -23,13 +23,13 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectValueClipper,
+  SelectValueViewport,
 } from "@durhack/web-components/ui/select"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import * as React from "react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { z } from "zod/v4"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
@@ -41,7 +41,7 @@ import { cn } from "@/lib/utils"
 
 type CvFormFields = {
   cvUploadChoice: "indeterminate" | "upload" | "remind" | "no-upload"
-  cvFiles: File[]
+  cvFiles?: File[] | undefined
 }
 
 const cvFormSchema = z.discriminatedUnion(
@@ -78,7 +78,7 @@ const cvFormSchema = z.discriminatedUnion(
         .length(1, "Please provide exactly one CV file!"),
     }),
   ],
-  { errorMap: () => ({ message: "Please select an option." }) },
+  { error: () => ({ message: "Please select an option." }) },
 )
 
 /**
@@ -91,7 +91,7 @@ function CvForm({ application }: { application: Application }) {
   const [showForm, setShowForm] = React.useState<boolean>(() => application?.cvUploadChoice === "upload")
 
   const form = useForm<CvFormFields, unknown, z.infer<typeof cvFormSchema>>({
-    resolver: zodResolver(cvFormSchema),
+    resolver: zodResolver<CvFormFields, unknown, z.infer<typeof cvFormSchema>>(cvFormSchema),
     defaultValues: {
       cvUploadChoice: application.cvUploadChoice ?? "indeterminate",
       cvFiles: [],
@@ -150,9 +150,9 @@ function CvForm({ application }: { application: Application }) {
                 >
                   <FormControl>
                     <SelectTrigger ref={ref}>
-                      <SelectValueClipper>
+                      <SelectValueViewport>
                         <SelectValue />
-                      </SelectValueClipper>
+                      </SelectValueViewport>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>

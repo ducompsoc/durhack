@@ -13,7 +13,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { z } from "zod/v4"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
@@ -21,13 +21,14 @@ import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
 import { updateApplication } from "@/lib/update-application"
+import { isString } from "@/lib/type-guards"
 
 type PersonalFormFields = {
   firstNames: string
   lastNames: string
   preferredNames: string
   pronouns: string
-  age: string
+  age: unknown
   gender: string
   ethnicity: string
 }
@@ -38,7 +39,7 @@ const personalFormSchema = z.object({
   preferredNames: z.string().trim().max(256),
   pronouns: z.enum(["prefer-not-to-answer", "he/him", "she/her", "they/them", "xe/xem", "other"]),
   age: z.coerce
-    .number({ invalid_type_error: "Please provide a valid age." })
+    .number("Please provide a valid age.")
     .positive("Please provide a valid age.")
     .min(16, { message: "Age must be >= 16" })
     .max(256, { message: "Ain't no way you're that old." })
@@ -60,7 +61,7 @@ function PersonalForm({ application }: { application: Application }) {
   const { mutateApplication } = useApplicationContext()
 
   const form = useForm<PersonalFormFields, unknown, z.infer<typeof personalFormSchema>>({
-    resolver: zodResolver(personalFormSchema),
+    resolver: zodResolver<PersonalFormFields, unknown, z.infer<typeof personalFormSchema>>(personalFormSchema),
     defaultValues: {
       pronouns: application.pronouns ?? "prefer-not-to-answer",
       firstNames: application.firstNames ?? "",
@@ -166,11 +167,11 @@ function PersonalForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="age"
-            render={({ field }) => (
+            render={({ field: { value, ...field } }) => (
               <FormItem>
                 <FormLabel>Age as of 1st November 2025</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter age..." {...field} />
+                  <Input placeholder="Enter age..." value={isString(value) ? value : ""} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
