@@ -1,7 +1,7 @@
 import type { NextFunction } from "@otterhttp/app"
 import { ClientError } from "@otterhttp/errors"
 import { type Client, generators } from "openid-client"
-import { z } from "zod"
+import { z } from "zod/v4"
 
 import { frontendOrigin, origin } from "@/config"
 import { prisma } from "@/database"
@@ -16,18 +16,17 @@ const destinationUrlSchema = z
     try {
       return new URL(value)
     } catch (error) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.invalid_string, // for some reason this always comes out as 'custom'
-        validation: "url",
-        message: "Invalid url",
+      ctx.issues.push({
+        input: value,
+        code: "invalid_format",
+        format: "url",
+        message: "Invalid url"
       })
       return z.NEVER
     }
   })
-  .refine(
-    (value) => value.origin === origin || value.origin === frontendOrigin,
-    (value) => ({ message: `Specified destination origin ${value.origin} is not trusted` }),
-  )
+  .refine((value) => value.origin === origin || value.origin === frontendOrigin)
+  .refine((value) => ({ message: `Specified destination origin ${value.origin} is not trusted` }))
 
 export class KeycloakHandlers {
   client: Client
