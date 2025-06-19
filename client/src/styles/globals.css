@@ -1,24 +1,14 @@
-@import './numerical-input-spinners.css' layer(base);
+@import "./numerical-input-spinners.css" layer(base);
 
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @source '../../node_modules/@durhack/web-components/dist/**/*.{ts,tsx}';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --background-image-platinum-gradient: linear-gradient(
-    99deg,
-    #c5baaa 10.22%,
-    #e4e0d9 51.14%,
-    #8e7fef 95.61%
-  );
-  --background-image-gold-gradient: linear-gradient(
-    99deg,
-    #825f2a 10.22%,
-    #f6ddb8 51.14%,
-    #9e773d 95.61%
-  );
+  --background-image-platinum-gradient: linear-gradient(99deg, #c5baaa 10.22%, #e4e0d9 51.14%, #8e7fef 95.61%);
+  --background-image-gold-gradient: linear-gradient(99deg, #825f2a 10.22%, #f6ddb8 51.14%, #9e773d 95.61%);
   --background-image-silver-gradient: linear-gradient(
     99deg,
     #898277 10.22%,

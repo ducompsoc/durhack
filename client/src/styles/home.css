@@ -1,6 +1,6 @@
 .bg-homepage-gradient {
-  background: rgb(29,25,52);
-  background: linear-gradient(180deg, rgba(29,25,52,1) 0%, rgba(96,52,188,1) 100%);
+  background: rgb(29, 25, 52);
+  background: linear-gradient(180deg, rgba(29, 25, 52, 1) 0%, rgba(96, 52, 188, 1) 100%);
 }
 
 .date > sup {
