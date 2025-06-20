@@ -21,7 +21,7 @@ export const dietaryRequirementSchema = z.enum([
   // at DurHack 2024 we had *one* attendee with an onion allergy.
   // they don't graduate until 2026 (iirc) so, at least for now, this is maybe worth having
   "onion-allergy",
-  "other-allergy",
+  "other",
 ])
 
 export type DietaryRequirement = z.output<typeof dietaryRequirementSchema>
@@ -43,7 +43,7 @@ const dietaryRequirementMetadata: Record<DietaryRequirement, { label: string }> 
   "soy-allergy": { label: "Soy Allergy" },
   "sesame-allergy": { label: "Sesame Allergy" },
   "onion-allergy": { label: "Onion Allergy" },
-  "other-allergy": { label: "Other Allergy" },
+  "other": { label: "Other" },
 }
 
 export const dietaryRequirementOptions = recordEntries(dietaryRequirementMetadata).map(([value, metadata]) => ({
