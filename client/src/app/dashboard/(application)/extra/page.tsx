@@ -156,7 +156,8 @@ function ExtraDetailsForm({ application }: { application: Application }) {
               <FormItem>
                 <FormLabel>Dietary Requirements</FormLabel>
                 <FormDescription>
-                  If your requirement is not listed, please identify it clearly in your response to the following query
+                  If any of your requirements are not listed, please include 'Other' in your selection
+                  and identify additional requirements clearly in your response to the following query
                   regarding &lsquo;access requirements&rsquo;.
                 </FormDescription>
                 <FormControl>
