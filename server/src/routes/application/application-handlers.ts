@@ -1,7 +1,8 @@
 import assert from "node:assert/strict"
 import { parse as parsePath } from "node:path/posix"
 import { type DisciplineOfStudy, disciplineOfStudySchema } from "@durhack/durhack-common/input/discipline-of-study"
-import type { Application, DietaryRequirement } from "@durhack/durhack-common/types/application"
+import { type DietaryRequirement, dietaryRequirementSchema } from "@durhack/durhack-common/input/dietary-requirement";
+import type { Application } from "@durhack/durhack-common/types/application"
 import { ClientError, HttpStatus } from "@otterhttp/errors"
 import type { ContentType, ParsedFormFieldFile } from "@otterhttp/parsec"
 import { fileTypeFromBuffer } from "file-type"
@@ -90,9 +91,7 @@ const extraDetailsFormSchema = z.object({
     })
     .transform(adaptHackathonExperienceToDatabase),
   dietaryRequirements: z
-    .array(
-      z.enum(["vegan", "vegetarian", "pescatarian", "halal", "kosher", "gluten-free", "dairy-free", "nut-allergy"]),
-    )
+    .array(dietaryRequirementSchema)
     .refine((list) => {
       const mutuallyExclusivePreferences = list.filter(
         (item) => item === "vegan" || item === "vegetarian" || item === "pescatarian",
