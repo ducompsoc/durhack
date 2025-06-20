@@ -4,6 +4,7 @@ import type * as React from "react"
 import { Toaster } from "@durhack/web-components/ui/toaster"
 
 import "@/styles/globals.css"
+import { Footer } from "@/components/footer"
 import { siteConfig } from "@/config/site"
 import { spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
@@ -55,6 +56,7 @@ export default function RootLayout({
     <html lang="en-GB">
       <body className={cn(spaceGrotesk.className, "dark antialiased")}>
         {children}
+        <Footer />
         <Toaster />
       </body>
     </html>
