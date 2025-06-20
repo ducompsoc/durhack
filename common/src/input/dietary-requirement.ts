@@ -10,7 +10,18 @@ export const dietaryRequirementSchema = z.enum([
   "kosher",
   "gluten-free",
   "dairy-free",
-  "nut-allergy",
+  "egg-allergy",
+  "fish-allergy",
+  "shellfish-allergy",
+  "tree-nut-allergy",
+  "peanut-allergy",
+  "wheat-allergy",
+  "soy-allergy",
+  "sesame-allergy",
+  // at DurHack 2024 we had *one* attendee with an onion allergy.
+  // they don't graduate until 2026 (iirc) so, at least for now, this is maybe worth having
+  "onion-allergy",
+  "other-allergy",
 ])
 
 export type DietaryRequirement = z.output<typeof dietaryRequirementSchema>
@@ -23,7 +34,16 @@ const dietaryRequirementMetadata: Record<DietaryRequirement, { label: string }> 
   "kosher": { label: "Kosher" },
   "gluten-free": { label: "Gluten Free" },
   "dairy-free": { label: "Dairy Free" },
-  "nut-allergy": { label: "Nut Allergy" },
+  "egg-allergy": { label: "Egg Allergy" },
+  "fish-allergy": { label: "Fish Allergy" },
+  "shellfish-allergy": { label: "Shellfish Allergy" },
+  "tree-nut-allergy": { label: "Tree Nut Allergy" },
+  "peanut-allergy": { label: "Peanut Allergy" },
+  "wheat-allergy": { label: "Wheat Allergy" },
+  "soy-allergy": { label: "Soy Allergy" },
+  "sesame-allergy": { label: "Sesame Allergy" },
+  "onion-allergy": { label: "Onion Allergy" },
+  "other-allergy": { label: "Other Allergy" },
 }
 
 export const dietaryRequirementOptions = recordEntries(dietaryRequirementMetadata).map(([value, metadata]) => ({
