@@ -1,5 +1,6 @@
 "use client"
 
+import { dietaryRequirementOptions, dietaryRequirementSchema } from "@durhack/durhack-common/input/dietary-requirement"
 import {
   Form,
   FormControl,
@@ -45,16 +46,12 @@ const extraDetailsFormSchema = z.object({
   hackathonExperience: z.enum(["zero", "up-to-two", "three-to-seven", "eight-or-more"], {
     message: "Please provide your hackathon experience.",
   }),
-  dietaryRequirements: z
-    .array(
-      z.enum(["vegan", "vegetarian", "pescatarian", "halal", "kosher", "gluten-free", "dairy-free", "nut-allergy"]),
+  dietaryRequirements: z.array(dietaryRequirementSchema).refine((list) => {
+    const mutuallyExclusivePreferences = list.filter(
+      (item) => item === "vegan" || item === "vegetarian" || item === "pescatarian",
     )
-    .refine((list) => {
-      const mutuallyExclusivePreferences = list.filter(
-        (item) => item === "vegan" || item === "vegetarian" || item === "pescatarian",
-      )
-      return mutuallyExclusivePreferences.length <= 1
-    }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
+    return mutuallyExclusivePreferences.length <= 1
+  }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
   accessRequirements: z.string().trim(),
 })
 
@@ -163,20 +160,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
                   regarding &lsquo;access requirements&rsquo;.
                 </FormDescription>
                 <FormControl>
-                  <MultiSelect
-                    {...field}
-                    options={[
-                      { label: "Vegan", value: "vegan" },
-                      { label: "Vegetarian", value: "vegetarian" },
-                      { label: "Pescatarian", value: "pescatarian" },
-                      { label: "Halal", value: "halal" },
-                      { label: "Kosher", value: "kosher" },
-                      { label: "Gluten Free", value: "gluten-free" },
-                      { label: "Dairy Free", value: "dairy-free" },
-                      { label: "Nut Allergy", value: "nut-allergy" },
-                    ]}
-                    hidePlaceholderWhenSelected
-                  />
+                  <MultiSelect {...field} options={dietaryRequirementOptions} hidePlaceholderWhenSelected />
                 </FormControl>
                 <FormMessage />
               </FormItem>
