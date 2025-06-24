@@ -10,7 +10,7 @@
     --hex-grid-tile-margin: 1rem;    /* margin */
   }
 
-  --hex-grid-f: calc(1.732 * var(--hex-grid-tile-size) + 4 * var(--hex-grid-tile-margin)  - 1px);
+  --hex-grid-f: calc(1.732 * var(--hex-grid-tile-size) + 4 * var(--hex-grid-tile-margin) - 1px);
 }
 
 .hex-grid > div {
