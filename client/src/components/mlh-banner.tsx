@@ -1,6 +1,6 @@
 import type * as React from "react"
 
-import { Six, Two, Zero } from "@/components/mlh-banner-digits"
+import { Digits } from "@/components/mlh-banner-digits"
 
 type MLHBannerVariant = "white" | "black" | "gray" | "red" | "blue" | "yellow"
 
@@ -138,12 +138,14 @@ const mlhBannerLinkStyle: React.CSSProperties = {
   zIndex: "10000",
 }
 
-export function MLHBanner({ variant }: { variant: MLHBannerVariant }): React.ReactNode {
+export function MLHBanner({ variant, season }: { variant: MLHBannerVariant; season: number }): React.ReactNode {
+  if (!Number.isSafeInteger(season)) throw new Error(`MLHBanner season prop must be a safe integer, got ${season}`)
+
   return (
     <a
       id="mlh-trust-badge"
       style={{ ...mlhBannerLinkStyle, ...variants[variant] }}
-      href={`https://mlh.io/eu?utm_source=eu-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=${variant}`}
+      href={`https://mlh.io/eu?utm_source=eu-hackathon&utm_medium=TrustBadge&utm_campaign=${season}-season&utm_content=${variant}`}
       target="_blank"
       rel="noreferrer"
     >
@@ -152,7 +154,7 @@ export function MLHBanner({ variant }: { variant: MLHBannerVariant }): React.Rea
         className="absolute w-full bottom-[24.5%] h-[12%] flex flex-row justify-center gap-0.5"
         style={{ color: "var(--mlh-banner-text-season)" }}
       >
-        <Two /> <Zero /> <Two /> <Six />
+        <Digits value={season} />
       </div>
     </a>
   )
