@@ -81,3 +81,19 @@ export function Nine(props: DigitProps) {
     </svg>
   )
 }
+
+const digits = [Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine]
+
+export function Digits({ value }: { value: number }) {
+  if (!Number.isSafeInteger(value)) throw new Error(`Digits value prop must be a safe integer, got ${value}`)
+
+  const digitComponents = Array.from(value.toString())
+    .map(Number)
+    .map((digit) => digits[digit])
+
+  return (
+    <>
+      {digitComponents.map((Item, index) => <Item key={index} />)}
+    </>
+  )
+}
