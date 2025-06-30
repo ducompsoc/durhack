@@ -138,14 +138,14 @@ const mlhBannerLinkStyle: React.CSSProperties = {
   zIndex: "10000",
 }
 
-export function MLHBanner({ variant, season }: { variant: MLHBannerVariant; season: number }): React.ReactNode {
+export function MLHBanner({ variant, season, region }: { variant: MLHBannerVariant; season: number; region: "eu" | "na" | "apac" }): React.ReactNode {
   if (!Number.isSafeInteger(season)) throw new Error(`MLHBanner season prop must be a safe integer, got ${season}`)
 
   return (
     <a
       id="mlh-trust-badge"
       style={{ ...mlhBannerLinkStyle, ...variants[variant] }}
-      href={`https://mlh.io/eu?utm_source=eu-hackathon&utm_medium=TrustBadge&utm_campaign=${season}-season&utm_content=${variant}`}
+      href={`https://mlh.io/${region}?utm_source=${region}-hackathon&utm_medium=TrustBadge&utm_campaign=${season}-season&utm_content=${variant}`}
       target="_blank"
       rel="noreferrer"
     >
