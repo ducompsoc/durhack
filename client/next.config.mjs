@@ -40,6 +40,11 @@ const nextConfig = {
         destination: "https://forms.gle/E6h8ri1JWFM1BBk57",
         permanent: false,
       },
+      {
+        source: "/sponsor",
+        destination: "/x",
+        permanent: false,
+      },
     ]
   },
 }
