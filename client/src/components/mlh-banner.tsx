@@ -151,7 +151,7 @@ export function MLHBanner({ variant, season, region }: { variant: MLHBannerVaria
     >
       <MLHBannerGraphic className="w-full" />
       <div
-        className="absolute w-full bottom-[24.5%] h-[12%] flex flex-row justify-center gap-0.5"
+        className="absolute w-full bottom-[24.5%] h-[11%] flex flex-row justify-center gap-0.5"
         style={{ color: "var(--mlh-banner-text-season)" }}
       >
         <Digits value={season} />

@@ -93,7 +93,7 @@ export function Digits({ value }: { value: number }) {
 
   return (
     <>
-      {digitComponents.map((Item, index) => <Item key={index} />)}
+      {digitComponents.map((Item, index) => <Item className="h-full" key={index} />)}
     </>
   )
 }
