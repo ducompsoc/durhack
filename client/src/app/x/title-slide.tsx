@@ -50,10 +50,10 @@ export function TitleSlide({ className, ...props }: React.HTMLAttributes<HTMLDiv
         className={cn("absolute size-full flex flex-col space-y-1.5 items-center justify-center", className)}
         {...props}
       >
-        <h1 className={cn(audiowide.className, "text-6xl lg:text-8xl uppercase")}>
+        <h1 className={cn(audiowide.className, "text-5xl md:text-6xl lg:text-8xl uppercase whitespace-nowrap")}>
           <GlowingText>DurHack</GlowingText> <OutlinedHeadingText>X</OutlinedHeadingText>
         </h1>
-        <h1 className="text-5xl lg:text-7xl">
+        <h1 className="text-4xl md:text-5xl lg:text-7xl">
           <OutlinedHeadingText>Nov 2025</OutlinedHeadingText>
         </h1>
         <div className="pt-4" />
