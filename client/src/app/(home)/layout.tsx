@@ -2,6 +2,7 @@ import type * as React from "react"
 import "@/styles/home.css"
 
 import { MLHBanner } from "@/components/mlh-banner"
+import { Footer } from "@/components/footer"
 
 export default function HomeLayout({
   children,
@@ -16,6 +17,7 @@ export default function HomeLayout({
         {children}
         <div className="w-full min-h-[110px] 2xl:hidden" />
       </div>
+      <Footer />
     </>
   )
 }
