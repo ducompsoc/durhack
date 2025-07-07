@@ -40,7 +40,7 @@ export function AboutSlide({ className, ...props }: React.HTMLAttributes<HTMLDiv
               <strong>Community Outreach:</strong> support pioneering students, and invest in the community with events
               and workshops.
             </li>
-            <div className="py-4"></div>
+            <div className="pb-8"></div>
           </ul>
         </div>
       </div>
