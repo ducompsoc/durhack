@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils"
 
 export function AboutSlide({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.ReactNode {
   return (
-    <article className={cn("absolute overflow-y-auto flex justify-center px-8", className)} {...props}>
-      <div className="max-w-[40rem] w-full flex flex-col items-center space-y-1.5 py-16 my-auto">
+    <article className={cn("absolute size-full overflow-y-auto flex justify-center", className)} {...props}>
+      <div className="max-w-[40rem] w-full flex flex-col items-center space-y-1.5 my-8 mx-16">
         <h1 className={cn(electrolize.className, "text-5xl pb-5")}>DurHack X</h1>
         <h2 className={cn(spaceGrotesk.className, "text-3xl")}>600 Attendees</h2>
         <h2 className={cn(spaceGrotesk.className, "text-3xl")}>150 Projects</h2>
@@ -40,6 +40,7 @@ export function AboutSlide({ className, ...props }: React.HTMLAttributes<HTMLDiv
               <strong>Community Outreach:</strong> support pioneering students, and invest in the community with events
               and workshops.
             </li>
+            <div className="py-4"></div>
           </ul>
         </div>
       </div>
