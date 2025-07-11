@@ -5,16 +5,18 @@ import {KeycloakAugments} from "@/lib/keycloak-augmenting-transform";
 import {ConsentAugments} from "./consent-augmenting-transform";
 import {AttendanceAugments} from "./attendance-augmenting-transform";
 
-export class AnonymousCsvTransform extends PickAttributesToCsvTransform<UserInfo & AgeAugment & AttendanceAugments> {
+export class AnonymousCsvTransform extends PickAttributesToCsvTransform<UserInfo & AgeAugment & AttendanceAugments & ConsentAugments<"media" | "dsuPrivacy">> {
   constructor(){
     super({
       attributes: [
         {name: "countryOfResidence", label: "country_of_residence"},
         {name: "university", label: "university"},
         {name: "levelOfStudy", label: "level_of_study"},
-        {name: "ageGroup", label: "age_group"},
-        {name: "hackathonExperience", label: "hackathon_experience"},
         {name: "tShirtSize", label: "t_shirt_size"},
+        {name: "hackathonExperience", label: "hackathon_experience"},
+        {name: "ageGroup", label: "age_group"},
+        {name: "dsuPrivacy", label: "dsu_privacy"},
+        {name: "media", label: "photo_media_consent"},
         {name: "isCheckedIn", label: "has_attended"}
       ],
     })
