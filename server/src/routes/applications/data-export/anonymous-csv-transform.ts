@@ -4,8 +4,9 @@ import { AgeAugment } from "./user-age-augmenting-transform";
 import {KeycloakAugments} from "@/lib/keycloak-augmenting-transform";
 import {ConsentAugments} from "./consent-augmenting-transform";
 import {AttendanceAugments} from "./attendance-augmenting-transform";
+import {UserCvAugment} from "@/routes/applications/data-export/user-cv-augmenting-transform";
 
-export class AnonymousCsvTransform extends PickAttributesToCsvTransform<UserInfo & AgeAugment & AttendanceAugments & ConsentAugments<"media" | "dsuPrivacy">> {
+export class AnonymousCsvTransform extends PickAttributesToCsvTransform<UserInfo & AgeAugment & AttendanceAugments & ConsentAugments<"media" | "dsuPrivacy"> & UserCvAugment> {
   constructor(){
     super({
       attributes: [
@@ -17,6 +18,8 @@ export class AnonymousCsvTransform extends PickAttributesToCsvTransform<UserInfo
         {name: "ageGroup", label: "age_group"},
         {name: "dsuPrivacy", label: "dsu_privacy"},
         {name: "media", label: "photo_media_consent"},
+        {name: "is_cv_uploaded", label: "has_uploaded_cv"},
+        {name: "cv_update_time", label: "cv_update_time"},
         {name: "isCheckedIn", label: "has_attended"}
       ],
     })
