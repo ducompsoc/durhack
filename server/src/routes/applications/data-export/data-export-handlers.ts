@@ -17,6 +17,8 @@ import {
   ConsentAugmentingTransform,
   type ConsentAugments,
 } from "@/routes/applications/data-export/consent-augmenting-transform"
+import { UserAgeAugmentingTransform } from "@/routes/applications/data-export/user-age-augmenting-transform"
+import { UserFlagAugmentor } from "@/routes/applications/data-export/user-flag-json-augmentor"
 import type { Middleware } from "@/types"
 import { AttendanceAugmentingTransform, type AttendanceAugments } from "./attendance-augmenting-transform"
 import { CvExportingWritable } from "./cv-exporting-writable"
@@ -154,6 +156,28 @@ class DataExportHandlers {
         }
 
         await response.download(archivePath, "durhack-cvs.zip")
+      } finally {
+        await rm(tempDir, { recursive: true, force: true })
+      }
+    }
+  }
+
+  @onlyGroups([Group.organisers, Group.admins])
+  getAnonymousDataExport(): Middleware {
+    return async (_request, _response) => {
+      const tempDir = await getTempDir()
+      try {
+        const fileName: string = "anonymous-data-export.csv"
+        const fileDestination: string = pathJoin(tempDir, fileName)
+
+        await pipeline(
+          Readable.from(generateUserInfo()),
+          new AttendanceAugmentingTransform(),
+          new ConsentAugmentingTransform({ media: true, dsuPrivacy: true }),
+          new UserAgeAugmentingTransform(),
+          new UserFlagAugmentor({}), // Not sure what to put in here
+          createWriteStream(fileDestination),
+        )
       } finally {
         await rm(tempDir, { recursive: true, force: true })
       }
