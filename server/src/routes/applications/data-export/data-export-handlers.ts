@@ -1,31 +1,33 @@
 import assert from "node:assert/strict"
-import { type ChildProcess, type ExecException, exec } from "node:child_process"
-import { createWriteStream } from "node:fs"
-import { mkdir, rm } from "node:fs/promises"
-import { join as pathJoin } from "node:path"
-import { Readable } from "node:stream"
-import { pipeline } from "node:stream/promises"
-import { ServerError } from "@otterhttp/errors"
+import {type ChildProcess, exec, type ExecException} from "node:child_process"
+import {createWriteStream} from "node:fs"
+import {mkdir, rm} from "node:fs/promises"
+import {join as pathJoin} from "node:path"
+import {Readable} from "node:stream"
+import {pipeline} from "node:stream/promises"
+import {ServerError} from "@otterhttp/errors"
 
-import { origin } from "@/config"
-import type { UserInfo } from "@/database"
-import { Group, onlyGroups } from "@/decorators/authorise"
-import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
-import { getTempDir } from "@/lib/temp-dir"
-import type { Middleware } from "@/types"
+import {origin} from "@/config"
+import type {UserInfo} from "@/database"
+import {Group, onlyGroups} from "@/decorators/authorise"
+import {KeycloakAugmentingTransform} from "@/lib/keycloak-augmenting-transform"
+import {getTempDir} from "@/lib/temp-dir"
+import type {Middleware} from "@/types"
 
-import { hasCode } from "@/lib/type-guards"
+import {hasCode} from "@/lib/type-guards"
 import {
   ConsentAugmentingTransform,
   type ConsentAugments,
 } from "@/routes/applications/data-export/consent-augmenting-transform"
-import { AttendanceAugmentingTransform, type AttendanceAugments } from "./attendance-augmenting-transform"
-import { CvExportingWritable } from "./cv-exporting-writable"
-import { FilteringTransform } from "./filtering-transform"
-import { HukCsvTransform } from "./huk-csv-transform"
-import { MlhCsvTransform } from "./mlh-csv-transform"
-import { generateUserCv } from "./user-cv-async-generator"
-import { generateUserInfo } from "./user-info-async-generator"
+import {AttendanceAugmentingTransform, type AttendanceAugments} from "./attendance-augmenting-transform"
+import {CvExportingWritable} from "./cv-exporting-writable"
+import {FilteringTransform} from "./filtering-transform"
+import {HukCsvTransform} from "./huk-csv-transform"
+import {MlhCsvTransform} from "./mlh-csv-transform"
+import {generateUserCv} from "./user-cv-async-generator"
+import {generateUserInfo} from "./user-info-async-generator"
+import {UserAgeAugmentingTransform} from "@/routes/applications/data-export/user-age-augmenting-transform";
+import {UserFlagAugmentor} from "@/routes/applications/data-export/user-flag-json-augmentor";
 
 class DataExportHandlers {
   @onlyGroups([Group.organisers, Group.admins])
@@ -157,6 +159,28 @@ class DataExportHandlers {
         await response.download(archivePath, "durhack-cvs.zip")
       } finally {
         await rm(tempDir, { recursive: true, force: true })
+      }
+    }
+  }
+
+  @onlyGroups([Group.organisers, Group.admins])
+  getAnonymousDataExport(): Middleware {
+    return async (request, response) => {
+      const tempDir = await getTempDir();
+      try {
+        const fileName: string = "anonymous-data-export.csv"
+        const fileDestination: string = pathJoin(tempDir, fileName);
+
+        await pipeline(
+          Readable.from(generateUserInfo()),
+          new AttendanceAugmentingTransform(),
+          new ConsentAugmentingTransform({media: true, dsuPrivacy: true}),
+          new UserAgeAugmentingTransform(),
+          new UserFlagAugmentor({}), // Not sure what to put in here
+          createWriteStream(fileDestination),
+        )
+      } finally {
+        await rm(tempDir, {recursive: true, force: true});
       }
     }
   }
