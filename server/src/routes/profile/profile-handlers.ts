@@ -5,7 +5,7 @@ import type { Prisma } from "@prisma/client"
 import { z } from "zod/v4"
 
 import { durhackConfig } from "@/config"
-import { type UserFlag, prisma } from "@/database"
+import { prisma, type UserFlag } from "@/database"
 import { adaptApplicationStatusFromDatabase } from "@/database/adapt-application-status"
 import { Group, onlyGroups } from "@/decorators/authorise"
 import { json } from "@/lib/body-parsers"
@@ -29,7 +29,7 @@ class ProfileHandlers {
   static userIdSchema = z.string().uuid()
 
   validateUserId(): Middleware {
-    return async (request, response, next) => {
+    return async (request, _response, next) => {
       const userId = request.params.userId
       assert(userId)
 
@@ -303,7 +303,7 @@ class ProfileHandlers {
 
   @onlyGroups([Group.admins, Group.organisers, Group.volunteers])
   getGuildsProfile(): Middleware {
-    return async (request, response) => {
+    return async (_request, _response) => {
       throw new ServerError("Not Implemented", { statusCode: HttpStatus.NotImplemented })
     }
   }

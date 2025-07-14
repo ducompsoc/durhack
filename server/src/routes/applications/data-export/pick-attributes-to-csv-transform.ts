@@ -56,7 +56,7 @@ export class PickAttributesToCsvTransform<Source extends Record<string, unknown>
     return labels.join(";")
   }
 
-  _transform(chunk: Source[], encoding: never, callback: stream.TransformCallback) {
+  _transform(chunk: Source[], _encoding: never, callback: stream.TransformCallback) {
     try {
       const transformedChunk = chunk.map((item) => this.pickAttributesToCsv(item))
       if (!this.headerLinePrepended) {

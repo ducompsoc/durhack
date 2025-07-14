@@ -1,6 +1,6 @@
 import type { Prisma } from "@prisma/client"
 
-import { type UserInfo, prisma } from "@/database"
+import { prisma, type UserInfo } from "@/database"
 
 /**
  * Generate UserInfo using the provided Prisma query, with the intent to email each.

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict"
 import { parse as parsePath } from "node:path/posix"
+import { type DietaryRequirement, dietaryRequirementSchema } from "@durhack/durhack-common/input/dietary-requirement"
 import { type DisciplineOfStudy, disciplineOfStudySchema } from "@durhack/durhack-common/input/discipline-of-study"
-import { type DietaryRequirement, dietaryRequirementSchema } from "@durhack/durhack-common/input/dietary-requirement";
 import type { Application } from "@durhack/durhack-common/types/application"
 import { ClientError, HttpStatus } from "@otterhttp/errors"
 import type { ContentType, ParsedFormFieldFile } from "@otterhttp/parsec"
@@ -20,11 +20,11 @@ import {
 } from "@/database/adapt-hackathon-experience"
 import { onlyKnownUsers } from "@/decorators/authorise"
 import { json, multipartFormData } from "@/lib/body-parsers"
-import { type KeycloakUserInfo, getKeycloakAdminClient } from "@/lib/keycloak-client"
+import { getKeycloakAdminClient, type KeycloakUserInfo } from "@/lib/keycloak-client"
 import { mailgunClient } from "@/lib/mailgun"
-import type { Middleware, Request } from "@/types"
-import { zodPhoneNumber } from "@/lib/zod-phone-validator"
 import { zodIso3 } from "@/lib/zod-iso3-validator"
+import { zodPhoneNumber } from "@/lib/zod-phone-validator"
+import type { Middleware, Request } from "@/types"
 
 import { verifiedInstitutionsSet } from "./institution-options"
 
@@ -90,14 +90,12 @@ const extraDetailsFormSchema = z.object({
       message: "Please provide your hackathon experience.",
     })
     .transform(adaptHackathonExperienceToDatabase),
-  dietaryRequirements: z
-    .array(dietaryRequirementSchema)
-    .refine((list) => {
-      const mutuallyExclusivePreferences = list.filter(
-        (item) => item === "vegan" || item === "vegetarian" || item === "pescatarian",
-      )
-      return mutuallyExclusivePreferences.length <= 1
-    }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
+  dietaryRequirements: z.array(dietaryRequirementSchema).refine((list) => {
+    const mutuallyExclusivePreferences = list.filter(
+      (item) => item === "vegan" || item === "vegetarian" || item === "pescatarian",
+    )
+    return mutuallyExclusivePreferences.length <= 1
+  }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
   accessRequirements: z.string().trim(),
 })
 

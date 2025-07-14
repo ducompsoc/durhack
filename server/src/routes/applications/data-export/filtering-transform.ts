@@ -13,7 +13,7 @@ export class FilteringTransform<Item> extends stream.Transform {
     this.filterPredicate = filterPredicate
   }
 
-  _transform(chunk: Item[], encoding: never, callback: stream.TransformCallback) {
+  _transform(chunk: Item[], _encoding: never, callback: stream.TransformCallback) {
     try {
       const filteredChunk = chunk.filter((item) => this.filterPredicate(item))
       callback(null, filteredChunk satisfies Item[])

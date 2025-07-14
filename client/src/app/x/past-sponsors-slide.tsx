@@ -35,7 +35,7 @@ export function PastSponsorsSlide({ className, ...props }: React.HTMLAttributes<
           which are displayed in-line, i.e. `display: inline` or `display: inline-block`.
           Removing the following empty 'p' tag breaks the hex grid layout on Safari.
           */}
-          <p></p>
+          <p />
           <SponsorCard sponsorSlug="amazon-web-services" />
           <SponsorCard sponsorSlug="waterstons" />
           <SponsorCard sponsorSlug="github" />

@@ -156,9 +156,9 @@ function ExtraDetailsForm({ application }: { application: Application }) {
               <FormItem>
                 <FormLabel>Dietary Requirements</FormLabel>
                 <FormDescription>
-                  If any of your requirements are not listed, please include 'Other' in your selection
-                  and identify additional requirements clearly in your response to the following query
-                  regarding &lsquo;access requirements&rsquo;.
+                  If any of your requirements are not listed, please include 'Other' in your selection and identify
+                  additional requirements clearly in your response to the following query regarding &lsquo;access
+                  requirements&rsquo;.
                 </FormDescription>
                 <FormControl>
                   <MultiSelect {...field} options={dietaryRequirementOptions} hidePlaceholderWhenSelected />

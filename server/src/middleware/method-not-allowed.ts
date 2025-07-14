@@ -1,7 +1,6 @@
 import type { NextFunction } from "@otterhttp/app"
-
-import type { Middleware, Request, Response } from "@/types"
 import { ClientError, HttpStatus } from "@otterhttp/errors"
+import type { Middleware, Request, Response } from "@/types"
 
 type HttpVerb = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH"
 

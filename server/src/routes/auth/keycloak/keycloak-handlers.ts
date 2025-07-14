@@ -15,12 +15,12 @@ const destinationUrlSchema = z
   .transform((value, ctx) => {
     try {
       return new URL(value)
-    } catch (error) {
+    } catch (_error) {
       ctx.issues.push({
         input: value,
         code: "invalid_format",
         format: "url",
-        message: "Invalid url"
+        message: "Invalid url",
       })
       return z.NEVER
     }

@@ -7,6 +7,7 @@ import { adaptTokenSetToClient, adaptTokenSetToDatabase } from "@/lib/adapt-toke
 import { isNetworkError } from "@/lib/is-network-error"
 import { type KeycloakUserInfo, keycloakClient } from "@/lib/keycloak-client"
 import { getSession } from "@/lib/session"
+// biome-ignore lint/correctness/noUnusedImports: 'Request' type is used in JSDoc annotations
 import type { Middleware, Request } from "@/types"
 
 /**

@@ -1,8 +1,8 @@
 import type * as React from "react"
 import "@/styles/home.css"
 
-import { MLHBanner } from "@/components/mlh-banner"
 import { Footer } from "@/components/footer"
+import { MLHBanner } from "@/components/mlh-banner"
 
 export default function HomeLayout({
   children,

@@ -75,7 +75,7 @@ class ApplicationsHandlers {
     return "`accepted`: only completed applications which have been assigned tickets are considered"
   }
 
-  private getFilteredUrls(request: Request, response: Response): Record<string, URL> {
+  private getFilteredUrls(request: Request, _response: Response): Record<string, URL> {
     return {
       filter_accepted_url: new URL(`${request.pathnameWithoutTrailingSlash}`, origin),
       filter_all_url: new URL(`${request.pathnameWithoutTrailingSlash}?all=`, origin),
