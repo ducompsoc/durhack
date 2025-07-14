@@ -20,6 +20,9 @@ export class UserCvAugmentingTransform extends stream.Transform {
       where: {
         userId: userInfo.userId,
       },
+      select: {
+        updatedAt: true,
+      },
     })
 
     return { ...userInfo, is_cv_uploaded: !!foundCV, cv_update_time: foundCV ? foundCV.updatedAt : null }
