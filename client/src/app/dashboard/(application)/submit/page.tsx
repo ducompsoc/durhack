@@ -1,12 +1,5 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import * as React from "react"
-import { useForm, useFormContext } from "react-hook-form"
-import { z } from "zod"
-
 import { Checkbox } from "@durhack/web-components/ui/checkbox"
 import {
   Form,
@@ -17,6 +10,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@durhack/web-components/ui/form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import type * as React from "react"
+import { useForm, useFormContext } from "react-hook-form"
+import { z } from "zod/v4"
 
 import { useBackgroundContext } from "@/app/dashboard/background-context"
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
@@ -38,11 +37,11 @@ type SubmitFormFields = {
 }
 
 const submitFormSchema = z.object({
-  mlhCodeOfConduct: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
-  mlhTerms: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  mlhCodeOfConduct: z.literal(true, { error: () => ({ message: "Required" }) }),
+  mlhTerms: z.literal(true, { error: () => ({ message: "Required" }) }),
   mlhMarketing: z.boolean(),
-  dsuPrivacy: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
-  hukPrivacy: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  dsuPrivacy: z.literal(true, { error: () => ({ message: "Required" }) }),
+  hukPrivacy: z.literal(true, { error: () => ({ message: "Required" }) }),
   hukMarketing: z.boolean(),
   media: z.boolean({ message: "Please specify" }),
 })
@@ -61,10 +60,12 @@ function ConsentCardContent({ className, ...props }: React.HTMLAttributes<HTMLDi
   return <div className={cn("space-y-1 leading-none", className)} {...props} />
 }
 
-const FormRootMessage = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement> & { errorName: string }
->(({ errorName, className, children, ...props }, ref) => {
+function FormRootMessage({
+  errorName,
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"p"> & { errorName: string }) {
   const {
     formState: { errors },
   } = useFormContext()
@@ -74,12 +75,11 @@ const FormRootMessage = React.forwardRef<
   if (!body) return null
 
   return (
-    <p ref={ref} className={cn("text-[0.8rem] font-medium text-destructive", className)} {...props}>
+    <p className={cn("text-[0.8rem] font-medium text-destructive", className)} {...props}>
       {body}
     </p>
   )
-})
-FormRootMessage.displayName = "FormRootMessage"
+}
 
 /**
  * This component accepts <code>application</code> via props, rather than via
@@ -91,7 +91,7 @@ function SubmitForm({ application }: { application: Application }) {
   const { mutateApplication } = useApplicationContext()
 
   const form = useForm<SubmitFormFields, unknown, z.infer<typeof submitFormSchema>>({
-    resolver: zodResolver(submitFormSchema),
+    resolver: zodResolver<SubmitFormFields, unknown, z.infer<typeof submitFormSchema>>(submitFormSchema),
     defaultValues: {
       mlhCodeOfConduct: application.consents.find((consent) => consent.name === "mlhCodeOfConduct")?.choice ?? false,
       mlhTerms: application.consents.find((consent) => consent.name === "mlhTerms")?.choice ?? false,
@@ -386,7 +386,7 @@ function SubmitForm({ application }: { application: Application }) {
 
         <div className="mt-16 flex justify-center">
           <FormSubmitButton
-            className="py-2 px-4 text-center rounded-sm text-white bg-white bg-opacity-15 hover:bg-green-500 hover:cursor-pointer hover:shadow-[0_0px_50px_0px_rgba(34,197,94,0.8)] transition-all"
+            className="py-2 px-4 text-center rounded-sm text-white bg-white/15 hover:bg-green-500 hover:cursor-pointer hover:shadow-[0_0px_50px_0px_rgba(34,197,94,0.8)] transition-all"
             type="submit"
             onMouseEnter={() => setIsFinalSubmitHovering(true)}
             onMouseLeave={() => setIsFinalSubmitHovering(false)}

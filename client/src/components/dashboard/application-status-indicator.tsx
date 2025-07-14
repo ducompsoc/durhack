@@ -1,7 +1,7 @@
 import type { Application } from "@durhack/durhack-common/types/application"
 import { Badge } from "@durhack/web-components/ui/badge"
 import { UpdateIcon } from "@radix-ui/react-icons"
-import { type VariantProps, cva } from "class-variance-authority"
+import { cva, type VariantProps } from "class-variance-authority"
 import type * as React from "react"
 
 import { useApplicationContext } from "@/hooks/use-application-context"
@@ -67,7 +67,7 @@ export function AutoApplicationStatusBadge({ children, ...props }: AutoApplicati
 export function AutoApplicationStatusIndicator() {
   return (
     <article>
-      <div className="min-w-[8rem] flex flex-col items-center">
+      <div className="min-w-32 flex flex-col items-center">
         <span className="text-nowrap">your application is</span>
         <AutoApplicationStatusBadge className="mt-1">
           <UpdateIcon className="animate-spin h-6 w-6 m-2" />

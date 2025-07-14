@@ -14,5 +14,5 @@ export class MailgunMailer implements Mailer {
 }
 
 export class DummyMailer implements Mailer {
-  async createMessage(data: MailgunMessageData) {}
+  async createMessage(_data: MailgunMessageData) {}
 }

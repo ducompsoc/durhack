@@ -1,6 +1,6 @@
 import { STATUS_CODES } from "node:http"
 import type { HttpError } from "@otterhttp/errors"
-import type { ZodError } from "zod"
+import type { ZodError } from "zod/v4"
 
 import type { Response } from "@/types"
 

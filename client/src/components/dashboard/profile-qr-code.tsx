@@ -18,6 +18,7 @@ export function ProfileQrCode({ userId, className, alt, ...props }: ProfileQrCod
 
   // this is intentionally not an `Image` from "next/image" as the `src` is dynamic
   return (
+    // biome-ignore lint/performance/noImgElement: see above
     <img
       src={svgProfileQrCodeUrl.toString()}
       className={cn("rounded-md", className)}

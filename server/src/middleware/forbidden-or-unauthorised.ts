@@ -12,7 +12,7 @@ import type { Middleware } from "@/types"
  * middleware in an <code>App.route()</code> group).
  */
 export function forbiddenOrUnauthorised(): Middleware {
-  return (request, response) => {
+  return (request, _response) => {
     if (request.user != null) {
       // Re-authenticating will not allow access (i.e. you are not a high-enough privileged user):
       // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403

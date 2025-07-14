@@ -12,13 +12,12 @@ import type { UserInfo } from "@/database"
 import { Group, onlyGroups } from "@/decorators/authorise"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { getTempDir } from "@/lib/temp-dir"
-import type { Middleware } from "@/types"
-
 import { hasCode } from "@/lib/type-guards"
 import {
   ConsentAugmentingTransform,
   type ConsentAugments,
 } from "@/routes/applications/data-export/consent-augmenting-transform"
+import type { Middleware } from "@/types"
 import { AttendanceAugmentingTransform, type AttendanceAugments } from "./attendance-augmenting-transform"
 import { CvExportingWritable } from "./cv-exporting-writable"
 import { FilteringTransform } from "./filtering-transform"
@@ -30,7 +29,7 @@ import { generateUserInfo } from "./user-info-async-generator"
 class DataExportHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getRoot(): Middleware {
-    return async (request, response) => {
+    return async (_request, response) => {
       response.json({
         data: undefined,
         major_league_hacking_applications_url: new URL("/applications/data-export/major-league-hacking", origin),
@@ -117,7 +116,7 @@ class DataExportHandlers {
    */
   @onlyGroups([Group.organisers, Group.admins])
   getCVArchive(): Middleware {
-    return async (request, response) => {
+    return async (_request, response) => {
       const tempDir = await getTempDir()
       try {
         const archiveDir = pathJoin(tempDir, "durhack-cvs")

@@ -1,22 +1,21 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter } from "next/navigation"
-import * as React from "react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Input } from "@durhack/web-components/ui/input"
 import { PhoneInput } from "@durhack/web-components/ui/phone-number-input"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
+import { z } from "zod/v4"
 
-import "@/lib/zod-phone-extension"
+import "@/lib/zod-phone-validator"
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
 import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
 import { updateApplication } from "@/lib/update-application"
+import { zodPhoneNumberValidator } from "@/lib/zod-phone-validator"
 
 type ContactFormFields = {
   phone: string
@@ -24,7 +23,8 @@ type ContactFormFields = {
 }
 
 const contactFormSchema = z.object({
-  phone: z.string().phone(),
+  phone: zodPhoneNumberValidator(),
+  email: z.email(),
 })
 
 /**

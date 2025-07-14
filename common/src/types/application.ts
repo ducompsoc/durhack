@@ -1,19 +1,12 @@
 import type { DisciplineOfStudy } from "@/input/discipline-of-study"
+import type { DietaryRequirement } from "@/input/dietary-requirement"
+
+export type { DisciplineOfStudy, DietaryRequirement }
 
 export type Consent = {
   name: string
   choice: boolean
 }
-
-export type DietaryRequirement =
-  | "vegan"
-  | "vegetarian"
-  | "pescatarian"
-  | "halal"
-  | "kosher"
-  | "gluten-free"
-  | "dairy-free"
-  | "nut-allergy"
 
 export type Application = {
   keycloakUserId: string

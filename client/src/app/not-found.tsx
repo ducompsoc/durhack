@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import React from "react"
 
 import { ServerErrorPage } from "@/components/server-error"
 

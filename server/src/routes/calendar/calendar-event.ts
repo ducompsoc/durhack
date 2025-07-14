@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto"
 import { promisify } from "node:util"
-import { type EventAttributes, createEvent as _createEvent } from "ics"
+import { createEvent as _createEvent, type EventAttributes } from "ics"
 
 import { frontendOrigin } from "@/config"
 import type { Middleware } from "@/types"
@@ -33,7 +33,7 @@ const durhackInviteETag = createHash("sha256").update(durhackInvite).digest("hex
  * file containing a single event (DurHack).
  */
 export function getCalendarEvent(): Middleware {
-  return async (request, response) => {
+  return async (_request, response) => {
     response.setHeader("etag", durhackInviteETag)
     response.validatePreconditions()
 

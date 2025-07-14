@@ -2,7 +2,6 @@
 
 import { Button } from "@durhack/web-components/ui/button"
 import { HamburgerMenuIcon } from "@radix-ui/react-icons"
-import * as React from "react"
 
 import { useSidebarContext } from "@/app/dashboard/(application)/sidebar-context"
 import { AutoApplicationStatusIndicator } from "@/components/dashboard/application-status-indicator"

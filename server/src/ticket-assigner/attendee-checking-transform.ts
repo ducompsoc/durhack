@@ -30,7 +30,7 @@ export class AttendeeCheckingTransform extends Transform {
     return chunk.filter((userInfo) => this.isPermittedAttendee(userInfo))
   }
 
-  _transform(chunk: UserInfo[], encoding: never, callback: TransformCallback): void {
+  _transform(chunk: UserInfo[], _encoding: never, callback: TransformCallback): void {
     this.filterChunkForPermittedAttendees(chunk)
       .then((filteredChunk) => callback(null, filteredChunk satisfies UserInfo[]))
       .catch((error: unknown) => {
