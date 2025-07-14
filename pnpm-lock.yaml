@@ -6,7 +6,14 @@ settings:
 
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      '@biomejs/biome':
+        specifier: ^2.0.0
+        version: 2.0.0
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
 
   client:
     dependencies:
@@ -62,9 +69,6 @@ importers:
         specifier: ^3.25.67
         version: 3.25.67
     devDependencies:
-      '@biomejs/biome':
-        specifier: ^2.0.0
-        version: 2.0.0
       '@tailwindcss/postcss':
         specifier: ^4.1.10
         version: 4.1.10
@@ -180,9 +184,6 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2(yaml@2.5.1)(zod@3.25.67)
     devDependencies:
-      '@biomejs/biome':
-        specifier: ^1.8.3
-        version: 1.9.4
       '@types/node':
         specifier: ^22.5.3
         version: 22.15.32
@@ -2085,6 +2086,11 @@ packages:
   header-range-parser@1.1.3:
     resolution: {integrity: sha512-B9zCFt3jH8g09LR1vHL4pcAn8yMEtlSlOUdQemzHMRKMImNIhhszdeosYFfNW0WXKQtXIlWB+O4owHJKvEJYaA==}
     engines: {node: '>=12.22.0'}
+
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
@@ -4603,6 +4609,8 @@ snapshots:
       function-bind: 1.1.2
 
   header-range-parser@1.1.3: {}
+
+  husky@9.1.7: {}
 
   iconv-lite@0.6.3:
     dependencies:
