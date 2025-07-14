@@ -13,12 +13,13 @@ import { Group, onlyGroups } from "@/decorators/authorise"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { getTempDir } from "@/lib/temp-dir"
 import { hasCode } from "@/lib/type-guards"
+import { AnonymousCsvTransform } from "@/routes/applications/data-export/anonymous-csv-transform"
 import {
   ConsentAugmentingTransform,
   type ConsentAugments,
 } from "@/routes/applications/data-export/consent-augmenting-transform"
 import { UserAgeAugmentingTransform } from "@/routes/applications/data-export/user-age-augmenting-transform"
-import { UserFlagAugmentor } from "@/routes/applications/data-export/user-flag-json-augmentor"
+import { UserFlagAugmentingTransform } from "@/routes/applications/data-export/user-flag-augmenting-transform"
 import type { Middleware } from "@/types"
 import { AttendanceAugmentingTransform, type AttendanceAugments } from "./attendance-augmenting-transform"
 import { CvExportingWritable } from "./cv-exporting-writable"
@@ -163,19 +164,21 @@ class DataExportHandlers {
   }
 
   @onlyGroups([Group.organisers, Group.admins])
-  getAnonymousDataExport(): Middleware {
+  getAnonymous(): Middleware {
     return async (_request, _response) => {
       const tempDir = await getTempDir()
       try {
-        const fileName: string = "anonymous-data-export.csv"
-        const fileDestination: string = pathJoin(tempDir, fileName)
+        const fileName = "anonymous-data-export.csv"
+        const fileDestination = pathJoin(tempDir, fileName)
 
         await pipeline(
           Readable.from(generateUserInfo()),
           new AttendanceAugmentingTransform(),
           new ConsentAugmentingTransform({ media: true, dsuPrivacy: true }),
           new UserAgeAugmentingTransform(),
-          new UserFlagAugmentor({}), // Not sure what to put in here
+          new UserFlagAugmentingTransform("dietary-requirements"),
+          new UserFlagAugmentingTransform("discipline-of-study"),
+          new AnonymousCsvTransform(),
           createWriteStream(fileDestination),
         )
       } finally {

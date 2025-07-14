@@ -38,8 +38,8 @@ applicationsDataExportApp
   .all(forbiddenOrUnauthorised())
 
 applicationsDataExportApp
-  .route("/anon-csv-export")
+  .route("/anonymous")
   .all(methodNotAllowed(["GET"]))
   .all(authenticate())
-  .get(dataExportHandlers.getAnonymousDataExport())
+  .get(dataExportHandlers.getAnonymous())
   .all(forbiddenOrUnauthorised())

@@ -45,6 +45,11 @@ export class PickAttributesToCsvTransform<Source extends Record<string, unknown>
         continue
       }
 
+      if (Array.isArray(attributeValue) && attributeValue.every(isString)) {
+        values.push(JSON.stringify(attributeValue))
+        continue
+      }
+
       throw new Error(`Unsupported value ${attributeValue} for ${String(attribute.name)}`)
     }
 
