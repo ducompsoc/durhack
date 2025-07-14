@@ -3,12 +3,12 @@ import { prisma, type UserInfo } from "@/database"
 
 import { isString } from "@/lib/type-guards"
 
-export type UserCvAugment = {
+export type UserCvAugments = {
   is_cv_uploaded: boolean
   cv_update_time: Date | null
 }
 
-type CvAugmentedUserInfo = { userId: string } & UserCvAugment
+type CvAugmentedUserInfo = { userId: string } & UserCvAugments
 
 export class UserCvAugmentingTransform extends stream.Transform {
   constructor() {

@@ -1,18 +1,20 @@
 import type { DisciplineOfStudy } from "@durhack/durhack-common/input/discipline-of-study"
 import type { DietaryRequirement } from "@durhack/durhack-common/types/application"
 import type { UserInfo } from "@/database"
+import type { IdAugments } from "@/routes/applications/data-export/anonymous-id-augmenting-transform"
+import type { AttendanceAugments } from "@/routes/applications/data-export/attendance-augmenting-transform"
+import type { ConsentAugments } from "@/routes/applications/data-export/consent-augmenting-transform"
 import { PickAttributesToCsvTransform } from "@/routes/applications/data-export/pick-attributes-to-csv-transform"
-import type { UserCvAugment } from "@/routes/applications/data-export/user-cv-augmenting-transform"
+import type { AgeAugments } from "@/routes/applications/data-export/user-age-augmenting-transform"
+import type { UserCvAugments } from "@/routes/applications/data-export/user-cv-augmenting-transform"
 import type { FlagAugments } from "@/routes/applications/data-export/user-flag-augmenting-transform"
-import type { AttendanceAugments } from "./attendance-augmenting-transform"
-import type { ConsentAugments } from "./consent-augmenting-transform"
-import type { AgeAugment } from "./user-age-augmenting-transform"
 
 type Source = UserInfo &
-  AgeAugment &
+  IdAugments &
+  AgeAugments &
   AttendanceAugments &
   ConsentAugments<"media" | "dsuPrivacy"> &
-  UserCvAugment &
+  UserCvAugments &
   FlagAugments<"discipline-of-study", DisciplineOfStudy> &
   FlagAugments<"dietary-requirement", DietaryRequirement>
 
@@ -20,6 +22,7 @@ export class AnonymousCsvTransform extends PickAttributesToCsvTransform<Source> 
   constructor() {
     super({
       attributes: [
+        { name: "id", label: "anon_id" },
         { name: "countryOfResidence", label: "country_of_residence" },
         { name: "university", label: "university" },
         { name: "levelOfStudy", label: "level_of_study" },

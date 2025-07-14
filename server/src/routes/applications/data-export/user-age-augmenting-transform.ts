@@ -5,11 +5,11 @@ import { isString } from "@/lib/type-guards"
 
 type AgeGroup = "<18" | "18-21" | "22-25" | "26-29" | "30-39" | "40-59" | "60+"
 
-export type AgeAugment = {
+export type AgeAugments = {
   ageGroup: AgeGroup
 }
 
-type AgeAugmentedUserInfo = { userId: string } & AgeAugment
+type AgeAugmentedUserInfo = { userId: string } & AgeAugments
 
 export class UserAgeAugmentingTransform extends stream.Transform {
   constructor() {

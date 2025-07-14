@@ -14,6 +14,7 @@ import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform
 import { getTempDir } from "@/lib/temp-dir"
 import { hasCode } from "@/lib/type-guards"
 import { AnonymousCsvTransform } from "@/routes/applications/data-export/anonymous-csv-transform"
+import { AnonymousIdAugmentingTransform } from "@/routes/applications/data-export/anonymous-id-augmenting-transform"
 import {
   ConsentAugmentingTransform,
   type ConsentAugments,
@@ -165,7 +166,7 @@ class DataExportHandlers {
 
   @onlyGroups([Group.organisers, Group.admins])
   getAnonymous(): Middleware {
-    return async (_request, _response) => {
+    return async (_request, response) => {
       const tempDir = await getTempDir()
       try {
         const fileName = "anonymous-data-export.csv"
@@ -176,11 +177,14 @@ class DataExportHandlers {
           new AttendanceAugmentingTransform(),
           new ConsentAugmentingTransform({ media: true, dsuPrivacy: true }),
           new UserAgeAugmentingTransform(),
-          new UserFlagAugmentingTransform("dietary-requirements"),
+          new UserFlagAugmentingTransform("dietary-requirement"),
           new UserFlagAugmentingTransform("discipline-of-study"),
+          new AnonymousIdAugmentingTransform(),
           new AnonymousCsvTransform(),
           createWriteStream(fileDestination),
         )
+
+        await response.download(fileDestination, fileName)
       } finally {
         await rm(tempDir, { recursive: true, force: true })
       }
