@@ -41,7 +41,8 @@ function UserAttribute({ children, className, ...props }: React.HTMLAttributes<H
   )
 }
 
-const ProfilePage = React.memo(({ params }: { params: { userId: string } }): React.ReactNode => {
+export default async function ProfilePage(props: { params: Promise<{ userId: string }> }) {
+  const params = React.use(props.params);
   const { toast } = useToast()
 
   const {
@@ -85,7 +86,4 @@ const ProfilePage = React.memo(({ params }: { params: { userId: string } }): Rea
       <StashClaimsDisplay userId={profile.userId} />
     </main>
   )
-})
-ProfilePage.displayName = "ProfilePage"
-
-export default ProfilePage
+}
