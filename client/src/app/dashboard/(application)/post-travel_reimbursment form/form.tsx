@@ -117,7 +117,7 @@ function TravelReimbursmentFormSkeleton() {
   return <FormSkeleton rows={3} className="mt-2" />
 }
 
-export default function PersonalPage() {
+export default function TravelReimbursmentForm() {
   const { application, applicationIsLoading } = useApplicationContext()
 
   if (!isLoaded(application, applicationIsLoading)) {
