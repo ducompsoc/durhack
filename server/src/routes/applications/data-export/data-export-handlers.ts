@@ -20,6 +20,7 @@ import {
   type ConsentAugments,
 } from "@/routes/applications/data-export/consent-augmenting-transform"
 import { UserAgeAugmentingTransform } from "@/routes/applications/data-export/user-age-augmenting-transform"
+import { UserCvAugmentingTransform } from "@/routes/applications/data-export/user-cv-augmenting-transform"
 import { UserFlagAugmentingTransform } from "@/routes/applications/data-export/user-flag-augmenting-transform"
 import type { Middleware } from "@/types"
 import { AttendanceAugmentingTransform, type AttendanceAugments } from "./attendance-augmenting-transform"
@@ -180,6 +181,7 @@ class DataExportHandlers {
           new UserAgeAugmentingTransform(),
           new UserFlagAugmentingTransform("dietary-requirement"),
           new UserFlagAugmentingTransform("discipline-of-study"),
+          new UserCvAugmentingTransform(),
           new AnonymousIdAugmentingTransform(),
           new AnonymousCsvTransform(),
           createWriteStream(fileDestination),
