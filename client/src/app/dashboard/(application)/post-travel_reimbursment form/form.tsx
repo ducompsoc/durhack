@@ -105,131 +105,6 @@ function travelReimbursmentForm({ application }: { application: Application }) {
             />
           </div>
         </div>
-        <div className="lg:columns-2">
-          <div className="mb-4">
-            <FormField
-              control={form.control}
-              name="preferredNames"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Preferred name(s)</FormLabel>
-                  <FormControl>
-                    <Input {...field} placeholder="Enter preferred name(s)..." />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="mb-4">
-            <FormField
-              control={form.control}
-              name="pronouns"
-              render={({ field: { onChange, value, ref, ...field } }) => (
-                <FormItem>
-                  <FormLabel>Pronouns</FormLabel>
-                  <div className="flex">
-                    <Select onValueChange={onChange} value={value} {...field}>
-                      <FormControl>
-                        <SelectTrigger ref={ref}>
-                          <SelectValueClipper>
-                            <SelectValue />
-                          </SelectValueClipper>
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="prefer-not-to-answer">Prefer Not To Say</SelectItem>
-                        <SelectItem value="she/her">She/Her</SelectItem>
-                        <SelectItem value="he/him">He/Him</SelectItem>
-                        <SelectItem value="they/them">They/Them</SelectItem>
-                        <SelectItem value="xe/xem">Xe/Xem</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    {value === "other" && <Input className="ml-4" placeholder="Pronouns..." />}
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-        </div>
-        <div className="mb-4">
-          <FormField
-            control={form.control}
-            name="age"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Age as of 1st November 2025</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter age..." {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-
-        <div className="mb-4">
-          <FormField
-            control={form.control}
-            name="gender"
-            render={({ field: { onChange, value, ref, ...field } }) => (
-              <FormItem>
-                <FormLabel>Gender</FormLabel>
-                <Select onValueChange={onChange} value={value} {...field}>
-                  <FormControl>
-                    <SelectTrigger ref={ref}>
-                      <SelectValueClipper>
-                        <SelectValue placeholder="Select gender identity..." />
-                      </SelectValueClipper>
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="prefer-not-to-answer">Prefer Not To Say</SelectItem>
-                    <SelectItem value="male">Male</SelectItem>
-                    <SelectItem value="female">Female</SelectItem>
-                    <SelectItem value="non-binary">Non-binary</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-
-        <div className="mb-4">
-          <FormField
-            control={form.control}
-            name="ethnicity"
-            render={({ field: { onChange, value, ref, ...field } }) => (
-              <FormItem>
-                <FormLabel>Race/Ethnicity</FormLabel>
-                <Select onValueChange={onChange} value={value} {...field}>
-                  <FormControl>
-                    <SelectTrigger ref={ref}>
-                      <SelectValueClipper>
-                        <SelectValue placeholder="Select race/ethnicity..." />
-                      </SelectValueClipper>
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="prefer-not-to-answer">Prefer Not To Say</SelectItem>
-                    <SelectItem value="white">White / Caucasian</SelectItem>
-                    <SelectItem value="american">American Indian or Alaskan Native</SelectItem>
-                    <SelectItem value="asian">Asian / Pacific Islander</SelectItem>
-                    <SelectItem value="black">Black or African American</SelectItem>
-                    <SelectItem value="hispanic">Hispanic</SelectItem>
-                    <SelectItem value="other">Multiple ethnicity / Other</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-
         <div className="mt-16 flex justify-center">
           <FormSubmitButton type="submit">Save Progress</FormSubmitButton>
         </div>
@@ -238,7 +113,7 @@ function travelReimbursmentForm({ application }: { application: Application }) {
   )
 }
 
-function travelReimbursmentFormSkeleton() {
+function TravelReimbursmentFormSkeleton() {
   return <FormSkeleton rows={3} className="mt-2" />
 }
 
@@ -246,8 +121,8 @@ export default function PersonalPage() {
   const { application, applicationIsLoading } = useApplicationContext()
 
   if (!isLoaded(application, applicationIsLoading)) {
-    return <travelReimbursmentFormSkeleton />
+    return <TravelReimbursmentFormSkeleton />  
   }
 
-  return <travelReimbursmentFormSkeleton application={application} />
+  return <TravelReimbursmentFormSkeleton application={application} />
 }
