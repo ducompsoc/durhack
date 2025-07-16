@@ -1,4 +1,4 @@
-import countries3to2 from "countries-list/minimal/countries.3to2.min.json"
+import countries3to2 from "countries-list/minimal/countries.3to2.min.json" with { type: "json" }
 import { type core, z } from "zod/v4"
 
 const iso3Codes = new Set(Object.keys(countries3to2))
