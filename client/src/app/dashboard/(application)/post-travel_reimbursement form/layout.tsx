@@ -1,6 +1,6 @@
 import type * as React from "react"
 
-export default function PostTravelReimbursmentFormLayout({ children }: { children: React.ReactNode }) {
+export default function PostTravelReimbursementFormLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <h2 className="text-2xl">Post Travel Reimbursement Form
