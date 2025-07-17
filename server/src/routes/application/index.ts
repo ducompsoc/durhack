@@ -64,13 +64,6 @@ applicationApp
   .all(forbiddenOrUnauthorised())
 
 applicationApp
-  .route("/pizza")
-  .all(methodNotAllowed(["PATCH"]))
-  .all(authenticate())
-  .patch(applicationHandlers.patchPizza())
-  .all(forbiddenOrUnauthorised())
-
-applicationApp
   .route("/submit")
   .all(methodNotAllowed(["POST"]))
   .all(authenticate())

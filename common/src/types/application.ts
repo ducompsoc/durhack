@@ -1,5 +1,6 @@
 import type { DisciplineOfStudy } from "@/input/discipline-of-study"
 import type { DietaryRequirement } from "@/input/dietary-requirement"
+import { PizzaFlavor } from "@/input/pizza-flavor";
 
 export type { DisciplineOfStudy, DietaryRequirement }
 
@@ -23,6 +24,7 @@ export type Application = {
   university: string | null
   graduationYear: number | null
   disciplinesOfStudy: null | DisciplineOfStudy[]
+  pizzaFlavors: null | PizzaFlavor[]
   levelOfStudy:
     | null
     | "secondary"

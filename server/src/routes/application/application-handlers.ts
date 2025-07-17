@@ -2,6 +2,7 @@ import assert from "node:assert/strict"
 import { parse as parsePath } from "node:path/posix"
 import { type DietaryRequirement, dietaryRequirementSchema } from "@durhack/durhack-common/input/dietary-requirement"
 import { type DisciplineOfStudy, disciplineOfStudySchema } from "@durhack/durhack-common/input/discipline-of-study"
+import { type PizzaFlavor, pizzaFlavorSchema } from "@durhack/durhack-common/input/pizza-flavor"
 import type { Application } from "@durhack/durhack-common/types/application"
 import { ClientError, HttpStatus } from "@otterhttp/errors"
 import type { ContentType, ParsedFormFieldFile } from "@otterhttp/parsec"
@@ -49,6 +50,13 @@ const personalFormSchema = z.object({
       message: "Please select an ethnicity",
     })
     .transform(adaptEthnicityToDatabase),
+  pizza: z
+    .array(pizzaFlavorSchema)
+    .min(1, { message: "Please select at least one pizza flavor." })
+    .refine((list) => {
+      const mutuallyExclusivePreferences = list.filter((item) => item === "alternative" || item === "nothing")
+      return mutuallyExclusivePreferences.length <= 1
+    }, "If you don't want pizza, please choose one of 'nothing' or 'alternative'."),
 })
 
 const contactFormSchema = z.object({
@@ -154,6 +162,9 @@ class ApplicationHandlers {
     const dietaryRequirements = userFlags
       .filter((flag) => flag.flagName.startsWith("dietary-requirement:"))
       .map((flag) => flag.flagName.slice(20) as DietaryRequirement)
+    const pizzaFlavors = userFlags
+      .filter((flag) => flag.flagName.startsWith("pizza-flavor:"))
+      .map((flag) => flag.flagName.slice(13) as PizzaFlavor)
 
     const {
       phone_number,
@@ -190,6 +201,7 @@ class ApplicationHandlers {
       disciplinesOfStudy: disciplinesOfStudy,
       tShirtSize: (userInfo?.tShirtSize?.trimEnd() as Application["tShirtSize"] | null | undefined) ?? null,
       dietaryRequirements: dietaryRequirements,
+      pizzaFlavors: pizzaFlavors,
       accessRequirements: userInfo?.accessRequirements ?? null,
       countryOfResidence: userInfo?.countryOfResidence ?? null,
       consents: userConsents.map((consent) => ({ name: consent.consentName, choice: consent.choice })),
