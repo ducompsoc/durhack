@@ -13,10 +13,15 @@ import { Group, onlyGroups } from "@/decorators/authorise"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { getTempDir } from "@/lib/temp-dir"
 import { hasCode } from "@/lib/type-guards"
+import { AnonymousCsvTransform } from "@/routes/applications/data-export/anonymous-csv-transform"
+import { AnonymousIdAugmentingTransform } from "@/routes/applications/data-export/anonymous-id-augmenting-transform"
 import {
   ConsentAugmentingTransform,
   type ConsentAugments,
 } from "@/routes/applications/data-export/consent-augmenting-transform"
+import { UserAgeAugmentingTransform } from "@/routes/applications/data-export/user-age-augmenting-transform"
+import { UserCvAugmentingTransform } from "@/routes/applications/data-export/user-cv-augmenting-transform"
+import { UserFlagAugmentingTransform } from "@/routes/applications/data-export/user-flag-augmenting-transform"
 import type { Middleware } from "@/types"
 import { AttendanceAugmentingTransform, type AttendanceAugments } from "./attendance-augmenting-transform"
 import { CvExportingWritable } from "./cv-exporting-writable"
@@ -36,6 +41,7 @@ class DataExportHandlers {
         major_league_hacking_attendees_url: new URL("/applications/data-export/major-league-hacking?attendees", origin),
         hackathons_uk_applications_url: new URL("/applications/data-export/hackathons-uk", origin),
         hackathons_uk_attendees_url: new URL("/applications/data-export/hackathons-uk?attendees", origin),
+        anonymous_applications_url: new URL("/applications/data-export/anonymous", origin),
       })
     }
   }
@@ -154,6 +160,34 @@ class DataExportHandlers {
         }
 
         await response.download(archivePath, "durhack-cvs.zip")
+      } finally {
+        await rm(tempDir, { recursive: true, force: true })
+      }
+    }
+  }
+
+  @onlyGroups([Group.organisers, Group.admins])
+  getAnonymous(): Middleware {
+    return async (_request, response) => {
+      const tempDir = await getTempDir()
+      try {
+        const fileName = "anonymous-data-export.csv"
+        const fileDestination = pathJoin(tempDir, fileName)
+
+        await pipeline(
+          Readable.from(generateUserInfo()),
+          new AttendanceAugmentingTransform(),
+          new ConsentAugmentingTransform({ media: true, dsuPrivacy: true }),
+          new UserAgeAugmentingTransform(),
+          new UserFlagAugmentingTransform("dietary-requirement"),
+          new UserFlagAugmentingTransform("discipline-of-study"),
+          new UserCvAugmentingTransform(),
+          new AnonymousIdAugmentingTransform(),
+          new AnonymousCsvTransform(),
+          createWriteStream(fileDestination),
+        )
+
+        await response.download(fileDestination, fileName)
       } finally {
         await rm(tempDir, { recursive: true, force: true })
       }
