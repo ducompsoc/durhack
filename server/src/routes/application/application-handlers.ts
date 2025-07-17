@@ -633,6 +633,16 @@ class ApplicationHandlers {
       response.sendStatus(200)
     }
   }
+
+  @onlyKnownUsers()
+  patchPizza(): Middleware {
+    return async (request, _response) => {
+      const { user } = request
+      assert(user)
+
+      // Do some magic here
+    }
+  }
 }
 
 const applicationHandlers = new ApplicationHandlers()
