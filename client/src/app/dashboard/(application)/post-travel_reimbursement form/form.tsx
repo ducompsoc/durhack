@@ -24,7 +24,7 @@ import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
 import { updateApplication } from "@/lib/update-application"
 
-type travelReimbursmentFormFields = {
+type travelReimbursementFormFields = {
   firstNames: string
   lastNames: string
   email: string
@@ -36,7 +36,7 @@ type travelReimbursmentFormFields = {
   returnJourney: boolean
 }
 
-const travelReimbursmentFormSchema = z.object({
+const travelReimbursementFormSchema = z.object({
   firstNames: z.string().trim().min(1, { message: "Please provide your first name(s)" }).max(256),
   lastNames: z.string().trim().min(1, { message: "Please provide your last name(s)" }).max(256),
   email: z.string().trim().min(1,{ message: "Please provide your email address" }).max(256),
@@ -52,19 +52,19 @@ const travelReimbursmentFormSchema = z.object({
  * This component accepts <code>application</code> via props, rather than via
  * <code>useApplicationContext</code>, because it requires the application to already be loaded before being rendered.
  */
-function travelReimbursmentForm({ application }: { application: Application }) {
+function travelReimbursementForm({ application }: { application: Application }) {
   const router = useRouter()
   const { mutateApplication } = useApplicationContext()
 
-  const form = useForm<travelReimbursmentFormFields, unknown, z.infer<typeof travelReimbursmentFormSchema>>({
-    resolver: zodResolver(travelReimbursmentFormSchema),
+  const form = useForm<travelReimbursementFormFields, unknown, z.infer<typeof travelReimbursementFormSchema>>({
+    resolver: zodResolver(travelReimbursementFormSchema),
     defaultValues: {
       firstNames: application.firstNames ?? "",
       lastNames: application.lastNames ?? "",
     },
   })
 
-  async function onSubmit(values: z.infer<typeof travelReimbursmentFormSchema>): Promise<void> {
+  async function onSubmit(values: z.infer<typeof travelReimbursementFormSchema>): Promise<void> {
     await updateApplication("personal", values)
     await mutateApplication({ ...application, ...values })
     if (application.age == null) router.push("/dashboard/contact")
@@ -104,25 +104,70 @@ function travelReimbursmentForm({ application }: { application: Application }) {
               )}
             />
           </div>
+          <div className="mb-4">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="Enter email address..." />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="mb-4">
+            <FormField
+              control={form.control}
+              name="phoneNumber"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Phone number</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="Enter phone number..." />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="mb-4">
+            <FormField
+              control={form.control}
+              name="travelFromCity"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Travel From City</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="Enter the city you are travelling from..." />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
         </div>
         <div className="mt-16 flex justify-center">
-          <FormSubmitButton type="submit">Save Progress</FormSubmitButton>
+          <FormSubmitButton type="submit">Submit travel reimbursement request</FormSubmitButton>
         </div>
       </form>
     </Form>
   )
 }
 
-function TravelReimbursmentFormSkeleton() {
+function TravelReimbursementFormSkeleton() {
   return <FormSkeleton rows={3} className="mt-2" />
 }
 
-export default function TravelReimbursmentForm() {
+export default function travelReimbursementForm() {
   const { application, applicationIsLoading } = useApplicationContext()
 
   if (!isLoaded(application, applicationIsLoading)) {
-    return <TravelReimbursmentFormSkeleton />  
+    return <TravelReimbursementFormSkeleton />  
   }
 
-  return <TravelReimbursmentFormSkeleton application={application} />
+  return <TravelReimbursementForm application={application} />
 }
