@@ -50,13 +50,6 @@ const personalFormSchema = z.object({
       message: "Please select an ethnicity",
     })
     .transform(adaptEthnicityToDatabase),
-  pizza: z
-    .array(pizzaFlavorSchema)
-    .min(1, { message: "Please select at least one pizza flavor." })
-    .refine((list) => {
-      const mutuallyExclusivePreferences = list.filter((item) => item === "alternative" || item === "nothing")
-      return mutuallyExclusivePreferences.length <= 1
-    }, "If you don't want pizza, please choose one of 'nothing' or 'alternative'."),
 })
 
 const contactFormSchema = z.object({
@@ -104,6 +97,12 @@ const extraDetailsFormSchema = z.object({
     )
     return mutuallyExclusivePreferences.length <= 1
   }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
+  pizza: z
+    .array(pizzaFlavorSchema)
+    .refine((list) => {
+      const mutuallyExclusivePreferences = list.filter((item) => item === "alternative" || item === "nothing")
+      return mutuallyExclusivePreferences.length <= 1
+    }, "If you don't want pizza, please choose one of 'nothing' or 'alternative'.").min(1, { message: "Please select at least one pizza flavor." }),
   accessRequirements: z.string().trim(),
 })
 
@@ -325,9 +324,10 @@ class ApplicationHandlers {
         prisma.userFlag.deleteMany({
           where: {
             userId: user.keycloakUserId,
-            flagName: {
-              startsWith: "dietary-requirement:",
-            },
+            OR: [
+              { flagName: { startsWith: "dietary-requirement:" } },
+              { flagName: { startsWith: "pizza-flavor:" } }
+            ],
           },
         }),
         prisma.user.update({
@@ -349,6 +349,12 @@ class ApplicationHandlers {
             },
           }),
         ),
+        ...payload.pizza.map((item) => prisma.userFlag.create({
+          data: {
+            userId: user.keycloakUserId,
+            flagName: `pizza-flavor:${item}`,
+          },
+        })),
       ])
       response.sendStatus(200)
     }
@@ -643,16 +649,6 @@ class ApplicationHandlers {
       })
 
       response.sendStatus(200)
-    }
-  }
-
-  @onlyKnownUsers()
-  patchPizza(): Middleware {
-    return async (request, _response) => {
-      const { user } = request
-      assert(user)
-
-      // Do some magic here
     }
   }
 }
