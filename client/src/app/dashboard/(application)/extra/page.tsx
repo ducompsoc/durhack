@@ -31,11 +31,13 @@ import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
 import { updateApplication } from "@/lib/update-application"
+import {pizzaFlavorSchema, pizzaFlavourOptions} from "@durhack/durhack-common/input/pizza-flavor"
 
 type ExtraDetailsFormFields = {
   tShirtSize: string
   hackathonExperience: string
   dietaryRequirements: string[]
+  pizzaFlavors: string[]
   accessRequirements: string
 }
 
@@ -52,6 +54,12 @@ const extraDetailsFormSchema = z.object({
     )
     return mutuallyExclusivePreferences.length <= 1
   }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
+  pizzaFlavors: z.array(pizzaFlavorSchema).refine((list) => {
+    const mutuallyExclusivePreferences = list.filter(
+      (item) => item === "alternative" || item === "nothing",
+      )
+    return mutuallyExclusivePreferences.length <= 1
+  }),
   accessRequirements: z.string().trim(),
 })
 
@@ -72,6 +80,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
       hackathonExperience: application.hackathonExperience ?? "",
       dietaryRequirements: application.dietaryRequirements ?? [],
       accessRequirements: application.accessRequirements ?? "",
+      pizzaFlavors: application.pizzaFlavors ?? [],
     },
   })
 
@@ -167,6 +176,22 @@ function ExtraDetailsForm({ application }: { application: Application }) {
               </FormItem>
             )}
           />
+        </div>
+
+        <div className="mb-4">
+          <FormField
+            control={form.control}
+            name="pizzaFlavors"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Midnight Snack (on us)</FormLabel>
+                <FormDescription>We normally offer pizza as a midnight snack. If you want something else, select "alternative" and we will get in touch with you!</FormDescription>
+                <FormControl>
+                  <MultiSelect {...field} options={pizzaFlavourOptions} hidePlaceholderWhenSelected/>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )} />
         </div>
 
         <div className="mb-4">

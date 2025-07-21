@@ -97,7 +97,7 @@ const extraDetailsFormSchema = z.object({
     )
     return mutuallyExclusivePreferences.length <= 1
   }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
-  pizza: z
+  pizzaFlavors: z
     .array(pizzaFlavorSchema)
     .refine((list) => {
       const mutuallyExclusivePreferences = list.filter((item) => item === "alternative" || item === "nothing")
@@ -313,6 +313,7 @@ class ApplicationHandlers {
 
       const body = await json(request, response)
       const payload = extraDetailsFormSchema.parse(body)
+      console.log(payload)
 
       const prismaUserInfoFields = {
         tShirtSize: payload.tShirtSize,
@@ -349,13 +350,31 @@ class ApplicationHandlers {
             },
           }),
         ),
-        ...payload.pizza.map((item) => prisma.userFlag.create({
-          data: {
-            userId: user.keycloakUserId,
-            flagName: `pizza-flavor:${item}`,
-          },
-        })),
+        ...payload.pizzaFlavors.map((item) =>
+          prisma.userFlag.create({
+            data: {
+              userId: user.keycloakUserId,
+              flagName: `pizza-flavor:${item}`,
+            },
+          }),
+        ),
       ])
+
+      // Check pizza role in db
+
+      const flavors = await prisma.userFlag.findMany({
+        where: {
+          userId: user.keycloakUserId,
+          flagName: {
+            startsWith: "pizza-flavor:"
+          }
+        }
+      })
+
+      // It saves properly :-/
+
+      console.log(flavors)
+
       response.sendStatus(200)
     }
   }
