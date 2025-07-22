@@ -102,7 +102,8 @@ const extraDetailsFormSchema = z.object({
     .refine((list) => {
       const mutuallyExclusivePreferences = list.filter((item) => item === "alternative" || item === "nothing")
       return mutuallyExclusivePreferences.length <= 1
-    }, "If you don't want pizza, please choose one of 'nothing' or 'alternative'.").min(1, { message: "Please select at least one pizza flavor." }),
+    }, "If you don't want pizza, please choose one of 'nothing' or 'alternative'.")
+    .min(1, { message: "Please select at least one pizza flavor." }),
   accessRequirements: z.string().trim(),
 })
 
@@ -313,7 +314,6 @@ class ApplicationHandlers {
 
       const body = await json(request, response)
       const payload = extraDetailsFormSchema.parse(body)
-      console.log(payload)
 
       const prismaUserInfoFields = {
         tShirtSize: payload.tShirtSize,
@@ -325,10 +325,7 @@ class ApplicationHandlers {
         prisma.userFlag.deleteMany({
           where: {
             userId: user.keycloakUserId,
-            OR: [
-              { flagName: { startsWith: "dietary-requirement:" } },
-              { flagName: { startsWith: "pizza-flavor:" } }
-            ],
+            OR: [{ flagName: { startsWith: "dietary-requirement:" } }, { flagName: { startsWith: "pizza-flavor:" } }],
           },
         }),
         prisma.user.update({
@@ -359,22 +356,6 @@ class ApplicationHandlers {
           }),
         ),
       ])
-
-      // Check pizza role in db
-
-      const flavors = await prisma.userFlag.findMany({
-        where: {
-          userId: user.keycloakUserId,
-          flagName: {
-            startsWith: "pizza-flavor:"
-          }
-        }
-      })
-
-      // It saves properly :-/
-
-      console.log(flavors)
-
       response.sendStatus(200)
     }
   }
