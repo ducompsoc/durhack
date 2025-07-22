@@ -103,13 +103,13 @@ function ExtraDetailsForm({ application }: { application: Application }) {
 
     if (value === "alternative") {
       setSnackChoice("alternative")
-      form.setValue("pizzaFlavors", ['alternative'])
+      form.setValue("pizzaFlavors", ["alternative"])
       return
     }
 
     if (value === "nothing") {
       setSnackChoice("nothing")
-      form.setValue("pizzaFlavors", ['nothing'])
+      form.setValue("pizzaFlavors", ["nothing"])
       return
     }
   }
