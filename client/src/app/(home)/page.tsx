@@ -10,15 +10,19 @@ import { Gallery } from "@/components/gallery"
 import { Guilds } from "@/components/guilds"
 import { Splash } from "@/components/splash"
 import { Sponsors } from "@/components/sponsors"
+import { Teams } from "@/components/teams"
 
 import { AnimatedMountain } from "./animated-mountain";
 
 export default function HomePage() {
   return (
     <main>
+
+
       <section id="splash">
         <Splash />
       </section>
+
 
       <section id="about" className="ellipse">
         <About />
@@ -42,6 +46,10 @@ export default function HomePage() {
 
       <section id="gallery">
         <Gallery />
+      </section>
+
+      <section id="teams">
+        <Teams />
       </section>
 
       <section id="end">
