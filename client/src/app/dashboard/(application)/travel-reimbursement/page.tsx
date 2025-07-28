@@ -6,7 +6,6 @@ import * as React from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { MultiSelect } from "@durhack/web-components/ui/multi-select"
-
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription } from "@durhack/web-components/ui/form"
 import { Input } from "@durhack/web-components/ui/input"
 import {
@@ -84,9 +83,8 @@ function TravelReimbursementForm({ application }: { application: Application }) 
   })
 
   async function onSubmit(values: z.infer<typeof TravelReimbursementFormSchema>): Promise<void> {
-    await updateApplication("personal", values)
+    await updateApplication("travelReimbursement", values)
     await mutateApplication({ ...application, ...values })
-    if (application.age == null) router.push("/dashboard/contact")
   }
 
   return (
@@ -133,7 +131,7 @@ function TravelReimbursementForm({ application }: { application: Application }) 
               <FormItem>
               <FormLabel>Travel receipts</FormLabel>
               <FormDescription>
-                  <p>
+                  <p style={{ color: '#dc2626' }}>
                     Only pdf, doc, docs, png and jpg files are accepted.
                   </p>
                 </FormDescription>

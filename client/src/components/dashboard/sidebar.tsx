@@ -19,6 +19,7 @@ const menuItems = [
   { id: 4, name: "Contact", link: "/contact" },
   { id: 5, name: "Extra", link: "/extra" },
   { id: 6, name: "Education", link: "/education" },
+  { id: 9, name: "Travel", link: "/travel" },
   { id: 7, name: "CV", link: "/cv" },
   { id: 8, name: "Submit", link: "/submit" },
 ] as const satisfies readonly MenuItem[]
