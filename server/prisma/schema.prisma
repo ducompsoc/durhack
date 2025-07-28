@@ -62,6 +62,7 @@ model UserInfo {
     ethnicity           Ethnicity?
     hackathonExperience HackathonExperience? @map("hackathon_experience")
     accessRequirements  String?              @map("access_requirements") @db.Text()
+    midnightSnack       MidnightSnack?       @map("midnight_snack")
 
     updatedAt DateTime @updatedAt @map("updated_at")
 }
@@ -150,4 +151,10 @@ enum HackathonExperience {
     upToTwo      @map("up_to_two") // "hack-tastic tourist"
     threeToSeven @map("three_to_seven") // "hack wizard"
     eightOrMore  @map("eight_or_more") // "hackathon guru"
+}
+
+enum MidnightSnack {
+    pizza
+    alternative
+    nothing
 }

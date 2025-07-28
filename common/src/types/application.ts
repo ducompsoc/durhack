@@ -24,6 +24,7 @@ export type Application = {
   university: string | null
   graduationYear: number | null
   disciplinesOfStudy: null | DisciplineOfStudy[]
+  midnightSnack: "pizza" | "alternative" | "nothing"
   pizzaFlavors: null | PizzaFlavor[]
   levelOfStudy:
     | null
