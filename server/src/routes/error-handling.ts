@@ -1,7 +1,7 @@
 import type { NextFunction } from "@otterhttp/app"
 import { ClientError, HttpError, HttpStatus, ServerError } from "@otterhttp/errors"
 import { Prisma } from "@prisma/client"
-import { ZodError } from "zod"
+import { ZodError } from "zod/v4"
 
 import { NullError, ValueError } from "@/lib/errors"
 import { sendHttpErrorResponse, sendZodErrorResponse } from "@/lib/response"

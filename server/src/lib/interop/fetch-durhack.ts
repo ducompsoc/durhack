@@ -1,8 +1,8 @@
 import { readFile } from "node:fs/promises"
 import path from "node:path"
 import process from "node:process"
-import { Agent, fetch } from "undici"
 import type { RequestInfo, RequestInit, Response } from "undici"
+import { Agent, fetch } from "undici"
 
 import { durhackConfig } from "@/config"
 import { projectDirname } from "@/dirname"

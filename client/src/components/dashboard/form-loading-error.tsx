@@ -3,13 +3,7 @@
 import { Button } from "@durhack/web-components/ui/button"
 import * as React from "react"
 
-export function FormLoadingError({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string }
-  reset: () => void
-}) {
+export function FormLoadingError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   React.useEffect(() => {
     console.error(error)
   }, [error])

@@ -1,7 +1,7 @@
 import stream from "node:stream"
 
 import { durhackConfig, frontendOrigin, mailgunConfig } from "@/config"
-import { type UserInfo, prisma } from "@/database"
+import { prisma, type UserInfo } from "@/database"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import type { Mailer } from "@/lib/mailer"
 import { isString } from "@/lib/type-guards"
@@ -172,7 +172,7 @@ export class TicketAssigningWritable extends stream.Writable {
     await Promise.all(applicationStatusUpdatePromises)
   }
 
-  _write(chunk: AugmentedUserInfo[], encoding: never, callback: (error?: Error | null) => void) {
+  _write(chunk: AugmentedUserInfo[], _encoding: never, callback: (error?: Error | null) => void) {
     this.updateManyApplicationStatus(chunk)
       .then(() => callback())
       .catch((error: unknown) => {

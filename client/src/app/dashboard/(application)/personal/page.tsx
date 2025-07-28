@@ -1,11 +1,5 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter } from "next/navigation"
-import * as React from "react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Input } from "@durhack/web-components/ui/input"
 import {
@@ -14,14 +8,19 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectValueClipper,
+  SelectValueViewport,
 } from "@durhack/web-components/ui/select"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
+import { z } from "zod/v4"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
 import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
+import { isString } from "@/lib/type-guards"
 import { updateApplication } from "@/lib/update-application"
 
 type PersonalFormFields = {
@@ -29,7 +28,7 @@ type PersonalFormFields = {
   lastNames: string
   preferredNames: string
   pronouns: string
-  age: string
+  age: unknown
   gender: string
   ethnicity: string
 }
@@ -40,7 +39,7 @@ const personalFormSchema = z.object({
   preferredNames: z.string().trim().max(256),
   pronouns: z.enum(["prefer-not-to-answer", "he/him", "she/her", "they/them", "xe/xem", "other"]),
   age: z.coerce
-    .number({ invalid_type_error: "Please provide a valid age." })
+    .number("Please provide a valid age.")
     .positive("Please provide a valid age.")
     .min(16, { message: "Age must be >= 16" })
     .max(256, { message: "Ain't no way you're that old." })
@@ -62,7 +61,7 @@ function PersonalForm({ application }: { application: Application }) {
   const { mutateApplication } = useApplicationContext()
 
   const form = useForm<PersonalFormFields, unknown, z.infer<typeof personalFormSchema>>({
-    resolver: zodResolver(personalFormSchema),
+    resolver: zodResolver<PersonalFormFields, unknown, z.infer<typeof personalFormSchema>>(personalFormSchema),
     defaultValues: {
       pronouns: application.pronouns ?? "prefer-not-to-answer",
       firstNames: application.firstNames ?? "",
@@ -142,9 +141,9 @@ function PersonalForm({ application }: { application: Application }) {
                     <Select onValueChange={onChange} value={value} {...field}>
                       <FormControl>
                         <SelectTrigger ref={ref}>
-                          <SelectValueClipper>
+                          <SelectValueViewport>
                             <SelectValue />
-                          </SelectValueClipper>
+                          </SelectValueViewport>
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -168,11 +167,11 @@ function PersonalForm({ application }: { application: Application }) {
           <FormField
             control={form.control}
             name="age"
-            render={({ field }) => (
+            render={({ field: { value, ...field } }) => (
               <FormItem>
                 <FormLabel>Age as of 1st November 2025</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter age..." {...field} />
+                  <Input placeholder="Enter age..." value={isString(value) ? value : ""} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -190,9 +189,9 @@ function PersonalForm({ application }: { application: Application }) {
                 <Select onValueChange={onChange} value={value} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
-                      <SelectValueClipper>
+                      <SelectValueViewport>
                         <SelectValue placeholder="Select gender identity..." />
-                      </SelectValueClipper>
+                      </SelectValueViewport>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -219,9 +218,9 @@ function PersonalForm({ application }: { application: Application }) {
                 <Select onValueChange={onChange} value={value} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
-                      <SelectValueClipper>
+                      <SelectValueViewport>
                         <SelectValue placeholder="Select race/ethnicity..." />
-                      </SelectValueClipper>
+                      </SelectValueViewport>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>

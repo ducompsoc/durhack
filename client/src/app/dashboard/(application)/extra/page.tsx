@@ -1,11 +1,6 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter } from "next/navigation"
-import * as React from "react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
+import { dietaryRequirementOptions, dietaryRequirementSchema } from "@durhack/durhack-common/input/dietary-requirement"
 import {
   Form,
   FormControl,
@@ -22,9 +17,13 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectValueClipper,
+  SelectValueViewport,
 } from "@durhack/web-components/ui/select"
 import { Textarea } from "@durhack/web-components/ui/textarea"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
+import { z } from "zod/v4"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
@@ -47,16 +46,12 @@ const extraDetailsFormSchema = z.object({
   hackathonExperience: z.enum(["zero", "up-to-two", "three-to-seven", "eight-or-more"], {
     message: "Please provide your hackathon experience.",
   }),
-  dietaryRequirements: z
-    .array(
-      z.enum(["vegan", "vegetarian", "pescatarian", "halal", "kosher", "gluten-free", "dairy-free", "nut-allergy"]),
+  dietaryRequirements: z.array(dietaryRequirementSchema).refine((list) => {
+    const mutuallyExclusivePreferences = list.filter(
+      (item) => item === "vegan" || item === "vegetarian" || item === "pescatarian",
     )
-    .refine((list) => {
-      const mutuallyExclusivePreferences = list.filter(
-        (item) => item === "vegan" || item === "vegetarian" || item === "pescatarian",
-      )
-      return mutuallyExclusivePreferences.length <= 1
-    }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
+    return mutuallyExclusivePreferences.length <= 1
+  }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
   accessRequirements: z.string().trim(),
 })
 
@@ -69,7 +64,9 @@ function ExtraDetailsForm({ application }: { application: Application }) {
   const { mutateApplication } = useApplicationContext()
 
   const form = useForm<ExtraDetailsFormFields, unknown, z.infer<typeof extraDetailsFormSchema>>({
-    resolver: zodResolver(extraDetailsFormSchema),
+    resolver: zodResolver<ExtraDetailsFormFields, unknown, z.infer<typeof extraDetailsFormSchema>>(
+      extraDetailsFormSchema,
+    ),
     defaultValues: {
       tShirtSize: application.tShirtSize ?? "",
       hackathonExperience: application.hackathonExperience ?? "",
@@ -101,9 +98,9 @@ function ExtraDetailsForm({ application }: { application: Application }) {
                 <Select onValueChange={onChange} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
-                      <SelectValueClipper>
+                      <SelectValueViewport>
                         <SelectValue placeholder="Select t-shirt size..." />
-                      </SelectValueClipper>
+                      </SelectValueViewport>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -133,9 +130,9 @@ function ExtraDetailsForm({ application }: { application: Application }) {
                 <Select onValueChange={onChange} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
-                      <SelectValueClipper>
+                      <SelectValueViewport>
                         <SelectValue placeholder="Select..." />
-                      </SelectValueClipper>
+                      </SelectValueViewport>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -159,24 +156,12 @@ function ExtraDetailsForm({ application }: { application: Application }) {
               <FormItem>
                 <FormLabel>Dietary Requirements</FormLabel>
                 <FormDescription>
-                  If your requirement is not listed, please identify it clearly in your response to the following query
-                  regarding &lsquo;access requirements&rsquo;.
+                  If any of your requirements are not listed, please include 'Other' in your selection and identify
+                  additional requirements clearly in your response to the following query regarding &lsquo;access
+                  requirements&rsquo;.
                 </FormDescription>
                 <FormControl>
-                  <MultiSelect
-                    {...field}
-                    options={[
-                      { label: "Vegan", value: "vegan" },
-                      { label: "Vegetarian", value: "vegetarian" },
-                      { label: "Pescatarian", value: "pescatarian" },
-                      { label: "Halal", value: "halal" },
-                      { label: "Kosher", value: "kosher" },
-                      { label: "Gluten Free", value: "gluten-free" },
-                      { label: "Dairy Free", value: "dairy-free" },
-                      { label: "Nut Allergy", value: "nut-allergy" },
-                    ]}
-                    hidePlaceholderWhenSelected
-                  />
+                  <MultiSelect {...field} options={dietaryRequirementOptions} hidePlaceholderWhenSelected />
                 </FormControl>
                 <FormMessage />
               </FormItem>

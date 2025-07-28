@@ -5,13 +5,6 @@ import {
   disciplineOfStudyOptions,
   disciplineOfStudySchema,
 } from "@durhack/durhack-common/input/discipline-of-study"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter } from "next/navigation"
-import * as React from "react"
-import { useForm } from "react-hook-form"
-import useSWRImmutable from "swr/immutable"
-import { z } from "zod"
-
 import { ComboBox, ComboBoxButton, ComboBoxContent, ComboBoxTrigger } from "@durhack/web-components/ui/combobox"
 import {
   Form,
@@ -30,8 +23,13 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectValueClipper,
+  SelectValueViewport,
 } from "@durhack/web-components/ui/select"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
+import useSWRImmutable from "swr/immutable"
+import { z } from "zod/v4"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
@@ -39,12 +37,13 @@ import { siteConfig } from "@/config/site"
 import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
+import { isString } from "@/lib/type-guards"
 import { updateApplication } from "@/lib/update-application"
-import "@/lib/zod-iso3-extension"
+import { zodIso3 } from "@/lib/zod-iso3-validator"
 
 type EducationFormFields = {
   university: string
-  graduationYear: string
+  graduationYear: unknown
   levelOfStudy: string
   disciplinesOfStudy: DisciplineOfStudy[]
   countryOfResidence: string
@@ -64,14 +63,14 @@ export type CountryOption = {
 const educationFormSchema = z.object({
   university: z.string().trim().min(1, { message: "Please select your institution." }),
   graduationYear: z.coerce
-    .number({ invalid_type_error: "Please provide a valid year." })
+    .number({
+      error: (issue) => (issue.input === undefined ? "This field is required" : "Please provide a valid year."),
+    })
     .positive("Please provide a valid year.")
     .int("Oh, come on. Really?")
-    .min(1900, { message: "Be serious. You didn't graduate before 1900." })
-    .max(2100, { message: "What on earth are you studying?!?" }),
-  disciplinesOfStudy: z
-    .array(disciplineOfStudySchema)
-    .min(1, { message: "Please select your discipline(s) of study." }),
+    .min(1900, { error: "Be serious. You didn't graduate before 1900." })
+    .max(2100, { error: "What on earth are you studying?!?" }),
+  disciplinesOfStudy: z.array(disciplineOfStudySchema).min(1, { error: "Please select your discipline(s) of study." }),
   levelOfStudy: z.enum(
     [
       "secondary",
@@ -85,9 +84,9 @@ const educationFormSchema = z.object({
       "not-a-student",
       "prefer-not-to-answer",
     ],
-    { message: "Please select your level of study." },
+    { error: "Please select your level of study." },
   ),
-  countryOfResidence: z.string().iso3(),
+  countryOfResidence: zodIso3(),
 })
 
 async function optionsFetcher<OptionType>(path: string): Promise<OptionType[]> {
@@ -114,7 +113,7 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
   const { mutateApplication } = useApplicationContext()
 
   const form = useForm<EducationFormFields, unknown, z.infer<typeof educationFormSchema>>({
-    resolver: zodResolver(educationFormSchema),
+    resolver: zodResolver<EducationFormFields, unknown, z.infer<typeof educationFormSchema>>(educationFormSchema),
     defaultValues: {
       university: application.university ?? "",
       graduationYear: application.graduationYear?.toString() ?? "",
@@ -162,11 +161,17 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
           <FormField
             control={form.control}
             name="graduationYear"
-            render={({ field }) => (
+            render={({ field: { value, ...field } }) => (
               <FormItem>
                 <FormLabel>Graduation Year</FormLabel>
                 <FormControl>
-                  <Input type="number" inputMode="numeric" placeholder="Enter graduation year..." {...field} />
+                  <Input
+                    type="number"
+                    inputMode="numeric"
+                    placeholder="Enter graduation year..."
+                    value={isString(value) ? value : ""}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -186,9 +191,9 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                 <Select onValueChange={onChange} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
-                      <SelectValueClipper>
+                      <SelectValueViewport>
                         <SelectValue placeholder="Select level of study..." />
-                      </SelectValueClipper>
+                      </SelectValueViewport>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>

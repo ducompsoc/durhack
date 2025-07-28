@@ -1,11 +1,12 @@
 import assert from "node:assert/strict"
 import { parse as parsePath } from "node:path/posix"
+import { type DietaryRequirement, dietaryRequirementSchema } from "@durhack/durhack-common/input/dietary-requirement"
 import { type DisciplineOfStudy, disciplineOfStudySchema } from "@durhack/durhack-common/input/discipline-of-study"
-import type { Application, DietaryRequirement } from "@durhack/durhack-common/types/application"
+import type { Application } from "@durhack/durhack-common/types/application"
 import { ClientError, HttpStatus } from "@otterhttp/errors"
 import type { ContentType, ParsedFormFieldFile } from "@otterhttp/parsec"
 import { fileTypeFromBuffer } from "file-type"
-import { z } from "zod"
+import { z } from "zod/v4"
 
 import { mailgunConfig } from "@/config"
 import { prisma } from "@/database"
@@ -19,11 +20,11 @@ import {
 } from "@/database/adapt-hackathon-experience"
 import { onlyKnownUsers } from "@/decorators/authorise"
 import { json, multipartFormData } from "@/lib/body-parsers"
-import { type KeycloakUserInfo, getKeycloakAdminClient } from "@/lib/keycloak-client"
+import { getKeycloakAdminClient, type KeycloakUserInfo } from "@/lib/keycloak-client"
 import { mailgunClient } from "@/lib/mailgun"
+import { zodIso3 } from "@/lib/zod-iso3-validator"
+import { zodPhoneNumber } from "@/lib/zod-phone-validator"
 import type { Middleware, Request } from "@/types"
-import "@/lib/zod-phone-extension"
-import "@/lib/zod-iso3-extension"
 
 import { verifiedInstitutionsSet } from "./institution-options"
 
@@ -33,7 +34,7 @@ const personalFormSchema = z.object({
   preferredNames: z.string().trim().max(256),
   pronouns: z.enum(["prefer-not-to-answer", "he/him", "she/her", "they/them", "xe/xem", "other"]),
   age: z
-    .number({ invalid_type_error: "Please provide a valid age." })
+    .number({ error: "Please provide a valid age." })
     .positive("Please provide a valid age.")
     .min(16, { message: "Age must be >= 16" })
     .max(256, { message: "Ain't no way you're that old." })
@@ -51,7 +52,7 @@ const personalFormSchema = z.object({
 })
 
 const contactFormSchema = z.object({
-  phone: z.string().phone(),
+  phone: zodPhoneNumber(),
 })
 
 const educationFormSchema = z.object({
@@ -77,7 +78,7 @@ const educationFormSchema = z.object({
   disciplinesOfStudy: z
     .array(disciplineOfStudySchema)
     .min(1, { message: "Please select your discipline(s) of study." }),
-  countryOfResidence: z.string().iso3(),
+  countryOfResidence: zodIso3(),
 })
 
 const extraDetailsFormSchema = z.object({
@@ -89,25 +90,21 @@ const extraDetailsFormSchema = z.object({
       message: "Please provide your hackathon experience.",
     })
     .transform(adaptHackathonExperienceToDatabase),
-  dietaryRequirements: z
-    .array(
-      z.enum(["vegan", "vegetarian", "pescatarian", "halal", "kosher", "gluten-free", "dairy-free", "nut-allergy"]),
+  dietaryRequirements: z.array(dietaryRequirementSchema).refine((list) => {
+    const mutuallyExclusivePreferences = list.filter(
+      (item) => item === "vegan" || item === "vegetarian" || item === "pescatarian",
     )
-    .refine((list) => {
-      const mutuallyExclusivePreferences = list.filter(
-        (item) => item === "vegan" || item === "vegetarian" || item === "pescatarian",
-      )
-      return mutuallyExclusivePreferences.length <= 1
-    }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
+    return mutuallyExclusivePreferences.length <= 1
+  }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
   accessRequirements: z.string().trim(),
 })
 
 const submitFormSchema = z.object({
-  mlhCodeOfConduct: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
-  mlhTerms: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  mlhCodeOfConduct: z.literal(true, { error: () => ({ message: "Required" }) }),
+  mlhTerms: z.literal(true, { error: () => ({ message: "Required" }) }),
   mlhMarketing: z.boolean(),
-  dsuPrivacy: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
-  hukPrivacy: z.literal(true, { errorMap: () => ({ message: "Required" }) }),
+  dsuPrivacy: z.literal(true, { error: () => ({ message: "Required" }) }),
+  hukPrivacy: z.literal(true, { error: () => ({ message: "Required" }) }),
   hukMarketing: z.boolean(),
   media: z.boolean(),
 })

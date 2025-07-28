@@ -45,7 +45,7 @@ export class MailingWritable extends stream.Writable {
     await Promise.all(applicationStatusUpdatePromises)
   }
 
-  _write(chunk: AugmentedUserInfo[], encoding: never, callback: (error?: Error | null) => void) {
+  _write(chunk: AugmentedUserInfo[], _encoding: never, callback: (error?: Error | null) => void) {
     this.sendToMany(chunk)
       .then(() => callback())
       .catch((error: unknown) => {

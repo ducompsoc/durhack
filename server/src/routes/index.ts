@@ -15,7 +15,7 @@ export const routesApp = new App<Request, Response>()
 routesApp
   .route("/")
   .all(methodNotAllowed(["GET"]))
-  .get((request, response) => {
+  .get((_request, response) => {
     response.sendStatus(200)
   })
 

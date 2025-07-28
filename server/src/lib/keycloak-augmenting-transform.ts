@@ -90,7 +90,7 @@ export class KeycloakAugmentingTransform extends Transform {
     return fulfilled.map((result) => result.value)
   }
 
-  _transform(chunk: UserInfo[], encoding: never, callback: TransformCallback): void {
+  _transform(chunk: UserInfo[], _encoding: never, callback: TransformCallback): void {
     this.augmentChunk(chunk)
       .then((filteredChunk) => callback(null, filteredChunk satisfies KeycloakAugmentedUserInfo[]))
       .catch((error: unknown) => {

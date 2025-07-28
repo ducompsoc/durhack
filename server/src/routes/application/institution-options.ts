@@ -25,7 +25,7 @@ const institutionOptionsETagSource = institutionOptions.map((option) => option.v
 const institutionOptionsETag = createHash("sha256").update(institutionOptionsETagSource).digest("hex")
 
 export function getApplicationInstitutionOptions(): Middleware {
-  return async (request, response) => {
+  return async (_request, response) => {
     response.setHeader("etag", institutionOptionsETag)
     response.validatePreconditions()
 

@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import * as React from "react"
 
 import { useSidebarContext } from "@/app/dashboard/(application)/sidebar-context"
 import { cn } from "@/lib/utils"
@@ -14,13 +13,13 @@ type MenuItem = {
 
 const menuItems = [
   { id: 1, name: "Status", link: "" },
-  { id: 2, name: "Authentication", link: "/auth" },
-  { id: 3, name: "Personal", link: "/personal" },
-  { id: 4, name: "Contact", link: "/contact" },
-  { id: 5, name: "Extra", link: "/extra" },
-  { id: 6, name: "Education", link: "/education" },
-  { id: 7, name: "CV", link: "/cv" },
-  { id: 8, name: "Submit", link: "/submit" },
+  { id: 2, name: "Authentication", link: "auth" },
+  { id: 3, name: "Personal", link: "personal" },
+  { id: 4, name: "Contact", link: "contact" },
+  { id: 5, name: "Extra", link: "extra" },
+  { id: 6, name: "Education", link: "education" },
+  { id: 7, name: "CV", link: "cv" },
+  { id: 8, name: "Submit", link: "submit" },
 ] as const satisfies readonly MenuItem[]
 
 // Todo: rewrite this using shadcn Sheet component https://ui.shadcn.com/docs/components/sheet.
@@ -37,7 +36,7 @@ export function Sidebar() {
           return (
             <Link
               href={`/dashboard/${item.link}`}
-              className="py-1 mt-1 px-2 border-x-2 rounded-lg bg-white bg-opacity-5 border-border transition-colors hover:border-white hover:bg-opacity-15 hover:cursor-pointer duration-300"
+              className="py-1 mt-1 px-2 border-x-2 rounded-lg bg-white/5 border-border transition-colors hover:border-white hover:bg-white/15 hover:cursor-pointer duration-300"
               key={item.id}
               onClick={() => setIsOpen(false)}
             >

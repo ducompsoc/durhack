@@ -1,6 +1,6 @@
 import stream from "node:stream"
 
-import { type UserInfo, prisma } from "@/database"
+import { prisma, type UserInfo } from "@/database"
 import { isString } from "@/lib/type-guards"
 
 export type AttendanceAugments = {
@@ -37,7 +37,7 @@ export class AttendanceAugmentingTransform extends stream.Transform {
     return await Promise.all(chunk.map((userInfo) => this.augmentUserInfo(userInfo)))
   }
 
-  _transform(chunk: UserInfo[], encoding: never, callback: stream.TransformCallback): void {
+  _transform(chunk: UserInfo[], _encoding: never, callback: stream.TransformCallback): void {
     this.augmentChunk(chunk)
       .then((filteredChunk) => {
         callback(null, filteredChunk satisfies AttendanceAugmentedUserInfo[])

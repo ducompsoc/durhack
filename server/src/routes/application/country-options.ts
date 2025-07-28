@@ -14,7 +14,7 @@ const countryOptionsETagSource = countryOptions.map((option) => option.value).jo
 const countryOptionsETag = createHash("sha256").update(countryOptionsETagSource).digest("hex")
 
 export function getApplicationCountryOptions(): Middleware {
-  return async (request, response) => {
+  return async (_request, response) => {
     response.setHeader("etag", countryOptionsETag)
     response.validatePreconditions()
 

@@ -63,7 +63,7 @@ export class CvExportingWritable extends stream.Writable {
     await Promise.all(chunk.map((cv) => this.writeCV(cv)))
   }
 
-  _write(chunk: AugmentedUserCV[], encoding: never, callback: (error?: Error | null) => void) {
+  _write(chunk: AugmentedUserCV[], _encoding: never, callback: (error?: Error | null) => void) {
     this.writeManyCVs(chunk)
       .then(() => callback())
       .catch((error: unknown) => {

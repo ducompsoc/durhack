@@ -1,6 +1,5 @@
 import { Button } from "@durhack/web-components/ui/button"
 import { ExternalLinkIcon } from "@radix-ui/react-icons"
-import * as React from "react"
 
 import { siteConfig } from "@/config/site"
 

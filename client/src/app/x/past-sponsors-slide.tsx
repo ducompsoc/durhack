@@ -27,7 +27,7 @@ export function PastSponsorsSlide({ className, ...props }: React.HTMLAttributes<
     >
       <section className="flex flex-col space-y-1">
         <h1 className={cn(electrolize.className, "text-4xl")}>Past Sponsors</h1>
-        <div className="hex-grid w-[20rem] lg:w-[55rem]">
+        <div className="hex-grid w-[20rem] lg:w-220">
           {/*
           2025-06-24: On Safari, the `shape-outside` CSS property is ignored unless the target element
           has a sibling text element.
@@ -35,7 +35,7 @@ export function PastSponsorsSlide({ className, ...props }: React.HTMLAttributes<
           which are displayed in-line, i.e. `display: inline` or `display: inline-block`.
           Removing the following empty 'p' tag breaks the hex grid layout on Safari.
           */}
-          <p></p>
+          <p />
           <SponsorCard sponsorSlug="amazon-web-services" />
           <SponsorCard sponsorSlug="waterstons" />
           <SponsorCard sponsorSlug="github" />

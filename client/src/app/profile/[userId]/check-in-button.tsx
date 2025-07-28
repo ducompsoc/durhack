@@ -1,11 +1,10 @@
+import type { UserProfile } from "@durhack/durhack-common/types/user-profile"
+import type { Toast, Toaster } from "@durhack/web-components/hooks/use-toast"
+import { Button } from "@durhack/web-components/ui/button"
 import { UpdateIcon } from "@radix-ui/react-icons"
 import { cva } from "class-variance-authority"
 import * as React from "react"
 import type { KeyedMutator } from "swr"
-
-import type { UserProfile } from "@durhack/durhack-common/types/user-profile"
-import type { Toast, Toaster } from "@durhack/web-components/hooks/use-toast"
-import { Button } from "@durhack/web-components/ui/button"
 
 import { siteConfig } from "@/config/site"
 import { handleBadResponse } from "@/lib/handle-bad-fetch-response"
@@ -51,7 +50,11 @@ async function checkIn({
   profile,
   mutateProfile,
   toast,
-}: { profile: UserProfile; mutateProfile: KeyedMutator<UserProfile>; toast: Toaster }) {
+}: {
+  profile: UserProfile
+  mutateProfile: KeyedMutator<UserProfile>
+  toast: Toaster
+}) {
   const fallbackToast: Toast = {
     description: "Failed to check in",
     variant: "destructive",
@@ -89,7 +92,11 @@ async function undoCheckIn({
   profile,
   mutateProfile,
   toast,
-}: { profile: UserProfile; mutateProfile: KeyedMutator<UserProfile>; toast: Toaster }) {
+}: {
+  profile: UserProfile
+  mutateProfile: KeyedMutator<UserProfile>
+  toast: Toaster
+}) {
   const fallbackToast: Toast = {
     description: "Failed to undo",
     variant: "destructive",
@@ -107,6 +114,7 @@ async function undoCheckIn({
     })
   } catch (error) {
     toast(fallbackToast)
+    console.log(error)
     return
   }
 

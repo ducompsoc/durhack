@@ -1,10 +1,8 @@
-import session, { type Session, type SessionStore, type SessionData } from "@otterhttp/session"
+import session, { type Session, type SessionData, type SessionStore } from "@otterhttp/session"
 import { Prisma } from "@prisma/client"
-
-import { signCookie, unsignCookieOrThrow } from "@/lib/cookies"
-
 import { sessionConfig } from "@/config"
 import { prisma } from "@/database"
+import { signCookie, unsignCookieOrThrow } from "@/lib/cookies"
 
 const { cookie: cookieOptions, ...sessionOptions } = sessionConfig
 
