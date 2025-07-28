@@ -19,7 +19,8 @@ const menuItems = [
   { id: 5, name: "Extra", link: "extra" },
   { id: 6, name: "Education", link: "education" },
   { id: 7, name: "CV", link: "cv" },
-  { id: 8, name: "Submit", link: "submit" },
+  { id: 8, name: "Travel", link: "travel" },
+  { id: 9, name: "Submit", link: "submit" },
 ] as const satisfies readonly MenuItem[]
 
 // Todo: rewrite this using shadcn Sheet component https://ui.shadcn.com/docs/components/sheet.
