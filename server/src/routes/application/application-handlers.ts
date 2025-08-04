@@ -143,6 +143,7 @@ class ApplicationHandlers {
         userInfo: true,
         userConsents: true,
         userFlags: true,
+        userCv: true,
       },
     })
     assert(user)
@@ -180,6 +181,7 @@ class ApplicationHandlers {
       lastNames: lastNames,
       applicationStatus: adaptApplicationStatusFromDatabase(userInfo?.applicationStatus),
       cvUploadChoice: adaptCvUploadChoiceFromDatabase(userInfo?.cvUploadChoice),
+      cvFileName: user.userCv?.filename ?? null,
       age: userInfo?.age ?? null,
       gender: adaptGenderFromDatabase(userInfo?.gender),
       ethnicity: adaptEthnicityFromDatabase(userInfo?.ethnicity),
