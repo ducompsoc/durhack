@@ -97,13 +97,10 @@ const extraDetailsFormSchema = z.object({
     )
     return mutuallyExclusivePreferences.length <= 1
   }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
-  pizzaFlavors: z
-    .array(pizzaFlavorSchema)
-    .refine((list) => {
-      const mutuallyExclusivePreferences = list.filter((item) => item === "alternative" || item === "nothing")
-      return mutuallyExclusivePreferences.length <= 1
-    }, "If you don't want pizza, please choose one of 'nothing' or 'alternative'.")
-    .min(1, { message: "Please select at least one pizza flavor." }),
+  midnightSnack: z.enum(["pizza", "alternative", "nothing"], {
+    message: "Please select your midnight snack preference.",
+  }),
+  pizzaFlavors: z.array(pizzaFlavorSchema).min(1, { message: "Please select at least one pizza flavor." }),
   accessRequirements: z.string().trim(),
 })
 
@@ -201,6 +198,7 @@ class ApplicationHandlers {
       disciplinesOfStudy: disciplinesOfStudy,
       tShirtSize: (userInfo?.tShirtSize?.trimEnd() as Application["tShirtSize"] | null | undefined) ?? null,
       dietaryRequirements: dietaryRequirements,
+      midnightSnack: userInfo?.midnightSnack ?? null,
       pizzaFlavors: pizzaFlavors,
       accessRequirements: userInfo?.accessRequirements ?? null,
       countryOfResidence: userInfo?.countryOfResidence ?? null,
@@ -319,6 +317,7 @@ class ApplicationHandlers {
         tShirtSize: payload.tShirtSize,
         hackathonExperience: payload.hackathonExperience,
         accessRequirements: payload.accessRequirements || undefined,
+        midnightSnack: payload.midnightSnack,
       }
 
       await prisma.$transaction([

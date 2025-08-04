@@ -39,6 +39,7 @@ type ExtraDetailsFormFields = {
   dietaryRequirements: string[]
   pizzaFlavors: string[]
   accessRequirements: string
+  midnightSnack: string
 }
 
 const extraDetailsFormSchema = z.object({
@@ -54,10 +55,8 @@ const extraDetailsFormSchema = z.object({
     )
     return mutuallyExclusivePreferences.length <= 1
   }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
-  pizzaFlavors: z.array(pizzaFlavorSchema).refine((list) => {
-    const mutuallyExclusivePreferences = list.filter((item) => item === "alternative" || item === "nothing")
-    return mutuallyExclusivePreferences.length <= 1
-  }),
+  midnightSnack: z.enum(["pizza", "alternative", "nothing"], { message: "Please select a midnight snack." }),
+  pizzaFlavors: z.array(pizzaFlavorSchema),
   accessRequirements: z.string().trim(),
 })
 
@@ -78,6 +77,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
       hackathonExperience: application.hackathonExperience ?? "",
       dietaryRequirements: application.dietaryRequirements ?? [],
       accessRequirements: application.accessRequirements ?? "",
+      midnightSnack: application.midnightSnack ?? "",
       pizzaFlavors: application.pizzaFlavors ?? [],
     },
   })
@@ -88,30 +88,11 @@ function ExtraDetailsForm({ application }: { application: Application }) {
     if (application.tShirtSize == null) router.push("/dashboard/education")
   }
 
-  const [snackChoice, setSnackChoice] = useState<string>(
-    !application.pizzaFlavors?.includes("alternative") && !application.pizzaFlavors?.includes("nothing")
-      ? "pizza"
-      : application.pizzaFlavors[0],
-  )
+  const [snackChoice, setSnackChoice] = useState<string>(application.midnightSnack ?? "")
 
   function handleSnackChoice(value: string): void {
-    if (value === "pizza") {
-      setSnackChoice("pizza")
-      form.setValue("pizzaFlavors", [])
-      return
-    }
-
-    if (value === "alternative") {
-      setSnackChoice("alternative")
-      form.setValue("pizzaFlavors", ["alternative"])
-      return
-    }
-
-    if (value === "nothing") {
-      setSnackChoice("nothing")
-      form.setValue("pizzaFlavors", ["nothing"])
-      return
-    }
+    setSnackChoice(value)
+    form.setValue("midnightSnack", value)
   }
 
   return (
@@ -205,7 +186,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
         <div className="mb-4">
           <FormField
             control={form.control}
-            name="pizzaFlavors"
+            name="midnightSnack"
             render={({ field: { ref, ...field } }) => (
               <FormItem>
                 <FormLabel>Midnight Snack (on us)</FormLabel>
@@ -213,7 +194,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
                   We normally offer pizza as a midnight snack. If you want something else, select "alternative" and we
                   will get in touch with you!
                 </FormDescription>
-                <Select defaultValue={snackChoice} onValueChange={handleSnackChoice}>
+                <Select onValueChange={handleSnackChoice} {...field}>
                   <FormControl>
                     <SelectTrigger ref={ref}>
                       <SelectValueViewport>
@@ -228,24 +209,25 @@ function ExtraDetailsForm({ application }: { application: Application }) {
                   </SelectContent>
                 </Select>
 
-                {snackChoice === "pizza" && (
-                  <>
-                    <FormDescription>Please choose the flavours of pizza you would be okay to have</FormDescription>
-                    <FormControl>
-                      <MultiSelect
-                        {...field}
-                        options={pizzaFlavourOptions.filter(
-                          (item) => item.value !== "nothing" && item.value !== "alternative",
-                        )}
-                        hidePlaceholderWhenSelected
-                      />
-                    </FormControl>
-                  </>
-                )}
                 <FormMessage />
               </FormItem>
             )}
           />
+
+          {snackChoice === "pizza" && (
+            <FormField
+              control={form.control}
+              name="pizzaFlavors"
+              render={({ field }) => (
+                <FormItem>
+                  <FormDescription>Please choose the flavours of pizza you would be okay to have</FormDescription>
+                  <FormControl>
+                    <MultiSelect {...field} options={pizzaFlavourOptions} hidePlaceholderWhenSelected />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+          )}
         </div>
 
         <div className="mb-4">
