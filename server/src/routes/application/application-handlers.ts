@@ -320,6 +320,13 @@ class ApplicationHandlers {
         midnightSnack: payload.midnightSnack,
       }
 
+      if (payload.midnightSnack !== "pizza") {
+        prisma.userFlag.deleteMany({
+          where: { userId: user.keycloakUserId, flagName: { startsWith: "pizza-flavor:" } },
+        })
+        payload.pizzaFlavors = []
+      }
+
       await prisma.$transaction([
         prisma.userFlag.deleteMany({
           where: {

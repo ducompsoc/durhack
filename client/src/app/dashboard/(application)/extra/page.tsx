@@ -191,8 +191,8 @@ function ExtraDetailsForm({ application }: { application: Application }) {
               <FormItem>
                 <FormLabel>Midnight Snack (on us)</FormLabel>
                 <FormDescription>
-                  We normally offer pizza as a midnight snack. If you are not able to have pizza, select "alternative" and we
-                  will get in touch with you!
+                  We normally offer pizza as a midnight snack. If you are not able to have pizza, select "alternative"
+                  and we will get in touch with you!
                 </FormDescription>
                 <Select onValueChange={handleSnackChoice} {...field}>
                   <FormControl>
