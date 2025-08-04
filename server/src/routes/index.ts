@@ -7,6 +7,7 @@ import { authApp } from "@/routes/auth"
 import { calendarApp } from "@/routes/calendar"
 import { registerInterestApp } from "@/routes/interest"
 import { profileApp } from "@/routes/profile"
+import { travelReimbursementApp } from "@/routes/travel-reimbursement"
 import { userApp } from "@/routes/user"
 import type { Request, Response } from "@/types"
 
@@ -26,3 +27,4 @@ routesApp.use("/user", userApp)
 routesApp.use("/application", applicationApp)
 routesApp.use("/applications", applicationsApp)
 routesApp.use("/profile/:userId", profileApp)
+routesApp.use("/travel-reimbursement", travelReimbursementApp)
