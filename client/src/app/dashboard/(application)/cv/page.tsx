@@ -90,6 +90,8 @@ function CvForm({ application }: { application: Application }) {
   const router = useRouter()
   const { mutateApplication } = useApplicationContext()
   const [showForm, setShowForm] = React.useState<boolean>(() => application?.cvUploadChoice === "upload")
+  const [successMessage, setSuccessMessage] = React.useState<string | null>(null)
+  const [statusMessage, setStatusMessage] = React.useState<string | null>(null)
 
   const form = useForm<CvFormFields, unknown, z.infer<typeof cvFormSchema>>({
     resolver: zodResolver<CvFormFields, unknown, z.infer<typeof cvFormSchema>>(cvFormSchema),
@@ -98,7 +100,15 @@ function CvForm({ application }: { application: Application }) {
       cvFiles: [],
     },
   })
+  
+  React.useEffect(() => {
+    if (application.cvUploadChoice === "upload" && application.cvFileName != null) {
+      setStatusMessage(`We have your CV: (${application.cvFileName})`)
+    }
+  }, [application.cvUploadChoice, application.cvFileName])
+  
 
+  
   async function onSubmit(values: z.infer<typeof cvFormSchema>): Promise<void> {
     const formData = new FormData()
     formData.append("cvUploadChoice", values.cvUploadChoice)
@@ -111,9 +121,10 @@ function CvForm({ application }: { application: Application }) {
       await updateApplication("cv", formData)
     } catch {
       // todo: what about network errors? this handles too broadly
-      form.setError("cvUploadChoice", { message: "CV file was rejected (try uploading a PDF)!" })
+      form.setError("cvUploadChoice", { message: "CV file was rejected (try uploading an A4 PDF)!" })
       return
     }
+    setSuccessMessage("CV successfully saved!")
 
     await mutateApplication({ ...application, cvUploadChoice: values.cvUploadChoice })
     if (application.cvUploadChoice === "indeterminate") router.push("/dashboard/submit")
@@ -166,6 +177,14 @@ function CvForm({ application }: { application: Application }) {
             )}
           />
         </div>
+        {successMessage && (
+            <div className="mb-6 rounded-md bg-green-100 p-4 text-center text-sm text-green-800">
+              {successMessage}
+            </div>
+        )}
+        <ul></ul>
+
+
         <div className={cn("mb-4", showForm ? "" : "hidden")}>
           <FormField
             control={form.control}
@@ -197,6 +216,14 @@ function CvForm({ application }: { application: Application }) {
               </FormItem>
             )}
           />
+        
+        </div>
+        <div className ="flex justify-center">
+          {statusMessage && (
+            <div>
+              {statusMessage}
+            </div>
+          )}
         </div>
         <div className="mt-16 flex justify-center">
           <FormSubmitButton type="submit">Save Progress</FormSubmitButton>
