@@ -191,7 +191,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
               <FormItem>
                 <FormLabel>Midnight Snack (on us)</FormLabel>
                 <FormDescription>
-                  We normally offer pizza as a midnight snack. If you want something else, select "alternative" and we
+                  We normally offer pizza as a midnight snack. If you are not able to have pizza, select "alternative" and we
                   will get in touch with you!
                 </FormDescription>
                 <Select onValueChange={handleSnackChoice} {...field}>
@@ -220,7 +220,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
               name="pizzaFlavors"
               render={({ field }) => (
                 <FormItem>
-                  <FormDescription>Please choose the flavours of pizza you would be okay to have</FormDescription>
+                  <FormDescription>Please choose your preferred pizza toppings/flavours</FormDescription>
                   <FormControl>
                     <MultiSelect {...field} options={pizzaFlavourOptions} hidePlaceholderWhenSelected />
                   </FormControl>
