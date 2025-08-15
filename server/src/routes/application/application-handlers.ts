@@ -2,6 +2,7 @@ import assert from "node:assert/strict"
 import { parse as parsePath } from "node:path/posix"
 import { type DietaryRequirement, dietaryRequirementSchema } from "@durhack/durhack-common/input/dietary-requirement"
 import { type DisciplineOfStudy, disciplineOfStudySchema } from "@durhack/durhack-common/input/discipline-of-study"
+import { type PizzaFlavor, pizzaFlavorSchema } from "@durhack/durhack-common/input/pizza-flavor"
 import type { Application } from "@durhack/durhack-common/types/application"
 import { ClientError, HttpStatus } from "@otterhttp/errors"
 import type { ContentType, ParsedFormFieldFile } from "@otterhttp/parsec"
@@ -96,6 +97,10 @@ const extraDetailsFormSchema = z.object({
     )
     return mutuallyExclusivePreferences.length <= 1
   }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
+  midnightSnack: z.enum(["pizza", "alternative", "nothing"], {
+    message: "Please select your midnight snack preference.",
+  }),
+  pizzaFlavors: z.array(pizzaFlavorSchema).min(1, { message: "Please select at least one pizza flavor." }),
   accessRequirements: z.string().trim(),
 })
 
@@ -154,6 +159,9 @@ class ApplicationHandlers {
     const dietaryRequirements = userFlags
       .filter((flag) => flag.flagName.startsWith("dietary-requirement:"))
       .map((flag) => flag.flagName.slice(20) as DietaryRequirement)
+    const pizzaFlavors = userFlags
+      .filter((flag) => flag.flagName.startsWith("pizza-flavor:"))
+      .map((flag) => flag.flagName.slice(13) as PizzaFlavor)
 
     const {
       phone_number,
@@ -190,6 +198,8 @@ class ApplicationHandlers {
       disciplinesOfStudy: disciplinesOfStudy,
       tShirtSize: (userInfo?.tShirtSize?.trimEnd() as Application["tShirtSize"] | null | undefined) ?? null,
       dietaryRequirements: dietaryRequirements,
+      midnightSnack: userInfo?.midnightSnack ?? null,
+      pizzaFlavors: pizzaFlavors,
       accessRequirements: userInfo?.accessRequirements ?? null,
       countryOfResidence: userInfo?.countryOfResidence ?? null,
       consents: userConsents.map((consent) => ({ name: consent.consentName, choice: consent.choice })),
@@ -307,15 +317,21 @@ class ApplicationHandlers {
         tShirtSize: payload.tShirtSize,
         hackathonExperience: payload.hackathonExperience,
         accessRequirements: payload.accessRequirements || undefined,
+        midnightSnack: payload.midnightSnack,
+      }
+
+      if (payload.midnightSnack !== "pizza") {
+        prisma.userFlag.deleteMany({
+          where: { userId: user.keycloakUserId, flagName: { startsWith: "pizza-flavor:" } },
+        })
+        payload.pizzaFlavors = []
       }
 
       await prisma.$transaction([
         prisma.userFlag.deleteMany({
           where: {
             userId: user.keycloakUserId,
-            flagName: {
-              startsWith: "dietary-requirement:",
-            },
+            OR: [{ flagName: { startsWith: "dietary-requirement:" } }, { flagName: { startsWith: "pizza-flavor:" } }],
           },
         }),
         prisma.user.update({
@@ -334,6 +350,14 @@ class ApplicationHandlers {
             data: {
               userId: user.keycloakUserId,
               flagName: `dietary-requirement:${item}`,
+            },
+          }),
+        ),
+        ...payload.pizzaFlavors.map((item) =>
+          prisma.userFlag.create({
+            data: {
+              userId: user.keycloakUserId,
+              flagName: `pizza-flavor:${item}`,
             },
           }),
         ),
