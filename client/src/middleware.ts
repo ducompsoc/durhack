@@ -26,7 +26,7 @@ async function getUserProfile(request: NextRequest): Promise<User | null> {
 
 function redirectUnauthenticated(request: NextRequest) {
   const loginUrl = new URL("/auth/keycloak/login", siteConfig.apiUrl)
-  loginUrl.searchParams.set("destination", request.url)
+  loginUrl.searchParams.set("destination", request.nextUrl.href)
   return NextResponse.redirect(loginUrl)
 }
 
@@ -38,6 +38,9 @@ function redirectForbidden(request: NextRequest) {
 }
 
 export async function middleware(request: NextRequest) {
+  request.nextUrl.host = request.headers.get("Host") ?? request.nextUrl.host
+  if (request.headers.get("Host")?.indexOf(":") === -1) request.nextUrl.port = ""
+
   if (request.nextUrl.pathname.startsWith("/dashboard")) {
     const userProfile = await getUserProfile(request)
     // if the user is not logged in, go back to root
