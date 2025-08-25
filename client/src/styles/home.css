@@ -7,3 +7,179 @@
   font-size: 40%;
   top: -1.25em;
 }
+
+:root {
+  --scale: 1;
+}
+
+/* Normalised gradient percentages */
+/* linear-gradient(
+      0deg,
+      #A2E1FC 3.9%,
+      #7FD1F4 6.6%,
+      #00A5B3 13.2%,
+      #0F8E64 18.4%,
+      #85C656 27.6%,
+      #86BA4C 35.5%,
+      #E2D79C 39.5%,
+      #83D8F3 43.4%,
+      #8BD0ED 50%,
+      #E7F3FF 65.8%,
+      #7CCCEF 72.4%,
+      #C5EDFD 89.5%,
+      #C9EEFE 90.8%,
+      #63C6F0 98.7%
+    );
+*/
+
+
+@layer components {
+  .hero {
+    min-height: calc(1405px * var(--scale));
+    background: linear-gradient(
+      to top,
+      #BFEAFD 0%,
+      #63C6F0 100%
+    );
+  }
+
+  .getting-there {
+    min-height: calc(2483px * var(--scale));
+    background: linear-gradient(
+      to top,
+      #96D8F4 0%,
+      #C5EDFD 83%,
+      #C9EEFE 96%,
+      #BFEAFD 100%
+    );
+  }
+
+  .info {
+    min-height: calc(1928px * var(--scale));
+    background: linear-gradient(
+      to top,
+      #BCE4F8 0%,
+      #7CCCEF 40%,
+      #96D8F4 100%
+    );
+  }
+
+  .sponsors {
+    min-height: calc(1355px * var(--scale));
+    background: linear-gradient(
+      to top,
+      #CDE9FA 0%,
+      #E7F3FF 62%,
+      #BCE4F8 100%
+    );
+  }
+
+  .partners {
+    min-height: calc(879px * var(--scale));
+    background: linear-gradient(
+      to top,
+      #B1DEF5 0%,
+      #CDE9FA 100%
+    );
+  }
+
+  .faq {
+    min-height: calc(1063px * var(--scale));
+    background: linear-gradient(
+      to top,
+      #8BD0ED 0%,
+      #B1DEF5 100%
+    );
+  }
+
+  .history {
+    min-height: calc(2679px * var(--scale));
+    background: linear-gradient(
+      to top,
+      #97BF5B 0%,
+      #E2D79C 19%,
+      #83D8F3 48%,
+      #8BD0ED 100%
+    );
+  }
+
+  .guilds {
+    min-height: calc(1055px * var(--scale));
+    background: linear-gradient(
+      to top,
+      #85C152 0%,
+      #86BA4C 91%,
+      #97BF5B 100%
+    );
+  }
+
+  .schedule {
+    min-height: calc(1356px * var(--scale));
+    background: linear-gradient(
+      to top,
+      #51AE5C 0%,
+      #85C656 56%,
+      #85C152 100%
+    );
+  }
+
+  .past-projects {
+    min-height: calc(1321px * var(--scale));
+    background: linear-gradient(
+      to top,
+      #0A967F 0%,
+      #0F8E64 27%,
+      #51AE5C 100%
+    );
+  }
+
+  .meet-team {
+    min-height: calc(1094px * var(--scale));
+    background: linear-gradient(
+      to top,
+      #36B8CE 0%,
+      #00A5B3 45%,
+      #0A967F 100%
+    );
+  }
+
+  .medium {
+    min-height: calc(1284px * var(--scale));
+    background: linear-gradient(
+      to top,
+      #A2E1FC 0%,
+      #A2E1FC 12%,
+      #7FD1F4 49%,
+      #36B8CE 100%
+    );
+  }
+
+  .footer {
+    min-height: calc(709px * var(--scale));
+    background: linear-gradient(
+      to top,
+      #A2E1FC 0%,
+      #A2E1FC 100%
+    );
+  }
+}
+
+@layer utilities {
+  .scale {
+    scale: 0.74
+  }
+  .right-cathedral {
+    right: 60%
+  }
+  .bottom-cathedral {
+    bottom: calc(23% * var(--scale));
+  }
+  .translate-y-hill2 {
+    .translate-hill2 {
+    transform: translateY(calc(20.6% * var(--scale)));
+    }
+  }
+  .left-hill2 {
+    left: 10%
+  }
+}
