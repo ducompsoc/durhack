@@ -30,6 +30,10 @@
 
 
 @layer components {
+  .debug {
+    outline: 2px solid red;
+  }
+
   .hero {
     min-height: 1405px;
     background: linear-gradient(
@@ -38,6 +42,12 @@
       #63C6F0 100%
     );
   }
+
+  @media (max-width: 767px) {
+  .hero {
+    min-height: 706px; /* smaller height */
+  }
+}
 
   .getting-there {
     min-height: 2483px;
