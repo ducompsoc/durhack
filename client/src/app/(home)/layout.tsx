@@ -13,9 +13,7 @@ export default function HomeLayout({
     <>
       <MLHBanner variant="white" season={2026} region="eu" />
       <div>
-        <div className="w-full min-h-[110px] 2xl:hidden" />
         {children}
-        <div className="w-full min-h-[110px] 2xl:hidden" />
       </div>
       <Footer />
     </>
