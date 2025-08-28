@@ -9,8 +9,8 @@ export default function HomePage() {
   return (
     <main className="flex flex-col">
       {/* Hero */}
-      <div className="hero relative w-screen h-[100svh] overflow-hidden md:overflow-hidden">
-        <div className="absolute inset-0 flex justify-center items-center">
+      <div className="hero relative h-[100svh] overflow-hidden ">
+        <div className="absolute inset-0 flex justify-center items-center ">
           <div className="relative h-full aspect-[1920/1405]">
              <img
               src="/assets/hero/text-phone.svg"
@@ -119,10 +119,54 @@ export default function HomePage() {
       
 
       {/* Getting There */}
-      <div className="getting-there flex items-start justify-center z-10">
+      <div className="getting-there relative flex rounded-t-[9.375vw] overflow-hidden min-h-[899px] md:min-h-[2483px] aspect-[1920/2483]">
+        <div className="">
+          <div className="">
         <h1 className="text-white text-5xl font-bold">Getting There</h1>
+        <img
+          src="/assets/getting-there/city-background.svg"
+          alt="City Skyline Background"
+          className="absolute bottom-[38.9%] left-[0%] w-[102.3%] max-w-none h-auto"
+        />
+        <img
+          src="/assets/getting-there/city-foreground.svg"
+          alt="City Skyline Foreground"
+          className="absolute bottom-[32.4%] left-[-0.5%] w-[85.7%] h-auto"
+        />
+        <img
+          src="/assets/getting-there/train-bridge.svg"
+          alt="Train On A Bridge"
+          className="absolute bottom-[11.5%] left-[0%] w-[100%] h-[56%]"
+        />
+        <img
+          src="/assets/getting-there/cloud-background.svg"
+          alt="Cloud"
+          className="absolute bottom-[10.1%] left-[17.5%] w-[93.4%] h-auto rotate-[0deg]"
+        />
+        <img
+          src="/assets/getting-there/cloud-foreground.svg"
+          alt="Cloud Shadow"
+          className="absolute bottom-[0%] left-[-28.4%] w-[138%] max-w-none h-auto rotate-[-12.9deg]"
+        />
+        <img
+          src="/assets/getting-there/leaves-bottom-right.svg"
+          alt="Leaves"
+          className="absolute bottom-[2.5%] left-[83.3%] w-[26%] h-auto"
+        />
+        <img
+          src="/assets/getting-there/leaves-top-right.svg"
+          alt="Leaves"
+          className="absolute bottom-[62%] left-[88.4%] w-[18.75%] h-auto"
+        />
+        <img
+          src="/assets/getting-there/leaves-left.svg"
+          alt="Leaves"
+          className="absolute bottom-[8.2%] left-[-6.5%] w-[25.8%] h-auto"
+        />
+      
+          </div>
+        </div>
       </div>
-
       {/* Info */}
       <div className="info flex items-start justify-center">
         <h1 className="text-white text-5xl font-bold">Info</h1>

@@ -45,7 +45,7 @@
 
   @media (max-width: 767px) {
   .hero {
-    min-height: 706px; /* smaller height */
+    min-height: 706px;
   }
 }
 
