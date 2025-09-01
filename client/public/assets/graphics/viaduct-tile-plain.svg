@@ -16,7 +16,7 @@
       <stop offset="1" stop-color="#e5f7ff" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <path fill="url(#a)" d="M0 0h400v63.154H0z"/>
+  <path fill="url(#a)" d="M0 0h400v63.154H0z" fill-opacity="50%"/>
   <path fill="url(#b)"
         d="M400 1000h-41.945l-.00005-690.41c0-81.416-66.001-147.42-147.42-147.42h-17.629c-81.415 0-147.42 66.001-147.42 147.42l.00004 690.41H-.007L-.00705 63.21l400-.05764z"/>
   <path fill="#e6f5fd"
