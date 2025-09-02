@@ -12,7 +12,7 @@ export default function HomeLayout({
   return (
     <>
       <MLHBanner variant="white" season={2026} region="eu" />
-      <div className="bg-homepage-gradient min-h-screen flex-1 flex flex-col content-center items-center justify-center">
+      <div>
         <div className="w-full min-h-[110px] 2xl:hidden" />
         {children}
         <div className="w-full min-h-[110px] 2xl:hidden" />
