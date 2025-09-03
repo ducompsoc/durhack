@@ -1,6 +1,7 @@
 "use client"
 
 import { dietaryRequirementOptions, dietaryRequirementSchema } from "@durhack/durhack-common/input/dietary-requirement"
+import { pizzaFlavorSchema, pizzaFlavourOptions } from "@durhack/durhack-common/input/pizza-flavor"
 import {
   Form,
   FormControl,
@@ -22,9 +23,9 @@ import {
 import { Textarea } from "@durhack/web-components/ui/textarea"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod/v4"
-
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
 import type { Application } from "@/hooks/use-application"
@@ -36,7 +37,9 @@ type ExtraDetailsFormFields = {
   tShirtSize: string
   hackathonExperience: string
   dietaryRequirements: string[]
+  pizzaFlavors: string[]
   accessRequirements: string
+  midnightSnack: string
 }
 
 const extraDetailsFormSchema = z.object({
@@ -52,6 +55,8 @@ const extraDetailsFormSchema = z.object({
     )
     return mutuallyExclusivePreferences.length <= 1
   }, "Please select at most one of 'vegan', 'vegetarian', 'pescatarian'."),
+  midnightSnack: z.enum(["pizza", "alternative", "nothing"], { message: "Please select a midnight snack." }),
+  pizzaFlavors: z.array(pizzaFlavorSchema),
   accessRequirements: z.string().trim(),
 })
 
@@ -72,6 +77,8 @@ function ExtraDetailsForm({ application }: { application: Application }) {
       hackathonExperience: application.hackathonExperience ?? "",
       dietaryRequirements: application.dietaryRequirements ?? [],
       accessRequirements: application.accessRequirements ?? "",
+      midnightSnack: application.midnightSnack ?? "",
+      pizzaFlavors: application.pizzaFlavors ?? [],
     },
   })
 
@@ -79,6 +86,13 @@ function ExtraDetailsForm({ application }: { application: Application }) {
     await updateApplication("extra", values)
     await mutateApplication({ ...application, ...values })
     if (application.tShirtSize == null) router.push("/dashboard/education")
+  }
+
+  const [snackChoice, setSnackChoice] = useState<string>(application.midnightSnack ?? "")
+
+  function handleSnackChoice(value: string): void {
+    setSnackChoice(value)
+    form.setValue("midnightSnack", value)
   }
 
   return (
@@ -167,6 +181,53 @@ function ExtraDetailsForm({ application }: { application: Application }) {
               </FormItem>
             )}
           />
+        </div>
+
+        <div className="mb-4">
+          <FormField
+            control={form.control}
+            name="midnightSnack"
+            render={({ field: { ref, ...field } }) => (
+              <FormItem>
+                <FormLabel>Midnight Snack (on us)</FormLabel>
+                <FormDescription>
+                  We normally offer pizza as a midnight snack. If you are not able to have pizza, select "alternative"
+                  and we will get in touch with you!
+                </FormDescription>
+                <Select onValueChange={handleSnackChoice} {...field}>
+                  <FormControl>
+                    <SelectTrigger ref={ref}>
+                      <SelectValueViewport>
+                        <SelectValue placeholder="Select..." />
+                      </SelectValueViewport>
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="pizza">Pizza</SelectItem>
+                    <SelectItem value="alternative">Alternative</SelectItem>
+                    <SelectItem value="nothing">Nothing</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {snackChoice === "pizza" && (
+            <FormField
+              control={form.control}
+              name="pizzaFlavors"
+              render={({ field }) => (
+                <FormItem>
+                  <FormDescription>Please choose your preferred pizza toppings/flavours</FormDescription>
+                  <FormControl>
+                    <MultiSelect {...field} options={pizzaFlavourOptions} hidePlaceholderWhenSelected />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+          )}
         </div>
 
         <div className="mb-4">
