@@ -4,12 +4,14 @@ type FAQ = {
   slug: string
   question: React.ReactNode
   answer: React.ReactNode
+  icon_path: string
 }
 
 export const faqs = [
   {
     slug: "should-i-attend",
     question: "Should I attend DurHack?",
+    icon_path: "/assets/faq/icon-1.svg",
     answer: (
       <>
         <p>
@@ -27,6 +29,7 @@ export const faqs = [
   {
     slug: "venue",
     question: "Where is DurHack happening?",
+    icon_path: "/assets/faq/icon-2.svg",
     answer: (
       <>
         <p>
@@ -51,6 +54,7 @@ export const faqs = [
   {
     slug: "travel-costs",
     question: "Will I be able to get my travel costs reimbursed?",
+    icon_path: "/assets/faq/icon-3.svg",
     answer: (
       <>
         <p>
@@ -74,6 +78,7 @@ export const faqs = [
   {
     slug: "timings",
     question: "What time does DurHack start and end?",
+    icon_path: "/assets/faq/icon-4.svg",
     answer: (
       <>
         <p>
@@ -86,6 +91,7 @@ export const faqs = [
   {
     slug: "coding-experience",
     question: "Do I need to be able to code to attend DurHack?",
+    icon_path: "/assets/faq/icon-1.svg",
     answer: (
       <>
         <p>
@@ -99,6 +105,7 @@ export const faqs = [
   {
     slug: "food",
     question: "What can I eat?",
+    icon_path: "/assets/faq/icon-2.svg",
     answer: (
       <>
         <p>
@@ -114,6 +121,7 @@ export const faqs = [
   {
     slug: "what-to-bring",
     question: "What should I bring?",
+    icon_path: "/assets/faq/icon-3.svg",
     answer: (
       <>
         <p>
@@ -126,11 +134,13 @@ export const faqs = [
   {
     slug: "who-can-attend",
     question: "Are students or alumni who aren't from Durham allowed to attend?",
+    icon_path: "/assets/faq/icon-4.svg",
     answer: <p>Absolutely! We welcome students from any university, as long a you were a student in the last year.</p>,
   },
   {
     slug: "i-have-no-team",
     question: "What if I don't have a team?",
+    icon_path: "/assets/faq/icon-1.svg",
     answer: (
       <>
         <p>
@@ -143,6 +153,7 @@ export const faqs = [
   {
     slug: "team-sizes",
     question: "How large can my team be?",
+    icon_path: "/assets/faq/icon-2.svg",
     answer: (
       <>
         <p>
@@ -160,6 +171,7 @@ export const faqs = [
   {
     slug: "rest-overnight",
     question: "Can I take a break overnight?",
+    icon_path: "/assets/faq/icon-3.svg",
     answer: (
       <>
         <p>
@@ -173,6 +185,7 @@ export const faqs = [
   {
     slug: "what-can-i-make",
     question: "What can I build and who owns the IP?",
+    icon_path: "/assets/faq/icon-1.svg",
     answer: (
       <>
         <p>
@@ -186,6 +199,7 @@ export const faqs = [
   {
     slug: "code-of-conduct",
     question: "Do you have a code of conduct?",
+    icon_path: "/assets/faq/icon-2.svg",
     answer: (
       <>
         <p>Everybody at DurHack will be expected to abide by the MLH Code of Conduct.</p>
@@ -196,6 +210,7 @@ export const faqs = [
   {
     slug: "other-questions",
     question: "What if I have other questions?",
+    icon_path: "/assets/faq/icon-3.svg",
     answer: (
       <>
         <p>

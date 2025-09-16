@@ -3,6 +3,7 @@ import Link from "next/link"
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 import { RegisterInterestForm } from "./register-interest-form"
+import {Faqs} from "@/components/faqs"
 
 export default function HomePage() {
   return (
@@ -33,9 +34,7 @@ export default function HomePage() {
       </div>
 
       {/* FAQ */}
-      <div className="faq flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">FAQ</h1>
-      </div>
+      <Faqs className={cn("faq")}/>
 
       {/* History */}
       <div className="history flex items-start justify-center">
