@@ -1,9 +1,5 @@
-import { Button } from "@durhack/web-components/ui/button"
-import Link from "next/link"
-import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
+import { Faqs } from "@/components/faqs"
 import { cn } from "@/lib/utils"
-import { RegisterInterestForm } from "./register-interest-form"
-import {Faqs} from "@/components/faqs"
 
 export default function HomePage() {
   return (
@@ -34,7 +30,7 @@ export default function HomePage() {
       </div>
 
       {/* FAQ */}
-      <Faqs className={cn("faq")}/>
+      <Faqs className={cn("faq")} />
 
       {/* History */}
       <div className="history flex items-start justify-center">
@@ -71,5 +67,5 @@ export default function HomePage() {
         <h1 className="text-white text-5xl font-bold">Footer</h1>
       </div>
     </main>
-  );
+  )
 }

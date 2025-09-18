@@ -1,13 +1,16 @@
-import * as React from "react"
-
-import {faqs} from "@/config/faqs"
-import {Accordion, AccordionContent, AccordionTrigger, AccordionItem} from "@durhack/web-components/ui/accordion"
-import {SectionHeader} from "@/components/section-header";
-
-import {cn} from "@/lib/utils";
-import Image from "next/image";
-import "@/styles/accordion.css"
-import {spaceGrotesk} from "@/lib/google-fonts";
+import {
+  Accordion,
+  AccordionChevron,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@durhack/web-components/ui/accordion"
+import Image from "next/image"
+import type * as React from "react"
+import { SectionHeader } from "@/components/section-header"
+import { faqs } from "@/config/faqs"
+import { cn } from "@/lib/utils"
+import { spaceGrotesk } from "@/lib/google-fonts"
 
 export function Faqs(props: React.HTMLAttributes<HTMLDivElement>) {
   return (
@@ -24,14 +27,30 @@ export function Faqs(props: React.HTMLAttributes<HTMLDivElement>) {
         <div className="w-[90%] max-w-[50rem]">
           <Accordion type="single" collapsible>
             {faqs.map((question, index) => (
-              <AccordionItem className={cn("border-none")} value={`item-${index}`} key={index}>
-                <div className={cn("flex w-full px-3 py-1.5")}>
-                  <Image src={question.icon_path} width={38.75} height={38.75} alt="icon" className={cn("mx-10 relative")}/>
-                  <AccordionTrigger className={cn(spaceGrotesk.className, "text-[#006793] text-left w-full text-xl font-medium m-auto grow-1 px-5")}>{question.question}</AccordionTrigger>
+              <AccordionItem className={cn("border-none")} key={index} value={`item-${index}`}>
+                <div className={cn("flex-row justify-between items-center w-full")}>
+                  <AccordionTrigger
+                    className={cn(
+                      spaceGrotesk.className,
+                      "text-[#006793] text-left text-xl font-medium px-5 flex w-full flex-1 justify-between",
+                    )}
+                  >
+                    <Image
+                      src={question.icon_path}
+                      width={38.75}
+                      height={38.75}
+                      alt="icon"
+                      className={cn("shrink-0 mx-10")}
+                    />
+                    {question.question}
+                    <AccordionChevron className={cn("fill-current text-[#006793] accordion-chevron ml-auto")} />
+                  </AccordionTrigger>
                 </div>
-                <AccordionContent className={cn("text-[#006793] text-base")}>{question.answer}</AccordionContent>
+                  <AccordionContent className={cn("text-[#006793] text-base")}>
+                    {question.answer}
+                  </AccordionContent>
               </AccordionItem>
-           ))}
+            ))}
           </Accordion>
         </div>
       </div>
