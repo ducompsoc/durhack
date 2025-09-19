@@ -3,6 +3,7 @@ import Link from "next/link"
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 import { RegisterInterestForm } from "./register-interest-form"
+import { Sponsors } from "@/components/sponsors"
 
 export default function HomePage() {
   return (
@@ -22,15 +23,8 @@ export default function HomePage() {
         <h1 className="text-white text-5xl font-bold">Info</h1>
       </div>
 
-      {/* Sponsors */}
-      <div className="sponsors flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">Sponsors</h1>
-      </div>
+      <Sponsors />
 
-      {/* Partners */}
-      <div className="partners flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">Partners</h1>
-      </div>
 
       {/* FAQ */}
       <div className="faq flex items-start justify-center">
