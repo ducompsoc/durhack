@@ -59,12 +59,20 @@ export class KeycloakHandlers {
     return codeVerifier
   }
 
+  private static rememberDestination(request: Request, response: Response, session: DurHackSession): void {
+    const destination = request.query.destination != null ? destinationUrlSchema.parse(request.query.destination) : null
+
+    if (session.redirectTo == null && destination?.href == null) return
+    if (session.redirectTo === destination?.href) return
+
+    session.redirectTo = destination?.href
+    response.sessionDirty = true
+  }
+
   beginOAuth2Flow(): Middleware {
     return async (request: Request, response: Response) => {
-      const destination =
-        request.query.destination != null ? destinationUrlSchema.parse(request.query.destination) : null
       const session = await getSession(request, response)
-      session.redirectTo = destination?.href
+      KeycloakHandlers.rememberDestination(request, response, session)
 
       this.lazyLogout(response, session)
       const codeVerifier = this.getOrGenerateCodeVerifier(response, session)
