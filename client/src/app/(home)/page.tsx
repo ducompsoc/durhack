@@ -1,9 +1,9 @@
 import { Button } from "@durhack/web-components/ui/button"
 import Link from "next/link"
+import { Sponsors } from "@/components/sponsors"
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 import { RegisterInterestForm } from "./register-interest-form"
-import { Sponsors } from "@/components/sponsors"
 
 export default function HomePage() {
   return (
@@ -24,7 +24,6 @@ export default function HomePage() {
       </div>
 
       <Sponsors />
-
 
       {/* FAQ */}
       <div className="faq flex items-start justify-center">
@@ -66,5 +65,5 @@ export default function HomePage() {
         <h1 className="text-white text-5xl font-bold">Footer</h1>
       </div>
     </main>
-  );
+  )
 }
