@@ -1,6 +1,6 @@
 import Image from "next/image"
 import type * as React from "react"
-import { goldSponsors, platinumSponsors, type Sponsor } from "@/config/sponsors"
+import {goldSponsors, platinumSponsors, silverSponsors, type Sponsor} from "@/config/sponsors"
 import { SectionHeader } from "./section-header"
 
 const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<typeof Image>, "src" | "alt">>> = {
@@ -22,9 +22,9 @@ type SponsorProps = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 const tierWidths = {
-  platinum: 200,
-  gold: 150,
-  silver: 100,
+  platinum: 300,
+  gold: 200,
+  silver: 150,
   partner: 0,
 }
 
@@ -92,6 +92,20 @@ function GoldSponsor({ sponsor, renderTierTitle = false, ...props }: SponsorProp
   )
 }
 
+
+function SilverSponsor({ sponsor, renderTierTitle = false, ...props }: SponsorProps) {
+  return (
+    <div className="sponsor biggest mb-5" {...props}>
+      {renderTierTitle && (
+        <div>
+          <p className="bg-platinumGradient uppercase text-transparent bg-clip-text font-bold text-[20px] absolute">Silver</p>
+        </div>
+      )}
+      <SponsorContent sponsor={sponsor} />
+    </div>
+  )
+}
+
 export function Sponsors() {
   return (
     <>
@@ -107,7 +121,13 @@ export function Sponsors() {
 
           <div className="gold flex flex-wrap justify-center gap-6">
             {goldSponsors.map((sponsor, index) => (
-              <PlatinumSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0} />
+              <GoldSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0} />
+            ))}
+          </div>
+
+          <div className="platinum flex flex-wrap justify-center gap-6">
+            {silverSponsors.map((sponsor, index) => (
+              <SilverSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0} />
             ))}
           </div>
         </div>
