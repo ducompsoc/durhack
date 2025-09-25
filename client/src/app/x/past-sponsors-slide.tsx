@@ -1,7 +1,5 @@
 import type * as React from "react"
 
-import "@/styles/durhack-x-past-sponsors-slide.css"
-
 import { sponsors } from "@/config/sponsors"
 import { electrolize } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
@@ -11,7 +9,7 @@ function SponsorCard({ sponsorSlug }: { sponsorSlug: string }): React.ReactNode 
   if (!sponsor) return undefined
   const { image: SponsorImage } = sponsor
   return (
-    <div className="relative sponsor-card">
+    <div className="relative bg-linear from-[#EDDDFD] via-[#A7AFBD] to-[#E5EDFE]">
       <div className="absolute hexagon top-[5%] left-[5%] size-[90%] bg-white flex items-center justify-center">
         <SponsorImage className="max-h-[70%] max-w-[90%]" />
       </div>
@@ -27,7 +25,7 @@ export function PastSponsorsSlide({ className, ...props }: React.HTMLAttributes<
     >
       <section className="flex flex-col space-y-1">
         <h1 className={cn(electrolize.className, "text-4xl")}>Past Sponsors</h1>
-        <div className="hex-grid w-[20rem] lg:w-220">
+        <div className="hex-grid w-[20rem] lg:w-180">
           {/*
           2025-06-24: On Safari, the `shape-outside` CSS property is ignored unless the target element
           has a sibling text element.

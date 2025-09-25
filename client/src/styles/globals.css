@@ -1,6 +1,7 @@
 @import "./numerical-input-spinners.css" layer(base);
 @import "tw-animate-css";
 @import "tailwindcss";
+@import "./hex-grid.css";
 
 @source '../../node_modules/@durhack/web-components/dist/**/*.{ts,tsx}';
 
