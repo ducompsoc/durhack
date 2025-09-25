@@ -1,6 +1,6 @@
 import Image from "next/image"
 import type * as React from "react"
-import { platinumSponsors, type Sponsor } from "@/config/sponsors"
+import { goldSponsors, platinumSponsors, type Sponsor } from "@/config/sponsors"
 import { SectionHeader } from "./section-header"
 
 const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<typeof Image>, "src" | "alt">>> = {
@@ -79,6 +79,19 @@ function PlatinumSponsor({ sponsor, renderTierTitle = false, ...props }: Sponsor
   )
 }
 
+function GoldSponsor({ sponsor, renderTierTitle = false, ...props }: SponsorProps) {
+  return (
+    <div className="sponsor biggest mb-5" {...props}>
+      {renderTierTitle && (
+        <div>
+          <p className="bg-goldGradient uppercase text-transparent bg-clip-text font-bold text-[20px] absolute">Gold</p>
+        </div>
+      )}
+      <SponsorContent sponsor={sponsor} />
+    </div>
+  )
+}
+
 export function Sponsors() {
   return (
     <>
@@ -88,6 +101,12 @@ export function Sponsors() {
 
           <div className="platinum flex flex-wrap justify-center gap-6">
             {platinumSponsors.map((sponsor, index) => (
+              <PlatinumSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0} />
+            ))}
+          </div>
+
+          <div className="gold flex flex-wrap justify-center gap-6">
+            {goldSponsors.map((sponsor, index) => (
               <PlatinumSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0} />
             ))}
           </div>
