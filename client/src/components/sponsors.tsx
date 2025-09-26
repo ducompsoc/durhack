@@ -24,10 +24,16 @@ const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<type
   partner: () => undefined,
 }
 
+type SponsorType = "Platinum" | "Gold" | "Silver" | "Partner"
+
 type SponsorProps = {
   sponsor: Sponsor
-  sponsorType: "Platinum" | "Gold" | "Silver" | "Partner"
+  sponsorType: SponsorType
   renderTierTitle?: boolean
+} & React.HTMLAttributes<HTMLDivElement>
+
+type SponsorSectionProps = {
+  sponsorType: SponsorType
 } & React.HTMLAttributes<HTMLDivElement>
 
 const tierWidths = {
@@ -86,6 +92,31 @@ function SponsorBox({ sponsor, sponsorType, renderTierTitle = false, ...props }:
   )
 }
 
+function SponsorSection({ sponsorType, ...props }: SponsorSectionProps) {
+  let sponsors: Sponsor[]
+  switch (sponsorType) {
+    case "Platinum":
+      sponsors = platinumSponsors
+      break
+    case "Gold":
+      sponsors = goldSponsors
+      break
+    case "Silver":
+      sponsors = silverSponsors
+      break
+    default:
+      sponsors = []
+  }
+
+  return (
+    <div className="flex flex-wrap justify-center">
+      {sponsors.map((sponsor, index) => (
+        <SponsorBox key={sponsor.slug} sponsorType="Platinum" sponsor={sponsor} renderTierTitle={index === 0} />
+      ))}
+    </div>
+  )
+}
+
 type PartnerProps = {
   partner: Partner
 } & React.HTMLAttributes<HTMLDivElement>
@@ -138,23 +169,9 @@ export function Sponsors() {
             width="679"
             height="902"
           />
-
-          <div className="platinum flex flex-wrap justify-center">
-            {platinumSponsors.map((sponsor, index) => (
-              <SponsorBox key={sponsor.slug} sponsorType="Platinum" sponsor={sponsor} renderTierTitle={index === 0} />
-            ))}
-          </div>
-          <div className="gold flex flex-wrap justify-center gap-6">
-            {goldSponsors.map((sponsor, index) => (
-              <SponsorBox key={sponsor.slug} sponsorType="Gold" sponsor={sponsor} renderTierTitle={index === 0} />
-            ))}
-          </div>
-
-          <div className="platinum flex flex-wrap justify-center gap-6">
-            {silverSponsors.map((sponsor, index) => (
-              <SponsorBox key={sponsor.slug} sponsorType="Platinum" sponsor={sponsor} renderTierTitle={index === 0} />
-            ))}
-          </div>
+          <SponsorSection sponsorType="Platinum" />
+          <SponsorSection sponsorType="Gold" />
+          <SponsorSection sponsorType="Silver" />
         </div>
       </div>
 
@@ -164,7 +181,7 @@ export function Sponsors() {
           <Image
             src="/assets/blimp2.svg"
             alt="blimp"
-            className={cn("absolute left-0 bottom-2/5 hidden lg:block")}
+            className={cn("absolute left-0 bottom-1/5 hidden lg:block")}
             width="408"
             height="1072"
           />
