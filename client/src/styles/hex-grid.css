@@ -5,13 +5,13 @@
 }
 
 @utility hex-grid {
-  font-size: 0; /*disable white space between inline block element */
-  --hex-grid-tile-size: 7rem;  /* size  */
-  --hex-grid-tile-margin: .5rem;    /* margin */
+  font-size: 0; /* disable white space between inline block element */
+  --hex-grid-tile-size: 7rem;
+  --hex-grid-tile-margin: .5rem;
 
-  @media screen(lg) {
-    --hex-grid-tile-size: 8rem;  /* size  */
-    --hex-grid-tile-margin: 1rem;    /* margin */
+  @variant lg {
+    --hex-grid-tile-size: 8rem;
+    --hex-grid-tile-margin: 1rem;
   }
 
   --hex-grid-f: calc(1.732 * var(--hex-grid-tile-size) + 4 * var(--hex-grid-tile-margin) - 1px);
@@ -19,20 +19,20 @@
   & > div {
     width: var(--hex-grid-tile-size);
     margin: var(--hex-grid-tile-margin);
-    height: calc(var(--hex-grid-tile-size)*1.1547);
+    height: calc(var(--hex-grid-tile-size) * 1.1547);
     display: inline-block;
     font-size: initial;
-    margin-bottom: calc(var(--hex-grid-tile-margin) - var(--hex-grid-tile-size)*0.2885);
+    margin-bottom: calc(var(--hex-grid-tile-margin) - var(--hex-grid-tile-size) * 0.2885);
     @apply hexagon;
   }
 
   &::before {
     content: "";
-    width: calc(var(--hex-grid-tile-size)/2 + var(--hex-grid-tile-margin));
+    width: calc(var(--hex-grid-tile-size) / 2 + var(--hex-grid-tile-margin));
     float: left;
     height: 120%;
     shape-outside: repeating-linear-gradient(
       #0000 0 calc(var(--hex-grid-f) - 3px),
-      #000  0 var(--hex-grid-f));
+      #000 0 var(--hex-grid-f));
   }
 }

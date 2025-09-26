@@ -25,7 +25,7 @@ export function PastSponsorsSlide({ className, ...props }: React.HTMLAttributes<
     >
       <section className="flex flex-col space-y-1">
         <h1 className={cn(electrolize.className, "text-4xl")}>Past Sponsors</h1>
-        <div className="hex-grid w-[20rem] lg:w-180">
+        <div className="hex-grid w-[20rem] lg:w-220">
           {/*
           2025-06-24: On Safari, the `shape-outside` CSS property is ignored unless the target element
           has a sibling text element.
