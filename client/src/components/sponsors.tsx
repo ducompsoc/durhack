@@ -193,7 +193,7 @@ export function Sponsors() {
           <Image
             src="/assets/blimp2.svg"
             alt="blimp"
-            className={cn("absolute left-0 bottom-1/5 hidden lg:block")}
+            className={cn("absolute left-0 bottom-2/5 hidden lg:block")}
             width="408"
             height="1072"
           />
