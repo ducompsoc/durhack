@@ -157,16 +157,21 @@ function Partner({ partner, ...props }: PartnerProps) {
 export function Sponsors() {
   return (
     <>
-      <div className="sponsors flex items-start justify-center">
+      <div className="sponsors flex relative items-start justify-center">
         <div className="flex-row">
           <SectionHeader className="mb-4">Sponsors</SectionHeader>
-
+          <Image
+            src="/assets/blimp1.svg"
+            alt="blimp"
+            className={cn("absolute right-0 bottom-3/5 hidden lg:block")}
+            width="679"
+            height="902"
+          />
           <div className="platinum flex flex-wrap justify-center">
             {platinumSponsors.map((sponsor, index) => (
               <PlatinumSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0} />
             ))}
           </div>
-
           <div className="gold flex flex-wrap justify-center gap-6">
             {goldSponsors.map((sponsor, index) => (
               <GoldSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0} />
