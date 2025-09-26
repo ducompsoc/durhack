@@ -111,7 +111,13 @@ function SponsorSection({ sponsorType, ...props }: SponsorSectionProps) {
   return (
     <div className="flex flex-wrap justify-center">
       {sponsors.map((sponsor, index) => (
-        <SponsorBox key={sponsor.slug} sponsorType="Platinum" sponsor={sponsor} renderTierTitle={index === 0} />
+        <SponsorBox
+          key={sponsor.slug}
+          sponsorType="Platinum"
+          sponsor={sponsor}
+          renderTierTitle={index === 0}
+          {...props}
+        />
       ))}
     </div>
   )
@@ -124,7 +130,7 @@ type PartnerProps = {
 const partnerWidth = 150
 const partnerScale = 0.67
 
-function Partner({ partner, ...props }: PartnerProps) {
+function PartnerBox({ partner, ...props }: PartnerProps) {
   if (partner.image === null) return null
   const PartnerImage = partner.image
 
@@ -189,7 +195,7 @@ export function Sponsors() {
           <div className="w-full flex justify-center">
             <div className="flex flex-wrap justify-evenly w-2/4">
               {activePartners.map((partner) => (
-                <Partner key={partner.slug} partner={partner} className={cn("m-2")} />
+                <PartnerBox key={partner.slug} partner={partner} className={cn("m-2")} />
               ))}
             </div>
           </div>
