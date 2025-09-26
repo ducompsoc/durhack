@@ -1,6 +1,14 @@
 import Image from "next/image"
 import type * as React from "react"
-import {goldSponsors, platinumSponsors, silverSponsors, type Sponsor} from "@/config/sponsors"
+import {
+  activePartners,
+  goldSponsors,
+  type Partner,
+  platinumSponsors,
+  type Sponsor,
+  silverSponsors,
+} from "@/config/sponsors"
+import { cn } from "@/lib/utils"
 import { SectionHeader } from "./section-header"
 
 const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<typeof Image>, "src" | "alt">>> = {
@@ -22,9 +30,9 @@ type SponsorProps = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 const tierWidths = {
-  platinum: 300,
-  gold: 200,
-  silver: 150,
+  platinum: 360,
+  gold: 235,
+  silver: 200,
   partner: 0,
 }
 
@@ -40,9 +48,9 @@ function SponsorContent({ sponsor }: { sponsor: Sponsor }) {
         target="_blank"
         style={{
           width: `${Math.round(tierWidths[sponsor.tier] * 1.1)}px`,
-          height: `${Math.round(tierWidths[sponsor.tier] * 1.3)}px`,
+          height: `${Math.round(tierWidths[sponsor.tier] * 1.1)}px`,
         }}
-        className="relative flex flex-col items-center justify-center border-b-0 m-[10px] mx-[5px]"
+        className="relative flex flex-col items-center justify-center border-b-0"
         rel="noreferrer"
       >
         <SponsorImage
@@ -66,7 +74,7 @@ function SponsorContent({ sponsor }: { sponsor: Sponsor }) {
 
 function PlatinumSponsor({ sponsor, renderTierTitle = false, ...props }: SponsorProps) {
   return (
-    <div className="sponsor biggest mb-5" {...props}>
+    <div className="sponsor biggest m-2" {...props}>
       {renderTierTitle && (
         <div>
           <p className="bg-platinumGradient uppercase text-transparent bg-clip-text font-bold text-[20px] absolute">
@@ -92,16 +100,56 @@ function GoldSponsor({ sponsor, renderTierTitle = false, ...props }: SponsorProp
   )
 }
 
-
 function SilverSponsor({ sponsor, renderTierTitle = false, ...props }: SponsorProps) {
   return (
     <div className="sponsor biggest mb-5" {...props}>
       {renderTierTitle && (
         <div>
-          <p className="bg-platinumGradient uppercase text-transparent bg-clip-text font-bold text-[20px] absolute">Silver</p>
+          <p className="bg-platinumGradient uppercase text-transparent bg-clip-text font-bold text-[20px] absolute">
+            Silver
+          </p>
         </div>
       )}
       <SponsorContent sponsor={sponsor} />
+    </div>
+  )
+}
+
+type PartnerProps = {
+  partner: Partner
+} & React.HTMLAttributes<HTMLDivElement>
+
+const partnerWidth = 250
+const partnerScale = 0.75
+
+function Partner({ partner, ...props }: PartnerProps) {
+  if (partner.image === null) return null
+  const PartnerImage = partner.image
+
+  return (
+    <div className="sponsor biggest" {...props}>
+      <a
+        href={partner.link}
+        target="_blank"
+        className="relative flex flex-col items-center justify-center"
+        rel="noreferrer"
+        style={{ width: `${partnerWidth}px`, height: `${partnerWidth}px` }}
+      >
+        <PartnerImage
+          className="relative z-40"
+          style={{
+            width: `${Math.round(partnerWidth * partnerScale)}px`,
+            height: `${Math.round(partnerWidth * partnerScale)}px`,
+          }}
+        />
+        <Image
+          src={"/assets/sponsors/tiles/partner.svg"}
+          alt="partner tile"
+          width={240}
+          height={240}
+          className="absolute z-30"
+        />
+      </a>
     </div>
   )
 }
@@ -113,7 +161,7 @@ export function Sponsors() {
         <div className="flex-row">
           <SectionHeader className="mb-4">Sponsors</SectionHeader>
 
-          <div className="platinum flex flex-wrap justify-center gap-6">
+          <div className="platinum flex flex-wrap justify-center">
             {platinumSponsors.map((sponsor, index) => (
               <PlatinumSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0} />
             ))}
@@ -134,7 +182,17 @@ export function Sponsors() {
       </div>
 
       <div className="partners flex items-start justify-center">
-        <SectionHeader className="mb-4">Partners</SectionHeader>
+        <div className="flex-row">
+          <SectionHeader className="mb-4">Partners</SectionHeader>
+
+          <div className="w-full flex justify-center">
+            <div className="flex flex-wrap justify-evenly w-2/4">
+              {activePartners.map((partner) => (
+                <Partner key={partner.slug} partner={partner} className={cn("m-2")} />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )
