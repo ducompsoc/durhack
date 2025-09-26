@@ -167,6 +167,7 @@ export function Sponsors() {
             width="679"
             height="902"
           />
+
           <div className="platinum flex flex-wrap justify-center">
             {platinumSponsors.map((sponsor, index) => (
               <PlatinumSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0} />
@@ -186,9 +187,16 @@ export function Sponsors() {
         </div>
       </div>
 
-      <div className="partners flex items-start justify-center">
+      <div className="partners relative flex items-start justify-center">
         <div className="flex-row">
           <SectionHeader className="mb-4">Partners</SectionHeader>
+          <Image
+            src="/assets/blimp2.svg"
+            alt="blimp"
+            className={cn("absolute left-0 bottom-1/5 hidden lg:block")}
+            width="408"
+            height="1072"
+          />
 
           <div className="w-full flex justify-center">
             <div className="flex flex-wrap justify-evenly w-2/4">
