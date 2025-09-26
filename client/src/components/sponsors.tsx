@@ -26,6 +26,7 @@ const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<type
 
 type SponsorProps = {
   sponsor: Sponsor
+  sponsorType: "Platinum" | "Gold" | "Silver" | "Partner"
   renderTierTitle?: boolean
 } & React.HTMLAttributes<HTMLDivElement>
 
@@ -72,42 +73,12 @@ function SponsorContent({ sponsor }: { sponsor: Sponsor }) {
   )
 }
 
-function PlatinumSponsor({ sponsor, renderTierTitle = false, ...props }: SponsorProps) {
+function SponsorBox({ sponsor, sponsorType, renderTierTitle = false, ...props }: SponsorProps) {
   return (
     <div className="sponsor biggest m-2" {...props}>
       {renderTierTitle && (
         <div>
-          <p className="bg-platinumGradient uppercase text-transparent bg-clip-text font-bold text-[20px] absolute">
-            Platinum
-          </p>
-        </div>
-      )}
-      <SponsorContent sponsor={sponsor} />
-    </div>
-  )
-}
-
-function GoldSponsor({ sponsor, renderTierTitle = false, ...props }: SponsorProps) {
-  return (
-    <div className="sponsor biggest mb-5" {...props}>
-      {renderTierTitle && (
-        <div>
-          <p className="bg-goldGradient uppercase text-transparent bg-clip-text font-bold text-[20px] absolute">Gold</p>
-        </div>
-      )}
-      <SponsorContent sponsor={sponsor} />
-    </div>
-  )
-}
-
-function SilverSponsor({ sponsor, renderTierTitle = false, ...props }: SponsorProps) {
-  return (
-    <div className="sponsor biggest mb-5" {...props}>
-      {renderTierTitle && (
-        <div>
-          <p className="bg-platinumGradient uppercase text-transparent bg-clip-text font-bold text-[20px] absolute">
-            Silver
-          </p>
+          <p className="uppercase text-transparent bg-clip-text font-bold text-[20px] absolute">{sponsorType}</p>
         </div>
       )}
       <SponsorContent sponsor={sponsor} />
@@ -119,8 +90,8 @@ type PartnerProps = {
   partner: Partner
 } & React.HTMLAttributes<HTMLDivElement>
 
-const partnerWidth = 250
-const partnerScale = 0.75
+const partnerWidth = 150
+const partnerScale = 0.67
 
 function Partner({ partner, ...props }: PartnerProps) {
   if (partner.image === null) return null
@@ -170,18 +141,18 @@ export function Sponsors() {
 
           <div className="platinum flex flex-wrap justify-center">
             {platinumSponsors.map((sponsor, index) => (
-              <PlatinumSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0} />
+              <SponsorBox key={sponsor.slug} sponsorType="Platinum" sponsor={sponsor} renderTierTitle={index === 0} />
             ))}
           </div>
           <div className="gold flex flex-wrap justify-center gap-6">
             {goldSponsors.map((sponsor, index) => (
-              <GoldSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0} />
+              <SponsorBox key={sponsor.slug} sponsorType="Gold" sponsor={sponsor} renderTierTitle={index === 0} />
             ))}
           </div>
 
           <div className="platinum flex flex-wrap justify-center gap-6">
             {silverSponsors.map((sponsor, index) => (
-              <SilverSponsor key={sponsor.slug} sponsor={sponsor} renderTierTitle={index === 0} />
+              <SponsorBox key={sponsor.slug} sponsorType="Platinum" sponsor={sponsor} renderTierTitle={index === 0} />
             ))}
           </div>
         </div>
