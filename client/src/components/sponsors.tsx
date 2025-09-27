@@ -38,8 +38,8 @@ type SponsorSectionProps = {
 
 const tierWidths = {
   platinum: 360,
-  gold: 235,
-  silver: 200,
+  gold: 150,
+  silver: 100,
   partner: 0,
 }
 
@@ -193,7 +193,7 @@ export function Sponsors() {
           />
 
           <div className="w-full flex justify-center">
-            <div className="flex flex-wrap justify-evenly w-2/4">
+            <div className="flex flex-wrap justify-evenly lg:w-2/4">
               {activePartners.map((partner) => (
                 <PartnerBox key={partner.slug} partner={partner} className={cn("m-2")} />
               ))}
