@@ -1,5 +1,6 @@
 import { Button } from "@durhack/web-components/ui/button"
 import Link from "next/link"
+import { Hero } from "@/components/hero"
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 import { RegisterInterestForm } from "./register-interest-form"
@@ -8,9 +9,7 @@ export default function HomePage() {
   return (
     <main className="flex flex-col">
       {/* Hero */}
-      <div className="hero relative flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">Hero</h1>
-      </div>
+      <Hero />
 
       {/* Getting There */}
       <div className="getting-there flex items-start justify-center z-10">
@@ -72,5 +71,5 @@ export default function HomePage() {
         <h1 className="text-white text-5xl font-bold">Footer</h1>
       </div>
     </main>
-  );
+  )
 }
