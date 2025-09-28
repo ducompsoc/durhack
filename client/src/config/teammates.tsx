@@ -24,96 +24,96 @@ export const teammates: Teammate[] = [
     name: "Joe Clack",
     team: Team.TECH,
     role: "Lead",
-    img_path: "/assets/teammates/joe.png"
+    img_path: "/assets/teammates/joe.png",
   },
   {
     name: "Karl Southern",
     team: Team.EMERITUS_MEMBER,
     role: "",
-    img_path: "/assets/teammates/karl.png"
+    img_path: "/assets/teammates/karl.png",
   },
   {
     name: "Eve Sherratt-Cross",
     team: Team.HACKER_EXP,
     role: "",
-    img_path: "/assets/teammates/eve.png"
+    img_path: "/assets/teammates/eve.png",
   },
   {
     name: "Quinn Dines",
     team: Team.HACKER_EXP,
     role: "",
-    img_path: "/assets/teammates/quinn.png"
+    img_path: "/assets/teammates/quinn.png",
   },
   {
     name: "Adrienne Lam",
     team: Team.MARKETING,
     role: "",
-    img_path: "/assets/teammates/adrienne.png"
+    img_path: "/assets/teammates/adrienne.png",
   },
   {
     name: "Oscar Ryley",
     team: Team.HACKER_EXP,
     role: "",
-    img_path: "/assets/teammates/oscar.png"
+    img_path: "/assets/teammates/oscar.png",
   },
   {
     name: "Clarissa Hui",
     team: Team.DESIGN,
     role: "",
-    img_path: "/assets/teammates/clarissa.png"
+    img_path: "/assets/teammates/clarissa.png",
   },
   {
     name: "Jin Koh",
     team: Team.LEGAL,
     role: "",
-    img_path: "/assets/teammates/jin.png"
+    img_path: "/assets/teammates/jin.png",
   },
   {
     name: "Palak Shah",
     team: Team.SPONSORSHIP,
     role: "",
-    img_path: "/assets/teammates/palak.png"
+    img_path: "/assets/teammates/palak.png",
   },
   {
     name: "Lizete Viljoen",
     team: Team.LEADERSHIP_STRAT,
     role: "",
-    img_path: "/assets/teammates/lizete.png"
+    img_path: "/assets/teammates/lizete.png",
   },
   {
     name: "Maks Nowak",
     team: Team.HACKER_EXP,
     role: "",
-    img_path: "/assets/teammates/maks.png"
+    img_path: "/assets/teammates/maks.png",
   },
   {
     name: "Shawn Goey",
     team: Team.DESIGN,
     role: "",
-    img_path: "/assets/teammates/shawn.png"
+    img_path: "/assets/teammates/shawn.png",
   },
   {
     name: "Emily Rose",
     team: Team.SPONSORSHIP,
     role: "",
-    img_path: "/assets/teammates/emily.png"
+    img_path: "/assets/teammates/emily.png",
   },
   {
     name: "Dino",
     team: Team.EMERITUS_MEMBER,
     role: "",
-    img_path: "/assets/teammates/dino.png"
+    img_path: "/assets/teammates/dino.png",
   },
   {
     name: "Andrea Johnson",
     team: Team.HACKER_EXP,
     role: "",
-    img_path: "/assets/teammates/andrea.png"
+    img_path: "/assets/teammates/andrea.png",
   },
   {
     name: "Rebecca Mewse",
     team: Team.HACKER_EXP,
     role: "",
-    img_path: "/assets/teammates/rebecca.png"
-  }
+    img_path: "/assets/teammates/rebecca.png",
+  },
 ]
