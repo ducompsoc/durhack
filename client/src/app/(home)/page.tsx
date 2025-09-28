@@ -1,5 +1,6 @@
 import { Button } from "@durhack/web-components/ui/button"
 import Link from "next/link"
+import { MeetTheTeam } from "@/components/meet-the-team"
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 import { RegisterInterestForm } from "./register-interest-form"
@@ -57,10 +58,7 @@ export default function HomePage() {
         <h1 className="text-white text-5xl font-bold">Past Projects</h1>
       </div>
 
-      {/* Meet the Team */}
-      <div className="meet-team flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">Meet the Team</h1>
-      </div>
+      <MeetTheTeam />
 
       {/* Medium */}
       <div className="medium flex items-start justify-center">
@@ -72,5 +70,5 @@ export default function HomePage() {
         <h1 className="text-white text-5xl font-bold">Footer</h1>
       </div>
     </main>
-  );
+  )
 }

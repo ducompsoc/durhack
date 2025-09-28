@@ -1,0 +1,9 @@
+.section-header {
+  /*
+  border-bottom: 2px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(90deg, transparent 0, #fff 50%, transparent);
+   */
+
+  @apply px-[30px] py-[10px] mx-auto;
+}
