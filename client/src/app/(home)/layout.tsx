@@ -1,8 +1,14 @@
 import type * as React from "react"
-import "@/styles/home.css"
+import type { Viewport } from "next"
 
 import { Footer } from "@/components/footer"
 import { MLHBanner } from "@/components/mlh-banner"
+import { SiteHeader } from "@/components/site-header"
+
+export const viewport = {
+  themeColor: "#BFEAFD",
+  colorScheme: "dark light",
+} satisfies Viewport
 
 export default function HomeLayout({
   children,
