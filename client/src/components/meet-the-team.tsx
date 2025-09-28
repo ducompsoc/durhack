@@ -32,6 +32,11 @@ function TeamCarousel({...props}: React.HTMLAttributes<HTMLDivElement>) {
           <li key={index}><img onMouseEnter={pauseScroll} onMouseLeave={startScroll} className={cn("rounded-full")} src={teammate.img_path} alt="teammate image"/></li>
         ))}
       </ul>
+      <ul className={cn("flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-[150px] animate-infinite-scroll", !scrolling && "animation-paused")} aria-hidden="true">
+        {teammates.map((teammate, index) => (
+          <li key={index}><img onMouseEnter={pauseScroll} onMouseLeave={startScroll} className={cn("rounded-full")} src={teammate.img_path} alt="teammate image"/></li>
+        ))}
+      </ul>
     </div>
   )
 }
