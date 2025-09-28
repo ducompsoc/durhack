@@ -1,9 +1,9 @@
 import type * as React from "react"
 import type { Viewport } from "next"
 
-import { Footer } from "@/components/footer"
 import { MLHBanner } from "@/components/mlh-banner"
 import { SiteHeader } from "@/components/site-header"
+import { navConfig } from "@/config/nav"
 
 export const viewport = {
   themeColor: "#BFEAFD",
@@ -17,13 +17,11 @@ export default function HomeLayout({
 }>): React.ReactNode {
   return (
     <>
+      <SiteHeader navConfig={navConfig} />
       <MLHBanner variant="white" season={2026} region="eu" />
       <div>
-        <div className="w-full min-h-[110px] 2xl:hidden" />
         {children}
-        <div className="w-full min-h-[110px] 2xl:hidden" />
       </div>
-      <Footer />
     </>
   )
 }
