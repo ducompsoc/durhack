@@ -153,9 +153,9 @@
   .footer {
     min-height: 709px;
     background: linear-gradient(
-      to top,
+      to bottom,
       #A2E1FC 0%,
-      #A2E1FC 100%
+      #BFEAFD 100%
     );
   }
 }
