@@ -3,7 +3,6 @@
 @import "tailwindcss";
 @import "./home.css";
 @import "./hex-grid.css";
-@import "./template.css";
 
 @source '../../node_modules/@durhack/web-components/dist/**/*.{ts,tsx}';
 
