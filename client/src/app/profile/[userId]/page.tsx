@@ -42,7 +42,7 @@ function UserAttribute({ children, className, ...props }: React.HTMLAttributes<H
 }
 
 export default async function ProfilePage(props: { params: Promise<{ userId: string }> }) {
-  const params = React.use(props.params);
+  const params = React.use(props.params)
   const { toast } = useToast()
 
   const {

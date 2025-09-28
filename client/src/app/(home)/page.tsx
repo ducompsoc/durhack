@@ -1,5 +1,6 @@
 import { Button } from "@durhack/web-components/ui/button"
 import Link from "next/link"
+import { Guilds } from "@/components/guilds"
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 import { RegisterInterestForm } from "./register-interest-form"
@@ -42,10 +43,7 @@ export default function HomePage() {
         <h1 className="text-white text-5xl font-bold">History</h1>
       </div>
 
-      {/* Guilds */}
-      <div className="guilds flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">Guilds</h1>
-      </div>
+      <Guilds />
 
       {/* Schedule */}
       <div className="schedule flex items-start justify-center">
@@ -72,5 +70,5 @@ export default function HomePage() {
         <h1 className="text-white text-5xl font-bold">Footer</h1>
       </div>
     </main>
-  );
+  )
 }
