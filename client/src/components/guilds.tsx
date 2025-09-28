@@ -3,16 +3,16 @@ import { SectionHeader } from "@/components/section-header"
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 import "@/styles/guilds.css"
+import { type GuildConfig, guilds } from "@/config/guilds"
 
 type NamePos = "above" | "below"
 
 type GuildTileConfig = {
-  name: string
   name_pos: NamePos
-  img_path: string
-} & React.HTMLAttributes<HTMLDivElement>
+} & GuildConfig &
+  React.HTMLAttributes<HTMLDivElement>
 
-function GuildTile({ name, name_pos, img_path, ...props }: GuildTileConfig) {
+function GuildTile({ name, name_pos, icon_path, ...props }: GuildTileConfig) {
   return (
     <div className={cn(props.className, "w-40 h-auto relative flex flex-col items-center justify-center")}>
       <img
@@ -32,6 +32,7 @@ function GuildTile({ name, name_pos, img_path, ...props }: GuildTileConfig) {
         </>
       )}
       <img className="" src="/assets/guilds/guild-tile.svg" alt="guild tile" />
+      {/*TODO add guild icon here*/}
       {name_pos === "below" && (
         <>
           <img
@@ -58,13 +59,15 @@ export function Guilds(props: React.HTMLAttributes<HTMLDivElement>) {
         </p>
 
         <div className="mt-10 align-center justify-center flex flex-wrap md:flex-row">
-          {/*<div className="w-40 h-auto lg:-mt-16">*/}
-          {/*  <img src="/assets/guilds/guild-tile.svg" alt="guild tile"/>*/}
-          {/*</div>*/}
-          <GuildTile className={cn("lg:-mt-20")} name="Solaris" name_pos="below" img_path="asdfasd" />
-          <GuildTile name="Zephyr" name_pos="above" img_path="asdfasd" />
-          <GuildTile className={cn("lg:-mt-20")} name="Ember" name_pos="below" img_path="asdfasd" />
-          <GuildTile name="Hydro" name_pos="above" img_path="asdfasd" />
+          {guilds.map((guild, index) => (
+            <GuildTile
+              key={index}
+              className={cn(index % 2 === 0 ? "lg:-mt-20" : "")}
+              name={guild.name}
+              name_pos={index % 2 === 0 ? "below" : "above"}
+              icon_path={guild.icon_path}
+            />
+          ))}
         </div>
       </div>
     </div>
