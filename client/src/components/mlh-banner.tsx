@@ -131,7 +131,7 @@ export function MLHBannerGraphic(props: MLHBannerProps): React.ReactNode {
 const mlhBannerLinkStyle: React.CSSProperties = {
   maxWidth: "100px",
   minWidth: "60px",
-  position: "absolute",
+  position: "fixed",
   right: "50px",
   top: "0",
   width: "10%",
