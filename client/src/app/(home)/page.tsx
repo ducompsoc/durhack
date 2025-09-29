@@ -2,6 +2,7 @@ import { Hero } from "@/components/hero"
 import { Faqs } from "@/components/faqs"
 import { Guilds } from "@/components/guilds"
 import { Sponsors } from "@/components/sponsors"
+import { Info } from "@/components/info"
 import { cn } from "@/lib/utils"
 
 export default function HomePage() {
@@ -11,9 +12,7 @@ export default function HomePage() {
       <Hero />
 
       {/* Info */}
-      <div className="info flex items-start justify-center z-10">
-        <h1 className="text-white text-5xl font-bold">Info</h1>
-      </div>
+      <Info />
 
       {/* Location */}
       <div className="location flex items-start justify-center">

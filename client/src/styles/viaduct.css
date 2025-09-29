@@ -1,0 +1,42 @@
+@layer components {
+  .brace {
+    position: absolute; top: 0; width: 100vw;
+    height: 6.37%;
+    background-position-x: center;
+  }
+
+  .brace-fronts {
+      background-image: url(/assets/graphics/viaduct-tunnel-brace-foreground-plain.svg);
+      background-repeat: repeat-x;
+  }
+
+  .brace-backs {
+      background-image: url(/assets/graphics/viaduct-tunnel-brace-background-plain.svg);
+      background-repeat: repeat-x;
+      translate: -1px;
+  }
+
+  .viaduct {
+      position: absolute; top: 0; width: 100vw;
+      height: 100%;
+      background-image: url(/assets/graphics/viaduct-tile-plain.svg);
+      background-repeat: repeat-x;
+      background-position-x: center;
+  }
+
+  .train {
+      position: absolute; top: 1.91%; width: 40vw;
+      height: 4.46%;
+      background-image: url(/assets/graphics/viaduct-train-tile-plain.svg);
+      background-repeat: repeat-x;
+      background-position-x: right;
+  }
+
+  .train-end {
+      position: absolute; top: 1.91%; left: 40vw; width: 60vw;
+      height: 4.46%;
+      background-image: url(/assets/graphics/viaduct-train-end-plain.svg);
+      background-repeat: no-repeat;
+      background-position-x: left;
+  }
+}

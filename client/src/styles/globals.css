@@ -3,6 +3,7 @@
 @import "tailwindcss";
 @import "./home.css";
 @import "./hex-grid.css";
+@import "./viaduct.css";
 
 @source '../../node_modules/@durhack/web-components/dist/**/*.{ts,tsx}';
 
