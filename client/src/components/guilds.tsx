@@ -47,9 +47,9 @@ function GuildTile({ name, name_pos, icon_path, ...props }: GuildTileConfig) {
   )
 }
 
-export function Guilds(props: React.HTMLAttributes<HTMLDivElement>) {
+export function Guilds({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div className={cn("guilds flex items-start justify-center")}>
+    <div className={cn("guilds flex items-start justify-center", className)} {...props}>
       <div className="flex-row justify-center items-center w-2/3">
         <SectionHeader className={cn("text-white")}>Guilds</SectionHeader>
 

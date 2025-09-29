@@ -10,6 +10,7 @@ import {
 } from "@/config/sponsors"
 import { cn } from "@/lib/utils"
 import { SectionHeader } from "./section-header"
+import {clsx} from "clsx";
 
 const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<typeof Image>, "src" | "alt">>> = {
   platinum: (props) => (
@@ -162,47 +163,49 @@ function PartnerBox({ partner, ...props }: PartnerProps) {
   )
 }
 
-export function Sponsors() {
+export function Sponsors({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <>
-      <div className="sponsors flex relative items-start justify-center z-10">
-        <div className="flex-row">
-          <SectionHeader className="mb-4">Sponsors</SectionHeader>
-          {/* hidden bc covering sponsors */}
-          <Image
-            src="/assets/blimp1.svg"
-            alt="blimp"
-            className={cn("absolute right-0 bottom-3/5 hidden")}
-            width="679"
-            height="902"
-          />
-          <SponsorSection sponsorType="Platinum" />
-          <SponsorSection sponsorType="Gold" />
-          <SponsorSection sponsorType="Silver" />
-        </div>
+    <div className={cn("sponsors flex relative items-start justify-center z-10", className)} {...props}>
+      <div className="flex-row">
+        <SectionHeader className="mb-4">Sponsors</SectionHeader>
+        {/* hidden bc covering sponsors */}
+        <Image
+          src="/assets/blimp1.svg"
+          alt="blimp"
+          className={cn("absolute right-0 bottom-3/5 hidden")}
+          width="679"
+          height="902"
+        />
+        <SponsorSection sponsorType="Platinum"/>
+        <SponsorSection sponsorType="Gold"/>
+        <SponsorSection sponsorType="Silver"/>
       </div>
+    </div>
+  )
+}
 
-      <div className="partners relative flex items-start justify-center z-10">
-        <div className="flex-row">
-          <SectionHeader className="mb-4">Partners</SectionHeader>
-          {/* hidden bc covering sponsors */}
-          <Image
-            src="/assets/blimp2.svg"
-            alt="blimp"
-            className={cn("absolute left-0 bottom-1/5 hidden")}
-            width="408"
-            height="1072"
-          />
+export function Partners({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div className={cn("partners relative flex items-start justify-center z-10", className)} {...props}>
+      <div className="flex-row">
+        <SectionHeader className="mb-4">Partners</SectionHeader>
+        {/* hidden bc covering sponsors */}
+        <Image
+          src="/assets/blimp2.svg"
+          alt="blimp"
+          className={cn("absolute left-0 bottom-1/5 hidden")}
+          width="408"
+          height="1072"
+        />
 
-          <div className="w-full flex justify-center">
-            <div className="flex flex-wrap justify-evenly lg:w-2/4">
-              {activePartners.map((partner) => (
-                <PartnerBox key={partner.slug} partner={partner} className={cn("m-2")} />
-              ))}
-            </div>
+        <div className="w-full flex justify-center">
+          <div className="flex flex-wrap justify-evenly lg:w-2/4">
+            {activePartners.map((partner) => (
+              <PartnerBox key={partner.slug} partner={partner} className={cn("m-2")} />
+            ))}
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

@@ -1,9 +1,9 @@
 import { Hero } from "@/components/hero"
 import { Faqs } from "@/components/faqs"
 import { Guilds } from "@/components/guilds"
-import { Sponsors } from "@/components/sponsors"
+import {Partners, Sponsors} from "@/components/sponsors"
 import { Info } from "@/components/info"
-import { cn } from "@/lib/utils"
+import {Footer} from "@/components/footer";
 
 export default function HomePage() {
   return (
@@ -12,51 +12,50 @@ export default function HomePage() {
       <Hero />
 
       {/* Info */}
-      <Info />
+      <Info className="hidden" />
 
       {/* Location */}
-      <div className="location flex items-start justify-center">
+      <div className="location flex items-start justify-center hidden">
         <h1 className="hidden text-white text-5xl font-bold">Location</h1>
       </div>
 
       {/* Sponsors & Partners */}
-      <Sponsors />
+      <Sponsors className="hidden" />
+      <Partners className="hidden" />
 
       {/* FAQ */}
-      <Faqs className={cn("faq")} />
+      <Faqs className="hidden" />
 
       {/* History */}
-      <div className="history flex items-start justify-center">
+      <div className="history flex items-start justify-center hidden">
         <h1 className="hidden text-white text-5xl font-bold">History</h1>
       </div>
 
       {/* Guilds */}
-      <Guilds />
+      <Guilds className="hidden" />
 
       {/* Schedule */}
-      <div className="schedule flex items-start justify-center">
+      <div className="schedule flex items-start justify-center hidden">
         <h1 className="hidden text-white text-5xl font-bold">Schedule</h1>
       </div>
 
       {/* Past Projects */}
-      <div className="past-projects flex items-start justify-center">
+      <div className="past-projects flex items-start justify-center hidden">
         <h1 className="hidden text-white text-5xl font-bold">Past Projects</h1>
       </div>
 
       {/* Meet the Team */}
-      <div className="meet-team flex items-start justify-center">
+      <div className="meet-team flex items-start justify-center hidden">
         <h1 className="hidden text-white text-5xl font-bold">Meet the Team</h1>
       </div>
 
       {/* Medium */}
-      <div className="medium flex items-start justify-center">
+      <div className="medium flex items-start justify-center hidden">
         <h1 className="hidden text-white text-5xl font-bold">Medium</h1>
       </div>
 
-      {/* Footer */}
-      <div className="footer flex items-start justify-center">
-        <h1 className="hidden text-white text-5xl font-bold">Footer</h1>
-      </div>
+      {/* Footer - temporarily using the dashboard one */}
+      <Footer />
     </main>
   )
 }

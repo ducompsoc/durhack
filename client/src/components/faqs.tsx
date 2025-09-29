@@ -12,9 +12,9 @@ import { faqs } from "@/config/faqs"
 import { cn } from "@/lib/utils"
 import { spaceGrotesk } from "@/lib/google-fonts"
 
-export function Faqs(props: React.HTMLAttributes<HTMLDivElement>) {
+export function Faqs({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div {...props}>
+    <div className={cn("faq", className)} {...props}>
       <div className="block lg:hidden">
         <SectionHeader>FAQs</SectionHeader>
       </div>
