@@ -22,10 +22,10 @@ export function DashboardLayoutClient({
 
   return (
     <BackgroundContext.Provider value={{ isFinalSubmitHovering, setIsFinalSubmitHovering }}>
-      <main className="min-h-[100vh] relative">
+      <main className="min-h-screen relative">
         <div
           className={cn(
-            "absolute top-0 bottom-0 left-0 right-0 h-full bg-gradient-to-t from-green-500/40 to-transparent to-50% z-0",
+            "absolute top-0 bottom-0 left-0 right-0 h-full bg-linear-to-t from-green-500/40 to-transparent to-50% z-0",
             isFinalSubmitHovering ? "opacity-100" : "opacity-0",
             isFinalSubmitHovering || wasFinalSubmitHoveredRef.current ? "transition-all duration-1000 ease-in-out" : "",
           )}

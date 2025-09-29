@@ -30,7 +30,7 @@ export class DummyAugmentingTransform extends Transform {
     return chunk.map((userInfo) => this.augmentUserInfo(userInfo))
   }
 
-  _transform(chunk: UserInfo[], encoding: never, callback: TransformCallback): void {
+  _transform(chunk: UserInfo[], _encoding: never, callback: TransformCallback): void {
     this.augmentChunk(chunk)
       .then((filteredChunk) => callback(null, filteredChunk satisfies AugmentedUserInfo[]))
       .catch((error: unknown) => {

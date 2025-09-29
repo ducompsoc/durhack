@@ -1,5 +1,14 @@
 import type * as React from "react"
-import "@/styles/home.css"
+import type { Viewport } from "next"
+
+import { MLHBanner } from "@/components/mlh-banner"
+import { SiteHeader } from "@/components/site-header"
+import { navConfig } from "@/config/nav"
+
+export const viewport = {
+  themeColor: "#BFEAFD",
+  colorScheme: "dark light",
+} satisfies Viewport
 
 export default function HomeLayout({
   children,
@@ -7,10 +16,12 @@ export default function HomeLayout({
   children: React.ReactNode
 }>): React.ReactNode {
   return (
-    <div className="bg-homepage-gradient min-h-[100vh] flex-1 flex flex-col content-center items-center justify-center">
-      <div className="w-full min-h-[110px] 2xl:hidden" />
-      {children}
-      <div className="w-full min-h-[110px] 2xl:hidden" />
-    </div>
+    <>
+      <SiteHeader navConfig={navConfig} />
+      <MLHBanner variant="white" season={2026} region="eu" />
+      <div>
+        {children}
+      </div>
+    </>
   )
 }

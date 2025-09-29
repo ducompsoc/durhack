@@ -5,7 +5,9 @@ import { directoryAdapter } from "zod-config/directory-adapter"
 import { dirname } from "@/dirname"
 
 import { configSchema } from "./schema"
+
 export type * from "./schema"
+
 import { typescriptAdapter } from "./typescript-adapter"
 
 const config = await loadConfig({

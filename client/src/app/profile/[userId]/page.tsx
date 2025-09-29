@@ -1,12 +1,11 @@
 "use client"
 
-import { UpdateIcon } from "@radix-ui/react-icons"
-import React from "react"
-import useSWR from "swr"
-
 import type { UserProfile } from "@durhack/durhack-common/types/user-profile"
 import { useToast } from "@durhack/web-components/hooks/use-toast"
 import { Label } from "@durhack/web-components/ui/label"
+import { UpdateIcon } from "@radix-ui/react-icons"
+import * as React from "react"
+import useSWR from "swr"
 
 import { ApplicationStatusBadge } from "@/components/dashboard/application-status-indicator"
 import { siteConfig } from "@/config/site"
@@ -42,57 +41,49 @@ function UserAttribute({ children, className, ...props }: React.HTMLAttributes<H
   )
 }
 
-const ProfilePage = React.memo(
-  ({
-    params,
-  }: {
-    params: { userId: string }
-  }): React.ReactNode => {
-    const { toast } = useToast()
+export default async function ProfilePage(props: { params: Promise<{ userId: string }> }) {
+  const params = React.use(props.params)
+  const { toast } = useToast()
 
-    const {
-      data: profile,
-      mutate: mutateProfile,
-      error: profileError,
-      isLoading: profileIsLoading,
-    } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}`, profileFetcher)
+  const {
+    data: profile,
+    mutate: mutateProfile,
+    error: profileError,
+    isLoading: profileIsLoading,
+  } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}`, profileFetcher)
 
-    if (!isLoaded(profile, profileIsLoading, profileError))
-      return (
-        <main className="w-full min-h-[100vh] m-0 flex flex-col items-center justify-center">
-          <UpdateIcon className="animate-spin h-6 w-6 m-5" />
-        </main>
-      )
-
+  if (!isLoaded(profile, profileIsLoading, profileError))
     return (
-      <main className="w-full min-h-[100vh] m-0 flex flex-col space-y-1.5 items-center justify-center">
-        <h1 className="text-4xl font-bold">
-          {profile.preferredNames ?? profile.firstNames} {profile.lastNames}
-        </h1>
-        <ApplicationStatusBadge applicationStatus={profile.applicationStatus} />
-        <CvUploadBadge uploadedCv={profile.uploadedCv} />
-        <UserAttribute>
-          <Label htmlFor="uuid">ID</Label>
-          <div id="uuid">
-            <code>{profile.userId}</code>
-          </div>
-        </UserAttribute>
-        <UserAttribute>
-          <Label htmlFor="email">Email</Label>
-          <div id="email">{profile.email}</div>
-        </UserAttribute>
-        <UserAttribute>
-          <Label htmlFor="pronouns">Pronouns</Label>
-          <div id="pronouns">{profile.pronouns}</div>
-        </UserAttribute>
-        <div>
-          <ProfileCheckInButton profile={profile} mutateProfile={mutateProfile} toast={toast} />
-        </div>
-        <StashClaimsDisplay userId={profile.userId} />
+      <main className="w-full min-h-screen m-0 flex flex-col items-center justify-center">
+        <UpdateIcon className="animate-spin h-6 w-6 m-5" />
       </main>
     )
-  },
-)
-ProfilePage.displayName = "ProfilePage"
 
-export default ProfilePage
+  return (
+    <main className="w-full min-h-screen m-0 flex flex-col space-y-1.5 items-center justify-center">
+      <h1 className="text-4xl font-bold">
+        {profile.preferredNames ?? profile.firstNames} {profile.lastNames}
+      </h1>
+      <ApplicationStatusBadge applicationStatus={profile.applicationStatus} />
+      <CvUploadBadge uploadedCv={profile.uploadedCv} />
+      <UserAttribute>
+        <Label htmlFor="uuid">ID</Label>
+        <div id="uuid">
+          <code>{profile.userId}</code>
+        </div>
+      </UserAttribute>
+      <UserAttribute>
+        <Label htmlFor="email">Email</Label>
+        <div id="email">{profile.email}</div>
+      </UserAttribute>
+      <UserAttribute>
+        <Label htmlFor="pronouns">Pronouns</Label>
+        <div id="pronouns">{profile.pronouns}</div>
+      </UserAttribute>
+      <div>
+        <ProfileCheckInButton profile={profile} mutateProfile={mutateProfile} toast={toast} />
+      </div>
+      <StashClaimsDisplay userId={profile.userId} />
+    </main>
+  )
+}

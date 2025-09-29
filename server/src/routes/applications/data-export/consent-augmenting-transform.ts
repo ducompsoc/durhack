@@ -44,7 +44,7 @@ export class ConsentAugmentingTransform<Consent extends string> extends stream.T
     return await Promise.all(chunk.map((userInfo) => this.augmentUserInfo(userInfo)))
   }
 
-  _transform(chunk: { userId: string }[], encoding: never, callback: stream.TransformCallback): void {
+  _transform(chunk: { userId: string }[], _encoding: never, callback: stream.TransformCallback): void {
     this.augmentChunk(chunk)
       .then((filteredChunk) => {
         callback(null, filteredChunk satisfies ConsentAugmentedUserInfo<Consent>[])

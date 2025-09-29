@@ -8,19 +8,13 @@ import * as React from "react"
  * {@link import('./(application)/layout.tsx').default Application Layout}, which only happens
  * when an error occurs when trying to fetch the user's registration details.
  */
-export default function DashboardError({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string }
-  reset: () => void
-}) {
+export default function DashboardError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   React.useEffect(() => {
     console.error(error)
   }, [error])
 
   return (
-    <div className="min-h-[100vh] relative z-10 flex justify-center items-center">
+    <div className="min-h-screen relative z-10 flex justify-center items-center">
       <div className="flex flex-col gap-2 items-center">
         <h2>Something went wrong!</h2>
         <Button

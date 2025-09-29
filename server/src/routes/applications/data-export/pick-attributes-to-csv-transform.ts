@@ -23,6 +23,9 @@ export class PickAttributesToCsvTransform<Source extends Record<string, unknown>
   pickAttributesToCsv(item: Source): string {
     const values: string[] = []
     for (const attribute of this.attributes) {
+      function fail() {
+        throw new Error(`Unsupported value ${attributeValue} for ${String(attribute.name)}`)
+      }
       const attributeValue = item[attribute.name]
 
       if (attributeValue == null) {
@@ -45,7 +48,20 @@ export class PickAttributesToCsvTransform<Source extends Record<string, unknown>
         continue
       }
 
-      throw new Error(`Unsupported value ${attributeValue} for ${String(attribute.name)}`)
+      if (typeof attributeValue !== "object") fail()
+
+      if (Array.isArray(attributeValue) && attributeValue.every(isString)) {
+        values.push(JSON.stringify(attributeValue))
+        continue
+      }
+
+      if (attributeValue instanceof Date) {
+        const epochSeconds = Math.floor(attributeValue.getTime() / 1000)
+        values.push(String(epochSeconds))
+        continue
+      }
+
+      fail()
     }
 
     return values.join(";")
@@ -56,7 +72,7 @@ export class PickAttributesToCsvTransform<Source extends Record<string, unknown>
     return labels.join(";")
   }
 
-  _transform(chunk: Source[], encoding: never, callback: stream.TransformCallback) {
+  _transform(chunk: Source[], _encoding: never, callback: stream.TransformCallback) {
     try {
       const transformedChunk = chunk.map((item) => this.pickAttributesToCsv(item))
       if (!this.headerLinePrepended) {

@@ -1,4 +1,4 @@
-import { type UserInfo, prisma } from "@/database"
+import { prisma, type UserInfo } from "@/database"
 
 export async function* generateUserInfoByTicketAssignmentOrder(): AsyncGenerator<UserInfo[], undefined> {
   let cursor: string | undefined

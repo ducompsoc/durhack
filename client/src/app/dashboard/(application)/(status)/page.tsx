@@ -3,7 +3,6 @@
 import { Button } from "@durhack/web-components/ui/button"
 import { Skeleton } from "@durhack/web-components/ui/skeleton"
 import Link from "next/link"
-import * as React from "react"
 
 import { AutoApplicationStatusBadge } from "@/components/dashboard/application-status-indicator"
 import { ProfileQrCode } from "@/components/dashboard/profile-qr-code"
@@ -14,7 +13,10 @@ import { isLoaded } from "@/lib/is-loaded"
 function InstructionsArticle({
   application,
   applicationIsLoading,
-}: { application: Application | undefined; applicationIsLoading: boolean }) {
+}: {
+  application: Application | undefined
+  applicationIsLoading: boolean
+}) {
   if (!isLoaded(application, applicationIsLoading)) return <Skeleton className="w-full h-[100px]" />
 
   const filledOutCount = [
@@ -141,8 +143,11 @@ function InstructionsArticle({
 function ProfileQrCodeArticle({
   application,
   applicationIsLoading,
-}: { application: Application | undefined; applicationIsLoading: boolean }) {
-  if (!isLoaded(application, applicationIsLoading)) return <Skeleton className="w-full h-[20rem] mt-4" />
+}: {
+  application: Application | undefined
+  applicationIsLoading: boolean
+}) {
+  if (!isLoaded(application, applicationIsLoading)) return <Skeleton className="w-full h-80 mt-4" />
   if (application.applicationStatus === "unsubmitted") return
 
   return (

@@ -1,4 +1,4 @@
-import { type UserCV, prisma } from "@/database"
+import { prisma, type UserCV } from "@/database"
 
 export async function* generateUserCv(): AsyncGenerator<UserCV[], undefined> {
   let cursor: string | undefined

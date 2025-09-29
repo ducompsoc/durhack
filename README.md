@@ -12,7 +12,34 @@ Changes to the `main` branch are **not** deployed automatically.
 
 ## Setup for Contributors
 
-- Todo (@Lordfirespeed)
+1. Complete [durhack-nginx](https://github.com/ducompsoc/durhack-nginx) setup
+2. Install a local PostgreSQL server instance
+3. Create a new user, e.g. `durhack` in your PostgreSQL instance with the `CREATEDB` permission
+   ```sql
+   CREATE USER durhack WITH PASSWORD 'durhack' CREATEDB;
+   -- or
+   CREATE USER durhack WITH PASSWORD 'durhack';
+   ALTER ROLE durhack WITH CREATEDB;
+   ```
+4. In the `common` directory, run `pnpm build`
+5. In the `server` directory, create a `.env` file (edit to reflect your database user/password):
+   ```dotenv
+   DATABASE_URL="postgresql://durhack:durhack@localhost:5432/durhack?schema=public"
+   ```
+6. In the `server/config` directory, create a `local.ts` file (ask DurHack chief tech officer for a real client secret):
+   ```ts
+   import type { ConfigIn } from "@/config/schema"
+   import type { DeepPartial } from "@/types/deep-partial"
+  
+   export default {
+     keycloak: {
+       clientId: "api.durhack-dev.com",
+       clientSecret: "not-a-real-client-secret",
+    },
+   } satisfies DeepPartial<ConfigIn>
+   ```
+7. In the `server` directory, run `pnpm exec prisma migrate dev`
+8. In the `server` directory, run `pnpm generate`
 
 ## Questions, Comments and Concerns
 Drop us a line at [hello@durhack.com](mailto:hello@durhack.com)!

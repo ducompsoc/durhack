@@ -36,3 +36,10 @@ applicationsDataExportApp
   .all(authenticate())
   .get(dataExportHandlers.getCVArchive())
   .all(forbiddenOrUnauthorised())
+
+applicationsDataExportApp
+  .route("/anonymous")
+  .all(methodNotAllowed(["GET"]))
+  .all(authenticate())
+  .get(dataExportHandlers.getAnonymous())
+  .all(forbiddenOrUnauthorised())
