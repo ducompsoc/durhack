@@ -165,13 +165,14 @@ function PartnerBox({ partner, ...props }: PartnerProps) {
 export function Sponsors() {
   return (
     <>
-      <div className="sponsors flex relative items-start justify-center">
+      <div className="sponsors flex relative items-start justify-center z-10">
         <div className="flex-row">
           <SectionHeader className="mb-4">Sponsors</SectionHeader>
+          {/* hidden bc covering sponsors */}
           <Image
             src="/assets/blimp1.svg"
             alt="blimp"
-            className={cn("absolute right-0 bottom-3/5 hidden lg:block")}
+            className={cn("absolute right-0 bottom-3/5 hidden")}
             width="679"
             height="902"
           />
@@ -181,13 +182,14 @@ export function Sponsors() {
         </div>
       </div>
 
-      <div className="partners relative flex items-start justify-center">
+      <div className="partners relative flex items-start justify-center z-10">
         <div className="flex-row">
           <SectionHeader className="mb-4">Partners</SectionHeader>
+          {/* hidden bc covering sponsors */}
           <Image
             src="/assets/blimp2.svg"
             alt="blimp"
-            className={cn("absolute left-0 bottom-1/5 hidden lg:block")}
+            className={cn("absolute left-0 bottom-1/5 hidden")}
             width="408"
             height="1072"
           />

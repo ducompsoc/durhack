@@ -16,7 +16,7 @@ export default function HomePage() {
 
       {/* Location */}
       <div className="location flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">Location</h1>
+        <h1 className="hidden text-white text-5xl font-bold">Location</h1>
       </div>
 
       {/* Sponsors & Partners */}
@@ -27,7 +27,7 @@ export default function HomePage() {
 
       {/* History */}
       <div className="history flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">History</h1>
+        <h1 className="hidden text-white text-5xl font-bold">History</h1>
       </div>
 
       {/* Guilds */}
@@ -35,27 +35,27 @@ export default function HomePage() {
 
       {/* Schedule */}
       <div className="schedule flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">Schedule</h1>
+        <h1 className="hidden text-white text-5xl font-bold">Schedule</h1>
       </div>
 
       {/* Past Projects */}
       <div className="past-projects flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">Past Projects</h1>
+        <h1 className="hidden text-white text-5xl font-bold">Past Projects</h1>
       </div>
 
       {/* Meet the Team */}
       <div className="meet-team flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">Meet the Team</h1>
+        <h1 className="hidden text-white text-5xl font-bold">Meet the Team</h1>
       </div>
 
       {/* Medium */}
       <div className="medium flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">Medium</h1>
+        <h1 className="hidden text-white text-5xl font-bold">Medium</h1>
       </div>
 
       {/* Footer */}
       <div className="footer flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">Footer</h1>
+        <h1 className="hidden text-white text-5xl font-bold">Footer</h1>
       </div>
     </main>
   )

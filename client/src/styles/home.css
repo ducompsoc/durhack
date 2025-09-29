@@ -49,7 +49,6 @@
   }
 
   .location {
-    min-height: 1928px;
     background: linear-gradient(
       to top,
       #BCE4F8 0%,
@@ -59,7 +58,6 @@
   }
 
   .sponsors {
-    min-height: 1355px;
     background: linear-gradient(
       to top,
       #CDE9FA 0%,
@@ -69,7 +67,6 @@
   }
 
   .partners {
-    min-height: 879px;
     background: linear-gradient(
       to top,
       #B1DEF5 0%,
@@ -78,7 +75,6 @@
   }
 
   .faq {
-    min-height: 1063px;
     background: linear-gradient(
       to top,
       #8BD0ED 0%,
@@ -87,7 +83,6 @@
   }
 
   .history {
-    min-height: 2679px;
     background: linear-gradient(
       to top,
       #97BF5B 0%,
@@ -98,7 +93,6 @@
   }
 
   .guilds {
-    min-height: 1055px;
     background: linear-gradient(
       to top,
       #85C152 0%,
@@ -108,7 +102,6 @@
   }
 
   .schedule {
-    min-height: 1356px;
     background: linear-gradient(
       to top,
       #51AE5C 0%,
@@ -118,7 +111,6 @@
   }
 
   .past-projects {
-    min-height: 1321px;
     background: linear-gradient(
       to top,
       #0A967F 0%,
@@ -128,7 +120,6 @@
   }
 
   .meet-team {
-    min-height: 1094px;
     background: linear-gradient(
       to top,
       #36B8CE 0%,
@@ -138,7 +129,6 @@
   }
 
   .medium {
-    min-height: 1284px;
     background: linear-gradient(
       to top,
       #A2E1FC 0%,
@@ -149,7 +139,6 @@
   }
 
   .footer {
-    min-height: 709px;
     background: linear-gradient(
       to bottom,
       #A2E1FC 0%,
