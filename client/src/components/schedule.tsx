@@ -142,9 +142,6 @@ export function Schedule(props: React.HTMLAttributes<HTMLDivElement>) {
   const [showAllMobile, setShowAllMobile] = React.useState(false);
   const mobileEvents = showAllMobile ? events : events.slice(0, 8);
 
-  const collapsedMaxH = "max-h-[720px]";
-  const expandedMaxH = "max-h-[4000px]";
-
   return (
     <div className="schedule relative flex flex-col items-center justify-center px-4">
       <h1
@@ -157,9 +154,9 @@ export function Schedule(props: React.HTMLAttributes<HTMLDivElement>) {
       </h1>
 
       {/* Small */}
-      <div className="relative w-[92%] max-w-md mx-auto lg:hidden">
+      <div className="relative w-[92%] max-w-md mx-auto min-[1270px]:hidden">
         {/* Vertical rail */}
-        <div className="absolute left-0 top-0 bottom-16 w-[3px] bg-[#BCF7EF] rounded-full shadow-[0_0_12px_2px_rgba(199,249,255,0.8)] z-20" />
+        <div className="absolute left-0 top-0 bottom-16 w-[3px] bg-[#BCF7EF] rounded-full shadow-[0_0_12px_2px_rgba(199,249,255,0.8)] pointer-events-none z-20" />
 
         <ul id="schedule-mobile-list" className="relative flex flex-col gap-8">
           {mobileEvents.map((ev, i) => (
@@ -219,7 +216,7 @@ export function Schedule(props: React.HTMLAttributes<HTMLDivElement>) {
       {/* Large*/}
       <div
         {...props}
-        className="hidden lg:block w-[70%] mx-auto space-y-20 py-16"
+        className="hidden min-[1270px]:block w-[70%] mx-auto space-y-20 py-16"
       >
         {eventRows.map((row, rowIndex) => {
           const isReversed = rowIndex % 2 === 1; // every other row reversed
@@ -228,7 +225,7 @@ export function Schedule(props: React.HTMLAttributes<HTMLDivElement>) {
           return (
             <div key={rowIndex} className="relative">
               {/* events in 8 cols */}
-              <div className="grid grid-cols-8 gap-10 text-center">
+              <div className="grid grid-cols-8 gap-10 text-center ">
                 {displayRow.map((ev, i) => (
                   <div key={i} className="flex flex-col items-center pb-12">
                     <span
@@ -260,7 +257,7 @@ export function Schedule(props: React.HTMLAttributes<HTMLDivElement>) {
                 ))}
               </div>
 
-              {/* Rail overlay: single segment spanning only the used columns */}
+              {/* creates timeline when row is not fully occupied ----- NEEDS FIXING */}
               <div className="absolute inset-x-0 bottom-6 grid grid-cols-8 gap-10 z-0">
                 <div
                   className="h-[3px] bg-[#BCF7EF] rounded-full shadow-[0_0_12px_2px_rgba(199,249,255,0.8)]"
