@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils"
 
 type AppRouter = ReturnType<typeof useRouter>
 
-export function MobileNav({ config }: { config: NavConfig }) {
+export function MobileNav({ config, ...props }: { config: NavConfig } & React.ComponentProps<typeof NavMenuButton>) {
   const router = useRouter()
   const [open, setOpen] = React.useState(false)
 
@@ -32,7 +32,7 @@ export function MobileNav({ config }: { config: NavConfig }) {
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerTrigger asChild>
-        <NavMenuButton />
+        <NavMenuButton {...props} />
       </DrawerTrigger>
       <DrawerTitle className="sr-only">Nav Menu</DrawerTitle>
       <DrawerContent className="max-h-[60svh] p-0">

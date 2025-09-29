@@ -24,12 +24,12 @@ export function SiteHeader({ navConfig }: { navConfig: NavConfig }) {
              <span className={cn(audiowide.className, "text-4xl")}>DHX</span>
           </Link>
         </div>
-        <MobileNav config={navConfig} />
+        <MobileNav config={navConfig} className="hidden" />
         {/* Left-aligned nav + mobile nav end */}
 
         <div className="flex flex-1 items-center justify-between gap-2 lg:justify-end">
           {/* Right-aligned nav */}
-          <div className="hidden w-full xl:contents flex-1 lg:w-auto lg:flex-none">
+          <div className="hidden w-full xl:contents xl:hidden flex-1 lg:w-auto lg:flex-none">
             <MainNav config={navConfig} className={cn(
               audiowide.className,
               "text-2xl text-[#238CBA] text-nowrap",
