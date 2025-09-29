@@ -31,7 +31,6 @@
 
 @layer components {
   .hero {
-    min-height: 1405px;
     background: linear-gradient(
       to top,
       #BFEAFD 0%,
