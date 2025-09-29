@@ -10,14 +10,14 @@ export default function HomePage() {
       {/* Hero */}
       <Hero />
 
-      {/* Getting There */}
-      <div className="getting-there flex items-start justify-center z-10">
-        <h1 className="text-white text-5xl font-bold">Getting There</h1>
+      {/* Info */}
+      <div className="info flex items-start justify-center z-10">
+        <h1 className="text-white text-5xl font-bold">Info</h1>
       </div>
 
-      {/* Info */}
-      <div className="info flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">Info</h1>
+      {/* Location */}
+      <div className="location flex items-start justify-center">
+        <h1 className="text-white text-5xl font-bold">Location</h1>
       </div>
 
       {/* Sponsors & Partners */}
