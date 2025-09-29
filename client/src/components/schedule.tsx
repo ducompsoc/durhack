@@ -261,7 +261,7 @@ export function Schedule(props: React.HTMLAttributes<HTMLDivElement>) {
               <div className="absolute inset-x-0 bottom-6 grid grid-cols-8 gap-10 z-0">
                 <div
                   className="h-[3px] bg-[#BCF7EF] rounded-full shadow-[0_0_12px_2px_rgba(199,249,255,0.8)]"
-                  style={{ gridColumn: `1 / span ${displayRow.length + 1}` }} // width = number of events
+                  style={{ gridColumn: `1 / span ${displayRow.length}` }} // width = number of events
                 />
               </div>
 
