@@ -5,6 +5,7 @@ import { FAQ } from "@/components/faq"
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 import { RegisterInterestForm } from "./register-interest-form"
+import { Schedule } from "@/components/schedule"
 
 export default function HomePage() {
   return (
@@ -46,9 +47,7 @@ export default function HomePage() {
       </div>
 
       {/* Schedule */}
-      <div className="schedule flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">Schedule</h1>
-      </div>
+      <Schedule />
 
       {/* Past Projects */}
       <div className="past-projects flex items-start justify-center">
