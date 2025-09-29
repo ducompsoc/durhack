@@ -1,5 +1,6 @@
 import { Hero } from "@/components/hero"
 import { Faqs } from "@/components/faqs"
+import { Guilds } from "@/components/guilds"
 import { cn } from "@/lib/utils"
 
 export default function HomePage() {
@@ -37,9 +38,7 @@ export default function HomePage() {
       </div>
 
       {/* Guilds */}
-      <div className="guilds flex items-start justify-center">
-        <h1 className="text-white text-5xl font-bold">Guilds</h1>
-      </div>
+      <Guilds />
 
       {/* Schedule */}
       <div className="schedule flex items-start justify-center">
