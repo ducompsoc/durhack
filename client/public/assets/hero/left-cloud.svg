@@ -1,0 +1,39 @@
+<svg width="1042" height="1050" viewBox="0 0 1042 1050" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="17.9896" cy="498.355" rx="79.8189" ry="77.7314" transform="rotate(-5.21289 17.9896 498.355)" fill="#EEFFFD"/>
+  <ellipse cx="134.888" cy="541.74" rx="67.8979" ry="62.018" transform="rotate(-5.21289 134.888 541.74)" fill="#EEFFFD"/>
+  <ellipse cx="280.037" cy="552.502" rx="102.279" ry="73.218" transform="rotate(-5.21289 280.037 552.502)" fill="#EEFFFD"/>
+  <ellipse cx="64.8958" cy="59.2382" rx="64.8958" ry="59.2382" transform="matrix(0.910907 -0.412611 0.431624 0.902054 330.806 470.115)" fill="#EEFFFD"/>
+  <ellipse cx="78.1411" cy="39.4411" rx="78.1411" ry="39.4411" transform="matrix(0.908571 -0.417731 0.436957 0.899482 -136.638 423.622)" fill="#EEFFFD"/>
+  <ellipse cx="31.6441" cy="401.899" rx="31.9621" ry="32.597" transform="rotate(-5.21289 31.6441 401.899)" fill="#EEFFFD"/>
+  <ellipse cx="73.5407" cy="392.235" rx="36.9724" ry="39.9523" transform="rotate(-5.21289 73.5407 392.235)" fill="#EEFFFD"/>
+  <ellipse cx="112.959" cy="301.355" rx="83.7925" ry="92.4419" transform="rotate(-5.21289 112.959 301.355)" fill="#EEFFFD"/>
+  <ellipse cx="136.272" cy="218.699" rx="155.725" ry="142.996" transform="rotate(-5.21289 136.272 218.699)" fill="#EEFFFD"/>
+  <ellipse cx="287.468" cy="308.094" rx="50.2134" ry="45.1344" transform="rotate(-5.21289 287.468 308.094)" fill="#EEFFFD"/>
+  <ellipse cx="380.364" cy="343.932" rx="86.0385" ry="78.5672" transform="rotate(-5.21289 380.364 343.932)" fill="#EEFFFD"/>
+  <ellipse cx="456.311" cy="423.108" rx="86.0385" ry="78.5672" transform="rotate(-5.21289 456.311 423.108)" fill="#EEFFFD"/>
+  <ellipse cx="560.153" cy="360.996" rx="38.1817" ry="33.9344" transform="rotate(-5.21289 560.153 360.996)" fill="#EEFFFD"/>
+  <ellipse cx="591.935" cy="388.063" rx="30.4072" ry="25.2418" transform="rotate(-5.21289 591.935 388.063)" fill="#EEFFFD"/>
+  <path d="M778.408 526.842C811.238 557.099 747.301 590.276 702.165 594.394C657.03 598.512 617.985 574.944 614.957 541.754C611.929 508.563 620.504 492.904 665.64 488.786C705.845 488.308 745.578 496.584 778.408 526.842Z" fill="#EEFFFD"/>
+  <ellipse cx="210.993" cy="455.57" rx="217.515" ry="70.0418" transform="rotate(-5.21289 210.993 455.57)" fill="#EEFFFD"/>
+  <ellipse cx="222.365" cy="407.198" rx="155.837" ry="92.7762" transform="rotate(-5.21289 222.365 407.198)" fill="#EEFFFD"/>
+  <ellipse cx="621.837" cy="589.088" rx="192.98" ry="150.009" transform="rotate(-5.21289 621.837 589.088)" fill="#EEFFFD"/>
+  <path d="M705.415 437.079C709.451 481.323 659.966 473.998 603.427 479.156C546.889 484.315 504.708 500.002 500.671 455.759C496.635 411.515 539.196 371.467 595.734 366.309C652.273 361.151 701.378 392.836 705.415 437.079Z" fill="#EEFFFD"/>
+  <mask id="mask0_1732_208" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="464" y="487" width="304" height="292">
+    <ellipse cx="615.795" cy="633.216" rx="151.741" ry="145.289" transform="rotate(-5.21289 615.795 633.216)" fill="#EEFFFD"/>
+  </mask>
+  <g mask="url(#mask0_1732_208)">
+    <path d="M756.487 481.837C763.432 557.961 734.938 541.392 599.566 553.743C516.108 561.357 461.206 585.534 454.261 509.41C447.316 433.286 509.341 365.403 592.799 357.789C676.256 350.174 749.542 405.713 756.487 481.837Z" fill="#EEFFFD"/>
+  </g>
+  <mask id="mask1_1732_208" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="607" y="465" width="268" height="273">
+    <ellipse cx="740.887" cy="601.511" rx="133.578" ry="135.763" transform="rotate(-5.21289 740.887 601.511)" fill="#EEFFFD"/>
+  </mask>
+  <g mask="url(#mask1_1732_208)">
+    <path d="M868.328 578.242C874.817 649.375 849.64 633.761 730.472 644.633C657.004 651.336 608.767 673.648 602.277 602.515C595.787 531.383 650.084 468.285 723.552 461.582C797.02 454.879 861.838 507.11 868.328 578.242Z" fill="#EEFFFD"/>
+  </g>
+  <mask id="mask2_1732_208" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="721" y="600" width="305" height="362">
+    <ellipse cx="873.776" cy="781.054" rx="151.741" ry="180.737" transform="rotate(-5.21289 873.776 781.054)" fill="#EEFFFD"/>
+  </mask>
+  <g mask="url(#mask2_1732_208)">
+    <path d="M1022.88 721.887C1036.37 869.705 1006.26 835.23 871.017 847.569C787.636 855.176 734.419 897.253 720.933 749.435C707.447 601.617 764.108 475.62 847.488 468.013C930.869 460.406 1009.39 574.069 1022.88 721.887Z" fill="#EEFFFD"/>
+  </g>
+</svg>

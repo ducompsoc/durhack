@@ -207,7 +207,7 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                     <SelectItem value="undergraduate-third-year-or-higher">
                       Undergraduate Degree (3<sup>rd</sup> year or higher)
                     </SelectItem>
-                    <SelectItem value="graduate">Graduate Degree (Masters&apos;, etc)</SelectItem>
+                    <SelectItem value="graduate">Graduate Degree (Master&apos;s, PhD, etc)</SelectItem>
                     <SelectItem value="bootcamp">Code School/Bootcamp</SelectItem>
                     <SelectItem value="vocational-or-apprenticeship">
                       Vocational/Trade Program or Apprenticeship

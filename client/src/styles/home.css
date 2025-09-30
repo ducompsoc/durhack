@@ -7,3 +7,142 @@
   font-size: 40%;
   top: -1.25em;
 }
+
+/* Normalised gradient percentages */
+/* linear-gradient(
+      0deg,
+      #A2E1FC 3.9%,
+      #7FD1F4 6.6%,
+      #00A5B3 13.2%,
+      #0F8E64 18.4%,
+      #85C656 27.6%,
+      #86BA4C 35.5%,
+      #E2D79C 39.5%,
+      #83D8F3 43.4%,
+      #8BD0ED 50%,
+      #E7F3FF 65.8%,
+      #7CCCEF 72.4%,
+      #C5EDFD 89.5%,
+      #C9EEFE 90.8%,
+      #63C6F0 98.7%
+    );
+*/
+
+
+@layer components {
+  .hero {
+    background: linear-gradient(
+      to top,
+      #BFEAFD 0%,
+      #63C6F0 100%
+    );
+  }
+
+  .info {
+    background: linear-gradient(
+      to top,
+      #96D8F4 0%,
+      #C5EDFD 83%,
+      #C9EEFE 96%,
+      #BFEAFD 100%
+    );
+  }
+
+  .location {
+    background: linear-gradient(
+      to top,
+      #BCE4F8 0%,
+      #7CCCEF 40%,
+      #96D8F4 100%
+    );
+  }
+
+  .sponsors {
+    background: linear-gradient(
+      to top,
+      #CDE9FA 0%,
+      #E7F3FF 62%,
+      #BCE4F8 100%
+    );
+  }
+
+  .partners {
+    background: linear-gradient(
+      to top,
+      #B1DEF5 0%,
+      #CDE9FA 100%
+    );
+  }
+
+  .faq {
+    background: linear-gradient(
+      to top,
+      #8BD0ED 0%,
+      #B1DEF5 100%
+    );
+  }
+
+  .history {
+    background: linear-gradient(
+      to top,
+      #97BF5B 0%,
+      #E2D79C 19%,
+      #83D8F3 48%,
+      #8BD0ED 100%
+    );
+  }
+
+  .guilds {
+    background: linear-gradient(
+      to top,
+      #85C152 0%,
+      #86BA4C 91%,
+      #97BF5B 100%
+    );
+  }
+
+  .schedule {
+    background: linear-gradient(
+      to top,
+      #51AE5C 0%,
+      #85C656 56%,
+      #85C152 100%
+    );
+  }
+
+  .past-projects {
+    background: linear-gradient(
+      to top,
+      #0A967F 0%,
+      #0F8E64 27%,
+      #51AE5C 100%
+    );
+  }
+
+  .meet-team {
+    background: linear-gradient(
+      to top,
+      #36B8CE 0%,
+      #00A5B3 45%,
+      #0A967F 100%
+    );
+  }
+
+  .medium {
+    background: linear-gradient(
+      to top,
+      #A2E1FC 0%,
+      #A2E1FC 12%,
+      #7FD1F4 49%,
+      #36B8CE 100%
+    );
+  }
+
+  .footer {
+    background: linear-gradient(
+      to bottom,
+      #A2E1FC 0%,
+      #BFEAFD 100%
+    );
+  }
+}
