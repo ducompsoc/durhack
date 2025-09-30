@@ -1,13 +1,12 @@
 import type * as React from "react"
 
-import { sponsors } from "@/config/sponsors"
+import { getOrganisationBySlug, OrganisationSlug } from "@/config/organisations"
 import { electrolize } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 
-function SponsorCard({ sponsorSlug }: { sponsorSlug: string }): React.ReactNode {
-  const sponsor = sponsors.find((sponsor) => sponsor.slug === sponsorSlug)
-  if (!sponsor) return undefined
-  const { image: SponsorImage } = sponsor
+function SponsorCard({ organisationSlug }: { organisationSlug: OrganisationSlug }): React.ReactNode {
+  const organisation = getOrganisationBySlug(organisationSlug)
+  const { image: SponsorImage } = organisation
   return (
     <div className="relative bg-linear from-[#EDDDFD] via-[#A7AFBD] to-[#E5EDFE]">
       <div className="absolute hexagon top-[5%] left-[5%] size-[90%] bg-white flex items-center justify-center">
@@ -34,16 +33,16 @@ export function PastSponsorsSlide({ className, ...props }: React.HTMLAttributes<
           Removing the following empty 'p' tag breaks the hex grid layout on Safari.
           */}
           <p />
-          <SponsorCard sponsorSlug="amazon-web-services" />
-          <SponsorCard sponsorSlug="waterstons" />
-          <SponsorCard sponsorSlug="github" />
-          <SponsorCard sponsorSlug="barclays" />
-          <SponsorCard sponsorSlug="qube-research-and-tech" />
-          <SponsorCard sponsorSlug="marshall-wace" />
-          <SponsorCard sponsorSlug="netcraft" />
-          <SponsorCard sponsorSlug="durham-county-council" />
-          <SponsorCard sponsorSlug="accenture" />
-          <SponsorCard sponsorSlug="atom-bank" />
+          <SponsorCard organisationSlug="amazon-web-services" />
+          <SponsorCard organisationSlug="waterstons" />
+          <SponsorCard organisationSlug="github" />
+          <SponsorCard organisationSlug="barclays" />
+          <SponsorCard organisationSlug="qube-research-and-tech" />
+          <SponsorCard organisationSlug="marshall-wace" />
+          <SponsorCard organisationSlug="netcraft" />
+          <SponsorCard organisationSlug="durham-county-council" />
+          <SponsorCard organisationSlug="accenture" />
+          <SponsorCard organisationSlug="atom-bank" />
         </div>
       </section>
     </article>
