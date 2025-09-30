@@ -149,11 +149,11 @@ const organisations = [
     link: "https://www.keyboardco.com",
   },
   {
-    slug: "rs-components",
+    slug: "rs-group",
     image: (props) => (
-      <Image {...props} src="/assets/sponsors/rs-components.svg" alt="RS Components" width={24} height={24} />
+      <Image {...props} src="/assets/sponsors/rs-group.svg" alt="RS Group" width={24} height={24} />
     ),
-    link: "https://uk.rs-online.com/web",
+    link: "https://www.rsgroup.com",
   },
   {
     slug: "pragmatic-semi",
