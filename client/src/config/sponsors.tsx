@@ -3,28 +3,14 @@ import { OrganisationSlug } from "@/config/organisations"
 export type Sponsor = {
   organisationSlug: OrganisationSlug
   tier: "platinum" | "gold" | "silver" | "partner"
+  founding?: true | null | undefined
   active: boolean
 }
 
 export const sponsors: Sponsor[] = [
   {
-    organisationSlug: "tekgem",
-    tier: "silver",
-    active: true,
-  },
-  {
     organisationSlug: "marshall-wace",
     tier: "platinum",
-    active: true,
-  },
-  {
-    organisationSlug: "rewriting-the-code",
-    tier: "gold",
-    active: true,
-  },
-  {
-    organisationSlug: "waterstons",
-    tier: "gold",
     active: true,
   },
   {
@@ -33,37 +19,58 @@ export const sponsors: Sponsor[] = [
     active: true,
   },
   {
-    organisationSlug: "assured-data-protection",
+    organisationSlug: "accenture",
+    tier: "platinum",
+    active: false,
+  },
+  {
+    organisationSlug: "g-research",
+    tier: "gold",
+    active: true,
+  },
+  {
+    organisationSlug: "rs-group",
+    tier: "gold",
+    active: true,
+  },
+  {
+    organisationSlug: "neptune-north",
+    tier: "gold",
+    active: false,
+  },
+  {
+    organisationSlug: "talkjs",
+    tier: "gold",
+    active: true,
+  },
+  {
+    organisationSlug: "waterstons",
+    tier: "gold",
+    active: true,
+    founding: true,
+  },
+  {
+    organisationSlug: "newton-consulting",
     tier: "silver",
     active: true,
   },
   {
-    organisationSlug: "accenture",
-    tier: "gold",
+    organisationSlug: "overleaf",
+    tier: "partner",
     active: true,
   },
   {
-    organisationSlug: "atom-bank",
-    tier: "platinum",
+    organisationSlug: "rewriting-the-code",
+    tier: "partner",
     active: true,
   },
   {
     organisationSlug: "durham-uni-venture-lab",
-    tier: "gold",
-    active: true,
-  },
-  {
-    organisationSlug: "major-league-hacking",
     tier: "partner",
     active: true,
   },
   {
-    organisationSlug: "durham-uni-computing-society",
-    tier: "partner",
-    active: true,
-  },
-  {
-    organisationSlug: "overleaf",
+    organisationSlug: "durham-uni-computer-science",
     tier: "partner",
     active: true,
   },
@@ -73,17 +80,22 @@ export const sponsors: Sponsor[] = [
     active: true,
   },
   {
-    organisationSlug: "rs-group",
+    organisationSlug: "major-league-hacking",
     tier: "partner",
     active: true,
   },
   {
-    organisationSlug: "pragmatic-semi",
+    organisationSlug: "hackathons-uk",
     tier: "partner",
     active: true,
   },
   {
-    organisationSlug: "durham-uni-computer-science",
+    organisationSlug: "durham-uni-computing-society",
+    tier: "partner",
+    active: true,
+  },
+  {
+    organisationSlug: "ibm",
     tier: "partner",
     active: true,
   },
@@ -97,46 +109,7 @@ export const sponsors: Sponsor[] = [
     tier: "partner",
     active: true,
   },
-  {
-    organisationSlug: "durham-uni-student-union",
-    tier: "partner",
-    active: true,
-  },
-  {
-    organisationSlug: "durham-county-council",
-    tier: "partner",
-    active: false,
-  },
-  {
-    organisationSlug: "intel",
-    tier: "partner",
-    active: false,
-  },
-  {
-    organisationSlug: "hackathons-uk",
-    tier: "partner",
-    active: true,
-  },
-  {
-    organisationSlug: "amazon-web-services",
-    tier: "partner",
-    active: false,
-  },
-  {
-    organisationSlug: "github",
-    tier: "partner",
-    active: false,
-  },
-  {
-    organisationSlug: "barclays",
-    tier: "partner",
-    active: false,
-  },
-  {
-    organisationSlug: "netcraft",
-    tier: "partner",
-    active: false,
-  },
+
 ]
 
 export const signedSponsors = sponsors.filter((sponsor) => sponsor.active)
