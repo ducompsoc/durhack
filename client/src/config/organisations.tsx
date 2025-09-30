@@ -1,9 +1,11 @@
 import Image from "next/image"
 import type * as React from "react"
 
+type ImageComponent = React.FC<Omit<React.ComponentProps<typeof Image>, "src" | "alt" | "width" | "height">>
+
 type OrganisationInput = {
   slug: string
-  image: React.FC<React.ComponentProps<typeof Image>>
+  image: ImageComponent
   link: string
   privacyPolicyLink?: string | null | undefined
 }
