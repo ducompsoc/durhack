@@ -73,7 +73,7 @@ export const sponsors: Sponsor[] = [
     active: true,
   },
   {
-    organisationSlug: "rs-components",
+    organisationSlug: "rs-group",
     tier: "partner",
     active: true,
   },
