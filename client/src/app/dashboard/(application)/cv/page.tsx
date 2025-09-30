@@ -104,6 +104,9 @@ function CvForm({ application }: { application: Application }) {
 
     if (values.cvUploadChoice === "upload") {
       formData.append("cvFile", values.cvFiles[0])
+      // temporary change - pending sponsor privacy policies
+      form.setError("cvUploadChoice", { message: "Sorry, you can't upload your CV just yet. Please come back later!" })
+      return
     }
 
     try {
@@ -159,7 +162,8 @@ function CvForm({ application }: { application: Application }) {
                     <SelectItem value="indeterminate" className="hidden" disabled hidden>
                       <span className="text-muted-foreground">Choose...</span>
                     </SelectItem>
-                    <SelectItem value="upload">Yes</SelectItem>
+                    {/* temporary change - pending sponsor privacy policies */}
+                    <SelectItem value="upload" disabled>Yes <b>(sorry, not available yet - come back later!)</b></SelectItem>
                     <SelectItem value="remind">Not right now (remind me later)</SelectItem>
                     <SelectItem value="no-upload">No (don&apos;t remind me later)</SelectItem>
                   </SelectContent>
