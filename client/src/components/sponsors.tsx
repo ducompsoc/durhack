@@ -115,7 +115,7 @@ type PartnerProps = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 const partnerWidth = 150
-const partnerScale = 0.67
+const partnerScale = 0.6
 
 function PartnerBox({ partner, ...props }: PartnerProps) {
   const organisation = getOrganisationBySlug(partner.organisationSlug)
@@ -132,7 +132,7 @@ function PartnerBox({ partner, ...props }: PartnerProps) {
         style={{ width: `${partnerWidth}px`, height: `${partnerWidth}px` }}
       >
         <PartnerImage
-          className="relative z-40"
+          className="relative -top-0.5 z-40"
           style={{
             width: `${Math.round(partnerWidth * partnerScale)}px`,
             height: `${Math.round(partnerWidth * partnerScale)}px`,
