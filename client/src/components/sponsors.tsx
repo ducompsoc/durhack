@@ -1,16 +1,15 @@
 import Image from "next/image"
 import type * as React from "react"
 import {
-  activePartners,
-  goldSponsors,
-  type Partner,
-  platinumSponsors,
   type Sponsor,
+  partners,
+  goldSponsors,
+  platinumSponsors,
   silverSponsors,
 } from "@/config/sponsors"
+import { getOrganisationBySlug } from "@/config/organisations"
 import { cn } from "@/lib/utils"
 import { SectionHeader } from "./section-header"
-import {clsx} from "clsx";
 
 const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<typeof Image>, "src" | "alt">>> = {
   platinum: (props) => (
@@ -30,11 +29,12 @@ type SponsorType = "Platinum" | "Gold" | "Silver" | "Partner"
 type SponsorProps = {
   sponsor: Sponsor
   sponsorType: SponsorType
-  renderTierTitle?: boolean
+  renderTierTitle?: boolean | null | undefined
 } & React.HTMLAttributes<HTMLDivElement>
 
 type SponsorSectionProps = {
   sponsorType: SponsorType
+  sponsors: Sponsor[]
 } & React.HTMLAttributes<HTMLDivElement>
 
 const tierWidths = {
@@ -47,12 +47,13 @@ const tierWidths = {
 const sponsorScale = 0.581
 
 function SponsorContent({ sponsor }: { sponsor: Sponsor }) {
+  const organisation = getOrganisationBySlug(sponsor.organisationSlug)
   const TierTile = tierTiles[sponsor.tier]
-  const SponsorImage = sponsor.image
+  const SponsorImage = organisation.image
   return (
     <>
       <a
-        href={sponsor.link}
+        href={organisation.link}
         target="_blank"
         style={{
           width: `${Math.round(tierWidths[sponsor.tier] * 1.1)}px`,
@@ -93,29 +94,14 @@ function SponsorBox({ sponsor, sponsorType, renderTierTitle = false, ...props }:
   )
 }
 
-function SponsorSection({ sponsorType, ...props }: SponsorSectionProps) {
-  let sponsors: Sponsor[]
-  switch (sponsorType) {
-    case "Platinum":
-      sponsors = platinumSponsors
-      break
-    case "Gold":
-      sponsors = goldSponsors
-      break
-    case "Silver":
-      sponsors = silverSponsors
-      break
-    default:
-      sponsors = []
-  }
-
+function SponsorSection({ sponsorType, sponsors, ...props }: SponsorSectionProps) {
   return (
     <div className="flex flex-wrap justify-center">
       {sponsors.map((sponsor, index) => (
         <SponsorBox
-          key={sponsor.slug}
-          sponsorType="Platinum"
+          key={sponsor.organisationSlug}
           sponsor={sponsor}
+          sponsorType={sponsorType}
           renderTierTitle={index === 0}
           {...props}
         />
@@ -125,20 +111,21 @@ function SponsorSection({ sponsorType, ...props }: SponsorSectionProps) {
 }
 
 type PartnerProps = {
-  partner: Partner
+  partner: Sponsor
 } & React.HTMLAttributes<HTMLDivElement>
 
 const partnerWidth = 150
 const partnerScale = 0.67
 
 function PartnerBox({ partner, ...props }: PartnerProps) {
-  if (partner.image === null) return null
-  const PartnerImage = partner.image
+  const organisation = getOrganisationBySlug(partner.organisationSlug)
+  if (organisation.image === null) return null
+  const PartnerImage = organisation.image
 
   return (
     <div className="sponsor biggest" {...props}>
       <a
-        href={partner.link}
+        href={organisation.link}
         target="_blank"
         className="relative flex flex-col items-center justify-center"
         rel="noreferrer"
@@ -176,9 +163,9 @@ export function Sponsors({ className, ...props }: React.ComponentProps<"div">) {
           width="679"
           height="902"
         />
-        <SponsorSection sponsorType="Platinum"/>
-        <SponsorSection sponsorType="Gold"/>
-        <SponsorSection sponsorType="Silver"/>
+        <SponsorSection sponsorType="Platinum" sponsors={platinumSponsors} />
+        <SponsorSection sponsorType="Gold" sponsors={goldSponsors} />
+        <SponsorSection sponsorType="Silver" sponsors={silverSponsors} />
       </div>
     </div>
   )
@@ -200,8 +187,8 @@ export function Partners({ className, ...props }: React.ComponentProps<"div">) {
 
         <div className="w-full flex justify-center">
           <div className="flex flex-wrap justify-evenly lg:w-2/4">
-            {activePartners.map((partner) => (
-              <PartnerBox key={partner.slug} partner={partner} className={cn("m-2")} />
+            {partners.map((partner) => (
+              <PartnerBox key={partner.organisationSlug} partner={partner} className={cn("m-2")} />
             ))}
           </div>
         </div>
