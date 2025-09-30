@@ -1,6 +1,6 @@
 import { OrganisationSlug } from "@/config/organisations"
 
-type Sponsor = {
+export type Sponsor = {
   organisationSlug: OrganisationSlug
   tier: "platinum" | "gold" | "silver" | "partner"
   active: boolean
