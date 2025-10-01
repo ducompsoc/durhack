@@ -6,6 +6,7 @@ import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import type { Mailer } from "@/lib/mailer"
 import { isString } from "@/lib/type-guards"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
+import {getEventTimingInfo} from "@/lib/format-event-timings";
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
@@ -70,6 +71,12 @@ export class TicketAssigningWritable extends stream.Writable {
       throw e
     }
 
+    const {
+      currentEventYear,
+      startMonth, startDate, startDateOrdinalSuffix, startDay,
+      endMonth, endDate, endDateOrdinalSuffix, endDay,
+    } = getEventTimingInfo()
+
     const preferredNames = userInfo.preferredNames ?? userInfo.firstNames
     await this.mailer.createMessage({
       from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
@@ -82,11 +89,11 @@ export class TicketAssigningWritable extends stream.Writable {
         "<body>",
         `<p>Hey ${preferredNames},</p>`,
         "<br/>",
-        `<p>Congratulations; Your place at DurHack ${durhackConfig.currentEventYear} has been confirmed! 🎉</p>`,
+        `<p>Congratulations; Your place at DurHack ${currentEventYear} has been confirmed! 🎉</p>`,
         "<p>",
         "DurHack is taking place at <strong>Durham University's Teaching and Learning Centre</strong>.",
-        "Check-in is from 09:30-10:30 (AM) Saturday 1<sup>st</sup> November;",
-        "DurHack is expected to wrap up by around 16:30 on Sunday 2<sup>nd</sup> November.",
+        `Check-in is from 09:30-10:30 (AM) ${startDay} ${startDate}<sup>${startDateOrdinalSuffix}</sup> ${startMonth};`,
+        `DurHack is expected to wrap up by around 16:30 on ${endDay} ${endDate}<sup>${endDateOrdinalSuffix}</sup> ${endMonth}.`,
         "</p>",
         "<p>",
         "If you have any questions regarding the venue or event timings, please check",
@@ -129,6 +136,8 @@ export class TicketAssigningWritable extends stream.Writable {
       },
     })
 
+    const currentEventYear = durhackConfig.currentEventStart.getFullYear()
+
     const preferredNames = userInfo.preferredNames ?? userInfo.firstNames
     await this.mailer.createMessage({
       from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
@@ -141,7 +150,7 @@ export class TicketAssigningWritable extends stream.Writable {
         "<body>",
         `<p>Hey ${preferredNames},</p>`,
         "<br/>",
-        `<p>You're on the waiting list for a place at DurHack ${durhackConfig.currentEventYear} ⏰.</p>`,
+        `<p>You're on the waiting list for a place at DurHack ${currentEventYear} ⏰.</p>`,
         "<p>We assign places on a first-come, first-served basis, so if our capacity increases",
         "or someone with a ticket lets us know they can't attend, you may be assigned a place.</p>",
         "<p>We will notify you by email if so! 😎</p>",

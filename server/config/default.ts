@@ -41,7 +41,8 @@ export default {
       clientCertificateKeyFile: "/dev/null",
     },
     maximumTicketAssignment: 860,
-    currentEventYear: 2025,
+    currentEventStart: new Date("2025-11-01T09:30:00+00:00"),
+    currentEventEnd: new Date("2025-11-02T16:30:00+00:00"),
     stashItems: {
       keyring: {
         name: "CV Keyring",

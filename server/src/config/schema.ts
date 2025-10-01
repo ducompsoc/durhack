@@ -56,7 +56,8 @@ export const stashEligibilityConditionSchema = z.discriminatedUnion("type", [
 
 export const durhackOptionsSchema = z.object({
   maximumTicketAssignment: z.number().nonnegative(),
-  currentEventYear: z.number().positive(),
+  currentEventStart: z.date(),
+  currentEventEnd: z.date(),
   interopMutualTls: z.object({
     clientCertificateFile: z.string(),
     clientCertificateKeyFile: z.string(),

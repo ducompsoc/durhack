@@ -6,6 +6,7 @@ import type { UserInfo } from "@/database"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import type { Mailer } from "@/lib/mailer"
 import { isString } from "@/lib/type-guards"
+import {type DurHackEventTimingInfo, getEventTimingInfo} from "@/lib/format-event-timings";
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
@@ -13,6 +14,7 @@ export class MailingWritable extends stream.Writable {
   private readonly mailer: Mailer
   private readonly messageTitle: string
   private readonly messageTemplate: TemplateDelegate<AugmentedUserInfo>
+  private readonly eventTimingInfo: DurHackEventTimingInfo
   sentMailCount: number
 
   constructor(mailer: Mailer, messageTitle: string, message: TemplateDelegate<AugmentedUserInfo>) {
@@ -23,6 +25,7 @@ export class MailingWritable extends stream.Writable {
     this.messageTitle = messageTitle
     this.messageTemplate = message
     this.sentMailCount = 0
+    this.eventTimingInfo = getEventTimingInfo()
   }
 
   /**
@@ -35,7 +38,7 @@ export class MailingWritable extends stream.Writable {
       "h:Reply-To": "hello@durhack.com",
       to: userInfo.email,
       subject: this.messageTitle,
-      html: this.messageTemplate(userInfo),
+      html: this.messageTemplate({...this.eventTimingInfo, ...userInfo}),
     })
     this.sentMailCount++
   }
