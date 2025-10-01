@@ -26,7 +26,7 @@ export function getEventTimingInfo(): DurHackEventTimingInfo {
   const endMonth = durhackConfig.currentEventEnd.toLocaleString("en-GB", { month: "long" })
   const endDate = durhackConfig.currentEventEnd.getDate()
   const endDateOrdinalSuffix = getOrdinalSuffix(endDate)
-  const endDay = durhackConfig.currentEventStart.toLocaleString("en-Gb")
+  const endDay = durhackConfig.currentEventStart.toLocaleString("en-GB", { weekday: "long" })
 
   return {
     currentEventYear,
