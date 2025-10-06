@@ -1,5 +1,5 @@
-import { durhackConfig } from "@/config";
-import { getOrdinalSuffix } from "@/lib/ordinal-suffix";
+import { durhackConfig } from "@/config"
+import { getOrdinalSuffix } from "@/lib/ordinal-suffix"
 
 export type DurHackEventTimingInfo = {
   currentEventYear: number
@@ -30,7 +30,13 @@ export function getEventTimingInfo(): DurHackEventTimingInfo {
 
   return {
     currentEventYear,
-    startMonth, startDate, startDateOrdinalSuffix, startDay,
-    endMonth, endDate, endDateOrdinalSuffix, endDay,
+    startMonth,
+    startDate,
+    startDateOrdinalSuffix,
+    startDay,
+    endMonth,
+    endDate,
+    endDateOrdinalSuffix,
+    endDay,
   }
 }

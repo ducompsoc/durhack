@@ -2,11 +2,11 @@ import stream from "node:stream"
 
 import { durhackConfig, frontendOrigin, mailgunConfig } from "@/config"
 import { prisma, type UserInfo } from "@/database"
+import { getEventTimingInfo } from "@/lib/format-event-timings"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import type { Mailer } from "@/lib/mailer"
 import { isString } from "@/lib/type-guards"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
-import {getEventTimingInfo} from "@/lib/format-event-timings";
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
@@ -73,8 +73,14 @@ export class TicketAssigningWritable extends stream.Writable {
 
     const {
       currentEventYear,
-      startMonth, startDate, startDateOrdinalSuffix, startDay,
-      endMonth, endDate, endDateOrdinalSuffix, endDay,
+      startMonth,
+      startDate,
+      startDateOrdinalSuffix,
+      startDay,
+      endMonth,
+      endDate,
+      endDateOrdinalSuffix,
+      endDay,
     } = getEventTimingInfo()
 
     const preferredNames = userInfo.preferredNames ?? userInfo.firstNames

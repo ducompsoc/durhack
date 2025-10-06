@@ -2,7 +2,7 @@ import { createHash } from "node:crypto"
 import { promisify } from "node:util"
 import { createEvent as _createEvent, type EventAttributes } from "ics"
 
-import {durhackConfig, frontendOrigin} from "@/config"
+import { durhackConfig, frontendOrigin } from "@/config"
 import type { Middleware } from "@/types"
 
 const createEvent = promisify<EventAttributes, string>(_createEvent)
