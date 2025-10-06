@@ -15,15 +15,17 @@ type AugmentedUserInfo = UserInfo & KeycloakAugments
 export class TicketAssigningWritable extends stream.Writable {
   totalAssignedTicketCount: number
   private readonly mailer: Mailer
-  private readonly messageTemplate: Template
+  private readonly ticketMessageTemplate: Template
+  private readonly waitingListMessageTemplate: Template
   private readonly eventTimingInfo: DurHackEventTimingInfo
 
-  constructor(mailer: Mailer, template: Template, totalAssignedTicketCount: number) {
+  constructor(mailer: Mailer, acceptedTemplate: Template, waitingListTemplate: Template, totalAssignedTicketCount: number) {
     super({
       objectMode: true, // the stream expects to receive objects, not a string/binary data
     })
     this.mailer = mailer
-    this.messageTemplate = template
+    this.ticketMessageTemplate = acceptedTemplate
+    this.waitingListMessageTemplate = waitingListTemplate
     this.totalAssignedTicketCount = totalAssignedTicketCount
     this.eventTimingInfo = getEventTimingInfo()
   }
@@ -57,8 +59,8 @@ export class TicketAssigningWritable extends stream.Writable {
       from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
       "h:Reply-To": "hello@durhack.com",
       to: userInfo.email,
-      subject: this.messageTemplate.metadata.messageTitle,
-      html: this.messageTemplate.render({
+      subject: this.ticketMessageTemplate.metadata.messageTitle,
+      html: this.ticketMessageTemplate.render({
         ...this.eventTimingInfo,
         ...userInfo,
         isRemoteAttendee: userInfo.university !== "Durham University",
@@ -87,30 +89,16 @@ export class TicketAssigningWritable extends stream.Writable {
       },
     })
 
-    const currentEventYear = durhackConfig.currentEventStart.getFullYear()
-
-    const preferredNames = userInfo.preferredNames ?? userInfo.firstNames
+    userInfo.preferredNames ??= userInfo.firstNames
     await this.mailer.createMessage({
       from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
       "h:Reply-To": "hello@durhack.com",
       to: userInfo.email,
-      subject: "⏳😭 DurHack at capacity...",
-      html: [
-        '<html lang="en-GB">',
-        '<head><meta charset="utf-8"></head>',
-        "<body>",
-        `<p>Hey ${preferredNames},</p>`,
-        "<br/>",
-        `<p>You're on the waiting list for a place at DurHack ${currentEventYear} ⏰.</p>`,
-        "<p>We assign places on a first-come, first-served basis, so if our capacity increases",
-        "or someone with a ticket lets us know they can't attend, you may be assigned a place.</p>",
-        "<p>We will notify you by email if so! 😎</p>",
-        "<br/>",
-        "<p>Thanks,</p>",
-        "<p>The DurHack Team</p>",
-        "</body>",
-        "</html>",
-      ].join("\n"),
+      subject: this.waitingListMessageTemplate.metadata.messageTitle,
+      html: this.waitingListMessageTemplate.render({
+        ...this.eventTimingInfo,
+        ...userInfo,
+      })
     })
   }
 
