@@ -30,4 +30,7 @@ export default {
     realm: "durhack-dev",
     redirectUris: ["https://api.durhack-staging.com/auth/keycloak/callback"],
   },
+  durhack: {
+    maximumTicketAssignment: 1,
+  },
 } satisfies DeepPartial<ConfigIn>
