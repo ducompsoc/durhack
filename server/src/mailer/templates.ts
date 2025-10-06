@@ -1,10 +1,12 @@
 import { readFile } from "node:fs/promises"
 import path from "node:path"
 import handlebars from "handlebars"
-import { z } from "zod/v4"
+import { tsImport } from "tsx/esm/api"
 
 import { projectDirname } from "@/dirname"
+import { type TemplateMetadata, templateMetadataSchema } from "@/mailer/template-metadata"
 import type { StringRecord } from "@/types"
+import {hasObjectDefaultExport} from "@/lib/type-guards";
 
 //region loading templates
 type ReadFileOptions = Parameters<typeof readFile>[1]
@@ -19,16 +21,11 @@ export async function loadTemplateSource(templateSlug: string): Promise<string> 
   return await readFile(templateFilePath, plaintextReadFileOptions)
 }
 
-const templateMetadataSchema = z.object({
-  messageTitle: z.string(),
-})
-
-export type TemplateMetadata = z.output<typeof templateMetadataSchema>
-
 export async function loadTemplateMetadata(templateSlug: string): Promise<TemplateMetadata> {
-  const templateMetadataFilePath = path.resolve(messageTemplateDirectory, `${templateSlug}.meta.json`)
-  const templateMetadata = await readFile(templateMetadataFilePath, plaintextReadFileOptions)
-  return templateMetadataSchema.parse(templateMetadata)
+  const templateMetadataFilePath = path.resolve(messageTemplateDirectory, `${templateSlug}.meta.ts`)
+  const templateMetadataModule: unknown = await tsImport(templateMetadataFilePath, import.meta.url)
+  if (!hasObjectDefaultExport(templateMetadataModule)) throw new Error(`Module ${path} does not \`export default\` a metadata object`)
+  return templateMetadataSchema.parse(templateMetadataModule.default)
 }
 
 export type Template<TRenderProps = unknown> = {
