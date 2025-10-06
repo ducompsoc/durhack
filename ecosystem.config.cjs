@@ -6,7 +6,7 @@ module.exports = {
     {
       name: `${instanceName}-server`,
       script: "./server/dist/main.js",
-      interpreter: "/home/durhack/.nvm/versions/node/v22.11.0/bin/node",
+      interpreter: "/home/durhack/.nvm/versions/node/v24.9.0/bin/node",
       env: {
         NODE_ENV: "production"
       },
@@ -14,7 +14,7 @@ module.exports = {
     {
       name: `${instanceName}-ticket-assigner`,
       script: "./server/dist/ticket-assigner.js",
-      interpreter: "/home/durhack/.nvm/versions/node/v22.11.0/bin/node",
+      interpreter: "/home/durhack/.nvm/versions/node/v24.9.0/bin/node",
       env: {
         NODE_ENV: "production"
       },
