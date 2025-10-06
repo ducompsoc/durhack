@@ -40,7 +40,7 @@
   },
   "type": "module",
   "devDependencies": {
-    "@types/node": "^22.5.3",
+    "@types/node": "^24.7.0",
     "glob": "^11.0.0",
     "prisma": "^5.20.0",
     "tsup": "^8.2.3",
