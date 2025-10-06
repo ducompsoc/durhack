@@ -19,7 +19,9 @@ export function isObject(value: unknown): value is UnknownObject {
   return true
 }
 
-export function hasObjectDefaultExport(maybeModule: unknown): maybeModule is UnknownObject & { default: UnknownObject } {
+export function hasObjectDefaultExport(
+  maybeModule: unknown,
+): maybeModule is UnknownObject & { default: UnknownObject } {
   if (!isObject(maybeModule)) return false
   if (!Object.hasOwn(maybeModule, "default")) return false
   return isObject(maybeModule.default)

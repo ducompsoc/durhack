@@ -4,9 +4,9 @@ import handlebars from "handlebars"
 import { tsImport } from "tsx/esm/api"
 
 import { projectDirname } from "@/dirname"
+import { hasObjectDefaultExport } from "@/lib/type-guards"
 import { type TemplateMetadata, templateMetadataSchema } from "@/mailer/template-metadata"
 import type { StringRecord } from "@/types"
-import {hasObjectDefaultExport} from "@/lib/type-guards";
 
 //region loading templates
 type ReadFileOptions = Parameters<typeof readFile>[1]
@@ -24,7 +24,8 @@ export async function loadTemplateSource(templateSlug: string): Promise<string> 
 export async function loadTemplateMetadata(templateSlug: string): Promise<TemplateMetadata> {
   const templateMetadataFilePath = path.resolve(messageTemplateDirectory, `${templateSlug}.meta.ts`)
   const templateMetadataModule: unknown = await tsImport(templateMetadataFilePath, import.meta.url)
-  if (!hasObjectDefaultExport(templateMetadataModule)) throw new Error(`Module ${path} does not \`export default\` a metadata object`)
+  if (!hasObjectDefaultExport(templateMetadataModule))
+    throw new Error(`Module ${path} does not \`export default\` a metadata object`)
   return templateMetadataSchema.parse(templateMetadataModule.default)
 }
 
