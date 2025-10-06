@@ -23,6 +23,7 @@ export function getTimeFormattingValues(time: Date): TimeFormattingValues {
 export type DurHackEventTimingInfo = {
   currentEventYear: number
   start: TimeFormattingValues
+  checkInCloses: TimeFormattingValues
   end: TimeFormattingValues
 }
 
@@ -30,7 +31,8 @@ export function getEventTimingInfo(): DurHackEventTimingInfo {
   const currentEventYear = durhackConfig.currentEventStart.getFullYear()
 
   const start = getTimeFormattingValues(durhackConfig.currentEventStart)
+  const checkInCloses = getTimeFormattingValues(durhackConfig.currentEventCheckInCloses)
   const end = getTimeFormattingValues(durhackConfig.currentEventEnd)
 
-  return { currentEventYear, start, end }
+  return { currentEventYear, start, checkInCloses, end }
 }
