@@ -8,16 +8,18 @@ export type TimeFormattingValues = {
   day: string
   hour: number
   minute: number
+  time: string
 }
 
-export function getTimeFormattingValues(time: Date): TimeFormattingValues {
-  const month = time.toLocaleString("en-GB", { month: "long" })
-  const date = time.getDate()
+export function getTimeFormattingValues(forWhen: Date): TimeFormattingValues {
+  const month = forWhen.toLocaleString("en-GB", { month: "long" })
+  const date = forWhen.getDate()
   const dateOrdinalSuffix = getOrdinalSuffix(date)
-  const day = time.toLocaleString("en-GB", { weekday: "long" })
-  const hour = time.getHours()
-  const minute = time.getMinutes()
-  return { month, date, dateOrdinalSuffix, day, hour, minute }
+  const day = forWhen.toLocaleString("en-GB", { weekday: "long" })
+  const hour = forWhen.getHours()
+  const minute = forWhen.getMinutes()
+  const time = forWhen.toLocaleString("en-GB", { hour: "2-digit", minute: "2-digit" })
+  return { month, date, dateOrdinalSuffix, day, hour, minute, time }
 }
 
 export type DurHackEventTimingInfo = {
