@@ -1,5 +1,6 @@
 import { tsImport } from "tsx/esm/api"
 import type { Adapter } from "zod-config"
+import { hasObjectDefaultExport } from "@/lib/type-guards"
 
 export type ScriptAdapterProps = {
   path: string
@@ -19,19 +20,6 @@ const importWithTypescriptFallback = async (path: string): Promise<unknown> => {
   }
 
   return await tsImport(path, import.meta.url)
-}
-
-const isObject = (maybeObject: unknown): maybeObject is Record<string, unknown> => {
-  if (typeof maybeObject !== "object") return false
-  if (maybeObject === null) return false
-  if (Array.isArray(maybeObject)) return false
-  return true
-}
-
-const hasObjectDefaultExport = (maybeModule: unknown): maybeModule is { default: Record<string, unknown> } => {
-  if (!isObject(maybeModule)) return false
-  if (!Object.hasOwn(maybeModule, "default")) return false
-  return isObject(maybeModule.default)
 }
 
 export const typescriptAdapter = ({ path, silent }: ScriptAdapterProps): Adapter => {
