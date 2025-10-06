@@ -11,23 +11,27 @@ import { MailgunMailer } from "@/lib/mailer"
 import { MailingWritable } from "./mailing-writable"
 import { generateUserInfo } from "./user-info-async-generator"
 
-const mailer = new MailgunMailer()
+async function main() {
+  const mailer = new MailgunMailer()
 
-const messageTemplateSource = await readFile(path.resolve(dirname, "..", "templates", "event-reminder.hbs"), {
-  encoding: "utf-8",
-})
-const messageTemplate = handlebars.compile(messageTemplateSource)
+  const messageTemplateSource = await readFile(path.resolve(dirname, "..", "templates", "event-reminder.hbs"), {
+    encoding: "utf-8",
+  })
+  const messageTemplate = handlebars.compile(messageTemplateSource)
 
-const userInfoReadable = Readable.from(
-  generateUserInfo({
-    where: {
-      applicationStatus: "accepted",
-    },
-  }),
-)
-const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
-const mailingWritable = new MailingWritable(mailer, "🕺 Ready for DurHack? 💻", messageTemplate)
+  const userInfoReadable = Readable.from(
+    generateUserInfo({
+      where: {
+        applicationStatus: "accepted",
+      },
+    }),
+  )
+  const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
+  const mailingWritable = new MailingWritable(mailer, "🕺 Ready for DurHack? 💻", messageTemplate)
 
-await pipeline(userInfoReadable, userInfoAugmentingTransform, mailingWritable)
-const mailedCount = mailingWritable.sentMailCount
-console.log(`Sent ${mailedCount} emails`)
+  await pipeline(userInfoReadable, userInfoAugmentingTransform, mailingWritable)
+  const mailedCount = mailingWritable.sentMailCount
+  console.log(`Sent ${mailedCount} emails`)
+}
+
+if (import.meta.main) await main()
