@@ -39,3 +39,7 @@ tab_width = 2
 [*.{yml,yaml}]
 indent_size = 2
 tab_width = 2
+
+[*.hbs]
+indent_size = 2
+tab_width = 2
