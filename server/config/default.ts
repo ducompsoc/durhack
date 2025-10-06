@@ -42,6 +42,7 @@ export default {
     },
     maximumTicketAssignment: 860,
     currentEventStart: new Date("2025-11-01T09:30:00+00:00"),
+    currentEventCheckInCloses: new Date("2025-11-01T10:30:00+00:00"),
     currentEventEnd: new Date("2025-11-02T17:30:00+00:00"),
     stashItems: {
       keyring: {

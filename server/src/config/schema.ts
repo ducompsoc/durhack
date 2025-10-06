@@ -57,6 +57,7 @@ export const stashEligibilityConditionSchema = z.discriminatedUnion("type", [
 export const durhackOptionsSchema = z.object({
   maximumTicketAssignment: z.number().nonnegative(),
   currentEventStart: z.date(),
+  currentEventCheckInCloses: z.date(),
   currentEventEnd: z.date(),
   interopMutualTls: z.object({
     clientCertificateFile: z.string(),
@@ -69,7 +70,11 @@ export const durhackOptionsSchema = z.object({
       eligibilityCondition: stashEligibilityConditionSchema,
     }),
   ),
-})
+}).refine((value) => {
+  return true
+    && value.currentEventStart < value.currentEventCheckInCloses
+    && value.currentEventCheckInCloses < value.currentEventEnd
+}, "Event timings are impossible. Should have start < checkInCloses < end.")
 
 export const configSchema = z.object({
   listen: listenOptionsSchema,
