@@ -9,6 +9,7 @@ import { registerInterestApp } from "@/routes/interest"
 import { profileApp } from "@/routes/profile"
 import { userApp } from "@/routes/user"
 import type { Request, Response } from "@/types"
+import {metaApp} from "@/routes/meta";
 
 export const routesApp = new App<Request, Response>()
 
@@ -26,3 +27,4 @@ routesApp.use("/user", userApp)
 routesApp.use("/application", applicationApp)
 routesApp.use("/applications", applicationsApp)
 routesApp.use("/profile/:userId", profileApp)
+routesApp.use("/meta", metaApp)
