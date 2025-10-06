@@ -2,4 +2,4 @@
 templates/*
 
 !templates/*.hbs
-!templates/*.meta.json
+!templates/*.meta.ts
