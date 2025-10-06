@@ -2,24 +2,29 @@ import stream from "node:stream"
 
 import { durhackConfig, frontendOrigin, mailgunConfig } from "@/config"
 import { prisma, type UserInfo } from "@/database"
-import { getEventTimingInfo } from "@/lib/format-event-timings"
+import { type DurHackEventTimingInfo, getEventTimingInfo } from "@/lib/format-event-timings"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import type { Mailer } from "@/lib/mailer"
 import { isString } from "@/lib/type-guards"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
+import type { Template } from "@/mailer/templates"
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
 export class TicketAssigningWritable extends stream.Writable {
   totalAssignedTicketCount: number
   private readonly mailer: Mailer
+  private readonly messageTemplate: Template
+  private readonly eventTimingInfo: DurHackEventTimingInfo
 
-  constructor(mailer: Mailer, totalAssignedTicketCount: number) {
+  constructor(mailer: Mailer, template: Template, totalAssignedTicketCount: number) {
     super({
       objectMode: true, // the stream expects to receive objects, not a string/binary data
     })
     this.mailer = mailer
+    this.messageTemplate = template
     this.totalAssignedTicketCount = totalAssignedTicketCount
+    this.eventTimingInfo = getEventTimingInfo()
   }
 
   private profileQrCodeImgTag(userId: string): string {
@@ -71,54 +76,17 @@ export class TicketAssigningWritable extends stream.Writable {
       throw e
     }
 
-    const {
-      currentEventYear,
-      startMonth,
-      startDate,
-      startDateOrdinalSuffix,
-      startDay,
-      endMonth,
-      endDate,
-      endDateOrdinalSuffix,
-      endDay,
-    } = getEventTimingInfo()
-
-    const preferredNames = userInfo.preferredNames ?? userInfo.firstNames
+    userInfo.preferredNames ??= userInfo.firstNames
     await this.mailer.createMessage({
       from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
       "h:Reply-To": "hello@durhack.com",
       to: userInfo.email,
-      subject: "🎟️ Your DurHack Ticket",
-      html: [
-        '<html lang="en-GB">',
-        '<head><meta charset="utf-8"></head>',
-        "<body>",
-        `<p>Hey ${preferredNames},</p>`,
-        "<br/>",
-        `<p>Congratulations; Your place at DurHack ${currentEventYear} has been confirmed! 🎉</p>`,
-        "<p>",
-        "DurHack is taking place at <strong>Durham University's Teaching and Learning Centre</strong>.",
-        `Check-in is from 09:30-10:30 (AM) ${startDay} ${startDate}<sup>${startDateOrdinalSuffix}</sup> ${startMonth};`,
-        `DurHack is expected to wrap up by around 16:30 on ${endDay} ${endDate}<sup>${endDateOrdinalSuffix}</sup> ${endMonth}.`,
-        "</p>",
-        "<p>",
-        "If you have any questions regarding the venue or event timings, please check",
-        '<a href="https://durhack.com#faqs">our FAQs</a> or reply to this email.</p>',
-        "<br/>",
-        "<p>",
-        "Keep this email handy - you will need the following QR code to check in to DurHack.",
-        'It can also be viewed at <a href="https://durhack.com/dashboard">durhack.com</a>.',
-        "</p>",
-        "<br/>",
-        this.profileQrCodeImgTag(userInfo.userId),
-        "<br/>",
-        "<p>We look forward to seeing you at DurHack! 💜</p>",
-        "<br/>",
-        "<p>Happy Hacking,</p>",
-        "<p>The DurHack Team</p>",
-        "</body>",
-        "</html>",
-      ].join("\n"),
+      subject: this.messageTemplate.metadata.messageTitle,
+      html: this.messageTemplate.render({
+        ...this.eventTimingInfo,
+        ...userInfo,
+        profileQrCode: this.profileQrCodeImgTag(userInfo.userId),
+      }),
       attachment: [{ filename: "invite.ics", data: durhackInvite }],
     })
   }

@@ -4,6 +4,7 @@ import { pipeline } from "node:stream/promises"
 import { prisma } from "@/database"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { MailgunMailer } from "@/lib/mailer"
+import { loadTemplate } from "@/mailer/templates"
 
 import { AttendeeCheckingTransform } from "./attendee-checking-transform"
 import { TicketAssigningWritable } from "./ticket-assigning-writable"
@@ -14,11 +15,12 @@ const totalAssignedTicketCount = await prisma.userInfo.count({
 })
 
 const mailer = new MailgunMailer()
+const template = await loadTemplate("ticket-notification")
 
 const userInfoReadable = Readable.from(generateUserInfoByTicketAssignmentOrder())
 const attendeeCheckingTransform = new AttendeeCheckingTransform()
 const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
-const ticketAssigningWritable = new TicketAssigningWritable(mailer, totalAssignedTicketCount)
+const ticketAssigningWritable = new TicketAssigningWritable(mailer, template, totalAssignedTicketCount)
 
 await pipeline(userInfoReadable, attendeeCheckingTransform, userInfoAugmentingTransform, ticketAssigningWritable)
 const newlyAssignedTicketCount = ticketAssigningWritable.totalAssignedTicketCount - totalAssignedTicketCount
