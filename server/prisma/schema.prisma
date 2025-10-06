@@ -30,6 +30,7 @@ model User {
     userInfo       UserInfo?
     userFlags      UserFlag[]
     userConsents   UserConsent[]
+    travelReceipts TravelReceipts[]
 }
 
 model UserCV {
@@ -62,7 +63,8 @@ model UserInfo {
     ethnicity           Ethnicity?
     hackathonExperience HackathonExperience? @map("hackathon_experience")
     accessRequirements  String?              @map("access_requirements") @db.Text()
-
+    travelOrigin        String?              @map("travel_origin") 
+    methodOfTravel      MethodOfTravel[]    @map("method_of_travel")
     updatedAt DateTime @updatedAt @map("updated_at")
 }
 
@@ -150,4 +152,22 @@ enum HackathonExperience {
     upToTwo      @map("up_to_two") // "hack-tastic tourist"
     threeToSeven @map("three_to_seven") // "hack wizard"
     eightOrMore  @map("eight_or_more") // "hackathon guru"
+}
+
+enum MethodOfTravel {
+    train 
+    bus
+    privateRoadVehicle      @map("private_road_vehicle")
+    internationalTransport  @map ("international_transport")
+    other
+}
+model TravelReceipts {
+    idReceipt   Int    @id @default(autoincrement())
+    userId      String @map("user_id") @db.Uuid()
+    user        User   @relation(fields: [userId], references: [keycloakUserId])
+    filename    String
+    contentType String @map("content_type")
+    content     Bytes
+
+    updatedAt DateTime @updatedAt @map("updated_at")
 }
