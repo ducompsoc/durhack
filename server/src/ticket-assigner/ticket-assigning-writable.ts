@@ -12,7 +12,7 @@ type AugmentedUserInfo = UserInfo & KeycloakAugments
 
 export class TicketAssigningWritable extends stream.Writable {
   totalAssignedTicketCount: number
-  private mailer: Mailer
+  private readonly mailer: Mailer
 
   constructor(mailer: Mailer, totalAssignedTicketCount: number) {
     super({
