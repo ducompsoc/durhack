@@ -6,6 +6,7 @@ import { type DurHackEventTimingInfo, getEventTimingInfo } from "@/lib/format-ev
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import type { Mailer } from "@/lib/mailer"
 import { isString } from "@/lib/type-guards"
+import { profileQrCodeImgTag } from "@/mailer/profile-qr-code"
 import type { Template } from "@/mailer/templates"
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
@@ -36,7 +37,12 @@ export class MailingWritable extends stream.Writable {
       "h:Reply-To": "hello@durhack.com",
       to: userInfo.email,
       subject: this.messageTemplate.metadata.messageTitle,
-      html: this.messageTemplate.render({ ...this.eventTimingInfo, ...userInfo }),
+      html: this.messageTemplate.render({
+        ...this.eventTimingInfo,
+        ...userInfo,
+        isRemoteAttendee: userInfo.university !== "Durham University",
+        profileQrCode: profileQrCodeImgTag(userInfo.userId),
+      }),
     })
     this.sentMailCount++
   }
