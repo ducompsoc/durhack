@@ -21,7 +21,12 @@ const programArgsConfig = {
 } as const satisfies ParseArgsConfig
 
 const programOptionsSchema = z.object({
-  template: z.string(),
+  template: z.string({
+    error: (issue) => {
+      if (issue.input == null) return "Missing required `--template [name]` option"
+      return "`--template [name]` should provide the name (with no file extension) of a template in the 'templates' directory"
+    },
+  }),
 })
 
 type ProgramOptions = z.output<typeof programOptionsSchema>
