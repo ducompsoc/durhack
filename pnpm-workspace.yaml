@@ -1,4 +1,4 @@
 packages:
-  - 'client'
-  - 'common'
-  - 'server'
+  - client
+  - common
+  - server
