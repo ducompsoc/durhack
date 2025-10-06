@@ -46,7 +46,7 @@ async function main() {
     }),
   )
   const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
-  const mailingWritable = new MailingWritable(mailer, "🕺 Ready for DurHack? 💻", template)
+  const mailingWritable = new MailingWritable(mailer, template)
 
   await pipeline(userInfoReadable, userInfoAugmentingTransform, mailingWritable)
   const mailedCount = mailingWritable.sentMailCount
