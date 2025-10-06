@@ -6,8 +6,8 @@ import { type DurHackEventTimingInfo, getEventTimingInfo } from "@/lib/format-ev
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import type { Mailer } from "@/lib/mailer"
 import { isString } from "@/lib/type-guards"
-import { durhackInvite } from "@/routes/calendar/calendar-event"
 import type { Template } from "@/mailer/templates"
+import { durhackInvite } from "@/routes/calendar/calendar-event"
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
@@ -85,6 +85,7 @@ export class TicketAssigningWritable extends stream.Writable {
       html: this.messageTemplate.render({
         ...this.eventTimingInfo,
         ...userInfo,
+        isRemoteAttendee: userInfo.university !== "Durham University",
         profileQrCode: this.profileQrCodeImgTag(userInfo.userId),
       }),
       attachment: [{ filename: "invite.ics", data: durhackInvite }],
