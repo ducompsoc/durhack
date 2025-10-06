@@ -1,5 +1,6 @@
 export type { Request } from "@/request"
 export type { Response } from "@/response"
 export * from "./deep-partial"
+export * from "./extra-utility-types"
 export * from "./json-literal"
 export * from "./middleware"

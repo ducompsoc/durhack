@@ -1,23 +1,42 @@
-import { readFile } from "node:fs/promises"
-import path from "node:path"
 import { Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
-import handlebars from "handlebars"
+import { type ParseArgsConfig, parseArgs } from "node:util"
+import { z } from "zod/v4"
 
-import { dirname } from "@/dirname"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { MailgunMailer } from "@/lib/mailer"
-
+import { loadTemplate } from "@/mailer/templates"
 import { MailingWritable } from "./mailing-writable"
 import { generateUserInfo } from "./user-info-async-generator"
 
+//region program argument parsing
+const programArgsConfig = {
+  options: {
+    template: {
+      short: "t",
+      type: "string",
+      multiple: false,
+    },
+  },
+} as const satisfies ParseArgsConfig
+
+const programOptionsSchema = z.object({
+  template: z.string(),
+})
+
+type ProgramOptions = z.output<typeof programOptionsSchema>
+
+function parseProgramArgs(): ProgramOptions {
+  const result = parseArgs(programArgsConfig)
+  return programOptionsSchema.parse(result)
+}
+//endregion
+
 async function main() {
+  const { template: templateSlug } = parseProgramArgs()
   const mailer = new MailgunMailer()
 
-  const messageTemplateSource = await readFile(path.resolve(dirname, "..", "templates", "event-reminder.hbs"), {
-    encoding: "utf-8",
-  })
-  const messageTemplate = handlebars.compile(messageTemplateSource)
+  const template = await loadTemplate(templateSlug)
 
   const userInfoReadable = Readable.from(
     generateUserInfo({
@@ -27,7 +46,7 @@ async function main() {
     }),
   )
   const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
-  const mailingWritable = new MailingWritable(mailer, "🕺 Ready for DurHack? 💻", messageTemplate)
+  const mailingWritable = new MailingWritable(mailer, "🕺 Ready for DurHack? 💻", template)
 
   await pipeline(userInfoReadable, userInfoAugmentingTransform, mailingWritable)
   const mailedCount = mailingWritable.sentMailCount
