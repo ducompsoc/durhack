@@ -33,7 +33,7 @@ type ProgramOptions = z.output<typeof programOptionsSchema>
 
 function parseProgramArgs(): ProgramOptions {
   const result = parseArgs(programArgsConfig)
-  return programOptionsSchema.parse(result)
+  return programOptionsSchema.parse(result.values)
 }
 //endregion
 
