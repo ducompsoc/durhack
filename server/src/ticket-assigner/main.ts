@@ -10,17 +10,20 @@ import { AttendeeCheckingTransform } from "./attendee-checking-transform"
 import { TicketAssigningWritable } from "./ticket-assigning-writable"
 import { generateUserInfoByTicketAssignmentOrder } from "./ticket-order-user-info-async-generator"
 
-const totalAssignedTicketCount = await prisma.userInfo.count({
-  where: { applicationStatus: { equals: "accepted" } },
-})
+const [totalAssignedTicketCount, acceptedTemplate, waitingListTemplate] = await Promise.all([
+  prisma.userInfo.count({
+    where: { applicationStatus: { equals: "accepted" } },
+  }),
+  loadTemplate("ticket-notification"),
+  loadTemplate("waiting-list-notification"),
+])
 
 const mailer = new MailgunMailer()
-const template = await loadTemplate("ticket-notification")
 
 const userInfoReadable = Readable.from(generateUserInfoByTicketAssignmentOrder())
 const attendeeCheckingTransform = new AttendeeCheckingTransform()
 const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
-const ticketAssigningWritable = new TicketAssigningWritable(mailer, template, totalAssignedTicketCount)
+const ticketAssigningWritable = new TicketAssigningWritable(mailer, acceptedTemplate, waitingListTemplate, totalAssignedTicketCount)
 
 await pipeline(userInfoReadable, attendeeCheckingTransform, userInfoAugmentingTransform, ticketAssigningWritable)
 const newlyAssignedTicketCount = ticketAssigningWritable.totalAssignedTicketCount - totalAssignedTicketCount
