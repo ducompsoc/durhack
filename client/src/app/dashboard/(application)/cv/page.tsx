@@ -131,11 +131,12 @@ function CvForm({ application }: { application: Application }) {
             render={({ field: { onChange, ref, ...field } }) => (
               <FormItem>
                 <FormLabel>Would you like to submit your CV?</FormLabel>
-                <FormDescription>
-                  <p>
-                    By submitting your CV, you agree to provide it to our sponsors, and therefore agree to their privacy
-                    policies.
-                  </p>
+                <FormDescription asChild>
+                  <div>
+                    <p>
+                      By submitting your CV, you agree to provide it to our sponsors, and therefore agree to their privacy
+                      policies.
+                    </p>
                   <ul style={{ listStyleType: '"- "' }} className="ml-4">
                     <li>
                       <a className="underline" href="https://www.mwam.com/regulatory-disclosures/privacy-policy/">
@@ -143,6 +144,7 @@ function CvForm({ application }: { application: Application }) {
                       </a>
                     </li>
                   </ul>
+                  </div>
                 </FormDescription>
                 <Select
                   onValueChange={(value: string) => {
