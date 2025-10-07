@@ -7,7 +7,7 @@ import type { Request, Response } from "@/types"
 const metaApp = new App<Request, Response>()
 
 metaApp
-  .route('/event-timings')
+  .route("/event-timings")
   .all(methodNotAllowed(["GET"]))
   .get(metaHandlers.getEventTimings())
 

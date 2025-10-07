@@ -19,7 +19,12 @@ export class TicketAssigningWritable extends stream.Writable {
   private readonly waitingListMessageTemplate: Template
   private readonly eventTimingInfo: DurHackEventTimingInfo
 
-  constructor(mailer: Mailer, acceptedTemplate: Template, waitingListTemplate: Template, totalAssignedTicketCount: number) {
+  constructor(
+    mailer: Mailer,
+    acceptedTemplate: Template,
+    waitingListTemplate: Template,
+    totalAssignedTicketCount: number,
+  ) {
     super({
       objectMode: true, // the stream expects to receive objects, not a string/binary data
     })
@@ -98,7 +103,7 @@ export class TicketAssigningWritable extends stream.Writable {
       html: this.waitingListMessageTemplate.render({
         ...this.eventTimingInfo,
         ...userInfo,
-      })
+      }),
     })
   }
 
