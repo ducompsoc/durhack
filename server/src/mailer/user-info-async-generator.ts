@@ -2,7 +2,7 @@ import type { Prisma } from "@prisma/client"
 
 import { prisma, type UserInfo } from "@/database"
 
-export type GenerateUserInfoArgs = Pick<Prisma.UserInfoFindManyArgs, "where" | "orderBy">
+export type GenerateUserInfoArgs = Pick<Prisma.UserInfoFindManyArgs, "select" | "where" | "orderBy">
 
 type OrderBy = GenerateUserInfoArgs["orderBy"]
 function concatOrderBy(first: OrderBy, second: OrderBy ): OrderBy {
@@ -21,12 +21,15 @@ function concatOrderBy(first: OrderBy, second: OrderBy ): OrderBy {
  * endpoint.
  */
 export async function* generateUserInfo({
-  where, orderBy,
+  select, where, orderBy,
 }: GenerateUserInfoArgs = {}): AsyncGenerator<UserInfo[], undefined> {
+  if (select) select.userId = true
+
   let cursor: string | undefined
 
   do {
     const results = await prisma.userInfo.findMany({
+      select: select,
       take: 10,
       skip: cursor == null ? 0 : 1,
       cursor: cursor == null ? undefined : { userId: cursor },
