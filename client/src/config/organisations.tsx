@@ -5,6 +5,7 @@ type ImageComponent = React.FC<Omit<React.ComponentProps<typeof Image>, "src" | 
 
 type OrganisationInput = {
   slug: string
+  title: string
   image: ImageComponent
   link: string
   privacyPolicyLink?: string | null | undefined
@@ -13,6 +14,7 @@ type OrganisationInput = {
 const organisations = [
   {
     slug: "tekgem",
+    title: "Tekgem",
     image: (props) => (
       <Image
         {...props}
@@ -22,10 +24,11 @@ const organisations = [
         height={145.56}
       />
     ),
-    link: "https://www.tekgem.co.uk",
+    link: "https://www.tekgem.co",
   },
   {
     slug: "marshall-wace",
+    title: "Marshall Wace",
     image: (props) => (
       <Image {...props} src="/assets/sponsors/marshall-wace.svg" alt="Marshall Wace" width={1070} height={389} />
     ),
@@ -34,6 +37,7 @@ const organisations = [
   },
   {
     slug: "rewriting-the-code",
+    title: "Rewriting the Code",
     image: (props) => (
       <Image
         {...props}
@@ -47,6 +51,7 @@ const organisations = [
   },
   {
     slug: "waterstons",
+    title: "Waterstons Ltd.",
     image: (props) => (
       <Image {...props} src="/assets/sponsors/waterstons.svg" alt="Waterstons" width={567.04} height={311.04} />
     ),
@@ -55,6 +60,7 @@ const organisations = [
   },
   {
     slug: "qube-research-and-tech",
+    title: "Qube Research & Technologies",
     image: (props) => (
       <Image
         {...props}
@@ -69,6 +75,7 @@ const organisations = [
   },
   {
     slug: "assured-data-protection",
+    title: "Assured Data Protection",
     image: (props) => (
       <Image
         {...props}
@@ -82,6 +89,7 @@ const organisations = [
   },
   {
     slug: "accenture",
+    title: "Accenture",
     image: (props) => (
       <Image {...props} src="/assets/sponsors/accenture.svg" alt="Accenture" width={909} height={240} />
     ),
@@ -90,6 +98,7 @@ const organisations = [
   },
   {
     slug: "atom-bank",
+    title: "Atom Bank",
     image: (props) => (
       <Image {...props} src="/assets/sponsors/atom-bank.svg" alt="Atom Bank" width={599.96} height={243.2} />
     ),
@@ -97,6 +106,7 @@ const organisations = [
   },
   {
     slug: "durham-uni-venture-lab",
+    title: "Durham University Venture Lab",
     image: (props) => (
       <Image
         {...props}
@@ -110,6 +120,7 @@ const organisations = [
   },
   {
     slug: "major-league-hacking",
+    title: "Major League Hacking",
     image: (props) => (
       <Image
         {...props}
@@ -123,6 +134,7 @@ const organisations = [
   },
   {
     slug: "durham-uni-computing-society",
+    title: "Durham University Computing Society",
     image: (props) => (
       <Image
         {...props}
@@ -136,11 +148,13 @@ const organisations = [
   },
   {
     slug: "overleaf",
+    title: "Overleaf",
     image: (props) => <Image {...props} src="/assets/sponsors/overleaf.svg" alt="Overleaf" width={130} height={38} />,
     link: "https://www.overleaf.com",
   },
   {
     slug: "keyboard-co",
+    title: "The Keyboard Company",
     image: (props) => (
       <Image
         {...props}
@@ -154,6 +168,7 @@ const organisations = [
   },
   {
     slug: "rs-group",
+    title: "RS Group",
     image: (props) => (
       <Image {...props} src="/assets/sponsors/rs-group.svg" alt="RS Group" width={24} height={24} />
     ),
@@ -161,6 +176,7 @@ const organisations = [
   },
   {
     slug: "pragmatic-semi",
+    title: "Pragmatic Semiconductor",
     image: (props) => (
       <Image
         {...props}
@@ -174,6 +190,7 @@ const organisations = [
   },
   {
     slug: "durham-uni-computer-science",
+    title: "Durham University Computer Science",
     image: (props) => (
       <Image
         {...props}
@@ -187,6 +204,7 @@ const organisations = [
   },
   {
     slug: "stand-out-stickers",
+    title: "StandOut Stickers",
     image: (props) => (
       <Image
         {...props}
@@ -200,6 +218,7 @@ const organisations = [
   },
   {
     slug: "durham-uni-esports-and-gaming",
+    title: "Durham University Esports & Gaming",
     image: (props) => (
       <Image
         {...props}
@@ -213,11 +232,12 @@ const organisations = [
   },
   {
     slug: "durham-uni-student-union",
+    title: "Durham Students' Union",
     image: (props) => (
       <Image
         {...props}
         src="/assets/sponsors/durham-student-union.svg"
-        alt="Durham Student Union"
+        alt="Durham Students' Union"
         width={1920}
         height={1080}
       />
@@ -226,6 +246,7 @@ const organisations = [
   },
   {
     slug: "durham-county-council",
+    title: "Durham County Council",
     image: (props) => (
       <Image
         {...props}
@@ -239,11 +260,13 @@ const organisations = [
   },
   {
     slug: "intel",
+    title: "Intel",
     image: (props) => <Image {...props} src="/assets/sponsors/intel.svg" alt="Intel" width={395.4} height={155.9} />,
     link: "https://www.intel.com",
   },
   {
     slug: "hackathons-uk",
+    title: "Hackathons UK",
     image: (props) => (
       <Image {...props} src="/assets/sponsors/hackathonsuk.svg" alt="Hackathons UK" width={282.43} height={77.11} />
     ),
@@ -251,6 +274,7 @@ const organisations = [
   },
   {
     slug: "amazon-web-services",
+    title: "Amazon Web Services",
     image: (props) => (
       <Image
         {...props}
@@ -264,43 +288,51 @@ const organisations = [
   },
   {
     slug: "github",
+    title: "GitHub",
     image: (props) => <Image {...props} src="/assets/sponsors/github.svg" alt="GitHub" width={600} height={200} />,
     link: "https://www.github.com",
   },
   {
     slug: "barclays",
+    title: "Barclays",
     image: (props) => <Image {...props} src="/assets/sponsors/barclays.svg" alt="Barclays" width={500} height={90} />,
     link: "https://home.barclays",
   },
   {
     slug: "netcraft",
+    title: "Netcraft",
     image: (props) => <Image {...props} src="/assets/sponsors/netcraft.svg" alt="Netcraft" width={253} height={44} />,
     link: "https://www.netcraft.com",
   },
   {
     slug: "g-research",
+    title: "G-Research",
     image: (props) => <Image {...props} src="/assets/sponsors/g-research.svg" alt="G-Research" width={19.477} height={24} />,
     link: "https://www.gresearch.com",
     privacyPolicyLink: "https://www.gresearch.com/privacy-policy",
   },
   {
     slug: "newton-consulting",
+    title: "Newton Consulting Ltd.",
     image: (props) => <Image {...props} src="/assets/sponsors/newton-consulting.svg" alt="Newton Consulting Ltd." width={150} height={36} />,
     link: "https://www.newtonimpact.com",
   },
   {
     slug: "ibm",
+    title: "IBM Corporation",
     image: (props) => <Image {...props} src="/assets/sponsors/ibm.svg" alt="IBM Corporation" width={58} height={23} />,
     link: "https://www.ibm.com"
   },
   {
     slug: "talkjs",
+    title: "TalkJS",
     image: (props) => <Image {...props} src="/assets/sponsors/talkjs-logo.svg" alt="TalkJS" width={600} height={681} />,
     link: "https://talkjs.com",
     privacyPolicyLink: "https://talkjs.com/privacy",
   },
   {
     slug: "neptune-north",
+    title: "Neptune North",
     image: (props) => <Image {...props} src="/assets/sponsors/neptune-north.svg" alt="Neptune North" width={1e3} height={297.4} />,
     link: "https://neptunenorth.co.uk",
     privacyPolicyLink: "https://www.neptunenorth.co.uk/privacy-policy"
