@@ -5,8 +5,8 @@ import { z } from "zod/v4"
 
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { MailgunMailer } from "@/lib/mailer"
+import { generateUserInfo } from "@/lib/user-info-async-generator"
 import { loadTemplate } from "@/mailer/templates"
-import { generateUserInfo } from "../lib/user-info-async-generator"
 import { MailingWritable } from "./mailing-writable"
 
 //region program argument parsing
