@@ -4,7 +4,7 @@ import { ClientError, HttpStatus, ServerError } from "@otterhttp/errors"
 import type { Prisma } from "@prisma/client"
 import { z } from "zod/v4"
 
-import {durhackConfig, origin} from "@/config"
+import { durhackConfig, origin } from "@/config"
 import { prisma, type UserFlag } from "@/database"
 import { adaptApplicationStatusFromDatabase } from "@/database/adapt-application-status"
 import { Group, onlyGroups } from "@/decorators/authorise"

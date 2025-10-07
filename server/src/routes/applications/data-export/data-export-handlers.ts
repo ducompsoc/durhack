@@ -13,7 +13,7 @@ import { Group, onlyGroups } from "@/decorators/authorise"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { getTempDir } from "@/lib/temp-dir"
 import { hasCode } from "@/lib/type-guards"
-import { generateUserInfo, type GenerateUserInfoArgs } from "@/lib/user-info-async-generator"
+import { type GenerateUserInfoArgs, generateUserInfo } from "@/lib/user-info-async-generator"
 import { AnonymousCsvTransform } from "@/routes/applications/data-export/anonymous-csv-transform"
 import { AnonymousIdAugmentingTransform } from "@/routes/applications/data-export/anonymous-id-augmenting-transform"
 import {
@@ -34,7 +34,7 @@ import { generateUserCv } from "./user-cv-async-generator"
 
 class DataExportHandlers {
   static submittedApplications = {
-    where: { applicationSubmittedAt: { not: null } }
+    where: { applicationSubmittedAt: { not: null } },
   } satisfies GenerateUserInfoArgs
 
   @onlyGroups([Group.organisers, Group.admins])
