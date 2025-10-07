@@ -7,10 +7,11 @@ import {
 } from "@durhack/web-components/ui/accordion"
 import Image from "next/image"
 import type * as React from "react"
+
 import { SectionHeader } from "@/components/section-header"
 import { faqs } from "@/config/faqs"
-import { cn } from "@/lib/utils"
 import { spaceGrotesk } from "@/lib/google-fonts"
+import { cn } from "@/lib/utils"
 
 export function Faqs({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -46,9 +47,7 @@ export function Faqs({ className, ...props }: React.ComponentProps<"div">) {
                     <AccordionChevron className={cn("fill-current text-[#006793] accordion-chevron ml-auto")} />
                   </AccordionTrigger>
                 </div>
-                  <AccordionContent className={cn("text-[#006793] text-base")}>
-                    {question.answer}
-                  </AccordionContent>
+                <AccordionContent className={cn("text-[#006793] text-base")}>{question.answer}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>

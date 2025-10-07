@@ -1,17 +1,23 @@
+import Image from "next/image"
 import type React from "react"
 
+import { CloudsLeftGraphic } from "@/components/graphics/clouds-left"
+import { CloudsRightGraphic } from "@/components/graphics/clouds-right"
+import { HillBottomLeftGraphic } from "@/components/graphics/hill-bottom-left"
+import { HillRightGraphic } from "@/components/graphics/hill-right"
+import { HillTopLeftGraphic } from "@/components/graphics/hill-top-left"
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
-import { HillTopLeftGraphic } from "@/components/graphics/hill-top-left";
-import { HillRightGraphic } from "@/components/graphics/hill-right";
-import { HillBottomLeftGraphic } from "@/components/graphics/hill-bottom-left";
-import { CloudsLeftGraphic } from "@/components/graphics/clouds-left";
-import { CloudsRightGraphic } from "@/components/graphics/clouds-right";
-import Image from "next/image";
 
 export function Hero({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("hero h-[calc(40rem+35vw)] sm:h-220 md:h-240 lg:h-260 xl:h-300 2xl:h-260 relative flex items-start justify-center overflow-hidden", className)} {...props}>
+    <div
+      className={cn(
+        "hero h-[calc(40rem+35vw)] sm:h-220 md:h-240 lg:h-260 xl:h-300 2xl:h-260 relative flex items-start justify-center overflow-hidden",
+        className,
+      )}
+      {...props}
+    >
       <div className="absolute h-full hidden 2xl:contents 2xl:w-full top-10">
         <div className="absolute -translate-1/2 left-1/2 top-200 size-300 rounded-full bg-radial from-[#FFFAE1D4] from-30% to-[#FFE6FA00] to-70% overflow-visible" />
         <div className="absolute -translate-1/2 left-1/2 top-170 size-80 rounded-full bg-radial from-[#F7F2DB] to-[#FFD700]" />
@@ -26,7 +32,10 @@ export function Hero({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
         <HillBottomLeftGraphic className="absolute left-[-20%] top-200 w-full" />
 
         <Image
-          src="/assets/graphics/cathedral.svg" alt="Durham Cathedral" width={724} height={582}
+          src="/assets/graphics/cathedral.svg"
+          alt="Durham Cathedral"
+          width={724}
+          height={582}
           className="absolute left-0 top-100"
         />
       </div>
@@ -44,7 +53,10 @@ export function Hero({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
         <HillBottomLeftGraphic className="absolute left-[-30%] top-[calc(35rem+20vw)] w-[150%]" />
 
         <Image
-          src="/assets/graphics/cathedral.svg" alt="Durham Cathedral" width={724} height={582}
+          src="/assets/graphics/cathedral.svg"
+          alt="Durham Cathedral"
+          width={724}
+          height={582}
           className="absolute left-[-15%] md:left-0 top-[calc(40rem+30vw)] -translate-y-full w-2/3 max-w-140"
         />
       </div>
@@ -58,12 +70,7 @@ export function Hero({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
         >
           DurHack X
         </h1>
-        <h2
-          className={cn(
-            spaceGrotesk.className,
-            "text-[#238CBA] md:text-5xl text-3xl font-extralight text-center",
-          )}
-        >
+        <h2 className={cn(spaceGrotesk.className, "text-[#238CBA] md:text-5xl text-3xl font-extralight text-center")}>
           1st-2nd November
         </h2>
         <div className="w-full items-center justify-center flex">

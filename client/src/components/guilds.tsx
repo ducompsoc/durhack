@@ -1,9 +1,12 @@
+import Image from "next/image"
 import type React from "react"
+
 import { SectionHeader } from "@/components/section-header"
+import { type GuildConfig, guilds } from "@/config/guilds"
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
+
 import "@/styles/guilds.css"
-import { type GuildConfig, guilds } from "@/config/guilds"
 
 type NamePos = "above" | "below"
 
@@ -15,30 +18,36 @@ type GuildTileConfig = {
 function GuildTile({ name, name_pos, icon_path, ...props }: GuildTileConfig) {
   return (
     <div className={cn(props.className, "w-40 h-auto relative flex flex-col items-center justify-center")}>
-      <img
+      <Image
         className="w-30 absolute lg:hidden block top-3/24 h-auto"
         src="/assets/guilds/gulid-name-underline-down.svg"
         alt="underline"
+        width={211}
+        height={65}
       />
       <p className={cn(audiowide.className, "text-[#e1fffc] uppercase lg:hidden block")}>{name}</p>
       {name_pos === "above" && (
         <>
-          <img
+          <Image
             className="w-30 -top-1/24 lg:block hidden absolute h-auto"
             src="/assets/guilds/gulid-name-underline-up.svg"
             alt="underline"
+            width={211}
+            height={65}
           />
           <p className={cn(audiowide.className, "text-[#e1fffc] lg:block hidden uppercase")}>{name}</p>
         </>
       )}
-      <img className="" src="/assets/guilds/guild-tile.svg" alt="guild tile" />
+      <Image className="" src="/assets/guilds/guild-tile.svg" alt="guild tile" width={262} height={244} />
       {/*TODO add guild icon here*/}
       {name_pos === "below" && (
         <>
-          <img
+          <Image
             className="w-30 absolute lg:block hidden bottom-3/24 h-auto"
             src="/assets/guilds/gulid-name-underline-down.svg"
             alt="underline"
+            width={211}
+            height={65}
           />
           <p className={cn(audiowide.className, "text-[#e1fffc] uppercase lg:block hidden")}>{name}</p>
         </>
@@ -61,7 +70,7 @@ export function Guilds({ className, ...props }: React.ComponentProps<"div">) {
         <div className="mt-10 align-center justify-center flex flex-wrap md:flex-row">
           {guilds.map((guild, index) => (
             <GuildTile
-              key={index}
+              key={guild.name}
               className={cn(index % 2 === 0 ? "lg:-mt-20" : "")}
               name={guild.name}
               name_pos={index % 2 === 0 ? "below" : "above"}

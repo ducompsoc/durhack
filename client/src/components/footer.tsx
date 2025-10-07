@@ -22,7 +22,10 @@ export function Footer() {
     </Link>
   )
   const durhamStudentsUnionCharity = (
-    <Link className="underline" href="https://register-of-charities.charitycommission.gov.uk/en/charity-search/-/charity-details/5023833">
+    <Link
+      className="underline"
+      href="https://register-of-charities.charitycommission.gov.uk/en/charity-search/-/charity-details/5023833"
+    >
       1145400
     </Link>
   )
@@ -30,17 +33,14 @@ export function Footer() {
   return (
     <footer className="border-muted-foreground border-t py-6 md:px-8 md:py-0 bg-[rgba(29,25,52,1)]">
       <div className="container flex flex-col items-center text-center justify-between gap-4 md:py-4">
+        <p>DurHack follows the {mlhCodeOfConduct}.</p>
         <p>
-          DurHack follows the {mlhCodeOfConduct}.
+          DurHack is an event hosted by Durham University Computing Society ({compsoc}), which is a student society
+          affiliated with Durham Students' Union ({durhamStudentsUnion}). Durham Students' Union is registered in
+          England as a company limited by guarantee ({durhamStudentsUnionCompany}) and a charity (
+          {durhamStudentsUnionCharity}), with VAT number 119733690 and registered office Dunelm House, New Elvet, Durham
+          DH1 3AN.
         </p>
-        <p>
-          DurHack is an event hosted by Durham University Computing Society ({compsoc}),
-          which is a student society affiliated with Durham Students' Union ({durhamStudentsUnion}).
-          Durham Students' Union is registered in England as a company limited by guarantee ({durhamStudentsUnionCompany})
-          and a charity ({durhamStudentsUnionCharity}), with VAT number 119733690 and registered office Dunelm House, New Elvet,
-          Durham DH1 3AN.
-        </p>
-
       </div>
     </footer>
   )

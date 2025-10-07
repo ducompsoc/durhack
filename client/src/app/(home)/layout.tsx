@@ -1,5 +1,5 @@
-import type * as React from "react"
 import type { Viewport } from "next"
+import type * as React from "react"
 
 import { MLHBanner } from "@/components/mlh-banner"
 import { SiteHeader } from "@/components/site-header"
@@ -19,9 +19,7 @@ export default function HomeLayout({
     <>
       <SiteHeader navConfig={navConfig} />
       <MLHBanner variant="white" season={2026} region="eu" />
-      <div>
-        {children}
-      </div>
+      <div>{children}</div>
     </>
   )
 }
