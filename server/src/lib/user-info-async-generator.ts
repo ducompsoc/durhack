@@ -14,6 +14,17 @@ function concatOrderBy(first: OrderBy, second: OrderBy ): OrderBy {
   return orderBy
 }
 
+type Where = GenerateUserInfoArgs["where"]
+function ensureCursorIncluded(where: Where): (cursor: string | null | undefined) => Where {
+  if (where == null || Object.keys(where).length === 0) return () => undefined
+  const newWhere = { "OR": [{ userId: "" }, where] } satisfies Where
+  return (cursor) => {
+    if (cursor == null) return where
+    newWhere.OR[0].userId = cursor
+    return newWhere
+  }
+}
+
 /**
  * Generate UserInfo using the provided Prisma query, with the intent to email each.
  * This **cannot** be used for sending email to applicants that have not submitted applications;
@@ -24,6 +35,8 @@ export async function* generateUserInfo({
   select, where, orderBy,
 }: GenerateUserInfoArgs = {}): AsyncGenerator<UserInfo[], undefined> {
   if (select) select.userId = true
+  const getWhere = ensureCursorIncluded(where)
+  const concatenatedOrderBy = concatOrderBy(orderBy, { userId: "asc" })
 
   let cursor: string | undefined
 
@@ -33,10 +46,8 @@ export async function* generateUserInfo({
       take: 10,
       skip: cursor == null ? 0 : 1,
       cursor: cursor == null ? undefined : { userId: cursor },
-      where: {
-        OR: [{ userId: cursor }, { AND: [where ?? {}, { applicationStatus: { not: "unsubmitted" } }] }],
-      },
-      orderBy: concatOrderBy(orderBy, { userId: "asc" }),
+      where: getWhere(cursor),
+      orderBy: concatenatedOrderBy,
     })
 
     cursor = results[9]?.userId
