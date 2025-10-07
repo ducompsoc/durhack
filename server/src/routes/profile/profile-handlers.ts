@@ -4,7 +4,7 @@ import { ClientError, HttpStatus, ServerError } from "@otterhttp/errors"
 import type { Prisma } from "@prisma/client"
 import { z } from "zod/v4"
 
-import { durhackConfig } from "@/config"
+import {durhackConfig, origin} from "@/config"
 import { prisma, type UserFlag } from "@/database"
 import { adaptApplicationStatusFromDatabase } from "@/database/adapt-application-status"
 import { Group, onlyGroups } from "@/decorators/authorise"
@@ -89,6 +89,9 @@ class ProfileHandlers {
           applicationStatus: adaptApplicationStatusFromDatabase(databaseProfile?.userInfo?.applicationStatus),
           uploadedCv: databaseProfile?.userCv != null,
         } satisfies UserProfile,
+        stash_url: new URL(`${request.pathnameWithoutTrailingSlash}/stash`, origin),
+        check_in_url: new URL(`${request.pathnameWithoutTrailingSlash}/check-in`, origin),
+        guilds_url: new URL(`${request.pathnameWithoutTrailingSlash}/guilds`, origin),
       })
     }
   }
