@@ -20,7 +20,7 @@ function GuildTile({ name, name_pos, icon_path, ...props }: GuildTileConfig) {
     <div data-pos={name_pos} className={cn(props.className, "group w-40 h-auto relative flex flex-col items-center justify-center")}>
       <Image
         className="w-30 absolute lg:-top-1/24 top-3/24 h-auto group-data-[pos=below]:lg:hidden"
-        src="/assets/guilds/gulid-name-underline-down.svg"
+        src="/assets/guilds/guild-name-underline-down.svg"
         alt="underline"
         width={211}
         height={65}
@@ -30,7 +30,7 @@ function GuildTile({ name, name_pos, icon_path, ...props }: GuildTileConfig) {
       {/*TODO add guild icon here*/}
       <Image
         className="w-30 absolute hidden group-data-[pos=below]:lg:block bottom-3/24 h-auto"
-        src="/assets/guilds/gulid-name-underline-down.svg"
+        src="/assets/guilds/guild-name-underline-down.svg"
         alt="underline"
         width={211}
         height={65}
