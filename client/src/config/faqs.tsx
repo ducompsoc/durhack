@@ -65,8 +65,10 @@ export const faqs = [
     icon_path: "/assets/faq/icon-3.svg",
     answer: (
       <>
-        <p>Hackers travelling from Manchester, Leeds, Nottingham or Sheffield can obtain reduced-price coaches directly to DurHack at <a href="[link]">[link]</a>. Please note you must have a ticket to DurHack to attend the event.</p>,
-        <p>Hackers from the above cities who do not travel via the DurHack organised coach will not be eligible for travel reimbursement, unless with prior written exception.</p>,
+        <p>Hackers travelling from Manchester, Leeds, Nottingham or Sheffield can obtain reduced-price coaches directly to DurHack at <a href="[link]">[link]</a>.</p>
+        <p>Please note you must have a ticket to DurHack to attend the event.</p>,
+        <p>Hackers from the above cities who do not travel via the DurHack organised coach will not be eligible for travel reimbursement</p>
+        <p>unless with prior written exception.</p>,
         <p>For hackers travelling from outside of these cities, we can provide the following reimbursements for reasonable public transport expenses:</p>
         <ul>
           <li>&lt;20 miles (e.g. Newcastle) — £10</li>
@@ -81,7 +83,8 @@ export const faqs = [
           <li>Attending DurHack and being checked in at the event</li>
           <li>Devpost project submission</li>
         </ul>
-        <p>Please keep your receipt(s): we will release a form shortly after DurHack for you to put in your details and upload the receipt(s). Reimbursement should come through by the end of December.</p>
+        <p>Please keep your receipt(s): we will release a form shortly after DurHack for you to put in your details and upload the receipt(s).</p>
+        <p>Reimbursement should come through by the end of December.</p>
       </>
     ),
   },
