@@ -3,6 +3,7 @@ import type { OrganisationSlug } from "@/config/organisations"
 export type Sponsor = {
   organisationSlug: OrganisationSlug
   tier: "platinum" | "gold" | "silver" | "partner"
+  cvSharing?: true | null | undefined
   founding?: true | null | undefined
   active: boolean
 }
@@ -11,21 +12,25 @@ export const sponsors: Sponsor[] = [
   {
     organisationSlug: "marshall-wace",
     tier: "platinum",
+    cvSharing: true,
     active: true,
   },
   {
     organisationSlug: "qube-research-and-tech",
     tier: "platinum",
+    cvSharing: true,
     active: true,
   },
   {
     organisationSlug: "accenture",
     tier: "platinum",
+    cvSharing: true,
     active: false,
   },
   {
     organisationSlug: "g-research",
     tier: "gold",
+    cvSharing: true,
     active: true,
   },
   {
@@ -36,16 +41,19 @@ export const sponsors: Sponsor[] = [
   {
     organisationSlug: "neptune-north",
     tier: "gold",
+    cvSharing: true,
     active: false,
   },
   {
     organisationSlug: "talkjs",
     tier: "gold",
+    cvSharing: true,
     active: true,
   },
   {
     organisationSlug: "waterstons",
     tier: "gold",
+    cvSharing: true,
     active: true,
     founding: true,
   },
