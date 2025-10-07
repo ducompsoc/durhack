@@ -5,7 +5,7 @@ import { prisma, type UserInfo } from "@/database"
 export type GenerateUserInfoArgs = Pick<Prisma.UserInfoFindManyArgs, "select" | "where" | "orderBy">
 
 type OrderBy = GenerateUserInfoArgs["orderBy"]
-function concatOrderBy(first: OrderBy, second: OrderBy ): OrderBy {
+function concatOrderBy(first: OrderBy, second: OrderBy): OrderBy {
   if (first == null) return second
   if (second == null) return first
   const orderBy: OrderBy = []
@@ -17,7 +17,7 @@ function concatOrderBy(first: OrderBy, second: OrderBy ): OrderBy {
 type Where = GenerateUserInfoArgs["where"]
 function ensureCursorIncluded(where: Where): (cursor: string | null | undefined) => Where {
   if (where == null || Object.keys(where).length === 0) return () => undefined
-  const newWhere = { "OR": [{ userId: "" }, where] } satisfies Where
+  const newWhere = { OR: [{ userId: "" }, where] } satisfies Where
   return (cursor) => {
     if (cursor == null) return where
     newWhere.OR[0].userId = cursor
@@ -32,7 +32,9 @@ function ensureCursorIncluded(where: Where): (cursor: string | null | undefined)
  * endpoint.
  */
 export async function* generateUserInfo({
-  select, where, orderBy,
+  select,
+  where,
+  orderBy,
 }: GenerateUserInfoArgs = {}): AsyncGenerator<UserInfo[], undefined> {
   if (select) select.userId = true
   const getWhere = ensureCursorIncluded(where)
