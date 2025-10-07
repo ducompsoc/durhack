@@ -38,6 +38,7 @@ import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
 import { updateApplication } from "@/lib/update-application"
 import { cn } from "@/lib/utils"
+import {CvSharingPrivacyPolicies} from "@/components/dashboard/cv-sharing-privacy-policies";
 
 type CvFormFields = {
   cvUploadChoice: "indeterminate" | "upload" | "remind" | "no-upload"
@@ -137,13 +138,7 @@ function CvForm({ application }: { application: Application }) {
                       By submitting your CV, you agree to provide it to our sponsors, and therefore agree to their privacy
                       policies.
                     </p>
-                  <ul style={{ listStyleType: '"- "' }} className="ml-4">
-                    <li>
-                      <a className="underline" href="https://www.mwam.com/regulatory-disclosures/privacy-policy/">
-                        Marshall Wace Privacy Policy
-                      </a>
-                    </li>
-                  </ul>
+                    <CvSharingPrivacyPolicies className="ml-4" />
                   </div>
                 </FormDescription>
                 <Select
