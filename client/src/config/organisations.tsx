@@ -9,6 +9,7 @@ type OrganisationInput = {
   image: ImageComponent
   link: string
   privacyPolicyLink?: string | null | undefined
+  privacyPolicyTitle?: string | null | undefined
 }
 
 const organisations = [
@@ -57,6 +58,7 @@ const organisations = [
     ),
     link: "https://waterstons.com",
     privacyPolicyLink: "https://www.waterstons.com/about-us/privacy-statement",
+    privacyPolicyTitle: "Privacy Statement",
   },
   {
     slug: "qube-research-and-tech",
