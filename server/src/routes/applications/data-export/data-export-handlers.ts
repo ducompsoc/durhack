@@ -13,6 +13,7 @@ import { Group, onlyGroups } from "@/decorators/authorise"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { getTempDir } from "@/lib/temp-dir"
 import { hasCode } from "@/lib/type-guards"
+import { generateUserInfo, type GenerateUserInfoArgs } from "@/lib/user-info-async-generator"
 import { AnonymousCsvTransform } from "@/routes/applications/data-export/anonymous-csv-transform"
 import { AnonymousIdAugmentingTransform } from "@/routes/applications/data-export/anonymous-id-augmenting-transform"
 import {
@@ -23,15 +24,19 @@ import { UserAgeAugmentingTransform } from "@/routes/applications/data-export/us
 import { UserCvAugmentingTransform } from "@/routes/applications/data-export/user-cv-augmenting-transform"
 import { UserFlagAugmentingTransform } from "@/routes/applications/data-export/user-flag-augmenting-transform"
 import type { Middleware } from "@/types"
+
 import { AttendanceAugmentingTransform, type AttendanceAugments } from "./attendance-augmenting-transform"
 import { CvExportingWritable } from "./cv-exporting-writable"
 import { FilteringTransform } from "./filtering-transform"
 import { HukCsvTransform } from "./huk-csv-transform"
 import { MlhCsvTransform } from "./mlh-csv-transform"
 import { generateUserCv } from "./user-cv-async-generator"
-import { generateUserInfo } from "./user-info-async-generator"
 
 class DataExportHandlers {
+  static submittedApplications = {
+    where: { applicationSubmittedAt: { not: null } }
+  } satisfies GenerateUserInfoArgs
+
   @onlyGroups([Group.organisers, Group.admins])
   getRoot(): Middleware {
     return async (_request, response) => {
@@ -64,7 +69,7 @@ class DataExportHandlers {
           : new FilteringTransform(() => true)
 
         await pipeline(
-          Readable.from(generateUserInfo()), // this source yields 'chunks' of 10 `UserInfo` as `UserInfo[]`s
+          Readable.from(generateUserInfo(DataExportHandlers.submittedApplications)), // this source yields 'chunks' of 10 `UserInfo` as `UserInfo[]`s
           new AttendanceAugmentingTransform(),
           filterTransform,
           new KeycloakAugmentingTransform(), // this transform consumes 'UserInfo's, then augments them with Keycloak data and yields the new object
@@ -100,7 +105,7 @@ class DataExportHandlers {
           : new FilteringTransform<UserInfo & ConsentAugments<"hukPrivacy">>((item) => item.hukPrivacy ?? false)
 
         await pipeline(
-          Readable.from(generateUserInfo()), // this source yields 'chunks' of 10 `UserInfo` as `UserInfo[]`s
+          Readable.from(generateUserInfo(DataExportHandlers.submittedApplications)), // this source yields 'chunks' of 10 `UserInfo` as `UserInfo[]`s
           new AttendanceAugmentingTransform(),
           new ConsentAugmentingTransform({ hukMarketing: true, hukPrivacy: true }),
           filterTransform,
@@ -175,7 +180,7 @@ class DataExportHandlers {
         const fileDestination = pathJoin(tempDir, fileName)
 
         await pipeline(
-          Readable.from(generateUserInfo()),
+          Readable.from(generateUserInfo(DataExportHandlers.submittedApplications)),
           new AttendanceAugmentingTransform(),
           new ConsentAugmentingTransform({ media: true, dsuPrivacy: true }),
           new UserAgeAugmentingTransform(),
