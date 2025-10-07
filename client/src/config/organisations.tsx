@@ -153,7 +153,7 @@ const organisations = [
     image: (props) => (
       <Image {...props} src="/assets/sponsors/rs-group.svg" alt="RS Group" width={24} height={24} />
     ),
-    link: "https://www.rsgroup.com",
+    link: "https://uk.rs-online.com/web/content/discovery/education",
   },
   {
     slug: "pragmatic-semi",
