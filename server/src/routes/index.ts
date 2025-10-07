@@ -6,10 +6,10 @@ import { applicationsApp } from "@/routes/applications"
 import { authApp } from "@/routes/auth"
 import { calendarApp } from "@/routes/calendar"
 import { registerInterestApp } from "@/routes/interest"
+import { metaApp } from "@/routes/meta"
 import { profileApp } from "@/routes/profile"
 import { userApp } from "@/routes/user"
 import type { Request, Response } from "@/types"
-import {metaApp} from "@/routes/meta";
 
 export const routesApp = new App<Request, Response>()
 
