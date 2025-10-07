@@ -1,4 +1,12 @@
 import type * as React from "react"
+import { getTimeFormattingValues } from "@durhack/durhack-common/util/format-date"
+
+import { getEventTimings } from "@/lib/durhack-meta"
+
+const eventTimings = await getEventTimings()
+const start = getTimeFormattingValues(eventTimings.start)
+const checkInCloses = getTimeFormattingValues(eventTimings.checkInCloses)
+const end = getTimeFormattingValues(eventTimings.end)
 
 type FAQ = {
   slug: string
@@ -82,8 +90,8 @@ export const faqs = [
     answer: (
       <>
         <p>
-          Check-in for DurHack is 9:30-10:30am on 2nd November, and we&apos;re expecting to finish our closing ceremony
-          at 16:30 on Sunday.
+          Check-in for DurHack is {start.time}-{checkInCloses.time} on {start.day} {start.date}<sup>{start.dateOrdinalSuffix}</sup> {start.month}, and we&apos;re
+          expecting to finish our closing ceremony at {end.time} on {end.day}.
         </p>
       </>
     ),
