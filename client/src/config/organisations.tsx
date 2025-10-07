@@ -30,6 +30,7 @@ const organisations = [
       <Image {...props} src="/assets/sponsors/marshall-wace.svg" alt="Marshall Wace" width={1070} height={389} />
     ),
     link: "https://www.mwam.com",
+    privacyPolicyLink: "https://www.mwam.com/regulatory-disclosures/privacy-policy",
   },
   {
     slug: "rewriting-the-code",
@@ -50,6 +51,7 @@ const organisations = [
       <Image {...props} src="/assets/sponsors/waterstons.svg" alt="Waterstons" width={567.04} height={311.04} />
     ),
     link: "https://waterstons.com",
+    privacyPolicyLink: "https://www.waterstons.com/about-us/privacy-statement",
   },
   {
     slug: "qube-research-and-tech",
@@ -63,6 +65,7 @@ const organisations = [
       />
     ),
     link: "https://www.qube-rt.com",
+    privacyPolicyLink: "https://www.qube-rt.com/privacy-policy"
   },
   {
     slug: "assured-data-protection",
@@ -83,6 +86,7 @@ const organisations = [
       <Image {...props} src="/assets/sponsors/accenture.svg" alt="Accenture" width={909} height={240} />
     ),
     link: "https://www.accenture.com/gb-en",
+    privacyPolicyLink: "https://www.accenture.com/gb-en/support/privacy-policy",
   },
   {
     slug: "atom-bank",
@@ -277,6 +281,7 @@ const organisations = [
     slug: "g-research",
     image: (props) => <Image {...props} src="/assets/sponsors/g-research.svg" alt="G-Research" width={19.477} height={24} />,
     link: "https://www.gresearch.com",
+    privacyPolicyLink: "https://www.gresearch.com/privacy-policy",
   },
   {
     slug: "newton-consulting",
@@ -291,12 +296,14 @@ const organisations = [
   {
     slug: "talkjs",
     image: (props) => <Image {...props} src="/assets/sponsors/talkjs-logo.svg" alt="TalkJS" width={600} height={681} />,
-    link: "https://talkjs.com"
+    link: "https://talkjs.com",
+    privacyPolicyLink: "https://talkjs.com/privacy",
   },
   {
     slug: "neptune-north",
     image: (props) => <Image {...props} src="/assets/sponsors/neptune-north.svg" alt="Neptune North" width={1e3} height={297.4} />,
-    link: "https://neptunenorth.co.uk"
+    link: "https://neptunenorth.co.uk",
+    privacyPolicyLink: "https://www.neptunenorth.co.uk/privacy-policy"
   }
 ] as const satisfies OrganisationInput[]
 
