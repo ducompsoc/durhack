@@ -17,41 +17,25 @@ type GuildTileConfig = {
 
 function GuildTile({ name, name_pos, icon_path, ...props }: GuildTileConfig) {
   return (
-    <div className={cn(props.className, "w-40 h-auto relative flex flex-col items-center justify-center")}>
+    <div data-pos={name_pos} className={cn(props.className, "group w-40 h-auto relative flex flex-col items-center justify-center")}>
       <Image
-        className="w-30 absolute lg:hidden block top-3/24 h-auto"
+        className="w-30 absolute lg:-top-1/24 top-3/24 h-auto group-data-[pos=below]:lg:hidden"
         src="/assets/guilds/gulid-name-underline-down.svg"
         alt="underline"
         width={211}
         height={65}
       />
-      <p className={cn(audiowide.className, "text-[#e1fffc] uppercase lg:hidden block")}>{name}</p>
-      {name_pos === "above" && (
-        <>
-          <Image
-            className="w-30 -top-1/24 lg:block hidden absolute h-auto"
-            src="/assets/guilds/gulid-name-underline-up.svg"
-            alt="underline"
-            width={211}
-            height={65}
-          />
-          <p className={cn(audiowide.className, "text-[#e1fffc] lg:block hidden uppercase")}>{name}</p>
-        </>
-      )}
+      <p className={cn(audiowide.className, "text-[#e1fffc] uppercase group-data-[pos=below]:lg:hidden")}>{name}</p>
       <Image className="" src="/assets/guilds/guild-tile.svg" alt="guild tile" width={262} height={244} />
       {/*TODO add guild icon here*/}
-      {name_pos === "below" && (
-        <>
-          <Image
-            className="w-30 absolute lg:block hidden bottom-3/24 h-auto"
-            src="/assets/guilds/gulid-name-underline-down.svg"
-            alt="underline"
-            width={211}
-            height={65}
-          />
-          <p className={cn(audiowide.className, "text-[#e1fffc] uppercase lg:block hidden")}>{name}</p>
-        </>
-      )}
+      <Image
+        className="w-30 absolute hidden group-data-[pos=below]:lg:block bottom-3/24 h-auto"
+        src="/assets/guilds/gulid-name-underline-down.svg"
+        alt="underline"
+        width={211}
+        height={65}
+      />
+      <p className={cn(audiowide.className, "text-[#e1fffc] uppercase hidden group-data-[pos=below]:lg:block")}>{name}</p>
     </div>
   )
 }
