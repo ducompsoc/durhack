@@ -23,7 +23,12 @@ const mailer = new MailgunMailer()
 const userInfoReadable = Readable.from(generateUserInfoByTicketAssignmentOrder())
 const attendeeCheckingTransform = new AttendeeCheckingTransform()
 const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
-const ticketAssigningWritable = new TicketAssigningWritable(mailer, acceptedTemplate, waitingListTemplate, totalAssignedTicketCount)
+const ticketAssigningWritable = new TicketAssigningWritable(
+  mailer,
+  acceptedTemplate,
+  waitingListTemplate,
+  totalAssignedTicketCount,
+)
 
 await pipeline(userInfoReadable, attendeeCheckingTransform, userInfoAugmentingTransform, ticketAssigningWritable)
 const newlyAssignedTicketCount = ticketAssigningWritable.totalAssignedTicketCount - totalAssignedTicketCount

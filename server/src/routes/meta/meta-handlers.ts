@@ -3,7 +3,6 @@ import { createHash } from "node:crypto"
 import { durhackConfig } from "@/config"
 import type { Middleware } from "@/types"
 
-
 export class MetaHandlers {
   static readonly eventTimings = {
     start: durhackConfig.currentEventStart.toISOString(),
@@ -14,7 +13,7 @@ export class MetaHandlers {
   static readonly eventTimingsETag = createHash("sha256").update(MetaHandlers.eventTimingsETagSource).digest("hex")
 
   getEventTimings(): Middleware {
-    return async (request, response) => {
+    return async (_request, response) => {
       response.setHeader("etag", MetaHandlers.eventTimingsETag)
       response.validatePreconditions()
 
