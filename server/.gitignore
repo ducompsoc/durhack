@@ -1,5 +1,12 @@
+# email templates (mostly for src/mailer/main)
 !templates
 templates/*
 
 !templates/*.hbs
 !templates/*.meta.ts
+
+# preset Prisma queries (mostly for src/mailer/main)
+!queries
+queries/*
+
+!queries/*.ts
