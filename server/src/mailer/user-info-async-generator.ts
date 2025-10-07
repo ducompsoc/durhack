@@ -2,6 +2,18 @@ import type { Prisma } from "@prisma/client"
 
 import { prisma, type UserInfo } from "@/database"
 
+export type GenerateUserInfoArgs = Pick<Prisma.UserInfoFindManyArgs, "where" | "orderBy">
+
+type OrderBy = GenerateUserInfoArgs["orderBy"]
+function concatOrderBy(first: OrderBy, second: OrderBy ): OrderBy {
+  if (first == null) return second
+  if (second == null) return first
+  const orderBy: OrderBy = []
+  Array.isArray(first) ? orderBy.push(...first) : orderBy.push(first)
+  Array.isArray(second) ? orderBy.push(...second) : orderBy.push(second)
+  return orderBy
+}
+
 /**
  * Generate UserInfo using the provided Prisma query, with the intent to email each.
  * This **cannot** be used for sending email to applicants that have not submitted applications;
@@ -9,8 +21,8 @@ import { prisma, type UserInfo } from "@/database"
  * endpoint.
  */
 export async function* generateUserInfo({
-  where,
-}: Pick<Prisma.UserInfoFindManyArgs, "where"> = {}): AsyncGenerator<UserInfo[], undefined> {
+  where, orderBy,
+}: GenerateUserInfoArgs = {}): AsyncGenerator<UserInfo[], undefined> {
   let cursor: string | undefined
 
   do {
@@ -21,7 +33,7 @@ export async function* generateUserInfo({
       where: {
         OR: [{ userId: cursor }, { AND: [where ?? {}, { applicationStatus: { not: "unsubmitted" } }] }],
       },
-      orderBy: [{ userId: "asc" }],
+      orderBy: concatOrderBy(orderBy, { userId: "asc" }),
     })
 
     cursor = results[9]?.userId
