@@ -27,7 +27,7 @@ export function Faqs({ className, ...props }: React.ComponentProps<"div">) {
         <div className="w-[90%] max-w-[50rem]">
           <Accordion type="single" collapsible>
             {faqs.map((question, index) => (
-              <AccordionItem className={cn("border-none")} key={index} value={`item-${index}`}>
+              <AccordionItem className={cn("border-none")} key={question.slug} value={`item-${index}`}>
                 <div className={cn("flex-row justify-between items-center w-full")}>
                   <AccordionTrigger
                     className={cn(
