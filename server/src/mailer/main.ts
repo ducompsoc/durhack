@@ -7,7 +7,7 @@ import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform
 import { MailgunMailer } from "@/lib/mailer"
 import { loadTemplate } from "@/mailer/templates"
 import { MailingWritable } from "./mailing-writable"
-import { generateUserInfo } from "./user-info-async-generator"
+import { generateUserInfo } from "../lib/user-info-async-generator"
 
 //region program argument parsing
 const programArgsConfig = {
