@@ -42,7 +42,7 @@ export const sponsors: Sponsor[] = [
     organisationSlug: "neptune-north",
     tier: "gold",
     cvSharing: true,
-    active: false,
+    active: true,
   },
   {
     organisationSlug: "talkjs",
