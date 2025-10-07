@@ -1,4 +1,4 @@
-import { OrganisationSlug } from "@/config/organisations"
+import type { OrganisationSlug } from "@/config/organisations"
 
 export type Sponsor = {
   organisationSlug: OrganisationSlug
