@@ -1,6 +1,6 @@
 import type * as React from "react"
 
-import { getOrganisationBySlug, OrganisationSlug } from "@/config/organisations"
+import { getOrganisationBySlug, type OrganisationSlug } from "@/config/organisations"
 import { electrolize } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 

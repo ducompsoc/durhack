@@ -31,6 +31,7 @@ import * as React from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod/v4"
 
+import { CvSharingPrivacyPolicies } from "@/components/dashboard/cv-sharing-privacy-policies"
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
 import type { Application } from "@/hooks/use-application"
@@ -38,7 +39,6 @@ import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
 import { updateApplication } from "@/lib/update-application"
 import { cn } from "@/lib/utils"
-import {CvSharingPrivacyPolicies} from "@/components/dashboard/cv-sharing-privacy-policies";
 
 type CvFormFields = {
   cvUploadChoice: "indeterminate" | "upload" | "remind" | "no-upload"
@@ -135,8 +135,8 @@ function CvForm({ application }: { application: Application }) {
                 <FormDescription asChild>
                   <div>
                     <p>
-                      By submitting your CV, you agree to provide it to our sponsors, and therefore agree to their privacy
-                      policies.
+                      By submitting your CV, you agree to provide it to our sponsors, and therefore agree to their
+                      privacy policies.
                     </p>
                     <CvSharingPrivacyPolicies className="ml-4" />
                   </div>
@@ -160,7 +160,9 @@ function CvForm({ application }: { application: Application }) {
                       <span className="text-muted-foreground">Choose...</span>
                     </SelectItem>
                     {/* temporary change - pending sponsor privacy policies */}
-                    <SelectItem value="upload" disabled>Yes <b>(sorry, not available yet - come back later!)</b></SelectItem>
+                    <SelectItem value="upload" disabled>
+                      Yes <b>(sorry, not available yet - come back later!)</b>
+                    </SelectItem>
                     <SelectItem value="remind">Not right now (remind me later)</SelectItem>
                     <SelectItem value="no-upload">No (don&apos;t remind me later)</SelectItem>
                   </SelectContent>

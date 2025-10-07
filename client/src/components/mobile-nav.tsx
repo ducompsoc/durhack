@@ -2,12 +2,11 @@
 
 "use client"
 
+import { Button } from "@durhack/web-components/ui/button"
+import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@durhack/web-components/ui/drawer"
 import Link, { type LinkProps } from "next/link"
 import { useRouter } from "next/navigation"
 import * as React from "react"
-
-import { Button } from "@durhack/web-components/ui/button"
-import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@durhack/web-components/ui/drawer"
 
 import type { MainNavItem, NavConfig, SidebarNavItem, SidebarNavSubItem } from "@/config/nav"
 import { cn } from "@/lib/utils"
@@ -18,12 +17,9 @@ export function MobileNav({ config, ...props }: { config: NavConfig } & React.Co
   const router = useRouter()
   const [open, setOpen] = React.useState(false)
 
-  const onOpenChange = React.useCallback(
-    (open: boolean) => {
-      setOpen(open)
-    },
-    [],
-  )
+  const onOpenChange = React.useCallback((open: boolean) => {
+    setOpen(open)
+  }, [])
 
   const closeDrawer = React.useCallback(() => {
     setOpen(false)

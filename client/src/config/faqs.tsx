@@ -1,5 +1,5 @@
-import type * as React from "react"
 import { getTimeFormattingValues } from "@durhack/durhack-common/util/format-date"
+import type * as React from "react"
 
 import { getEventTimings } from "@/lib/durhack-meta"
 
@@ -90,8 +90,9 @@ export const faqs = [
     answer: (
       <>
         <p>
-          Check-in for DurHack is {start.time}-{checkInCloses.time} on {start.day} {start.date}<sup>{start.dateOrdinalSuffix}</sup> {start.month}, and we&apos;re
-          expecting to finish our closing ceremony at {end.time} on {end.day}.
+          Check-in for DurHack is {start.time}-{checkInCloses.time} on {start.day} {start.date}
+          <sup>{start.dateOrdinalSuffix}</sup> {start.month}, and we&apos;re expecting to finish our closing ceremony at{" "}
+          {end.time} on {end.day}.
         </p>
       </>
     ),

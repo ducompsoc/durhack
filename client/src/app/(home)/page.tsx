@@ -1,9 +1,9 @@
-import { Hero } from "@/components/hero"
 import { Faqs } from "@/components/faqs"
+import { Footer } from "@/components/footer"
 import { Guilds } from "@/components/guilds"
-import {Partners, Sponsors} from "@/components/sponsors"
+import { Hero } from "@/components/hero"
 import { Info } from "@/components/info"
-import {Footer} from "@/components/footer";
+import { Partners, Sponsors } from "@/components/sponsors"
 
 export default function HomePage() {
   return (

@@ -1,14 +1,10 @@
 import Image from "next/image"
 import type * as React from "react"
-import {
-  type Sponsor,
-  partners,
-  goldSponsors,
-  platinumSponsors,
-  silverSponsors,
-} from "@/config/sponsors"
+
 import { getOrganisationBySlug } from "@/config/organisations"
+import { goldSponsors, partners, platinumSponsors, type Sponsor, silverSponsors } from "@/config/sponsors"
 import { cn } from "@/lib/utils"
+
 import { SectionHeader } from "./section-header"
 
 const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<typeof Image>, "src" | "alt">>> = {

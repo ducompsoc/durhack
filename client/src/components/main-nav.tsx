@@ -18,17 +18,12 @@ export function MainNav({ config, className, ...props }: { config: NavConfig } &
   )
 }
 
-function MainNavLink({ item }: { item: MainNavItem; }) {
+function MainNavLink({ item }: { item: MainNavItem }) {
   if (item.href == null) throw Error("MainNavLink nav items require a href") // todo: AssertionError / assert
   if (item.disabled === true) return null
 
   return (
-    <Link
-      href={item.href}
-      className={cn(
-        "transition-colors hover:opacity-80",
-      )}
-    >
+    <Link href={item.href} className={cn("transition-colors hover:opacity-80")}>
       {item.title}
     </Link>
   )

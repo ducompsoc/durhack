@@ -36,7 +36,7 @@ export const navConfig: NavConfig = {
       slug: "past-projects",
       title: "Past Projects",
       href: "#past-projects",
-    }
+    },
   ],
   sidebarNav: [],
 }

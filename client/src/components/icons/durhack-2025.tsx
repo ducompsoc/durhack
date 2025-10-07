@@ -1,8 +1,5 @@
-import * as React from "react"
-
 import { cn } from "@/lib/utils"
 import { type IconProps, iconVariants } from "@/variants/icons"
-
 
 // https://simpleicons.org/?q=discord
 export function DurHackIcon({ variant, className, ...props }: IconProps) {

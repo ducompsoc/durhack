@@ -73,7 +73,7 @@ const organisations = [
       />
     ),
     link: "https://www.qube-rt.com",
-    privacyPolicyLink: "https://www.qube-rt.com/privacy-policy"
+    privacyPolicyLink: "https://www.qube-rt.com/privacy-policy",
   },
   {
     slug: "assured-data-protection",
@@ -171,9 +171,7 @@ const organisations = [
   {
     slug: "rs-group",
     title: "RS Group",
-    image: (props) => (
-      <Image {...props} src="/assets/sponsors/rs-group.svg" alt="RS Group" width={24} height={24} />
-    ),
+    image: (props) => <Image {...props} src="/assets/sponsors/rs-group.svg" alt="RS Group" width={24} height={24} />,
     link: "https://uk.rs-online.com/web/content/discovery/education",
   },
   {
@@ -309,21 +307,31 @@ const organisations = [
   {
     slug: "g-research",
     title: "G-Research",
-    image: (props) => <Image {...props} src="/assets/sponsors/g-research.svg" alt="G-Research" width={19.477} height={24} />,
+    image: (props) => (
+      <Image {...props} src="/assets/sponsors/g-research.svg" alt="G-Research" width={19.477} height={24} />
+    ),
     link: "https://www.gresearch.com",
     privacyPolicyLink: "https://www.gresearch.com/privacy-policy",
   },
   {
     slug: "newton-consulting",
     title: "Newton Consulting Ltd.",
-    image: (props) => <Image {...props} src="/assets/sponsors/newton-consulting.svg" alt="Newton Consulting Ltd." width={150} height={36} />,
+    image: (props) => (
+      <Image
+        {...props}
+        src="/assets/sponsors/newton-consulting.svg"
+        alt="Newton Consulting Ltd."
+        width={150}
+        height={36}
+      />
+    ),
     link: "https://www.newtonimpact.com",
   },
   {
     slug: "ibm",
     title: "IBM Corporation",
     image: (props) => <Image {...props} src="/assets/sponsors/ibm.svg" alt="IBM Corporation" width={58} height={23} />,
-    link: "https://www.ibm.com"
+    link: "https://www.ibm.com",
   },
   {
     slug: "talkjs",
@@ -335,18 +343,21 @@ const organisations = [
   {
     slug: "neptune-north",
     title: "Neptune North",
-    image: (props) => <Image {...props} src="/assets/sponsors/neptune-north.svg" alt="Neptune North" width={1e3} height={297.4} />,
+    image: (props) => (
+      <Image {...props} src="/assets/sponsors/neptune-north.svg" alt="Neptune North" width={1e3} height={297.4} />
+    ),
     link: "https://neptunenorth.co.uk",
-    privacyPolicyLink: "https://www.neptunenorth.co.uk/privacy-policy"
-  }
+    privacyPolicyLink: "https://www.neptunenorth.co.uk/privacy-policy",
+  },
 ] as const satisfies OrganisationInput[]
 
 export type OrganisationSlug = (typeof organisations)[number]["slug"]
 export type Organisation = OrganisationInput & { slug: OrganisationSlug }
 
-const organisationsMap = (
-  new Map(organisations.map((organisation) => [organisation.slug, organisation]))
-) satisfies Map<string, OrganisationInput> as Map<string, Organisation>
+const organisationsMap = new Map(organisations.map((organisation) => [organisation.slug, organisation])) satisfies Map<
+  string,
+  OrganisationInput
+> as Map<string, Organisation>
 
 export function getOrganisationSlugs(): readonly OrganisationSlug[] {
   return Array.from(organisationsMap.keys()) as OrganisationSlug[]
