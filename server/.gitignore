@@ -8,5 +8,6 @@ templates/*
 # preset Prisma queries (mostly for src/mailer/main)
 !queries
 queries/*
-
-!queries/*.ts
+!queries/user-info
+queries/user-info/*
+!queries/**/*.ts
