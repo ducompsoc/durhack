@@ -95,7 +95,7 @@ export const sponsors: Sponsor[] = [
   {
     organisationSlug: "hackathons-uk",
     tier: "partner",
-    active: true,
+    active: false,
   },
   {
     organisationSlug: "durham-uni-computing-society",
@@ -110,7 +110,7 @@ export const sponsors: Sponsor[] = [
   {
     organisationSlug: "stand-out-stickers",
     tier: "partner",
-    active: true,
+    active: false,
   },
   {
     organisationSlug: "durham-uni-esports-and-gaming",
