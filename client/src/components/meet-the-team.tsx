@@ -92,8 +92,8 @@ export function MeetTheTeam({ ...props }: React.HTMLAttributes<HTMLDivElement>) 
   }, [])
 
   return (
-    <div className="meet-team" {...props}>
-      <div className="absolute left w-1/2" ref={leftHalfDivRef}>
+    <div className="meet-team w-full overflow-hidden pb-90" {...props}>
+      <div className="w-1/2" ref={leftHalfDivRef}>
         <div className="w-[200%] flex-row items-start justify-center">
           <SectionHeader className="text-white">Meet The team</SectionHeader>
           <TeamCarousel className="mt-10" leftHalfIntersectionObserver={intersectionObserver} />
