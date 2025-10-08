@@ -18,7 +18,7 @@ function TeamCarousel({ ...props }: React.HTMLAttributes<HTMLDivElement>) {
 
   const [isOpen, setIsOpen] = React.useState(false)
 
-  const TRANSITION_DURATION = 300
+  const TRANSITION_DURATION = 10
 
   const getCardOrientation = React.useCallback((imageElement: HTMLImageElement): "left" | "right" => {
     const nodeRect = imageElement.getBoundingClientRect()
@@ -26,81 +26,50 @@ function TeamCarousel({ ...props }: React.HTMLAttributes<HTMLDivElement>) {
     return nodeRect.left + nodeRect.width / 2 < window.innerWidth / 2 ? "left" : "right"
   }, [])
 
-  function onMouseEnter(e: React.MouseEvent<HTMLImageElement, MouseEvent>, index: number, teammate: Teammate) {
-    const orientation = getCardOrientation(e.currentTarget)
-    setHoverState({ teammate, orientation, index })
-
-    setTimeout(() => {
-      setIsOpen(true)
-    }, 10)
-
-    setScrolling(false)
-    e.currentTarget.nextElementSibling?.classList.remove("opacity-0", "invisible")
-  }
-
-  function onMouseLeave(e: React.MouseEvent<HTMLImageElement, MouseEvent>) {
-    setIsOpen(false)
-    setScrolling(true)
-
-    setTimeout(() => {
-      setHoverState(null)
-    }, TRANSITION_DURATION)
-
-    e.currentTarget.nextElementSibling?.classList.add("opacity-0", "invisible")
-  }
-
   const renderTeammateList = () =>
     teammates.map((teammate, i) => {
-      const isCardMounted = hoverState?.index === i
 
       return (
         <li key={i} teammate-ind={i} className={cn("relative")}>
           <img
-            onMouseEnter={(e) => onMouseEnter(e, i, teammate)}
-            onMouseLeave={onMouseLeave}
-            className={cn("rounded-full")}
+            className="rounded-full peer"
             src={teammate.img_path}
             alt="teammate image"
           />
           <img
-            className={cn("absolute bottom-0 right-0 opacity-0 invisible transition duration-300 ease-in-out")}
+            className={cn("absolute bottom-0 right-0 opacity-0 invisible peer-hover:opacity-100 peer-hover:visible transition duration-300 ease-in-out")}
             src="/assets/meet-the-team/teammate-pointer.svg"
             alt="teammate-pointer.svg"
           />
 
-          {hoverState && isCardMounted && (
-            <div
-              className={cn(
-                "absolute top-full mt-20 left-4/2 -translate-x-1/2 z-40 w-[300px] transition-opacity duration-300 ease-in-out",
-                isOpen ? "opacity-100" : "opacity-0",
-              )}
-            >
-              {hoverState.orientation === "left" ? (
-                <LeftTeamCard team={teammate.team} name={teammate.name} role={teammate.role} />
-              ) : (
-                <RightTeamCard team={teammate.team} name={teammate.name} role={teammate.role} />
-              )}
-            </div>
-          )}
+          <div
+            className={cn(
+              "pointer-events-none opacity-0 peer-hover:opacity-100 absolute top-full mt-20 left-4/2 -translate-x-1/2 z-40 w-[300px] transition-opacity duration-300 ease-in-out",
+            )}
+          >
+            {hoverState?.orientation === "left" ? (
+              <LeftTeamCard team={teammate.team} name={teammate.name} role={teammate.role} />
+            ) : (
+              <RightTeamCard team={teammate.team} name={teammate.name} role={teammate.role} />
+            )}
+          </div>
         </li>
       )
     })
 
   return (
     <>
-      <div className={cn(props.className, "w-full inline-flex flex-nowrap")}>
+      <div className={cn(props.className, "w-full inline-flex flex-nowrap group")}>
         <ul
           className={cn(
-            "flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-[150px] animate-infinite-scroll",
-            !scrolling && "animation-paused",
+            "flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-[150px] animate-infinite-scroll group-hover:animation-paused",
           )}
         >
           {renderTeammateList()}
         </ul>
         <ul
           className={cn(
-            "flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-[150px] animate-infinite-scroll",
-            !scrolling && "animation-paused",
+            "flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-[150px] animate-infinite-scroll group-hover:animation-paused",
           )}
           aria-hidden="true"
         >
