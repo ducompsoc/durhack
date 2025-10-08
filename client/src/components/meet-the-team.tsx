@@ -49,9 +49,9 @@ function TeamCarousel({ ...props }: React.HTMLAttributes<HTMLDivElement>) {
     e.currentTarget.nextElementSibling?.classList.add("opacity-0", "invisible")
   }
 
-  const renderTeammateList = (isDuplicate: boolean) =>
+  const renderTeammateList = () =>
     teammates.map((teammate, i) => {
-      const isCardMounted = hoverState?.index === i && !isDuplicate
+      const isCardMounted = hoverState?.index === i
 
       return (
         <li key={i} teammate-ind={i} className={cn("relative")}>
@@ -95,7 +95,7 @@ function TeamCarousel({ ...props }: React.HTMLAttributes<HTMLDivElement>) {
             !scrolling && "animation-paused",
           )}
         >
-          {renderTeammateList(false)}
+          {renderTeammateList()}
         </ul>
         <ul
           className={cn(
@@ -104,7 +104,7 @@ function TeamCarousel({ ...props }: React.HTMLAttributes<HTMLDivElement>) {
           )}
           aria-hidden="true"
         >
-          {renderTeammateList(true)}
+          {renderTeammateList()}
         </ul>
       </div>
     </>
