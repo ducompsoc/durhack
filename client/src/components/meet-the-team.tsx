@@ -6,77 +6,96 @@ import { type Teammate, teammates } from "@/config/teammates"
 import { cn } from "@/lib/utils"
 import { SectionHeader } from "./section-header"
 
-type CardOrientation = "left" | "right"
+type HoverState = {
+  teammate: Teammate
+  orientation: "left" | "right"
+  index: number
+}
 
 function TeamCarousel({ ...props }: React.HTMLAttributes<HTMLDivElement>) {
   const [scrolling, setScrolling] = React.useState(true)
-  const [teammate, setTeammate] = React.useState<Teammate>(teammates[0])
-  const [screenHalf, setScreenHalf] = React.useState("")
+  const [hoverState, setHoverState] = React.useState<HoverState | null>(null)
 
-  function pauseScroll(e: React.MouseEvent<HTMLImageElement, MouseEvent>) {
+  const [isOpen, setIsOpen] = React.useState(false)
+
+  const TRANSITION_DURATION = 300
+
+  const getCardOrientation = React.useCallback((imageElement: HTMLImageElement): "left" | "right" => {
+    const nodeRect = imageElement.getBoundingClientRect()
+
+    return nodeRect.left + nodeRect.width / 2 < window.innerWidth / 2 ? "left" : "right"
+  }, [])
+
+  function onMouseEnter(e: React.MouseEvent<HTMLImageElement, MouseEvent>, index: number, teammate: Teammate) {
+    const orientation = getCardOrientation(e.currentTarget)
+    setHoverState({ teammate, orientation, index })
+
+    setTimeout(() => {
+      setIsOpen(true)
+    }, 10)
+
     setScrolling(false)
-    e.currentTarget.nextElementSibling?.classList.remove("opacity-0")
-    e.currentTarget.nextElementSibling?.classList.remove("invisible")
-    let teammateIndex = Number(e.currentTarget.parentElement?.getAttribute("teammate-ind"))
-    if (Number.isNaN(teammateIndex)) teammateIndex = -1
-    const teammate = teammates[teammateIndex]
-    setTeammate(teammate)
-
-    const nodeRect = e.currentTarget.getBoundingClientRect()
-    let card
-
-    if (nodeRect.left + nodeRect.width / 2 < window.innerWidth / 2) {
-      setScreenHalf("left")
-      card = document.getElementById("left_card")
-    } else {
-      setScreenHalf("right")
-      card = document.getElementById("right_card")
-    }
-
-    card?.classList.remove("opacity-0")
-    card?.classList.remove("invisible")
+    e.currentTarget.nextElementSibling?.classList.remove("opacity-0", "invisible")
   }
 
-  function startScroll(e: React.MouseEvent<HTMLImageElement, MouseEvent>) {
+  function onMouseLeave(e: React.MouseEvent<HTMLImageElement, MouseEvent>) {
+    setIsOpen(false)
     setScrolling(true)
-    e.currentTarget.nextElementSibling?.classList.add("opacity-0")
-    e.currentTarget.nextElementSibling?.classList.add("invisible")
 
-    let card
-    if (screenHalf === "left") {
-      card = document.getElementById("left_card")
-    } else {
-      card = document.getElementById("right_card")
-    }
-    card?.classList.add("opacity-0")
-    card?.classList.add("invisible")
+    setTimeout(() => {
+      setHoverState(null)
+    }, TRANSITION_DURATION)
+
+    e.currentTarget.nextElementSibling?.classList.add("opacity-0", "invisible")
   }
+
+  const renderTeammateList = (isDuplicate: boolean) =>
+    teammates.map((teammate, i) => {
+      const isCardMounted = hoverState?.index === i && !isDuplicate
+
+      return (
+        <li key={i} teammate-ind={i} className={cn("relative")}>
+          <img
+            onMouseEnter={(e) => onMouseEnter(e, i, teammate)}
+            onMouseLeave={onMouseLeave}
+            className={cn("rounded-full")}
+            src={teammate.img_path}
+            alt="teammate image"
+          />
+          <img
+            className={cn("absolute bottom-0 right-0 opacity-0 invisible transition duration-300 ease-in-out")}
+            src="/assets/meet-the-team/teammate-pointer.svg"
+            alt="teammate-pointer.svg"
+          />
+
+          {hoverState && isCardMounted && (
+            <div
+              className={cn(
+                "absolute top-full mt-20 left-4/2 -translate-x-1/2 z-40 w-[300px] transition-opacity duration-300 ease-in-out",
+                isOpen ? "opacity-100" : "opacity-0",
+              )}
+            >
+              {hoverState.orientation === "left" ? (
+                <LeftTeamCard team={teammate.team} name={teammate.name} role={teammate.role} />
+              ) : (
+                <RightTeamCard team={teammate.team} name={teammate.name} role={teammate.role} />
+              )}
+            </div>
+          )}
+        </li>
+      )
+    })
 
   return (
     <>
-      <div className={cn(props.className, "w-full inline-flex flex-nowrap overflow-x-hidden")}>
+      <div className={cn(props.className, "w-full inline-flex flex-nowrap")}>
         <ul
           className={cn(
             "flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-[150px] animate-infinite-scroll",
             !scrolling && "animation-paused",
           )}
         >
-          {teammates.map((teammate, index) => (
-            <li key={index} teammate-ind={index} className={cn("relative")}>
-              <img
-                onMouseEnter={pauseScroll}
-                onMouseLeave={startScroll}
-                className={cn("rounded-full")}
-                src={teammate.img_path}
-                alt="teammate image"
-              />
-              <img
-                className={cn("absolute bottom-0 right-0 opacity-0 invisible transition duration-300 ease-in-out")}
-                src="/assets/meet-the-team/teammate-pointer.svg"
-                alt="teammate-pointer.svg"
-              />
-            </li>
-          ))}
+          {renderTeammateList(false)}
         </ul>
         <ul
           className={cn(
@@ -85,39 +104,8 @@ function TeamCarousel({ ...props }: React.HTMLAttributes<HTMLDivElement>) {
           )}
           aria-hidden="true"
         >
-          {teammates.map((teammate, index) => (
-            <li key={index} teammate-ind={index} className={cn("relative")}>
-              <img
-                onMouseEnter={pauseScroll}
-                onMouseLeave={startScroll}
-                className={cn("rounded-full")}
-                src={teammate.img_path}
-                alt="teammate image"
-              />
-              <img
-                className={cn("absolute bottom-0 right-0 opacity-0 invisible transition duration-300 ease-in-out")}
-                src="/assets/meet-the-team/teammate-pointer.svg"
-                alt="teammate-pointer.svg"
-              />
-            </li>
-          ))}
+          {renderTeammateList(true)}
         </ul>
-      </div>
-      <div className="flex justify-center mt-30 px-5 align-center">
-        <LeftTeamCard
-          id="left_card"
-          team={teammate.team}
-          name={teammate.name}
-          role={teammate.role}
-          className={cn("opacity-0 invisible transition duration-300 ease-in-out")}
-        />
-        <RightTeamCard
-          id="right_card"
-          team={teammate.team}
-          name={teammate.name}
-          role={teammate.role}
-          className={cn("opacity-0 invisible transition duration-300 ease-in-out")}
-        />
       </div>
     </>
   )

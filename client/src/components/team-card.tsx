@@ -1,6 +1,6 @@
 import type React from "react"
-import {cn} from "@/lib/utils";
-import {audiowide, spaceGrotesk} from "@/lib/google-fonts";
+import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
+import { cn } from "@/lib/utils"
 
 type CardDetails = {
   name: string
