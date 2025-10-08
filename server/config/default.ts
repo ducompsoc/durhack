@@ -32,7 +32,7 @@ export default {
     username: "api",
     key: "not-a-real-api-key",
     domain: "mailgun.compsoc.tech",
-    sendAsDomain: "compsoc.tech",
+    sendAsDomain: "mailgun.compsoc.tech",
     url: "https://api.eu.mailgun.net",
   },
   durhack: {
