@@ -65,7 +65,8 @@ export const faqs = [
     icon_path: "/assets/faq/icon-3.svg",
     answer: (
       <>
-        <p>Hackers travelling from Manchester, Leeds, Nottingham or Sheffield can obtain reduced-price coaches directly to DurHack at <a href="[link]">[link]</a>.</p>
+        <p>Hackers travelling from Manchester, Leeds, Nottingham or Sheffield can obtain reduced-price coaches directly to DurHack organised by us.</p>
+        <p>Register interest <a href="https://forms.gle/DvYzetUVWuaeJJm88">here</a>.</p>
         <p>Please note you must have a ticket to DurHack to attend the event.</p>,
         <p>Hackers from the above cities who do not travel via the DurHack organised coach will not be eligible for travel reimbursement</p>
         <p>unless with prior written exception.</p>,
