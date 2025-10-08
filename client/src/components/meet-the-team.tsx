@@ -58,13 +58,6 @@ function TeamCarousel({ leftHalfIntersectionObserver, ...props }: React.HTMLAttr
           )}
         >
           {renderTeammateList()}
-        </ul>
-        <ul
-          className={cn(
-            "flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-[150px] animate-infinite-scroll group-hover:animation-paused",
-          )}
-          aria-hidden="true"
-        >
           {renderTeammateList()}
         </ul>
       </div>
