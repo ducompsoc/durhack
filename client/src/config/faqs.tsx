@@ -140,7 +140,7 @@ export const faqs = [
     answer: (
       <>
         <p>
-          All attendees will need to show valid student ID (other photo ID is acceptable for graduates) at registration.
+          All attendees will need to show valid student ID (other photo ID is acceptable for graduates) and one form of legal ID at registration.
           You&apos;ll also need a laptop and a charger, and you might want to bring toiletries.
         </p>
       </>
