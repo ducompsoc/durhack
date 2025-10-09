@@ -13,8 +13,8 @@ export function Info({ className, ...props }: React.ComponentProps<"div">) {
       )}
       {...props}
     >
-      <div className="container max-w-[60rem] text-center">
-        <p className="pb-4">
+      <div className="container max-w-[60rem] text-center mt-20 space-y-8">
+        <p>
           Welcome to DurHack X - the 10th anniversary edition Durham University Computing Society’s flagship hackathon!
         </p>
         <p>
@@ -24,7 +24,7 @@ export function Info({ className, ...props }: React.ComponentProps<"div">) {
       </div>
 
       <div
-        className="relative h-[15rem] lg:h-[50rem]"
+        className="relative mt-20 lg:mt-30 h-[15rem] lg:h-[50rem]"
         role="img"
         aria-label="futuristic train driving through a glass tunnel over an arch bridge"
       >
