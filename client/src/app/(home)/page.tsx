@@ -32,7 +32,7 @@ export default function HomePage() {
       </div>
 
       {/* Guilds */}
-      <Guilds />
+      <Guilds className="hidden" />
 
       {/* Schedule */}
       <div className="schedule flex items-start justify-center hidden">
