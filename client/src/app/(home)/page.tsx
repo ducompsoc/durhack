@@ -4,6 +4,7 @@ import { Guilds } from "@/components/guilds"
 import { Hero } from "@/components/hero"
 import { Info } from "@/components/info"
 import { Partners, Sponsors } from "@/components/sponsors"
+import { Location } from "@/components/location"
 
 export default function HomePage() {
   return (
@@ -15,9 +16,7 @@ export default function HomePage() {
       <Info className="hidden" />
 
       {/* Location */}
-      <div className="location flex items-start justify-center hidden">
-        <h1 className="hidden text-white text-5xl font-bold">Location</h1>
-      </div>
+      <Location className="hidden" />
 
       {/* Sponsors & Partners */}
       <Sponsors className="hidden" />
