@@ -13,25 +13,25 @@ export default function HomePage() {
       <Hero />
 
       {/* Info */}
-      <Info className="hidden" />
+      <Info className="" />
 
       {/* Location */}
-      <Location className="hidden" />
+      <Location className="" />
 
       {/* Sponsors & Partners */}
-      <Sponsors className="hidden" />
-      <Partners className="hidden" />
+      <Sponsors className="" />
+      <Partners className="" />
 
       {/* FAQ */}
-      <Faqs className="hidden" />
+      <Faqs className="" />
 
       {/* History */}
-      <div className="history flex items-start justify-center hidden">
-        <h1 className="hidden text-white text-5xl font-bold">History</h1>
+      <div className="history flex items-start justify-center ">
+        <h1 className=" text-white text-5xl font-bold">History</h1>
       </div>
 
       {/* Guilds */}
-      <Guilds className="hidden" />
+      <Guilds className="" />
 
       {/* Schedule */}
       <div className="schedule flex items-start justify-center hidden">
