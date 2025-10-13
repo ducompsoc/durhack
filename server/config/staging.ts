@@ -32,6 +32,7 @@ export default {
   },
   durhack: {
     ticketAssignmentActive: true,
-    maximumTicketAssignment: 1,
+    maximumTicketAssignment: 2,
+    maximumExternalTicketAssignment: 1,
   },
 } satisfies DeepPartial<ConfigIn>
