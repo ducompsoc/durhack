@@ -24,8 +24,6 @@ type SponsorType = "Platinum" | "Gold" | "Silver" | "Partner"
 
 type SponsorProps = {
   sponsor: Sponsor
-  sponsorType: SponsorType
-  renderTierTitle?: boolean | null | undefined
 } & React.HTMLAttributes<HTMLDivElement>
 
 type SponsorSectionProps = {
@@ -77,28 +75,21 @@ function SponsorContent({ sponsor }: { sponsor: Sponsor }) {
   )
 }
 
-function SponsorBox({ sponsor, sponsorType, renderTierTitle = false, ...props }: SponsorProps) {
+function SponsorBox({ sponsor, ...props }: SponsorProps) {
   return (
     <div className="sponsor biggest m-2" {...props}>
-      {renderTierTitle && (
-        <div>
-          <p className="uppercase text-transparent bg-clip-text font-bold text-[20px] absolute">{sponsorType}</p>
-        </div>
-      )}
       <SponsorContent sponsor={sponsor} />
     </div>
   )
 }
 
-function SponsorSection({ sponsorType, sponsors, ...props }: SponsorSectionProps) {
+function SponsorSection({ sponsors, ...props }: SponsorSectionProps) {
   return (
     <div className="flex flex-wrap justify-center">
       {sponsors.map((sponsor, index) => (
         <SponsorBox
           key={sponsor.organisationSlug}
           sponsor={sponsor}
-          sponsorType={sponsorType}
-          renderTierTitle={index === 0}
           {...props}
         />
       ))}
