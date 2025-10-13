@@ -27,4 +27,7 @@ export default {
     realm: "durhack",
     redirectUris: ["https://api.durhack.com/auth/keycloak/callback"],
   },
+  durhack: {
+    ticketAssignmentActive: true,
+  },
 } satisfies DeepPartial<ConfigIn>

@@ -31,6 +31,7 @@ export default {
     redirectUris: ["https://api.durhack-staging.com/auth/keycloak/callback"],
   },
   durhack: {
+    ticketAssignmentActive: true,
     maximumTicketAssignment: 1,
   },
 } satisfies DeepPartial<ConfigIn>
