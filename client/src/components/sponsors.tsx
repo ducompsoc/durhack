@@ -44,7 +44,7 @@ const sponsorScale = 0.581
 function FoundingSponsorFlag({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      className={cn("rounded-3xl bg-gradient-to-tr from-25% from-[#A3C97D] to-75% to-[#1E8456] size-full", className)}
+      className={cn("rounded-3xl bg-gradient-to-t from-50% from-[#A3C97D] to-100% to-[#1E8456] size-full", className)}
       style={{clipPath: "polygon(0 0, 50% 0, 0 50%)"}}
     >
       <span className={cn("absolute top-3 -left-1 -rotate-45 w-16 text-white text-xs text-center uppercase font-extrabold", darkerGrotesk.className)}>Founding Sponsor</span>
