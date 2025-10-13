@@ -3,6 +3,7 @@ import stream from "node:stream"
 import { durhackConfig, mailgunConfig } from "@/config"
 import { prisma, type UserInfo } from "@/database"
 import { type DurHackEventTimingInfo, getEventTimingInfo } from "@/lib/format-event-timings"
+import { isExternalApplicant } from "@/lib/is-external-applicant"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import type { Mailer } from "@/lib/mailer"
 import { isString } from "@/lib/type-guards"
@@ -12,8 +13,56 @@ import { durhackInvite } from "@/routes/calendar/calendar-event"
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
+type ICounter = {
+  increment: () => void
+  decrement: () => void
+  hasCapacity: () => boolean
+}
+
+class Counter implements ICounter {
+  private count: number
+  private readonly capacity: number
+
+  constructor(count: number, capacity: number) {
+    this.count = count
+    this.capacity = capacity
+  }
+
+  increment(): void {
+    this.count += 1
+  }
+  decrement(): void {
+    this.count -= 1
+  }
+  hasCapacity(): boolean {
+    return this.count < this.capacity
+  }
+  get(): number {
+    return this.count
+  }
+}
+
+class MultiCounter implements ICounter {
+  private readonly counters: Counter[]
+
+  constructor(counters: Counter[]) {
+    this.counters = counters
+  }
+
+  increment(): void {
+    for (const counter of this.counters) counter.increment()
+  }
+  decrement(): void {
+    for (const counter of this.counters) counter.decrement()
+  }
+  hasCapacity(): boolean {
+    return this.counters.every((counter) => counter.hasCapacity())
+  }
+}
+
 export class TicketAssigningWritable extends stream.Writable {
-  totalAssignedTicketCount: number
+  totalAssignedTicketCounter: Counter
+  totalAssignedExternalTicketCounter: Counter
   private readonly mailer: Mailer
   private readonly ticketMessageTemplate: Template
   private readonly waitingListMessageTemplate: Template
@@ -24,6 +73,7 @@ export class TicketAssigningWritable extends stream.Writable {
     acceptedTemplate: Template,
     waitingListTemplate: Template,
     totalAssignedTicketCount: number,
+    totalAssignedExternalTicketCount: number,
   ) {
     super({
       objectMode: true, // the stream expects to receive objects, not a string/binary data
@@ -31,8 +81,19 @@ export class TicketAssigningWritable extends stream.Writable {
     this.mailer = mailer
     this.ticketMessageTemplate = acceptedTemplate
     this.waitingListMessageTemplate = waitingListTemplate
-    this.totalAssignedTicketCount = totalAssignedTicketCount
+    this.totalAssignedTicketCounter = new Counter(totalAssignedTicketCount, durhackConfig.maximumTicketAssignment)
+    this.totalAssignedExternalTicketCounter = new Counter(
+      totalAssignedExternalTicketCount,
+      durhackConfig.maximumExternalTicketAssignment,
+    )
     this.eventTimingInfo = getEventTimingInfo()
+  }
+
+  getTicketCounterFor(userInfo: AugmentedUserInfo): ICounter {
+    const counters: Counter[] = [this.totalAssignedTicketCounter]
+    if (isExternalApplicant(userInfo)) counters.push(this.totalAssignedExternalTicketCounter)
+    if (counters.length === 1) return counters[0]
+    return new MultiCounter(counters)
   }
 
   /**
@@ -43,8 +104,10 @@ export class TicketAssigningWritable extends stream.Writable {
     if (userInfo.applicationStatus === "unsubmitted")
       throw new Error(`Can't assign ticket to ${userInfo.userId} as their application is unsubmitted`)
 
+    const ticketCounter = this.getTicketCounterFor(userInfo)
+
     try {
-      this.totalAssignedTicketCount += 1
+      ticketCounter.increment()
       const now = new Date()
       await prisma.userInfo.update({
         where: { userId: userInfo.userId },
@@ -55,7 +118,7 @@ export class TicketAssigningWritable extends stream.Writable {
         },
       })
     } catch (e) {
-      this.totalAssignedTicketCount -= 1
+      ticketCounter.decrement()
       throw e
     }
 
@@ -112,7 +175,8 @@ export class TicketAssigningWritable extends stream.Writable {
    * Otherwise, move the user to the ticket waiting list.
    */
   async updateApplicationStatus(userInfo: AugmentedUserInfo): Promise<void> {
-    if (this.totalAssignedTicketCount < durhackConfig.maximumTicketAssignment) {
+    const ticketCounter = this.getTicketCounterFor(userInfo)
+    if (ticketCounter.hasCapacity()) {
       await this.assignTicket(userInfo)
       return
     }

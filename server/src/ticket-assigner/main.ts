@@ -10,13 +10,17 @@ import { AttendeeCheckingTransform } from "./attendee-checking-transform"
 import { TicketAssigningWritable } from "./ticket-assigning-writable"
 import { generateUserInfoByTicketAssignmentOrder } from "./ticket-order-user-info-async-generator"
 
-const [totalAssignedTicketCount, acceptedTemplate, waitingListTemplate] = await Promise.all([
-  prisma.userInfo.count({
-    where: { applicationStatus: { equals: "accepted" } },
-  }),
-  loadTemplate("ticket-notification"),
-  loadTemplate("waiting-list-notification"),
-])
+const [totalAssignedTicketCount, totalAssignedExternalTicketCount, acceptedTemplate, waitingListTemplate] =
+  await Promise.all([
+    prisma.userInfo.count({
+      where: { applicationStatus: { equals: "accepted" } },
+    }),
+    prisma.userInfo.count({
+      where: { applicationStatus: { equals: "accepted" }, university: { not: "Durham University" } },
+    }),
+    loadTemplate("ticket-notification"),
+    loadTemplate("waiting-list-notification"),
+  ])
 
 const mailer = new MailgunMailer()
 
@@ -28,8 +32,9 @@ const ticketAssigningWritable = new TicketAssigningWritable(
   acceptedTemplate,
   waitingListTemplate,
   totalAssignedTicketCount,
+  totalAssignedExternalTicketCount,
 )
 
 await pipeline(userInfoReadable, attendeeCheckingTransform, userInfoAugmentingTransform, ticketAssigningWritable)
-const newlyAssignedTicketCount = ticketAssigningWritable.totalAssignedTicketCount - totalAssignedTicketCount
+const newlyAssignedTicketCount = ticketAssigningWritable.totalAssignedTicketCounter.get() - totalAssignedTicketCount
 console.log(`Assigned ${newlyAssignedTicketCount} tickets`)
