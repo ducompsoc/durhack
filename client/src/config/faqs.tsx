@@ -73,8 +73,8 @@ export const faqs = [
         <p>For hackers travelling from outside of these cities, we can provide the following reimbursements for reasonable public transport expenses:</p>
         <ul>
           <li>&lt;20 miles (e.g. Newcastle) — £10</li>
-          <li>20–100 miles (e.g. Lancaster) — £30</li>
-          <li>100+ miles (e.g. London, Oxford) — £55</li>
+          <li>20–150 miles (e.g. Lancaster) — £30</li>
+          <li>150+ miles (e.g. London, Oxford) — £55</li>
         </ul>
         <p>If you are travelling in a group by car, or have any other travel queries, please reach out to <a href="mailto:travel@durhack.com">travel@durhack.com</a>.</p>
 
