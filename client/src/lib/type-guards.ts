@@ -18,3 +18,9 @@ export function isObject(value: unknown): value is UnknownObject {
   if (Array.isArray(value)) return false
   return true
 }
+
+export function hasCode(value: unknown): value is { code: unknown } {
+  if (value == null) return false
+  if (typeof value !== "object") return false
+  return Object.hasOwn(value, "code")
+}

@@ -4,13 +4,16 @@ import type { UserProfile } from "@durhack/durhack-common/types/user-profile"
 import { useToast } from "@durhack/web-components/hooks/use-toast"
 import { Label } from "@durhack/web-components/ui/label"
 import { UpdateIcon } from "@radix-ui/react-icons"
+import { redirect, usePathname } from "next/navigation"
 import * as React from "react"
 import useSWR from "swr"
+import ModuleError from "module-error"
 
 import { ApplicationStatusBadge } from "@/components/dashboard/application-status-indicator"
 import { siteConfig } from "@/config/site"
 import { isLoaded } from "@/lib/is-loaded"
 import { cn } from "@/lib/utils"
+import { hasCode } from "@/lib/type-guards"
 
 import { ProfileCheckInButton } from "./check-in-button"
 import { CvUploadBadge } from "./cv-upload-badge"
@@ -24,7 +27,7 @@ const profileFetcher = async (url: string): Promise<UserProfile> => {
     credentials: "include",
   })
 
-  if (response.status === 404) throw new Error("Profile not found")
+  if (response.status === 404) throw new ModuleError("Profile not found", { code: "ERR_NOT_FOUND" })
   if (!response.ok) throw new Error("Failed to fetch data")
   const payload: unknown = await response.json()
   if (typeof payload !== "object" || Array.isArray(payload))
@@ -44,6 +47,7 @@ function UserAttribute({ children, className, ...props }: React.HTMLAttributes<H
 
 export default function ProfilePage(props: { params: Promise<{ userId: string }> }) {
   const params = React.use(props.params)
+  const pathname = usePathname()
   const { toast } = useToast()
 
   const {
@@ -51,7 +55,12 @@ export default function ProfilePage(props: { params: Promise<{ userId: string }>
     mutate: mutateProfile,
     error: profileError,
     isLoading: profileIsLoading,
-  } = useSWR(`${siteConfig.apiUrl}/profile/${params.userId}`, profileFetcher)
+  } = useSWR<UserProfile, unknown>(`${siteConfig.apiUrl}/profile/${params.userId}`, profileFetcher)
+
+  if (hasCode(profileError) && profileError.code === "ERR_NOT_FOUND") {
+    const params = new URLSearchParams({ status_code: "404", from: pathname })
+    redirect(`/error?${params}`)
+  }
 
   if (!isLoaded(profile, profileIsLoading, profileError))
     return (
