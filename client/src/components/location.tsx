@@ -1,26 +1,55 @@
 import type * as React from "react"
+
 import { darkerGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 
-export function Location({ className, ...props }: React.ComponentProps<"div">) {
+type LocationBtnProps = {
+  innerText: string
+  href: string
+} & React.ComponentProps<"a">
+
+function LocationBtn({ innerText, href, className, ...props }: LocationBtnProps) {
   return (
-    <div
+    <a
+      href={href}
+      target="_blank"
       className={cn(
-        "location flex flex-col justify-center text-[#238CBA] text-3xl",
-        darkerGrotesk.className,
         className,
+        "border-[1px] border-white text-[#238CBA] bg-[#6DB7B2]/35 hover:bg-[#6DB7B2]/100 transition duration-300 ease-in-out rounded-full uppercase px-4 py-2 mx-4",
       )}
       {...props}
     >
-      <div className="container max-w-[60rem] text-center">
-        <p>
-          DurHack takes place in the Teaching and Learning Centre at Durham University. It’s just a short walk or bus
-          ride from Durham Train Station, with direct connections to major UK cities. To make your journey easier, we
-          are coordinating coaches to the event from Leeds, Manchester, Sheffield and Nottingham. We also offer travel
-          reimbursements for participants<sup>*</sup> travelling from elsewhere — so getting here is one less thing to
-          worry about.
+      {innerText}
+    </a>
+  )
+}
+
+export function Location({ className, ...props }: React.ComponentProps<"div">) {
+  const SU_LINK =
+    "https://www.durhamsu.com/groups/computing-766e/events/durhack-coach-tickets-manchester-leeds-nottingham-sheffield"
+  const MAPS_LINK = "https://maps.app.goo.gl/H3qypQFBy88CQa7N9"
+
+  return (
+    <div className={cn(className)} {...props}>
+      <div className="flex-row">
+        <p
+          className={cn(
+            "px-60 my-10 text-center text-[#238CBA] font-medium text-[32px]/[100%]",
+            darkerGrotesk.className,
+          )}
+        >
+          DurHack takes place in the Teaching and Learning Centre at Durham University.
+          It’s just a short walk or bus ride from Durham Train Station, with direct connections to major UK cities.
+          To make your journey easier, we are coordinating coaches to the event from Leeds, Manchester, Sheffield and
+          Nottingham.
+          We also offer travel reimbursements for participants<sup>*</sup> travelling from elsewhere — so getting here
+          is one less thing to worry about.
         </p>
         <p>* see FAQs for details.</p>
+        <div className={cn("flex justify-center items-center px-4 my-10")}>
+          <LocationBtn href={MAPS_LINK} innerText="Google Maps" />
+          <LocationBtn href={SU_LINK} innerText="Book Coach Tickets" />
+        </div>
       </div>
     </div>
   )
