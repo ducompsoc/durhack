@@ -70,13 +70,14 @@ export const faqs = [
         <p>Please note you must have a ticket to DurHack to attend the event.</p>,
         <p>Hackers from the above cities who do not travel via the DurHack organised coach will not be eligible for travel reimbursement</p>
         <p>unless with prior written exception.</p>,
-        <p>For hackers travelling from outside of these cities, we will reimburse up to 50% of your travel costs up to the following caps:</p>
+        <p>For hackers travelling from outside of these cities, we will reimburse 50% of your travel costs up to the following caps:</p>
         <ul>
           <li>&lt;20 miles (e.g. Newcastle) — £5</li>
           <li>20-60 miles — £15</li>
           <li>60–150 miles (e.g. Lancaster) — £30</li>
           <li>150+ miles (e.g. London, Oxford) — £55</li>
         </ul>
+        <p>If you are travelling on our coaches, you will not be not eligible for any other travel reimbursement.</p>
         <p>If you are travelling in a group by car, or have any other travel queries, please reach out to <a href="mailto:travel@durhack.com">travel@durhack.com</a>.</p>
 
         <p>All travel reimbursement is conditional on:</p>
