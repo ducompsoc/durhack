@@ -24,6 +24,7 @@ const profileFetcher = async (url: string): Promise<UserProfile> => {
     credentials: "include",
   })
 
+  if (response.status === 404) throw new Error("Profile not found")
   if (!response.ok) throw new Error("Failed to fetch data")
   const payload: unknown = await response.json()
   if (typeof payload !== "object" || Array.isArray(payload))
