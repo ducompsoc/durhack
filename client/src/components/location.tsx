@@ -15,7 +15,7 @@ function LocationBtn({ innerText, href, className, ...props }: LocationBtnProps)
       target="_blank"
       className={cn(
         className,
-        "border-[1px] border-white text-[#238CBA] bg-[#6DB7B2]/35 hover:bg-[#6DB7B2]/100 transition duration-300 ease-in-out rounded-full text-2xl uppercase px-10 py-4 mx-4",
+        "border-[1px] border-white text-[#207ea7] bg-[#cce8f9]/35 hover:bg-[#cce8f9]/100 transition duration-300 ease-in-out rounded-full text-2xl uppercase px-10 py-4 mx-4",
       )}
       {...props}
     >
@@ -34,7 +34,7 @@ export function Location({ className, ...props }: React.ComponentProps<"div">) {
       <div className="flex-row">
         <p
           className={cn(
-            "px-60 my-10 text-center text-[#238CBA] font-medium text-[32px]/[100%]",
+            "px-60 my-13 text-center text-[#207ea7] font-medium text-[32px]/[100%]",
             darkerGrotesk.className,
           )}
         >
