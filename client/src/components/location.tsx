@@ -15,7 +15,7 @@ function LocationBtn({ innerText, href, className, ...props }: LocationBtnProps)
       target="_blank"
       className={cn(
         className,
-        "border-[1px] border-white text-[#238CBA] bg-[#6DB7B2]/35 hover:bg-[#6DB7B2]/100 transition duration-300 ease-in-out rounded-full uppercase px-4 py-2 mx-4",
+        "border-[1px] border-white text-[#238CBA] bg-[#6DB7B2]/35 hover:bg-[#6DB7B2]/100 transition duration-300 ease-in-out rounded-full text-2xl uppercase px-10 py-4 mx-4",
       )}
       {...props}
     >
