@@ -6,6 +6,14 @@ import { CloudsRightGraphic } from "@/components/graphics/clouds-right"
 import { HillBottomLeftGraphic } from "@/components/graphics/hill-bottom-left"
 import { HillRightGraphic } from "@/components/graphics/hill-right"
 import { HillTopLeftGraphic } from "@/components/graphics/hill-top-left"
+import { DomeLeftGraphic } from "@/components/graphics/dome-left";
+import { DomeRightGraphic } from "./graphics/dome-right";
+import { SunflowerGraphic } from "./graphics/sunflower";
+import { TreeGraphic } from "./graphics/tree";
+import { TreeSmallGraphic } from "./graphics/tree-small";
+import { WindmillLeftGraphic } from "./graphics/windmill-left";
+import { WindmillCentreGraphic } from "./graphics/windmill-centre";
+import { WindmillRightGraphic } from "./graphics/windmill-right";
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 
