@@ -27,11 +27,11 @@ export const dietaryRequirementSchema = z.enum([
 export type DietaryRequirement = z.output<typeof dietaryRequirementSchema>
 
 const dietaryRequirementMetadata: Record<DietaryRequirement, { label: string }> = {
-  "vegan": { label: "Vegan" },
-  "vegetarian": { label: "Vegetarian" },
-  "pescatarian": { label: "Pescatarian" },
-  "halal": { label: "Halal" },
-  "kosher": { label: "Kosher" },
+  vegan: { label: "Vegan" },
+  vegetarian: { label: "Vegetarian" },
+  pescatarian: { label: "Pescatarian" },
+  halal: { label: "Halal" },
+  kosher: { label: "Kosher" },
   "gluten-free": { label: "Gluten Free" },
   "dairy-free": { label: "Dairy Free" },
   "egg-allergy": { label: "Egg Allergy" },
@@ -43,7 +43,7 @@ const dietaryRequirementMetadata: Record<DietaryRequirement, { label: string }> 
   "soy-allergy": { label: "Soy Allergy" },
   "sesame-allergy": { label: "Sesame Allergy" },
   "onion-allergy": { label: "Onion Allergy" },
-  "other": { label: "Other" },
+  other: { label: "Other" },
 }
 
 export const dietaryRequirementOptions = recordEntries(dietaryRequirementMetadata).map(([value, metadata]) => ({

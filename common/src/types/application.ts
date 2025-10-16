@@ -1,5 +1,5 @@
-import type { DisciplineOfStudy } from "@/input/discipline-of-study"
 import type { DietaryRequirement } from "@/input/dietary-requirement"
+import type { DisciplineOfStudy } from "@/input/discipline-of-study"
 
 export type { DisciplineOfStudy, DietaryRequirement }
 
