@@ -17,7 +17,10 @@ type GuildTileConfig = {
 
 function GuildTile({ name, name_pos, icon_path, ...props }: GuildTileConfig) {
   return (
-    <div data-pos={name_pos} className={cn(props.className, "group w-40 h-auto relative flex flex-col items-center justify-center")}>
+    <div
+      data-pos={name_pos}
+      className={cn(props.className, "group w-40 h-auto relative flex flex-col items-center justify-center")}
+    >
       <Image
         className="w-30 absolute lg:-top-1/24 top-3/24 h-auto group-data-[pos=below]:lg:hidden"
         src="/assets/guilds/guild-name-underline-down.svg"
@@ -35,7 +38,9 @@ function GuildTile({ name, name_pos, icon_path, ...props }: GuildTileConfig) {
         width={211}
         height={65}
       />
-      <p className={cn(audiowide.className, "text-[#e1fffc] uppercase hidden group-data-[pos=below]:lg:block")}>{name}</p>
+      <p className={cn(audiowide.className, "text-[#e1fffc] uppercase hidden group-data-[pos=below]:lg:block")}>
+        {name}
+      </p>
     </div>
   )
 }
