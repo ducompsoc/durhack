@@ -65,6 +65,13 @@ applicationApp
   .all(forbiddenOrUnauthorised())
 
 applicationApp
+  .route("/travel")
+  .all(methodNotAllowed(["PATCH"]))
+  .all(authenticate())
+  .patch(applicationHandlers.patchTravel())
+  .all(forbiddenOrUnauthorised())
+
+applicationApp
   .route("/submit")
   .all(methodNotAllowed(["POST"]))
   .all(authenticate())

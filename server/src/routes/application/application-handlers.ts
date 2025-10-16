@@ -2,6 +2,7 @@ import assert from "node:assert/strict"
 import { parse as parsePath } from "node:path/posix"
 import { type DietaryRequirement, dietaryRequirementSchema } from "@durhack/durhack-common/input/dietary-requirement"
 import { type DisciplineOfStudy, disciplineOfStudySchema } from "@durhack/durhack-common/input/discipline-of-study"
+import { travelOriginSchema } from "@durhack/durhack-common/input/travel-origin"
 import type { Application } from "@durhack/durhack-common/types/application"
 import type { FileInfo } from "@durhack/durhack-common/types/file-info"
 import { ClientError, HttpStatus } from "@otterhttp/errors"
@@ -24,6 +25,7 @@ import { onlyKnownUsers } from "@/decorators/authorise"
 import { json, multipartFormData } from "@/lib/body-parsers"
 import { getKeycloakAdminClient, type KeycloakUserInfo } from "@/lib/keycloak-client"
 import { mailgunClient } from "@/lib/mailgun"
+import { isNumber } from "@/lib/type-guards";
 import { zodIso3 } from "@/lib/zod-iso3-validator"
 import { zodPhoneNumber } from "@/lib/zod-phone-validator"
 import type { Middleware, Request } from "@/types"
@@ -135,6 +137,10 @@ const cvUploadSchema = z.object({
     .optional(),
 })
 
+const travelDetailsSchema = z.object({
+  travelOrigin: travelOriginSchema,
+})
+
 class ApplicationHandlers {
   private async loadApplication(request: Request): Promise<Application> {
     assert(request.userProfile)
@@ -190,6 +196,7 @@ class ApplicationHandlers {
       graduationYear: userInfo?.graduationYear ?? null,
       levelOfStudy: (userInfo?.levelOfStudy as Application["levelOfStudy"] | null | undefined) ?? null,
       disciplinesOfStudy: disciplinesOfStudy,
+      travelOrigin: (userInfo?.travelOrigin as Application["travelOrigin"] | null | undefined) ?? null,
       tShirtSize: (userInfo?.tShirtSize?.trimEnd() as Application["tShirtSize"] | null | undefined) ?? null,
       dietaryRequirements: dietaryRequirements,
       accessRequirements: userInfo?.accessRequirements ?? null,
@@ -511,6 +518,33 @@ class ApplicationHandlers {
             upsert: {
               update: cvFileData,
               create: cvFileData,
+            },
+          },
+        },
+      })
+
+      response.sendStatus(200)
+    }
+  }
+
+  patchTravel(): Middleware {
+    return async (request, response) => {
+      assert(request.user)
+
+      const body = await json(request, response)
+      const payload = travelDetailsSchema.parse(body)
+
+      const prismaUserInfo = {
+        travelOrigin: payload.travelOrigin,
+      }
+
+      await prisma.user.update({
+        where: { keycloakUserId: request.user.keycloakUserId },
+        data: {
+          userInfo: {
+            upsert: {
+              create: prismaUserInfo,
+              update: prismaUserInfo,
             },
           },
         },
