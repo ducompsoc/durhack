@@ -23,7 +23,7 @@ model Interest {
 }
 
 model User {
-    keycloakUserId    String              @id @map("keycloak_user_id") @db.Uuid
+    keycloakUserId    String             @id @map("keycloak_user_id") @db.Uuid
     tokenSet          TokenSet?
     sessions          SessionRecord[]
     userCv            UserCV?
@@ -31,7 +31,7 @@ model User {
     userFlags         UserFlag[]
     userConsents      UserConsent[]
     travelReceipts    TravelReceipts[]
-    ReimbursementForm ReimbursementForm[]
+    ReimbursementForm TravelPayRequest[]
 }
 
 model UserCV {
@@ -76,11 +76,11 @@ model TravelReceipts {
     contentType String @map("content_type")
     content     Bytes
 
-    updatedAt         DateTime            @updatedAt @map("updated_at")
-    ReimbursementForm ReimbursementForm[]
+    updatedAt         DateTime           @updatedAt @map("updated_at")
+    ReimbursementForm TravelPayRequest[]
 }
 
-model ReimbursementForm {
+model TravelPayRequest {
     userId         String           @map("user_id") @db.Uuid()
     user           User             @relation(fields: [userId], references: [keycloakUserId])
     idRequest      Int              @id @default(autoincrement())
