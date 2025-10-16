@@ -51,6 +51,33 @@ export function Hero({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
           src="/assets/graphics/sunflower.svg" alt="Sunflower" width={482} height={589}
           className="absolute right-0 bottom-[-20%]"
         />
+
+        <Image
+          src="/assets/graphics/windmill-left.svg" alt="Left Windmill" width={173} height={354}
+          className="absolute right-[18%] bottom-[35%]"
+        />
+        <Image
+          src="/assets/graphics/windmill-centre.svg" alt="Centre Windmill" width={224} height={463}
+          className="absolute right-[10%] bottom-[40%]"
+        />
+        <Image
+          src="/assets/graphics/windmill-right.svg" alt="Right Windmill" width={122} height={253}
+          className="absolute right-[5%] bottom-[45%]"
+        />
+
+        <Image
+          src="/assets/graphics/dome-left.svg" alt="Left Dome" width={224} height={160}
+          className="absolute right-[20%] bottom-[30%]"
+        />
+        <Image
+          src="/assets/graphics/dome-right.svg" alt="Right Dome" width={412} height={287}
+          className="absolute right-[3%] bottom-[29%]"
+        />
+
+        <Image
+          src="/assets/graphics/trees.svg" alt="Trees" width={209} height={343}
+          className="absolute left-0 bottom-0"
+        />
       </div>
 
       <div className="absolute h-full 2xl:hidden w-full top-10">
@@ -75,8 +102,19 @@ export function Hero({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
 
         <Image
           src="/assets/graphics/sunflower.svg" alt="Sunflower" width={482} height={589}
-          className="absolute right-0 bottom-[-4%] w-1/5 max-w-80"
+          className="absolute right-0 top-[calc(35rem+20vw)] w-1/4 max-w-80"
         />
+
+        <Image
+          src="/assets/graphics/dome-left.svg" alt="Left Dome" width={322} height={203}
+          className="absolute right-[5%] top-[calc(35rem+5vw)] w-1/3 max-w-100"
+        />
+
+        <Image
+          src="/assets/graphics/trees.svg" alt="Trees" width={209} height={343}
+          className="absolute left-0  top-[calc(40rem+15vw)] w-1/6 max-w-40"
+        />
+
       </div>
 
       <div className="flex-row items-center z-10">
