@@ -72,8 +72,8 @@ model TravelReceipt {
     receiptId        Int              @id @map("receipt_id") @default(autoincrement())
 
     uploaderUserId   String           @map("uploader_user_id") @db.Uuid()
-    uploader         User             @relation(fields: [uploaderUserId], references: [keycloakUserId])
-    travelPayRequest TravelPayRequest @relation(fields: [uploaderUserId], references: [userId])
+    uploader         User             @relation(fields: [uploaderUserId], references: [keycloakUserId], map: "TravelReceipt_uploader_fkey")
+    travelPayRequest TravelPayRequest @relation(fields: [uploaderUserId], references: [userId], map: "TravelReceipt_travel_pay_request_fkey")
 
     filename    String
     contentType String @map("content_type")
