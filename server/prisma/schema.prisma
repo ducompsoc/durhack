@@ -23,14 +23,15 @@ model Interest {
 }
 
 model User {
-    keycloakUserId String          @id @map("keycloak_user_id") @db.Uuid
-    tokenSet       TokenSet?
-    sessions       SessionRecord[]
-    userCv         UserCV?
-    userInfo       UserInfo?
-    userFlags      UserFlag[]
-    userConsents   UserConsent[]
-    travelReceipts TravelReceipts[]
+    keycloakUserId    String              @id @map("keycloak_user_id") @db.Uuid
+    tokenSet          TokenSet?
+    sessions          SessionRecord[]
+    userCv            UserCV?
+    userInfo          UserInfo?
+    userFlags         UserFlag[]
+    userConsents      UserConsent[]
+    travelReceipts    TravelReceipts[]
+    ReimbursementForm ReimbursementForm[]
 }
 
 model UserCV {
@@ -63,9 +64,8 @@ model UserInfo {
     ethnicity           Ethnicity?
     hackathonExperience HackathonExperience? @map("hackathon_experience")
     accessRequirements  String?              @map("access_requirements") @db.Text()
-    travelOrigin        String?              @map("travel_origin") 
-    methodOfTravel      MethodOfTravel[]    @map("method_of_travel")
-    updatedAt DateTime @updatedAt @map("updated_at")
+    travelOrigin        String?              @map("travel_origin")
+    updatedAt           DateTime             @updatedAt @map("updated_at")
 }
 
 model UserFlag {
@@ -155,12 +155,13 @@ enum HackathonExperience {
 }
 
 enum MethodOfTravel {
-    train 
+    train
     bus
-    privateRoadVehicle      @map("private_road_vehicle")
-    internationalTransport  @map ("international_transport")
+    privateRoadVehicle     @map("private_road_vehicle")
+    internationalTransport @map("international_transport")
     other
 }
+
 model TravelReceipts {
     idReceipt   Int    @id @default(autoincrement())
     userId      String @map("user_id") @db.Uuid()
@@ -169,5 +170,15 @@ model TravelReceipts {
     contentType String @map("content_type")
     content     Bytes
 
-    updatedAt DateTime @updatedAt @map("updated_at")
+    updatedAt         DateTime            @updatedAt @map("updated_at")
+    ReimbursementForm ReimbursementForm[]
+}
+
+model ReimbursementForm {
+    userId         String           @map("user_id") @db.Uuid()
+    user           User             @relation(fields: [userId], references: [keycloakUserId])
+    idRequest      Int              @id @default(autoincrement())
+    methodOfTravel MethodOfTravel[] @map("method_of_travel")
+    idReceipt      Int              @map("id_receipt")
+    receipt        TravelReceipts   @relation(fields: [idReceipt], references: [idReceipt])
 }
