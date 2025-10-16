@@ -64,7 +64,7 @@ model UserInfo {
     ethnicity           Ethnicity?
     hackathonExperience HackathonExperience? @map("hackathon_experience")
     accessRequirements  String?              @map("access_requirements") @db.Text()
-    travelOrigin        String?              @map("travel_origin")
+    travelOrigin        String?              @map("travel_origin") @db.VarChar(50)
     updatedAt           DateTime             @updatedAt @map("updated_at")
 }
 
