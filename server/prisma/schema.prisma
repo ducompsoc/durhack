@@ -83,7 +83,6 @@ model TravelReceipt {
 model TravelPayRequest {
     userId         String           @map("user_id") @db.Uuid()
     user           User             @relation(fields: [userId], references: [keycloakUserId])
-    idRequest      Int              @id @default(autoincrement())
     methodOfTravel MethodOfTravel[] @map("method_of_travel")
     idReceipt      Int              @map("id_receipt")
     receipt        TravelReceipt    @relation(fields: [idReceipt], references: [idReceipt])
