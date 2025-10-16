@@ -69,6 +69,8 @@ model UserInfo {
 }
 
 model TravelReceipt {
+    receiptId        Int              @id @map("receipt_id") @default(autoincrement())
+
     uploaderUserId   String           @map("uploader_user_id") @db.Uuid()
     uploader         User             @relation(fields: [uploaderUserId], references: [keycloakUserId])
     travelPayRequest TravelPayRequest @relation(fields: [uploaderUserId], references: [userId])
