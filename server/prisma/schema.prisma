@@ -68,7 +68,7 @@ model UserInfo {
     updatedAt           DateTime             @updatedAt @map("updated_at")
 }
 
-model TravelReceipts {
+model TravelReceipt {
     idReceipt   Int    @id @default(autoincrement())
     userId      String @map("user_id") @db.Uuid()
     user        User   @relation(fields: [userId], references: [keycloakUserId])
@@ -86,7 +86,7 @@ model TravelPayRequest {
     idRequest      Int              @id @default(autoincrement())
     methodOfTravel MethodOfTravel[] @map("method_of_travel")
     idReceipt      Int              @map("id_receipt")
-    receipt        TravelReceipts   @relation(fields: [idReceipt], references: [idReceipt])
+    receipt        TravelReceipt    @relation(fields: [idReceipt], references: [idReceipt])
 }
 
 model UserFlag {
