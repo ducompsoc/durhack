@@ -68,6 +68,27 @@ model UserInfo {
     updatedAt           DateTime             @updatedAt @map("updated_at")
 }
 
+model TravelReceipts {
+    idReceipt   Int    @id @default(autoincrement())
+    userId      String @map("user_id") @db.Uuid()
+    user        User   @relation(fields: [userId], references: [keycloakUserId])
+    filename    String
+    contentType String @map("content_type")
+    content     Bytes
+
+    updatedAt         DateTime            @updatedAt @map("updated_at")
+    ReimbursementForm ReimbursementForm[]
+}
+
+model ReimbursementForm {
+    userId         String           @map("user_id") @db.Uuid()
+    user           User             @relation(fields: [userId], references: [keycloakUserId])
+    idRequest      Int              @id @default(autoincrement())
+    methodOfTravel MethodOfTravel[] @map("method_of_travel")
+    idReceipt      Int              @map("id_receipt")
+    receipt        TravelReceipts   @relation(fields: [idReceipt], references: [idReceipt])
+}
+
 model UserFlag {
     userId   String @map("user_id") @db.Uuid
     user     User   @relation(fields: [userId], references: [keycloakUserId])
@@ -160,25 +181,4 @@ enum MethodOfTravel {
     privateRoadVehicle     @map("private_road_vehicle")
     internationalTransport @map("international_transport")
     other
-}
-
-model TravelReceipts {
-    idReceipt   Int    @id @default(autoincrement())
-    userId      String @map("user_id") @db.Uuid()
-    user        User   @relation(fields: [userId], references: [keycloakUserId])
-    filename    String
-    contentType String @map("content_type")
-    content     Bytes
-
-    updatedAt         DateTime            @updatedAt @map("updated_at")
-    ReimbursementForm ReimbursementForm[]
-}
-
-model ReimbursementForm {
-    userId         String           @map("user_id") @db.Uuid()
-    user           User             @relation(fields: [userId], references: [keycloakUserId])
-    idRequest      Int              @id @default(autoincrement())
-    methodOfTravel MethodOfTravel[] @map("method_of_travel")
-    idReceipt      Int              @map("id_receipt")
-    receipt        TravelReceipts   @relation(fields: [idReceipt], references: [idReceipt])
 }
