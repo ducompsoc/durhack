@@ -77,7 +77,7 @@ model TravelReceipt {
     contentType String @map("content_type")
     content     Bytes
 
-    updatedAt DateTime @updatedAt @map("updated_at")
+    createdAt DateTime @default(now()) @map("created_at")
 }
 
 model TravelPayRequest {
