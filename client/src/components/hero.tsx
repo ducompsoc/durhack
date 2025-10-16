@@ -46,6 +46,11 @@ export function Hero({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
           height={582}
           className="absolute left-0 top-100"
         />
+
+        <Image
+          src="/assets/graphics/sunflower.svg" alt="Sunflower" width={482} height={589}
+          className="absolute right-0 bottom-[-20%]"
+        />
       </div>
 
       <div className="absolute h-full 2xl:hidden w-full top-10">
@@ -68,7 +73,10 @@ export function Hero({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
           className="absolute left-[-15%] md:left-0 top-[calc(40rem+30vw)] -translate-y-full w-2/3 max-w-140"
         />
 
-        <SunflowerGraphic className="absolute top-[calc(40rem+45vw)] right-[-5%] -translate-y-full w-1/3 max-w-90"/>
+        <Image
+          src="/assets/graphics/sunflower.svg" alt="Sunflower" width={482} height={589}
+          className="absolute right-0 bottom-[-4%] w-1/5 max-w-80"
+        />
       </div>
 
       <div className="flex-row items-center z-10">
