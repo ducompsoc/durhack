@@ -14,7 +14,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectValueClipper,
+  SelectValueViewport,
 } from "@durhack/web-components/ui/select"
 
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
@@ -61,9 +61,9 @@ function TravelDetailsForm({ application }: { application: Application }) {
                     <Select onValueChange={onChange} value={value} {...field}>
                       <FormControl>
                         <SelectTrigger ref={ref}>
-                          <SelectValueClipper>
+                          <SelectValueViewport>
                             <SelectValue />
-                          </SelectValueClipper>
+                          </SelectValueViewport>
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>

@@ -25,7 +25,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectValueClipper,
+  SelectValueViewport,
 } from "@durhack/web-components/ui/select"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
