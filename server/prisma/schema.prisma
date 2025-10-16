@@ -30,7 +30,7 @@ model User {
     userInfo          UserInfo?
     userFlags         UserFlag[]
     userConsents      UserConsent[]
-    travelReceipts    TravelReceipts[]
+    travelReceipts    TravelReceipt[]
     ReimbursementForm TravelPayRequest[]
 }
 
