@@ -23,15 +23,15 @@ model Interest {
 }
 
 model User {
-    keycloakUserId    String             @id @map("keycloak_user_id") @db.Uuid
-    tokenSet          TokenSet?
-    sessions          SessionRecord[]
-    userCv            UserCV?
-    userInfo          UserInfo?
-    userFlags         UserFlag[]
-    userConsents      UserConsent[]
-    travelReceipts    TravelReceipt[]
-    ReimbursementForm TravelPayRequest[]
+    keycloakUserId   String             @id @map("keycloak_user_id") @db.Uuid
+    tokenSet         TokenSet?
+    sessions         SessionRecord[]
+    userCv           UserCV?
+    userInfo         UserInfo?
+    userFlags        UserFlag[]
+    userConsents     UserConsent[]
+    travelReceipts   TravelReceipt[]
+    travelPayRequest TravelPayRequest?
 }
 
 model UserCV {
@@ -83,9 +83,9 @@ model TravelReceipt {
 }
 
 model TravelPayRequest {
-    userId         String          @map("user_id") @db.Uuid()
-    user           User            @relation(fields: [userId], references: [keycloakUserId])
-    receipts       TravelReceipt[]
+    userId   String          @id @map("user_id") @db.Uuid()
+    user     User            @relation(fields: [userId], references: [keycloakUserId])
+    receipts TravelReceipt[]
 }
 
 model UserFlag {
