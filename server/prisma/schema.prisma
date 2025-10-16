@@ -82,6 +82,8 @@ model TravelReceipt {
     travelMode TravelMode @map("travel_mode")
 
     createdAt DateTime @default(now()) @map("created_at")
+
+    @@index(fields: [uploaderUserId])
 }
 
 model TravelPayRequest {
