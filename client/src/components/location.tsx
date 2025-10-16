@@ -38,12 +38,11 @@ export function Location({ className, ...props }: React.ComponentProps<"div">) {
             darkerGrotesk.className,
           )}
         >
-          DurHack takes place in the Teaching and Learning Centre at Durham University.
-          It’s just a short walk or bus ride from Durham Train Station, with direct connections to major UK cities.
-          To make your journey easier, we are coordinating coaches to the event from Leeds, Manchester, Sheffield and
-          Nottingham.
-          We also offer travel reimbursements for participants<sup>*</sup> travelling from elsewhere — so getting here
-          is one less thing to worry about.
+          DurHack takes place in the Teaching and Learning Centre at Durham University. It’s just a short walk or bus
+          ride from Durham Train Station, with direct connections to major UK cities. To make your journey easier, we
+          are coordinating coaches to the event from Leeds, Manchester, Sheffield and Nottingham. We also offer travel
+          reimbursements for participants<sup>*</sup> travelling from elsewhere — so getting here is one less thing to
+          worry about.
         </p>
         <p>* see FAQs for details.</p>
         <div className={cn("flex justify-center items-center px-4 my-10")}>
