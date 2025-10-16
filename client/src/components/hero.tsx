@@ -67,6 +67,8 @@ export function Hero({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
           height={582}
           className="absolute left-[-15%] md:left-0 top-[calc(40rem+30vw)] -translate-y-full w-2/3 max-w-140"
         />
+
+        <SunflowerGraphic className="absolute top-[calc(40rem+45vw)] right-[-5%] -translate-y-full w-1/3 max-w-90"/>
       </div>
 
       <div className="flex-row items-center z-10">
