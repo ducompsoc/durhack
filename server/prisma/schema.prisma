@@ -77,13 +77,14 @@ model TravelReceipt {
     contentType String @map("content_type")
     content     Bytes
 
+    travelMode TravelMode @map("travel_mode")
+
     createdAt DateTime @default(now()) @map("created_at")
 }
 
 model TravelPayRequest {
     userId         String          @map("user_id") @db.Uuid()
     user           User            @relation(fields: [userId], references: [keycloakUserId])
-    methodOfTravel TravelMode[]    @map("method_of_travel")
     idReceipt      Int             @map("id_receipt")
     receipts       TravelReceipt[]
 }
