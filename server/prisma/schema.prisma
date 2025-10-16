@@ -35,7 +35,7 @@ model User {
 }
 
 model UserCV {
-    userId      String @id() @map("user_id") @db.Uuid()
+    userId      String @id() @map("user_id") @db.Uuid
     user        User   @relation(fields: [userId], references: [keycloakUserId])
     filename    String
     contentType String @map("content_type")
@@ -71,7 +71,7 @@ model UserInfo {
 model TravelReceipt {
     receiptId        Int              @id @map("receipt_id") @default(autoincrement())
 
-    uploaderUserId   String           @map("uploader_user_id") @db.Uuid()
+    uploaderUserId   String           @map("uploader_user_id") @db.Uuid
     uploader         User             @relation(fields: [uploaderUserId], references: [keycloakUserId], map: "TravelReceipt_uploader_fkey")
     travelPayRequest TravelPayRequest @relation(fields: [uploaderUserId], references: [userId], map: "TravelReceipt_travel_pay_request_fkey")
 
@@ -87,7 +87,7 @@ model TravelReceipt {
 }
 
 model TravelPayRequest {
-    userId   String          @id @map("user_id") @db.Uuid()
+    userId   String          @id @map("user_id") @db.Uuid
     user     User            @relation(fields: [userId], references: [keycloakUserId])
     receipts TravelReceipt[]
 }
