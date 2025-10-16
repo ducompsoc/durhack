@@ -16,9 +16,6 @@ export default function HomePage() {
       <Info className="hidden" />
 
       {/* Location */}
-      {/*<div className="location flex items-start justify-center hidden">*/}
-      {/*  <h1 className="hidden text-white text-5xl font-bold">Location</h1>*/}
-      {/*</div>*/}
       <Location className="location flex items-start justify-center" />
 
       {/* Sponsors & Partners */}
