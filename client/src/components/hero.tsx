@@ -53,15 +53,15 @@ export function Hero({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
         />
 
         <Image
-          src="/assets/graphics/windmill-left.svg" alt="Left Windmill" width={173} height={354}
+          src="/assets/graphics/windmill.svg" alt="Left Windmill" width={173} height={354}
           className="absolute right-[18%] bottom-[35%]"
         />
         <Image
-          src="/assets/graphics/windmill-centre.svg" alt="Centre Windmill" width={224} height={463}
+          src="/assets/graphics/windmill.svg" alt="Centre Windmill" width={224} height={463}
           className="absolute right-[10%] bottom-[40%]"
         />
         <Image
-          src="/assets/graphics/windmill-right.svg" alt="Right Windmill" width={122} height={253}
+          src="/assets/graphics/windmill.svg" alt="Right Windmill" width={122} height={253}
           className="absolute right-[5%] bottom-[45%]"
         />
 
