@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 
-import { useSidebarContext } from "@/app/dashboard/(application)/sidebar-context"
+import { useSidebarContext } from "@/app/dashboard/application/sidebar-context"
 import { cn } from "@/lib/utils"
 
 type MenuItem = {

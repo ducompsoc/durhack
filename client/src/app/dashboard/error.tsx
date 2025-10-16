@@ -5,7 +5,7 @@ import * as React from "react"
 
 /**
  * Dashboard error boundary. This is usually only hit when an error is thrown by the
- * {@link import('./(application)/layout.tsx').default Application Layout}, which only happens
+ * {@link import('./application/layout.tsx').default Application Layout}, which only happens
  * when an error occurs when trying to fetch the user's registration details.
  */
 export default function DashboardError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
