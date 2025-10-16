@@ -1,5 +1,5 @@
-const instanceName = process.env.INSTANCE_NAME;
-if (!instanceName) throw new Error("INSTANCE_NAME is undefined");
+const instanceName = process.env.INSTANCE_NAME
+if (!instanceName) throw new Error("INSTANCE_NAME is undefined")
 
 module.exports = {
   apps: [
@@ -8,7 +8,7 @@ module.exports = {
       script: "./server/dist/main.js",
       interpreter: "/home/durhack/.nvm/versions/node/v24.9.0/bin/node",
       env: {
-        NODE_ENV: "production"
+        NODE_ENV: "production",
       },
     },
     {
@@ -16,7 +16,7 @@ module.exports = {
       script: "./server/dist/ticket-assigner.js",
       interpreter: "/home/durhack/.nvm/versions/node/v24.9.0/bin/node",
       env: {
-        NODE_ENV: "production"
+        NODE_ENV: "production",
       },
       instances: 1,
       exec_mode: "fork",
@@ -24,5 +24,5 @@ module.exports = {
       watch: false,
       autorestart: false,
     },
-  ]
+  ],
 }
