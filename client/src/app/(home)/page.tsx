@@ -3,8 +3,8 @@ import { Footer } from "@/components/footer"
 import { Guilds } from "@/components/guilds"
 import { Hero } from "@/components/hero"
 import { Info } from "@/components/info"
-import { Partners, Sponsors } from "@/components/sponsors"
 import { Location } from "@/components/location"
+import { Partners, Sponsors } from "@/components/sponsors"
 
 export default function HomePage() {
   return (
