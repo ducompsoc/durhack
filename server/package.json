@@ -28,7 +28,7 @@
     "form-data": "^4.0.0",
     "handlebars": "^4.7.8",
     "ics": "^3.8.1",
-    "libphonenumber-js": "^1.11.4",
+    "libphonenumber-js": "^1.12.24",
     "mailgun.js": "^10.2.3",
     "module-error": "^1.0.2",
     "nanoid": "^5.0.7",
