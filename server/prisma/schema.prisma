@@ -69,15 +69,15 @@ model UserInfo {
 }
 
 model TravelReceipt {
-    idReceipt   Int    @id @default(autoincrement())
-    userId      String @map("user_id") @db.Uuid()
-    user        User   @relation(fields: [userId], references: [keycloakUserId])
+    uploaderUserId   String           @map("uploader_user_id") @db.Uuid()
+    uploader         User             @relation(fields: [uploaderUserId], references: [keycloakUserId])
+    travelPayRequest TravelPayRequest @relation(fields: [uploaderUserId], references: [userId])
+
     filename    String
     contentType String @map("content_type")
     content     Bytes
 
-    updatedAt         DateTime           @updatedAt @map("updated_at")
-    ReimbursementForm TravelPayRequest[]
+    updatedAt DateTime @updatedAt @map("updated_at")
 }
 
 model TravelPayRequest {
@@ -85,7 +85,7 @@ model TravelPayRequest {
     user           User             @relation(fields: [userId], references: [keycloakUserId])
     methodOfTravel MethodOfTravel[] @map("method_of_travel")
     idReceipt      Int              @map("id_receipt")
-    receipt        TravelReceipt    @relation(fields: [idReceipt], references: [idReceipt])
+    receipts       TravelReceipt[]
 }
 
 model UserFlag {
