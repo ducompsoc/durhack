@@ -64,3 +64,4 @@
 !prisma
 
 # Explicit exceptions/ignores
+**/.DS_Store
