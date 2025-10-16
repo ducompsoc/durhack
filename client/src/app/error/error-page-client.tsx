@@ -18,9 +18,5 @@ export default function ErrorPageClient() {
     return <ServerErrorPage statusCode={statusCode.toString()} message="Something strange..." />
   }
 
-  return (
-    <>
-      <ServerErrorPage message="Something strange..." />
-    </>
-  )
+  return <ServerErrorPage message="Something strange..." />
 }
