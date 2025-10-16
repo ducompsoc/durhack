@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch src --watch tsconfig.json"
+    "dev": "tsup --watch src --watch tsconfig.json",
+    "check": "biome check .",
+    "check:fix": "biome check --write ."
   },
   "files": [
     "dist/**/*"
