@@ -75,7 +75,7 @@ function TravelDetailsForm({ application }: { application: Application }) {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {travelOriginOptions.map((option) => <SelectItem value={option.value}>{option.label}</SelectItem>)}
+                    {travelOriginOptions.map((option) => <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>)}
                   </SelectContent>
                 </Select>
                 {value === "prefer-not-to-answer" && (
