@@ -36,7 +36,7 @@ export function Sidebar() {
         {menuItems.map((item) => {
           return (
             <Link
-              href={`/dashboard/${item.link}`}
+              href={`/dashboard/application/${item.link}`}
               className="py-1 mt-1 px-2 border-x-2 rounded-lg bg-white/5 border-border transition-colors hover:border-white hover:bg-white/15 hover:cursor-pointer duration-300"
               key={item.id}
               onClick={() => setIsOpen(false)}
