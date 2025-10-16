@@ -1,5 +1,6 @@
 import type { DietaryRequirement } from "@/input/dietary-requirement"
 import type { DisciplineOfStudy } from "@/input/discipline-of-study"
+import {TravelOrigin} from "@/input/travel-origin";
 
 export type { DisciplineOfStudy, DietaryRequirement }
 
@@ -38,6 +39,7 @@ export type Application = {
   countryOfResidence: string | null
   consents: Consent[]
   cvUploadChoice: "indeterminate" | "upload" | "remind" | "no-upload"
+  travelOrigin: TravelOrigin | null
   tShirtSize: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "prefer-not-to-answer" | null
   hackathonExperience: "zero" | "up-to-two" | "three-to-seven" | "eight-or-more" | null
   dietaryRequirements: null | DietaryRequirement[]
