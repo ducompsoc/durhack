@@ -32,6 +32,7 @@
 
 ## Biome.js
 !biome.json
+!/biome-common.json
 
 ## Husky
 !.husky
