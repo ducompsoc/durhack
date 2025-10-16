@@ -81,10 +81,10 @@ model TravelReceipt {
 }
 
 model TravelPayRequest {
-    userId         String           @map("user_id") @db.Uuid()
-    user           User             @relation(fields: [userId], references: [keycloakUserId])
-    methodOfTravel MethodOfTravel[] @map("method_of_travel")
-    idReceipt      Int              @map("id_receipt")
+    userId         String          @map("user_id") @db.Uuid()
+    user           User            @relation(fields: [userId], references: [keycloakUserId])
+    methodOfTravel TravelMode[]    @map("method_of_travel")
+    idReceipt      Int             @map("id_receipt")
     receipts       TravelReceipt[]
 }
 
@@ -174,7 +174,7 @@ enum HackathonExperience {
     eightOrMore  @map("eight_or_more") // "hackathon guru"
 }
 
-enum MethodOfTravel {
+enum TravelMode {
     train
     bus
     privateRoadVehicle     @map("private_road_vehicle")
