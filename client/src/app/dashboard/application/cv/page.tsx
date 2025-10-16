@@ -139,7 +139,7 @@ function CvForm({ application, cvFileInfo }: { application: Application; cvFileI
 
     await mutateApplication({ ...application, cvUploadChoice: values.cvUploadChoice })
     await mutateCvFileInfo()
-    if (application.cvUploadChoice === "indeterminate") router.push("/dashboard/submit")
+    if (application.cvUploadChoice === "indeterminate") router.push("/dashboard/application/travel")
   }
 
   return (

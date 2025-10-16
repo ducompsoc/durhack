@@ -147,7 +147,7 @@ function SubmitForm({ application }: { application: Application }) {
       } satisfies Application
     })
     setIsFinalSubmitHovering(false)
-    router.push("/dashboard")
+    router.push("/dashboard/application")
   }
 
   return (

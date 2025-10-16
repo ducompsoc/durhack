@@ -78,7 +78,7 @@ function ExtraDetailsForm({ application }: { application: Application }) {
   async function onSubmit(values: z.infer<typeof extraDetailsFormSchema>): Promise<void> {
     await updateApplication("extra", values)
     await mutateApplication({ ...application, ...values })
-    if (application.tShirtSize == null) router.push("/dashboard/education")
+    if (application.tShirtSize == null) router.push("/dashboard/application/education")
   }
 
   return (

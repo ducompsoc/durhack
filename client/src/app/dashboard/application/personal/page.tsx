@@ -76,7 +76,7 @@ function PersonalForm({ application }: { application: Application }) {
   async function onSubmit(values: z.infer<typeof personalFormSchema>): Promise<void> {
     await updateApplication("personal", values)
     await mutateApplication({ ...application, ...values })
-    if (application.age == null) router.push("/dashboard/contact")
+    if (application.age == null) router.push("/dashboard/application/contact")
   }
 
   return (

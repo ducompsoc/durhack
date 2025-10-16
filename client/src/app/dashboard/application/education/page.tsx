@@ -126,7 +126,7 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
   async function onSubmit(values: z.infer<typeof educationFormSchema>): Promise<void> {
     await updateApplication("education", values)
     await mutateApplication({ ...application, ...values })
-    if (application.university == null) router.push("/dashboard/travel")
+    if (application.university == null) router.push("/dashboard/application/cv")
   }
 
   return (

@@ -46,7 +46,7 @@ function ContactForm({ application }: { application: Application }) {
   async function onSubmit(values: z.infer<typeof contactFormSchema>): Promise<void> {
     await updateApplication("contact", values)
     await mutateApplication({ ...application, ...values })
-    if (application.phone == null) router.push("/dashboard/extra")
+    if (application.phone == null) router.push("/dashboard/application/extra")
   }
 
   return (
