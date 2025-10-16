@@ -28,7 +28,7 @@
         "noInferrableTypes": "error",
         "noUselessElse": "error"
       },
-      "nursery": {
+      "correctness": {
         "useUniqueElementIds": "off"
       }
     }
