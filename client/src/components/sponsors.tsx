@@ -64,34 +64,32 @@ function SponsorContent({ sponsor }: { sponsor: Sponsor }) {
   const TierTile = tierTiles[sponsor.tier]
   const SponsorImage = organisation.image
   return (
-    <>
-      <a
-        href={organisation.link}
-        target="_blank"
+    <a
+      href={organisation.link}
+      target="_blank"
+      style={{
+        width: `${Math.round(tierWidths[sponsor.tier] * 1.1)}px`,
+        height: `${Math.round(tierWidths[sponsor.tier] * 1.1)}px`,
+      }}
+      className="relative flex flex-col items-center justify-center border-b-0"
+      rel="noreferrer"
+    >
+      <SponsorImage
         style={{
-          width: `${Math.round(tierWidths[sponsor.tier] * 1.1)}px`,
-          height: `${Math.round(tierWidths[sponsor.tier] * 1.1)}px`,
+          width: `${Math.round(tierWidths[sponsor.tier] * sponsorScale)}px`,
+          height: `${Math.round(tierWidths[sponsor.tier] * sponsorScale)}px`,
         }}
-        className="relative flex flex-col items-center justify-center border-b-0"
-        rel="noreferrer"
-      >
-        <SponsorImage
-          style={{
-            width: `${Math.round(tierWidths[sponsor.tier] * sponsorScale)}px`,
-            height: `${Math.round(tierWidths[sponsor.tier] * sponsorScale)}px`,
-          }}
-          className="relative z-40"
-        />
-        <TierTile
-          style={{
-            width: `${Math.round(tierWidths[sponsor.tier])}px`,
-            height: "auto",
-          }}
-          className="absolute z-30"
-        />
-        {sponsor.founding && <FoundingSponsorFlag className="absolute top-1 left-2 z-50" />}
-      </a>
-    </>
+        className="relative z-40"
+      />
+      <TierTile
+        style={{
+          width: `${Math.round(tierWidths[sponsor.tier])}px`,
+          height: "auto",
+        }}
+        className="absolute z-30"
+      />
+      {sponsor.founding && <FoundingSponsorFlag className="absolute top-1 left-2 z-50" />}
+    </a>
   )
 }
 

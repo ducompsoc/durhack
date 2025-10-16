@@ -36,7 +36,7 @@ export function UserContextProvider({ children }: { children?: React.ReactNode }
   if (userError != null && userError instanceof ModuleError) {
     if (userError.code === "ERR_UNAUTHENTICATED") {
       router.push("/")
-      return <></>
+      return null
     }
   }
 

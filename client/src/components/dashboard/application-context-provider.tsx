@@ -43,7 +43,7 @@ export function ApplicationContextProvider({ children }: { children?: React.Reac
   if (applicationError != null && applicationError instanceof ModuleError) {
     if (applicationError.code === "ERR_UNAUTHENTICATED") {
       router.push("/")
-      return <></>
+      return null
     }
   }
 
