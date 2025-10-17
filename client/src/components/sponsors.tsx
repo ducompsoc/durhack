@@ -27,7 +27,6 @@ type SponsorProps = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 type SponsorSectionProps = {
-  sponsorType: SponsorType
   sponsors: Sponsor[]
 } & React.HTMLAttributes<HTMLDivElement>
 
@@ -164,9 +163,9 @@ export function Sponsors({ className, ...props }: React.ComponentProps<"div">) {
           width="679"
           height="902"
         />
-        <SponsorSection sponsorType="Platinum" sponsors={platinumSponsors} />
-        <SponsorSection sponsorType="Gold" sponsors={goldSponsors} />
-        <SponsorSection sponsorType="Silver" sponsors={silverSponsors} />
+        <SponsorSection sponsors={platinumSponsors} />
+        <SponsorSection sponsors={goldSponsors} />
+        <SponsorSection sponsors={silverSponsors} />
       </div>
     </div>
   )
