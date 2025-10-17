@@ -19,11 +19,13 @@
   },
   "devDependencies": {
     "@types/node": "^24.7.2",
+    "module-error": "^1.0.2",
     "tsup": "^8.5.0",
     "typescript": "^5.9.3",
     "zod": "^3.25.76"
   },
   "peerDependencies": {
+    "module-error": "^1.0.2",
     "zod": "^3.25.76"
   }
 }
