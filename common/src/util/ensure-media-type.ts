@@ -1,7 +1,11 @@
 import { FetchError } from "@/error/fetch-error"
-import {templateProp, template} from "@/util/template"
+import { template, templateProp } from "@/util/template"
 
-export async function ensureResponseMediaType(mediaType: string, response: Response, requestInit: RequestInit | null | undefined = undefined): Promise<void> {
+export async function ensureResponseMediaType(
+  mediaType: string,
+  response: Response,
+  requestInit: RequestInit | null | undefined = undefined,
+): Promise<void> {
   const contentType = FetchError.getResponseContentType(response)
 
   if (contentType === null) {
@@ -21,6 +25,9 @@ export async function ensureResponseMediaType(mediaType: string, response: Respo
       requestInit,
       responseContentType: contentType,
     })
-    throw new FetchError(template`Expected ${templateProp("response")} media type to be ${mediaType}, got ${contentType.mediaType}`, options)
+    throw new FetchError(
+      template`Expected ${templateProp("response")} media type to be ${mediaType}, got ${contentType.mediaType}`,
+      options,
+    )
   }
 }
