@@ -101,6 +101,7 @@ export class FetchError extends ModuleError {
         get response() {
           return fetchError.formatResponse()
         },
+        status: fetchError.responseStatus,
       })
     }
   }
