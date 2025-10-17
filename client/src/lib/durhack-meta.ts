@@ -1,5 +1,9 @@
 import { z } from "zod/v4"
 
+import { FetchError } from "@durhack/durhack-common/error/fetch-error"
+import { ensureResponseMediaType } from "@durhack/durhack-common/util/ensure-media-type"
+import { template, templateProp } from "@durhack/durhack-common/util/template"
+
 import { siteConfig } from "@/config/site"
 import { isObject } from "@/lib/type-guards"
 
@@ -10,20 +14,26 @@ const eventTimingsSchema = z.object({
   end: timestampToDateSchema,
 })
 
+function getBodyData(body: unknown): unknown | null {
+  if (!isObject(body)) return null
+  if (!Object.hasOwn(body, "data")) return null
+  return body.data
+}
+
 export async function getEventTimings() {
-  function failResponseOk(): never {
-    throw new Error(`Got status ${response.status} when trying to fetch event timings. Response: ${body}`)
-  }
-  function failResponseBody(): never {
-    throw new Error(`Unexpected response structure when trying to fetch event timings. Response: ${body}`)
-  }
-
   const response = await fetch(`${siteConfig.apiUrl}/meta/event-timings`)
+  await ensureResponseMediaType("application/json", response)
+  if (!response.ok) {
+    const options = await FetchError.populateOptions({ response })
+    throw new FetchError(template`tried to fetch event timings, got ${templateProp("response")} with status ${templateProp("status")}`, options)
+  }
+
   const body: unknown = await response.json()
-  if (!response.ok) failResponseOk()
+  const data = getBodyData(body)
+  if (data === null) {
+    const options = await FetchError.populateOptions({ response, responseText: JSON.stringify(data) })
+    throw new FetchError(template`tried to fetch event timings, got ${templateProp("response")} with unexpected body structure`, options)
+  }
 
-  if (!isObject(body)) failResponseBody()
-  if (!Object.hasOwn(body, "data")) failResponseBody()
-
-  return eventTimingsSchema.parse(body.data)
+  return eventTimingsSchema.parse(data)
 }
