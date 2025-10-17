@@ -76,12 +76,12 @@ export const faqs = [
           </a>
           .
         </p>
-        <p>Please note you must have a ticket to DurHack to attend the event.</p>,
+        <p>Please note you must have a ticket to DurHack to attend the event.</p>
         <p>
           Hackers from the above cities who do not travel via the DurHack organised coach will not be eligible for
           travel reimbursement
         </p>
-        <p>unless with prior written exception.</p>,
+        <p>unless with prior written exception.</p>
         <p>
           For hackers travelling from outside of these cities, we will reimburse 50% of your travel costs up to the
           following caps:
