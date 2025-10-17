@@ -5,7 +5,7 @@ const environmentsSet = new Set<string>(environments)
 type Environment = (typeof environments)[number]
 
 function isEmptyOrWhitespaceString(value: string): boolean {
-  return value.replace(/\s/g, '').length === 0;
+  return value.replace(/\s/g, "").length === 0
 }
 
 function isSet(value: string | undefined): value is string {

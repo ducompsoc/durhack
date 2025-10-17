@@ -70,7 +70,11 @@ export const faqs = [
           to DurHack organised by us.
         </p>
         <p>
-          Book tickets <a href="https://www.durhamsu.com/groups/computing-766e/events/durhack-coach-tickets-manchester-leeds-nottingham-sheffield">here</a>.
+          Book tickets{" "}
+          <a href="https://www.durhamsu.com/groups/computing-766e/events/durhack-coach-tickets-manchester-leeds-nottingham-sheffield">
+            here
+          </a>
+          .
         </p>
         <p>Please note you must have a ticket to DurHack to attend the event.</p>,
         <p>
