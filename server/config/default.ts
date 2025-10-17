@@ -27,6 +27,7 @@ export default {
     clientSecret: "not-a-real-client-secret",
     responseTypes: ["code"],
     redirectUris: ["http://api.durhack-dev.com/auth/keycloak/callback"],
+    additionalPermittedFrontendOrigins: new Set(),
   },
   mailgun: {
     username: "api",

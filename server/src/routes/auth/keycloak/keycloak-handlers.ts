@@ -3,12 +3,18 @@ import { ClientError } from "@otterhttp/errors"
 import { type Client, generators } from "openid-client"
 import { z } from "zod/v4"
 
-import { frontendOrigin, origin } from "@/config"
+import { frontendOrigin, keycloakConfig, origin } from "@/config"
 import { prisma } from "@/database"
 import { adaptTokenSetToDatabase } from "@/lib/adapt-token-set"
 import { keycloakClient } from "@/lib/keycloak-client"
 import { type DurHackSession, getSession } from "@/lib/session"
 import type { Middleware, Request, Response } from "@/types"
+
+function urlOriginIsTrusted(url: URL) {
+  if (url.origin === origin) return true
+  if (url.origin === frontendOrigin) return true
+  return keycloakConfig.additionalPermittedFrontendOrigins.has(url.origin)
+}
 
 const destinationUrlSchema = z
   .string()
@@ -25,8 +31,9 @@ const destinationUrlSchema = z
       return z.NEVER
     }
   })
-  .refine((value) => value.origin === origin || value.origin === frontendOrigin)
-  .refine((value) => ({ message: `Specified destination origin ${value.origin} is not trusted` }))
+  .refine((value) => urlOriginIsTrusted(value), {
+    error: (issue) => `Specified destination origin ${(issue.input as URL).origin} is not trusted`,
+  })
 
 export class KeycloakHandlers {
   client: Client
