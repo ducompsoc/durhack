@@ -29,6 +29,7 @@ export const keycloakOptionsSchema = z.object({
   clientId: z.string(),
   clientSecret: z.string(),
   redirectUris: z.array(z.string()),
+  additionalPermittedFrontendOrigins: z.set(z.string()),
   responseTypes: z.array(z.union([z.literal("code"), z.literal("token"), z.literal("id_token"), z.literal("none")])),
 })
 
