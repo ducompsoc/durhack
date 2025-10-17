@@ -37,7 +37,7 @@ export class FetchError extends ModuleError {
   /**
    * A generated object with a subset of {@link response}'s fields.
    */
-  responseSummary?: Pick<Response, "status" | "statusText">
+  responseSummary?: Pick<Response, "status" | "statusText"> | null | undefined
 
   /**
    * The {@link RequestInit} object passed to {@link fetch} which yielded {@link response}.
