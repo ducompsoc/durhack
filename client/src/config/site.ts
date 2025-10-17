@@ -36,7 +36,7 @@ if (isDevelopment) {
 
 if (isDevelopment && noLocalServer) {
   Object.assign(siteConfig, {
-    apiUrl: "http://api.durhack-staging.com",
+    apiUrl: "https://api.durhack-staging.com",
   })
 }
 
