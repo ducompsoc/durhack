@@ -1,4 +1,4 @@
-import type { UnknownObject, UnknownFunction } from "@/types/extra-utility-types"
+import type { UnknownFunction, UnknownObject } from "@/types/extra-utility-types"
 
 export function isString(value: unknown): value is string {
   return typeof value === "string" || value instanceof String

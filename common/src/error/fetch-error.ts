@@ -1,10 +1,10 @@
-import ModuleError from "module-error"
 import { ContentType } from "@otterhttp/content-type"
+import ModuleError from "module-error"
 
-import type {StringTemplate} from "@/util/template"
-import {isString} from "@/util/type-guards"
+import type { StringTemplate } from "@/util/template"
+import { isString } from "@/util/type-guards"
 
-type ModuleErrorOptions = ConstructorParameters<typeof ModuleError>[1];
+type ModuleErrorOptions = ConstructorParameters<typeof ModuleError>[1]
 type FetchErrorOptions = ModuleErrorOptions & {
   /**
    * The {@link Response} object related to the error.
@@ -56,7 +56,8 @@ export class FetchError extends ModuleError {
 
   static async populateOptions(options: FetchErrorOptions): Promise<FetchErrorOptions> {
     if (options.response == null) return options
-    if (options.responseContentType === undefined) options.responseContentType = this.getResponseContentType(options.response)
+    if (options.responseContentType === undefined)
+      options.responseContentType = FetchError.getResponseContentType(options.response)
     if (options.responseText === undefined && options.responseContentType?.isPlainText())
       options.responseText = await options.response.text()
 
@@ -68,7 +69,7 @@ export class FetchError extends ModuleError {
     const superMessage = messageIsTemplate ? "" : message
     const superOptions = options ?? {}
     superOptions.code ??= "ERR_FETCH_UNKNOWN" // 'unknown fetch error' - the word ordering is to conform to Node.js' convention for error codes
-    super(superMessage, superOptions);
+    super(superMessage, superOptions)
 
     if (options != null) {
       if (options.response !== undefined) this.response = options.response
@@ -80,7 +81,9 @@ export class FetchError extends ModuleError {
     if (messageIsTemplate) {
       const fetchError = this
       this.message = message({
-        get response(){ return fetchError.formatResponse() }
+        get response() {
+          return fetchError.formatResponse()
+        },
       })
     }
   }
