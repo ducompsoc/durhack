@@ -43,7 +43,7 @@ export function template(strings: TemplateStringsArray, ...substitutions: unknow
 
   function render(props: Props): string {
     const expandedSubstitutions = substitutions.map((value) => expandSubstitution(props, value))
-    return identity(strings, expandedSubstitutions)
+    return identity(strings, ...expandedSubstitutions)
   }
 
   return render
