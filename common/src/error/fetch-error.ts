@@ -35,6 +35,11 @@ export class FetchError extends ModuleError {
   response?: Response
 
   /**
+   * A generated string which contains {@link response}'s status code and text.
+   */
+  responseStatus?: string | null | undefined
+
+  /**
    * A generated object with a subset of {@link response}'s fields.
    */
   responseSummary?: Pick<Response, "status" | "statusText"> | null | undefined
@@ -84,6 +89,7 @@ export class FetchError extends ModuleError {
 
     if (options != null) {
       if (options.response !== undefined) setHidden("response", options.response)
+      if (options.response != null) this.responseStatus = `${options.response.status} ${options.response.statusText}`
       if (options.response != null) this.responseSummary = pick(options.response, ["status", "statusText"])
       if (options.requestInit !== undefined) setHidden("requestInit", options.requestInit)
       if (options.responseContentType !== undefined) setHidden("responseContentType", options.responseContentType)
