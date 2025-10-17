@@ -1,7 +1,7 @@
 import type * as React from "react"
 
 import { FacebookIcon, GitHubIcon, InstagramIcon, LinkedInIcon, TikTokIcon, XIcon } from "@/components/icons"
-import { isDevelopment, isStaging } from "@/lib/environment"
+import { isDevelopment, isStaging, noLocalServer } from "@/lib/environment"
 
 type socialLink = { key: string; href: string; icon: React.FC }
 
@@ -31,6 +31,12 @@ if (isDevelopment) {
     apiUrl: "http://api.durhack-dev.com",
     authUrl: "https://auth.durhack.com/dev",
     sessionCookieName: "durhack-session",
+  })
+}
+
+if (isDevelopment && noLocalServer) {
+  Object.assign(siteConfig, {
+    apiUrl: "http://api.durhack-staging.com",
   })
 }
 
