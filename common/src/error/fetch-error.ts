@@ -3,6 +3,7 @@ import ModuleError from "module-error"
 
 import type { StringTemplate } from "@/util/template"
 import { isString } from "@/util/type-guards"
+import { pick } from "@/util/pick"
 
 type ModuleErrorOptions = ConstructorParameters<typeof ModuleError>[1]
 type FetchErrorOptions = ModuleErrorOptions & {
@@ -32,6 +33,11 @@ export class FetchError extends ModuleError {
    * The {@link Response} object related to the error.
    */
   response?: Response
+
+  /**
+   * A generated object with a subset of {@link response}'s fields.
+   */
+  responseSummary?: Pick<Response, "status" | "statusText">
 
   /**
    * The {@link RequestInit} object passed to {@link fetch} which yielded {@link response}.
@@ -71,15 +77,20 @@ export class FetchError extends ModuleError {
     superOptions.code ??= "ERR_FETCH_UNKNOWN" // 'unknown fetch error' - the word ordering is to conform to Node.js' convention for error codes
     super(superMessage, superOptions)
 
+    const fetchError = this
+    function setHidden(propertyKey: PropertyKey, value: unknown) {
+      Object.defineProperty(fetchError, propertyKey, { value, enumerable: false })
+    }
+
     if (options != null) {
-      if (options.response !== undefined) this.response = options.response
-      if (options.requestInit !== undefined) this.requestInit = options.requestInit
-      if (options.responseContentType !== undefined) this.responseContentType = options.responseContentType
-      if (options.responseText !== undefined) this.responseText = options.responseText
+      if (options.response !== undefined) setHidden("response", options.response)
+      if (options.response != null) this.responseSummary = pick(options.response, ["status", "statusText"])
+      if (options.requestInit !== undefined) setHidden("requestInit", options.requestInit)
+      if (options.responseContentType !== undefined) setHidden("responseContentType", options.responseContentType)
+      if (options.responseText !== undefined) setHidden("responseText", options.responseText)
     }
 
     if (messageIsTemplate) {
-      const fetchError = this
       this.message = message({
         get response() {
           return fetchError.formatResponse()
