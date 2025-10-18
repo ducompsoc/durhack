@@ -10,17 +10,18 @@ type LocationBtnProps = {
 
 function LocationBtn({ innerText, href, className, ...props }: LocationBtnProps) {
   return (
-    <a
-      href={href}
-      target="_blank"
-      className={cn(
-        className,
-        "border-[1px] border-white text-[#207ea7] bg-[#cce8f9]/35 hover:bg-[#cce8f9]/100 transition duration-300 ease-in-out rounded-full text-2xl uppercase px-10 py-4 mx-4",
-      )}
-      {...props}
-    >
-      {innerText}
-    </a>
+    <div className={cn(className, "w-full max-w-sm px-2 py-2 text-center")}>
+      <a
+        href={href}
+        target="_blank"
+        className={cn(
+          "border-[1px] border-white text-[#207ea7] bg-[#cce8f9]/35 hover:bg-[#cce8f9]/100 transition duration-300 ease-in-out rounded-full text-2xl uppercase px-10 py-4 mx-4 w-full inline-block sm:w-auto",
+        )}
+        {...props}
+      >
+        {innerText}
+      </a>
+    </div>
   )
 }
 
@@ -34,7 +35,7 @@ export function Location({ className, ...props }: React.ComponentProps<"div">) {
       <div className="flex-row">
         <p
           className={cn(
-            "px-60 my-13 text-center text-[#207ea7] font-medium text-[32px]/[100%]",
+            "px-60 my-13 flex-1/2 text-center text-[#207ea7] font-medium text-[32px]/[100%]",
             darkerGrotesk.className,
           )}
         >
@@ -44,8 +45,15 @@ export function Location({ className, ...props }: React.ComponentProps<"div">) {
           reimbursements for participants<sup>*</sup> travelling from elsewhere — so getting here is one less thing to
           worry about.
         </p>
-        <p>* see FAQs for details.</p>
-        <div className={cn("flex justify-center items-center px-4 my-10")}>
+        <p
+          className={cn(
+            "px-60 my-5 text-center text-[#207ea7] font-medium text-[32px]/[100%]",
+            darkerGrotesk.className,
+          )}
+        >
+          * see FAQs for details.
+        </p>
+        <div className={cn("flex flex-row flex-wrap justify-center items-center align-middle px-50 my-10 w-full")}>
           <LocationBtn href={MAPS_LINK} innerText="Google Maps" />
           <LocationBtn href={SU_LINK} innerText="Book Coach Tickets" />
         </div>
