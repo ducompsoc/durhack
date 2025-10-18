@@ -83,8 +83,8 @@ export const faqs = [
         <br />
         <p>
           Please note you must also have a ticket to DurHack to attend the event. 
-          Hackers from the above cities who do not travel via the DurHack organised coach will not be 
-          eligible for travel reimbursement unless with prior written exception.
+          Hackers travelling via alternative means from cities with coaches provided 
+          must seek prior written exception to be eligible for reimbursement. 
         </p>
         <br />
         <p>
