@@ -181,7 +181,7 @@ export const faqs = [
     slug: "who-can-attend",
     question: "Are students or alumni who aren't from Durham allowed to attend?",
     icon_path: "/assets/faq/icon-4.svg",
-    answer: <p>Absolutely! We welcome students from any university, as long a you were a student in the last year.</p>,
+    answer: <p>Absolutely! We welcome students from any university, as long as you were a student in the last year.</p>,
   },
   {
     slug: "i-have-no-team",
