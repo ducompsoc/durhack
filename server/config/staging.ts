@@ -29,7 +29,6 @@ export default {
   keycloak: {
     realm: "durhack-dev",
     redirectUris: ["https://api.durhack-staging.com/auth/keycloak/callback"],
-    additionalPermittedFrontendOrigins: new Set(["http://durhack-staging.com:3000"]),
   },
   durhack: {
     ticketAssignmentActive: true,
