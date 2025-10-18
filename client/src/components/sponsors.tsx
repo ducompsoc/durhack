@@ -20,8 +20,6 @@ const tierTiles: Record<Sponsor["tier"], React.FC<Omit<React.ComponentProps<type
   partner: () => undefined,
 }
 
-type SponsorType = "Platinum" | "Gold" | "Silver" | "Partner"
-
 type SponsorProps = {
   sponsor: Sponsor
 } & React.HTMLAttributes<HTMLDivElement>

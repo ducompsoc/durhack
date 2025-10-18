@@ -82,9 +82,8 @@ export const faqs = [
         </p>
         <br />
         <p>
-          Please note you must also have a ticket to DurHack to attend the event. 
-          Hackers travelling via alternative means from cities with coaches provided 
-          must seek prior written exception to be eligible for reimbursement. 
+          Please note you must also have a ticket to DurHack to attend the event. Hackers travelling via alternative
+          means from cities with coaches provided must seek prior written exception to be eligible for reimbursement.
         </p>
         <br />
         <p>
@@ -104,12 +103,13 @@ export const faqs = [
           <a href="mailto:travel@durhack.com">travel@durhack.com</a>.
         </p>
         <br />
-        <p>All travel reimbursement is conditional on:
-        <ul className="list-disc pl-6 space-y-1">
-          <li>Having a DurHack ticket</li>
-          <li>Attending DurHack and being checked in at the event</li>
-          <li>Devpost project submission</li>
-        </ul>
+        <p>
+          All travel reimbursement is conditional on:
+          <ul className="list-disc pl-6 space-y-1">
+            <li>Having a DurHack ticket</li>
+            <li>Attending DurHack and being checked in at the event</li>
+            <li>Devpost project submission</li>
+          </ul>
         </p>
         <br />
         <p>
