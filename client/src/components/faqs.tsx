@@ -41,7 +41,7 @@ export function Faqs({ className, ...props }: React.ComponentProps<"div">) {
                       width={38.75}
                       height={38.75}
                       alt="icon"
-                      className={cn("shrink-0 mx-10")}
+                      className={cn("shrink-0 mr-10")}
                     />
                     {question.question}
                     <AccordionChevron className={cn("fill-current text-[#006793] accordion-chevron ml-auto")} />
