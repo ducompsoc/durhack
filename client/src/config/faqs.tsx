@@ -69,7 +69,7 @@ export const faqs = [
           Hackers travelling from Manchester, Leeds, Nottingham or Sheffield can obtain reduced-price coaches directly
           to DurHack organised by us.
         </p>
-         <br></br>
+        <br />
         <p>
           Book tickets{" "}
           <a
@@ -80,14 +80,13 @@ export const faqs = [
           </a>
           .
         </p>
-        <br></br>
-        <p>Please note you must also have a ticket to DurHack to attend the event.</p>
+        <br />
         <p>
+          Please note you must also have a ticket to DurHack to attend the event. 
           Hackers from the above cities who do not travel via the DurHack organised coach will not be 
-          
+          eligible for travel reimbursement unless with prior written exception.
         </p>
-        <p>eligible for travel reimbursement unless with prior written exception.</p>
-        <br></br>
+        <br />
         <p>
           For hackers travelling from outside of these cities, we will reimburse 50% of your travel costs up to the
           following caps:
@@ -99,19 +98,20 @@ export const faqs = [
           <li>150+ miles (e.g. London, Oxford) — £55</li>
         </ul>
         <p>If you are travelling on our coaches, you will not be not eligible for any other travel reimbursement.</p>
-        <br></br>
+        <br />
         <p>
           If you are travelling in a group by car, or have any other travel queries, please reach out to{" "}
           <a href="mailto:travel@durhack.com">travel@durhack.com</a>.
         </p>
-        <br></br>
-        <p>All travel reimbursement is conditional on:</p>
+        <br />
+        <p>All travel reimbursement is conditional on:
         <ul className="list-disc pl-6 space-y-1">
           <li>Having a DurHack ticket</li>
           <li>Attending DurHack and being checked in at the event</li>
           <li>Devpost project submission</li>
         </ul>
-        <br></br>
+        </p>
+        <br />
         <p>
           Please keep your receipt(s): we will release a form shortly after DurHack for you to put in your details and
           upload the receipt(s). Reimbursement should come through by the end of December.
