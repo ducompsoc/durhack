@@ -13,17 +13,17 @@ export default function HomePage() {
       <Hero />
 
       {/* Info */}
-      <Info className="hidden" />
+      <Info className="" />
 
       {/* Location */}
       <Location className="location flex items-start justify-center" />
 
       {/* Sponsors & Partners */}
-      <Sponsors className="hidden" />
-      <Partners className="hidden" />
+      <Sponsors className="" />
+      <Partners className="" />
 
       {/* FAQ */}
-      <Faqs className="hidden" />
+      <Faqs className="" />
 
       {/* History */}
       <div className="history flex items-start justify-center hidden">
