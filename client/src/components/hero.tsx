@@ -66,12 +66,12 @@ export function Hero({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
         />
 
         <Image
-          src="/assets/graphics/dome-left.svg" alt="Left Dome" width={224} height={160}
-          className="absolute right-[20%] bottom-[30%]"
+          src="/assets/graphics/dome-left.svg" alt="Left Dome" width={246} height={176}
+          className="absolute right-[20%] bottom-[28%]"
         />
         <Image
-          src="/assets/graphics/dome-right.svg" alt="Right Dome" width={412} height={287}
-          className="absolute right-[3%] bottom-[29%]"
+          src="/assets/graphics/dome-right.svg" alt="Right Dome" width={453} height={316}
+          className="absolute right-[2%] bottom-[29%]"
         />
 
         <Image
