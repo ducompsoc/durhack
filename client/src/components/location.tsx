@@ -32,7 +32,7 @@ export function Location({ className, ...props }: React.ComponentProps<"div">) {
 
   return (
     <div className={cn(className, "flex flex-col")} {...props}>
-      <div className="container max-w-[80rem] text-center">
+      <div className="container max-w-[60rem] text-center">
         <p
           className={cn("flex-1/2 text-center text-[#207ea7] font-medium text-[32px]/[100%]", darkerGrotesk.className)}
         >
