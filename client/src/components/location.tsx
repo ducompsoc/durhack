@@ -10,7 +10,7 @@ type LocationBtnProps = {
 
 function LocationBtn({ innerText, href, className, ...props }: LocationBtnProps) {
   return (
-    <div className={cn(className, "w-full max-w-sm px-2 py-2 text-center")}>
+    <div className={cn(className, "px-2 py-2 text-center flex justify-center")}>
       <a
         href={href}
         target="_blank"
@@ -31,13 +31,10 @@ export function Location({ className, ...props }: React.ComponentProps<"div">) {
   const MAPS_LINK = "https://maps.app.goo.gl/H3qypQFBy88CQa7N9"
 
   return (
-    <div className={cn(className)} {...props}>
-      <div className="flex-row">
+    <div className={cn(className, "flex flex-col")} {...props}>
+      <div className="container max-w-[80rem] text-center">
         <p
-          className={cn(
-            "px-60 my-13 flex-1/2 text-center text-[#207ea7] font-medium text-[32px]/[100%]",
-            darkerGrotesk.className,
-          )}
+          className={cn("flex-1/2 text-center text-[#207ea7] font-medium text-[32px]/[100%]", darkerGrotesk.className)}
         >
           DurHack takes place in the Teaching and Learning Centre at Durham University. It’s just a short walk or bus
           ride from Durham Train Station, with direct connections to major UK cities. To make your journey easier, we
@@ -45,18 +42,13 @@ export function Location({ className, ...props }: React.ComponentProps<"div">) {
           reimbursements for participants<sup>*</sup> travelling from elsewhere — so getting here is one less thing to
           worry about.
         </p>
-        <p
-          className={cn(
-            "px-60 my-5 text-center text-[#207ea7] font-medium text-[32px]/[100%]",
-            darkerGrotesk.className,
-          )}
-        >
+        <p className={cn("text-center text-[#207ea7] font-medium text-[32px]/[100%]", darkerGrotesk.className)}>
           * see FAQs for details.
         </p>
-        <div className={cn("flex flex-row flex-wrap justify-center items-center align-middle px-50 my-10 w-full")}>
-          <LocationBtn href={MAPS_LINK} innerText="Google Maps" />
-          <LocationBtn href={SU_LINK} innerText="Book Coach Tickets" />
-        </div>
+      </div>
+      <div className={cn("flex flex-row flex-wrap justify-center items-center align-middle my-10 w-full")}>
+        <LocationBtn href={MAPS_LINK} innerText="Google Maps" />
+        <LocationBtn href={SU_LINK} innerText="Book Coach Tickets" />
       </div>
     </div>
   )
