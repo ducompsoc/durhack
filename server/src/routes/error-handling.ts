@@ -8,6 +8,8 @@ import { sendHttpErrorResponse, sendZodErrorResponse } from "@/lib/response"
 import type { Request, Response } from "@/types"
 
 export function apiErrorHandler(error: Error, _request: Request, response: Response, next: NextFunction) {
+  console.log(error)
+  
   if (response.headersSent) {
     return next(error)
   }

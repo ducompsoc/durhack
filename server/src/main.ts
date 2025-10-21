@@ -8,6 +8,8 @@ import { Response } from "@/response"
 import { routesApp } from "@/routes"
 import { apiErrorHandler } from "@/routes/error-handling"
 
+import {logger} from "@otterhttp/logger"
+
 const app = new App<Request, Response>({
   onError: apiErrorHandler,
   settings: {
@@ -23,6 +25,13 @@ app
       exposedHeaders: ["etag"],
       credentials: true,
     }),
+  )
+  .use(
+    logger({
+      methods: ['GET', 'POST', 'PATCH'],
+      timestamp: { format: 'HH:mm:ss' },
+      output: { callback: console.log, color: false }
+    })
   )
   .use(routesApp)
 

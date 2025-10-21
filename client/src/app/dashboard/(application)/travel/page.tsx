@@ -26,7 +26,7 @@ type TravelDetailsFormFields = {
   travelOrigin: string
 }
 const TravelDetailsFormSchema = z.object({
-    travelOrigin: z.enum(["prefer-not-to-answer", "Durham", "elsewhere in the UK", "abroad"])
+    travelOrigin: z.enum(["prefer-not-to-answer", "durham", "elsewhere-in-the-uk", "abroad"])
   })
 /**
  * This component accepts <code>application</code> via props, rather than via
@@ -66,7 +66,7 @@ async function onSubmit(values: z.infer<typeof TravelDetailsFormSchema>): Promis
                       </FormControl>
                       <SelectContent>
                         <SelectItem value="prefer-not-to-answer">Prefer Not To Say</SelectItem>
-                        <SelectItem value="Durham">Durham</SelectItem>
+                        <SelectItem value="durham">Durham</SelectItem>
                         <SelectItem value="elsewhere-in-the-uk">elsewhere in the UK</SelectItem>
                         <SelectItem value="abroad">abroad</SelectItem>
                       </SelectContent>

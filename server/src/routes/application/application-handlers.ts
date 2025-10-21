@@ -17,6 +17,7 @@ import {
   adaptHackathonExperienceFromDatabase,
   adaptHackathonExperienceToDatabase,
 } from "@/database/adapt-hackathon-experience"
+//import {adaptTravelOriginFromDatabse, adaptTravelOriginToDatabase} from "@/database/adapt-travel-origin"
 import { onlyKnownUsers } from "@/decorators/authorise"
 import { json, multipartFormData } from "@/lib/body-parsers"
 import { type KeycloakUserInfo, getKeycloakAdminClient } from "@/lib/keycloak-client"
@@ -78,6 +79,13 @@ const educationFormSchema = z.object({
     .array(disciplineOfStudySchema)
     .min(1, { message: "Please select your discipline(s) of study." }),
   countryOfResidence: z.string().iso3(),
+})
+
+const travelFormSchema = z.object({
+  travelOrigin: z.enum(["prefer-not-to-answer", "durham", "elsewhere-in-the-uk", "abroad"],{
+    message: "Please provide your travel origin.",
+})
+  //.transform(adaptTravelOriginToDatabase),
 })
 
 const extraDetailsFormSchema = z.object({
@@ -191,6 +199,7 @@ class ApplicationHandlers {
       graduationYear: userInfo?.graduationYear ?? null,
       levelOfStudy: (userInfo?.levelOfStudy as Application["levelOfStudy"] | null | undefined) ?? null,
       disciplinesOfStudy: disciplinesOfStudy,
+      travelOrigin: (userInfo?.travelOrigin as Application["travelOrigin"] | null | undefined) ?? null,
       tShirtSize: (userInfo?.tShirtSize?.trimEnd() as Application["tShirtSize"] | null | undefined) ?? null,
       dietaryRequirements: dietaryRequirements,
       accessRequirements: userInfo?.accessRequirements ?? null,
@@ -296,6 +305,41 @@ class ApplicationHandlers {
       response.sendStatus(200)
     }
   }
+
+@onlyKnownUsers()
+  patchTravel(): Middleware {
+    return async (request, response) => {
+      assert(request.user)
+      assert(request.userProfile)
+
+      const body = await json(request, response)
+      const payload = travelFormSchema.parse(body)
+
+      const attributes: Record<string, string > = {
+        travelOrigin:payload.travelOrigin,
+      }
+
+      const adminClient = await getKeycloakAdminClient()
+      const userProfile = await adminClient.users.findOne({ id: request.user.keycloakUserId })
+      assert(userProfile)
+
+      const prismaUserInfo = {
+        travelOrigin: payload.travelOrigin,
+      }
+
+      await prisma.user.update({
+        where: { keycloakUserId: request.user.keycloakUserId },
+        data: {
+          userInfo: {
+            update: prismaUserInfo,
+          },
+        },
+      })
+
+      response.sendStatus(200)
+    }
+  }
+
 
   @onlyKnownUsers()
   patchExtraDetails(): Middleware {
@@ -520,7 +564,9 @@ class ApplicationHandlers {
     if (application.graduationYear == null) {
       errors.push(new Error("'Education' section has not been completed"))
     }
-
+    if (application.travelOrigin == null) {
+      errors.push(new Error("'Travel' section has not been completed"))
+    }
     if (application.cvUploadChoice === "indeterminate") {
       errors.push(new Error("'CV' section has not been completed"))
     }
