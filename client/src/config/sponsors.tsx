@@ -118,7 +118,7 @@ export const sponsors: Sponsor[] = [
     active: true,
   },
   {
-    organisationSlug: "oag",
+    organisationSlug: "oag-aviation",
     tier: "partner",
     active: true,
   },

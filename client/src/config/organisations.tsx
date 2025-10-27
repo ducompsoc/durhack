@@ -350,8 +350,8 @@ const organisations = [
     privacyPolicyLink: "https://www.neptunenorth.co.uk/privacy-policy",
   },
   {
-    slug: "oag",
-    title: "OAG",
+    slug: "oag-aviation",
+    title: "OAG Aviation",
     image: (props) => <Image {...props} src="/assets/sponsors/oag.svg" alt="OAG" width={90} height={40} />,
     link: "https://www.oag.com",
     privacyPolicyLink: "https://www.oag.com/privacy-notice",
