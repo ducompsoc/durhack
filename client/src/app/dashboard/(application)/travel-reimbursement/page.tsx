@@ -30,6 +30,7 @@ import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
 import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
+import { useTravelReimbursementForm } from "@/hooks/use-travel-reimbursement-form-context"
 import { isLoaded } from "@/lib/is-loaded"
 import { updateApplication } from "@/lib/update-application"
 
@@ -42,7 +43,7 @@ type TravelReimbursementFormFields = {
 const TravelReimbursementFormSchema = z.object({
   methodoftravel: z
     .array(
-  z.enum(["train", "bus", "private road vehicle", "international transport", "other"])
+  z.enum(["train", "bus", "private-road-vehicle", "international-transport", "other"])
     ),
   receiptFiles: z
         .array(
@@ -76,7 +77,7 @@ const TravelReimbursementFormSchema = z.object({
  */
 function TravelReimbursementForm({ application }: { application: Application }) {
   const router = useRouter()
-  const { mutateApplication } = useApplicationContext()
+  const TravelReimbursementForm = useTravelReimbursementForm()
 
   const form = useForm<TravelReimbursementFormFields, unknown, z.infer<typeof TravelReimbursementFormSchema>>({
     resolver: zodResolver(TravelReimbursementFormSchema),
@@ -84,7 +85,7 @@ function TravelReimbursementForm({ application }: { application: Application }) 
 
   async function onSubmit(values: z.infer<typeof TravelReimbursementFormSchema>): Promise<void> {
     await updateApplication("travelReimbursement", values)
-    await mutateApplication({ ...application, ...values })
+    //await mutateApplication({ ...application, ...values })
   }
 
   return (
@@ -105,8 +106,8 @@ function TravelReimbursementForm({ application }: { application: Application }) 
                         options={[
                           { label: "train", value: "train" },
                           { label: "bus", value: "bus" },
-                          { label: "private road vehicle", value: "private road vehicle" },
-                          { label: "international transport", value: "international transport" },
+                          { label: "private road vehicle", value: "private-road-vehicle" },
+                          { label: "international transport", value: "international-transport" },
                           { label: "other", value: "other" }
                         ]}
                         hidePlaceholderWhenSelected

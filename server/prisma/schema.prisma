@@ -157,8 +157,8 @@ enum HackathonExperience {
 enum MethodOfTravel {
   train
   bus
-  privateRoadVehicle     @map("private_road_vehicle")
-  internationalTransport @map("international_transport")
+  privateRoadVehicle     @map("private-road-vehicle")
+  internationalTransport @map("international-transport")
   other
 }
 
