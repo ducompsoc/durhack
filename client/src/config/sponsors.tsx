@@ -123,7 +123,7 @@ export const sponsors: Sponsor[] = [
     active: true,
   },
   {
-    organisationSlug: "tpp",
+    organisationSlug: "the-pheonix-partnership",
     tier: "partner",
     active: true,
   },

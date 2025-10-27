@@ -357,8 +357,8 @@ const organisations = [
     privacyPolicyLink: "https://www.oag.com/privacy-notice",
   },
   {
-    slug: "tpp",
-    title: "TPP",
+    slug: "the-pheonix-partnership",
+    title: "The Phoenix Partnership",
     image: (props) => <Image {...props} src="/assets/sponsors/tpp.svg" alt="TPP" width={1170} height={666} />,
     link: "https://tpp-uk.com/",
   },
