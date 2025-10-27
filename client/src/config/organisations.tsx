@@ -349,6 +349,13 @@ const organisations = [
     link: "https://neptunenorth.co.uk",
     privacyPolicyLink: "https://www.neptunenorth.co.uk/privacy-policy",
   },
+  {
+    slug: "oag",
+    title: "OAG",
+    image: (props) => <Image {...props} src="/assets/sponsors/oag.svg" alt="OAG" width={90} height={40} />,
+    link: "https://www.oag.com",
+    privacyPolicyLink: "https://www.oag.com/privacy-notice",
+  },
 ] as const satisfies OrganisationInput[]
 
 export type OrganisationSlug = (typeof organisations)[number]["slug"]

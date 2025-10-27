@@ -117,6 +117,11 @@ export const sponsors: Sponsor[] = [
     tier: "partner",
     active: true,
   },
+  {
+    organisationSlug: "oag",
+    tier: "partner",
+    active: true,
+  },
 ]
 
 export const signedSponsors = sponsors.filter((sponsor) => sponsor.active)
