@@ -21,7 +21,7 @@ export const siteConfig = {
     { key: "tiktok", href: "https://www.tiktok.com/@durhack", icon: TikTokIcon },
     { key: "linkedin", href: "https://www.linkedin.com/company/durhack/mycompany/", icon: LinkedInIcon },
     { key: "x", href: "https://x.com/durhackevent", icon: XIcon },
-    { key: "medium", href: "https://durhack.medium.com/", icon: MediumIcon },
+    { key: "medium", href: "https://medium.com/@DurHack_press", icon: MediumIcon },
   ] as const satisfies readonly socialLink[],
   sessionCookieName: "__Secure-durhack-session",
 }
