@@ -45,17 +45,13 @@ export function Footer ({ className, ...props }: React.HTMLAttributes<HTMLDivEle
   return (
     <div
       className={cn(
-        "footer h-[calc(50rem+30vw)] sm:h-200 md:h-200 lg:h-200 xl:h-210 2xl:h-230 relative flex items-start justify-center overflow-hidden",
+        "footer h-[calc(40rem+25vw)] sm:h-180 md:h-185 lg:h-180 xl:h-180 2xl:h-200 relative flex items-start justify-center overflow-hidden",
         className,
       )}
       {...props}
     >
-      <div className="absolute h-full hidden 2xl:contents 2xl:w-full top-10">
-        <CloudsFooterGraphic className="absolute bottom-[-20%] w-full" />
-      </div>
-
-      <div className="absolute left-[-5%] left-[0%] top-[180%] w-[140%]">
-        <CloudsFooterGraphic className="absolute left-[-5%] bottom-0 w-full" />
+      <div className="absolute h-full w-full">
+        <CloudsFooterGraphic className="absolute top-5 w-full" />
       </div>
 
       <div className="relative z-10 rounded-3xl w-[90%] h-[90%] translate-y-32 flex flex-col items-center px-8 py-12 sm:py-16" style={{ backgroundColor: "#DCF4FF" }}>
