@@ -143,7 +143,9 @@ class ApplicationHandlers {
         userInfo: true,
         userConsents: true,
         userFlags: true,
-        userCv: true,
+        userCv: {
+          select: { filename: true, },
+        },
       },
     })
     assert(user)
