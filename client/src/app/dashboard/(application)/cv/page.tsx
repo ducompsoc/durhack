@@ -94,7 +94,6 @@ function CvForm({ application, cvFileInfo }: { application: Application; cvFileI
   const { mutateApplication } = useApplicationContext()
   const [showForm, setShowForm] = React.useState<boolean>(() => application?.cvUploadChoice === "upload")
   const [successMessage, setSuccessMessage] = React.useState<string | null>(null)
-  const [statusMessage, setStatusMessage] = React.useState<string | null>(null)
 
   const form = useForm<CvFormFields, unknown, z.infer<typeof cvFormSchema>>({
     resolver: zodResolver<CvFormFields, unknown, z.infer<typeof cvFormSchema>>(cvFormSchema),
@@ -103,12 +102,6 @@ function CvForm({ application, cvFileInfo }: { application: Application; cvFileI
       cvFiles: cvFileInfo == null ? [] : [cvFileInfo],
     },
   })
-
-  React.useEffect(() => {
-    if (application.cvUploadChoice === "upload" && cvFileInfo != null) {
-      setStatusMessage(`We have your CV: (${cvFileInfo.name})`)
-    }
-  }, [application.cvUploadChoice, cvFileInfo])
 
   async function onSubmit(values: z.infer<typeof cvFormSchema>): Promise<void> {
     const formData = new FormData()
@@ -215,7 +208,6 @@ function CvForm({ application, cvFileInfo }: { application: Application; cvFileI
             )}
           />
         </div>
-        <div className="flex justify-center">{statusMessage && <div>{statusMessage}</div>}</div>
         <div className="mt-16 flex justify-center">
           <FormSubmitButton type="submit">Save Progress</FormSubmitButton>
         </div>
