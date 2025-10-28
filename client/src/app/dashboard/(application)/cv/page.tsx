@@ -1,6 +1,8 @@
 "use client"
 
+import type { FileInfo } from "@durhack/durhack-common/types/file-info"
 import {
+  type FileLike,
   FileUpload,
   FileUploadDropzoneBasket,
   FileUploadDropzoneInput,
@@ -36,13 +38,14 @@ import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
 import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
+import { useApplicationCvContext } from "@/hooks/use-application-cv-context"
 import { isLoaded } from "@/lib/is-loaded"
 import { updateApplication } from "@/lib/update-application"
 import { cn } from "@/lib/utils"
 
 type CvFormFields = {
   cvUploadChoice: "indeterminate" | "upload" | "remind" | "no-upload"
-  cvFiles?: File[] | undefined
+  cvFiles?: FileLike[] | undefined
 }
 
 const cvFormSchema = z.discriminatedUnion(
@@ -86,7 +89,7 @@ const cvFormSchema = z.discriminatedUnion(
  * This component accepts <code>application</code> via props, rather than via
  * <code>useApplicationContext</code>, because it requires the application to already be loaded before being rendered.
  */
-function CvForm({ application }: { application: Application }) {
+function CvForm({ application, cvFileInfo }: { application: Application; cvFileInfo: FileInfo | null }) {
   const router = useRouter()
   const { mutateApplication } = useApplicationContext()
   const [showForm, setShowForm] = React.useState<boolean>(() => application?.cvUploadChoice === "upload")
@@ -97,18 +100,16 @@ function CvForm({ application }: { application: Application }) {
     resolver: zodResolver<CvFormFields, unknown, z.infer<typeof cvFormSchema>>(cvFormSchema),
     defaultValues: {
       cvUploadChoice: application.cvUploadChoice ?? "indeterminate",
-      cvFiles: [],
+      cvFiles: cvFileInfo == null ? [] : [cvFileInfo],
     },
   })
-  
-  React.useEffect(() => {
-    if (application.cvUploadChoice === "upload" && application.cvFileName != null) {
-      setStatusMessage(`We have your CV: (${application.cvFileName})`)
-    }
-  }, [application.cvUploadChoice, application.cvFileName])
-  
 
-  
+  React.useEffect(() => {
+    if (application.cvUploadChoice === "upload" && cvFileInfo != null) {
+      setStatusMessage(`We have your CV: (${cvFileInfo.name})`)
+    }
+  }, [application.cvUploadChoice, cvFileInfo])
+
   async function onSubmit(values: z.infer<typeof cvFormSchema>): Promise<void> {
     const formData = new FormData()
     formData.append("cvUploadChoice", values.cvUploadChoice)
@@ -178,12 +179,9 @@ function CvForm({ application }: { application: Application }) {
           />
         </div>
         {successMessage && (
-            <div className="mb-6 rounded-md bg-green-100 p-4 text-center text-sm text-green-800">
-              {successMessage}
-            </div>
+          <div className="mb-6 rounded-md bg-green-100 p-4 text-center text-sm text-green-800">{successMessage}</div>
         )}
-        <ul></ul>
-
+        <ul />
 
         <div className={cn("mb-4", showForm ? "" : "hidden")}>
           <FormField
@@ -216,15 +214,8 @@ function CvForm({ application }: { application: Application }) {
               </FormItem>
             )}
           />
-        
         </div>
-        <div className ="flex justify-center">
-          {statusMessage && (
-            <div>
-              {statusMessage}
-            </div>
-          )}
-        </div>
+        <div className="flex justify-center">{statusMessage && <div>{statusMessage}</div>}</div>
         <div className="mt-16 flex justify-center">
           <FormSubmitButton type="submit">Save Progress</FormSubmitButton>
         </div>
@@ -239,10 +230,14 @@ function CvFormSkeleton() {
 
 export default function CvPage() {
   const { application, applicationIsLoading } = useApplicationContext()
+  const { cvFileInfo, cvFileInfoIsLoading } = useApplicationCvContext()
 
   if (!isLoaded(application, applicationIsLoading)) {
     return <CvFormSkeleton />
   }
+  if (!isLoaded(cvFileInfo, cvFileInfoIsLoading)) {
+    return <CvFormSkeleton />
+  }
 
-  return <CvForm application={application} />
+  return <CvForm application={application} cvFileInfo={cvFileInfo} />
 }
