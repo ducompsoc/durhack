@@ -174,7 +174,6 @@ function CvForm({ application, cvFileInfo }: { application: Application; cvFileI
         {successMessage && (
           <div className="mb-6 rounded-md bg-green-100 p-4 text-center text-sm text-green-800">{successMessage}</div>
         )}
-        <ul />
 
         <div className={cn("mb-4", showForm ? "" : "hidden")}>
           <FormField
