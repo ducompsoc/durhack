@@ -7,6 +7,9 @@ import { ClientError, HttpStatus } from "@otterhttp/errors"
 import type { ContentType, ParsedFormFieldFile } from "@otterhttp/parsec"
 import { fileTypeFromBuffer } from "file-type"
 import { z } from "zod/v4"
+import {
+  findUniqueUserCvAndSelectFileInfo,
+} from "@prisma/client/sql"
 
 import { mailgunConfig } from "@/config"
 import { prisma } from "@/database"
@@ -27,6 +30,8 @@ import { zodPhoneNumber } from "@/lib/zod-phone-validator"
 import type { Middleware, Request } from "@/types"
 
 import { verifiedInstitutionsSet } from "./institution-options"
+import {FileInfo} from "@durhack/durhack-common/types/file-info";
+import {isNumber} from "@/lib/type-guards";
 
 const personalFormSchema = z.object({
   firstNames: z.string().trim().min(1).max(256),
@@ -415,6 +420,30 @@ class ApplicationHandlers {
 
     if (mime !== fileType.mime)
       throw new ClientError(`File's content does not match the claimed type ${mime}. Expected type ${fileType?.mime}`)
+  }
+
+  @onlyKnownUsers()
+  getCv(): Middleware {
+    return async (request, response) => {
+      assert(request.user)
+
+      const cvResults = await prisma.$queryRawTyped(findUniqueUserCvAndSelectFileInfo(request.user.keycloakUserId));
+      if (cvResults.length === 0) {
+        response.json({ data: { cvFileInfo: null } })
+        return
+      }
+
+      assert(cvResults.length === 1)
+      const cv = cvResults[0]
+      assert(cv.content_length !== null)
+      response.json({ data: {
+        cvFileInfo: {
+          name: cv.filename,
+          type: cv.content_type,
+          size: cv.content_length,
+        } satisfies FileInfo
+      }})
+    }
   }
 
   @onlyKnownUsers()
