@@ -1,6 +1,7 @@
 "use client"
 
 import type { FileInfo } from "@durhack/durhack-common/types/file-info"
+import { isObject } from "@durhack/durhack-common/util/type-guards"
 import {
   type FileLike,
   FileUpload,
@@ -48,6 +49,32 @@ type CvFormFields = {
   cvFiles?: FileLike[] | undefined
 }
 
+const cvFileSchema = z
+  .custom<File>((value) => value instanceof File, {
+    error: (ctx) => {
+      if (isObject(ctx.input)) return "Please provide a CV file to replace the one you've already uploaded."
+      return "How on earth did you manage this?"
+    },
+  })
+  .refine((value) => value.size <= 10485760, { error: () => "Maximum file size is 10MB!" })
+  .refine(
+    (value) => {
+      if (
+        ![
+          "application/pdf",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "application/msword",
+        ].includes(value.type)
+      )
+        return false
+
+      const split = value.name.split(".")
+      const extension = split[split.length - 1]
+      return ["doc", "docx", "pdf"].includes(extension)
+    },
+    { error: () => "Please upload a PDF or Word doc!" },
+  )
+
 const cvFormSchema = z.discriminatedUnion(
   "cvUploadChoice",
   [
@@ -60,25 +87,14 @@ const cvFormSchema = z.discriminatedUnion(
     z.object({
       cvUploadChoice: z.literal("upload"),
       cvFiles: z
-        .array(
-          z
-            .custom<File>((value) => value instanceof File, { error: () => "How on earth did you manage this?" })
-            .refine((value) => value.size <= 10485760, { error: () => "Maximum file size is 10MB!" })
-            .refine((value) => {
-              if (
-                ![
-                  "application/pdf",
-                  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                  "application/msword",
-                ].includes(value.type)
-              )
-                return false
-
-              const split = value.name.split(".")
-              const extension = split[split.length - 1]
-              return ["doc", "docx", "pdf"].includes(extension)
-            }, { error: () => "Please upload a PDF or Word doc!" }),
-        )
+        .array(z.custom<File>())
+        .check((ctx) => {
+          for (const file of ctx.value) {
+            const result = cvFileSchema.safeParse(file)
+            if (result.success) continue
+            ctx.issues.push(...result.error.issues)
+          }
+        })
         .length(1, "Please provide exactly one CV file!"),
     }),
   ],
@@ -108,7 +124,7 @@ function CvForm({ application, cvFileInfo }: { application: Application; cvFileI
     formData.append("cvUploadChoice", values.cvUploadChoice)
 
     if (values.cvUploadChoice === "upload") {
-      formData.append("cvFile", values.cvFiles[0])
+      formData.append("cvFile", values.cvFiles[0] as unknown as File)
     }
 
     try {
