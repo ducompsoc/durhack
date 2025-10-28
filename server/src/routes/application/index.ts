@@ -58,8 +58,9 @@ applicationApp
 
 applicationApp
   .route("/cv")
-  .all(methodNotAllowed(["PATCH"]))
+  .all(methodNotAllowed(["GET", "PATCH"]))
   .all(authenticate())
+  .get(applicationHandlers.getCv())
   .patch(applicationHandlers.patchCv())
   .all(forbiddenOrUnauthorised())
 
