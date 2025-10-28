@@ -7,7 +7,7 @@ export function Medium({ className, ...props }: React.HTMLAttributes<HTMLDivElem
     return (
         <div
       className={cn(
-        "medium h-[calc(16rem+18vw)] sm:h-100 md:h-120 lg:h-140 xl:h-180 2xl:h-280 relative flex items-start justify-center overflow-hidden",
+        "medium h-[calc(16rem+18vw)] sm:h-90 md:h-120 lg:h-130 xl:h-160 2xl:h-260 relative flex items-start justify-center overflow-hidden",
         className,
       )}
       {...props}
@@ -43,7 +43,7 @@ export function Medium({ className, ...props }: React.HTMLAttributes<HTMLDivElem
           className="absolute right-[12%] top-[30%] w-1/5 max-w-150"
         />
         <a href="https://medium.com/@DurHack_press/coding-for-good-in-durham-how-hackathons-are-building-the-next-generation-of-problem-solvers-bd5baf57fcef" target="_blank" rel="noopener noreferrer">
-            <div className="absolute right-[5%] text-center bottom-[10%] w-1/3 max-w-200">
+            <div className="absolute right-[-5%] text-center bottom-[5%] w-1/3 max-w-200">
                 <p className={cn(
                     patrickHand.className,
                     "section-header font-bold text-[#006793] tracking-widest text-center uppercase w-fit text-[clamp(1.1rem,1.1vw+0.3rem,1.9rem)]",
