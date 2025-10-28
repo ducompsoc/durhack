@@ -125,7 +125,7 @@ function CvForm({ application, cvFileInfo }: { application: Application; cvFileI
     formData.append("cvUploadChoice", values.cvUploadChoice)
 
     if (values.cvUploadChoice === "upload") {
-      formData.append("cvFile", values.cvFiles[0] as unknown as File)
+      formData.append("cvFile", values.cvFiles[0])
     }
 
     try {
