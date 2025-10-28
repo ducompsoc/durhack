@@ -46,6 +46,7 @@ class DataExportHandlers {
         major_league_hacking_attendees_url: new URL("/applications/data-export/major-league-hacking?attendees", origin),
         hackathons_uk_applications_url: new URL("/applications/data-export/hackathons-uk", origin),
         hackathons_uk_attendees_url: new URL("/applications/data-export/hackathons-uk?attendees", origin),
+        cv_archive_url: new URL("/applications/data-export/cv-archive", origin),
         anonymous_applications_url: new URL("/applications/data-export/anonymous", origin),
       })
     }
