@@ -45,13 +45,13 @@ export function Footer ({ className, ...props }: React.HTMLAttributes<HTMLDivEle
   return (
     <div
       className={cn(
-        "footer h-[calc(40rem+20vw)] sm:h-180 md:h-180 lg:h-180 xl:h-190 2xl:h-210 relative flex items-start justify-center overflow-hidden",
+        "footer h-[calc(50rem+30vw)] sm:h-200 md:h-200 lg:h-200 xl:h-210 2xl:h-230 relative flex items-start justify-center overflow-hidden",
         className,
       )}
       {...props}
     >
       <div className="absolute h-full hidden 2xl:contents 2xl:w-full top-10">
-        <CloudsFooterGraphic className="absolute left-[-5%] top-[10%] w-full" />
+        <CloudsFooterGraphic className="absolute bottom-[-20%] w-full" />
       </div>
 
       <div className="absolute left-[-5%] left-[0%] top-[180%] w-[140%]">
@@ -72,7 +72,7 @@ export function Footer ({ className, ...props }: React.HTMLAttributes<HTMLDivEle
           <div className="absolute items-center text-center right-[10%] top-[10%] max-w-250">
             <h2 className={cn(
               patrickHand.className,
-              "section-header text-[#006793] uppercase text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-bold w-fit",
+              "section-header text-[#006793] uppercase text-2xl sm:text-2xl md:text-4xl lg:text-5xl font-bold w-fit",
               className,
             )} style={{ color: "#006793" }}>CONTACT US!</h2>
             <br></br>
@@ -83,7 +83,7 @@ export function Footer ({ className, ...props }: React.HTMLAttributes<HTMLDivEle
           </div>
         </div>
         <div className="w-3/4 h-[1px] bg-gray-300 mt-65"></div>
-        <div className="relative items-center text-center bottom-[-10%]">
+          <div className="relative items-center text-center bottom-[-10%]">
             <p className={cn(
               spaceGrotesk.className,
               "text-[#006793] text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-normal px-6",
