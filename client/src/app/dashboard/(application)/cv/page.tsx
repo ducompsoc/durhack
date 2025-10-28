@@ -108,6 +108,7 @@ const cvFormSchema = z.discriminatedUnion(
 function CvForm({ application, cvFileInfo }: { application: Application; cvFileInfo: FileInfo | null }) {
   const router = useRouter()
   const { mutateApplication } = useApplicationContext()
+  const { mutateCvFileInfo } = useApplicationCvContext()
   const [showForm, setShowForm] = React.useState<boolean>(() => application?.cvUploadChoice === "upload")
   const [successMessage, setSuccessMessage] = React.useState<string | null>(null)
 
@@ -137,6 +138,7 @@ function CvForm({ application, cvFileInfo }: { application: Application; cvFileI
     setSuccessMessage("CV saved!")
 
     await mutateApplication({ ...application, cvUploadChoice: values.cvUploadChoice })
+    await mutateCvFileInfo()
     if (application.cvUploadChoice === "indeterminate") router.push("/dashboard/submit")
   }
 
