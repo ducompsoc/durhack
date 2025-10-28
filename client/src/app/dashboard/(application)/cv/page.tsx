@@ -62,8 +62,8 @@ const cvFormSchema = z.discriminatedUnion(
       cvFiles: z
         .array(
           z
-            .custom<File>((value) => value instanceof File, "How on earth did you manage this?")
-            .refine((value) => value.size <= 10485760, "Maximum file size is 10MB!")
+            .custom<File>((value) => value instanceof File, { error: () => "How on earth did you manage this?" })
+            .refine((value) => value.size <= 10485760, { error: () => "Maximum file size is 10MB!" })
             .refine((value) => {
               if (
                 ![
@@ -77,7 +77,7 @@ const cvFormSchema = z.discriminatedUnion(
               const split = value.name.split(".")
               const extension = split[split.length - 1]
               return ["doc", "docx", "pdf"].includes(extension)
-            }, "Please upload a PDF or Word doc!"),
+            }, { error: () => "Please upload a PDF or Word doc!" }),
         )
         .length(1, "Please provide exactly one CV file!"),
     }),
