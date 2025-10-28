@@ -118,7 +118,7 @@ function CvForm({ application, cvFileInfo }: { application: Application; cvFileI
       form.setError("cvUploadChoice", { message: "CV file was rejected (try uploading an A4 PDF)!" })
       return
     }
-    setSuccessMessage("CV successfully saved!")
+    setSuccessMessage("CV saved!")
 
     await mutateApplication({ ...application, cvUploadChoice: values.cvUploadChoice })
     if (application.cvUploadChoice === "indeterminate") router.push("/dashboard/submit")
@@ -171,9 +171,6 @@ function CvForm({ application, cvFileInfo }: { application: Application; cvFileI
             )}
           />
         </div>
-        {successMessage && (
-          <div className="mb-6 rounded-md bg-green-100 p-4 text-center text-sm text-green-800">{successMessage}</div>
-        )}
 
         <div className={cn("mb-4", showForm ? "" : "hidden")}>
           <FormField
@@ -210,6 +207,9 @@ function CvForm({ application, cvFileInfo }: { application: Application; cvFileI
         <div className="mt-16 flex justify-center">
           <FormSubmitButton type="submit">Save Progress</FormSubmitButton>
         </div>
+        {successMessage && (
+          <div className="my-6 rounded-md bg-green-100 p-4 text-center text-sm text-green-800">{successMessage}</div>
+        )}
       </form>
     </Form>
   )
