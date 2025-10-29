@@ -5,6 +5,7 @@ const fromDatabaseMapping = new Map<UserApplicationStatus, Application["applicat
   ["unsubmitted", "unsubmitted"],
   ["submitted", "submitted"],
   ["accepted", "accepted"],
+  ["rejected", "rejected"],
   ["waitingList", "waiting-list"],
 ])
 
