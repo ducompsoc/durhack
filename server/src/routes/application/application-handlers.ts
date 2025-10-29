@@ -3,13 +3,12 @@ import { parse as parsePath } from "node:path/posix"
 import { type DietaryRequirement, dietaryRequirementSchema } from "@durhack/durhack-common/input/dietary-requirement"
 import { type DisciplineOfStudy, disciplineOfStudySchema } from "@durhack/durhack-common/input/discipline-of-study"
 import type { Application } from "@durhack/durhack-common/types/application"
+import type { FileInfo } from "@durhack/durhack-common/types/file-info"
 import { ClientError, HttpStatus } from "@otterhttp/errors"
 import type { ContentType, ParsedFormFieldFile } from "@otterhttp/parsec"
+import { findUniqueUserCvAndSelectFileInfo } from "@prisma/client/sql"
 import { fileTypeFromBuffer } from "file-type"
 import { z } from "zod/v4"
-import {
-  findUniqueUserCvAndSelectFileInfo,
-} from "@prisma/client/sql"
 
 import { mailgunConfig } from "@/config"
 import { prisma } from "@/database"
@@ -30,8 +29,6 @@ import { zodPhoneNumber } from "@/lib/zod-phone-validator"
 import type { Middleware, Request } from "@/types"
 
 import { verifiedInstitutionsSet } from "./institution-options"
-import {FileInfo} from "@durhack/durhack-common/types/file-info";
-import {isNumber} from "@/lib/type-guards";
 
 const personalFormSchema = z.object({
   firstNames: z.string().trim().min(1).max(256),
@@ -427,7 +424,7 @@ class ApplicationHandlers {
     return async (request, response) => {
       assert(request.user)
 
-      const cvResults = await prisma.$queryRawTyped(findUniqueUserCvAndSelectFileInfo(request.user.keycloakUserId));
+      const cvResults = await prisma.$queryRawTyped(findUniqueUserCvAndSelectFileInfo(request.user.keycloakUserId))
       if (cvResults.length === 0) {
         response.json({ data: { cvFileInfo: null } })
         return
@@ -436,13 +433,15 @@ class ApplicationHandlers {
       assert(cvResults.length === 1)
       const cv = cvResults[0]
       assert(cv.content_length !== null)
-      response.json({ data: {
-        cvFileInfo: {
-          name: cv.filename,
-          type: cv.content_type,
-          size: cv.content_length,
-        } satisfies FileInfo
-      }})
+      response.json({
+        data: {
+          cvFileInfo: {
+            name: cv.filename,
+            type: cv.content_type,
+            size: cv.content_length,
+          } satisfies FileInfo,
+        },
+      })
     }
   }
 
