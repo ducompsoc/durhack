@@ -13,6 +13,7 @@ const applicationStatusBadgeVariants = cva("capitalize", {
       incomplete: "bg-destructive text-destructive-foreground",
       unsubmitted: "bg-orange-600 text-white",
       submitted: "bg-success text-success-foreground",
+      rejected: "bg-destructive text-destructive-foreground",
       accepted: "bg-purple-800 text-white",
       "waiting-list": "bg-sky-600 text-white",
     },

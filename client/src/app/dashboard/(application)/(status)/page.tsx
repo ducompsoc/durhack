@@ -60,6 +60,18 @@ function InstructionsArticle({
       </article>
     )
 
+  if (application.applicationStatus === "rejected")
+    return (
+      <article>
+        <p>Unfortunately, you are ineligible for a place at DurHack.</p>
+        <p>If you believe this is a mistake, please drop us a line at{" "}
+          <a className="underline" href="mailto:hello@durhack.com">
+            hello@durhack.com
+          </a>.
+        </p>
+      </article>
+    )
+
   if (application.applicationStatus !== "unsubmitted") return null
 
   if (filledOutCount === 0) {
