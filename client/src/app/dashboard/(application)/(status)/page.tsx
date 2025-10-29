@@ -161,6 +161,7 @@ function ProfileQrCodeArticle({
 }) {
   if (!isLoaded(application, applicationIsLoading)) return <Skeleton className="w-full h-80 mt-4" />
   if (application.applicationStatus === "unsubmitted") return
+  if (application.applicationStatus === "rejected") return
 
   return (
     <>
