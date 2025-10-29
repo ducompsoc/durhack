@@ -117,6 +117,7 @@ enum UserApplicationStatus {
     unsubmitted
     submitted
     accepted
+    rejected
     waitingList @map("waiting_list")
 }
 
