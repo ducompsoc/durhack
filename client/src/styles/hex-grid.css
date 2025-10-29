@@ -1,7 +1,8 @@
 /* https://dev.to/afif/responsive-hexagon-grid-without-media-query-57g7 */
 
 @utility hexagon {
-  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  aspect-ratio: cos(30deg);
+  clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
 }
 
 @utility hex-grid {
@@ -19,7 +20,6 @@
   & > div {
     width: var(--hex-grid-tile-size);
     margin: var(--hex-grid-tile-margin);
-    height: calc(var(--hex-grid-tile-size) * 1.1547);
     display: inline-block;
     font-size: initial;
     margin-bottom: calc(var(--hex-grid-tile-margin) - var(--hex-grid-tile-size) * 0.2885);
