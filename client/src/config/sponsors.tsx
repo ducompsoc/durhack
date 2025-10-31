@@ -25,7 +25,7 @@ export const sponsors: Sponsor[] = [
     organisationSlug: "accenture",
     tier: "platinum",
     cvSharing: true,
-    active: false,
+    active: true,
   },
   {
     organisationSlug: "g-research",
@@ -95,7 +95,7 @@ export const sponsors: Sponsor[] = [
   {
     organisationSlug: "hackathons-uk",
     tier: "partner",
-    active: false,
+    active: true,
   },
   {
     organisationSlug: "durham-uni-computing-society",
