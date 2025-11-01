@@ -48,21 +48,25 @@ export default {
     currentEventCheckInCloses: new Date("2025-11-01T10:30:00+00:00"),
     currentEventEnd: new Date("2025-11-02T17:30:00+00:00"),
     stashItems: {
-      keyring: {
-        name: "CV Keyring",
+      "mug": {
+        name: "Mug",
+        eligibilityCondition: { type: "check-in" },
+      },
+      "t-shirt": {
+        name: "T-shirt",
+        eligibilityCondition: { type: "check-in" },
+      },
+      notebook: {
+        name: "CV Notebook",
         eligibilityCondition: { type: "cv-upload" },
       },
       "gilded-sticker": {
         name: "Gilded Sticker",
         eligibilityCondition: { type: "points-threshold", thresholdQuantity: 50 },
       },
-      "drawstring-bag": {
-        name: "Drawstring Bag",
+      "handwarmer": {
+        name: "Handwarmer",
         eligibilityCondition: { type: "points-threshold", thresholdQuantity: 100 },
-      },
-      "card-holder": {
-        name: "Phone Wallet",
-        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 150 },
       },
     },
   },
