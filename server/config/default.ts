@@ -62,11 +62,11 @@ export default {
       },
       "gilded-sticker": {
         name: "Gilded Sticker",
-        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 50 },
+        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 60 },
       },
       "handwarmer": {
         name: "Handwarmer",
-        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 100 },
+        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 120 },
       },
     },
   },
