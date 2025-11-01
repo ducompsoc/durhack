@@ -43,6 +43,9 @@ export const mailgunOptionsSchema = z.object({
 
 export const stashEligibilityConditionSchema = z.discriminatedUnion("type", [
   z.object({
+    type: z.literal("check-in"),
+  }),
+  z.object({
     type: z.literal("points-threshold"),
     thresholdQuantity: z.number().int().nonnegative(),
   }),
