@@ -5,6 +5,7 @@ import { Hero } from "@/components/hero"
 import { Info } from "@/components/info"
 import { Location } from "@/components/location"
 import { Partners, Sponsors } from "@/components/sponsors"
+import { Medium } from "@/components/medium"
 
 export default function HomePage() {
   return (
@@ -49,9 +50,7 @@ export default function HomePage() {
       </div>
 
       {/* Medium */}
-      <div className="medium flex items-start justify-center hidden">
-        <h1 className="hidden text-white text-5xl font-bold">Medium</h1>
-      </div>
+      <Medium />
 
       {/* Footer - temporarily using the dashboard one */}
       <Footer />
