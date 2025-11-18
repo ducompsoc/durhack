@@ -74,6 +74,7 @@ model UserFlag {
     createdAt DateTime @default(now()) @map("created_at")
 
     @@id(fields: [userId, flagName], name: "id", map: "user_flag:user_id_and_flag_name")
+    @@index(fields: [userId])
     @@index(fields: [flagName])
 }
 
@@ -86,6 +87,8 @@ model UserConsent {
     createdAt DateTime @default(now()) @map("created_at")
 
     @@id(fields: [userId, consentName], name: "id", map: "user_consent:user_id_and_consent_name")
+    @@index(fields: [userId])
+    @@index(fields: [consentName])
 }
 
 model TokenSet {
