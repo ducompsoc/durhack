@@ -3,6 +3,7 @@ import type { Prisma, UserApplicationStatus } from "@prisma/client"
 import {
   getApplicationsGroupedByDietaryRequirement,
   getApplicationsGroupedByDisciplineOfStudy,
+  getDietaryRequirementSets,
 } from "@prisma/client/sql"
 
 import { origin } from "@/config"
@@ -161,6 +162,7 @@ class ApplicationsHandlers {
         group_by_institution_url: new URL(`/applications/by-institution${request.queryString}`, origin),
         group_by_level_of_study_url: new URL(`/applications/by-level-of-study${request.queryString}`, origin),
         group_by_discipline_of_study_url: new URL(`/applications/by-discipline-of-study${request.queryString}`, origin),
+        dietary_requirement_sets_url: new URL(`/applications/dietary-requirement-sets${request.queryString}`, origin),
         group_by_dietary_requirement_url: new URL(`/applications/by-dietary-requirement${request.queryString}`, origin),
         group_by_gender_identity_url: new URL(`/applications/by-gender-identity${request.queryString}`, origin),
         data_export_url: new URL("/applications/data-export", origin),
@@ -335,6 +337,38 @@ class ApplicationsHandlers {
           application_percentage: this.formatAsPercentage(proportion),
         }
       })
+      response.json({
+        data: rows,
+        filter_description: this.getFilterDescription(response),
+        ...this.getFilteredUrls(request, response),
+        summary_url: new URL(`/applications${request.queryString}`, origin),
+      })
+    }
+  }
+
+  @onlyGroups([Group.organisers, Group.admins])
+  getApplicationsDietaryRequirementSets(): Middleware {
+    return async (request, response) => {
+      const applicationStatusFilter = this.getApplicationStatusFilter(response)
+      const rawApplicationStatusFilter = this.getRawApplicationStatusFilter(response)
+      const result = await prisma.$queryRawTyped(
+        getDietaryRequirementSets(
+          rawApplicationStatusFilter,
+          response.locals.whereOnlyCheckedIn === true,
+        ),
+      )
+
+      const rows = result.map((resultItem) => {
+        const count = Number(resultItem.count)
+
+        return {
+          dietary_requirement_set: resultItem.dietary_requirements,
+          application_count: count,
+        }
+      })
+      // sort in descending order
+      rows.sort((a, b) => b.application_count - a.application_count)
+
       response.json({
         data: rows,
         filter_description: this.getFilterDescription(response),

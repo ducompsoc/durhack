@@ -45,6 +45,14 @@ applicationsApp
   .all(forbiddenOrUnauthorised())
 
 applicationsApp
+  .route("/dietary-requirement-sets")
+  .all(methodNotAllowed(["GET"]))
+  .all(authenticate())
+  .all(applicationsHandlers.parseQueryParameters())
+  .get(applicationsHandlers.getApplicationsDietaryRequirementSets())
+  .all(forbiddenOrUnauthorised())
+
+applicationsApp
   .route("/by-dietary-requirement")
   .all(methodNotAllowed(["GET"]))
   .all(authenticate())
