@@ -37,7 +37,7 @@ function redirectForbidden(request: NextRequest) {
   return NextResponse.redirect(request.nextUrl)
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   request.nextUrl.host = request.headers.get("Host") ?? request.nextUrl.host
   if (request.headers.get("Host")?.indexOf(":") === -1) request.nextUrl.port = ""
 
