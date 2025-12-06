@@ -64,10 +64,12 @@ function InstructionsArticle({
     return (
       <article>
         <p>Unfortunately, you are ineligible for a place at DurHack.</p>
-        <p>If you believe this is a mistake, please drop us a line at{" "}
+        <p>
+          If you believe this is a mistake, please drop us a line at{" "}
           <a className="underline" href="mailto:hello@durhack.com">
             hello@durhack.com
-          </a>.
+          </a>
+          .
         </p>
       </article>
     )
