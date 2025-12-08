@@ -50,7 +50,7 @@ export default function HomePage() {
 
       {/* Medium */}
       <div className="medium flex items-start justify-center hidden">
-        <h1 className="hidden text-white text-5xl font-bold">Medium</h1>
+        <h1 className="hidden text-white text-5xl font-bold">Medium TEST ESTTEUHEUFHE</h1>
       </div>
 
       {/* Footer - temporarily using the dashboard one */}
