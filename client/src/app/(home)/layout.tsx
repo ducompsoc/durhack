@@ -1,9 +1,9 @@
 import type { Viewport } from "next"
 import type * as React from "react"
+import "@/styles/home.css"
 
+import { Footer } from "@/components/footer"
 import { MLHBanner } from "@/components/mlh-banner"
-import { SiteHeader } from "@/components/site-header"
-import { navConfig } from "@/config/nav"
 
 export const viewport = {
   themeColor: "#BFEAFD",
@@ -17,9 +17,13 @@ export default function HomeLayout({
 }>): React.ReactNode {
   return (
     <>
-      <SiteHeader navConfig={navConfig} />
-      <MLHBanner variant="white" season={2026} region="eu" />
-      <div>{children}</div>
+      <MLHBanner variant="white" season={2027} region="eu" />
+      <div className="bg-homepage-gradient min-h-screen flex-1 flex flex-col content-center items-center justify-center">
+        <div className="w-full min-h-[110px] 2xl:hidden" />
+        {children}
+        <div className="w-full min-h-[110px] 2xl:hidden" />
+      </div>
+      <Footer />
     </>
   )
 }
