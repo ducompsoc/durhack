@@ -1,7 +1,7 @@
 <template>
     <div id="intro-section">
         <div id="about">
-            <p>Thank you for joining us at the eighth iteration of Durhack, Durham University Computing Society's annual flagship hackathon.</p>
+            <p>Thank you for joining us at the eighth iteration of DurHack, Durham University Computing Society's annual flagship hackathon.</p>
             <h4>4 - 5 November 2023</h4>
             <p>Students of all experience levels came together in teams of up to four, helping and learning from each other while creating their own project.</p>
         </div>
@@ -13,7 +13,7 @@
         </div>
         
         <div id="volunteer">
-            <p>If you enjoyed the event this year and are interested in organising next year's Durhack, please let us know!</p>
+            <p>If you enjoyed the event this year and are interested in organising next year's DurHack, please let us know!</p>
             
             <div class="button-div">
                 <a href="https://forms.gle/T6UzQqSvXaYQgzGA9" target="_blank" class="link-button">
