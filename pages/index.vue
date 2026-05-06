@@ -17,7 +17,7 @@
         <div id="navstripe"/>
         <div id="navbrand">
             <img alt="DurHack 2023 logo" src="/assets/logo23.svg">
-            <span>DURHACK</span>
+            <span style="text-transform: uppercase">DurHack</span>
         </div>
         <div id="navdiagonal"/>
         <div id="navbarline"/>
