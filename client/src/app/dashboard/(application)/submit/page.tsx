@@ -196,7 +196,11 @@ function SubmitForm({ application }: { application: Application }) {
                     <FormLabel>MLH Policies, Terms & Conditions</FormLabel>
                     <FormDescription>
                       I authorize DU Computing Society to share my application/registration information with Major{" "}
-                      League Hacking for event administration, ranking, and MLH administration in-line with the{" "}
+                      League Hacking for event administration (including the creation of linked accounts on MLH and{" "}
+                      <Link className="underline" href="http://dev.to">
+                        DEV
+                      </Link>
+                      , ranking, and MLH administration in-line with the{" "}
                       <Link
                         className="underline"
                         href="https://github.com/MLH/mlh-policies/blob/main/privacy-policy.md"
@@ -242,8 +246,12 @@ function SubmitForm({ application }: { application: Application }) {
                       <span className="text-xs">(optional)</span>
                     </FormLabel>
                     <FormDescription>
-                      I authorize MLH to send me occasional emails about relevant events, career opportunities, and{" "}
-                      community announcements.
+                      I authorize MLH +{" "}
+                      <Link className="underline" href="http://dev.to">
+                        DEV
+                      </Link>{" "}
+                      to send me occasional emails about relevant events, career opportunities, and community
+                      announcements.
                     </FormDescription>
                   </div>
                 </div>
