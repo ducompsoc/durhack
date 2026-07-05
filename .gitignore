@@ -7,9 +7,11 @@
 !/client
 !/common
 !/server
+!/server-nest
 /client/*
 /common/*
 /server/*
+/server-nest/*
 
 ## Editorconfig
 !.editorconfig
@@ -33,6 +35,12 @@
 ## Biome.js
 !biome.json
 !/biome-common.json
+
+## Prettier
+!.prettierrc
+
+## Nest.js
+!nest-cli.json
 
 ## Husky
 !.husky
@@ -62,6 +70,7 @@
 !config
 !public
 !prisma
+!test
 
 # Explicit exceptions/ignores
 **/.DS_Store
