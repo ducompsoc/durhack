@@ -200,7 +200,7 @@ function SubmitForm({ application }: { application: Application }) {
                       <Link className="underline" href="http://dev.to">
                         DEV
                       </Link>
-                      , ranking, and MLH administration in-line with the{" "}
+                      ), ranking, and MLH administration in-line with the{" "}
                       <Link
                         className="underline"
                         href="https://github.com/MLH/mlh-policies/blob/main/privacy-policy.md"
