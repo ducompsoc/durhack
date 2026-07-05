@@ -25,6 +25,7 @@ export default function HomePage() {
             <h2 className={cn(spaceGrotesk.className, "date text-4xl lg:text-6xl")}>
               ?<sup>??</sup>-?<sup>??</sup> November
             </h2>
+            <h3 className={cn(spaceGrotesk.className, "text-xl lg:text-3xl")}>TLC, Durham University</h3>
           </div>
         </section>
         <section className="pt-3 2xl:col-span-2">
