@@ -3,15 +3,15 @@ import Link from "next/link"
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 import { RegisterInterestForm } from "./register-interest-form"
+import Hero from "./hero"
 
 export default function HomePage() {
   return (
     <>
       <main className="flex flex-col">
         {/* Hero */}
-        <div className="flex items-start justify-center">
-          <h1 className="text-white text-5xl font-bold">Hero Section</h1>
-        </div>
+        <Hero />
+
         {/* Getting There */}
         <div className="flex items-start justify-center hidden">
           <h1 className="text-white text-5xl font-bold">Getting there</h1>
