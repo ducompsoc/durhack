@@ -8,9 +8,3 @@
   top: -1.25em;
 }
 
-.ellipse {
-  width: clamp(300px, 30vw, 30vw);
-  aspect-ratio: 5 / 4;
-  background-color: #F1B1D2;
-  border-radius: 50% 50%;
-}
