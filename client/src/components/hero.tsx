@@ -22,7 +22,7 @@ export default function Hero() {
       {/* Bottom half */}
       <div className="flex-1 z-0 flex justify-center items-center w-full">
         <div className="relative w-full flex justify-center items-center translate-y-[20vh]">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[85%] w-[100vmax] h-auto aspect-square">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[85%] w-[100vmax] min-w-[1000px] h-auto aspect-square">
             <Image
               className="object-contain"
               width={100}
