@@ -12,7 +12,7 @@ export default function Hero() {
           data-text="DURHACK"
           className={cn(
             audiowide.className,
-            "text-white text-6xl md:text-9xl font-bold durhack-title relative uppercase",
+            "text-white text-6xl md:text-8xl font-bold durhack-title relative uppercase",
           )}
         >
           DurHack
@@ -33,7 +33,7 @@ export default function Hero() {
               src="/assets/hero/sun-rays.svg"
             />
           </div>
-          <div className="relative w-[clamp(300px,55vw,800px)] aspect-square flex justify-center items-center">
+          <div className="relative w-[clamp(300px,90vw,800px)] aspect-square flex justify-center items-center">
             <Image className="object-contain" fill priority alt="sun" src="/assets/hero/sun.svg" />
             <Image className="object-contain" fill priority alt="sun aura" src="/assets/hero/sun-aura.svg" />
           </div>
