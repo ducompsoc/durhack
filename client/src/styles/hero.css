@@ -1,1 +1,20 @@
+.durhack-title::before,
+.durhack-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
 
+.durhack-title::before {
+    z-index: -1;
+    -webkit-text-stroke: 0.4em #982272;
+}
+
+.durhack-title::after {
+    z-index: -2;
+    -webkit-text-stroke: 1em #611545;
+}
