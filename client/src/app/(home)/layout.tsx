@@ -18,9 +18,7 @@ export default function HomeLayout({
   return (
     <>
       <MLHBanner variant="white" season={2027} region="eu" />
-      <div>
-        {children}
-      </div>
+      <div>{children}</div>
       <Footer />
     </>
   )

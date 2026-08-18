@@ -8,7 +8,15 @@ export default function Hero() {
     <div className="flex flex-col items-stretch justify-center h-screen bg-[#EB3DA2] max-h-screen relative overflow-hidden">
       {/* Top half */}
       <div className="flex-1 z-10 flex justify-center items-center">
-        <h1 data-text="DURHACK" className={cn(audiowide.className, "text-white text-6xl md:text-9xl font-bold durhack-title relative uppercase")}>DurHack</h1>
+        <h1
+          data-text="DURHACK"
+          className={cn(
+            audiowide.className,
+            "text-white text-6xl md:text-9xl font-bold durhack-title relative uppercase",
+          )}
+        >
+          DurHack
+        </h1>
       </div>
 
       {/* Bottom half */}
