@@ -21,7 +21,7 @@ export default function Hero() {
 
       {/* Bottom half */}
       <div className="flex-1 z-0 flex justify-center items-center w-full">
-        <div className="relative w-full flex justify-center items-center translate-y-[20vh]">
+        <div className="relative w-full flex justify-center items-center ">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[85%] w-[100vmax] min-w-[1000px] h-auto aspect-square">
             <Image
               className="object-contain"
@@ -33,7 +33,7 @@ export default function Hero() {
               src="/assets/hero/sun-rays.svg"
             />
           </div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[20%] w-[100vmax] min-w-[1000px] z-1 h-auto aspect-square">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[15%] w-[100vmax] min-w-[1000px] z-1 h-auto aspect-square">
             <Image
               className="object-contain"
               width={100}
@@ -44,7 +44,7 @@ export default function Hero() {
               src="/assets/hero/buildings.svg"
             />
           </div>
-          <div className="relative w-[clamp(300px,90vw,800px)] aspect-square flex justify-center items-center">
+          <div className="relative w-[clamp(300px,80vw,900px)] aspect-square flex justify-center items-center translate-y-[10vmax]">
             <Image className="object-contain" fill priority alt="sun" src="/assets/hero/sun.svg" />
             <Image className="object-contain" fill priority alt="sun aura" src="/assets/hero/sun-aura.svg" />
           </div>
