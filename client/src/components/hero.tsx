@@ -1,4 +1,4 @@
-import { audiowide } from "@/lib/google-fonts"
+import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 import "@/styles/hero.css"
 import Image from "next/image"
@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <div className="flex flex-col items-stretch justify-center h-screen bg-[#EB3DA2] max-h-screen relative overflow-hidden">
       {/* Top half */}
-      <div className="flex-1 z-10 flex justify-center items-center">
+      <div className="flex-1 z-10 flex flex-col justify-center items-center">
         <h1
           data-text="DURHACK"
           className={cn(
@@ -17,6 +17,17 @@ export default function Hero() {
         >
           DurHack
         </h1>
+        <div className="w-full items-center justify-center flex">
+          <a
+            href="/dashboard"
+            className={cn(
+              spaceGrotesk.className,
+              "uppercase bg-[#982272] rounded-full mt-20 py-3 px-12 text-xl font-medium hover:bg-[#611545] outline-solid outline-[#611545] transition-colors duration-300",
+            )}
+          >
+            Sign Up Now
+          </a>
+        </div>
       </div>
 
       {/* Bottom half */}
@@ -33,7 +44,7 @@ export default function Hero() {
               src="/assets/hero/sun-rays.svg"
             />
           </div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[15%] w-[100vmax] min-w-[1000px] z-1 h-auto aspect-square">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[12%] w-[100vmax] min-w-[1000px] z-1 h-auto aspect-square">
             <Image
               className="object-contain"
               width={100}
