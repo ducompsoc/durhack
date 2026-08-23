@@ -3,38 +3,43 @@ import { cn } from "@/lib/utils"
 import "@/styles/hero.css"
 import Image from "next/image"
 
+function TitleText({ text, className, ...props }: { text: string } & React.ComponentProps<"h1">) {
+  return (
+    <h1
+      {...props}
+      data-text={text.toUpperCase()}
+      className={cn(
+        audiowide.className,
+        "text-white font-bold durhack-title relative uppercase leading-none", className
+      )}
+    >
+      {text}
+    </h1>
+
+  )
+}
+
+function SubtitleText({ text, ...props }: { text: string } & React.ComponentProps<"h1">) {
+  return (
+    <h2 {...props} className={cn(spaceGrotesk.className, "subtitle text-white text-3xl text-center font-semibold")}>
+      {text}
+    </h2>
+
+  )
+}
+
 export default function Hero() {
   return (
     <div className="grid grid-rows-2 items-stretch justify-center h-screen bg-[#E566B0] max-h-screen relative overflow-hidden">
       {/* Top half */}
-      <div className="z-10 flex flex-col justify-center items-center gap-8 h-full w-full">
+      <div className="z-10 flex flex-col justify-center translate-y-[5vh] items-center gap-8 h-full w-full">
         <div className="flex flex-col items-center justify-center gap-10 md:gap-15">
-          <h1
-            data-text="DURHACK"
-            className={cn(
-              audiowide.className,
-              "text-white text-6xl md:text-8xl font-bold durhack-title relative uppercase leading-none",
-            )}
-          >
-            DurHack
-          </h1>
-          <h1
-            data-text="2026"
-            className={cn(
-              audiowide.className,
-              "text-white text-4xl md:text-6xl font-bold durhack-title relative uppercase leading-none",
-            )}
-          >
-            2026
-          </h1>
+          <TitleText text="DurHack" className="text-6xl md:text-8xl" />
+          <TitleText text="2026" className="text-4xl md:text-6xl" />
         </div>
         <div>
-          <h2 className={cn(spaceGrotesk.className, "subtitle text-white text-3xl text-center font-semibold")}>
-            14th-15th November
-          </h2>
-          <h2 className={cn(spaceGrotesk.className, "subtitle text-white text-3xl text-center font-semibold")}>
-            Durham University, TLC
-          </h2>
+          <SubtitleText text="14th-15th November" />
+          <SubtitleText text="Durham University, TLC" />
         </div>
         <div className="w-full items-center justify-center flex">
           <a
