@@ -18,3 +18,7 @@
     z-index: -2;
     -webkit-text-stroke: 1em #611545;
 }
+
+.subtitle {
+    -webkit-text-stroke: 0.05em #611545;
+}

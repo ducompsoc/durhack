@@ -5,24 +5,43 @@ import Image from "next/image"
 
 export default function Hero() {
   return (
-    <div className="flex flex-col items-stretch justify-center h-screen bg-[#EB3DA2] max-h-screen relative overflow-hidden">
+    <div className="grid grid-rows-2 items-stretch justify-center h-screen bg-[#EB3DA2] max-h-screen relative overflow-hidden">
       {/* Top half */}
-      <div className="flex-1 z-10 flex flex-col justify-center items-center">
-        <h1
-          data-text="DURHACK"
-          className={cn(
-            audiowide.className,
-            "text-white text-6xl md:text-8xl font-bold durhack-title relative uppercase",
-          )}
-        >
-          DurHack
-        </h1>
+      <div className="z-10 flex flex-col justify-center items-center gap-8 h-full w-full">
+        <div className="flex flex-col items-center justify-center gap-10 md:gap-15">
+          <h1
+            data-text="DURHACK"
+            className={cn(
+              audiowide.className,
+              "text-white text-6xl md:text-8xl font-bold durhack-title relative uppercase leading-none",
+            )}
+          >
+            DurHack
+          </h1>
+          <h1
+            data-text="2026"
+            className={cn(
+              audiowide.className,
+              "text-white text-4xl md:text-6xl font-bold durhack-title relative uppercase leading-none",
+            )}
+          >
+            2026
+          </h1>
+        </div>
+        <div>
+          <h2 className={cn(spaceGrotesk.className, "subtitle text-white text-3xl text-center font-semibold")}>
+            14th-15th November
+          </h2>
+          <h2 className={cn(spaceGrotesk.className, "subtitle text-white text-3xl text-center font-semibold")}>
+            Durham University, TLC
+          </h2>
+        </div>
         <div className="w-full items-center justify-center flex">
           <a
             href="/dashboard"
             className={cn(
-              spaceGrotesk.className,
-              "uppercase bg-[#982272] rounded-full mt-20 py-3 px-12 text-xl font-medium hover:bg-[#611545] outline-solid outline-[#611545] transition-colors duration-300",
+              audiowide.className,
+              "uppercase bg-[#982272] rounded-full py-3 px-12 text-xl font-medium hover:bg-[#611545] outline-solid outline-[#611545] transition-colors duration-300",
             )}
           >
             Sign Up Now
@@ -61,6 +80,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
