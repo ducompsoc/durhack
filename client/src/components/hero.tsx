@@ -19,7 +19,7 @@ function TitleText({ text, className, ...props }: { text: string } & React.Compo
   )
 }
 
-function SubtitleText({ text, ...props }: { text: string } & React.ComponentProps<"h1">) {
+function SubtitleText({ text, ...props }: { text: string } & React.ComponentProps<"h2">) {
   return (
     <h2 {...props} className={cn(spaceGrotesk.className, "subtitle text-white text-3xl text-center font-semibold")}>
       {text}
@@ -54,7 +54,7 @@ export default function Hero() {
       </div>
 
       {/* Bottom half */}
-      <div className="flex-1 z-10 flex justify-center items-center w-full">
+      <div className="flex-1 z-10 flex justify-center items-center pointer-events-none w-full">
         <div className="relative w-full flex justify-center items-center ">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[12%] w-[100vmax] min-w-[1000px] z-1 h-auto aspect-square">
             <Image
