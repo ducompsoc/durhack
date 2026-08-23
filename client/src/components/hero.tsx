@@ -10,7 +10,7 @@ function TitleText({ text, className, ...props }: { text: string } & React.Compo
       data-text={text.toUpperCase()}
       className={cn(
         audiowide.className,
-        "text-white font-bold durhack-title relative uppercase leading-none",
+        "text-white text-center font-bold durhack-title relative uppercase leading-none",
         className,
       )}
     >
@@ -31,7 +31,7 @@ export default function Hero() {
   return (
     <div className="grid grid-rows-2 items-stretch justify-center h-screen bg-[#E566B0] max-h-screen relative overflow-hidden">
       {/* Top half */}
-      <div className="z-10 flex flex-col justify-center translate-y-[5vh] items-center gap-8 h-full w-full">
+      <div className="z-10 flex flex-col justify-center translate-y-[5vh] items-center z-30 gap-8 h-full w-full">
         <div className="flex flex-col items-center justify-center gap-10 md:gap-15">
           <TitleText text="DurHack" className="text-6xl md:text-8xl" />
           <TitleText text="2026" className="text-4xl md:text-6xl" />
@@ -67,7 +67,7 @@ export default function Hero() {
               src="/assets/hero/buildings.svg"
             />
           </div>
-          <div className="relative w-[clamp(300px,80vw,900px)] aspect-square flex justify-center items-center translate-y-[25vmax] md:translate-y-[10vmax]">
+          <div className="relative w-[clamp(300px,80vw,900px)] aspect-square flex justify-center items-center z-0 translate-y-[25vmax] md:translate-y-[10vmax]">
             <Image className="object-contain" fill priority alt="sun" src="/assets/hero/sun.svg" />
             <Image className="object-contain" fill priority alt="sun aura" src="/assets/hero/sun-aura.svg" />
           </div>
