@@ -10,12 +10,12 @@ function TitleText({ text, className, ...props }: { text: string } & React.Compo
       data-text={text.toUpperCase()}
       className={cn(
         audiowide.className,
-        "text-white font-bold durhack-title relative uppercase leading-none", className
+        "text-white font-bold durhack-title relative uppercase leading-none",
+        className,
       )}
     >
       {text}
     </h1>
-
   )
 }
 
@@ -24,7 +24,6 @@ function SubtitleText({ text, ...props }: { text: string } & React.ComponentProp
     <h2 {...props} className={cn(spaceGrotesk.className, "subtitle text-white text-3xl text-center font-semibold")}>
       {text}
     </h2>
-
   )
 }
 
