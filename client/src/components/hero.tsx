@@ -67,7 +67,7 @@ export default function Hero() {
               src="/assets/hero/buildings.svg"
             />
           </div>
-          <div className="relative w-[clamp(300px,80vw,900px)] aspect-square flex justify-center items-center z-0 translate-y-[5vh]">
+          <div className="relative w-[clamp(300px,80vmin,900px)] aspect-square flex justify-center items-center z-0 translate-y-[-5vh]">
             <Image className="object-contain" fill priority alt="sun" src="/assets/hero/sun.svg" />
             <Image className="object-contain" fill priority alt="sun aura" src="/assets/hero/sun-aura.svg" />
           </div>
