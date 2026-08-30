@@ -1,18 +1,24 @@
-import Location from "@/components/location"
+import About from "@/components/about"
 import Hero from "@/components/hero"
 import Info from "@/components/info"
+import Location from "@/components/location"
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col">
+    <main className="flex flex-col relative">
       {/* Hero */}
       <Hero />
+
+      <div className="h-[15vh] md:h-[100vh] min-h-[100px] w-full shrink-0 pointer-events-none" aria-hidden="true"></div>
 
       {/* Info */}
       <Info />
 
       {/* Getting There */}
       <Location />
+
+      {/* About */}
+      <About />
 
       {/* Sponsors */}
       <div className="flex items-start justify-center hidden">

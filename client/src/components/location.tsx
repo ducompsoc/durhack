@@ -30,18 +30,16 @@ export default function Location({ className, ...props }: React.ComponentProps<"
   const MAPS_LINK = "https://maps.app.goo.gl/H3qypQFBy88CQa7N9"
 
   return (
-    <div className={cn(className, "flex flex-col z-10 my-20")} {...props}>
+    <div className={cn(className, "flex flex-col z-10 my-20 relative z-10 bg-transparent")} {...props}>
       <div className="container max-w-[60rem] text-center">
-        <p
-          className={cn("flex-1/2 text-center text-white outlined font-medium text-3xl", darkerGrotesk.className)}
-        >
+        <p className={cn("flex-1/2 text-center text-white font-medium text-3xl", darkerGrotesk.className)}>
           DurHack takes place in the Teaching and Learning Centre at Durham University. It’s just a short walk or bus
           ride from Durham Train Station, with direct connections to major UK cities. To make your journey easier, we
           are coordinating coaches to the event from Leeds, Manchester, Sheffield and Nottingham. We also offer travel
           reimbursements for participants<sup>*</sup> travelling from elsewhere — so getting here is one less thing to
           worry about.
         </p>
-        <p className={cn("text-center text-white outlined font-medium text-[32px]/[100%]", darkerGrotesk.className)}>
+        <p className={cn("text-center text-white font-medium text-[32px]/[100%]", darkerGrotesk.className)}>
           * see FAQs for details.
         </p>
       </div>

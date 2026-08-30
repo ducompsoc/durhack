@@ -32,7 +32,7 @@ function SubtitleText({ text, ...props }: { text: string } & React.ComponentProp
 
 export default function Hero() {
   return (
-    <>
+    <div className="relative overflow-x-clip w-full z-0">
       <div className="grid grid-rows-2 items-stretch justify-center bg-[#E566B0] min-h-screen relative overflow-x-hidden">
         {/* Top half */}
         <div className="z-10 flex flex-col justify-center translate-y-[5vh] items-center z-30 gap-8 h-full w-full">
@@ -81,6 +81,6 @@ export default function Hero() {
           src="/assets/hero/buildings.svg"
         />
       </div>
-    </>
+    </div>
   )
 }
