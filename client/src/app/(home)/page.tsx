@@ -5,7 +5,7 @@ import Location from "@/components/location"
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col relative">
+    <main className="flex flex-col relative overflow-x-clip">
       {/* Hero */}
       <Hero />
 
