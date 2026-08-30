@@ -4,17 +4,17 @@ import { darkerGrotesk } from "@/lib/google-fonts"
 
 export default function About() {
     return (
-        <div className="flex flex-col z-10 w-full bg-transparent">
-            <div className="flex flex-wrap px-6 py-12 items-center justify-center w-full max-w-[100rem] mx-auto gap-12 md:gap-8">
-                <div className="flex-1 flex justify-center md:justify-start w-full">
-                    <p className={cn("text-3xl font-medium text-center md:text-left min-w-xl", darkerGrotesk.className)}>
+        <div className="flex flex-col w-full items-center">
+            <div className="flex flex-wrap justify-center items-center align-center w-[80vw]">
+                <div className={cn("container max-w-[60rem] mx-auto mb-20 text-center md:text-left text-3xl font-medium", darkerGrotesk.className)}>
+                    <p>
                         DurHack is one of the UK’s leading student hackathons - an action-packed weekend which welcomes over 600
                         hackers. With 15 sponsors hosting workshops, challenges, and mentorship, you’ll pick up new skills, meet
                         amazing people, and bring your ideas to life
                     </p>
                 </div>
 
-                <div className="w-full max-w-[600px]">
+                <div className="w-full max-w-[600px] mx-auto">
                     <HoneycombSVG />
                 </div>
             </div>
