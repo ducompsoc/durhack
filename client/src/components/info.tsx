@@ -3,36 +3,22 @@ import type * as React from "react"
 import { darkerGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 
-export function Info({ className, ...props }: React.ComponentProps<"div">) {
+export default function Info({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        "info flex flex-col justify-center z-10 text-[#238CBA] text-3xl",
+        "info flex flex-col justify-center z-10 text-white text-3xl font-bold outlined",
         darkerGrotesk.className,
         className,
       )}
       {...props}
     >
-      <div className="container max-w-[60rem] text-center mt-20 space-y-8">
-        <p>
-          Welcome to DurHack X - the 10th anniversary edition Durham University Computing Society’s flagship hackathon!
-        </p>
+      <div className="container max-w-[90rem] text-center mt-20 space-y-8 stroke">
+        <p>Welcome to DurHack 2026 - the 11th iteration of Durham University Computing Society’s flagship hackathon!</p>
         <p>
           DurHack is a 24 hour tech project creation competition where students from all over the country come team up
           to build innovative projects, learn new skills, and have fun creating together.
         </p>
-      </div>
-
-      <div
-        className="relative mt-20 lg:mt-30 h-[15rem] lg:h-[50rem]"
-        role="img"
-        aria-label="futuristic train driving through a glass tunnel over an arch bridge"
-      >
-        <div className="brace brace-backs" />
-        <div className="train" />
-        <div className="train-end" />
-        <div className="brace brace-fronts" />
-        <div className="viaduct" />
       </div>
     </div>
   )

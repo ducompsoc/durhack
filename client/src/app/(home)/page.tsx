@@ -1,4 +1,5 @@
 import Hero from "@/components/hero"
+import Info from "@/components/info"
 
 export default function HomePage() {
   return (
@@ -6,14 +7,14 @@ export default function HomePage() {
       {/* Hero */}
       <Hero />
 
+      {/* Info */}
+      <Info />
+
       {/* Getting There */}
       <div className="flex items-start justify-center hidden">
         <h1 className="text-white text-5xl font-bold">Getting there</h1>
       </div>
-      {/* Info */}
-      <div className="flex items-start justify-center hidden">
-        <h1 className="text-white text-5xl font-bold">Info</h1>
-      </div>
+
       {/* Sponsors */}
       <div className="flex items-start justify-center hidden">
         <h1 className="text-white text-5xl font-bold">Sponsors</h1>
