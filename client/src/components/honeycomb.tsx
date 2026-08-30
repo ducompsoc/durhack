@@ -184,7 +184,6 @@ export function HoneycombSVG() {
                 <stop offset="0.668611" stopColor="#FDF6F6" stopOpacity="0.43" />
                 <stop offset="0.81061" stopColor="#FDF6F6" />
             </radialGradient>
-            <image id="image0_1_2696" width="352" height="395" preserveAspectRatio="none" href="/assets/about/hackers.jpg" />
         </defs>
     </svg>)
 }
