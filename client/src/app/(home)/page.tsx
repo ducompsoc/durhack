@@ -1,4 +1,4 @@
-import GettingThere from "@/components/getting-there"
+import Location from "@/components/location"
 import Hero from "@/components/hero"
 import Info from "@/components/info"
 
@@ -12,7 +12,7 @@ export default function HomePage() {
       <Info />
 
       {/* Getting There */}
-      <GettingThere />
+      <Location />
 
       {/* Sponsors */}
       <div className="flex items-start justify-center hidden">

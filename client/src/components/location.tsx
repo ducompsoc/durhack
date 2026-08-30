@@ -15,7 +15,7 @@ function LocationBtn({ innerText, href, className, ...props }: LocationBtnProps)
         href={href}
         target="_blank"
         className={cn(
-          "border-[1px] border-white text-[#207ea7] bg-[#cce8f9]/35 hover:bg-[#cce8f9]/100 transition duration-300 ease-in-out rounded-full text-2xl uppercase px-10 py-4 mx-4 w-full inline-block sm:w-auto",
+          "border-[1px] border-white text-white bg-[#6DD26D]/35 hover:bg-[#114612]/100 transition duration-300 ease-in-out rounded-full text-2xl uppercase px-10 py-4 mx-4 w-full inline-block sm:w-auto",
         )}
         {...props}
       >
@@ -25,16 +25,15 @@ function LocationBtn({ innerText, href, className, ...props }: LocationBtnProps)
   )
 }
 
-export function Location({ className, ...props }: React.ComponentProps<"div">) {
-  const SU_LINK =
-    "https://www.durhamsu.com/groups/computing-766e/events/durhack-coach-tickets-manchester-leeds-nottingham-sheffield"
+export default function Location({ className, ...props }: React.ComponentProps<"div">) {
+  const SU_LINK = ""
   const MAPS_LINK = "https://maps.app.goo.gl/H3qypQFBy88CQa7N9"
 
   return (
-    <div className={cn(className, "flex flex-col")} {...props}>
+    <div className={cn(className, "flex flex-col z-10 my-20")} {...props}>
       <div className="container max-w-[60rem] text-center">
         <p
-          className={cn("flex-1/2 text-center text-[#207ea7] font-medium text-[32px]/[100%]", darkerGrotesk.className)}
+          className={cn("flex-1/2 text-center text-white outlined font-medium text-3xl", darkerGrotesk.className)}
         >
           DurHack takes place in the Teaching and Learning Centre at Durham University. It’s just a short walk or bus
           ride from Durham Train Station, with direct connections to major UK cities. To make your journey easier, we
@@ -42,7 +41,7 @@ export function Location({ className, ...props }: React.ComponentProps<"div">) {
           reimbursements for participants<sup>*</sup> travelling from elsewhere — so getting here is one less thing to
           worry about.
         </p>
-        <p className={cn("text-center text-[#207ea7] font-medium text-[32px]/[100%]", darkerGrotesk.className)}>
+        <p className={cn("text-center text-white outlined font-medium text-[32px]/[100%]", darkerGrotesk.className)}>
           * see FAQs for details.
         </p>
       </div>

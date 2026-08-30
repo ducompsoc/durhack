@@ -7,7 +7,7 @@ export default function Info({ className, ...props }: React.ComponentProps<"div"
   return (
     <div
       className={cn(
-        "flex flex-col justify-center z-10 text-white text-xl md:text-4xl font-medium outlined",
+        "flex flex-col justify-center z-10 text-white text-3xl font-medium outlined",
         darkerGrotesk.className,
         className,
       )}
