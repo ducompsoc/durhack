@@ -21,7 +21,10 @@ function TitleText({ text, className, ...props }: { text: string } & React.Compo
 
 function SubtitleText({ text, ...props }: { text: string } & React.ComponentProps<"h2">) {
   return (
-    <h2 {...props} className={cn(spaceGrotesk.className, "subtitle text-white text-3xl md:text-5xl text-center font-semibold")}>
+    <h2
+      {...props}
+      className={cn(spaceGrotesk.className, "subtitle text-white text-3xl md:text-5xl text-center font-semibold")}
+    >
       {text}
     </h2>
   )
@@ -78,7 +81,6 @@ export default function Hero() {
           src="/assets/hero/buildings.svg"
         />
       </div>
-
     </>
   )
 }
