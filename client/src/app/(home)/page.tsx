@@ -9,7 +9,7 @@ export default function HomePage() {
       {/* Hero */}
       <Hero />
 
-      <div className="h-[15vh] md:h-[100vh] min-h-[100px] w-full shrink-0 pointer-events-none" aria-hidden="true"></div>
+      <div className="h-[15vh] md:h-[100vh] min-h-[100px] w-full shrink-0 pointer-events-none" aria-hidden="true" />
 
       {/* Info */}
       <Info />
