@@ -18,7 +18,7 @@ function StatComponent({
 
 export default function About() {
   return (
-    <div className="flex flex-col w-full items-center">
+    <div className="flex flex-col w-full items-center z-10 relative">
       <div className="flex flex-wrap justify-center items-center align-center w-[80vw]">
         <div
           className={cn(

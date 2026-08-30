@@ -9,16 +9,19 @@ export default function HomePage() {
       {/* Hero */}
       <Hero />
 
-      <div className="h-[15vh] md:h-[100vh] min-h-[100px] w-full shrink-0 pointer-events-none" aria-hidden="true" />
+      <div className="h-[10vh] md:h-[50vh] min-h-[100px] w-full shrink-0 pointer-events-none" aria-hidden="true" />
 
-      {/* Info */}
-      <Info />
+      {/* Skyline */}
+      <section className="relative bg-[#0E4A0F]">
+        {/* Info */}
+        <Info />
 
-      {/* Getting There */}
-      <Location />
+        {/* Getting There */}
+        <Location />
 
-      {/* About */}
-      <About />
+        {/* About */}
+        <About />
+      </section>
 
       {/* Sponsors */}
       <div className="flex items-start justify-center hidden">

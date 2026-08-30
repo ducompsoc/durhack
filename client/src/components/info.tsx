@@ -6,7 +6,11 @@ import { cn } from "@/lib/utils"
 export default function Info({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      className={cn("flex flex-col justify-center text-white text-3xl font-medium", darkerGrotesk.className, className)}
+      className={cn(
+        "flex flex-col justify-center text-white text-3xl font-medium z-10 relative",
+        darkerGrotesk.className,
+        className,
+      )}
       {...props}
     >
       <div className="container max-w-[90rem] text-center mt-20 space-y-8 stroke">

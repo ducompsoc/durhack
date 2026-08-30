@@ -32,7 +32,7 @@ function SubtitleText({ text, ...props }: { text: string } & React.ComponentProp
 
 export default function Hero() {
   return (
-    <div className="relative w-full -z-1">
+    <div className="relative w-full z-1">
       <div className="grid grid-rows-2 items-stretch justify-center bg-[#E566B0] min-h-screen relative">
         {/* Top half */}
         <div className="z-10 flex flex-col justify-center translate-y-[5vh] items-center z-30 gap-8 h-full w-full">
@@ -70,7 +70,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[8%] w-[100vmax] min-w-[1000px] z-1 h-auto aspect-square pointer-events-none">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[13%] w-[100vmax] min-w-[1000px] z-1 h-auto aspect-square pointer-events-none">
         <Image
           className="object-contain"
           width={100}

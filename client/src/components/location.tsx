@@ -30,7 +30,7 @@ export default function Location({ className, ...props }: React.ComponentProps<"
   const MAPS_LINK = "https://maps.app.goo.gl/H3qypQFBy88CQa7N9"
 
   return (
-    <div className={cn(className, "flex flex-col z-10 my-20")} {...props}>
+    <div className={cn(className, "flex flex-col z-10 my-20 z-10 relative")} {...props}>
       <div className="container max-w-[60rem] text-center">
         <p className={cn("flex-1/2 text-center text-white font-medium text-3xl", darkerGrotesk.className)}>
           DurHack takes place in the Teaching and Learning Centre at Durham University. It’s just a short walk or bus
