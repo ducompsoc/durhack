@@ -1,6 +1,17 @@
+import * as React from "react"
+
 import { HoneycombSVG } from "./honeycomb"
 import { cn } from "@/lib/utils"
 import { darkerGrotesk } from "@/lib/google-fonts"
+
+function StatComponent({ stat, innerText, ...props }: { stat: string, innerText: string } & React.ComponentProps<"div">) {
+    return (
+        <div className="flex flex-col text-center align-center justify-center" {...props}>
+            <h3 className="font-bold text-6xl">{stat}</h3>
+            <h5 className="font-normal text-6xl uppercase">{innerText}</h5>
+        </div>
+    )
+}
 
 export default function About() {
     return (
@@ -19,18 +30,9 @@ export default function About() {
                 </div>
             </div>
             <div className="flex flex-wrap items-center justify-center w-full mx-auto py-10 gap-20">
-                <div className="flex flex-col text-center align-center justify-center">
-                    <h3 className="font-bold text-6xl">600+</h3>
-                    <h5 className="font-normal text-6xl uppercase">Hackers</h5>
-                </div>
-                <div className="flex flex-col text-center align-center justify-center">
-                    <h3 className="font-bold text-6xl">15+</h3>
-                    <h5 className="font-normal text-6xl uppercase">Sponsors</h5>
-                </div>
-                <div className="flex flex-col text-center align-center justify-center">
-                    <h3 className="font-bold text-6xl">150+</h3>
-                    <h5 className="font-normal text-6xl uppercase">Projects</h5>
-                </div>
+                <StatComponent stat="600+" innerText="Hackers" />
+                <StatComponent stat="15+" innerText="Sponsors" />
+                <StatComponent stat="150+" innerText="Projects" />
             </div>
         </div>
     )
