@@ -35,7 +35,7 @@ export default function Hero() {
     <div className="relative w-full z-1">
       <div className="grid grid-rows-2 items-stretch justify-center bg-[#E566B0] min-h-screen relative">
         {/* Top half */}
-        <div className="z-10 flex flex-col justify-center translate-y-[5vh] items-center z-30 gap-8 h-full w-full">
+        <div className="z-10 flex flex-col justify-center mt-[10vh] items-center z-30 gap-8 h-full w-full">
           <div className="flex flex-col items-center justify-center gap-12 md:gap-25 mb-5 md:mb-10">
             <TitleText text="DurHack" className="text-6xl md:text-9xl" />
             <TitleText text="2026" className="text-5xl md:text-8xl" />
