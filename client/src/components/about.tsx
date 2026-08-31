@@ -22,7 +22,7 @@ export default function About() {
       <div className="flex flex-wrap justify-center items-center align-center w-[80vw]">
         <div
           className={cn(
-            "container max-w-[60rem] mx-auto mb-20 text-center md:text-left text-3xl font-medium",
+            "container max-w-[60rem] mx-auto mb-20 text-center md:text-left text-4xl font-medium",
             darkerGrotesk.className,
           )}
         >
@@ -49,7 +49,7 @@ export default function About() {
 
         <div
           className={cn(
-            "container max-w-[60rem] mx-auto mb-20 text-center md:text-left text-3xl font-medium",
+            "container max-w-[60rem] mx-auto mb-20 text-center md:text-left text-4xl font-medium",
             darkerGrotesk.className,
           )}
         >
