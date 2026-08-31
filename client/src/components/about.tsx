@@ -1,7 +1,7 @@
 import type * as React from "react"
 import { darkerGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
-import { HoneycombSVG } from "./honeycomb"
+import { HoneycombSVG, HoneycombSVG2 } from "./honeycomb"
 
 function StatComponent({
   stat,
@@ -37,10 +37,27 @@ export default function About() {
           <HoneycombSVG />
         </div>
       </div>
-      <div className="flex flex-wrap items-center justify-center w-full mx-auto py-10 gap-20">
+      <div className="flex flex-wrap items-center justify-center w-full mx-auto py-50 gap-15">
         <StatComponent stat="600+" innerText="Hackers" />
         <StatComponent stat="15+" innerText="Sponsors" />
         <StatComponent stat="150+" innerText="Projects" />
+      </div>
+      <div className="flex flex-wrap justify-center items-center align-center w-[80vw]">
+        <div className="w-full max-w-[678px] mx-auto">
+          <HoneycombSVG2 />
+        </div>
+
+        <div
+          className={cn(
+            "container max-w-[60rem] mx-auto mb-20 text-center md:text-left text-3xl font-medium",
+            darkerGrotesk.className,
+          )}
+        >
+          <p>
+            DurHack has facilitated 100+ exciting projects, providing a unique space to experiment, connect, and push
+            ideas further in just 24 hours.
+          </p>
+        </div>
       </div>
     </div>
   )
