@@ -22,7 +22,7 @@ export default function About() {
       <div className="flex flex-wrap justify-center items-center align-center w-[80vw]">
         <div
           className={cn(
-            "container max-w-[60rem] mx-auto mb-20 text-center md:text-left text-4xl font-medium",
+            "container max-w-[60rem] mx-auto text-center md:text-left text-4xl font-medium",
             darkerGrotesk.className,
           )}
         >
@@ -33,11 +33,11 @@ export default function About() {
           </p>
         </div>
 
-        <div className="w-full max-w-[600px] mx-auto">
+        <div className="w-full max-w-[600px] mx-auto mt-10">
           <HoneycombSVG />
         </div>
       </div>
-      <div className="flex flex-wrap items-center justify-center w-full mx-auto py-50 gap-15">
+      <div className="flex flex-wrap items-center justify-center w-full mx-auto gap-15 py-20">
         <StatComponent stat="600+" innerText="Hackers" />
         <StatComponent stat="15+" innerText="Sponsors" />
         <StatComponent stat="150+" innerText="Projects" />
@@ -49,7 +49,7 @@ export default function About() {
 
         <div
           className={cn(
-            "container max-w-[60rem] mx-auto mb-20 text-center md:text-left text-4xl font-medium",
+            "container max-w-[60rem] mx-auto text-center md:text-left text-4xl font-medium mt-10",
             darkerGrotesk.className,
           )}
         >
