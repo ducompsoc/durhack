@@ -23,22 +23,30 @@ export default function HomePage() {
         <About />
       </section>
 
-      {/* Sponsors */}
-      <div className="flex items-start justify-center hidden">
-        <h1 className="text-white text-5xl font-bold">Sponsors</h1>
-      </div>
-      {/* Partners */}
-      <div className="flex items-start justify-center hidden">
-        <h1 className="text-white text-5xl font-bold">Partners</h1>
-      </div>
-      {/* FAQ */}
-      <div className="flex items-start justify-center hidden">
-        <h1 className="text-white text-5xl font-bold">FAQ</h1>
-      </div>
-      {/* Past Projects */}
-      <div className="flex items-start justify-center hidden">
-        <h1 className="text-white text-5xl font-bold">Past Projects</h1>
-      </div>
+      {/* Plaza */}
+      <section className="relative z-20 bg-black">
+        {/* Sponsors */}
+        <div className="flex items-start justify-center">
+          <h1 className="text-white text-5xl font-bold">Sponsors</h1>
+        </div>
+
+        {/* Partners */}
+        <div className="flex items-start justify-center">
+          <h1 className="text-white text-5xl font-bold">Partners</h1>
+        </div>
+
+        {/* FAQ */}
+        <div className="flex items-start justify-center">
+          <h1 className="text-white text-5xl font-bold">FAQ</h1>
+        </div>
+
+        {/* Guilds */}
+        <div className="flex items-start justify-center hidden">
+          <h1 className="text-white text-5xl font-bold">Guilds</h1>
+        </div>
+
+      </section>
+
       {/* Meet The Team */}
       <div className="flex items-start justify-center hidden">
         <h1 className="text-white text-5xl font-bold">Meet the Team</h1>
