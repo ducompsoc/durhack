@@ -152,15 +152,7 @@ export function Sponsors({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div className={cn("sponsors flex relative items-start justify-center z-10", className)} {...props}>
       <div className="flex-row">
-        <SectionHeader className="mb-4">Sponsors</SectionHeader>
-        {/* hidden bc covering sponsors */}
-        <Image
-          src="/assets/blimp1.svg"
-          alt="blimp"
-          className={cn("absolute right-0 bottom-3/5 hidden")}
-          width="679"
-          height="902"
-        />
+        <SectionHeader className="mb-4 text-[#006793]">Sponsors</SectionHeader>
         <SponsorSection sponsors={platinumSponsors} />
         <SponsorSection sponsors={goldSponsors} />
         <SponsorSection sponsors={silverSponsors} />
@@ -173,7 +165,7 @@ export function Partners({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div className={cn("partners relative flex items-start justify-center z-10", className)} {...props}>
       <div className="flex-row">
-        <SectionHeader className="mb-4">Partners</SectionHeader>
+        <SectionHeader className="mb-4 text-white">Partners</SectionHeader>
         {/* hidden bc covering sponsors */}
         <Image
           src="/assets/blimp2.svg"

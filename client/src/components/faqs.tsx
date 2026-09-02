@@ -21,7 +21,7 @@ export function Faqs({ className, ...props }: React.ComponentProps<"div">) {
       </div>
 
       <div className="hidden lg:block">
-        <SectionHeader>Frequently Asked Questions</SectionHeader>
+        <SectionHeader className="text-white">Frequently Asked Questions</SectionHeader>
       </div>
 
       <div className="flex justify-center my-10">
@@ -33,7 +33,7 @@ export function Faqs({ className, ...props }: React.ComponentProps<"div">) {
                   <AccordionTrigger
                     className={cn(
                       spaceGrotesk.className,
-                      "text-[#006793] text-left text-xl font-medium px-5 flex w-full flex-1 justify-between",
+                      "text-white text-left text-xl font-medium px-5 flex w-full flex-1 justify-between",
                     )}
                   >
                     <Image
@@ -44,10 +44,10 @@ export function Faqs({ className, ...props }: React.ComponentProps<"div">) {
                       className={cn("shrink-0 mr-10")}
                     />
                     {question.question}
-                    <AccordionChevron className={cn("fill-current text-[#006793] accordion-chevron ml-auto")} />
+                    <AccordionChevron className={cn("fill-current text-white accordion-chevron ml-auto")} />
                   </AccordionTrigger>
                 </div>
-                <AccordionContent className={cn("text-[#006793] text-base")}>{question.answer}</AccordionContent>
+                <AccordionContent className={cn("text-white text-base")}>{question.answer}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>

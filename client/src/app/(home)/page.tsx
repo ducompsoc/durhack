@@ -2,6 +2,9 @@ import About from "@/components/about"
 import Hero from "@/components/hero"
 import Info from "@/components/info"
 import Location from "@/components/location"
+import { Sponsors, Partners } from "@/components/sponsors"
+import { Faqs } from "@/components/faqs"
+import Image from "next/image"
 
 export default function HomePage() {
   return (
@@ -12,7 +15,7 @@ export default function HomePage() {
       <div className="h-[10vh] md:h-[50vh] min-h-[100px] w-full shrink-0 pointer-events-none" aria-hidden="true" />
 
       {/* Skyline */}
-      <section className="relative bg-[#0E4A0F]">
+      <section className="relative bg-[#0E4A0F] pb-[calc(21.6vw+10rem)]">
         {/* Info */}
         <Info />
 
@@ -24,21 +27,20 @@ export default function HomePage() {
       </section>
 
       {/* Plaza */}
-      <section className="relative z-20 bg-black">
-        {/* Sponsors */}
-        <div className="flex items-start justify-center">
-          <h1 className="text-white text-5xl font-bold">Sponsors</h1>
+      <section className="relative z-20 bg-gradient-to-b from-[#F0EEEE] from-15% to-[#3C97CF] to-41%">
+        <div className="absolute top-0 left-0 w-full aspect-[1920/830] -translate-y-[65%] pointer-events-none z-0">
+          <Image className="object-cover" fill priority alt="clouds" src="/assets/clouds.svg" />
         </div>
+
+        {/* Sponsors */}
+        <Sponsors className="pt-100" />
+
 
         {/* Partners */}
-        <div className="flex items-start justify-center">
-          <h1 className="text-white text-5xl font-bold">Partners</h1>
-        </div>
+        <Partners />
 
         {/* FAQ */}
-        <div className="flex items-start justify-center">
-          <h1 className="text-white text-5xl font-bold">FAQ</h1>
-        </div>
+        <Faqs />
 
         {/* Guilds */}
         <div className="flex items-start justify-center hidden">

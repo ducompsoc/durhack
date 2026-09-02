@@ -362,6 +362,24 @@ const organisations = [
     image: (props) => <Image {...props} src="/assets/sponsors/tpp.svg" alt="TPP" width={1170} height={666} />,
     link: "https://tpp-uk.com/",
   },
+  {
+    slug: "procter-and-gamble",
+    title: "Procter and Gamble (P&G)",
+    image: (props) => <Image {...props} src="/assets/sponsors/pg.svg" alt="P&G" width={720} height={720} />,
+    link: "https://www.pg.co.uk/",
+  },
+  {
+    slug: "zeiss",
+    title: "Zeiss",
+    image: (props) => <Image {...props} src="/assets/sponsors/zeiss.svg" alt="zeiss" width={567} height={567} />,
+    link: "https://www.zeiss.com/"
+  },
+  {
+    slug: "microsoft",
+    title: "Microsoft",
+    image: (props) => <Image {...props} src="/assets/sponsors/microsoft.svg" alt="microsoft" width={23} height={23} />,
+    link: "https://www.microsoft.com/"
+  }
 ] as const satisfies OrganisationInput[]
 
 export type OrganisationSlug = (typeof organisations)[number]["slug"]
