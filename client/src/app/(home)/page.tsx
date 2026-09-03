@@ -33,7 +33,7 @@ export default function HomePage() {
         </div>
 
         {/* Sponsors */}
-        <Sponsors className="pt-100" />
+        <Sponsors className="pt-70" />
 
 
         {/* Partners */}

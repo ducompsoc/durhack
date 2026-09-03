@@ -113,7 +113,7 @@ type PartnerProps = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 const partnerWidth = 150
-const partnerScale = 0.6
+const partnerScale = 0.5
 
 function PartnerBox({ partner, ...props }: PartnerProps) {
   const organisation = getOrganisationBySlug(partner.organisationSlug)
