@@ -23,7 +23,7 @@ function SubtitleText({ text, ...props }: { text: string } & React.ComponentProp
   return (
     <h2
       {...props}
-      className={cn(spaceGrotesk.className, "subtitle text-white text-3xl md:text-5xl text-center font-semibold")}
+      className={cn(spaceGrotesk.className, "text-shadow-lg text-white text-3xl md:text-5xl text-center font-semibold")}
     >
       {text}
     </h2>

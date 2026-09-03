@@ -33,14 +33,14 @@ export default function HomePage() {
         </div>
 
         {/* Sponsors */}
-        <Sponsors className="pt-70" />
+        <Sponsors className="pt-70 pb-20" />
 
 
         {/* Partners */}
-        <Partners />
+        <Partners className="pb-20" />
 
         {/* FAQ */}
-        <Faqs />
+        <Faqs className="pb-20" />
 
         {/* Guilds */}
         <div className="flex items-start justify-center hidden">
