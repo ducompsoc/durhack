@@ -32,8 +32,8 @@ export default function HomePage() {
           <Image className="object-cover" fill priority alt="clouds" src="/assets/clouds.svg" />
         </div>
 
-        <div className="absolute w-full inset-0 h-full pointer-events-none -z-10">
-          <Image className="object-fill" fill priority alt="sky-streaks" src="/assets/sky-streaks.svg" />
+        <div className="absolute w-full inset-0 h-full pointer-events-none -z-10 overflow-hidden">
+          <Image className="object-cover object-top" fill priority alt="sky-streaks" src="/assets/sky-streaks.svg" />
         </div>
 
         {/* Sponsors */}

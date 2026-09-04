@@ -17,7 +17,7 @@ export function Faqs({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div className={cn("faq", className)} {...props}>
       <div className="block lg:hidden">
-        <SectionHeader>FAQs</SectionHeader>
+        <SectionHeader className="text-white">FAQs</SectionHeader>
       </div>
 
       <div className="hidden lg:block">
