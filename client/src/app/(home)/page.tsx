@@ -27,9 +27,13 @@ export default function HomePage() {
       </section>
 
       {/* Plaza */}
-      <section className="relative z-20 bg-gradient-to-b from-[#F0EEEE] from-15% to-[#3C97CF] to-41%">
+      <section className="relative w-full z-20 bg-gradient-to-b from-[#F0EEEE] from-15% to-[#3C97CF] to-41%">
         <div className="absolute top-0 left-0 w-full aspect-[1920/830] -translate-y-[65%] pointer-events-none z-0">
           <Image className="object-cover" fill priority alt="clouds" src="/assets/clouds.svg" />
+        </div>
+
+        <div className="absolute w-full inset-0 h-full pointer-events-none -z-10">
+          <Image className="object-fill" fill priority alt="sky-streaks" src="/assets/sky-streaks.svg" />
         </div>
 
         {/* Sponsors */}
