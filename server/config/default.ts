@@ -48,7 +48,7 @@ export default {
     currentEventCheckInCloses: new Date("2025-11-01T10:30:00+00:00"),
     currentEventEnd: new Date("2025-11-02T17:30:00+00:00"),
     stashItems: {
-      "mug": {
+      mug: {
         name: "Mug",
         eligibilityCondition: { type: "check-in" },
       },
@@ -64,7 +64,7 @@ export default {
         name: "Gilded Sticker",
         eligibilityCondition: { type: "points-threshold", thresholdQuantity: 60 },
       },
-      "handwarmer": {
+      handwarmer: {
         name: "Handwarmer",
         eligibilityCondition: { type: "points-threshold", thresholdQuantity: 120 },
       },
