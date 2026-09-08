@@ -89,6 +89,7 @@ function SubmitForm({ application }: { application: Application }) {
   const router = useRouter()
   const { setIsFinalSubmitHovering } = useBackgroundContext()
   const { mutateApplication } = useApplicationContext()
+  const submitted = application.applicationStatus !== "unsubmitted"
 
   const form = useForm<SubmitFormFields, unknown, z.infer<typeof submitFormSchema>>({
     resolver: zodResolver<SubmitFormFields, unknown, z.infer<typeof submitFormSchema>>(submitFormSchema),
@@ -105,7 +106,11 @@ function SubmitForm({ application }: { application: Application }) {
 
   async function onSubmit(values: z.infer<typeof submitFormSchema>): Promise<void> {
     try {
-      await updateApplication("submit", values)
+      if (submitted) {
+        await updateApplication("consents", values)
+      } else {
+        await updateApplication("submit", values)
+      }
     } catch {
       // todo: what about network errors? this handles too broadly
       form.setError("root.serverError", {
@@ -161,7 +166,13 @@ function SubmitForm({ application }: { application: Application }) {
               <FormItem>
                 <ConsentCard>
                   <FormControl>
-                    <ConsentCardCheckbox checked={value} onCheckedChange={onChange} required {...field} />
+                    <ConsentCardCheckbox
+                      checked={value}
+                      onCheckedChange={onChange}
+                      disabled={submitted}
+                      required
+                      {...field}
+                    />
                   </FormControl>
                   <ConsentCardContent>
                     <FormLabel>MLH Code of Conduct</FormLabel>
@@ -190,7 +201,7 @@ function SubmitForm({ application }: { application: Application }) {
               <FormItem>
                 <ConsentCard>
                   <FormControl>
-                    <ConsentCardCheckbox checked={value} onCheckedChange={onChange} required {...field} />
+                    <ConsentCardCheckbox checked={value} onCheckedChange={onChange} disabled={submitted} required {...field} />
                   </FormControl>
                   <ConsentCardContent>
                     <FormLabel>MLH Policies, Terms & Conditions</FormLabel>
@@ -238,7 +249,11 @@ function SubmitForm({ application }: { application: Application }) {
               <FormItem>
                 <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
-                    <Checkbox className="mt-[0.2em] lg:mt-0" checked={value} onCheckedChange={onChange} {...field} />
+                    <Checkbox
+                      className="mt-[0.2em] lg:mt-0"
+                      checked={value}
+                      onCheckedChange={onChange}
+                      {...field} />
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormLabel>
@@ -274,6 +289,7 @@ function SubmitForm({ application }: { application: Application }) {
                       className="mt-[0.2em] lg:mt-0"
                       checked={value}
                       onCheckedChange={onChange}
+                      disabled={submitted}
                       {...field}
                     />
                   </FormControl>
@@ -310,6 +326,7 @@ function SubmitForm({ application }: { application: Application }) {
                       className="mt-[0.2em] lg:mt-0"
                       checked={value}
                       onCheckedChange={onChange}
+                      disabled={submitted}
                       {...field}
                     />
                   </FormControl>
@@ -399,7 +416,7 @@ function SubmitForm({ application }: { application: Application }) {
             onMouseEnter={() => setIsFinalSubmitHovering(true)}
             onMouseLeave={() => setIsFinalSubmitHovering(false)}
           >
-            Submit DurHack Application
+            {submitted ? "Save Consents" : "Submit DurHack Application"}
           </FormSubmitButton>
         </div>
       </form>
