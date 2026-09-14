@@ -143,7 +143,7 @@ export function VirtualizedComboBox({
     overscan: 5,
   })
 
-  const selectedOption = options.find((option) => option.value === value)?.label || prominentOptions
+  const selectedOption = options.find((option) => option.value === value)?.label || placeholder
 
   return (
     <div className="relative w-full">
