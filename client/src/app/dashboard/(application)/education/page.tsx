@@ -109,11 +109,13 @@ type EducationFormProps = {
 
 export function VirtualizedComboBox({
   options,
+  prominentOptions,
   value,
   onChange,
   placeholder,
 }: {
   options: SchoolOption[]
+  prominentOptions?: Set<string>
   value?: string
   onChange: (value: string) => void
   placeholder?: string
@@ -122,8 +124,15 @@ export function VirtualizedComboBox({
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState("")
   const filteredOptions = useMemo(() => {
-    return options.filter((option) => option.label.toLowerCase().includes(search.toLowerCase()))
+    const query = search.toLowerCase()
+    const list = options.filter((opt) => opt.label.toLowerCase().includes(query))
+    
+    const prominent = list.filter((opt) => prominentOptions?.has(opt.label))
+    const rest = list.filter((opt) => !prominentOptions?.has(opt.label))
+    
+    return [...prominent, ...rest]
   }, [options, search])
+
 
   const parentRef = useRef<HTMLDivElement>(null)
 
@@ -134,7 +143,7 @@ export function VirtualizedComboBox({
     overscan: 5,
   })
 
-  const selectedOption = options.find((option) => option.value === value)?.label || placeholder
+  const selectedOption = options.find((option) => option.value === value)?.label || prominentOptions
 
   return (
     <div className="relative w-full">
@@ -248,6 +257,7 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                 <FormControl>
                   <VirtualizedComboBox 
                     options={schoolOptions}
+                    prominentOptions={new Set(["Durham University"])}
                     value={field.value}
                     onChange={field.onChange}
                     placeholder="Select educational institution..."
