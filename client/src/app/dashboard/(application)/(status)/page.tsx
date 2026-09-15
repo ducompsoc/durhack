@@ -10,6 +10,12 @@ import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
 
+function ConsentNoticeArticle(){
+  return (
+    <p>You can still change your consents <Link href="/dashboard/submit" className="underline">here</Link>. Or just click &quot;Submit&quot; on the navigation bar.</p>
+  )
+}
+
 function InstructionsArticle({
   application,
   applicationIsLoading,
@@ -38,6 +44,7 @@ function InstructionsArticle({
             hello@durhack.com
           </a>
         </p>
+        <ConsentNoticeArticle />
       </article>
     )
 
@@ -46,6 +53,7 @@ function InstructionsArticle({
       <article>
         <p>You are on the waiting list.</p>
         <p>If a place at DurHack becomes available and is assigned to you, we will notify you by email.</p>
+        <ConsentNoticeArticle />
       </article>
     )
 
@@ -57,6 +65,7 @@ function InstructionsArticle({
           Check your inbox for a confirmation email - you will need the QR code inside to check-in on the day of the
           event.
         </p>
+        
       </article>
     )
 
@@ -71,6 +80,7 @@ function InstructionsArticle({
           </a>
           .
         </p>
+        <ConsentNoticeArticle />
       </article>
     )
 

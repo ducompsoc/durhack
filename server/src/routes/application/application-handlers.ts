@@ -560,6 +560,69 @@ class ApplicationHandlers {
     })
   }
 
+  private getConsentUpserts(userId: string, payload: z.infer<typeof submitFormSchema>){
+    return [
+        prisma.userConsent.upsert({
+          where: { id: { userId: userId, consentName: "mlhCodeOfConduct" } },
+          create: {
+            userId: userId,
+            consentName: "mlhCodeOfConduct",
+            choice: payload.mlhCodeOfConduct,
+          },
+          update: { choice: payload.mlhCodeOfConduct },
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: userId, consentName: "mlhTerms" } },
+          create: { userId: userId, consentName: "mlhTerms", choice: payload.mlhTerms },
+          update: { choice: payload.mlhTerms },
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: userId, consentName: "mlhMarketing" } },
+          create: { userId: userId, consentName: "mlhMarketing", choice: payload.mlhMarketing },
+          update: { choice: payload.mlhMarketing },
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: userId, consentName: "dsuPrivacy" } },
+          create: { userId: userId, consentName: "dsuPrivacy", choice: payload.dsuPrivacy },
+          update: { choice: payload.dsuPrivacy },
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: userId, consentName: "hukPrivacy" } },
+          create: { userId: userId, consentName: "hukPrivacy", choice: payload.hukPrivacy },
+          update: { choice: payload.hukPrivacy },
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: userId, consentName: "hukMarketing" } },
+          create: { userId: userId, consentName: "hukMarketing", choice: payload.hukMarketing },
+          update: { choice: payload.hukMarketing },
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: userId, consentName: "media" } },
+          create: { userId: userId, consentName: "media", choice: payload.media },
+          update: { choice: payload.media },
+        }),
+      ]
+
+  }
+
+  private async saveConsents(userId: string, payload: z.infer<typeof submitFormSchema>){
+    return prisma.$transaction(this.getConsentUpserts(userId, payload))
+  }
+
+  @onlyKnownUsers()
+  patchConsents(): Middleware{
+    return async (request, response) => {
+      assert(request.userProfile)
+
+      const body = await json(request, response)
+      const payload = submitFormSchema.parse(body)
+
+      await this.saveConsents(request.userProfile.sub, payload)
+
+      response.sendStatus(200)
+    }
+  }
+
   @onlyKnownUsers()
   submit(): Middleware {
     return async (request, response) => {
@@ -594,45 +657,7 @@ class ApplicationHandlers {
             },
           },
         }),
-        prisma.userConsent.upsert({
-          where: { id: { userId: request.userProfile.sub, consentName: "mlhCodeOfConduct" } },
-          create: {
-            userId: request.userProfile.sub,
-            consentName: "mlhCodeOfConduct",
-            choice: payload.mlhCodeOfConduct,
-          },
-          update: { choice: payload.mlhCodeOfConduct },
-        }),
-        prisma.userConsent.upsert({
-          where: { id: { userId: request.userProfile.sub, consentName: "mlhTerms" } },
-          create: { userId: request.userProfile.sub, consentName: "mlhTerms", choice: payload.mlhTerms },
-          update: { choice: payload.mlhTerms },
-        }),
-        prisma.userConsent.upsert({
-          where: { id: { userId: request.userProfile.sub, consentName: "mlhMarketing" } },
-          create: { userId: request.userProfile.sub, consentName: "mlhMarketing", choice: payload.mlhMarketing },
-          update: { choice: payload.mlhMarketing },
-        }),
-        prisma.userConsent.upsert({
-          where: { id: { userId: request.userProfile.sub, consentName: "dsuPrivacy" } },
-          create: { userId: request.userProfile.sub, consentName: "dsuPrivacy", choice: payload.dsuPrivacy },
-          update: { choice: payload.dsuPrivacy },
-        }),
-        prisma.userConsent.upsert({
-          where: { id: { userId: request.userProfile.sub, consentName: "hukPrivacy" } },
-          create: { userId: request.userProfile.sub, consentName: "hukPrivacy", choice: payload.hukPrivacy },
-          update: { choice: payload.hukPrivacy },
-        }),
-        prisma.userConsent.upsert({
-          where: { id: { userId: request.userProfile.sub, consentName: "hukMarketing" } },
-          create: { userId: request.userProfile.sub, consentName: "hukMarketing", choice: payload.hukMarketing },
-          update: { choice: payload.hukMarketing },
-        }),
-        prisma.userConsent.upsert({
-          where: { id: { userId: request.userProfile.sub, consentName: "media" } },
-          create: { userId: request.userProfile.sub, consentName: "media", choice: payload.media },
-          update: { choice: payload.media },
-        }),
+        ...this.getConsentUpserts(request.userProfile.sub, payload),
       ])
 
       await mailgunClient.messages.create(mailgunConfig.domain, {
