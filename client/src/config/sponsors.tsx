@@ -143,7 +143,7 @@ export const sponsors: Sponsor[] = [
     organisationSlug: "microsoft",
     tier: "partner",
     active: true,
-  }
+  },
 ]
 
 export const signedSponsors = sponsors.filter((sponsor) => sponsor.active)

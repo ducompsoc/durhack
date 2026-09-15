@@ -14,7 +14,7 @@ export function Guilds({ className, ...props }: React.ComponentProps<"div">) {
         <SectionHeader>Guilds</SectionHeader>
 
         <div className="my-10 align-center justify-center flex flex-col">
-          {guilds.map((guild, index) => (
+          {guilds.map((guild, _index) => (
             <Image src={guild.imgSrc} key={guild.name} alt={`${guild.name} tile`} />
           ))}
         </div>

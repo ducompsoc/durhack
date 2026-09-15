@@ -372,14 +372,14 @@ const organisations = [
     slug: "zeiss",
     title: "Zeiss",
     image: (props) => <Image {...props} src="/assets/sponsors/zeiss.svg" alt="zeiss" width={567} height={567} />,
-    link: "https://www.zeiss.com/"
+    link: "https://www.zeiss.com/",
   },
   {
     slug: "microsoft",
     title: "Microsoft",
     image: (props) => <Image {...props} src="/assets/sponsors/microsoft.svg" alt="microsoft" width={23} height={23} />,
-    link: "https://www.microsoft.com/"
-  }
+    link: "https://www.microsoft.com/",
+  },
 ] as const satisfies OrganisationInput[]
 
 export type OrganisationSlug = (typeof organisations)[number]["slug"]

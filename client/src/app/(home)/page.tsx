@@ -1,11 +1,11 @@
+import Image from "next/image"
 import About from "@/components/about"
+import { Faqs } from "@/components/faqs"
+import { Guilds } from "@/components/guilds"
 import Hero from "@/components/hero"
 import Info from "@/components/info"
 import Location from "@/components/location"
-import { Sponsors, Partners } from "@/components/sponsors"
-import { Faqs } from "@/components/faqs"
-import Image from "next/image"
-import {Guilds} from "@/components/guilds";
+import { Partners, Sponsors } from "@/components/sponsors"
 
 export default function HomePage() {
   return (
@@ -40,7 +40,6 @@ export default function HomePage() {
         {/* Sponsors */}
         <Sponsors className="pt-70 pb-20" />
 
-
         {/* Partners */}
         <Partners className="pb-20" />
 
@@ -49,7 +48,6 @@ export default function HomePage() {
 
         {/* Guilds */}
         <Guilds />
-
       </section>
 
       {/* Meet The Team */}
