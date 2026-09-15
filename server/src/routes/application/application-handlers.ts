@@ -560,8 +560,8 @@ class ApplicationHandlers {
     })
   }
 
-  private async saveConsents(userId: string, payload: z.infer<typeof submitFormSchema>){
-    return prisma.$transaction([
+  private getConsentUpserts(userId: string, payload: z.infer<typeof submitFormSchema>){
+    return [
         prisma.userConsent.upsert({
           where: { id: { userId: userId, consentName: "mlhCodeOfConduct" } },
           create: {
@@ -601,8 +601,12 @@ class ApplicationHandlers {
           create: { userId: userId, consentName: "media", choice: payload.media },
           update: { choice: payload.media },
         }),
-      ])
+      ]
 
+  }
+
+  private async saveConsents(userId: string, payload: z.infer<typeof submitFormSchema>){
+    return prisma.$transaction(this.getConsentUpserts(userId, payload))
   }
 
   @onlyKnownUsers()
@@ -653,9 +657,8 @@ class ApplicationHandlers {
             },
           },
         }),
+        ...this.getConsentUpserts(request.userProfile.sub, payload),
       ])
-
-      await this.saveConsents(request.userProfile.sub, payload)
 
       await mailgunClient.messages.create(mailgunConfig.domain, {
         from: `DurHack <noreply@${mailgunConfig.sendAsDomain}>`,
