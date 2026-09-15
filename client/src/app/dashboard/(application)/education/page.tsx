@@ -41,6 +41,9 @@ import { isString } from "@/lib/type-guards"
 import { updateApplication } from "@/lib/update-application"
 import { zodIso3 } from "@/lib/zod-iso3-validator"
 
+import { useVirtualizer } from "@tanstack/react-virtual"
+import { useRef, useState, useMemo } from "react"
+
 type EducationFormFields = {
   university: string
   graduationYear: unknown
@@ -104,6 +107,118 @@ type EducationFormProps = {
   application: Application
 }
 
+export function VirtualizedComboBox({
+  options,
+  prominentOptions,
+  value,
+  onChange,
+  placeholder,
+}: {
+  options: SchoolOption[]
+  prominentOptions?: Set<string>
+  value?: string
+  onChange: (value: string) => void
+  placeholder?: string
+}) {
+  
+  const [open, setOpen] = useState(false)
+  const [search, setSearch] = useState("")
+  const filteredOptions = useMemo(() => {
+    const query = search.toLowerCase()
+    const list = options.filter((opt) => opt.label.toLowerCase().includes(query))
+    
+    const prominent = list.filter((opt) => prominentOptions?.has(opt.label))
+    const rest = list.filter((opt) => !prominentOptions?.has(opt.label))
+    
+    return [...prominent, ...rest]
+  }, [options, search])
+
+
+  const parentRef = useRef<HTMLDivElement>(null)
+
+  const rowVirtualizer = useVirtualizer({
+    count: filteredOptions.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 35,
+    overscan: 5,
+  })
+
+  const selectedOption = options.find((option) => option.value === value)?.label || placeholder
+
+  return (
+    <div className="relative w-full">
+      <button
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
+        className="w-full flex items-center justify-between px-3 py-2 text-sm border rounded-md bg-background hover:bg-accent hover:text-accent-foreground text-left"
+      >
+        <span className={value ? "text-foreground" : "text-muted-foreground"}>
+          {selectedOption}
+        </span>
+        <span className="ml-2 text-xs opacity-50">▼</span>
+      </button>
+
+      {open && (
+        <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in fade-in-80">
+          <div className="p-2 space-y-2">
+            <Input
+              placeholder="Search..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="h-8 text-sm"
+              autoFocus
+            />
+
+            <div
+              ref={parentRef}
+              className="overflow-auto max-h-[300px] relative"
+            >
+                {filteredOptions.length === 0 ? (
+                  <div
+                    className="p-3 text-sm text-center text-muted-foreground"
+                  >No institution found</div>
+                ) : (
+                  <div
+                    style={{
+                      height: `${rowVirtualizer.getTotalSize()}px`,
+                      width: "100%",
+                      position: "relative",
+                    }}
+                  >
+                    {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+                      const option = filteredOptions[virtualRow.index]
+                      return (
+                        <div
+                          key={virtualRow.key}
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: `${virtualRow.size}px`,
+                            transform: `translateY(${virtualRow.start}px)`,
+                          }}
+                          className="flex items-center px-2 hover:bg-muted/50 cursor-pointer"
+                          onClick={() => {
+                            onChange(option.value)
+                            setOpen(false)
+                            setSearch("")
+                          }}
+                        >
+                          {option.label}
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+      )}
+    </div>
+  )
+}
+
 /**
  * This component accepts <code>application</code> via props, rather than via
  * <code>useApplicationContext</code>, because it requires the application to already be loaded before being rendered.
@@ -139,19 +254,15 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
             render={({ field: { ref, ...field } }) => (
               <FormItem>
                 <FormLabel>Educational Institution</FormLabel>
-                <ComboBox<string>
-                  placeholder="Select institution..."
-                  options={schoolOptions}
-                  prominentOptions={new Set(["Durham University"])}
-                  {...field}
-                >
-                  <ComboBoxTrigger ref={ref}>
-                    <FormControl>
-                      <ComboBoxButton size="form" />
-                    </FormControl>
-                  </ComboBoxTrigger>
-                  <ComboBoxContent />
-                </ComboBox>
+                <FormControl>
+                  <VirtualizedComboBox 
+                    options={schoolOptions}
+                    prominentOptions={new Set(["Durham University"])}
+                    value={field.value}
+                    onChange={field.onChange}
+                    placeholder="Select educational institution..."
+                  />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
