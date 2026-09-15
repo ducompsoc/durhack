@@ -10,7 +10,7 @@ import "@/styles/guilds.css"
 export function Guilds({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div className={cn("guilds flex items-start justify-center", className)} {...props}>
-      <div className="flex-row justify-center items-center w-full md:w-1/3">
+      <div className="flex-row justify-center items-center w-90 sm:w-135 md:w-180">
         <SectionHeader>Guilds</SectionHeader>
 
         <div className="my-10 align-center justify-center flex flex-col">
