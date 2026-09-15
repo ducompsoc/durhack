@@ -1,23 +1,24 @@
 export type GuildConfig = {
   name: string
-  icon_path: string
+  imgSrc: {
+    src: string,
+    width: number,
+    height: number
+  }
 }
 
 export const guilds: GuildConfig[] = [
   {
-    name: "Solaris",
-    icon_path: "",
+    name: "Skyline",
+    imgSrc:  { src: "/assets/guilds/skyline.svg", width: 3384, height: 1211 }
+
   },
   {
-    name: "Zephyr",
-    icon_path: "",
+    name: "Plaza",
+    imgSrc: { src: "/assets/guilds/plaza.svg", width: 3457, height: 1090 }
   },
   {
-    name: "Ember",
-    icon_path: "",
-  },
-  {
-    name: "Hydro",
-    icon_path: "",
-  },
+    name: "Metro",
+    imgSrc: { src: "/assets/guilds/metro.svg", width: 3367, height: 3387 }
+  }
 ]

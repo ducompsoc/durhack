@@ -5,6 +5,7 @@ import Location from "@/components/location"
 import { Sponsors, Partners } from "@/components/sponsors"
 import { Faqs } from "@/components/faqs"
 import Image from "next/image"
+import {Guilds} from "@/components/guilds";
 
 export default function HomePage() {
   return (
@@ -27,8 +28,8 @@ export default function HomePage() {
       </section>
 
       {/* Plaza */}
-      <section className="relative w-full z-20 bg-gradient-to-b from-[#F0EEEE] from-15% to-[#3C97CF] to-41%">
-        <div className="absolute top-0 left-0 w-full aspect-[1920/830] -translate-y-[65%] pointer-events-none z-0">
+      <section className="relative w-full z-20 bg-linear-to-b from-[#F0EEEE] from-15% to-[#3C97CF] to-41%">
+        <div className="absolute top-0 left-0 w-full aspect-1920/830 -translate-y-[65%] pointer-events-none z-0">
           <Image className="object-cover" fill priority alt="clouds" src="/assets/clouds.svg" />
         </div>
 
@@ -47,9 +48,7 @@ export default function HomePage() {
         <Faqs className="pb-20" />
 
         {/* Guilds */}
-        <div className="flex items-start justify-center hidden">
-          <h1 className="text-white text-5xl font-bold">Guilds</h1>
-        </div>
+        <Guilds />
 
       </section>
 
