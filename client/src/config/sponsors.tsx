@@ -60,7 +60,7 @@ export const sponsors: Sponsor[] = [
     organisationSlug: "zeiss",
     tier: "gold",
     cvSharing: true,
-    active: true,
+    active: false,
   },
   {
     organisationSlug: "waterstons",
