@@ -142,7 +142,7 @@ export const sponsors: Sponsor[] = [
   {
     organisationSlug: "microsoft",
     tier: "partner",
-    active: true,
+    active: false,
   },
 ]
 
