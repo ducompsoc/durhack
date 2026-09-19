@@ -28,6 +28,11 @@ export const sponsors: Sponsor[] = [
     active: true,
   },
   {
+    organisationSlug: "bidfx",
+    tier: "platinum",
+    active: true
+  },
+  {
     organisationSlug: "accenture",
     tier: "gold",
     cvSharing: true,
