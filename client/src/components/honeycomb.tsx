@@ -89,12 +89,12 @@ export function HoneycombSVG() {
       <g mask="url(#mask1_1_2696)">
         <image
           id="image0_1_2696"
-          x="475.739"
-          y="133.586"
-          width="129"
-          height="142"
+          x="450"
+          y="110"
+          width="186"
+          height="222"
           preserveAspectRatio="none"
-          href="/assets/about/hackers-2.jpg"
+          href="/assets/about/hackers-2.png"
         />
       </g>
       <g className="drop-shadow-xl/25 drop-shadow-black">
@@ -127,12 +127,12 @@ export function HoneycombSVG() {
       <g mask="url(#mask2_1_2696)">
         <image
           id="image0_1_2696"
-          x="70"
-          y="60.6845"
-          width="352"
-          height="395"
+          x="-50"
+          y="0"
+          width="608"
+          height="689"
           preserveAspectRatio="none"
-          href="/assets/about/hackers-1.jpg"
+          href="/assets/about/hackers-1.png"
         />
       </g>
       <g className="drop-shadow-xl/25 drop-shadow-black">
@@ -437,12 +437,12 @@ export function HoneycombSVG2() {
       <g mask="url(#mask1_v_2)">
         <image
           id="image0_v_2"
-          x="400"
-          y="140"
-          width="240"
-          height="264"
+          x="330"
+          y="135"
+          width="438"
+          height="292"
           preserveAspectRatio="none"
-          href="/assets/about/hackers-5.png"
+          href="/assets/about/hackers-6.png"
         />
       </g>
       <g className="drop-shadow-xl/25 drop-shadow-black">
@@ -475,12 +475,12 @@ export function HoneycombSVG2() {
       <g mask="url(#mask2_v_2)">
         <image
           id="image0_v_2"
-          x="210"
+          x="100"
           y="390"
-          width="200"
-          height="221"
+          width="355"
+          height="237"
           preserveAspectRatio="none"
-          href="/assets/about/hackers-6.png"
+          href="/assets/about/hackers-5.png"
         />
       </g>
       <g className="drop-shadow-xl/25 drop-shadow-black">
