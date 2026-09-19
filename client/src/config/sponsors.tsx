@@ -30,7 +30,7 @@ export const sponsors: Sponsor[] = [
   {
     organisationSlug: "bidfx",
     tier: "platinum",
-    active: true
+    active: true,
   },
   {
     organisationSlug: "accenture",

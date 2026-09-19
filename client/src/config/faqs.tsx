@@ -103,14 +103,12 @@ export const faqs = [
           <a href="mailto:travel@durhack.com">travel@durhack.com</a>.
         </p>
         <br />
-        <p>
-          All travel reimbursement is conditional on:
-        </p>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Having a DurHack ticket</li>
-            <li>Attending DurHack and being checked in at the event</li>
-            <li>Devpost project submission</li>
-          </ul>
+        <p>All travel reimbursement is conditional on:</p>
+        <ul className="list-disc pl-6 space-y-1">
+          <li>Having a DurHack ticket</li>
+          <li>Attending DurHack and being checked in at the event</li>
+          <li>Devpost project submission</li>
+        </ul>
         <br />
         <p>
           Please keep your receipt(s): we will release a form shortly after DurHack for you to put in your details and
