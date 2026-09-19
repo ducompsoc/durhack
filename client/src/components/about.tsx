@@ -19,7 +19,7 @@ function StatComponent({
 export default function About() {
   return (
     <div className="flex flex-col w-full items-center z-10 relative">
-      <div className="flex flex-wrap justify-center items-center align-center w-[80vw]">
+      <div className="flex flex-wrap justify-center items-center align-center md:w-[80vw]">
         <div
           className={cn(
             "container max-w-[60rem] mx-auto text-center md:text-left text-4xl font-medium",
@@ -42,7 +42,7 @@ export default function About() {
         <StatComponent stat="15+" innerText="Sponsors" />
         <StatComponent stat="150+" innerText="Projects" />
       </div>
-      <div className="flex flex-wrap justify-center items-center align-center w-[80vw]">
+      <div className="flex flex-wrap justify-center items-center align-center md:w-[80vw]">
         <div className="w-full max-w-[678px] mx-auto">
           <HoneycombSVG2 />
         </div>
