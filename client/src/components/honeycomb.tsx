@@ -11,7 +11,7 @@ export function HoneycombSVG() {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <g filter="url(#filter0_d_1_2696)">
+      <g style={{filter: "drop-shadow(-0.6px 9px 7.3px rgba(0, 0, 0, 0.2))"}}>
         <path
           d="M462.252 343.058C472.099 337.254 484.319 337.245 494.173 343.037L567.712 386.259C577.322 391.906 583.226 402.217 583.233 413.363L583.291 500.965C583.299 512.111 577.408 522.429 567.806 528.09L494.324 571.409C484.477 577.213 472.257 577.221 462.403 571.43L388.864 528.208C379.254 522.561 373.35 512.25 373.342 501.104L373.285 413.502C373.277 402.356 379.168 392.037 388.77 386.377L462.252 343.058Z"
           fill="url(#paint0_linear_1_2696)"
@@ -59,7 +59,7 @@ export function HoneycombSVG() {
           href="/assets/about/hackers-3.jpg"
         />
       </g>
-      <g filter="url(#filter1_d_1_2696)">
+      <g style={{filter: "drop-shadow(-0.6px 11px 7.3px rgba(0,0,0,0.12))"}}>
         <path
           d="M550.841 118.054C544.023 114.037 535.563 114.034 528.742 118.045L471.39 151.774C464.738 155.686 460.652 162.825 460.649 170.542L460.623 238.779C460.62 246.496 464.7 253.638 471.349 257.555L528.675 291.328C535.493 295.345 543.953 295.349 550.774 291.337L608.126 257.608C614.778 253.696 618.864 246.557 618.867 238.84L618.893 170.603C618.896 162.887 614.816 155.744 608.167 151.827L550.841 118.054Z"
           fill="url(#paint4_linear_1_2696)"
@@ -97,7 +97,7 @@ export function HoneycombSVG() {
           href="/assets/about/hackers-2.jpg"
         />
       </g>
-      <g filter="url(#filter2_d_1_2696)">
+      <g style={{filter: "drop-shadow(-0.6px 11px 7.3px rgba(0, 0, 0, 0.2))"}}>
         <path
           d="M218.165 486.981C229.43 493.516 243.332 493.516 254.597 486.981L423.005 389.295C434.202 382.8 441.094 370.835 441.094 357.891L441.094 162.222C441.094 149.278 434.202 137.313 423.005 130.819L254.597 33.1319C243.332 26.5976 229.43 26.5976 218.165 33.1319L49.7575 130.819C38.5608 137.313 31.6691 149.278 31.6691 162.222L31.6691 357.891C31.6691 370.835 38.5608 382.8 49.7575 389.295L218.165 486.981Z"
           fill="url(#paint8_linear_1_2696)"
@@ -135,7 +135,7 @@ export function HoneycombSVG() {
           href="/assets/about/hackers-1.jpg"
         />
       </g>
-      <g filter="url(#filter3_d_1_2696)">
+      <g style={{filter: "drop-shadow(-0.6px 11px 7.3px rgba(0, 0, 0, 0.2))"}}>
         <path
           d="M448.789 194.581C451.964 196.407 455.87 196.407 459.045 194.581L533.683 151.657C536.874 149.822 538.841 146.421 538.841 142.74V56.9618C538.841 53.2806 536.874 49.8801 533.683 48.0449L459.045 5.12093C455.87 3.29506 451.964 3.29507 448.789 5.12094L374.151 48.0449C370.959 49.8801 368.992 53.2806 368.992 56.9618V142.74C368.992 146.421 370.959 149.822 374.151 151.657L448.789 194.581Z"
           fill="url(#paint10_linear_1_2696)"
@@ -148,7 +148,7 @@ export function HoneycombSVG() {
           shapeRendering="crispEdges"
         />
       </g>
-      <g filter="url(#filter4_d_1_2696)">
+      <g style={{filter: "drop-shadow(-0.6px 11px 7.3px rgba(0, 0, 0, 0.2))"}}>
         <path
           d="M134.606 536.52C137.595 538.24 141.273 538.24 144.262 536.52L210.562 498.374C213.564 496.646 215.415 493.446 215.415 489.982L215.415 413.747C215.415 410.283 213.564 407.084 210.562 405.356L144.262 367.21C141.273 365.49 137.595 365.49 134.606 367.21L68.3057 405.356C65.3033 407.084 63.4526 410.283 63.4526 413.747L63.4526 489.982C63.4526 493.446 65.3033 496.646 68.3057 498.374L134.606 536.52Z"
           fill="url(#paint12_linear_1_2696)"
@@ -162,130 +162,12 @@ export function HoneycombSVG() {
         />
       </g>
       <defs>
-        <filter
-          id="filter0_d_1_2696"
-          x="358.036"
-          y="333.132"
-          width="239.292"
-          height="266.354"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feColorMatrix
-            in="SourceAlpha"
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-            result="hardAlpha"
-          />
-          <feOffset dx="-0.605073" dy="9.07609" />
-          <feGaussianBlur stdDeviation="7.32138" />
-          <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2696" />
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2696" result="shape" />
-        </filter>
         <pattern id="pattern0_1_2696" patternContentUnits="objectBoundingBox" width="1" height="1">
           <use xlinkHref="#image0_1_2696" transform="matrix(0.110886 0 0 0.166667 -0.276202 0)" />
         </pattern>
-        <filter
-          id="filter1_d_1_2696"
-          x="445.375"
-          y="111.287"
-          width="187.556"
-          height="208.59"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feColorMatrix
-            in="SourceAlpha"
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-            result="hardAlpha"
-          />
-          <feOffset dx="-0.605072" dy="10.8913" />
-          <feGaussianBlur stdDeviation="7.32137" />
-          <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0" />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2696" />
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2696" result="shape" />
-        </filter>
         <pattern id="pattern1_1_2696" patternContentUnits="objectBoundingBox" width="1" height="1">
           <use xlinkHref="#image0_1_2696" transform="matrix(0.112909 0 0 0.166667 -0.290366 0)" />
         </pattern>
-        <filter
-          id="filter2_d_1_2696"
-          x="16.4211"
-          y="24.4797"
-          width="438.71"
-          height="492.937"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feColorMatrix
-            in="SourceAlpha"
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-            result="hardAlpha"
-          />
-          <feOffset dx="-0.605073" dy="10.8913" />
-          <feGaussianBlur stdDeviation="7.32138" />
-          <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2696" />
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2696" result="shape" />
-        </filter>
-        <pattern id="pattern2_1_2696" patternContentUnits="objectBoundingBox" width="1" height="1">
-          <use xlinkHref="#image0_1_2696" transform="matrix(0.110881 0 0 0.166667 -0.276164 0)" />
-        </pattern>
-        <filter
-          id="filter3_d_1_2696"
-          x="353.744"
-          y="1.04904e-05"
-          width="199.134"
-          height="221.484"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feColorMatrix
-            in="SourceAlpha"
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-            result="hardAlpha"
-          />
-          <feOffset dx="-0.605073" dy="10.8913" />
-          <feGaussianBlur stdDeviation="7.32139" />
-          <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2696" />
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2696" result="shape" />
-        </filter>
-        <filter
-          id="filter4_d_1_2696"
-          x="48.2043"
-          y="362.168"
-          width="181.248"
-          height="201.176"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feColorMatrix
-            in="SourceAlpha"
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-            result="hardAlpha"
-          />
-          <feOffset dx="-0.605073" dy="10.8913" />
-          <feGaussianBlur stdDeviation="7.32138" />
-          <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2696" />
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2696" result="shape" />
-        </filter>
         <linearGradient
           id="paint0_linear_1_2696"
           x1="478.206"
