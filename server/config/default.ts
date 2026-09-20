@@ -44,9 +44,9 @@ export default {
     ticketAssignmentActive: false,
     maximumTicketAssignment: 900,
     maximumExternalTicketAssignment: 300,
-    currentEventStart: new Date("2025-11-01T09:30:00+00:00"),
-    currentEventCheckInCloses: new Date("2025-11-01T10:30:00+00:00"),
-    currentEventEnd: new Date("2025-11-02T17:30:00+00:00"),
+    currentEventStart: new Date("2026-11-14T09:30:00+00:00"),
+    currentEventCheckInCloses: new Date("2026-11-14T10:30:00+00:00"),
+    currentEventEnd: new Date("2026-11-15T17:30:00+00:00"),
     stashItems: {
       "mug": {
         name: "Mug",
