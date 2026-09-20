@@ -23,6 +23,12 @@ import { isLoaded } from "@/lib/is-loaded"
 import { isString } from "@/lib/type-guards"
 import { updateApplication } from "@/lib/update-application"
 
+import { getEventTimings } from "@/lib/durhack-meta"
+import {getTimeFormattingValues} from "@durhack/durhack-common/util/format-date";
+
+const eventTimings = await getEventTimings()
+const start= getTimeFormattingValues(eventTimings.start)
+
 type PersonalFormFields = {
   firstNames: string
   lastNames: string
@@ -169,7 +175,7 @@ function PersonalForm({ application }: { application: Application }) {
             name="age"
             render={({ field: { value, ...field } }) => (
               <FormItem>
-                <FormLabel>Age as of 14th November 2026</FormLabel>
+                <FormLabel>Age as of {start.month} {start.date}<sup>{start.dateOrdinalSuffix}</sup></FormLabel>
                 <FormControl>
                   <Input placeholder="Enter age..." value={isString(value) ? value : ""} {...field} />
                 </FormControl>
