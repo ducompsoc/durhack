@@ -65,6 +65,13 @@ applicationApp
   .all(forbiddenOrUnauthorised())
 
 applicationApp
+  .route("/consents")
+  .all(methodNotAllowed(["PATCH"]))
+  .all(authenticate())
+  .patch(applicationHandlers.patchConsents())
+  .all(forbiddenOrUnauthorised())
+
+applicationApp
   .route("/submit")
   .all(methodNotAllowed(["POST"]))
   .all(authenticate())
