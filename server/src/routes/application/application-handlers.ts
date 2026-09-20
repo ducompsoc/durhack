@@ -605,7 +605,7 @@ class ApplicationHandlers {
 
   }
 
-  private async saveConsents(userId: string, payload: z.infer<typeof submitFormSchema>){
+  private saveConsents(userId: string, payload: z.infer<typeof submitFormSchema>){
     return prisma.$transaction(this.getConsentUpserts(userId, payload))
   }
 
