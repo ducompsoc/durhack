@@ -7,6 +7,7 @@ type OrganisationInput = {
   slug: string
   title: string
   image: ImageComponent
+  imageLandscape?: ImageComponent | null | undefined
   link: string
   privacyPolicyLink?: string | null | undefined
   privacyPolicyTitle?: string | null | undefined
@@ -140,6 +141,15 @@ const organisations = [
     image: (props) => (
       <Image
         {...props}
+        src="/assets/sponsors/compsoc-v5.svg"
+        alt="Durham University Computing Society"
+        width={24}
+        height={24}
+      />
+    ),
+    imageLandscape: (props) => (
+      <Image
+        {...props}
         src="/assets/sponsors/compsoc-v5-with-text.svg"
         alt="Durham University Computing Society"
         width={534.81}
@@ -158,6 +168,15 @@ const organisations = [
     slug: "keyboard-co",
     title: "The Keyboard Company",
     image: (props) => (
+      <Image
+        {...props}
+        src="/assets/sponsors/keyboard-company-square.svg"
+        alt="The Keyboard Company"
+        width={350}
+        height={350}
+      />
+    ),
+    imageLandscape: (props) => (
       <Image
         {...props}
         src="/assets/sponsors/keyboard-company.svg"
@@ -192,6 +211,15 @@ const organisations = [
     slug: "durham-uni-computer-science",
     title: "Durham University Computer Science",
     image: (props) => (
+      <Image
+        {...props}
+        src="/assets/sponsors/durham-uni-square.svg"
+        alt="Durham University Computer Science"
+        width={80}
+        height={80}
+      />
+    ),
+    imageLandscape: (props) => (
       <Image
         {...props}
         src="/assets/sponsors/durham-uni.svg"
