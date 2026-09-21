@@ -52,7 +52,7 @@ export default function Hero() {
         </div>
 
         {/* Bottom half */}
-        <div className="flex-1 z-1 flex justify-center items-center pointer-events-none w-full">
+        <div className="flex-1 z-1 flex justify-center items-center pointer-events-none w-full -translate-y-20">
           <div className="relative w-[clamp(300px,80vmin,900px)] aspect-square flex justify-center items-center z-10">
             <Image className="object-contain" fill priority alt="sun" src="/assets/hero/sun.svg" />
             <Image className="object-contain" fill priority alt="sun aura" src="/assets/hero/sun-aura.svg" />
