@@ -1,5 +1,6 @@
 "use client"
 
+import { getTimeFormattingValues } from "@durhack/durhack-common/util/format-date"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@durhack/web-components/ui/form"
 import { Input } from "@durhack/web-components/ui/input"
 import {
@@ -14,20 +15,17 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { z } from "zod/v4"
-
 import { FormSkeleton } from "@/components/dashboard/form-skeleton"
 import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
 import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
+import { getEventTimings } from "@/lib/durhack-meta"
 import { isLoaded } from "@/lib/is-loaded"
 import { isString } from "@/lib/type-guards"
 import { updateApplication } from "@/lib/update-application"
 
-import { getEventTimings } from "@/lib/durhack-meta"
-import {getTimeFormattingValues} from "@durhack/durhack-common/util/format-date";
-
 const eventTimings = await getEventTimings()
-const start= getTimeFormattingValues(eventTimings.start)
+const start = getTimeFormattingValues(eventTimings.start)
 
 type PersonalFormFields = {
   firstNames: string
@@ -175,7 +173,10 @@ function PersonalForm({ application }: { application: Application }) {
             name="age"
             render={({ field: { value, ...field } }) => (
               <FormItem>
-                <FormLabel>Age as of {start.month} {start.date}<sup>{start.dateOrdinalSuffix}</sup></FormLabel>
+                <FormLabel>
+                  Age as of {start.month} {start.date}
+                  <sup>{start.dateOrdinalSuffix}</sup>
+                </FormLabel>
                 <FormControl>
                   <Input placeholder="Enter age..." value={isString(value) ? value : ""} {...field} />
                 </FormControl>

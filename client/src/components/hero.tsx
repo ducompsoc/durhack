@@ -2,22 +2,8 @@ import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 import "@/styles/hero.css"
 import Image from "next/image"
-
-function TitleText({ text, className, ...props }: { text: string } & React.ComponentProps<"h1">) {
-  return (
-    <h1
-      {...props}
-      data-text={text.toUpperCase()}
-      className={cn(
-        audiowide.className,
-        "text-white text-center font-bold durhack-title relative uppercase leading-none",
-        className,
-      )}
-    >
-      {text}
-    </h1>
-  )
-}
+import type React from "react"
+import { DurhackDate, DurhackTitle } from "@/components/hero-titles"
 
 function SubtitleText({ text, ...props }: { text: string } & React.ComponentProps<"h2">) {
   return (
@@ -30,31 +16,39 @@ function SubtitleText({ text, ...props }: { text: string } & React.ComponentProp
   )
 }
 
+function SignupButton({ ...props }: React.ComponentProps<"div">) {
+  return (
+    <div {...props}>
+      <a
+        href="/dashboard"
+        className={cn(
+          audiowide.className,
+          "uppercase bg-[#982272] rounded-full py-3 px-12 text-xl font-medium hover:bg-[#611545] outline-solid outline-[#611545] transition-colors duration-300",
+        )}
+      >
+        Sign Up Now
+      </a>
+    </div>
+  )
+}
+
 export default function Hero() {
   return (
     <div className="relative w-full z-1">
       <div className="grid grid-rows-2 items-stretch justify-center bg-[#E566B0] min-h-screen relative">
         {/* Top half */}
-        <div className="z-10 flex flex-col justify-center mt-[10vh] items-center z-30 gap-8 h-full w-full">
-          <div className="flex flex-col items-center justify-center gap-12 md:gap-25 mb-5 md:mb-10">
-            <TitleText text="DurHack" className="text-6xl md:text-9xl" />
-            <TitleText text="2026" className="text-5xl md:text-8xl" />
+        <div className="z-10 flex flex-col justify-center items-center w-full">
+          <div className="w-full max-w-4xl flex justify-center items-center pb-6">
+            <DurhackTitle />
           </div>
-          <div>
+          <div className="w-full max-w-1/2 mb-8 flex justify-center items-center">
+            <DurhackDate />
+          </div>
+          <div className="pb-6">
             <SubtitleText text="14th-15th November" />
             <SubtitleText text="Durham University, TLC" />
           </div>
-          <div className="w-full items-center justify-center flex">
-            <a
-              href="/dashboard"
-              className={cn(
-                audiowide.className,
-                "uppercase bg-[#982272] rounded-full py-3 px-12 text-xl font-medium hover:bg-[#611545] outline-solid outline-[#611545] transition-colors duration-300",
-              )}
-            >
-              Sign Up Now
-            </a>
-          </div>
+          <SignupButton className="w-full items-center justify-center flex" />
         </div>
 
         {/* Bottom half */}
