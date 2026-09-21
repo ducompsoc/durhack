@@ -38,7 +38,7 @@ export default function Hero() {
       <div className="grid grid-rows-2 items-stretch justify-center bg-[#E566B0] min-h-screen relative">
         {/* Top half */}
         <div className="z-10 flex flex-col justify-center items-center w-full">
-          <div className="w-full max-w-4xl flex justify-center items-center pb-6">
+          <div className="w-full max-w-4xl flex justify-center items-center py-6">
             <DurhackTitle />
           </div>
           <div className="w-full max-w-1/2 mb-8 flex justify-center items-center">
