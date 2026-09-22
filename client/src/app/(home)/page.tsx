@@ -6,6 +6,8 @@ import Hero from "@/components/hero"
 import Info from "@/components/info"
 import Location from "@/components/location"
 import { Partners, Sponsors } from "@/components/sponsors"
+import {SectionHeader} from "@/components/section-header";
+import type * as React from "react";
 
 export default function HomePage() {
   return (
@@ -27,16 +29,14 @@ export default function HomePage() {
         <About />
       </section>
 
-      {/* Plaza */}
-      <section className="relative w-full z-20 bg-linear-to-b from-[#F0EEEE] from-15% to-[#3C97CF] to-41%">
-        <div className="absolute top-0 left-0 w-full aspect-1920/830 -translate-y-[65%] pointer-events-none z-0">
+      <div className="relative z-20">
+        <div className="absolute top-0 left-0 w-full aspect-1920/830 -translate-y-[65%] pointer-events-none">
           <Image className="object-cover" fill priority alt="clouds" src="/assets/clouds.svg" />
         </div>
+      </div>
 
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
-          <Image className="w-full h-auto object-top" width={1920} height={4812} priority alt="sky-streaks" src="/assets/sky-streaks.svg" />
-        </div>
-
+      {/* Plaza */}
+      <section className="relative w-full z-20 bg-linear-to-b from-[#F0EEEE] from-15% to-[#3C97CF] to-41% overflow-clip">
         {/* Sponsors */}
         <Sponsors className="pt-70 pb-20" />
 
