@@ -3,6 +3,13 @@ import Link from "next/link"
 import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 import { RegisterInterestForm } from "./register-interest-form"
+import {getEventTimings} from "@/lib/durhack-meta";
+import {getTimeFormattingValues} from "@durhack/durhack-common/util/format-date";
+import {start} from "node:repl";
+
+const eventTimings = await getEventTimings()
+const startTime = getTimeFormattingValues(eventTimings.start)
+const endTime = getTimeFormattingValues(eventTimings.end)
 
 export default function HomePage() {
   return (
@@ -23,8 +30,11 @@ export default function HomePage() {
         <section className="text-white pt-3 pb-3 border-b border-white lg:pt-0 lg:pb-0 lg:pl-5 lg:border-b-0">
           <div className="flex flex-col h-full justify-center text-center lg:text-right">
             <h2 className={cn(spaceGrotesk.className, "date text-4xl lg:text-6xl")}>
-              ?<sup>??</sup>-?<sup>??</sup> November
+              {startTime.date}<sup>{startTime.dateOrdinalSuffix}</sup>-{endTime.date}<sup>{endTime.dateOrdinalSuffix}</sup> November
             </h2>
+            <h3 className={cn(spaceGrotesk.className, "date text-2xl lg:text-4xl")}>
+              Tickets: 30<sup>th</sup> September
+            </h3>
             <h3 className={cn(spaceGrotesk.className, "text-xl lg:text-3xl")}>TLC, Durham University</h3>
           </div>
         </section>
