@@ -36,7 +36,7 @@ export default function HomePage() {
       </div>
 
       {/* Plaza */}
-      <section className="relative w-full z-20 bg-linear-to-b from-[#F0EEEE] from-15% to-[#3C97CF] to-41% overflow-clip">
+      <section className="relative w-full z-20 bg-linear-to-b from-[#F0EEEE] from-[50rem] to-[#3C97CF] to-[100rem] overflow-clip">
         {/* Sponsors */}
         <Sponsors className="pt-70 pb-20" />
 
