@@ -5,8 +5,8 @@ import { Guilds } from "@/components/guilds"
 import Hero from "@/components/hero"
 import Info from "@/components/info"
 import Location from "@/components/location"
+import { MeetTheTeam } from "@/components/meet-the-team"
 import { Partners, Sponsors } from "@/components/sponsors"
-import {MeetTheTeam} from "@/components/meet-the-team";
 
 export default function HomePage() {
   return (
@@ -48,13 +48,20 @@ export default function HomePage() {
         <Faqs className="pb-20" />
 
         {/* Guilds */}
-        <Guilds className="pb-130"/>
+        <Guilds className="pb-130" />
       </section>
 
       {/* Meet The Team */}
       <section className="relative w-full z-30 overflow-hidden -mt-[20vmax] md:-mt-[10vmax]">
         <div className="absolute top-0 left-0 w-full pointer-events-none">
-          <Image className="w-full h-auto object-top" width={2204} height={3468} priority alt="dirt" src="/assets/dirt.svg" />
+          <Image
+            className="w-full h-auto object-top"
+            width={2204}
+            height={3468}
+            priority
+            alt="dirt"
+            src="/assets/dirt.svg"
+          />
         </div>
 
         <MeetTheTeam className="relative z-10 pt-100" />
