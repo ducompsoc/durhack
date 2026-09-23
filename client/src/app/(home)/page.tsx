@@ -7,6 +7,8 @@ import Info from "@/components/info"
 import Location from "@/components/location"
 import { MeetTheTeam } from "@/components/meet-the-team"
 import { Partners, Sponsors } from "@/components/sponsors"
+import {SectionHeader} from "@/components/section-header";
+import type * as React from "react";
 
 export default function HomePage() {
   return (
@@ -28,16 +30,14 @@ export default function HomePage() {
         <About />
       </section>
 
-      {/* Plaza */}
-      <section className="relative w-full z-20 bg-linear-to-b from-[#F0EEEE] from-15% to-[#3C97CF] to-41%">
-        <div className="absolute top-0 left-0 w-full aspect-1920/830 -translate-y-[65%] pointer-events-none z-0">
+      <div className="relative z-20">
+        <div className="absolute top-0 left-0 w-full aspect-1920/830 -translate-y-[65%] pointer-events-none">
           <Image className="object-cover" fill priority alt="clouds" src="/assets/clouds.svg" />
         </div>
+      </div>
 
-        <div className="absolute w-full inset-0 h-full pointer-events-none -z-10 overflow-hidden">
-          <Image className="object-cover object-top" fill priority alt="sky-streaks" src="/assets/sky-streaks.svg" />
-        </div>
-
+      {/* Plaza */}
+      <section className="relative w-full z-20 bg-linear-to-b from-[#F0EEEE] from-[50rem] to-[#3C97CF] to-[100rem] overflow-clip">
         {/* Sponsors */}
         <Sponsors className="pt-70 pb-20" />
 
