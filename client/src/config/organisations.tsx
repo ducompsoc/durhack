@@ -173,6 +173,7 @@ const organisations = [
     title: "RS Group",
     image: (props) => <Image {...props} src="/assets/sponsors/rs-group.svg" alt="RS Group" width={24} height={24} />,
     link: "https://uk.rs-online.com/web/content/discovery/education",
+    privacyPolicyLink: "https://www.rsgroup.com/privacy/"
   },
   {
     slug: "pragmatic-semi",
@@ -367,12 +368,14 @@ const organisations = [
     title: "Procter and Gamble (P&G)",
     image: (props) => <Image {...props} src="/assets/sponsors/pg.svg" alt="P&G" width={720} height={720} />,
     link: "https://www.pg.co.uk/",
+    privacyPolicyLink: "https://privacypolicy.pg.com/en-GB/"
   },
   {
     slug: "zeiss",
     title: "Zeiss",
     image: (props) => <Image {...props} src="/assets/sponsors/zeiss.svg" alt="zeiss" width={567} height={567} />,
     link: "https://www.zeiss.com/",
+    privacyPolicyLink: "https://www.zeiss.co.uk/data-protection/home.html"
   },
   {
     slug: "microsoft",
@@ -385,6 +388,7 @@ const organisations = [
     title: "An SGX Group Company - BidFX (BidFX)",
     image: (props) => <Image {...props} src="/assets/sponsors/bidfx.svg" alt="bidfx" width={400} height={414} />,
     link: "https://www.bidfx.com",
+    privacyPolicyLink: "https://www.sgx.com/terms-use#SGX%20Privacy%20Policy"
   },
 ] as const satisfies OrganisationInput[]
 

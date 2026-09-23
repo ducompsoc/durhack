@@ -31,6 +31,7 @@ export const sponsors: Sponsor[] = [
     organisationSlug: "bidfx",
     tier: "platinum",
     active: true,
+    cvSharing: true,
   },
   {
     organisationSlug: "accenture",
@@ -48,6 +49,7 @@ export const sponsors: Sponsor[] = [
     organisationSlug: "rs-group",
     tier: "gold",
     active: true,
+    cvSharing: true,
   },
   {
     organisationSlug: "neptune-north",
