@@ -16,7 +16,14 @@ import { cn } from "@/lib/utils"
 export function Faqs({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div className={cn("faq", className)} {...props}>
-      <Image className="absolute top-0 left-0 w-full h-1700 md:h-1200 -z-10" width={1920} height={4812} priority alt="sky-streaks" src="/assets/sky-streaks.svg" />
+      <Image
+        className="absolute top-0 left-0 w-full h-1700 md:h-1200 -z-10"
+        width={1920}
+        height={4812}
+        priority
+        alt="sky-streaks"
+        src="/assets/sky-streaks.svg"
+      />
 
       <div className="block lg:hidden">
         <SectionHeader className="text-white">FAQs</SectionHeader>
