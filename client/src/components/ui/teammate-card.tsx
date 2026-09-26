@@ -1,21 +1,21 @@
-import React from "react";
-import {cn} from "@/lib/utils";
-import {type Teammate} from "@/config/teammates";
 import Image from "next/image"
+import type React from "react"
+import type { Teammate } from "@/config/teammates"
+import { cn } from "@/lib/utils"
 
 type CardProps = Teammate & React.ComponentProps<"button">
 
 export function TeammateCard({
-                flipped,
-                imgSrc,
-                teammateName,
-                teamPosition,
-                funFact,
-                quote,
-                quoteSource,
-                className,
-                ...props
-              }: { flipped: boolean } & CardProps) {
+  flipped,
+  imgSrc,
+  teammateName,
+  teamPosition,
+  funFact,
+  quote,
+  quoteSource,
+  className,
+  ...props
+}: { flipped: boolean } & CardProps) {
   return (
     <button
       type="button"
@@ -58,4 +58,3 @@ export function TeammateCard({
     </button>
   )
 }
-

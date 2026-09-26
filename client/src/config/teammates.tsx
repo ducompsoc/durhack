@@ -93,6 +93,6 @@ export const teammates: Teammate[] = [
     teamPosition: "Tech",
     funFact: "I run a little startup that's got over 50 users!",
     quote: "Indeed, with hardship [will be] ease.",
-    quoteSource: "94:6"
-  }
+    quoteSource: "94:6",
+  },
 ]

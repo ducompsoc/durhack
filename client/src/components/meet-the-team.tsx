@@ -1,38 +1,39 @@
 "use client"
+import { Carousel, CarouselContent, CarouselItem } from "@durhack/web-components/ui/carousel"
+import Autoscroll from "embla-carousel-auto-scroll"
 import React from "react"
 import { SectionHeader } from "@/components/section-header"
+import { TeammateCard } from "@/components/ui/teammate-card"
 import { type Teammate, teammates } from "@/config/teammates"
 import { audiowide } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@durhack/web-components/ui/carousel"
-import {TeammateCard} from "@/components/ui/teammate-card"
-import Autoscroll from "embla-carousel-auto-scroll"
 
 function TeammatesCarousel({ className, ...props }: React.ComponentProps<"div">) {
   const [flippedCard, setFlippedCard] = React.useState("")
 
   return (
-      <Carousel className={cn("w-full", className)} opts={{loop: true, align: "center", dragFree: true}} {...props} plugins={[Autoscroll({stopOnInteraction: false, speed: 1.5, direction: "backward"})]}>
-        <CarouselContent className="justify-around">
-          {teammates.map((teammate: Teammate) => {
-            const flipped = teammate.teammateName === flippedCard
-            return (
-              <CarouselItem key={teammate.teammateName} className={cn("flex justify-center pl-8 basis-auto")}>
+    <Carousel
+      className={cn("w-full", className)}
+      opts={{ loop: true, align: "center", dragFree: true }}
+      {...props}
+      plugins={[Autoscroll({ stopOnInteraction: false, speed: 1.5, direction: "backward" })]}
+    >
+      <CarouselContent className="justify-around">
+        {teammates.map((teammate: Teammate) => {
+          const flipped = teammate.teammateName === flippedCard
+          return (
+            <CarouselItem key={teammate.teammateName} className={cn("flex justify-center pl-8 basis-auto")}>
               <TeammateCard
                 key={teammate.teammateName}
                 flipped={flipped}
                 onClick={() => setFlippedCard(flipped ? "" : teammate.teammateName)}
                 {...teammate}
               />
-              </CarouselItem>
-            )
-          })}
-        </CarouselContent>
-      </Carousel>
+            </CarouselItem>
+          )
+        })}
+      </CarouselContent>
+    </Carousel>
   )
 }
 
