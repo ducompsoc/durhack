@@ -50,7 +50,7 @@ export default function HomePage() {
       </section>
 
       {/* Meet The Team */}
-      <section className="grid relative w-full h-auto z-30 bg-[#72525D]">
+      <section className="grid relative w-full h-auto z-30 bg-[#72525D] pb-20">
         <Image
           className="col-start-1 row-start-1 absolute w-full object-top -translate-y-80 -z-1"
           width={2204}
