@@ -87,4 +87,12 @@ export const teammates: Teammate[] = [
     quote: "If you only do what you can do, you will never be better than what you are",
     quoteSource: "Kung Fu Panda",
   },
+  {
+    imgSrc: "/assets/meet-the-team/amal.webp",
+    teammateName: "Abdulmuhmeen Leasu",
+    teamPosition: "Tech",
+    funFact: "I run a little startup that's got over 50 users!",
+    quote: "Indeed, with hardship [will be] ease.",
+    quoteSource: "94:6"
+  }
 ]

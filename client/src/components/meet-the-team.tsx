@@ -27,7 +27,7 @@ function Card({
   return (
     <button
       type="button"
-      className={cn("w-50 h-70 shadow-md transition-all duration-200 hover:shadow-2xl perspective-[100rem]", className)}
+      className={cn("w-60 h-84 shadow-md transition-all duration-200 hover:shadow-2xl perspective-[100rem]", className)}
       {...props}
     >
       <div
@@ -38,11 +38,11 @@ function Card({
       >
         <div className="absolute inset-0 size-full backface-hidden">
           <div className="flex h-full w-full flex-col items-center justify-center bg-white text-black">
-            <div className="flex flex-col w-40">
-              <div className="relative h-50 w-full">
+            <div className="flex flex-col w-50">
+              <div className="relative h-58 w-full">
                 <Image className="w-full object-cover" fill alt="someone" loading="lazy" src={imgSrc} />
               </div>
-              <div className="relative flex flex-col text-left">
+              <div className="relative flex flex-col text-left text-md">
                 <h1>{teammateName}</h1>
                 <h3>{teamPosition}</h3>
               </div>
@@ -71,12 +71,12 @@ function TeammatesCarousel({ className, ...props }: React.ComponentProps<"div">)
   const [flippedCard, setFlippedCard] = React.useState("")
 
   return (
-      <Carousel className={cn("w-full", className)} opts={{loop: true, align: "center"}} {...props}>
+      <Carousel className={cn("w-full", className)} opts={{loop: true, align: "center", dragFree: true}} {...props}>
         <CarouselContent className="justify-around">
           {teammates.map((teammate: Teammate) => {
             const flipped = teammate.teammateName === flippedCard
             return (
-              <CarouselItem key={teammate.teammateName} className={cn("flex justify-center pl-6 basis-auto")}>
+              <CarouselItem key={teammate.teammateName} className={cn("flex justify-center pl-8 basis-auto")}>
               <Card
                 key={teammate.teammateName}
                 flipped={flipped}
