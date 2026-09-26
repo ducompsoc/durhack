@@ -6,20 +6,27 @@ import { cn } from "@/lib/utils"
 type LocationBtnProps = {
   innerText: string
   href: string
+  disabled?: boolean
 } & React.ComponentProps<"a">
 
-function LocationBtn({ innerText, href, className, ...props }: LocationBtnProps) {
+function LocationBtn({ innerText, disabled, href, className, ...props }: LocationBtnProps) {
   return (
     <div className={cn(className, "px-2 py-2 text-center flex justify-center")}>
       <a
         href={href}
         target="_blank"
         className={cn(
-          "border-[1px] border-white text-white bg-[#6DD26D]/35 hover:bg-[#114612]/100 transition duration-300 ease-in-out rounded-full text-2xl uppercase px-10 py-4 mx-4 w-full inline-block sm:w-auto",
+          "border border-white text-white bg-[#6DD26D]/35 hover:bg-[#114612] transition duration-300 ease-in-out rounded-full text-2xl uppercase px-10 py-4 mx-4 w-full inline-block sm:w-auto",
+          disabled && "hover:bg-[#6DD26D]/35 cursor-default pointer-events-none",
         )}
         {...props}
       >
-        {innerText}
+        {innerText} <br />
+        {disabled && (
+          <p className="text-xs">
+            <sup>*</sup>Coming Soon!!
+          </p>
+        )}
       </a>
     </div>
   )
@@ -30,8 +37,8 @@ export default function Location({ className, ...props }: React.ComponentProps<"
   const MAPS_LINK = "https://maps.app.goo.gl/H3qypQFBy88CQa7N9"
 
   return (
-    <div className={cn(className, "flex flex-col z-10 my-20 z-10 relative")} {...props}>
-      <div className="container max-w-[60rem] text-center">
+    <div className={cn(className, "flex flex-col my-20 z-10 relative")} {...props}>
+      <div className="container max-w-240 text-center">
         <p className={cn("flex-1/2 text-center text-white font-medium text-3xl", darkerGrotesk.className)}>
           DurHack takes place in the Teaching and Learning Centre at Durham University. It’s just a short walk or bus
           ride from Durham Train Station, with direct connections to major UK cities. To make your journey easier, we
@@ -45,7 +52,7 @@ export default function Location({ className, ...props }: React.ComponentProps<"
       </div>
       <div className={cn("flex flex-row flex-wrap justify-center items-center align-middle my-10 w-full")}>
         <LocationBtn href={MAPS_LINK} innerText="Google Maps" />
-        <LocationBtn href={SU_LINK} innerText="Book Coach Tickets" />
+        <LocationBtn disabled href={SU_LINK} innerText="Book Coach Tickets" />
       </div>
     </div>
   )
