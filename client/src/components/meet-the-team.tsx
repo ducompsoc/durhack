@@ -14,7 +14,7 @@ function Card({ imgSrc, teammateName, teamPosition, funFact, quote, quoteSource,
     <button
       type="button"
       onClick={() => setFlipped((flipped) => !flipped)}
-      className={cn("w-50 h-70 shadow-md transition-all duration-200 hover:shadow-2xl hover:transform-[rotateZ(-5deg)] perspective-[100rem]", className)}
+      className={cn("w-50 h-70 shadow-md transition-all duration-200 hover:shadow-2xl perspective-[100rem]", className)}
       {...props}
     >
       <div
