@@ -4,6 +4,7 @@ import Image from "next/image"
 import { SectionHeader } from "@/components/section-header"
 import { cn } from "@/lib/utils"
 import {Teammate, teammates} from "@/config/teammates";
+import {audiowide} from "@/lib/google-fonts";
 
 type CardProps = Teammate & React.ComponentProps<"button">
 
@@ -69,7 +70,11 @@ function TeammatesGrid({ className, ...props }: React.ComponentProps<"div">) {
 export function MeetTheTeam({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div className={cn("w-full flex flex-col justify-center items-center", className)} {...props}>
-      <SectionHeader className="mb-15">Meet the Team</SectionHeader>
+      <SectionHeader>Meet the Team</SectionHeader>
+
+      <div className={cn("container font-medium text-center py-20 text-xl", audiowide.className)}>
+        <p>Find out more about the outstanding team responsible for organising DurHack 2026!</p>
+      </div>
 
       <TeammatesGrid className="mb-20" />
     </div>
