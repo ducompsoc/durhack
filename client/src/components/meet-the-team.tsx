@@ -1,10 +1,10 @@
 "use client"
-import React from "react"
 import Image from "next/image"
+import React from "react"
 import { SectionHeader } from "@/components/section-header"
+import { type Teammate, teammates } from "@/config/teammates"
+import { audiowide } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
-import {Teammate, teammates} from "@/config/teammates";
-import {audiowide} from "@/lib/google-fonts";
 
 type CardProps = Teammate & React.ComponentProps<"button">
 
@@ -56,12 +56,10 @@ function Card({ imgSrc, teammateName, teamPosition, funFact, quote, quoteSource,
 }
 
 function TeammatesGrid({ className, ...props }: React.ComponentProps<"div">) {
-  const [flipped, setFlipped] = React.useState(false)
-
   return (
     <div className={cn(className, "flex flex-wrap justify-center gap-20 w-6/10")} {...props}>
-      {teammates.map((team: Teammate, i) => (
-        <Card key={i} {...team}/>
+      {teammates.map((teammate: Teammate) => (
+        <Card key={teammate.teammateName} {...teammate} />
       ))}
     </div>
   )
