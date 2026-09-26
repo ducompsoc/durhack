@@ -9,7 +9,11 @@ import "@/styles/guilds.css"
 import { spaceGrotesk } from "@/lib/google-fonts"
 
 function GuildsText({ innerText, className, ...props }: { innerText: string } & React.ComponentProps<"p">) {
-  return <p className={cn(spaceGrotesk.className, "py-5 text-center text-2xl", className)}>{innerText}</p>
+  return (
+    <p className={cn(spaceGrotesk.className, "py-5 text-center text-2xl", className)} {...props}>
+      {innerText}
+    </p>
+  )
 }
 
 export function Guilds({ className, ...props }: React.ComponentProps<"div">) {

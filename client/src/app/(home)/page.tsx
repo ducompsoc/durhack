@@ -5,13 +5,12 @@ import { Guilds } from "@/components/guilds"
 import Hero from "@/components/hero"
 import Info from "@/components/info"
 import Location from "@/components/location"
+import { MeetTheTeam } from "@/components/meet-the-team"
 import { Partners, Sponsors } from "@/components/sponsors"
-import {SectionHeader} from "@/components/section-header";
-import type * as React from "react";
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col relative overflow-x-clip">
+    <main className="flex flex-col relative overflow-clip">
       {/* Hero */}
       <Hero />
 
@@ -47,13 +46,22 @@ export default function HomePage() {
         <Faqs className="pb-20" />
 
         {/* Guilds */}
-        <Guilds />
+        <Guilds className="pb-80" />
       </section>
 
       {/* Meet The Team */}
-      <div className="flex items-start justify-center hidden">
-        <h1 className="text-white text-5xl font-bold">Meet the Team</h1>
-      </div>
+      <section className="grid relative w-full h-auto z-30 bg-[#72525D] pb-20">
+        <Image
+          className="col-start-1 row-start-1 absolute w-full object-top -translate-y-80 -z-1"
+          width={2204}
+          height={3468}
+          priority
+          alt="dirt"
+          src="/assets/dirt.svg"
+        />
+
+        <MeetTheTeam className="col-start-1 row-start-1" />
+      </section>
     </main>
   )
 }
