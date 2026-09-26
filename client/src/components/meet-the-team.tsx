@@ -8,13 +8,20 @@ import { cn } from "@/lib/utils"
 
 type CardProps = Teammate & React.ComponentProps<"button">
 
-function Card({ imgSrc, teammateName, teamPosition, funFact, quote, quoteSource, className, ...props }: CardProps) {
-  const [flipped, setFlipped] = React.useState(false)
-
+function Card({
+  flipped,
+  imgSrc,
+  teammateName,
+  teamPosition,
+  funFact,
+  quote,
+  quoteSource,
+  className,
+  ...props
+}: { flipped: boolean } & CardProps) {
   return (
     <button
       type="button"
-      onClick={() => setFlipped((flipped) => !flipped)}
       className={cn("w-50 h-70 shadow-md transition-all duration-200 hover:shadow-2xl perspective-[100rem]", className)}
       {...props}
     >
@@ -56,11 +63,21 @@ function Card({ imgSrc, teammateName, teamPosition, funFact, quote, quoteSource,
 }
 
 function TeammatesGrid({ className, ...props }: React.ComponentProps<"div">) {
+  const [flippedCard, setFlippedCard] = React.useState("")
+
   return (
     <div className={cn(className, "flex flex-wrap justify-center gap-20 w-6/10")} {...props}>
-      {teammates.map((teammate: Teammate) => (
-        <Card key={teammate.teammateName} {...teammate} />
-      ))}
+      {teammates.map((teammate: Teammate) => {
+        const flipped = teammate.teammateName === flippedCard
+        return (
+          <Card
+            key={teammate.teammateName}
+            flipped={flipped}
+            onClick={() => setFlippedCard(flipped ? "" : teammate.teammateName)}
+            {...teammate}
+          />
+        )
+      })}
     </div>
   )
 }
