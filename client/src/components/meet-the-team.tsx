@@ -8,14 +8,15 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "@durhack/web-components/ui/carousel";
-import {TeammateCard} from "@/components/ui/teammate-card";
+} from "@durhack/web-components/ui/carousel"
+import {TeammateCard} from "@/components/ui/teammate-card"
+import Autoscroll from "embla-carousel-auto-scroll"
 
 function TeammatesCarousel({ className, ...props }: React.ComponentProps<"div">) {
   const [flippedCard, setFlippedCard] = React.useState("")
 
   return (
-      <Carousel className={cn("w-full", className)} opts={{loop: true, align: "center", dragFree: true}} {...props}>
+      <Carousel className={cn("w-full", className)} opts={{loop: true, align: "center", dragFree: true}} {...props} plugins={[Autoscroll({stopOnInteraction: false, speed: 1.5, direction: "backward"})]}>
         <CarouselContent className="justify-around">
           {teammates.map((teammate: Teammate) => {
             const flipped = teammate.teammateName === flippedCard
