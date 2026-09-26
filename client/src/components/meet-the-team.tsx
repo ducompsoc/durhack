@@ -27,7 +27,7 @@ function Card({ imgSrc, teammateName, teamPosition, funFact, quote, quoteSource,
           <div className="flex h-full w-full flex-col items-center justify-center bg-white text-black">
             <div className="flex flex-col w-40">
               <div className="relative h-50 w-full">
-                <Image className="w-full object-cover" fill alt="someone" src={imgSrc} />
+                <Image className="w-full object-cover" fill alt="someone" loading="lazy" src={imgSrc} />
               </div>
               <div className="relative flex flex-col text-left">
                 <h1>{teammateName}</h1>
