@@ -19,6 +19,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "countries-list": "^3.2.2",
+    "embla-carousel-auto-scroll": "^8.6.0",
     "libphonenumber-js": "^1.12.31",
     "module-error": "^1.0.2",
     "next": "16.0.7",
