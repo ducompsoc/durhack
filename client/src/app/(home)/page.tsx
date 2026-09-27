@@ -46,7 +46,7 @@ export default function HomePage() {
         <Faqs className="pb-20" />
 
         {/* Guilds */}
-        <Guilds className="pb-80" />
+        <Guilds className="pb-100" />
       </section>
 
       {/* Meet The Team */}
