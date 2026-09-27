@@ -95,4 +95,11 @@ export const teammates: Teammate[] = [
     quote: "Indeed, with hardship [will be] ease.",
     quoteSource: "94:6",
   },
+  {
+    imgSrc: "/assets/meet-the-team/maks.webp",
+    teammateName: "Maks",
+    teamPosition: "Hacker Experience",
+    funFact: "I love DIY. I 3D print stuff, design my own furniture, and self-host everything.",
+    quote: "Less is more."
+  }
 ]
