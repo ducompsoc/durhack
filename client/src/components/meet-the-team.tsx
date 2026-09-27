@@ -43,7 +43,7 @@ export function MeetTheTeam({ className, ...props }: React.HTMLAttributes<HTMLDi
       <div className={cn("w-full flex flex-col justify-center items-center", className)} {...props}>
         <SectionHeader>Meet the Team</SectionHeader>
 
-        <div className={cn("container font-medium text-center py-20 text-xl", darkerGrotesk.className)}>
+        <div className={cn("container font-medium text-center py-15 text-3xl ", darkerGrotesk.className)}>
           <p>Find out more about the outstanding team responsible for organising DurHack 2026!</p>
         </div>
       </div>
