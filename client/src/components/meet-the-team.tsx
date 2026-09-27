@@ -5,7 +5,7 @@ import React from "react"
 import { SectionHeader } from "@/components/section-header"
 import { TeammateCard } from "@/components/ui/teammate-card"
 import { type Teammate, teammates } from "@/config/teammates"
-import { audiowide } from "@/lib/google-fonts"
+import { darkerGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
 
 function TeammatesCarousel({ className, ...props }: React.ComponentProps<"div">) {
@@ -43,7 +43,7 @@ export function MeetTheTeam({ className, ...props }: React.HTMLAttributes<HTMLDi
       <div className={cn("w-full flex flex-col justify-center items-center", className)} {...props}>
         <SectionHeader>Meet the Team</SectionHeader>
 
-        <div className={cn("container font-medium text-center py-20 text-xl", audiowide.className)}>
+        <div className={cn("container font-medium text-center py-20 text-xl", darkerGrotesk.className)}>
           <p>Find out more about the outstanding team responsible for organising DurHack 2026!</p>
         </div>
       </div>
