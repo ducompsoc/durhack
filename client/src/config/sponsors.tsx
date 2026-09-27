@@ -25,19 +25,19 @@ export const sponsors: Sponsor[] = [
     organisationSlug: "procter-and-gamble",
     tier: "platinum",
     cvSharing: true,
-    active: true,
+    active: false,
   },
   {
     organisationSlug: "bidfx",
     tier: "platinum",
-    active: true,
+    active: false,
     cvSharing: true,
   },
   {
     organisationSlug: "accenture",
     tier: "gold",
     cvSharing: true,
-    active: true,
+    active: false,
   },
   {
     organisationSlug: "g-research",
@@ -144,7 +144,7 @@ export const sponsors: Sponsor[] = [
   {
     organisationSlug: "the-pheonix-partnership",
     tier: "partner",
-    active: true,
+    active: false,
   },
   {
     organisationSlug: "microsoft",
