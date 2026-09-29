@@ -71,14 +71,7 @@ export const faqs = [
         </p>
         <br />
         <p>
-          Book tickets{" "}
-          <a
-            className="font-bold underline"
-            href="https://www.durhamsu.com/groups/computing-766e/events/durhack-coach-tickets-manchester-leeds-nottingham-sheffield"
-          >
-            here
-          </a>
-          .
+          Ticket coming soon!
         </p>
         <br />
         <p>
