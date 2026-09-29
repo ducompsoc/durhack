@@ -125,5 +125,13 @@ export const teammates: Teammate[] = [
     quote: "Whatever happens, happens",
     quoteSource: "Spike Spiegel, Cowboy Bebop",
     funFact: "Instead of studying for my 2nd year exams I learned how to solve Rubik's Cubes",
+  },
+  {
+    imgSrc: "/assets/meet-the-team/wilfred.webp",
+    teammateName: "Wilfred",
+    teamPosition: "Tech",
+    quote: "What we call everyday life may actually be a series of miracles.",
+    quoteSource: "Nichijou",
+    funFact: "You can always find me near the pizza queue… unless I found a bug somewhere else",
   }
 ]
