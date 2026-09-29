@@ -101,5 +101,13 @@ export const teammates: Teammate[] = [
     teamPosition: "Hacker Experience",
     funFact: "I love DIY. I 3D print stuff, design my own furniture, and self-host everything.",
     quote: "Less is more."
+  },
+  {
+    imgSrc: "/assets/meet-the-team/caitlin.webp",
+    teammateName: "Caitlin",
+    teamPosition: "Logistics",
+    quote: "All right, genius brain: come up with something!",
+    quoteSource: "Project Hail Mary",
+    funFact: "Good news: Currently doing my dream placement year in F1. Bad news: miles away from Durham."
   }
 ]
