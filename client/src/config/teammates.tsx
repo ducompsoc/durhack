@@ -117,5 +117,13 @@ export const teammates: Teammate[] = [
     quote: "Everyone loves a bad idea when it works",
     quoteSource: "Cayde-6, Destiny",
     funFact: "Currently working at Airbus Space and Defence for a year!"
+  },
+  {
+    imgSrc: "/assets/meet-the-team/emre.webp",
+    teammateName: "Emre",
+    teamPosition: "Head of Tech",
+    quote: "Whatever happens, happens",
+    quoteSource: "Spike Spiegel, Cowboy Bebop",
+    funFact: "Instead of studying for my 2nd year exams I learned how to solve Rubik's Cubes",
   }
 ]
