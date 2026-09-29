@@ -109,5 +109,13 @@ export const teammates: Teammate[] = [
     quote: "All right, genius brain: come up with something!",
     quoteSource: "Project Hail Mary",
     funFact: "Good news: Currently doing my dream placement year in F1. Bad news: miles away from Durham."
+  },
+  {
+    imgSrc: "/assets/meet-the-team/tom.webp",
+    teammateName: "Tom",
+    teamPosition: "Marketing",
+    quote: "Everyone loves a bad idea when it works",
+    quoteSource: "Cayde-6, Destiny",
+    funFact: "Currently working at Airbus Space and Defence for a year!"
   }
 ]
