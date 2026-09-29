@@ -141,5 +141,13 @@ export const teammates: Teammate[] = [
     quote: "Give a man a fire and he's warm for a day, but set fire to him and he's warm for the rest of his life.",
     quoteSource: "Terry Pratchett",
     funFact: "I do theatre tech."
+  },
+  {
+    imgSrc: "/assets/meet-the-team/dino.webp",
+    teammateName: "DurHack Dino",
+    teamPosition: "Legendary Member <3",
+    quote: "Rawr, Rawr, RAWRRR, rawr :3",
+    quoteSource: "T-Rex, 66,000,000 BC",
+    funFact: "Rawrr, rawr, RRwarrrwr RAWRrwr grrrrr..."
   }
 ]
