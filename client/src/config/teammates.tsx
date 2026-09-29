@@ -133,5 +133,13 @@ export const teammates: Teammate[] = [
     quote: "What we call everyday life may actually be a series of miracles.",
     quoteSource: "Nichijou",
     funFact: "You can always find me near the pizza queue… unless I found a bug somewhere else",
+  },
+  {
+    imgSrc: "/assets/meet-the-team/george.webp",
+    teammateName: "George Jones",
+    teamPosition: "AV & Tech",
+    quote: "Give a man a fire and he's warm for a day, but set fire to him and he's warm for the rest of his life.",
+    quoteSource: "Terry Pratchett",
+    funFact: "I do theatre tech."
   }
 ]
