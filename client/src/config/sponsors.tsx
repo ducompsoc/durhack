@@ -22,21 +22,34 @@ export const sponsors: Sponsor[] = [
     active: true,
   },
   {
-    organisationSlug: "accenture",
+    organisationSlug: "procter-and-gamble",
     tier: "platinum",
     cvSharing: true,
-    active: true,
+    active: false,
+  },
+  {
+    organisationSlug: "bidfx",
+    tier: "platinum",
+    active: false,
+    cvSharing: true,
+  },
+  {
+    organisationSlug: "accenture",
+    tier: "gold",
+    cvSharing: true,
+    active: false,
   },
   {
     organisationSlug: "g-research",
     tier: "gold",
     cvSharing: true,
-    active: true,
+    active: false,
   },
   {
     organisationSlug: "rs-group",
     tier: "gold",
     active: true,
+    cvSharing: true,
   },
   {
     organisationSlug: "neptune-north",
@@ -48,7 +61,13 @@ export const sponsors: Sponsor[] = [
     organisationSlug: "talkjs",
     tier: "gold",
     cvSharing: true,
-    active: true,
+    active: false,
+  },
+  {
+    organisationSlug: "zeiss",
+    tier: "gold",
+    cvSharing: true,
+    active: false,
   },
   {
     organisationSlug: "waterstons",
@@ -65,12 +84,12 @@ export const sponsors: Sponsor[] = [
   {
     organisationSlug: "overleaf",
     tier: "partner",
-    active: true,
+    active: false,
   },
   {
     organisationSlug: "rewriting-the-code",
     tier: "partner",
-    active: true,
+    active: false,
   },
   {
     organisationSlug: "durham-uni-venture-lab",
@@ -105,7 +124,7 @@ export const sponsors: Sponsor[] = [
   {
     organisationSlug: "ibm",
     tier: "partner",
-    active: true,
+    active: false,
   },
   {
     organisationSlug: "stand-out-stickers",
@@ -120,12 +139,17 @@ export const sponsors: Sponsor[] = [
   {
     organisationSlug: "oag-aviation",
     tier: "partner",
-    active: true,
+    active: false,
   },
   {
     organisationSlug: "the-pheonix-partnership",
     tier: "partner",
     active: true,
+  },
+  {
+    organisationSlug: "microsoft",
+    tier: "partner",
+    active: false,
   },
 ]
 

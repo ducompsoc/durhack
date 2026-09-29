@@ -117,10 +117,12 @@
 @utility container {
   margin-inline: auto;
   padding-inline: 2rem;
+
   @variant sm {
     max-width: none;
   }
-  @media (width >= 1400px) {
+
+  @media (width >=1400px) {
     max-width: 1400px;
   }
 }
@@ -129,7 +131,21 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.outlined {
+  color: white;
+  text-shadow:
+    -2px -2px 0 #000,
+    0 -2px 0 #000,
+    2px -2px 0 #000,
+    2px 0 0 #000,
+    2px 2px 0 #000,
+    0 2px 0 #000,
+    -2px 2px 0 #000,
+    -2px 0 0 #000;
 }

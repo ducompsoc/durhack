@@ -1,53 +1,67 @@
-import { Button } from "@durhack/web-components/ui/button"
-import Link from "next/link"
-import { audiowide, spaceGrotesk } from "@/lib/google-fonts"
-import { cn } from "@/lib/utils"
-import { RegisterInterestForm } from "./register-interest-form"
-import {getEventTimings} from "@/lib/durhack-meta";
-import {getTimeFormattingValues} from "@durhack/durhack-common/util/format-date";
-import {start} from "node:repl";
-
-const eventTimings = await getEventTimings()
-const startTime = getTimeFormattingValues(eventTimings.start)
-const endTime = getTimeFormattingValues(eventTimings.end)
+import Image from "next/image"
+import About from "@/components/about"
+import { Faqs } from "@/components/faqs"
+import { Guilds } from "@/components/guilds"
+import Hero from "@/components/hero"
+import Info from "@/components/info"
+import Location from "@/components/location"
+import { MeetTheTeam } from "@/components/meet-the-team"
+import { Partners, Sponsors } from "@/components/sponsors"
 
 export default function HomePage() {
   return (
-    <>
-      <main className="max-w-[20rem] items-center dark leading-8 flex flex-col text-center justify-center lg:max-w-full lg:grid lg:grid-cols-2 lg:text-left">
-        <section className="text-white pb-3 border-b border-white lg:pb-0 lg:pr-5 lg:border-b-0 lg:border-r">
-          <div className="flex flex-col h-full justify-center">
-            <h1 className={cn(audiowide.className, "text-6xl lg:text-8xl")}>DurHack</h1>
-            <h1
-              className={cn(audiowide.className, "text-6xl lg:text-8xl text-transparent")}
-              style={{ WebkitTextStroke: ".04em white" }}
-            >
-              2026
-            </h1>
-            <p className="lg:text-xl">The UK&apos;s Leading Student Hackathon</p>
-          </div>
-        </section>
-        <section className="text-white pt-3 pb-3 border-b border-white lg:pt-0 lg:pb-0 lg:pl-5 lg:border-b-0">
-          <div className="flex flex-col h-full justify-center text-center lg:text-right">
-            <h2 className={cn(spaceGrotesk.className, "date text-4xl lg:text-6xl")}>
-              {startTime.date}<sup>{startTime.dateOrdinalSuffix}</sup>-{endTime.date}<sup>{endTime.dateOrdinalSuffix}</sup> November
-            </h2>
-            <h3 className={cn(spaceGrotesk.className, "date text-2xl lg:text-4xl")}>
-              Tickets: 30<sup>th</sup> September
-            </h3>
-            <h3 className={cn(spaceGrotesk.className, "text-xl lg:text-3xl")}>TLC, Durham University</h3>
-          </div>
-        </section>
-        <section className="pt-3 2xl:col-span-2">
-          <RegisterInterestForm className="grid grid-cols-1 2xl:grid-cols-4 2xl:gap-3" />
-        </section>
-      </main>
+    <main className="flex flex-col relative overflow-clip">
+      {/* Hero */}
+      <Hero />
 
-      <div className="mt-16 text-xl mx-auto">Tickets and full details coming soon!</div>
+      <div className="h-[10vh] md:h-[50vh] min-h-[100px] w-full shrink-0 pointer-events-none" aria-hidden="true" />
 
-      <Button asChild={true} className="mt-16">
-        <Link href="https://2025.durhack.com">See last year&apos;s website</Link>
-      </Button>
-    </>
+      {/* Skyline */}
+      <section className="relative bg-[#0E4A0F] pb-[calc(21.6vw+10rem)]">
+        {/* Info */}
+        <Info />
+
+        {/* Getting There */}
+        <Location />
+
+        {/* About */}
+        <About />
+      </section>
+
+      <div className="relative z-20">
+        <div className="absolute top-0 left-0 w-full aspect-1920/830 -translate-y-[65%] pointer-events-none">
+          <Image className="object-cover" fill priority alt="clouds" src="/assets/clouds.svg" />
+        </div>
+      </div>
+
+      {/* Plaza */}
+      <section className="relative w-full z-20 bg-linear-to-b from-[#F0EEEE] from-[50rem] to-[#3C97CF] to-[100rem] overflow-clip">
+        {/* Sponsors */}
+        <Sponsors className="pt-70 pb-20" />
+
+        {/* Partners */}
+        <Partners className="pb-20" />
+
+        {/* FAQ */}
+        <Faqs className="pb-20" />
+
+        {/* Guilds */}
+        <Guilds className="pb-100" />
+      </section>
+
+      {/* Meet The Team */}
+      <section className="grid relative w-full h-auto z-30 bg-[#72525D] pb-20">
+        <Image
+          className="col-start-1 row-start-1 absolute w-full object-top -translate-y-80 -z-1"
+          width={2204}
+          height={3468}
+          priority
+          alt="dirt"
+          src="/assets/dirt.svg"
+        />
+
+        <MeetTheTeam className="col-start-1 row-start-1" />
+      </section>
+    </main>
   )
 }

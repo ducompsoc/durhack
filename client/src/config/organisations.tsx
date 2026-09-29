@@ -7,6 +7,7 @@ type OrganisationInput = {
   slug: string
   title: string
   image: ImageComponent
+  imageLandscape?: ImageComponent | null | undefined
   link: string
   privacyPolicyLink?: string | null | undefined
   privacyPolicyTitle?: string | null | undefined
@@ -140,6 +141,15 @@ const organisations = [
     image: (props) => (
       <Image
         {...props}
+        src="/assets/sponsors/compsoc-v5.svg"
+        alt="Durham University Computing Society"
+        width={24}
+        height={24}
+      />
+    ),
+    imageLandscape: (props) => (
+      <Image
+        {...props}
         src="/assets/sponsors/compsoc-v5-with-text.svg"
         alt="Durham University Computing Society"
         width={534.81}
@@ -160,6 +170,15 @@ const organisations = [
     image: (props) => (
       <Image
         {...props}
+        src="/assets/sponsors/keyboard-company-square.svg"
+        alt="The Keyboard Company"
+        width={350}
+        height={350}
+      />
+    ),
+    imageLandscape: (props) => (
+      <Image
+        {...props}
         src="/assets/sponsors/keyboard-company.svg"
         alt="The Keyboard Company"
         width={566.9}
@@ -173,6 +192,7 @@ const organisations = [
     title: "RS Group",
     image: (props) => <Image {...props} src="/assets/sponsors/rs-group.svg" alt="RS Group" width={24} height={24} />,
     link: "https://uk.rs-online.com/web/content/discovery/education",
+    privacyPolicyLink: "https://www.rsgroup.com/privacy/",
   },
   {
     slug: "pragmatic-semi",
@@ -192,6 +212,15 @@ const organisations = [
     slug: "durham-uni-computer-science",
     title: "Durham University Computer Science",
     image: (props) => (
+      <Image
+        {...props}
+        src="/assets/sponsors/durham-uni-square.svg"
+        alt="Durham University Computer Science"
+        width={80}
+        height={80}
+      />
+    ),
+    imageLandscape: (props) => (
       <Image
         {...props}
         src="/assets/sponsors/durham-uni.svg"
@@ -361,6 +390,33 @@ const organisations = [
     title: "The Phoenix Partnership",
     image: (props) => <Image {...props} src="/assets/sponsors/tpp.svg" alt="TPP" width={1170} height={666} />,
     link: "https://tpp-uk.com/",
+  },
+  {
+    slug: "procter-and-gamble",
+    title: "Procter and Gamble (P&G)",
+    image: (props) => <Image {...props} src="/assets/sponsors/pg.svg" alt="P&G" width={720} height={720} />,
+    link: "https://www.pg.co.uk/",
+    privacyPolicyLink: "https://privacypolicy.pg.com/en-GB/",
+  },
+  {
+    slug: "zeiss",
+    title: "Zeiss",
+    image: (props) => <Image {...props} src="/assets/sponsors/zeiss.svg" alt="zeiss" width={567} height={567} />,
+    link: "https://www.zeiss.com/",
+    privacyPolicyLink: "https://www.zeiss.co.uk/data-protection/home.html",
+  },
+  {
+    slug: "microsoft",
+    title: "Microsoft",
+    image: (props) => <Image {...props} src="/assets/sponsors/microsoft.svg" alt="microsoft" width={23} height={23} />,
+    link: "https://www.microsoft.com/",
+  },
+  {
+    slug: "bidfx",
+    title: "An SGX Group Company - BidFX (BidFX)",
+    image: (props) => <Image {...props} src="/assets/sponsors/bidfx.svg" alt="bidfx" width={400} height={414} />,
+    link: "https://www.bidfx.com",
+    privacyPolicyLink: "https://www.sgx.com/terms-use#SGX%20Privacy%20Policy",
   },
 ] as const satisfies OrganisationInput[]
 

@@ -71,14 +71,7 @@ export const faqs = [
         </p>
         <br />
         <p>
-          Book tickets{" "}
-          <a
-            className="font-bold underline"
-            href="https://www.durhamsu.com/groups/computing-766e/events/durhack-coach-tickets-manchester-leeds-nottingham-sheffield"
-          >
-            here
-          </a>
-          .
+          Ticket coming soon!
         </p>
         <br />
         <p>
@@ -103,14 +96,12 @@ export const faqs = [
           <a href="mailto:travel@durhack.com">travel@durhack.com</a>.
         </p>
         <br />
-        <p>
-          All travel reimbursement is conditional on:
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Having a DurHack ticket</li>
-            <li>Attending DurHack and being checked in at the event</li>
-            <li>Devpost project submission</li>
-          </ul>
-        </p>
+        <p>All travel reimbursement is conditional on:</p>
+        <ul className="list-disc pl-6 space-y-1">
+          <li>Having a DurHack ticket</li>
+          <li>Attending DurHack and being checked in at the event</li>
+          <li>Devpost project submission</li>
+        </ul>
         <br />
         <p>
           Please keep your receipt(s): we will release a form shortly after DurHack for you to put in your details and
