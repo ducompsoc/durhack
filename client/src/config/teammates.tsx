@@ -26,7 +26,7 @@ export const teammates: Teammate[] = [
   {
     imgSrc: "/assets/meet-the-team/palak.webp",
     teammateName: "Palak",
-    teamPosition: "Sponsorship Head",
+    teamPosition: "Head of Sponsorship",
     funFact: "I am learning to speak German",
     quote: "A person who thinks all the time has nothing to think about except thoughts",
     quoteSource: "No reference needed",
@@ -82,7 +82,7 @@ export const teammates: Teammate[] = [
   {
     imgSrc: "/assets/meet-the-team/millie.webp",
     teammateName: "Millie",
-    teamPosition: "Marketing ",
+    teamPosition: "Head of Marketing",
     funFact: "I’ve been bitten by a stingray ",
     quote: "If you only do what you can do, you will never be better than what you are",
     quoteSource: "Kung Fu Panda",
