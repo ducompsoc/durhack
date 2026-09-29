@@ -39,7 +39,7 @@ export default function About() {
       </div>
       <div className="flex flex-wrap items-center justify-center w-full mx-auto gap-15 py-20">
         <StatComponent stat="600+" innerText="Hackers" />
-        <StatComponent stat="15+" innerText="Sponsors" />
+        <StatComponent stat="10+" innerText="Sponsors" />
         <StatComponent stat="150+" innerText="Projects" />
       </div>
       <div className="flex flex-wrap justify-center items-center align-center md:w-[80vw]">
