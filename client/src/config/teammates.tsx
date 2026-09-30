@@ -145,7 +145,7 @@ export const teammates: Teammate[] = [
   {
     imgSrc: "/assets/meet-the-team/dino.webp",
     teammateName: "DurHack Dino",
-    teamPosition: "Legendary Member <3",
+    teamPosition: "Legend <3",
     quote: "Rawr, Rawr, RAWRRR, rawr :3",
     quoteSource: "T-Rex, 66,000,000 BC",
     funFact: "Rawrr, rawr, RRwarrrwr RAWRrwr grrrrr..."
