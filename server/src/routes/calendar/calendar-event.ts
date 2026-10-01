@@ -16,7 +16,7 @@ export const durhackInvite = await createEvent({
   endInputType: "utc",
   endOutputType: "utc",
 
-  title: "DurHack X",
+  title: "DurHack 2026",
   description: "Durham University Computing Society's annual flagship hackathon",
   location: "Teaching and Learning Centre • Durham University",
   geo: { lat: 54.7672287, lon: -1.5757672 },
