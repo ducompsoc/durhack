@@ -1,4 +1,6 @@
+"use client";
 import type React from "react"
+import {usePathname} from "next/navigation";
 
 const styles: Record<string, React.CSSProperties> = {
   error: {
@@ -51,6 +53,7 @@ export function ServerError({ statusCode, message, style, ...props }: HttpErrorP
         {statusCode ? <h1 style={styles.h1}>{statusCode}</h1> : null}
         <div style={styles.wrap}>
           <h2 style={styles.h2}>{message}.</h2>
+          <p>{usePathname()}</p>
         </div>
       </div>
     </main>
