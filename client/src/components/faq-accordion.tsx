@@ -17,8 +17,8 @@ export default function FaqAccordion() {
 
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', "")
-      if (hash) setValue(hash)
+      const hash = window.location.hash.substring(1)
+      if (hash && hash.startsWith("faq-")) setValue(hash)
     }
 
     handleHashChange()
@@ -36,7 +36,7 @@ export default function FaqAccordion() {
   return (
   <Accordion type="single" collapsible value={value} onValueChange={handleValueChange}>
     {faqs.map((question, index) => (
-      <AccordionItem className={cn("border-none")} key={question.slug} value={`faq-${index}`} id={`faq-${index}`}>
+      <AccordionItem className={cn("border-none")} key={question.slug} value={`faq-${question.slug}`} id={`faq-${question.slug}`}>
         <div className={cn("flex-row justify-between items-center w-full")}>
           <AccordionTrigger
             className={cn(
