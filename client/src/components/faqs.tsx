@@ -1,17 +1,9 @@
-import {
-  Accordion,
-  AccordionChevron,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@durhack/web-components/ui/accordion"
 import Image from "next/image"
 import type * as React from "react"
 
 import { SectionHeader } from "@/components/section-header"
-import { faqs } from "@/config/faqs"
-import { spaceGrotesk } from "@/lib/google-fonts"
 import { cn } from "@/lib/utils"
+import FaqAccordion from "@/components/faq-accordion";
 
 export function Faqs({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -35,31 +27,7 @@ export function Faqs({ className, ...props }: React.ComponentProps<"div">) {
 
       <div className="flex justify-center my-10">
         <div className="w-[90%] max-w-[50rem]">
-          <Accordion type="single" collapsible>
-            {faqs.map((question, index) => (
-              <AccordionItem className={cn("border-none")} key={question.slug} value={`item-${index}`}>
-                <div className={cn("flex-row justify-between items-center w-full")}>
-                  <AccordionTrigger
-                    className={cn(
-                      spaceGrotesk.className,
-                      "text-white text-left text-xl font-medium px-5 flex w-full flex-1 justify-between",
-                    )}
-                  >
-                    <Image
-                      src={question.icon_path}
-                      width={38.75}
-                      height={38.75}
-                      alt="icon"
-                      className={cn("shrink-0 mr-10")}
-                    />
-                    {question.question}
-                    <AccordionChevron className={cn("fill-current text-white accordion-chevron ml-auto")} />
-                  </AccordionTrigger>
-                </div>
-                <AccordionContent className={cn("text-white text-base")}>{question.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <FaqAccordion />
         </div>
       </div>
     </div>
