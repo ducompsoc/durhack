@@ -6,6 +6,7 @@ import {
   disciplineOfStudySchema,
 } from "@durhack/durhack-common/input/discipline-of-study"
 import { ComboBox, ComboBoxButton, ComboBoxContent, ComboBoxTrigger } from "@durhack/web-components/ui/combobox"
+import { VirtualizedComboBoxContent } from "@durhack/web-components/ui/virtualized/combobox-content"
 import {
   Form,
   FormControl,
@@ -150,7 +151,7 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                       <ComboBoxButton size="form" />
                     </FormControl>
                   </ComboBoxTrigger>
-                  <ComboBoxContent />
+                  <VirtualizedComboBoxContent />
                 </ComboBox>
                 <FormMessage />
               </FormItem>
