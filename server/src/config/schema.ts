@@ -85,6 +85,15 @@ export const durhackOptionsSchema = z
     "Event timings are impossible. Should have start < checkInCloses < end.",
   )
 
+export const formSchema = z.object({url: z.url(), expiration: z.date()})
+
+export const formOptionsSchema = z.object({
+  organiserApplicationForm: formSchema,
+  volunteerApplicationForm: formSchema,
+  travelReimbursementForm: formSchema,
+  feedbackForm: formSchema,
+})
+
 export const configSchema = z.object({
   listen: listenOptionsSchema,
   origin: z.url(),
@@ -94,6 +103,7 @@ export const configSchema = z.object({
   keycloak: keycloakOptionsSchema,
   mailgun: mailgunOptionsSchema,
   durhack: durhackOptionsSchema,
+  form: formOptionsSchema,
 })
 
 export type Config = z.infer<typeof configSchema>
