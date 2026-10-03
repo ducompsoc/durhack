@@ -21,7 +21,7 @@ importers:
         specifier: workspace:*
         version: link:../common
       '@durhack/web-components':
-        specifier: ^1.4.5
+        specifier: ^1.3.2
         version: 1.4.5(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(tailwindcss@4.1.17)
       '@hookform/resolvers':
         specifier: ^5.2.2
