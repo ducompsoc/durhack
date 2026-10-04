@@ -85,7 +85,7 @@ export const durhackOptionsSchema = z
     "Event timings are impossible. Should have start < checkInCloses < end.",
   )
 
-export const formSchema = z.object({url: z.url(), expiration: z.date()})
+export const formSchema = z.object({url: z.url(), expiration: z.date().refine((date) => date < new Date(), {message: "Cannot use expired forms"})})
 
 export const formOptionsSchema = z.object({
   organiserApplicationForm: formSchema,
@@ -106,5 +106,6 @@ export const configSchema = z.object({
   form: formOptionsSchema,
 })
 
+export type FormOptions = z.infer<typeof formOptionsSchema>
 export type Config = z.infer<typeof configSchema>
 export type ConfigIn = z.input<typeof configSchema>
