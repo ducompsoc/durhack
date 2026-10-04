@@ -1,6 +1,6 @@
 import stream from "node:stream"
 
-import {formConfig, FormOptions, mailgunConfig} from "@/config"
+import { type FormOptions, formConfig, mailgunConfig } from "@/config"
 import type { UserInfo } from "@/database"
 import { type DurHackEventTimingInfo, getEventTimingInfo } from "@/lib/format-event-timings"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
