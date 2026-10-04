@@ -146,11 +146,14 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                   prominentOptions={new Set(["Durham University"])}
                   {...field}
                 >
-                  <ComboBoxTrigger ref={ref}>
-                    <FormControl>
-                      <ComboBoxButton size="form" />
-                    </FormControl>
-                  </ComboBoxTrigger>
+                  <ComboBoxTrigger
+                    render={
+                      <FormControl>
+                        <ComboBoxButton size="form" />
+                      </FormControl>
+                    }
+                    ref={ref}
+                  />
                   <VirtualizedComboBoxContent />
                 </ComboBox>
                 <FormMessage />
@@ -253,11 +256,14 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                   prominentOptions={new Set(["GBR"])}
                   {...field}
                 >
-                  <ComboBoxTrigger ref={ref}>
-                    <FormControl>
-                      <ComboBoxButton size="form" />
-                    </FormControl>
-                  </ComboBoxTrigger>
+                  <ComboBoxTrigger
+                    render={
+                      <FormControl>
+                        <ComboBoxButton size="form" />
+                      </FormControl>
+                    }
+                    ref={ref}
+                  />
                   <ComboBoxContent />
                 </ComboBox>
                 <FormMessage />
