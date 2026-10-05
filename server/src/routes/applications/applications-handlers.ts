@@ -9,6 +9,7 @@ import {
 import { origin } from "@/config"
 import { prisma } from "@/database"
 import { Group, onlyGroups } from "@/decorators/authorise"
+import { isString } from "@/lib/type-guards"
 import type { Middleware, Request, Response } from "@/types"
 
 class ApplicationsHandlers {
@@ -18,14 +19,18 @@ class ApplicationsHandlers {
 
   private async getTotalApplicationCount(
     applicationStatusFilter: UserApplicationStatus[],
+    universityFilter: string[] | null,
     whereOnlyCheckedIn: boolean,
   ): Promise<number> {
+    const universityWhere = universityFilter == null ? {} : { university: { in: universityFilter } }
+
     return await prisma.user.count({
       where: {
         userInfo: {
           applicationStatus: {
             in: applicationStatusFilter,
           },
+          ...universityWhere,
         },
         userFlags: whereOnlyCheckedIn ? this.hasAttendanceFlag() : undefined,
       },
@@ -67,6 +72,11 @@ class ApplicationsHandlers {
     if (response.locals.whereOnlyCheckedIn === true) return ["submitted", "accepted", "waiting_list"]
     // with no query parameters, only include people that have been assigned tickets
     return ["accepted"]
+  }
+
+  private getInstitutionFilter(response: Response): string[] | null {
+    if (!Object.hasOwn(response.locals, "institutions")) return null
+    return response.locals.institutions as unknown as string[]
   }
 
   private getFilterDescription(response: Response): string {
@@ -122,6 +132,12 @@ class ApplicationsHandlers {
       response.locals.whereOnlyCheckedIn = Object.hasOwn(request.query, "attendees")
       response.locals.includeAll = Object.hasOwn(request.query, "all")
 
+      if (Object.hasOwn(request.query, "institution")) {
+        const rawInstitutions = request.query.institution
+        if (Array.isArray(rawInstitutions)) response.locals.institutions = rawInstitutions
+        if (isString(rawInstitutions)) response.locals.institutions = [rawInstitutions]
+      }
+
       if (response.locals.whereOnlyCheckedIn && response.locals.includeAll) {
         throw new ClientError("Cannot simultaneously filter by 'all' and 'attendees'", {
           statusCode: HttpStatus.BadRequest,
@@ -144,7 +160,7 @@ class ApplicationsHandlers {
     return async (request, response) => {
       const applicationStatusFilter = this.getApplicationStatusFilter(response)
       const [totalApplicationCount, totalCvCount] = await Promise.all([
-        this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
+        this.getTotalApplicationCount(applicationStatusFilter, null, response.locals.whereOnlyCheckedIn === true),
         this.getTotalCvCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
       ])
 
@@ -193,7 +209,7 @@ class ApplicationsHandlers {
             userId: true,
           },
         }),
-        this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
+        this.getTotalApplicationCount(applicationStatusFilter, null, response.locals.whereOnlyCheckedIn === true),
       ])
 
       const rows = result.map((resultItem) => {
@@ -239,7 +255,7 @@ class ApplicationsHandlers {
             userId: true,
           },
         }),
-        this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
+        this.getTotalApplicationCount(applicationStatusFilter, null, response.locals.whereOnlyCheckedIn === true),
       ])
 
       const rows = result.map((resultItem) => {
@@ -273,14 +289,20 @@ class ApplicationsHandlers {
     return async (request, response) => {
       const applicationStatusFilter = this.getApplicationStatusFilter(response)
       const rawApplicationStatusFilter = this.getRawApplicationStatusFilter(response)
+      const universityFilter = this.getInstitutionFilter(response)
       const [result, totalApplicationCount] = await Promise.all([
         prisma.$queryRawTyped(
           getApplicationsGroupedByDisciplineOfStudy(
             rawApplicationStatusFilter,
+            universityFilter ?? [],
             response.locals.whereOnlyCheckedIn === true,
           ),
         ),
-        this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
+        this.getTotalApplicationCount(
+          applicationStatusFilter,
+          universityFilter,
+          response.locals.whereOnlyCheckedIn === true,
+        ),
       ])
 
       const rows = result.map((resultItem) => {
@@ -322,7 +344,7 @@ class ApplicationsHandlers {
             response.locals.whereOnlyCheckedIn === true,
           ),
         ),
-        this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
+        this.getTotalApplicationCount(applicationStatusFilter, null, response.locals.whereOnlyCheckedIn === true),
       ])
 
       const rows = result.map((resultItem) => {
@@ -401,7 +423,7 @@ class ApplicationsHandlers {
             userId: true,
           },
         }),
-        this.getTotalApplicationCount(applicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
+        this.getTotalApplicationCount(applicationStatusFilter, null, response.locals.whereOnlyCheckedIn === true),
       ])
 
       const rows = result.map((resultItem) => {
