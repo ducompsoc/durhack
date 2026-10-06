@@ -62,6 +62,7 @@ export const durhackOptionsSchema = z
   .object({
     ticketAssignmentActive: z.boolean(),
     maximumTicketAssignment: z.number().nonnegative(),
+    maximumFriendInstitutionAssignments: z.record(z.string(), z.number()), // counter limits for specific institutions
     maximumExternalTicketAssignment: z.number().nonnegative(),
     currentEventStart: z.date(),
     currentEventCheckInCloses: z.date(),
