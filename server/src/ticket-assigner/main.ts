@@ -9,8 +9,9 @@ import { loadTemplate } from "@/mailer/templates"
 import { AttendeeCheckingTransform } from "./attendee-checking-transform"
 import { TicketAssigningWritable } from "./ticket-assigning-writable"
 import { generateUserInfoByTicketAssignmentOrder } from "./ticket-order-user-info-async-generator"
+import {durhackConfig} from "@/config";
 
-const [totalAssignedTicketCount, totalAssignedExternalTicketCount, acceptedTemplate, waitingListTemplate] =
+const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssignedFriendTicketGroups, acceptedTemplate, waitingListTemplate] =
   await Promise.all([
     prisma.userInfo.count({
       where: { applicationStatus: { equals: "accepted" } },
@@ -18,12 +19,18 @@ const [totalAssignedTicketCount, totalAssignedExternalTicketCount, acceptedTempl
     prisma.userInfo.count({
       where: { applicationStatus: { equals: "accepted" }, university: { not: "Durham University" } },
     }),
+    prisma.userInfo.groupBy({
+      by: "university",
+      where: {applicationStatus: { equals: "accepted" }, university: { in: Object.keys(durhackConfig.friendUniversities) } },
+      _count: { _all: true }
+    }),
     loadTemplate("ticket-notification"),
     loadTemplate("waiting-list-notification"),
   ])
 
 const mailer = new MailgunMailer()
 
+const totalAssignedFriendTicketCount = Object.fromEntries(Object.entries(totalAssignedFriendTicketGroups).map(([uni, res]) => [uni, res._count._all]))
 const userInfoReadable = Readable.from(generateUserInfoByTicketAssignmentOrder())
 const attendeeCheckingTransform = new AttendeeCheckingTransform()
 const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
@@ -33,6 +40,7 @@ const ticketAssigningWritable = new TicketAssigningWritable(
   waitingListTemplate,
   totalAssignedTicketCount,
   totalAssignedExternalTicketCount,
+  totalAssignedFriendTicketCount
 )
 
 await pipeline(userInfoReadable, attendeeCheckingTransform, userInfoAugmentingTransform, ticketAssigningWritable)
