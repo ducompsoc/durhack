@@ -58,12 +58,16 @@ export const stashEligibilityConditionSchema = z.discriminatedUnion("type", [
   }),
 ])
 
+export const friendUniversitiesSchema = z.record(z.string(), z.object({
+  maxTickets: z.number().nonnegative()
+}))
+
 export const durhackOptionsSchema = z
   .object({
     ticketAssignmentActive: z.boolean(),
     maximumTicketAssignment: z.number().nonnegative(),
-    maximumFriendInstitutionAssignments: z.record(z.string(), z.number()), // counter limits for specific institutions
     maximumExternalTicketAssignment: z.number().nonnegative(),
+    friendUniversities: friendUniversitiesSchema,
     currentEventStart: z.date(),
     currentEventCheckInCloses: z.date(),
     currentEventEnd: z.date(),
