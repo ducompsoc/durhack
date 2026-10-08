@@ -58,9 +58,12 @@ export const stashEligibilityConditionSchema = z.discriminatedUnion("type", [
   }),
 ])
 
-export const friendUniversitiesSchema = z.record(z.string(), z.object({
-  maxTickets: z.number().nonnegative()
-}))
+export const friendUniversitiesSchema = z.record(
+  z.string(),
+  z.object({
+    maxTickets: z.number().nonnegative(),
+  }),
+)
 
 export const durhackOptionsSchema = z
   .object({

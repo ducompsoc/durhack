@@ -4,13 +4,13 @@ import { durhackConfig, mailgunConfig } from "@/config"
 import { prisma, type UserInfo } from "@/database"
 import { type DurHackEventTimingInfo, getEventTimingInfo } from "@/lib/format-event-timings"
 import { isExternalApplicant } from "@/lib/is-external-applicant"
+import { isFriendUniversity } from "@/lib/is-friend-university"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import type { Mailer } from "@/lib/mailer"
 import { isString } from "@/lib/type-guards"
 import { profileQrCodeImgTag } from "@/mailer/profile-qr-code"
 import type { Template } from "@/mailer/templates"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
-import {isFriendUniversity} from "@/lib/is-friend-university";
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
@@ -101,9 +101,13 @@ export class TicketAssigningWritable extends stream.Writable {
   getTicketCounterFor(userInfo: AugmentedUserInfo): ICounter {
     const counters: Counter[] = [this.totalAssignedTicketCounter]
 
-    if (!userInfo.university) throw new Error("Something really weird happened - shouldn't be getting ticket counters for unsubmitted applications")
+    if (!userInfo.university)
+      throw new Error(
+        "Something really weird happened - shouldn't be getting ticket counters for unsubmitted applications",
+      )
 
-    if (isFriendUniversity(userInfo)) counters.push(this.totalAssignedFriendUniversityTicketCounters[userInfo.university])
+    if (isFriendUniversity(userInfo))
+      counters.push(this.totalAssignedFriendUniversityTicketCounters[userInfo.university])
     else if (isExternalApplicant(userInfo)) counters.push(this.totalAssignedExternalTicketCounter)
 
     if (counters.length === 1) return counters[0]
@@ -187,7 +191,7 @@ export class TicketAssigningWritable extends stream.Writable {
    * Otherwise, move the user to the ticket waiting list.
    */
   async updateApplicationStatus(userInfo: AugmentedUserInfo): Promise<void> {
-    if (userInfo.applicationStatus === 'unsubmitted')
+    if (userInfo.applicationStatus === "unsubmitted")
       throw new Error(`Can't waiting list/accept ${userInfo.userId} as their application is unsubmitted`)
 
     const ticketCounter = this.getTicketCounterFor(userInfo)

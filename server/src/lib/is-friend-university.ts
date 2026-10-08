@@ -1,5 +1,5 @@
-import { durhackConfig } from "@/config";
-import type { UserInfo } from "@/database";
+import { durhackConfig } from "@/config"
+import type { UserInfo } from "@/database"
 
 export function isFriendUniversity(userInfo: UserInfo): boolean {
   if (!userInfo.university) return false
