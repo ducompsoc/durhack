@@ -43,8 +43,10 @@ export default {
     },
     ticketAssignmentActive: false,
     maximumTicketAssignment: 900,
-    maximumFriendInstitutionAssignments: {
-      'Newcastle University': 50
+    friendUniversities: {
+      "Newcastle University": {
+        maxTickets: 100
+      }
     },
     maximumExternalTicketAssignment: 300,
     currentEventStart: new Date("2026-11-14T09:30:00+00:00"),
@@ -67,7 +69,7 @@ export default {
         name: "Gilded Sticker",
         eligibilityCondition: { type: "points-threshold", thresholdQuantity: 60 },
       },
-      "handwarmer": {
+      handwarmer: {
         name: "Handwarmer",
         eligibilityCondition: { type: "points-threshold", thresholdQuantity: 120 },
       },

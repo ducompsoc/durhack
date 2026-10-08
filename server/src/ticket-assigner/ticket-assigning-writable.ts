@@ -10,6 +10,7 @@ import { isString } from "@/lib/type-guards"
 import { profileQrCodeImgTag } from "@/mailer/profile-qr-code"
 import type { Template } from "@/mailer/templates"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
+import {isFriendUniversity} from "@/lib/is-friend-university";
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
@@ -63,6 +64,7 @@ class MultiCounter implements ICounter {
 export class TicketAssigningWritable extends stream.Writable {
   totalAssignedTicketCounter: Counter
   totalAssignedExternalTicketCounter: Counter
+  totalAssignedFriendUniversityTicketCounters: { [university: string]: Counter }
   private readonly mailer: Mailer
   private readonly ticketMessageTemplate: Template
   private readonly waitingListMessageTemplate: Template
@@ -74,6 +76,7 @@ export class TicketAssigningWritable extends stream.Writable {
     waitingListTemplate: Template,
     totalAssignedTicketCount: number,
     totalAssignedExternalTicketCount: number,
+    totalAssignedFriendUniversityTicketCount: { [university: string]: number },
   ) {
     super({
       objectMode: true, // the stream expects to receive objects, not a string/binary data
@@ -86,12 +89,23 @@ export class TicketAssigningWritable extends stream.Writable {
       totalAssignedExternalTicketCount,
       durhackConfig.maximumExternalTicketAssignment,
     )
+    this.totalAssignedFriendUniversityTicketCounters = Object.fromEntries(
+      Object.entries(totalAssignedFriendUniversityTicketCount).map(([uni, cnt]) => [
+        uni,
+        new Counter(cnt, durhackConfig.friendUniversities[uni].maxTickets),
+      ]),
+    )
     this.eventTimingInfo = getEventTimingInfo()
   }
 
   getTicketCounterFor(userInfo: AugmentedUserInfo): ICounter {
     const counters: Counter[] = [this.totalAssignedTicketCounter]
-    if (isExternalApplicant(userInfo)) counters.push(this.totalAssignedExternalTicketCounter)
+
+    if (!userInfo.university) throw new Error("Something really weird happened - shouldn't be getting ticket counters for unsubmitted applications")
+
+    if (isFriendUniversity(userInfo)) counters.push(this.totalAssignedFriendUniversityTicketCounters[userInfo.university])
+    else if (isExternalApplicant(userInfo)) counters.push(this.totalAssignedExternalTicketCounter)
+
     if (counters.length === 1) return counters[0]
     return new MultiCounter(counters)
   }
@@ -143,8 +157,6 @@ export class TicketAssigningWritable extends stream.Writable {
    */
   async waitingList(userInfo: AugmentedUserInfo): Promise<void> {
     if (userInfo.applicationStatus === "waitingList") return
-    if (userInfo.applicationStatus === "unsubmitted")
-      throw new Error(`Can't waiting list ${userInfo.userId} as their application is unsubmitted`)
     if (userInfo.applicationStatus === "accepted")
       throw new Error(`Can't waiting list ${userInfo.userId} as their application has been accepted`)
 
@@ -175,6 +187,9 @@ export class TicketAssigningWritable extends stream.Writable {
    * Otherwise, move the user to the ticket waiting list.
    */
   async updateApplicationStatus(userInfo: AugmentedUserInfo): Promise<void> {
+    if (userInfo.applicationStatus === 'unsubmitted')
+      throw new Error(`Can't waiting list/accept ${userInfo.userId} as their application is unsubmitted`)
+
     const ticketCounter = this.getTicketCounterFor(userInfo)
     if (ticketCounter.hasCapacity()) {
       await this.assignTicket(userInfo)
