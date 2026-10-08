@@ -45,15 +45,15 @@ export default {
     maximumTicketAssignment: 900,
     friendUniversities: {
       "Newcastle University": {
-        maxTickets: 100
-      }
+        maxTickets: 100,
+      },
     },
     maximumExternalTicketAssignment: 300,
     currentEventStart: new Date("2026-11-14T09:30:00+00:00"),
     currentEventCheckInCloses: new Date("2026-11-14T10:30:00+00:00"),
     currentEventEnd: new Date("2026-11-15T17:30:00+00:00"),
     stashItems: {
-      "mug": {
+      mug: {
         name: "Mug",
         eligibilityCondition: { type: "check-in" },
       },
