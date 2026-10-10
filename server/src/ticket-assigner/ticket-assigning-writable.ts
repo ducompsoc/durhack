@@ -157,6 +157,8 @@ export class TicketAssigningWritable extends stream.Writable {
    */
   async waitingList(userInfo: AugmentedUserInfo): Promise<void> {
     if (userInfo.applicationStatus === "waitingList") return
+    if (userInfo.applicationStatus === 'unsubmitted')
+      throw new Error(`Can't waiting list/accept ${userInfo.userId} as their application is unsubmitted`)
     if (userInfo.applicationStatus === "accepted")
       throw new Error(`Can't waiting list ${userInfo.userId} as their application has been accepted`)
 

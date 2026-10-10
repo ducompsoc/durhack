@@ -1,6 +1,7 @@
 import { Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
 
+import {durhackConfig} from "@/config";
 import { prisma } from "@/database"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { MailgunMailer } from "@/lib/mailer"
@@ -9,7 +10,6 @@ import { loadTemplate } from "@/mailer/templates"
 import { AttendeeCheckingTransform } from "./attendee-checking-transform"
 import { TicketAssigningWritable } from "./ticket-assigning-writable"
 import { generateUserInfoByTicketAssignmentOrder } from "./ticket-order-user-info-async-generator"
-import {durhackConfig} from "@/config";
 
 const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssignedFriendTicketGroups, acceptedTemplate, waitingListTemplate] =
   await Promise.all([
