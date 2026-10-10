@@ -32,6 +32,7 @@ export const {
   keycloak: keycloakConfig,
   mailgun: mailgunConfig,
   durhack: durhackConfig,
+  form: formConfig,
 } = config
 
 export { config }

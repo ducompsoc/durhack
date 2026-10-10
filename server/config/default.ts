@@ -48,7 +48,7 @@ export default {
     currentEventCheckInCloses: new Date("2026-11-14T10:30:00+00:00"),
     currentEventEnd: new Date("2026-11-15T17:30:00+00:00"),
     stashItems: {
-      "mug": {
+      mug: {
         name: "Mug",
         eligibilityCondition: { type: "check-in" },
       },
@@ -64,10 +64,28 @@ export default {
         name: "Gilded Sticker",
         eligibilityCondition: { type: "points-threshold", thresholdQuantity: 60 },
       },
-      "handwarmer": {
+      handwarmer: {
         name: "Handwarmer",
         eligibilityCondition: { type: "points-threshold", thresholdQuantity: 120 },
       },
+    },
+  },
+  form: {
+    volunteerApplicationForm: {
+      url: "https://forms.gle/76D9hCzVBkqgtPpv5",
+      expiration: new Date("2025-31-12T23:59:59+00:00"),
+    },
+    organiserApplicationForm: {
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSeOG1PTbqGNT6Edboqfh6p4gd4qG_-blfZTsVEg-O7eN19sAQ/viewform",
+      expiration: new Date("2025-31-12T23:59:59+00:00"),
+    },
+    feedbackForm: {
+      url: "https://forms.gle/nBT7ji27hrAmCgde6",
+      expiration: new Date("2025-31-12T23:59:59+00:00"),
+    },
+    travelReimbursementForm: {
+      url: "https://forms.gle/Hz9nctemyBTXd6GV6",
+      expiration: new Date("2025-31-12T23:59:59+00:00"),
     },
   },
 } satisfies ConfigIn

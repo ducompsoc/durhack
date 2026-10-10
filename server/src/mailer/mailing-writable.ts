@@ -1,6 +1,6 @@
 import stream from "node:stream"
 
-import { mailgunConfig } from "@/config"
+import { type FormOptions, formConfig, mailgunConfig } from "@/config"
 import type { UserInfo } from "@/database"
 import { type DurHackEventTimingInfo, getEventTimingInfo } from "@/lib/format-event-timings"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
@@ -15,6 +15,7 @@ export class MailingWritable extends stream.Writable {
   private readonly mailer: Mailer
   private readonly messageTemplate: Template
   private readonly eventTimingInfo: DurHackEventTimingInfo
+  private readonly formsInfo: FormOptions
   sentMailCount: number
 
   constructor(mailer: Mailer, message: Template) {
@@ -25,6 +26,7 @@ export class MailingWritable extends stream.Writable {
     this.messageTemplate = message
     this.sentMailCount = 0
     this.eventTimingInfo = getEventTimingInfo()
+    this.formsInfo = formConfig
   }
 
   /**
@@ -38,6 +40,7 @@ export class MailingWritable extends stream.Writable {
       to: userInfo.email,
       subject: this.messageTemplate.metadata.messageTitle,
       html: this.messageTemplate.render({
+        ...this.formsInfo,
         ...this.eventTimingInfo,
         ...userInfo,
         isRemoteAttendee: userInfo.university !== "Durham University",
