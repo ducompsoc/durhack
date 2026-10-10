@@ -24,7 +24,6 @@ export const sponsors: Sponsor[] = [
   {
     organisationSlug: "procter-and-gamble",
     tier: "platinum",
-    cvSharing: false,
     active: false,
   },
   {
