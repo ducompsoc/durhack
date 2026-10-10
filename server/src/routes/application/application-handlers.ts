@@ -560,56 +560,57 @@ class ApplicationHandlers {
     })
   }
 
-  private getConsentUpserts(userId: string, payload: z.infer<typeof submitFormSchema>) {
+  private getConsentUpserts(userId: string, payload: z.infer<typeof submitFormSchema>){
     return [
-      prisma.userConsent.upsert({
-        where: { id: { userId: userId, consentName: "mlhCodeOfConduct" } },
-        create: {
-          userId: userId,
-          consentName: "mlhCodeOfConduct",
-          choice: payload.mlhCodeOfConduct,
-        },
-        update: { choice: payload.mlhCodeOfConduct },
-      }),
-      prisma.userConsent.upsert({
-        where: { id: { userId: userId, consentName: "mlhTerms" } },
-        create: { userId: userId, consentName: "mlhTerms", choice: payload.mlhTerms },
-        update: { choice: payload.mlhTerms },
-      }),
-      prisma.userConsent.upsert({
-        where: { id: { userId: userId, consentName: "mlhMarketing" } },
-        create: { userId: userId, consentName: "mlhMarketing", choice: payload.mlhMarketing },
-        update: { choice: payload.mlhMarketing },
-      }),
-      prisma.userConsent.upsert({
-        where: { id: { userId: userId, consentName: "dsuPrivacy" } },
-        create: { userId: userId, consentName: "dsuPrivacy", choice: payload.dsuPrivacy },
-        update: { choice: payload.dsuPrivacy },
-      }),
-      prisma.userConsent.upsert({
-        where: { id: { userId: userId, consentName: "hukPrivacy" } },
-        create: { userId: userId, consentName: "hukPrivacy", choice: payload.hukPrivacy },
-        update: { choice: payload.hukPrivacy },
-      }),
-      prisma.userConsent.upsert({
-        where: { id: { userId: userId, consentName: "hukMarketing" } },
-        create: { userId: userId, consentName: "hukMarketing", choice: payload.hukMarketing },
-        update: { choice: payload.hukMarketing },
-      }),
-      prisma.userConsent.upsert({
-        where: { id: { userId: userId, consentName: "media" } },
-        create: { userId: userId, consentName: "media", choice: payload.media },
-        update: { choice: payload.media },
-      }),
-    ]
+        prisma.userConsent.upsert({
+          where: { id: { userId: userId, consentName: "mlhCodeOfConduct" } },
+          create: {
+            userId: userId,
+            consentName: "mlhCodeOfConduct",
+            choice: payload.mlhCodeOfConduct,
+          },
+          update: { choice: payload.mlhCodeOfConduct },
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: userId, consentName: "mlhTerms" } },
+          create: { userId: userId, consentName: "mlhTerms", choice: payload.mlhTerms },
+          update: { choice: payload.mlhTerms },
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: userId, consentName: "mlhMarketing" } },
+          create: { userId: userId, consentName: "mlhMarketing", choice: payload.mlhMarketing },
+          update: { choice: payload.mlhMarketing },
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: userId, consentName: "dsuPrivacy" } },
+          create: { userId: userId, consentName: "dsuPrivacy", choice: payload.dsuPrivacy },
+          update: { choice: payload.dsuPrivacy },
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: userId, consentName: "hukPrivacy" } },
+          create: { userId: userId, consentName: "hukPrivacy", choice: payload.hukPrivacy },
+          update: { choice: payload.hukPrivacy },
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: userId, consentName: "hukMarketing" } },
+          create: { userId: userId, consentName: "hukMarketing", choice: payload.hukMarketing },
+          update: { choice: payload.hukMarketing },
+        }),
+        prisma.userConsent.upsert({
+          where: { id: { userId: userId, consentName: "media" } },
+          create: { userId: userId, consentName: "media", choice: payload.media },
+          update: { choice: payload.media },
+        }),
+      ]
+
   }
 
-  private saveConsents(userId: string, payload: z.infer<typeof submitFormSchema>) {
+  private saveConsents(userId: string, payload: z.infer<typeof submitFormSchema>){
     return prisma.$transaction(this.getConsentUpserts(userId, payload))
   }
 
   @onlyKnownUsers()
-  patchConsents(): Middleware {
+  patchConsents(): Middleware{
     return async (request, response) => {
       assert(request.userProfile)
 
