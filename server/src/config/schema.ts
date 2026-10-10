@@ -58,10 +58,21 @@ export const stashEligibilityConditionSchema = z.discriminatedUnion("type", [
   }),
 ])
 
+/**
+ * Define "friend universities". Hackers from friend universities can be configured to invoke different behavior in the
+ * DurHack API. Open for extension.
+ * maxTickets - define the number of tickets hackers from the "friend" university can be assigned as long as maximum
+ * tickets assigned aren't exceeded
+ * */
 export const friendUniversitiesSchema = z.record(z.string(), z.object({
   maxTickets: z.number().nonnegative()
 }))
 
+/**
+ * maximumTicketAssignment -  maximum total number of tickets that can be assigned
+ * maximumExternalTicketAssignment - maximum total number of tickets that can be assigned to hackers that don't study
+ *    at Durham University and don't study at a "friend" university
+ */
 export const durhackOptionsSchema = z
   .object({
     ticketAssignmentActive: z.boolean(),
