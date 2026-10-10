@@ -34,7 +34,7 @@ export default {
     ticketAssignmentActive: true,
     maximumTicketAssignment: 4,
     friendUniversities: {
-      "Newcastle Univesity": {
+      "Newcastle University": {
         maxTickets: 2,
       }
     },
