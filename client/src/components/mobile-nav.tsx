@@ -27,8 +27,9 @@ export function MobileNav({ config, ...props }: { config: NavConfig } & React.Co
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerTrigger asChild>
+      <DrawerTrigger render={
         <NavMenuButton {...props} />
+      }>
       </DrawerTrigger>
       <DrawerTitle className="sr-only">Nav Menu</DrawerTitle>
       <DrawerContent className="max-h-[60svh] p-0">
