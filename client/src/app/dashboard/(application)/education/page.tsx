@@ -264,7 +264,7 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                     }
                     ref={ref}
                   />
-                  <ComboBoxContent />
+                  <VirtualizedComboBoxContent />
                 </ComboBox>
                 <FormMessage />
               </FormItem>
