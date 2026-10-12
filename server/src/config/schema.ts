@@ -106,6 +106,7 @@ export const configSchema = z.object({
   form: formLinksSchema,
 })
 
+export type FormLink = z.infer<typeof formLinkSchema>
 export type FormLinks = z.infer<typeof formLinksSchema>
 export type Config = z.infer<typeof configSchema>
 export type ConfigIn = z.input<typeof configSchema>
