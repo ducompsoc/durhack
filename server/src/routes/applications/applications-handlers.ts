@@ -349,10 +349,13 @@ class ApplicationsHandlers {
   @onlyGroups([Group.organisers, Group.admins])
   getApplicationsDietaryRequirementSets(): Middleware {
     return async (request, response) => {
-      const _applicationStatusFilter = this.getApplicationStatusFilter(response)
+      const applicationStatusFilter = this.getApplicationStatusFilter(response)
       const rawApplicationStatusFilter = this.getRawApplicationStatusFilter(response)
       const result = await prisma.$queryRawTyped(
-        getDietaryRequirementSets(rawApplicationStatusFilter, response.locals.whereOnlyCheckedIn === true),
+        getDietaryRequirementSets(
+          rawApplicationStatusFilter,
+          response.locals.whereOnlyCheckedIn === true,
+        ),
       )
 
       const rows = result.map((resultItem) => {
