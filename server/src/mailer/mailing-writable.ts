@@ -16,7 +16,6 @@ export class MailingWritable extends stream.Writable {
   private readonly mailer: Mailer
   private readonly messageTemplate: Template
   private readonly eventTimingInfo: DurHackEventTimingInfo
-  private readonly formsInfo: FormLinks
   sentMailCount: number
 
   constructor(mailer: Mailer, message: Template) {
@@ -27,14 +26,13 @@ export class MailingWritable extends stream.Writable {
     this.messageTemplate = message
     this.sentMailCount = 0
     this.eventTimingInfo = getEventTimingInfo()
-    this.formsInfo = formLinksConfig
   }
 
   /**
    * Assign a user a ticket to attend DurHack, and send an email notification.
    */
   async sendTo(userInfo: AugmentedUserInfo): Promise<void> {
-    Object.entries(this.formsInfo).forEach(([formKey, formLink]) => {
+    Object.entries(formLinksConfig).forEach(([formKey, formLink]) => {
       if (Object.hasOwn(this.messageTemplate.simpleProps, `${formKey}.url`) && isFormExpired(formLink))
         throw new Error(`Form ${formKey} in template is expired`)
     })
@@ -46,7 +44,7 @@ export class MailingWritable extends stream.Writable {
       to: userInfo.email,
       subject: this.messageTemplate.metadata.messageTitle,
       html: this.messageTemplate.render({
-        ...this.formsInfo,
+        ...formLinksConfig,
         ...this.eventTimingInfo,
         ...userInfo,
         isRemoteAttendee: userInfo.university !== "Durham University",
