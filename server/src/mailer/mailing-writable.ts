@@ -35,7 +35,8 @@ export class MailingWritable extends stream.Writable {
    */
   async sendTo(userInfo: AugmentedUserInfo): Promise<void> {
     Object.entries(this.formsInfo).forEach(([formKey, formLink]) => {
-      if (Object.hasOwn(this.messageTemplate.simpleProps, `${formKey}.url`) && isFormExpired(formLink)) throw new Error(`Form ${formKey} in template is expired`)
+      if (Object.hasOwn(this.messageTemplate.simpleProps, `${formKey}.url`) && isFormExpired(formLink))
+        throw new Error(`Form ${formKey} in template is expired`)
     })
 
     userInfo.preferredNames ??= userInfo.firstNames
