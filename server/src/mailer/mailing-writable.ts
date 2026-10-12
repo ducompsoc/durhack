@@ -1,6 +1,6 @@
 import stream from "node:stream"
 
-import { formLinksConfig, FormLinks, mailgunConfig } from "@/config"
+import { formLinksConfig, mailgunConfig } from "@/config"
 import type { UserInfo } from "@/database"
 import { type DurHackEventTimingInfo, getEventTimingInfo } from "@/lib/format-event-timings"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
@@ -8,7 +8,7 @@ import type { Mailer } from "@/lib/mailer"
 import { isString } from "@/lib/type-guards"
 import { profileQrCodeImgTag } from "@/mailer/profile-qr-code"
 import type { Template } from "@/mailer/templates"
-import {isFormExpired} from "@/lib/is-form-expired";
+import { checkTemplateFormUrlValidity } from "@/lib/check-template-form-url-validity";
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
@@ -32,10 +32,7 @@ export class MailingWritable extends stream.Writable {
    * Assign a user a ticket to attend DurHack, and send an email notification.
    */
   async sendTo(userInfo: AugmentedUserInfo): Promise<void> {
-    Object.entries(formLinksConfig).forEach(([formKey, formLink]) => {
-      if (Object.hasOwn(this.messageTemplate.simpleProps, `${formKey}.url`) && isFormExpired(formLink))
-        throw new Error(`Form ${formKey} in template is expired`)
-    })
+    checkTemplateFormUrlValidity(this.messageTemplate)
 
     userInfo.preferredNames ??= userInfo.firstNames
     await this.mailer.createMessage({
