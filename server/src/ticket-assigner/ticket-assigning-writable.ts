@@ -10,7 +10,7 @@ import { isString } from "@/lib/type-guards"
 import { profileQrCodeImgTag } from "@/mailer/profile-qr-code"
 import type { Template } from "@/mailer/templates"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
-import {isFriendUniversity} from "@/lib/is-friend-university";
+import {isUserFromFriendInstitution} from "@/lib/is-user-from-friend-institution";
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
@@ -92,7 +92,7 @@ export class TicketAssigningWritable extends stream.Writable {
     this.totalAssignedFriendUniversityTicketCounters = Object.fromEntries(
       Object.entries(totalAssignedFriendUniversityTicketCount).map(([uni, cnt]) => [
         uni,
-        new Counter(cnt, durhackConfig.friendUniversities[uni].maxTickets),
+        new Counter(cnt, durhackConfig.friendInstitutionsGroups[uni].maxTickets),
       ]),
     )
     this.eventTimingInfo = getEventTimingInfo()
@@ -103,7 +103,7 @@ export class TicketAssigningWritable extends stream.Writable {
 
     if (!userInfo.university) throw new Error("Something really weird happened - shouldn't be getting ticket counters for unsubmitted applications")
 
-    if (isFriendUniversity(userInfo)) counters.push(this.totalAssignedFriendUniversityTicketCounters[userInfo.university])
+    if (isUserFromFriendInstitution(userInfo)) counters.push(this.totalAssignedFriendUniversityTicketCounters[userInfo.university])
     else if (isExternalApplicant(userInfo)) counters.push(this.totalAssignedExternalTicketCounter)
 
     if (counters.length === 1) return counters[0]

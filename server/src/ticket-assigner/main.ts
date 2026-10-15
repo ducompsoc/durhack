@@ -21,7 +21,13 @@ const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssigned
     }),
     prisma.userInfo.groupBy({
       by: "university",
-      where: {applicationStatus: { equals: "accepted" }, university: { in: Object.keys(durhackConfig.friendUniversities) } },
+      where: {
+        applicationStatus: { equals: "accepted" },
+        university: {
+          in: durhackConfig.friendInstitutionsGroups.reduce((acc: string[], group) =>
+            acc.concat(group.institutions), [])
+        }
+      },
       _count: { _all: true }
     }),
     loadTemplate("ticket-notification"),
