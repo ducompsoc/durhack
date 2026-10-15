@@ -42,7 +42,7 @@ export default {
       clientCertificateKeyFile: "/dev/null",
     },
     ticketAssignmentActive: false,
-    maximumTicketAssignment: 900,
+    maximumTicketAssignment: 850,
     friendInstitutionsGroups: [{
       institutions: ["Newcastle University"],
       maxTickets: 100
@@ -68,7 +68,7 @@ export default {
         name: "Gilded Sticker",
         eligibilityCondition: { type: "points-threshold", thresholdQuantity: 60 },
       },
-      handwarmer: {
+      "handwarmer": {
         name: "Handwarmer",
         eligibilityCondition: { type: "points-threshold", thresholdQuantity: 120 },
       },
