@@ -69,7 +69,7 @@ export const friendInstitutionsSchema = z.object({
   maxTickets: z.int().nonnegative()
 })
 
-export type FriendInstitution = z.infer<typeof friendInstitutionsSchema>
+export type FriendInstitutionGroup = z.infer<typeof friendInstitutionsSchema>
 
 /**
  * maximumTicketAssignment -  maximum total number of tickets that can be assigned

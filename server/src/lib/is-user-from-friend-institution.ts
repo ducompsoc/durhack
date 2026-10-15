@@ -1,4 +1,4 @@
-import {durhackConfig, type FriendInstitution} from "@/config";
+import {durhackConfig, type FriendInstitutionGroup} from "@/config";
 import type { UserInfo } from "@/database";
 
 export function isUserFromFriendInstitution(userInfo: UserInfo): boolean {

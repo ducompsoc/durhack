@@ -1,6 +1,6 @@
 import stream from "node:stream"
 
-import { durhackConfig, mailgunConfig } from "@/config"
+import {durhackConfig, FriendInstitutionGroup, mailgunConfig} from "@/config"
 import { prisma, type UserInfo } from "@/database"
 import { type DurHackEventTimingInfo, getEventTimingInfo } from "@/lib/format-event-timings"
 import { isExternalApplicant } from "@/lib/is-external-applicant"
@@ -61,10 +61,15 @@ class MultiCounter implements ICounter {
   }
 }
 
+type FriendInstitutionCounterSchema = {
+  institutions: string[],
+  counter: Counter
+}
+
 export class TicketAssigningWritable extends stream.Writable {
   totalAssignedTicketCounter: Counter
   totalAssignedExternalTicketCounter: Counter
-  totalAssignedFriendUniversityTicketCounters: { [university: string]: Counter }
+  totalAssignedFriendUniversityTicketCounters: FriendInstitutionCounterSchema[]
   private readonly mailer: Mailer
   private readonly ticketMessageTemplate: Template
   private readonly waitingListMessageTemplate: Template
@@ -76,7 +81,7 @@ export class TicketAssigningWritable extends stream.Writable {
     waitingListTemplate: Template,
     totalAssignedTicketCount: number,
     totalAssignedExternalTicketCount: number,
-    totalAssignedFriendUniversityTicketCount: { [university: string]: number },
+    totalAssignedByUniversity: { [university: string]: number },
   ) {
     super({
       objectMode: true, // the stream expects to receive objects, not a string/binary data
@@ -89,21 +94,30 @@ export class TicketAssigningWritable extends stream.Writable {
       totalAssignedExternalTicketCount,
       durhackConfig.maximumExternalTicketAssignment,
     )
-    this.totalAssignedFriendUniversityTicketCounters = Object.fromEntries(
-      Object.entries(totalAssignedFriendUniversityTicketCount).map(([uni, cnt]) => [
-        uni,
-        new Counter(cnt, durhackConfig.friendInstitutionsGroups[uni].maxTickets),
-      ]),
-    )
+    this.totalAssignedFriendUniversityTicketCounters = durhackConfig.friendInstitutionsGroups.map((friendInstitutionGroup: FriendInstitutionGroup) => ({
+      institutions: friendInstitutionGroup.institutions,
+      counter: new Counter(friendInstitutionGroup.institutions.reduce((acc, cur) => acc + totalAssignedByUniversity[cur], 0), friendInstitutionGroup.maxTickets)
+    }))
     this.eventTimingInfo = getEventTimingInfo()
+  }
+
+  private getFriendInstitutionGroupCounter(userInfo: UserInfo): Counter | undefined {
+    if (!(userInfo.university)) throw new Error("Something stranger than Dr. Strange happened - how did you get here?")
+    if (!isUserFromFriendInstitution(userInfo)) throw new Error("User is not from a friend institution")
+
+    for (const institutionGroup of this.totalAssignedFriendUniversityTicketCounters)
+      if (institutionGroup.institutions.includes(userInfo.university))
+        return institutionGroup.counter
   }
 
   getTicketCounterFor(userInfo: AugmentedUserInfo): ICounter {
     const counters: Counter[] = [this.totalAssignedTicketCounter]
 
-    if (!userInfo.university) throw new Error("Something really weird happened - shouldn't be getting ticket counters for unsubmitted applications")
+    if (!(userInfo.university)) throw new Error("Something really weird happened - shouldn't be getting ticket counters for unsubmitted applications")
 
-    if (isUserFromFriendInstitution(userInfo)) counters.push(this.totalAssignedFriendUniversityTicketCounters[userInfo.university])
+    // getFriendInstitutionGroup must return the Counter associated with the friend institution group of the user's institution
+    // as the user is from a friend institution
+    if (isUserFromFriendInstitution(userInfo)) counters.push(this.getFriendInstitutionGroupCounter(userInfo)!)
     else if (isExternalApplicant(userInfo)) counters.push(this.totalAssignedExternalTicketCounter)
 
     if (counters.length === 1) return counters[0]
