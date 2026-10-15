@@ -42,7 +42,7 @@ export default {
       clientCertificateKeyFile: "/dev/null",
     },
     ticketAssignmentActive: false,
-    maximumTicketAssignment: 900,
+    maximumTicketAssignment: 850,
     maximumExternalTicketAssignment: 300,
     currentEventStart: new Date("2026-11-14T09:30:00+00:00"),
     currentEventCheckInCloses: new Date("2026-11-14T10:30:00+00:00"),
