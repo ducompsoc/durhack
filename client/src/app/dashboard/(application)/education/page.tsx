@@ -6,6 +6,7 @@ import {
   disciplineOfStudySchema,
 } from "@durhack/durhack-common/input/discipline-of-study"
 import { ComboBox, ComboBoxButton, ComboBoxContent, ComboBoxTrigger } from "@durhack/web-components/ui/combobox"
+import { VirtualizedComboBoxContent } from "@durhack/web-components/ui/virtualized/combobox-content"
 import {
   Form,
   FormControl,
@@ -145,12 +146,15 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                   prominentOptions={new Set(["Durham University"])}
                   {...field}
                 >
-                  <ComboBoxTrigger ref={ref}>
-                    <FormControl>
-                      <ComboBoxButton size="form" />
-                    </FormControl>
-                  </ComboBoxTrigger>
-                  <ComboBoxContent />
+                  <ComboBoxTrigger
+                    render={
+                      <FormControl>
+                        <ComboBoxButton size="form" />
+                      </FormControl>
+                    }
+                    ref={ref}
+                  />
+                  <VirtualizedComboBoxContent />
                 </ComboBox>
                 <FormMessage />
               </FormItem>
@@ -252,12 +256,15 @@ function EducationForm({ schoolOptions, countryOptions, application }: Education
                   prominentOptions={new Set(["GBR"])}
                   {...field}
                 >
-                  <ComboBoxTrigger ref={ref}>
-                    <FormControl>
-                      <ComboBoxButton size="form" />
-                    </FormControl>
-                  </ComboBoxTrigger>
-                  <ComboBoxContent />
+                  <ComboBoxTrigger
+                    render={
+                      <FormControl>
+                        <ComboBoxButton size="form" />
+                      </FormControl>
+                    }
+                    ref={ref}
+                  />
+                  <VirtualizedComboBoxContent />
                 </ComboBox>
                 <FormMessage />
               </FormItem>

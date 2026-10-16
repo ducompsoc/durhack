@@ -24,20 +24,19 @@ export const sponsors: Sponsor[] = [
   {
     organisationSlug: "procter-and-gamble",
     tier: "platinum",
-    cvSharing: true,
     active: false,
   },
   {
     organisationSlug: "bidfx",
     tier: "platinum",
-    active: false,
+    active: true,
     cvSharing: true,
   },
   {
     organisationSlug: "accenture",
     tier: "gold",
     cvSharing: true,
-    active: false,
+    active: true,
   },
   {
     organisationSlug: "g-research",
