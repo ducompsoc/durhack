@@ -1,7 +1,7 @@
 import { Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
 
-import {durhackConfig} from "@/config";
+import { durhackConfig } from "@/config";
 import { prisma } from "@/database"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { MailgunMailer } from "@/lib/mailer"

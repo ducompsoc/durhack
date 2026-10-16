@@ -101,13 +101,15 @@ export class TicketAssigningWritable extends stream.Writable {
     this.eventTimingInfo = getEventTimingInfo()
   }
 
-  private getFriendInstitutionGroupCounter(userInfo: UserInfo): Counter | undefined {
+  private getFriendInstitutionGroupCounter(userInfo: UserInfo): Counter | null {
     if (!(userInfo.university)) throw new Error("Something stranger than Dr. Strange happened - how did you get here?")
-    if (!isUserFromFriendInstitution(userInfo)) throw new Error("User is not from a friend institution")
 
     for (const institutionGroup of this.totalAssignedFriendUniversityTicketCounters)
       if (institutionGroup.institutions.includes(userInfo.university))
         return institutionGroup.counter
+
+    // User is not from a friend institution
+    return null
   }
 
   getTicketCounterFor(userInfo: AugmentedUserInfo): ICounter {
@@ -115,9 +117,8 @@ export class TicketAssigningWritable extends stream.Writable {
 
     if (!(userInfo.university)) throw new Error("Something really weird happened - shouldn't be getting ticket counters for unsubmitted applications")
 
-    // getFriendInstitutionGroup must return the Counter associated with the friend institution group of the user's institution
-    // as the user is from a friend institution
-    if (isUserFromFriendInstitution(userInfo)) counters.push(this.getFriendInstitutionGroupCounter(userInfo)!)
+    const friendInstitutionCounter = this.getFriendInstitutionGroupCounter(userInfo)
+    if (friendInstitutionCounter != null) counters.push(friendInstitutionCounter)
     else if (isExternalApplicant(userInfo)) counters.push(this.totalAssignedExternalTicketCounter)
 
     if (counters.length === 1) return counters[0]
@@ -171,7 +172,7 @@ export class TicketAssigningWritable extends stream.Writable {
    */
   async waitingList(userInfo: AugmentedUserInfo): Promise<void> {
     if (userInfo.applicationStatus === "waitingList") return
-    if (userInfo.applicationStatus === 'unsubmitted')
+    if (userInfo.applicationStatus === "unsubmitted")
       throw new Error(`Can't waiting list/accept ${userInfo.userId} as their application is unsubmitted`)
     if (userInfo.applicationStatus === "accepted")
       throw new Error(`Can't waiting list ${userInfo.userId} as their application has been accepted`)
@@ -203,7 +204,7 @@ export class TicketAssigningWritable extends stream.Writable {
    * Otherwise, move the user to the ticket waiting list.
    */
   async updateApplicationStatus(userInfo: AugmentedUserInfo): Promise<void> {
-    if (userInfo.applicationStatus === 'unsubmitted')
+    if (userInfo.applicationStatus === "unsubmitted")
       throw new Error(`Can't waiting list/accept ${userInfo.userId} as their application is unsubmitted`)
 
     const ticketCounter = this.getTicketCounterFor(userInfo)
