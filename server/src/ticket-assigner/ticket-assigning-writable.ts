@@ -95,7 +95,6 @@ export class TicketAssigningWritable extends stream.Writable {
     )
     this.totalAssignedFriendUniversityTicketCounters = durhackConfig.friendInstitutionsGroups.map((friendInstitutionGroup: FriendInstitutionGroup) => {
       const counter = new Counter(friendInstitutionGroup.institutions.reduce((acc, cur) => acc + (totalAssignedByUniversity[cur] ?? 0), 0), friendInstitutionGroup.maxTickets)
-      console.log(`created counter for ${friendInstitutionGroup.institutions} that have max ${friendInstitutionGroup.maxTickets} with ${counter.get()} tickets`)
       return {
         institutions: friendInstitutionGroup.institutions,
         counter: counter
@@ -107,13 +106,9 @@ export class TicketAssigningWritable extends stream.Writable {
   private getFriendInstitutionGroupCounter(userInfo: UserInfo): Counter | null {
     if (!(userInfo.university)) throw new Error("Something stranger than Dr. Strange happened - how did you get here?")
 
-    console.log(`User's university: ${userInfo.university}`)
-
     for (const institutionGroup of this.totalAssignedFriendUniversityTicketCounters)
-      if (institutionGroup.institutions.includes(userInfo.university)) {
-        console.log(`User is from friend institution group: ${institutionGroup.institutions}`)
+      if (institutionGroup.institutions.includes(userInfo.university))
         return institutionGroup.counter
-      }
 
     // User is not from a friend institution
     return null
@@ -125,10 +120,7 @@ export class TicketAssigningWritable extends stream.Writable {
     if (!(userInfo.university)) throw new Error("Something really weird happened - shouldn't be getting ticket counters for unsubmitted applications")
 
     const friendInstitutionCounter = this.getFriendInstitutionGroupCounter(userInfo)
-    if (friendInstitutionCounter != null) {
-      counters.push(friendInstitutionCounter)
-      console.log(`friend institution! num_tickets: ${friendInstitutionCounter.get()}`)
-    }
+    if (friendInstitutionCounter != null) counters.push(friendInstitutionCounter)
     else if (isExternalApplicant(userInfo)) counters.push(this.totalAssignedExternalTicketCounter)
 
     if (counters.length === 1) return counters[0]
