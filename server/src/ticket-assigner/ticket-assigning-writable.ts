@@ -93,19 +93,27 @@ export class TicketAssigningWritable extends stream.Writable {
       totalAssignedExternalTicketCount,
       durhackConfig.maximumExternalTicketAssignment,
     )
-    this.totalAssignedFriendUniversityTicketCounters = durhackConfig.friendInstitutionsGroups.map((friendInstitutionGroup: FriendInstitutionGroup) => ({
-      institutions: friendInstitutionGroup.institutions,
-      counter: new Counter(friendInstitutionGroup.institutions.reduce((acc, cur) => acc + totalAssignedByUniversity[cur], 0), friendInstitutionGroup.maxTickets)
-    }))
+    this.totalAssignedFriendUniversityTicketCounters = durhackConfig.friendInstitutionsGroups.map((friendInstitutionGroup: FriendInstitutionGroup) => {
+      const counter = new Counter(friendInstitutionGroup.institutions.reduce((acc, cur) => acc + totalAssignedByUniversity[cur], 0), friendInstitutionGroup.maxTickets)
+      console.log(`created counter for ${friendInstitutionGroup.institutions} that have max ${friendInstitutionGroup.maxTickets} with ${counter.get()} tickets`)
+      return {
+        institutions: friendInstitutionGroup.institutions,
+        counter: counter
+      }
+    })
     this.eventTimingInfo = getEventTimingInfo()
   }
 
   private getFriendInstitutionGroupCounter(userInfo: UserInfo): Counter | null {
     if (!(userInfo.university)) throw new Error("Something stranger than Dr. Strange happened - how did you get here?")
 
+    console.log(`User's university: ${userInfo.university}`)
+
     for (const institutionGroup of this.totalAssignedFriendUniversityTicketCounters)
-      if (institutionGroup.institutions.includes(userInfo.university))
+      if (institutionGroup.institutions.includes(userInfo.university)) {
+        console.log(`User is from friend institution group: ${institutionGroup.institutions}`)
         return institutionGroup.counter
+      }
 
     // User is not from a friend institution
     return null
