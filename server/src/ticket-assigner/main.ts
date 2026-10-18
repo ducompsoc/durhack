@@ -20,7 +20,7 @@ const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssigned
       where: { applicationStatus: { equals: "accepted" }, university: { not: "Durham University" } },
     }),
     prisma.userInfo.groupBy({
-      by: "university",
+      by: ["university"],
       where: {
         applicationStatus: { equals: "accepted" },
         university: {
@@ -36,7 +36,7 @@ const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssigned
 
 const mailer = new MailgunMailer()
 
-console.log(totalAssignedFriendTicketGroups)
+console.log(`ticket groups: ${totalAssignedFriendTicketGroups}`)
 const totalAssignedFriendTicketCount = Object.fromEntries(Object.entries(totalAssignedFriendTicketGroups).map(([uni, res]) => [uni, res._count._all]))
 const userInfoReadable = Readable.from(generateUserInfoByTicketAssignmentOrder())
 const attendeeCheckingTransform = new AttendeeCheckingTransform()
