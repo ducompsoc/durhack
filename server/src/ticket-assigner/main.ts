@@ -28,7 +28,7 @@ const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssigned
             acc.concat(group.institutions), [])
         }
       },
-      _count: { _all: true }
+      _count: { userId: true }
     }),
     loadTemplate("ticket-notification"),
     loadTemplate("waiting-list-notification"),
