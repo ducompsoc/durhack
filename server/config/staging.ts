@@ -35,7 +35,7 @@ export default {
     maximumTicketAssignment: 9,
     friendInstitutionsGroups: [
       {
-        institutions: ["University of Leeds", "University of Sheffield"],
+        institutions: ["University of Leeds", "The University of Sheffield"],
         maxTickets: 4,
       },
       {
