@@ -36,6 +36,7 @@ const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssigned
 
 const mailer = new MailgunMailer()
 
+console.log(totalAssignedFriendTicketGroups)
 const totalAssignedFriendTicketCount = Object.fromEntries(Object.entries(totalAssignedFriendTicketGroups).map(([uni, res]) => [uni, res._count._all]))
 const userInfoReadable = Readable.from(generateUserInfoByTicketAssignmentOrder())
 const attendeeCheckingTransform = new AttendeeCheckingTransform()
