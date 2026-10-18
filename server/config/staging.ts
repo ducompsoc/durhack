@@ -32,11 +32,17 @@ export default {
   },
   durhack: {
     ticketAssignmentActive: true,
-    maximumTicketAssignment: 4,
-    friendInstitutionsGroups: [{
-      institutions: ["Newcastle University"],
-      maxTickets: 2,
-    }],
+    maximumTicketAssignment: 9,
+    friendInstitutionsGroups: [
+      {
+        institutions: ["University of Leeds", "University of Sheffield"],
+        maxTickets: 4,
+      },
+      {
+        institutions: ["Heriot-Watt University"],
+        maxTickets: 1,
+      }
+    ],
     maximumExternalTicketAssignment: 1,
   },
 } satisfies DeepPartial<ConfigIn>
