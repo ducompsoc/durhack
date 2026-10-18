@@ -9,6 +9,7 @@ import { loadTemplate } from "@/mailer/templates"
 import { AttendeeCheckingTransform } from "./attendee-checking-transform"
 import { TicketAssigningWritable } from "./ticket-assigning-writable"
 import { generateUserInfoByTicketAssignmentOrder } from "./ticket-order-user-info-async-generator"
+import {checkTemplateFormUrlValidity} from "@/lib/check-template-form-url-validity";
 
 const [totalAssignedTicketCount, totalAssignedExternalTicketCount, acceptedTemplate, waitingListTemplate] =
   await Promise.all([
@@ -21,6 +22,9 @@ const [totalAssignedTicketCount, totalAssignedExternalTicketCount, acceptedTempl
     loadTemplate("ticket-notification"),
     loadTemplate("waiting-list-notification"),
   ])
+
+checkTemplateFormUrlValidity(acceptedTemplate)
+checkTemplateFormUrlValidity(waitingListTemplate)
 
 const mailer = new MailgunMailer()
 
