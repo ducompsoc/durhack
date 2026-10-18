@@ -42,12 +42,26 @@ export default {
       clientCertificateKeyFile: "/dev/null",
     },
     ticketAssignmentActive: false,
-    maximumTicketAssignment: 850,
-    friendInstitutionsGroups: [{
-      institutions: ["Newcastle University"],
+    maximumTicketAssignment: 950,
+    friendInstitutionsGroups: [
+      {
+        institutions: ["Durham University"],
+        maxTickets: 550
+      },
+      {
+      institutions: ["Newcastle University", "University of Newcastle", "Northumbria University", "University of Sunderland", "Teesside University"],
       maxTickets: 100
-    }],
-    maximumExternalTicketAssignment: 300,
+      },
+      {
+        institutions: ["The University of Manchester", "Manchester Metropolitan University", "University of Leeds", "Leeds Beckett University"],
+        maxTickets: 100
+      },
+      {
+        institutions: ["University of Nottingham", "Nottingham Trent University", "The University of Sheffield", "Sheffield Hallam University"],
+        maxTickets: 100
+      }
+    ],
+    maximumExternalTicketAssignment: 100,
     currentEventStart: new Date("2026-11-14T09:30:00+00:00"),
     currentEventCheckInCloses: new Date("2026-11-14T10:30:00+00:00"),
     currentEventEnd: new Date("2026-11-15T17:30:00+00:00"),
