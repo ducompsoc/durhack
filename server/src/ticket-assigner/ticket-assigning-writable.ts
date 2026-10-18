@@ -125,7 +125,10 @@ export class TicketAssigningWritable extends stream.Writable {
     if (!(userInfo.university)) throw new Error("Something really weird happened - shouldn't be getting ticket counters for unsubmitted applications")
 
     const friendInstitutionCounter = this.getFriendInstitutionGroupCounter(userInfo)
-    if (friendInstitutionCounter != null) counters.push(friendInstitutionCounter)
+    if (friendInstitutionCounter != null) {
+      counters.push(friendInstitutionCounter)
+      console.log(`friend institution! num_tickets: ${friendInstitutionCounter.get()}`)
+    }
     else if (isExternalApplicant(userInfo)) counters.push(this.totalAssignedExternalTicketCounter)
 
     if (counters.length === 1) return counters[0]
