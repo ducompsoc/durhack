@@ -34,7 +34,7 @@ const mailer = new MailgunMailer()
 
 console.log(`friend universities: ${durhackConfig.friendInstitutionsGroups.reduce((acc: string[], group) => acc.concat(group.institutions), [])}`)
 console.log(`ticket groups: ${JSON.stringify(totalAssignedFriendTicketGroups, null, 2)}`)
-const totalAssignedFriendTicketCount = Object.fromEntries(Object.entries(totalAssignedFriendTicketGroups).map(([uni, res]) => [uni, res._count._all]))
+const totalAssignedFriendTicketCount = Object.fromEntries(Object.entries(totalAssignedFriendTicketGroups).map(([uni, res]) => [uni, res._count.userId]))
 const userInfoReadable = Readable.from(generateUserInfoByTicketAssignmentOrder())
 const attendeeCheckingTransform = new AttendeeCheckingTransform()
 const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
