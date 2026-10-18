@@ -14,7 +14,7 @@ import { durhackInvite } from "@/routes/calendar/calendar-event"
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
 type ICounter = {
-  increment: () => void
+  increment: () => boolean
   decrement: () => void
   hasCapacity: () => boolean
 }
@@ -28,8 +28,10 @@ class Counter implements ICounter {
     this.capacity = capacity
   }
 
-  increment(): void {
+  increment(): boolean {
+    if (!this.hasCapacity()) return false
     this.count += 1
+    return true
   }
   decrement(): void {
     this.count -= 1
@@ -49,8 +51,10 @@ class MultiCounter implements ICounter {
     this.counters = counters
   }
 
-  increment(): void {
+  increment(): boolean {
+    if (!this.hasCapacity()) return false
     for (const counter of this.counters) counter.increment()
+    return true
   }
   decrement(): void {
     for (const counter of this.counters) counter.decrement()
@@ -130,27 +134,34 @@ export class TicketAssigningWritable extends stream.Writable {
   /**
    * Assign a user a ticket to attend DurHack, and send an email notification.
    */
-  async assignTicket(userInfo: AugmentedUserInfo): Promise<void> {
+  async assignTicketOrWaitlist(userInfo: AugmentedUserInfo): Promise<void> {
     if (userInfo.applicationStatus === "accepted") return
     if (userInfo.applicationStatus === "unsubmitted")
       throw new Error(`Can't assign ticket to ${userInfo.userId} as their application is unsubmitted`)
 
     const ticketCounter = this.getTicketCounterFor(userInfo)
+    let assigned = false
 
     try {
-      ticketCounter.increment()
-      const now = new Date()
-      await prisma.userInfo.update({
-        where: { userId: userInfo.userId },
-        data: {
-          applicationStatus: "accepted",
-          applicationAcceptedAt: now,
-          applicationStatusUpdatedAt: now,
-        },
-      })
+      if (ticketCounter.increment()) {
+        const now = new Date()
+        await prisma.userInfo.update({
+          where: { userId: userInfo.userId },
+          data: {
+            applicationStatus: "accepted",
+            applicationAcceptedAt: now,
+            applicationStatusUpdatedAt: now,
+          },
+        })
+        assigned = true
+      }
     } catch (e) {
       ticketCounter.decrement()
       throw e
+    }
+
+    if (!assigned) {
+      await this.waitingList(userInfo)
     }
 
     userInfo.preferredNames ??= userInfo.firstNames
@@ -209,13 +220,7 @@ export class TicketAssigningWritable extends stream.Writable {
     if (userInfo.applicationStatus === "unsubmitted")
       throw new Error(`Can't waiting list/accept ${userInfo.userId} as their application is unsubmitted`)
 
-    const ticketCounter = this.getTicketCounterFor(userInfo)
-    if (ticketCounter.hasCapacity()) {
-      await this.assignTicket(userInfo)
-      return
-    }
-
-    await this.waitingList(userInfo)
+    await this.assignTicketOrWaitlist(userInfo)
   }
 
   async updateManyApplicationStatus(users: AugmentedUserInfo[]): Promise<void> {
