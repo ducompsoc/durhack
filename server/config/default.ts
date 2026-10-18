@@ -43,11 +43,10 @@ export default {
     },
     ticketAssignmentActive: false,
     maximumTicketAssignment: 850,
-    friendUniversities: {
-      "Newcastle University": {
-        maxTickets: 100
-      }
-    },
+    friendInstitutionsGroups: [{
+      institutions: ["Newcastle University"],
+      maxTickets: 100
+    }],
     maximumExternalTicketAssignment: 300,
     currentEventStart: new Date("2026-11-14T09:30:00+00:00"),
     currentEventCheckInCloses: new Date("2026-11-14T10:30:00+00:00"),

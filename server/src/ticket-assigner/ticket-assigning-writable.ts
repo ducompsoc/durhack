@@ -1,6 +1,6 @@
 import stream from "node:stream"
 
-import { durhackConfig, mailgunConfig } from "@/config"
+import {durhackConfig, FriendInstitutionGroup, mailgunConfig} from "@/config"
 import { prisma, type UserInfo } from "@/database"
 import { type DurHackEventTimingInfo, getEventTimingInfo } from "@/lib/format-event-timings"
 import { isExternalApplicant } from "@/lib/is-external-applicant"
@@ -10,7 +10,6 @@ import { isString } from "@/lib/type-guards"
 import { profileQrCodeImgTag } from "@/mailer/profile-qr-code"
 import type { Template } from "@/mailer/templates"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
-import {isFriendUniversity} from "@/lib/is-friend-university";
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
@@ -61,10 +60,15 @@ class MultiCounter implements ICounter {
   }
 }
 
+type FriendInstitutionCounterSchema = {
+  institutions: string[],
+  counter: Counter
+}
+
 export class TicketAssigningWritable extends stream.Writable {
   totalAssignedTicketCounter: Counter
   totalAssignedExternalTicketCounter: Counter
-  totalAssignedFriendUniversityTicketCounters: { [university: string]: Counter }
+  totalAssignedFriendUniversityTicketCounters: FriendInstitutionCounterSchema[]
   private readonly mailer: Mailer
   private readonly ticketMessageTemplate: Template
   private readonly waitingListMessageTemplate: Template
@@ -76,7 +80,7 @@ export class TicketAssigningWritable extends stream.Writable {
     waitingListTemplate: Template,
     totalAssignedTicketCount: number,
     totalAssignedExternalTicketCount: number,
-    totalAssignedFriendUniversityTicketCount: { [university: string]: number },
+    totalAssignedByUniversity: { [university: string]: number },
   ) {
     super({
       objectMode: true, // the stream expects to receive objects, not a string/binary data
@@ -89,21 +93,31 @@ export class TicketAssigningWritable extends stream.Writable {
       totalAssignedExternalTicketCount,
       durhackConfig.maximumExternalTicketAssignment,
     )
-    this.totalAssignedFriendUniversityTicketCounters = Object.fromEntries(
-      Object.entries(totalAssignedFriendUniversityTicketCount).map(([uni, cnt]) => [
-        uni,
-        new Counter(cnt, durhackConfig.friendUniversities[uni].maxTickets),
-      ]),
-    )
+    this.totalAssignedFriendUniversityTicketCounters = durhackConfig.friendInstitutionsGroups.map((friendInstitutionGroup: FriendInstitutionGroup) => ({
+      institutions: friendInstitutionGroup.institutions,
+      counter: new Counter(friendInstitutionGroup.institutions.reduce((acc, cur) => acc + totalAssignedByUniversity[cur], 0), friendInstitutionGroup.maxTickets)
+    }))
     this.eventTimingInfo = getEventTimingInfo()
+  }
+
+  private getFriendInstitutionGroupCounter(userInfo: UserInfo): Counter | null {
+    if (!(userInfo.university)) throw new Error("Something stranger than Dr. Strange happened - how did you get here?")
+
+    for (const institutionGroup of this.totalAssignedFriendUniversityTicketCounters)
+      if (institutionGroup.institutions.includes(userInfo.university))
+        return institutionGroup.counter
+
+    // User is not from a friend institution
+    return null
   }
 
   getTicketCounterFor(userInfo: AugmentedUserInfo): ICounter {
     const counters: Counter[] = [this.totalAssignedTicketCounter]
 
-    if (!userInfo.university) throw new Error("Something really weird happened - shouldn't be getting ticket counters for unsubmitted applications")
+    if (!(userInfo.university)) throw new Error("Something really weird happened - shouldn't be getting ticket counters for unsubmitted applications")
 
-    if (isFriendUniversity(userInfo)) counters.push(this.totalAssignedFriendUniversityTicketCounters[userInfo.university])
+    const friendInstitutionCounter = this.getFriendInstitutionGroupCounter(userInfo)
+    if (friendInstitutionCounter != null) counters.push(friendInstitutionCounter)
     else if (isExternalApplicant(userInfo)) counters.push(this.totalAssignedExternalTicketCounter)
 
     if (counters.length === 1) return counters[0]
@@ -157,7 +171,7 @@ export class TicketAssigningWritable extends stream.Writable {
    */
   async waitingList(userInfo: AugmentedUserInfo): Promise<void> {
     if (userInfo.applicationStatus === "waitingList") return
-    if (userInfo.applicationStatus === 'unsubmitted')
+    if (userInfo.applicationStatus === "unsubmitted")
       throw new Error(`Can't waiting list/accept ${userInfo.userId} as their application is unsubmitted`)
     if (userInfo.applicationStatus === "accepted")
       throw new Error(`Can't waiting list ${userInfo.userId} as their application has been accepted`)
@@ -189,7 +203,7 @@ export class TicketAssigningWritable extends stream.Writable {
    * Otherwise, move the user to the ticket waiting list.
    */
   async updateApplicationStatus(userInfo: AugmentedUserInfo): Promise<void> {
-    if (userInfo.applicationStatus === 'unsubmitted')
+    if (userInfo.applicationStatus === "unsubmitted")
       throw new Error(`Can't waiting list/accept ${userInfo.userId} as their application is unsubmitted`)
 
     const ticketCounter = this.getTicketCounterFor(userInfo)

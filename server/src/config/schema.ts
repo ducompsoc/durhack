@@ -64,9 +64,12 @@ export const stashEligibilityConditionSchema = z.discriminatedUnion("type", [
  * maxTickets - define the number of tickets hackers from the "friend" university can be assigned as long as maximum
  * tickets assigned aren't exceeded
  * */
-export const friendUniversitiesSchema = z.record(z.string(), z.object({
-  maxTickets: z.number().nonnegative()
-}))
+export const friendInstitutionsSchema = z.object({
+  institutions: z.array(z.string()),
+  maxTickets: z.int().nonnegative()
+})
+
+export type FriendInstitutionGroup = z.infer<typeof friendInstitutionsSchema>
 
 /**
  * maximumTicketAssignment -  maximum total number of tickets that can be assigned
@@ -78,7 +81,7 @@ export const durhackOptionsSchema = z
     ticketAssignmentActive: z.boolean(),
     maximumTicketAssignment: z.number().nonnegative(),
     maximumExternalTicketAssignment: z.number().nonnegative(),
-    friendUniversities: friendUniversitiesSchema,
+    friendInstitutionsGroups: z.array(friendInstitutionsSchema),
     currentEventStart: z.date(),
     currentEventCheckInCloses: z.date(),
     currentEventEnd: z.date(),

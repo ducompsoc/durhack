@@ -1,7 +1,7 @@
 import { Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
 
-import {durhackConfig} from "@/config";
+import { durhackConfig } from "@/config";
 import { prisma } from "@/database"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { MailgunMailer } from "@/lib/mailer"
@@ -21,7 +21,13 @@ const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssigned
     }),
     prisma.userInfo.groupBy({
       by: "university",
-      where: {applicationStatus: { equals: "accepted" }, university: { in: Object.keys(durhackConfig.friendUniversities) } },
+      where: {
+        applicationStatus: { equals: "accepted" },
+        university: {
+          in: durhackConfig.friendInstitutionsGroups.reduce((acc: string[], group) =>
+            acc.concat(group.institutions), [])
+        }
+      },
       _count: { _all: true }
     }),
     loadTemplate("ticket-notification"),
