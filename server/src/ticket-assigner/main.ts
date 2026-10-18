@@ -23,10 +23,6 @@ const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssigned
       by: ["university"],
       where: {
         applicationStatus: { equals: "accepted" },
-        university: {
-          in: durhackConfig.friendInstitutionsGroups.reduce((acc: string[], group) =>
-            acc.concat(group.institutions), [])
-        }
       },
       _count: { userId: true }
     }),
