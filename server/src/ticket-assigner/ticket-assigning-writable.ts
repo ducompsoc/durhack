@@ -94,7 +94,7 @@ export class TicketAssigningWritable extends stream.Writable {
       durhackConfig.maximumExternalTicketAssignment,
     )
     this.totalAssignedFriendUniversityTicketCounters = durhackConfig.friendInstitutionsGroups.map((friendInstitutionGroup: FriendInstitutionGroup) => {
-      const counter = new Counter(friendInstitutionGroup.institutions.reduce((acc, cur) => acc + totalAssignedByUniversity[cur], 0), friendInstitutionGroup.maxTickets)
+      const counter = new Counter(friendInstitutionGroup.institutions.reduce((acc, cur) => acc + (totalAssignedByUniversity[cur] ?? 0), 0), friendInstitutionGroup.maxTickets)
       console.log(`created counter for ${friendInstitutionGroup.institutions} that have max ${friendInstitutionGroup.maxTickets} with ${counter.get()} tickets`)
       return {
         institutions: friendInstitutionGroup.institutions,
