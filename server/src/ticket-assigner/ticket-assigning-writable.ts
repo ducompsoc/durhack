@@ -1,4 +1,6 @@
 import stream from "node:stream"
+import assert from "node:assert/strict"
+import ModuleError from "module-error";
 
 import {durhackConfig, FriendInstitutionGroup, mailgunConfig} from "@/config"
 import { prisma, type UserInfo } from "@/database"
@@ -6,11 +8,10 @@ import { type DurHackEventTimingInfo, getEventTimingInfo } from "@/lib/format-ev
 import { isExternalApplicant } from "@/lib/is-external-applicant"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import type { Mailer } from "@/lib/mailer"
-import { isString } from "@/lib/type-guards"
+import {hasCode, isString} from "@/lib/type-guards"
 import { profileQrCodeImgTag } from "@/mailer/profile-qr-code"
 import type { Template } from "@/mailer/templates"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
-import ModuleError from "module-error";
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
@@ -147,6 +148,39 @@ export class TicketAssigningWritable extends stream.Writable {
   }
 
   /**
+   * Increment the appropriate counter(s) and set a user's application status to 'accepted'.
+   * If the operation is successful, returns <code>true</code>.
+   * If any counter had no capacity, returns <code>false</code>.
+   * In any other exceptional scenario, raises an <code>Error</code>.
+   */
+  async setStatusAcceptedAndIncrementCounter(userInfo: AugmentedUserInfo): Promise<boolean> {
+    const ticketCounter = this.getTicketCounterFor(userInfo)
+
+    try {
+      ticketCounter.increment()
+    } catch (e) {
+      if (hasCode(e) && e.code === COUNTER_AT_CAPACITY) return false
+      throw e
+    }
+
+    try {
+      const now = new Date()
+      await prisma.userInfo.update({
+        where: { userId: userInfo.userId },
+        data: {
+          applicationStatus: "accepted",
+          applicationAcceptedAt: now,
+          applicationStatusUpdatedAt: now,
+        },
+      })
+    } catch (e) {
+      ticketCounter.decrement()
+      throw e
+    }
+    return true
+  }
+
+  /**
    * Assign a user a ticket to attend DurHack, and send an email notification.
    */
   async assignTicketOrWaitlist(userInfo: AugmentedUserInfo): Promise<void> {
@@ -154,29 +188,10 @@ export class TicketAssigningWritable extends stream.Writable {
     if (userInfo.applicationStatus === "unsubmitted")
       throw new Error(`Can't assign ticket to ${userInfo.userId} as their application is unsubmitted`)
 
-    const ticketCounter = this.getTicketCounterFor(userInfo)
-    let assigned = false
-
-    try {
-      if (ticketCounter.increment()) {
-        const now = new Date()
-        await prisma.userInfo.update({
-          where: { userId: userInfo.userId },
-          data: {
-            applicationStatus: "accepted",
-            applicationAcceptedAt: now,
-            applicationStatusUpdatedAt: now,
-          },
-        })
-        assigned = true
-      }
-    } catch (e) {
-      ticketCounter.decrement()
-      throw e
-    }
-
-    if (!assigned) {
+    const accepted = await this.setStatusAcceptedAndIncrementCounter(userInfo)
+    if (!accepted) {
       await this.waitingList(userInfo)
+      return;
     }
 
     userInfo.preferredNames ??= userInfo.firstNames
