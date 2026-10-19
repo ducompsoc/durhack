@@ -181,7 +181,9 @@ export class TicketAssigningWritable extends stream.Writable {
   }
 
   /**
-   * Assign a user a ticket to attend DurHack, and send an email notification.
+   * If DurHack still has ticket capacity to allocate, assign an attendee ticket to the specified user, then
+   * send an email notification.
+   * Otherwise, move the user to the ticket waiting list and send an email notification.
    */
   async assignTicketOrWaitlist(userInfo: AugmentedUserInfo): Promise<void> {
     if (userInfo.applicationStatus === "accepted") return
@@ -242,19 +244,8 @@ export class TicketAssigningWritable extends stream.Writable {
     })
   }
 
-  /**
-   * If DurHack still has ticket capacity to allocate, assign an attendee ticket to the provided user.
-   * Otherwise, move the user to the ticket waiting list.
-   */
-  async updateApplicationStatus(userInfo: AugmentedUserInfo): Promise<void> {
-    if (userInfo.applicationStatus === "unsubmitted")
-      throw new Error(`Can't waiting list/accept ${userInfo.userId} as their application is unsubmitted`)
-
-    await this.assignTicketOrWaitlist(userInfo)
-  }
-
   async updateManyApplicationStatus(users: AugmentedUserInfo[]): Promise<void> {
-    const applicationStatusUpdatePromises = users.map((user) => this.updateApplicationStatus(user))
+    const applicationStatusUpdatePromises = users.map((user) => this.assignTicketOrWaitlist(user))
     await Promise.all(applicationStatusUpdatePromises)
   }
 
