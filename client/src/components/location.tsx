@@ -33,7 +33,7 @@ function LocationBtn({ innerText, disabled, href, className, ...props }: Locatio
 }
 
 export default function Location({ className, ...props }: React.ComponentProps<"div">) {
-  const SU_LINK = ""
+  const SU_LINK = "https://durhamsu.native.fm/event/durhack-2026-coach-tickets-manchester-leeds-and-nottingham-sheffield/294520"
   const MAPS_LINK = "https://maps.app.goo.gl/H3qypQFBy88CQa7N9"
 
   return (
@@ -52,7 +52,7 @@ export default function Location({ className, ...props }: React.ComponentProps<"
       </div>
       <div className={cn("flex flex-row flex-wrap justify-center items-center align-middle my-10 w-full")}>
         <LocationBtn href={MAPS_LINK} innerText="Google Maps" />
-        <LocationBtn disabled href={SU_LINK} innerText="Book Coach Tickets" />
+        <LocationBtn href={SU_LINK} innerText="Book Coach Tickets" />
       </div>
     </div>
   )
