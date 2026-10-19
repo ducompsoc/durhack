@@ -185,7 +185,7 @@ export class TicketAssigningWritable extends stream.Writable {
    * send an email notification.
    * Otherwise, move the user to the ticket waiting list and send an email notification.
    */
-  async assignTicketOrWaitlist(userInfo: AugmentedUserInfo): Promise<void> {
+  async acceptOrWaitlist(userInfo: AugmentedUserInfo): Promise<void> {
     if (userInfo.applicationStatus === "accepted") return
     if (userInfo.applicationStatus === "unsubmitted")
       throw new Error(`Can't assign ticket to ${userInfo.userId} as their application is unsubmitted`)
@@ -244,13 +244,13 @@ export class TicketAssigningWritable extends stream.Writable {
     })
   }
 
-  async updateManyApplicationStatus(users: AugmentedUserInfo[]): Promise<void> {
-    const applicationStatusUpdatePromises = users.map((user) => this.assignTicketOrWaitlist(user))
+  async acceptOrWaitlistMany(users: AugmentedUserInfo[]): Promise<void> {
+    const applicationStatusUpdatePromises = users.map((user) => this.acceptOrWaitlist(user))
     await Promise.all(applicationStatusUpdatePromises)
   }
 
   _write(chunk: AugmentedUserInfo[], _encoding: never, callback: (error?: Error | null) => void) {
-    this.updateManyApplicationStatus(chunk)
+    this.acceptOrWaitlistMany(chunk)
       .then(() => callback())
       .catch((error: unknown) => {
         if (error instanceof Error) return callback(error)
