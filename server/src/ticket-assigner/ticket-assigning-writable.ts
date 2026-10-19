@@ -180,6 +180,17 @@ export class TicketAssigningWritable extends stream.Writable {
     return true
   }
 
+  async setStatusWaitlisted(userInfo: AugmentedUserInfo): Promise<void> {
+    const now = new Date()
+    await prisma.userInfo.update({
+      where: { userId: userInfo.userId },
+      data: {
+        applicationStatus: "waitingList",
+        applicationStatusUpdatedAt: now,
+      },
+    })
+  }
+
   /**
    * If DurHack still has ticket capacity to allocate, assign an attendee ticket to the specified user, then
    * send an email notification.
@@ -222,14 +233,7 @@ export class TicketAssigningWritable extends stream.Writable {
     if (userInfo.applicationStatus === "accepted")
       throw new Error(`Can't waiting list ${userInfo.userId} as their application has been accepted`)
 
-    const now = new Date()
-    await prisma.userInfo.update({
-      where: { userId: userInfo.userId },
-      data: {
-        applicationStatus: "waitingList",
-        applicationStatusUpdatedAt: now,
-      },
-    })
+    await this.setStatusWaitlisted(userInfo)
 
     userInfo.preferredNames ??= userInfo.firstNames
     await this.mailer.createMessage({
