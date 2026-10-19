@@ -10,11 +10,18 @@ import { isString } from "@/lib/type-guards"
 import { profileQrCodeImgTag } from "@/mailer/profile-qr-code"
 import type { Template } from "@/mailer/templates"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
+import ModuleError from "module-error";
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
+/**
+ * Error code for incrementing a counter with no capacity.
+ */
+const COUNTER_AT_CAPACITY = "ERR_COUNTER_AT_CAPACITY"
+
 type ICounter = {
-  increment: () => boolean
+  increment: () => void
+  tryIncrement: () => boolean
   decrement: () => void
   hasCapacity: () => boolean
 }
@@ -28,7 +35,11 @@ class Counter implements ICounter {
     this.capacity = capacity
   }
 
-  increment(): boolean {
+  increment(): void {
+    if (!this.hasCapacity()) throw new ModuleError("Counter at capacity", { code: COUNTER_AT_CAPACITY })
+    this.count += 1
+  }
+  tryIncrement(): boolean {
     if (!this.hasCapacity()) return false
     this.count += 1
     return true
@@ -51,7 +62,11 @@ class MultiCounter implements ICounter {
     this.counters = counters
   }
 
-  increment(): boolean {
+  increment(): void {
+    if (!this.hasCapacity()) throw new ModuleError("At least one sub-counter is at capacity", { code: COUNTER_AT_CAPACITY })
+    for (const counter of this.counters) counter.increment()
+  }
+  tryIncrement(): boolean {
     if (!this.hasCapacity()) return false
     for (const counter of this.counters) counter.increment()
     return true
