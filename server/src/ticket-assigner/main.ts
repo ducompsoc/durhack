@@ -4,7 +4,7 @@ import { z } from "zod/v4"
 
 import { prisma } from "@/database"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
-import { MailgunMailer } from "@/lib/mailer"
+import { MailgunMailer, DummyMailer } from "@/lib/mailer"
 import { loadTemplate } from "@/mailer/templates"
 
 import { AttendeeCheckingTransform } from "./attendee-checking-transform"
@@ -53,7 +53,7 @@ const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssigned
     loadTemplate("waiting-list-notification"),
   ])
 
-const mailer = new MailgunMailer()
+const mailer = dry ? new DummyMailer : new MailgunMailer()
 
 const totalAssignedFriendTicketCount = Object.fromEntries(Object.entries(totalAssignedFriendTicketGroups).map(([uni, res]) => [uni, res._count.userId]))
 const userInfoReadable = Readable.from(generateUserInfoByTicketAssignmentOrder())
