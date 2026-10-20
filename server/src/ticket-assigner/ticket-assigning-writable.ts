@@ -184,7 +184,7 @@ export class TicketAssigningWritable extends stream.Writable {
       throw e
     }
 
-    this.logger.info(`Assigning ticket to user ${userInfo.userId} from  ${userInfo.university}`)
+    this.logger.info(`Assigning ticket to user ${userInfo.userId} from ${userInfo.university}`)
     if (this.dry)
       return true;
 
