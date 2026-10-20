@@ -15,7 +15,7 @@ import {durhackConfig} from "@/config";
 
 const programArgsConfig = {
   options: {
-    dry: {
+    "dry-run": {
       type: "boolean",
       default: false
     }
@@ -23,7 +23,7 @@ const programArgsConfig = {
 } as const satisfies ParseArgsConfig
 
 const ticketAssignerOptionsSchema = z.object({
-  dry: z.boolean()
+  "dry-run": z.boolean()
 })
 
 type TicketAssignerOptions = z.output<typeof ticketAssignerOptionsSchema>
@@ -33,7 +33,7 @@ function parseTicketAssignerArgs(): TicketAssignerOptions {
   return ticketAssignerOptionsSchema.parse(result.values)
 }
 
-const { dry } = parseTicketAssignerArgs()
+const { "dry-run": dryRun } = parseTicketAssignerArgs()
 
 const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssignedFriendTicketGroups, acceptedTemplate, waitingListTemplate] =
   await Promise.all([
@@ -54,7 +54,7 @@ const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssigned
     loadTemplate("waiting-list-notification"),
   ])
 
-const mailer = dry ? new DummyMailer : new MailgunMailer()
+const mailer = dryRun ? new DummyMailer : new MailgunMailer()
 
 const totalAssignedFriendTicketCount = Object.fromEntries(Object.entries(totalAssignedFriendTicketGroups).map(([uni, res]) => [uni, res._count.userId]))
 const userInfoReadable = Readable.from(generateUserInfoByTicketAssignmentOrder())
@@ -67,7 +67,7 @@ const ticketAssigningWritable = new TicketAssigningWritable(
   totalAssignedTicketCount,
   totalAssignedExternalTicketCount,
   totalAssignedFriendTicketCount,
-  dry
+  dryRun
 )
 
 await pipeline(userInfoReadable, attendeeCheckingTransform, userInfoAugmentingTransform, ticketAssigningWritable)
