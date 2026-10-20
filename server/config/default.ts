@@ -42,7 +42,7 @@ export default {
       clientCertificateKeyFile: "/dev/null",
     },
     ticketAssignmentActive: false,
-    maximumTicketAssignment: 950,
+    maximumTicketAssignment: 962,
     friendInstitutionsGroups: [
       {
         institutions: ["Durham University"],
@@ -54,7 +54,7 @@ export default {
       },
       {
         institutions: ["The University of Manchester", "Manchester Metropolitan University", "University of Leeds", "Leeds Beckett University"],
-        maxTickets: 100
+        maxTickets: 112
       },
       {
         institutions: ["University of Nottingham", "Nottingham Trent University", "The University of Sheffield", "Sheffield Hallam University"],
