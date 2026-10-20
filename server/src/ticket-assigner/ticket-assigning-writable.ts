@@ -148,7 +148,7 @@ export class TicketAssigningWritable extends stream.Writable {
     if (!(userInfo.university)) throw new Error("Something stranger than Dr. Strange happened - how did you get here?")
 
     for (const institutionGroup of this.totalAssignedFriendUniversityTicketCounters)
-      if (institutionGroup.institutions.includes(userInfo.university))
+      if (institutionGroup.institutions.includes(userInfo.university.trim()))
         return institutionGroup.counter
 
     // User is not from a friend institution
