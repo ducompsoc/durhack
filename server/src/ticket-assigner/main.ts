@@ -78,5 +78,5 @@ console.log(`Assigned: ${newlyAssignedTicketCount} tickets`)
 console.log(`Total Assigned: ${totalTickets} tickets`)
 for (const group of durhackConfig.friendInstitutionsGroups) {
   const groupCounter = ticketAssigningWritable.totalAssignedFriendUniversityTicketCounters.find((groupCounter) => groupCounter.institutions === group.institutions)
-  console.log(`For group ${group.institutions} assigned ${groupCounter?.counter.get()} total tickets of ${group.maxTickets}`)
+  console.log(`${group.institutions} Assigned: ${groupCounter?.counter.get()} total of ${group.maxTickets} tickets`)
 }
