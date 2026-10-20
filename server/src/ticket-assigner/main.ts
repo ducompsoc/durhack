@@ -1,7 +1,7 @@
 import { Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
+import { z } from "zod/v4"
 
-import { durhackConfig } from "@/config";
 import { prisma } from "@/database"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
 import { MailgunMailer } from "@/lib/mailer"
@@ -10,6 +10,29 @@ import { loadTemplate } from "@/mailer/templates"
 import { AttendeeCheckingTransform } from "./attendee-checking-transform"
 import { TicketAssigningWritable } from "./ticket-assigning-writable"
 import { generateUserInfoByTicketAssignmentOrder } from "./ticket-order-user-info-async-generator"
+import {parseArgs, ParseArgsConfig} from "node:util";
+
+const programArgsConfig = {
+  options: {
+    dry: {
+      type: "boolean",
+      default: false
+    }
+  }
+} as const satisfies ParseArgsConfig
+
+const ticketAssignerOptionsSchema = z.object({
+  dry: z.boolean()
+})
+
+type TicketAssignerOptions = z.output<typeof ticketAssignerOptionsSchema>
+
+function parseTicketAssignerArgs(): TicketAssignerOptions {
+  const result = parseArgs(programArgsConfig)
+  return ticketAssignerOptionsSchema.parse(result.values)
+}
+
+const { dry } = parseTicketAssignerArgs()
 
 const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssignedFriendTicketGroups, acceptedTemplate, waitingListTemplate] =
   await Promise.all([
@@ -42,7 +65,8 @@ const ticketAssigningWritable = new TicketAssigningWritable(
   waitingListTemplate,
   totalAssignedTicketCount,
   totalAssignedExternalTicketCount,
-  totalAssignedFriendTicketCount
+  totalAssignedFriendTicketCount,
+  dry
 )
 
 await pipeline(userInfoReadable, attendeeCheckingTransform, userInfoAugmentingTransform, ticketAssigningWritable)
