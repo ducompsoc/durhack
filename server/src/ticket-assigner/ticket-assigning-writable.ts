@@ -12,6 +12,7 @@ import {hasCode, isString} from "@/lib/type-guards"
 import { profileQrCodeImgTag } from "@/mailer/profile-qr-code"
 import type { Template } from "@/mailer/templates"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
+import {ILogger} from "mailgun.js/Interfaces";
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
@@ -80,6 +81,22 @@ class MultiCounter implements ICounter {
   }
 }
 
+interface ILogger {
+  info: (str: string) => void
+}
+
+class Logger implements ILogger {
+  private readonly prepend: string
+
+  constructor(prepend: string) {
+    this.prepend = prepend
+  }
+
+  info(str: string): void {
+    console.log(this.prepend, str)
+  }
+}
+
 type FriendInstitutionCounterSchema = {
   institutions: string[],
   counter: Counter
@@ -93,6 +110,8 @@ export class TicketAssigningWritable extends stream.Writable {
   private readonly ticketMessageTemplate: Template
   private readonly waitingListMessageTemplate: Template
   private readonly eventTimingInfo: DurHackEventTimingInfo
+  private readonly dry: boolean
+  private logger: Logger
 
   constructor(
     mailer: Mailer,
@@ -101,6 +120,7 @@ export class TicketAssigningWritable extends stream.Writable {
     totalAssignedTicketCount: number,
     totalAssignedExternalTicketCount: number,
     totalAssignedByUniversity: { [university: string]: number },
+    dryRun: boolean
   ) {
     super({
       objectMode: true, // the stream expects to receive objects, not a string/binary data
@@ -121,6 +141,8 @@ export class TicketAssigningWritable extends stream.Writable {
       }
     })
     this.eventTimingInfo = getEventTimingInfo()
+    this.dry = dryRun
+    this.logger = new Logger(this.dry ? "[DRY]" : "[LIVE]")
   }
 
   private getFriendInstitutionGroupCounter(userInfo: UserInfo): Counter | null {
@@ -162,6 +184,10 @@ export class TicketAssigningWritable extends stream.Writable {
       if (hasCode(e) && e.code === COUNTER_AT_CAPACITY) return false
       throw e
     }
+
+    this.logger.info(`Assigning ticket to user ${userInfo.userId} from  ${userInfo.university}`)
+    if (!this.dry)
+      return true;
 
     try {
       const now = new Date()
@@ -233,6 +259,8 @@ export class TicketAssigningWritable extends stream.Writable {
     if (userInfo.applicationStatus === "accepted")
       throw new Error(`Can't waiting list ${userInfo.userId} as their application has been accepted`)
 
+    this.logger.info(`Waitlisting user ${userInfo.userId} from ${userInfo.university}`)
+    if (this.dry) return
     await this.setStatusWaitlisted(userInfo)
 
     userInfo.preferredNames ??= userInfo.firstNames
