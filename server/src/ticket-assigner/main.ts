@@ -1,15 +1,39 @@
 import { Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
+import { z } from "zod/v4"
 
-import { durhackConfig } from "@/config";
 import { prisma } from "@/database"
 import { KeycloakAugmentingTransform } from "@/lib/keycloak-augmenting-transform"
-import { MailgunMailer } from "@/lib/mailer"
+import { MailgunMailer, DummyMailer } from "@/lib/mailer"
 import { loadTemplate } from "@/mailer/templates"
 
 import { AttendeeCheckingTransform } from "./attendee-checking-transform"
 import { TicketAssigningWritable } from "./ticket-assigning-writable"
 import { generateUserInfoByTicketAssignmentOrder } from "./ticket-order-user-info-async-generator"
+import {parseArgs, ParseArgsConfig} from "node:util";
+import {durhackConfig} from "@/config";
+
+const programArgsConfig = {
+  options: {
+    "dry-run": {
+      type: "boolean",
+      default: false
+    }
+  }
+} as const satisfies ParseArgsConfig
+
+const ticketAssignerOptionsSchema = z.object({
+  "dry-run": z.boolean()
+})
+
+type TicketAssignerOptions = z.output<typeof ticketAssignerOptionsSchema>
+
+function parseTicketAssignerArgs(): TicketAssignerOptions {
+  const result = parseArgs(programArgsConfig)
+  return ticketAssignerOptionsSchema.parse(result.values)
+}
+
+const { "dry-run": dryRun } = parseTicketAssignerArgs()
 
 const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssignedFriendTicketGroups, acceptedTemplate, waitingListTemplate] =
   await Promise.all([
@@ -30,7 +54,7 @@ const [totalAssignedTicketCount, totalAssignedExternalTicketCount, totalAssigned
     loadTemplate("waiting-list-notification"),
   ])
 
-const mailer = new MailgunMailer()
+const mailer = dryRun ? new DummyMailer : new MailgunMailer()
 
 const totalAssignedFriendTicketCount = Object.fromEntries(Object.entries(totalAssignedFriendTicketGroups).map(([uni, res]) => [uni, res._count.userId]))
 const userInfoReadable = Readable.from(generateUserInfoByTicketAssignmentOrder())
@@ -42,9 +66,17 @@ const ticketAssigningWritable = new TicketAssigningWritable(
   waitingListTemplate,
   totalAssignedTicketCount,
   totalAssignedExternalTicketCount,
-  totalAssignedFriendTicketCount
+  totalAssignedFriendTicketCount,
+  dryRun
 )
 
 await pipeline(userInfoReadable, attendeeCheckingTransform, userInfoAugmentingTransform, ticketAssigningWritable)
-const newlyAssignedTicketCount = ticketAssigningWritable.totalAssignedTicketCounter.get() - totalAssignedTicketCount
-console.log(`Assigned ${newlyAssignedTicketCount} tickets`)
+const totalTickets= ticketAssigningWritable.totalAssignedTicketCounter.get()
+const newlyAssignedTicketCount = totalTickets - totalAssignedTicketCount
+
+console.log(`Assigned: ${newlyAssignedTicketCount} tickets`)
+console.log(`Total Assigned: ${totalTickets} tickets`)
+for (const group of durhackConfig.friendInstitutionsGroups) {
+  const groupCounter = ticketAssigningWritable.totalAssignedFriendUniversityTicketCounters.find((groupCounter) => groupCounter.institutions === group.institutions)
+  console.log(`${group.institutions} Assigned: ${groupCounter?.counter.get()} total of ${group.maxTickets} tickets`)
+}

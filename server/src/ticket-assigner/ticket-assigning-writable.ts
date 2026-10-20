@@ -1,4 +1,6 @@
 import stream from "node:stream"
+import assert from "node:assert/strict"
+import ModuleError from "module-error";
 
 import {durhackConfig, FriendInstitutionGroup, mailgunConfig} from "@/config"
 import { prisma, type UserInfo } from "@/database"
@@ -6,15 +8,21 @@ import { type DurHackEventTimingInfo, getEventTimingInfo } from "@/lib/format-ev
 import { isExternalApplicant } from "@/lib/is-external-applicant"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import type { Mailer } from "@/lib/mailer"
-import { isString } from "@/lib/type-guards"
+import {hasCode, isString} from "@/lib/type-guards"
 import { profileQrCodeImgTag } from "@/mailer/profile-qr-code"
 import type { Template } from "@/mailer/templates"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
+/**
+ * Error code for incrementing a counter with no capacity.
+ */
+const COUNTER_AT_CAPACITY = "ERR_COUNTER_AT_CAPACITY"
+
 type ICounter = {
   increment: () => void
+  tryIncrement: () => boolean
   decrement: () => void
   hasCapacity: () => boolean
 }
@@ -29,7 +37,13 @@ class Counter implements ICounter {
   }
 
   increment(): void {
+    if (!this.hasCapacity()) throw new ModuleError("Counter at capacity", { code: COUNTER_AT_CAPACITY })
     this.count += 1
+  }
+  tryIncrement(): boolean {
+    if (!this.hasCapacity()) return false
+    this.count += 1
+    return true
   }
   decrement(): void {
     this.count -= 1
@@ -50,13 +64,35 @@ class MultiCounter implements ICounter {
   }
 
   increment(): void {
+    if (!this.hasCapacity()) throw new ModuleError("At least one sub-counter is at capacity", { code: COUNTER_AT_CAPACITY })
     for (const counter of this.counters) counter.increment()
+  }
+  tryIncrement(): boolean {
+    if (!this.hasCapacity()) return false
+    for (const counter of this.counters) counter.increment()
+    return true
   }
   decrement(): void {
     for (const counter of this.counters) counter.decrement()
   }
   hasCapacity(): boolean {
     return this.counters.every((counter) => counter.hasCapacity())
+  }
+}
+
+interface ILogger {
+  info: (str: string) => void
+}
+
+class Logger implements ILogger {
+  private readonly prepend: string
+
+  constructor(prepend: string) {
+    this.prepend = prepend
+  }
+
+  info(str: string): void {
+    console.log(this.prepend, str)
   }
 }
 
@@ -73,6 +109,8 @@ export class TicketAssigningWritable extends stream.Writable {
   private readonly ticketMessageTemplate: Template
   private readonly waitingListMessageTemplate: Template
   private readonly eventTimingInfo: DurHackEventTimingInfo
+  private readonly dry: boolean
+  private logger: Logger
 
   constructor(
     mailer: Mailer,
@@ -81,6 +119,7 @@ export class TicketAssigningWritable extends stream.Writable {
     totalAssignedTicketCount: number,
     totalAssignedExternalTicketCount: number,
     totalAssignedByUniversity: { [university: string]: number },
+    dryRun: boolean
   ) {
     super({
       objectMode: true, // the stream expects to receive objects, not a string/binary data
@@ -101,13 +140,15 @@ export class TicketAssigningWritable extends stream.Writable {
       }
     })
     this.eventTimingInfo = getEventTimingInfo()
+    this.dry = dryRun
+    this.logger = new Logger(this.dry ? "[DRY]" : "[LIVE]")
   }
 
   private getFriendInstitutionGroupCounter(userInfo: UserInfo): Counter | null {
     if (!(userInfo.university)) throw new Error("Something stranger than Dr. Strange happened - how did you get here?")
 
     for (const institutionGroup of this.totalAssignedFriendUniversityTicketCounters)
-      if (institutionGroup.institutions.includes(userInfo.university))
+      if (institutionGroup.institutions.includes(userInfo.university.trim()))
         return institutionGroup.counter
 
     // User is not from a friend institution
@@ -128,17 +169,26 @@ export class TicketAssigningWritable extends stream.Writable {
   }
 
   /**
-   * Assign a user a ticket to attend DurHack, and send an email notification.
+   * Increment the appropriate counter(s) and set a user's application status to 'accepted'.
+   * If the operation is successful, returns <code>true</code>.
+   * If any counter had no capacity, returns <code>false</code>.
+   * In any other exceptional scenario, raises an <code>Error</code>.
    */
-  async assignTicket(userInfo: AugmentedUserInfo): Promise<void> {
-    if (userInfo.applicationStatus === "accepted") return
-    if (userInfo.applicationStatus === "unsubmitted")
-      throw new Error(`Can't assign ticket to ${userInfo.userId} as their application is unsubmitted`)
-
+  async setStatusAcceptedAndIncrementCounter(userInfo: AugmentedUserInfo): Promise<boolean> {
     const ticketCounter = this.getTicketCounterFor(userInfo)
 
     try {
       ticketCounter.increment()
+    } catch (e) {
+      if (hasCode(e) && e.code === COUNTER_AT_CAPACITY) return false
+      throw e
+    }
+
+    this.logger.info(`Assigning ticket to user ${userInfo.userId} from ${userInfo.university}`)
+    if (this.dry)
+      return true;
+
+    try {
       const now = new Date()
       await prisma.userInfo.update({
         where: { userId: userInfo.userId },
@@ -151,6 +201,35 @@ export class TicketAssigningWritable extends stream.Writable {
     } catch (e) {
       ticketCounter.decrement()
       throw e
+    }
+    return true
+  }
+
+  async setStatusWaitlisted(userInfo: AugmentedUserInfo): Promise<void> {
+    const now = new Date()
+    await prisma.userInfo.update({
+      where: { userId: userInfo.userId },
+      data: {
+        applicationStatus: "waitingList",
+        applicationStatusUpdatedAt: now,
+      },
+    })
+  }
+
+  /**
+   * If DurHack still has ticket capacity to allocate, assign an attendee ticket to the specified user, then
+   * send an email notification.
+   * Otherwise, move the user to the ticket waiting list and send an email notification.
+   */
+  async acceptOrWaitlist(userInfo: AugmentedUserInfo): Promise<void> {
+    if (userInfo.applicationStatus === "accepted") return
+    if (userInfo.applicationStatus === "unsubmitted")
+      throw new Error(`Can't assign ticket to ${userInfo.userId} as their application is unsubmitted`)
+
+    const accepted = await this.setStatusAcceptedAndIncrementCounter(userInfo)
+    if (!accepted) {
+      await this.waitingList(userInfo)
+      return;
     }
 
     userInfo.preferredNames ??= userInfo.firstNames
@@ -179,14 +258,9 @@ export class TicketAssigningWritable extends stream.Writable {
     if (userInfo.applicationStatus === "accepted")
       throw new Error(`Can't waiting list ${userInfo.userId} as their application has been accepted`)
 
-    const now = new Date()
-    await prisma.userInfo.update({
-      where: { userId: userInfo.userId },
-      data: {
-        applicationStatus: "waitingList",
-        applicationStatusUpdatedAt: now,
-      },
-    })
+    this.logger.info(`Waitlisting user ${userInfo.userId} from ${userInfo.university}`)
+    if (this.dry) return
+    await this.setStatusWaitlisted(userInfo)
 
     userInfo.preferredNames ??= userInfo.firstNames
     await this.mailer.createMessage({
@@ -201,30 +275,13 @@ export class TicketAssigningWritable extends stream.Writable {
     })
   }
 
-  /**
-   * If DurHack still has ticket capacity to allocate, assign an attendee ticket to the provided user.
-   * Otherwise, move the user to the ticket waiting list.
-   */
-  async updateApplicationStatus(userInfo: AugmentedUserInfo): Promise<void> {
-    if (userInfo.applicationStatus === "unsubmitted")
-      throw new Error(`Can't waiting list/accept ${userInfo.userId} as their application is unsubmitted`)
-
-    const ticketCounter = this.getTicketCounterFor(userInfo)
-    if (ticketCounter.hasCapacity()) {
-      await this.assignTicket(userInfo)
-      return
-    }
-
-    await this.waitingList(userInfo)
-  }
-
-  async updateManyApplicationStatus(users: AugmentedUserInfo[]): Promise<void> {
-    const applicationStatusUpdatePromises = users.map((user) => this.updateApplicationStatus(user))
+  async acceptOrWaitlistMany(users: AugmentedUserInfo[]): Promise<void> {
+    const applicationStatusUpdatePromises = users.map((user) => this.acceptOrWaitlist(user))
     await Promise.all(applicationStatusUpdatePromises)
   }
 
   _write(chunk: AugmentedUserInfo[], _encoding: never, callback: (error?: Error | null) => void) {
-    this.updateManyApplicationStatus(chunk)
+    this.acceptOrWaitlistMany(chunk)
       .then(() => callback())
       .catch((error: unknown) => {
         if (error instanceof Error) return callback(error)
