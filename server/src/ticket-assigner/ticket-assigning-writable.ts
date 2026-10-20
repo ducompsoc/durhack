@@ -12,7 +12,6 @@ import {hasCode, isString} from "@/lib/type-guards"
 import { profileQrCodeImgTag } from "@/mailer/profile-qr-code"
 import type { Template } from "@/mailer/templates"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
-import {ILogger} from "mailgun.js/Interfaces";
 
 type AugmentedUserInfo = UserInfo & KeycloakAugments
 
