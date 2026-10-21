@@ -93,3 +93,4 @@ for (const group of durhackConfig.friendInstitutionsGroups) {
   )
   console.log(`${group.institutions} Assigned: ${groupCounter?.counter.get()} total of ${group.maxTickets} tickets`)
 }
+console.log(`External Tickets Assigned: ${ticketAssigningWritable.totalAssignedExternalTicketCounter.get()} total of ${durhackConfig.maximumExternalTicketAssignment} tickets`)
