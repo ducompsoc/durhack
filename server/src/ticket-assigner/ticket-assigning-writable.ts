@@ -118,7 +118,7 @@ export class TicketAssigningWritable extends stream.Writable {
     waitingListTemplate: Template,
     totalAssignedTicketCount: number,
     totalAssignedExternalTicketCount: number,
-    totalAssignedByUniversity: { [university: string]: number },
+    totalAssignedByUniversity: Map<string, number>,
     dryRun: boolean
   ) {
     super({
@@ -133,7 +133,7 @@ export class TicketAssigningWritable extends stream.Writable {
       durhackConfig.maximumExternalTicketAssignment,
     )
     this.totalAssignedFriendUniversityTicketCounters = durhackConfig.friendInstitutionsGroups.map((friendInstitutionGroup: FriendInstitutionGroup) => {
-      const counter = new Counter(friendInstitutionGroup.institutions.reduce((acc, cur) => acc + (totalAssignedByUniversity[cur] ?? 0), 0), friendInstitutionGroup.maxTickets)
+      const counter = new Counter(friendInstitutionGroup.institutions.reduce((acc, cur) => acc + (totalAssignedByUniversity.get(cur) ?? 0), 0), friendInstitutionGroup.maxTickets)
       return {
         institutions: friendInstitutionGroup.institutions,
         counter: counter
