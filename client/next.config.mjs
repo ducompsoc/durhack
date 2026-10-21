@@ -41,6 +41,11 @@ const nextConfig = {
         permanent: false,
       },
       {
+        source: "/volunteer",
+        destination: "https://forms.gle/eSgrWk6UAmDW1DWa8",
+        permanent: false,
+      },
+      {
         source: "/sponsor",
         destination: "/x",
         permanent: false,

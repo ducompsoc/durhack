@@ -16,17 +16,17 @@ function SubtitleText({ text, ...props }: { text: string } & React.ComponentProp
   )
 }
 
-function SignupButton({ ...props }: React.ComponentProps<"div">) {
+function HeroButton({ innerText, href, ...props }: {innerText: string, href: string} & React.ComponentProps<"div">) {
   return (
     <div {...props}>
       <a
-        href="/dashboard"
+        href={href}
         className={cn(
           audiowide.className,
           "uppercase bg-[#982272] rounded-full py-3 px-12 text-xl font-medium hover:bg-[#611545] outline-solid outline-[#611545] transition-colors duration-300",
         )}
       >
-        Sign Up Now
+        {innerText}
       </a>
     </div>
   )
@@ -48,7 +48,10 @@ export default function Hero() {
             <SubtitleText text="14th-15th November" />
             <SubtitleText text="Durham University, TLC" />
           </div>
-          <SignupButton className="w-full items-center justify-center flex" />
+          <div className="w-full items-center justify-center flex flex-wrap gap-10">
+            <HeroButton href="/dashboard" innerText="Sign Up Now" />
+            <HeroButton href="/volunteer" innerText="Volunteer" />
+          </div>
         </div>
 
         {/* Bottom half */}
