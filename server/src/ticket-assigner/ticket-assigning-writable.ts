@@ -1,14 +1,14 @@
-import stream from "node:stream"
 import assert from "node:assert/strict"
-import ModuleError from "module-error";
+import stream from "node:stream"
+import ModuleError from "module-error"
 
-import {durhackConfig, FriendInstitutionGroup, mailgunConfig} from "@/config"
+import { durhackConfig, type FriendInstitutionGroup, mailgunConfig } from "@/config"
 import { prisma, type UserInfo } from "@/database"
 import { type DurHackEventTimingInfo, getEventTimingInfo } from "@/lib/format-event-timings"
 import { isExternalApplicant } from "@/lib/is-external-applicant"
 import type { KeycloakAugments } from "@/lib/keycloak-augmenting-transform"
 import type { Mailer } from "@/lib/mailer"
-import {hasCode, isString} from "@/lib/type-guards"
+import { hasCode, isString } from "@/lib/type-guards"
 import { profileQrCodeImgTag } from "@/mailer/profile-qr-code"
 import type { Template } from "@/mailer/templates"
 import { durhackInvite } from "@/routes/calendar/calendar-event"
@@ -64,7 +64,8 @@ class MultiCounter implements ICounter {
   }
 
   increment(): void {
-    if (!this.hasCapacity()) throw new ModuleError("At least one sub-counter is at capacity", { code: COUNTER_AT_CAPACITY })
+    if (!this.hasCapacity())
+      throw new ModuleError("At least one sub-counter is at capacity", { code: COUNTER_AT_CAPACITY })
     for (const counter of this.counters) counter.increment()
   }
   tryIncrement(): boolean {
@@ -97,7 +98,7 @@ class Logger implements ILogger {
 }
 
 type FriendInstitutionCounterSchema = {
-  institutions: string[],
+  institutions: string[]
   counter: Counter
 }
 
@@ -119,7 +120,7 @@ export class TicketAssigningWritable extends stream.Writable {
     totalAssignedTicketCount: number,
     totalAssignedExternalTicketCount: number,
     totalAssignedByUniversity: Map<string, number>,
-    dryRun: boolean
+    dryRun: boolean,
   ) {
     super({
       objectMode: true, // the stream expects to receive objects, not a string/binary data
@@ -132,24 +133,28 @@ export class TicketAssigningWritable extends stream.Writable {
       totalAssignedExternalTicketCount,
       durhackConfig.maximumExternalTicketAssignment,
     )
-    this.totalAssignedFriendUniversityTicketCounters = durhackConfig.friendInstitutionsGroups.map((friendInstitutionGroup: FriendInstitutionGroup) => {
-      const counter = new Counter(friendInstitutionGroup.institutions.reduce((acc, cur) => acc + (totalAssignedByUniversity.get(cur) ?? 0), 0), friendInstitutionGroup.maxTickets)
-      return {
-        institutions: friendInstitutionGroup.institutions,
-        counter: counter
-      }
-    })
+    this.totalAssignedFriendUniversityTicketCounters = durhackConfig.friendInstitutionsGroups.map(
+      (friendInstitutionGroup: FriendInstitutionGroup) => {
+        const counter = new Counter(
+          friendInstitutionGroup.institutions.reduce((acc, cur) => acc + (totalAssignedByUniversity.get(cur) ?? 0), 0),
+          friendInstitutionGroup.maxTickets,
+        )
+        return {
+          institutions: friendInstitutionGroup.institutions,
+          counter: counter,
+        }
+      },
+    )
     this.eventTimingInfo = getEventTimingInfo()
     this.dry = dryRun
     this.logger = new Logger(this.dry ? "[DRY]" : "[LIVE]")
   }
 
   private getFriendInstitutionGroupCounter(userInfo: UserInfo): Counter | null {
-    if (!(userInfo.university)) throw new Error("Something stranger than Dr. Strange happened - how did you get here?")
+    if (!userInfo.university) throw new Error("Something stranger than Dr. Strange happened - how did you get here?")
 
     for (const institutionGroup of this.totalAssignedFriendUniversityTicketCounters)
-      if (institutionGroup.institutions.includes(userInfo.university.trim()))
-        return institutionGroup.counter
+      if (institutionGroup.institutions.includes(userInfo.university.trim())) return institutionGroup.counter
 
     // User is not from a friend institution
     return null
@@ -158,7 +163,10 @@ export class TicketAssigningWritable extends stream.Writable {
   getTicketCounterFor(userInfo: AugmentedUserInfo): ICounter {
     const counters: Counter[] = [this.totalAssignedTicketCounter]
 
-    if (!(userInfo.university)) throw new Error("Something really weird happened - shouldn't be getting ticket counters for unsubmitted applications")
+    if (!userInfo.university)
+      throw new Error(
+        "Something really weird happened - shouldn't be getting ticket counters for unsubmitted applications",
+      )
 
     const friendInstitutionCounter = this.getFriendInstitutionGroupCounter(userInfo)
     if (friendInstitutionCounter != null) counters.push(friendInstitutionCounter)
@@ -185,8 +193,7 @@ export class TicketAssigningWritable extends stream.Writable {
     }
 
     this.logger.info(`Assigning ticket to user ${userInfo.userId} from ${userInfo.university}`)
-    if (this.dry)
-      return true;
+    if (this.dry) return true
 
     try {
       const now = new Date()
@@ -229,7 +236,7 @@ export class TicketAssigningWritable extends stream.Writable {
     const accepted = await this.setStatusAcceptedAndIncrementCounter(userInfo)
     if (!accepted) {
       await this.waitingList(userInfo)
-      return;
+      return
     }
 
     userInfo.preferredNames ??= userInfo.firstNames
