@@ -38,36 +38,34 @@ if (!dryRun && !durhackConfig.ticketAssignmentActive) {
   process.exit()
 }
 
-const [
-  totalAssignedTicketCount,
-  totalAssignedExternalTicketCount,
-  totalAssignedFriendTicketGroups,
-  acceptedTemplate,
-  waitingListTemplate,
-] = await Promise.all([
-  prisma.userInfo.count({
-    where: { applicationStatus: { equals: "accepted" } },
-  }),
-  prisma.userInfo.count({
-    where: { applicationStatus: { equals: "accepted" }, university: { not: "Durham University" } },
-  }),
-  prisma.userInfo.groupBy({
-    by: ["university"],
-    where: {
-      university: { not: null },
-      applicationStatus: { equals: "accepted" },
-    },
-    _count: { userId: true },
-  }),
-  loadTemplate("ticket-notification"),
-  loadTemplate("waiting-list-notification"),
-])
+const [totalAssignedTicketCount, assignedTicketCountByUniversity, acceptedTemplate, waitingListTemplate] =
+  await Promise.all([
+    prisma.userInfo.count({
+      where: { applicationStatus: { equals: "accepted" } },
+    }),
+    prisma.userInfo.groupBy({
+      by: ["university"],
+      where: {
+        university: { not: null },
+        applicationStatus: { equals: "accepted" },
+      },
+      _count: { userId: true },
+    }),
+    loadTemplate("ticket-notification"),
+    loadTemplate("waiting-list-notification"),
+  ])
 
 const mailer = dryRun ? new DummyMailer() : new MailgunMailer()
 
-const totalAssignedFriendTicketCount = new Map(
-  totalAssignedFriendTicketGroups.map((res) => [res.university!, res._count.userId]),
+const assignedTicketCountByUniversityMap = new Map(
+  assignedTicketCountByUniversity.map((res) => [res.university as string, res._count.userId]),
 )
+const totalAssignedExternalTicketCount =
+  totalAssignedTicketCount -
+  durhackConfig.friendInstitutionsGroups
+    .flatMap((group) => group.institutions)
+    .map((name) => assignedTicketCountByUniversityMap.get(name) ?? 0)
+    .reduce((acc, count) => acc + count, 0)
 const userInfoReadable = Readable.from(generateUserInfoByTicketAssignmentOrder())
 const attendeeCheckingTransform = new AttendeeCheckingTransform()
 const userInfoAugmentingTransform = new KeycloakAugmentingTransform()
@@ -77,7 +75,7 @@ const ticketAssigningWritable = new TicketAssigningWritable(
   waitingListTemplate,
   totalAssignedTicketCount,
   totalAssignedExternalTicketCount,
-  totalAssignedFriendTicketCount,
+  assignedTicketCountByUniversityMap,
   dryRun,
 )
 
@@ -93,4 +91,6 @@ for (const group of durhackConfig.friendInstitutionsGroups) {
   )
   console.log(`${group.institutions} Assigned: ${groupCounter?.counter.get()} total of ${group.maxTickets} tickets`)
 }
-console.log(`External Tickets Assigned: ${ticketAssigningWritable.totalAssignedExternalTicketCounter.get()} total of ${durhackConfig.maximumExternalTicketAssignment} tickets`)
+console.log(
+  `External Tickets Assigned: ${ticketAssigningWritable.totalAssignedExternalTicketCounter.get()} total of ${durhackConfig.maximumExternalTicketAssignment} tickets`,
+)
