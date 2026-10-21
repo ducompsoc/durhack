@@ -31,7 +31,7 @@ export default {
     redirectUris: ["https://api.durhack-staging.com/auth/keycloak/callback"],
   },
   durhack: {
-    ticketAssignmentActive: true,
+    ticketAssignmentActive: false,
     maximumTicketAssignment: 9,
     friendInstitutionsGroups: [
       {

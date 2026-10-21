@@ -11,7 +11,12 @@ import { AttendeeCheckingTransform } from "./attendee-checking-transform"
 import { TicketAssigningWritable } from "./ticket-assigning-writable"
 import { generateUserInfoByTicketAssignmentOrder } from "./ticket-order-user-info-async-generator"
 import {parseArgs, ParseArgsConfig} from "node:util";
-import {durhackConfig} from "@/config";
+import { durhackConfig } from "@/config";
+
+if (!(durhackConfig.ticketAssignmentActive)) {
+  console.log("Ticket assignment not active")
+  process.exit()
+}
 
 const programArgsConfig = {
   options: {
