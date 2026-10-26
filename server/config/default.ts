@@ -65,6 +65,7 @@ export default {
     currentEventStart: new Date("2026-11-14T09:30:00+00:00"),
     currentEventCheckInCloses: new Date("2026-11-14T10:30:00+00:00"),
     currentEventEnd: new Date("2026-11-15T17:30:00+00:00"),
+    currentEventConsentsPatchCloses: new Date("2026-11-06T09:30:00+00:00"),
     stashItems: {
       "mug": {
         name: "Mug",

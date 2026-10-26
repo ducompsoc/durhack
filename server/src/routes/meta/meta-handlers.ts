@@ -8,6 +8,7 @@ export class MetaHandlers {
     start: durhackConfig.currentEventStart.toISOString(),
     checkInCloses: durhackConfig.currentEventCheckInCloses.toISOString(),
     end: durhackConfig.currentEventEnd.toISOString(),
+    consentsPatchClose: durhackConfig.currentEventConsentsPatchCloses.toISOString(),
   }
   static readonly eventTimingsETagSource = JSON.stringify(MetaHandlers.eventTimings)
   static readonly eventTimingsETag = createHash("sha256").update(MetaHandlers.eventTimingsETagSource).digest("hex")
