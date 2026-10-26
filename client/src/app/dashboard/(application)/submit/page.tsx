@@ -25,6 +25,7 @@ import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
 import { updateApplication } from "@/lib/update-application"
 import { cn } from "@/lib/utils"
+import {getEventTimings} from "@/lib/durhack-meta";
 
 type SubmitFormFields = {
   mlhCodeOfConduct: boolean | "indeterminate"
@@ -106,16 +107,10 @@ function SubmitForm({ application }: { application: Application }) {
 
   async function onSubmit(values: z.infer<typeof submitFormSchema>): Promise<void> {
     try {
-      if (submitted) {
-        await updateApplication("consents", values)
-      } else {
-        await updateApplication("submit", values)
-      }
-    } catch {
-      // todo: what about network errors? this handles too broadly
-      form.setError("root.serverError", {
-        message: "Application is incomplete or already submitted!",
-      })
+      await updateApplication(submitted ? "consents" : "submit", values).catch((err) => { throw new Error (err) } )
+    } catch (err) {
+      const error = err as Error
+      form.setError("root.serverError", {message: error.message})
       return
     }
 
