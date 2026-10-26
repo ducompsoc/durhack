@@ -18,8 +18,11 @@ export async function updateApplication(path: string, body: unknown) {
   }
 
   const res = await fetch(url, options)
+  const jsonRes = await res.json()
 
-  if (!res.ok) throw new Error("Failed to save application!")
+  if (!res.ok) {
+    throw new Error(`Failed to update application! ${jsonRes.detail}`)
+  }
 
-  return await res.json()
+  return jsonRes
 }
