@@ -10,7 +10,7 @@ import { findUniqueUserCvAndSelectFileInfo } from "@prisma/client/sql"
 import { fileTypeFromBuffer } from "file-type"
 import { z } from "zod/v4"
 
-import { mailgunConfig } from "@/config"
+import { durhackConfig, mailgunConfig } from "@/config"
 import { prisma } from "@/database"
 import { adaptApplicationStatusFromDatabase } from "@/database/adapt-application-status"
 import { adaptCvUploadChoiceFromDatabase, adaptCvUploadChoiceToDatabase } from "@/database/adapt-cv-upload-choice"
@@ -613,6 +613,8 @@ class ApplicationHandlers {
   patchConsents(): Middleware{
     return async (request, response) => {
       assert(request.userProfile)
+
+      if (durhackConfig.currentEventConsentsPatchCloses < new Date()) throw new ClientError("Can no longer change submitted consents", {code: "ERR_CONSENTS_PATCH_CLOSED"})
 
       const body = await json(request, response)
       const payload = submitFormSchema.parse(body)
