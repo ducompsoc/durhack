@@ -85,6 +85,7 @@ export const durhackOptionsSchema = z
     currentEventStart: z.date(),
     currentEventCheckInCloses: z.date(),
     currentEventEnd: z.date(),
+    currentEventConsentsPatchCloses: z.date(),
     interopMutualTls: z.object({
       clientCertificateFile: z.string(),
       clientCertificateKeyFile: z.string(),
