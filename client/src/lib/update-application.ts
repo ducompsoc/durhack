@@ -18,11 +18,14 @@ export async function updateApplication(path: string, body: unknown) {
   }
 
   const res = await fetch(url, options)
-  const jsonRes = await res.json()
 
   if (!res.ok) {
-    throw new Error(`Failed to update application! ${jsonRes.detail}`)
+    if (res.headers.get("Content-Type")?.includes("application/json")) {
+      const jsonRes = await res.json()
+      throw new Error(`Failed to update application! ${jsonRes.detail ?? jsonRes.message}`)
+    }
+    throw new Error(`Failed to update application! ${res.statusText}`)
   }
 
-  return jsonRes
+  return await res.json()
 }

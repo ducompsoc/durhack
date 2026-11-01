@@ -23,9 +23,9 @@ import { FormSubmitButton } from "@/components/dashboard/form-submit-button"
 import type { Application } from "@/hooks/use-application"
 import { useApplicationContext } from "@/hooks/use-application-context"
 import { isLoaded } from "@/lib/is-loaded"
+import { hasMessage } from "@/lib/type-guards"
 import { updateApplication } from "@/lib/update-application"
 import { cn } from "@/lib/utils"
-import {getEventTimings} from "@/lib/durhack-meta";
 
 type SubmitFormFields = {
   mlhCodeOfConduct: boolean | "indeterminate"
@@ -107,10 +107,11 @@ function SubmitForm({ application }: { application: Application }) {
 
   async function onSubmit(values: z.infer<typeof submitFormSchema>): Promise<void> {
     try {
-      await updateApplication(submitted ? "consents" : "submit", values).catch((err) => { throw new Error (err) } )
+      await updateApplication(submitted ? "consents" : "submit", values)
     } catch (err) {
-      const error = err as Error
-      form.setError("root.serverError", {message: error.message})
+      if (hasMessage(err)) form.setError("root.serverError", { message: err.message as string })
+      else
+        form.setError("root.serverError", { message: "Failed to update application - something went wrong on our end" })
       return
     }
 
@@ -196,7 +197,13 @@ function SubmitForm({ application }: { application: Application }) {
               <FormItem>
                 <ConsentCard>
                   <FormControl>
-                    <ConsentCardCheckbox checked={value} onCheckedChange={onChange} disabled={submitted} required {...field} />
+                    <ConsentCardCheckbox
+                      checked={value}
+                      onCheckedChange={onChange}
+                      disabled={submitted}
+                      required
+                      {...field}
+                    />
                   </FormControl>
                   <ConsentCardContent>
                     <FormLabel>MLH Policies, Terms & Conditions</FormLabel>
@@ -244,11 +251,7 @@ function SubmitForm({ application }: { application: Application }) {
               <FormItem>
                 <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
-                    <Checkbox
-                      className="mt-[0.2em] lg:mt-0"
-                      checked={value}
-                      onCheckedChange={onChange}
-                      {...field} />
+                    <Checkbox className="mt-[0.2em] lg:mt-0" checked={value} onCheckedChange={onChange} {...field} />
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormLabel>
