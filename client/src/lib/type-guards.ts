@@ -24,3 +24,9 @@ export function hasCode(value: unknown): value is { code: unknown } {
   if (typeof value !== "object") return false
   return Object.hasOwn(value, "code")
 }
+
+export function hasMessage(value: unknown): value is { message: unknown } {
+  if (value == null) return false
+  if (typeof value !== "object") return false
+  return Object.hasOwn(value, "message")
+}
