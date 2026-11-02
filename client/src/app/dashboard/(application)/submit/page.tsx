@@ -109,7 +109,7 @@ function SubmitForm({ application }: { application: Application }) {
     try {
       await updateApplication(submitted ? "consents" : "submit", values)
     } catch (err) {
-      if (hasMessage(err)) form.setError("root.serverError", { message: err.message as string })
+      if (hasMessage(err)) form.setError("root.serverError", { message: String(err.message) })
       else
         form.setError("root.serverError", { message: "Failed to update application - something went wrong on our end" })
       return
