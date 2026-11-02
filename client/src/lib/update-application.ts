@@ -22,7 +22,7 @@ export async function updateApplication(path: string, body: unknown) {
   if (!res.ok) {
     if (res.headers.get("Content-Type")?.includes("application/json")) {
       const jsonRes = await res.json()
-      throw new Error(`Failed to update application! ${jsonRes.detail ?? jsonRes.message}`)
+      throw new Error(`Failed to update application! ${jsonRes.detail ?? jsonRes.message ?? res.statusText}`)
     }
     throw new Error(`Failed to update application! ${res.statusText}`)
   }
