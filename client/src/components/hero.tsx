@@ -50,7 +50,6 @@ export default function Hero() {
           </div>
           <div className="w-full items-center justify-center flex flex-wrap gap-10">
             <HeroButton href="/dashboard" innerText="Sign Up Now" />
-            <HeroButton href="/volunteer" innerText="Volunteer" />
           </div>
         </div>
 
