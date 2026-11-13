@@ -67,26 +67,30 @@ export default {
     currentEventEnd: new Date("2026-11-15T17:30:00+00:00"),
     currentEventConsentsPatchCloses: new Date("2026-11-06T09:30:00+00:00"),
     stashItems: {
-      "mug": {
-        name: "Mug",
-        eligibilityCondition: { type: "check-in" },
-      },
       "t-shirt": {
         name: "T-shirt",
         eligibilityCondition: { type: "check-in" },
       },
-      notebook: {
-        name: "CV Notebook",
+      "bottle": {
+        name: "Bottle",
+        eligibilityCondition: { type: "check-in" },
+      },
+      "tote-bag": {
+        name: "Tote Bag",
         eligibilityCondition: { type: "cv-upload" },
       },
-      "gilded-sticker": {
-        name: "Gilded Sticker",
-        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 60 },
+      "drip-sticker": {
+        name: "Drip Sticker",
+        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 20 },
       },
-      "handwarmer": {
-        name: "Handwarmer",
-        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 120 },
+      "im-not-a-dino-sticker": {
+        name: "\"I'm not a Dino\" Sticker",
+        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 100 },
       },
+      "holo-sticker": {
+        name: "Holographic Logo Sticker",
+        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 200 },
+      }
     },
   },
 } satisfies ConfigIn
