@@ -245,9 +245,20 @@ export const faqs = [
     ),
   },
   {
+    slug: "can-i-transfer-my-ticket",
+    question: "If I cannot attend, can I transfer my ticket to someone else?",
+    icon_path: "/assets/faq/icon-3.svg",
+    answer: (
+      <>
+        <p><strong>No, you cannot transfer your ticket or attend using someone else's ticket.</strong></p>
+        <p>If you turn up with a ticket that isn't in your name or while on the waiting list you will not be admitted into the venue.</p>
+      </>
+    )
+  },
+  {
     slug: "other-questions",
     question: "What if I have other questions?",
-    icon_path: "/assets/faq/icon-3.svg",
+    icon_path: "/assets/faq/icon-1.svg",
     answer: (
       <>
         <p>
@@ -257,4 +268,5 @@ export const faqs = [
       </>
     ),
   },
+
 ] satisfies FAQ[]
