@@ -1,0 +1,5 @@
+@utility comma-separate {
+  & > * ~ *::before {
+    content: ', ';
+  }
+}
