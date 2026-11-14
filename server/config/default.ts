@@ -81,10 +81,6 @@ export default {
       },
       "drip-sticker": {
         name: "Drip Sticker",
-        eligibilityCondition: { type: "points-threshold", thresholdQuantity: 20 },
-      },
-      "im-not-a-dino-sticker": {
-        name: "\"I'm not a Dino\" Sticker",
         eligibilityCondition: { type: "points-threshold", thresholdQuantity: 100 },
       },
       "holo-sticker": {
