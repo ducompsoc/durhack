@@ -8,13 +8,12 @@ import ModuleError from "module-error"
 import { redirect, usePathname } from "next/navigation"
 import * as React from "react"
 import useSWR from "swr"
-
+import { DietaryRequirementsDisplay } from "@/app/profile/[userId]/dietary-requirements"
 import { ApplicationStatusBadge } from "@/components/dashboard/application-status-indicator"
 import { siteConfig } from "@/config/site"
 import { isLoaded } from "@/lib/is-loaded"
 import { hasCode } from "@/lib/type-guards"
 import { cn } from "@/lib/utils"
-
 import { ProfileCheckInButton } from "./check-in-button"
 import { CvUploadBadge } from "./cv-upload-badge"
 import { StashClaimsDisplay } from "./stash-claims"
@@ -89,6 +88,10 @@ export default function ProfilePage(props: { params: Promise<{ userId: string }>
       <UserAttribute>
         <Label htmlFor="pronouns">Pronouns</Label>
         <div id="pronouns">{profile.pronouns}</div>
+      </UserAttribute>
+      <UserAttribute>
+        <Label htmlFor="dietary-requirements">Dietary Reqs</Label>
+        <DietaryRequirementsDisplay userId={profile.userId} />
       </UserAttribute>
       <div>
         <ProfileCheckInButton profile={profile} mutateProfile={mutateProfile} toast={toast} />
