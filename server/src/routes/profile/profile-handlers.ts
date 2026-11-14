@@ -97,6 +97,7 @@ class ProfileHandlers {
         stash_url: new URL(`${request.pathnameWithoutTrailingSlash}/stash`, origin),
         check_in_url: new URL(`${request.pathnameWithoutTrailingSlash}/check-in`, origin),
         guilds_url: new URL(`${request.pathnameWithoutTrailingSlash}/guilds`, origin),
+        dietary_requirements_url: new URL(`${request.pathnameWithoutTrailingSlash}/dietary-requirements`, origin),
       })
     }
   }
@@ -313,6 +314,30 @@ class ProfileHandlers {
   getGuildsProfile(): Middleware {
     return async (_request, _response) => {
       throw new ServerError("Not Implemented", { statusCode: HttpStatus.NotImplemented })
+    }
+  }
+
+  @onlyGroups([Group.admins, Group.organisers, Group.volunteers])
+  getDietaryRequirements(): Middleware {
+    return async (request, response) => {
+      const userId = request.params.userId
+      assert(userId)
+
+      const user = await prisma.user.findUnique({
+        where: { keycloakUserId: userId },
+        include: {
+          userFlags: { where: { flagName: { startsWith: "dietary-requirement" } }, orderBy: { flagName: "asc" } },
+        },
+      })
+      if (!user) throw new ClientError("", { statusCode: HttpStatus.NotFound })
+
+      const dietary_requirements = user.userFlags.map((flag) => flag.flagName.substring(20))
+
+      response.status(200).json({
+        status: response.statusCode,
+        message: response.statusMessage,
+        data: dietary_requirements,
+      })
     }
   }
 }

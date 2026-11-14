@@ -39,3 +39,10 @@ profileApp
   .all(authenticate())
   .get(profileHandlers.getGuildsProfile())
   .all(forbiddenOrUnauthorised())
+
+profileApp
+  .route("/dietary-requirements")
+  .all(methodNotAllowed(["GET"]))
+  .all(authenticate())
+  .get(profileHandlers.getDietaryRequirements())
+  .all(forbiddenOrUnauthorised())
