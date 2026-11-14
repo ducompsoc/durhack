@@ -58,7 +58,7 @@ class ProfileHandlers {
       const profile = await adminClient.users.findOne({ id: userId })
       if (profile == null) throw new ClientError("", { statusCode: HttpStatus.NotFound })
 
-      const databaseProfile = await prisma.user.findUnique({
+      let databaseProfile = await prisma.user.findUnique({
         where: { keycloakUserId: userId },
         include: {
           userInfo: true,
@@ -66,7 +66,12 @@ class ProfileHandlers {
           userFlags: { where: { flagName: "attendance" } },
         },
       })
-      assert(databaseProfile)
+      databaseProfile ??= {
+        keycloakUserId: userId,
+        userInfo: null,
+        userCv: null,
+        userFlags: [],
+      }
 
       const attendanceFlag = this.findAttendanceFlag(databaseProfile)
 
