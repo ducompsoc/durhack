@@ -4,7 +4,10 @@
 SELECT
     count(user_id) as count, dietary_requirements
 FROM (
-    SELECT relevantUser.user_id, ARRAY_AGG(SUBSTRING(userFlag.flag_name from 21)) as dietary_requirements
+    SELECT relevantUser.user_id, ARRAY_AGG(
+        SUBSTRING(userFlag.flag_name from 21)
+        ORDER BY userFlag.flag_name
+    ) as dietary_requirements
     FROM (
         SELECT user_id
         FROM "UserInfo" userInfo
