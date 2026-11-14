@@ -50,6 +50,10 @@ const dietaryRequirementMetadata: Record<DietaryRequirement, { label: string }> 
   other: { label: "Other" },
 }
 
+export function getDietaryRequirementMetadata(slug: DietaryRequirement): { label: string } {
+  return dietaryRequirementMetadata[slug]
+}
+
 export const dietaryRequirementOptions = recordEntries(dietaryRequirementMetadata).map(([value, metadata]) => ({
   value,
   label: metadata.label,
