@@ -26,7 +26,7 @@ import { UserFlagAugmentingTransform } from "@/routes/applications/data-export/u
 import type { Middleware } from "@/types"
 
 import { AttendanceAugmentingTransform, type AttendanceAugments } from "./attendance-augmenting-transform"
-import { CvExportingWritable } from "./cv-exporting-writable"
+import { FlatCvExportingWritable } from "./cv-exporting-writable"
 import { FilteringTransform } from "./filtering-transform"
 import { HukCsvTransform } from "./huk-csv-transform"
 import { MlhCsvTransform } from "./mlh-csv-transform"
@@ -137,7 +137,7 @@ class DataExportHandlers {
         await pipeline(
           Readable.from(generateUserCv()),
           new KeycloakAugmentingTransform(),
-          new CvExportingWritable(archiveDir),
+          new FlatCvExportingWritable(archiveDir),
         )
 
         const archivePath = pathJoin(tempDir, "durhack-cvs.zip")

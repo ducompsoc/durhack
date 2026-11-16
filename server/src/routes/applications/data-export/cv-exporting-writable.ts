@@ -9,13 +9,13 @@ import { hasCode, isString } from "@/lib/type-guards"
 type AugmentedUserCV = UserCV & KeycloakAugments
 
 export class CvExportingWritable extends stream.Writable {
-  directoryPath: string
+  destinationFunc: (cv: AugmentedUserCV) => string
 
-  constructor(path: string) {
+  constructor(destinationFunc: (cv: AugmentedUserCV) => string) {
     super({
       objectMode: true, // the stream expects to receive objects, not a string/binary data
     })
-    this.directoryPath = path
+    this.destinationFunc = destinationFunc
   }
 
   escapeName(name: string): string {
@@ -48,7 +48,7 @@ export class CvExportingWritable extends stream.Writable {
       const filename = `${filepathStem}${discriminator}${filepathExtension}`
 
       try {
-        await writeFile(path.join(this.directoryPath, filename), cv.content, { flag: "wx" })
+        await writeFile(path.join(this.destinationFunc(cv), filename), cv.content, { flag: "wx" })
       } catch (error) {
         if (!hasCode(error) || error.code !== "EEXIST") throw error
         attemptIndex += 1
@@ -71,5 +71,11 @@ export class CvExportingWritable extends stream.Writable {
         if (isString(error)) return callback(new Error(error))
         return callback(new Error(`Something really strange happened. Error object: ${error}`))
       })
+  }
+}
+
+export class FlatCvExportingWritable extends CvExportingWritable {
+  constructor(directoryPath: string) {
+    super((_cv) => directoryPath)
   }
 }
